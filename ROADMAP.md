@@ -28,7 +28,7 @@
 - [ ] interpol
 - [x] jobsuche
 - [ ] ladestationen
-- [ ] lebensmittelwarnung
+- [x] lebensmittelwarnung
 - [ ] luftqualitaet
 - [ ] marktstammdaten
 - [ ] mudab

@@ -356,6 +356,11 @@ bunddev_endpoint_map <- function() {
       api = "feiertage",
       path = "/",
       method = "get"
+    ),
+    lebensmittelwarnung_warnings = list(
+      api = "lebensmittelwarnung",
+      path = "/warnings/merged",
+      method = "post"
     )
   )
 }

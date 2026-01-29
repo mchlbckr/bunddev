@@ -228,7 +228,7 @@
   provider: Bundesamt fuer Verbraucherschutz und Lebensmittelsicherheit
   spec_url: https://raw.githubusercontent.com/bundesAPI/lebensmittelwarnung-api/main/openapi.yaml
   docs_url: https://lebensmittelwarnung.api.bund.dev
-  auth: none
+  auth: api_key
   tags:
     - safety
     - food
