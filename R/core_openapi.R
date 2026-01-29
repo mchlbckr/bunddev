@@ -456,6 +456,36 @@ bunddev_endpoint_map <- function() {
       api = "luftqualitaet",
       path = "/meta/json",
       method = "get"
+    ),
+    travelwarning_warnings = list(
+      api = "travelwarning",
+      path = "/travelwarning",
+      method = "get"
+    ),
+    travelwarning_warning = list(
+      api = "travelwarning",
+      path = "/travelwarning/{contentId}",
+      method = "get"
+    ),
+    travelwarning_representatives_germany = list(
+      api = "travelwarning",
+      path = "/representativesInGermany",
+      method = "get"
+    ),
+    travelwarning_representatives_country = list(
+      api = "travelwarning",
+      path = "/representativesInCountry",
+      method = "get"
+    ),
+    travelwarning_state_names = list(
+      api = "travelwarning",
+      path = "/stateNames",
+      method = "get"
+    ),
+    travelwarning_healthcare = list(
+      api = "travelwarning",
+      path = "/healthcare",
+      method = "get"
     )
   )
 }

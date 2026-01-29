@@ -41,7 +41,7 @@
 - [ ] risikogebiete
 - [ ] strahlenschutz
 - [ ] studiensuche
-- [ ] travelwarning
+- [x] travelwarning
 - [ ] vag
 - [ ] weiterbildungssuche
 - [ ] zoll
