@@ -386,6 +386,76 @@ bunddev_endpoint_map <- function() {
       api = "pegel_online",
       path = "/stations/{station}/{timeseries}/measurements.json",
       method = "get"
+    ),
+    luftqualitaet_airquality = list(
+      api = "luftqualitaet",
+      path = "/airquality/json",
+      method = "get"
+    ),
+    luftqualitaet_airquality_limits = list(
+      api = "luftqualitaet",
+      path = "/airquality/limits",
+      method = "get"
+    ),
+    luftqualitaet_annualbalances = list(
+      api = "luftqualitaet",
+      path = "/annualbalances/json",
+      method = "get"
+    ),
+    luftqualitaet_components = list(
+      api = "luftqualitaet",
+      path = "/components/json",
+      method = "get"
+    ),
+    luftqualitaet_measures = list(
+      api = "luftqualitaet",
+      path = "/measures/json",
+      method = "get"
+    ),
+    luftqualitaet_measures_limits = list(
+      api = "luftqualitaet",
+      path = "/measures/limits",
+      method = "get"
+    ),
+    luftqualitaet_networks = list(
+      api = "luftqualitaet",
+      path = "/networks/json",
+      method = "get"
+    ),
+    luftqualitaet_scopes = list(
+      api = "luftqualitaet",
+      path = "/scopes/json",
+      method = "get"
+    ),
+    luftqualitaet_stationsettings = list(
+      api = "luftqualitaet",
+      path = "/stationsettings/json",
+      method = "get"
+    ),
+    luftqualitaet_stationtypes = list(
+      api = "luftqualitaet",
+      path = "/stationtypes/json",
+      method = "get"
+    ),
+    luftqualitaet_thresholds = list(
+      api = "luftqualitaet",
+      path = "/thresholds/json",
+      method = "get"
+    ),
+    luftqualitaet_transgressions = list(
+      api = "luftqualitaet",
+      path = "/transgressions/json",
+      method = "get"
+    ),
+    luftqualitaet_transgressiontypes = list(
+      api = "luftqualitaet",
+      path = "/transgressiontypes/json",
+      method = "get"
+    ),
+    luftqualitaet_meta = list(
+      api = "luftqualitaet",
+      path = "/meta/json",
+      method = "get"
     )
   )
 }

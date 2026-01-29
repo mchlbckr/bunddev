@@ -29,7 +29,7 @@
 - [x] jobsuche
 - [ ] ladestationen
 - [x] lebensmittelwarnung
-- [ ] luftqualitaet
+- [x] luftqualitaet
 - [ ] marktstammdaten
 - [ ] mudab
 - [ ] nina
