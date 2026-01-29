@@ -361,6 +361,31 @@ bunddev_endpoint_map <- function() {
       api = "lebensmittelwarnung",
       path = "/warnings/merged",
       method = "post"
+    ),
+    pegel_online_stations = list(
+      api = "pegel_online",
+      path = "/stations.json",
+      method = "get"
+    ),
+    pegel_online_station = list(
+      api = "pegel_online",
+      path = "/stations/{station}.json",
+      method = "get"
+    ),
+    pegel_online_waters = list(
+      api = "pegel_online",
+      path = "/waters.json",
+      method = "get"
+    ),
+    pegel_online_timeseries = list(
+      api = "pegel_online",
+      path = "/stations/{station}/{timeseries}.json",
+      method = "get"
+    ),
+    pegel_online_measurements = list(
+      api = "pegel_online",
+      path = "/stations/{station}/{timeseries}/measurements.json",
+      method = "get"
     )
   )
 }

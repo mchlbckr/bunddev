@@ -33,7 +33,7 @@
 - [ ] marktstammdaten
 - [ ] mudab
 - [ ] nina
-- [ ] pegel_online
+- [x] pegel_online
 - [ ] pflanzenschutzmittelzulassung
 - [ ] polizei_brandenburg
 - [ ] regionalatlas
