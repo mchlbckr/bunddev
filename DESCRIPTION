@@ -24,5 +24,6 @@ Imports:
     stringr,
     tibble,
     tools,
+    xml2,
     yaml
 VignetteBuilder: knitr
