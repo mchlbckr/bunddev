@@ -4,13 +4,18 @@
 #' @param schlagwort_optionen Keyword options.
 #' @param safe Logical; apply throttling and caching.
 #' @param refresh Logical; refresh cached responses.
+#' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with search results.
 #' @export
 bunddev_handelsregister_search <- function(schlagwoerter,
                                            schlagwort_optionen = c("all", "min", "exact"),
                                            safe = TRUE,
-                                           refresh = FALSE) {
+                                           refresh = FALSE,
+                                           flatten = FALSE,
+                                           flatten_mode = "json") {
   schlagwort_optionen <- rlang::arg_match(schlagwort_optionen)
 
   if (isTRUE(safe)) {
@@ -70,7 +75,16 @@ bunddev_handelsregister_search <- function(schlagwoerter,
     writeBin(charToRaw(results_html), cache_path)
   }
 
-  bunddev_handelsregister_parse(results_html)
+  data <- bunddev_handelsregister_parse(results_html)
+  if (flatten) {
+    return(bunddev_flatten_list_cols(
+      data,
+      cols = c("history", "documents_links"),
+      mode = flatten_mode
+    ))
+  }
+
+  data
 }
 
 bunddev_handelsregister_option_id <- function(option) {

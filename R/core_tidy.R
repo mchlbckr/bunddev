@@ -25,5 +25,36 @@ bunddev_tidy_dispatch <- function(api) {
   if (api == "autobahn") {
     return(bunddev_tidy_autobahn)
   }
+  if (api == "tagesschau") {
+    return(bunddev_tidy_tagesschau)
+  }
   NULL
+}
+
+bunddev_flatten_list_cols <- function(data, cols, mode = "drop") {
+  mode <- rlang::arg_match(mode, c("drop", "json", "unnest"))
+  cols <- intersect(cols, names(data))
+
+  if (length(cols) == 0) {
+    return(data)
+  }
+
+  if (mode == "drop") {
+    return(dplyr::select(data, -dplyr::any_of(cols)))
+  }
+
+  if (mode == "json") {
+    for (col in cols) {
+      data[[col]] <- purrr::map_chr(
+        data[[col]],
+        ~ jsonlite::toJSON(.x, auto_unbox = TRUE, null = "null")
+      )
+    }
+    return(data)
+  }
+
+  for (col in cols) {
+    data <- tidyr::unnest_longer(data, dplyr::all_of(col), values_to = col)
+  }
+  data
 }

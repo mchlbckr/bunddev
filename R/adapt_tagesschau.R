@@ -1,0 +1,174 @@
+#' Fetch Tagesschau homepage items
+#'
+#' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
+#'
+#' @return A tibble with homepage items.
+#' @export
+bunddev_tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
+  bunddev_call_tidy(
+    "tagesschau",
+    "homepage",
+    flatten = flatten,
+    flatten_mode = flatten_mode
+  )
+}
+
+#' Fetch Tagesschau news items
+#'
+#' @param regions Optional region ids.
+#' @param ressort Optional ressort filter.
+#' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
+#'
+#' @return A tibble with news items.
+#' @export
+bunddev_tagesschau_news <- function(regions = NULL, ressort = NULL,
+                                    flatten = FALSE, flatten_mode = "json") {
+  params <- list()
+  if (!is.null(regions)) {
+    params$regions <- regions
+  }
+  if (!is.null(ressort)) {
+    params$ressort <- ressort
+  }
+  bunddev_call_tidy(
+    "tagesschau",
+    "news",
+    params = params,
+    flatten = flatten,
+    flatten_mode = flatten_mode
+  )
+}
+
+#' Search Tagesschau content
+#'
+#' @param search_text Query string.
+#' @param page_size Results per page.
+#' @param result_page Result page index.
+#' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
+#'
+#' @return A tibble with search results.
+#' @export
+bunddev_tagesschau_search <- function(search_text = NULL,
+                                      page_size = NULL,
+                                      result_page = NULL,
+                                      flatten = FALSE,
+                                      flatten_mode = "json") {
+  params <- list()
+  if (!is.null(search_text)) {
+    params$searchText <- search_text
+  }
+  if (!is.null(page_size)) {
+    params$pageSize <- page_size
+  }
+  if (!is.null(result_page)) {
+    params$resultPage <- result_page
+  }
+  bunddev_call_tidy(
+    "tagesschau",
+    "search",
+    params = params,
+    flatten = flatten,
+    flatten_mode = flatten_mode
+  )
+}
+
+#' Fetch Tagesschau channels
+#'
+#' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
+#'
+#' @return A tibble with channels.
+#' @export
+bunddev_tagesschau_channels <- function(flatten = FALSE, flatten_mode = "json") {
+  bunddev_call_tidy(
+    "tagesschau",
+    "channels",
+    flatten = flatten,
+    flatten_mode = flatten_mode
+  )
+}
+
+bunddev_tidy_tagesschau <- function(response, operation_id = NULL,
+                                    flatten = FALSE, flatten_mode = "json") {
+  if (operation_id %in% c("homepage", "news")) {
+    news <- bunddev_tidy_tagesschau_items(response$news, section = "news")
+    regional <- bunddev_tidy_tagesschau_items(response$regional, section = "regional")
+    data <- dplyr::bind_rows(news, regional)
+  } else if (operation_id == "search") {
+    data <- bunddev_tidy_tagesschau_items(response$searchResults, section = "search")
+  } else if (operation_id == "channels") {
+    data <- bunddev_tidy_tagesschau_items(response$channels, section = "channels")
+  } else {
+    data <- tibble::tibble()
+  }
+
+  if (flatten) {
+    return(bunddev_flatten_list_cols(
+      data,
+      cols = c(
+        "teaser_image",
+        "tracking",
+        "tags",
+        "images",
+        "streams",
+        "geotags",
+        "branding_image",
+        "first_frame"
+      ),
+      mode = flatten_mode
+    ))
+  }
+
+  data
+}
+
+bunddev_tidy_tagesschau_items <- function(items, section) {
+  if (is.null(items) || length(items) == 0) {
+    return(tibble::tibble())
+  }
+
+  chr_or_na <- function(value) {
+    if (is.null(value)) NA_character_ else as.character(value)
+  }
+  lgl_or_na <- function(value) {
+    if (is.null(value)) NA else isTRUE(value)
+  }
+  list_or_empty <- function(value) {
+    if (is.null(value)) list() else value
+  }
+
+  tibble::tibble(
+    section = section,
+    sophora_id = purrr::map_chr(items, ~ chr_or_na(.x$sophoraId)),
+    external_id = purrr::map_chr(items, ~ chr_or_na(.x$externalId)),
+    title = purrr::map_chr(items, ~ chr_or_na(.x$title)),
+    date = purrr::map_chr(items, ~ chr_or_na(.x$date)),
+    topline = purrr::map_chr(items, ~ chr_or_na(.x$topline)),
+    first_sentence = purrr::map_chr(items, ~ chr_or_na(.x$firstSentence)),
+    details = purrr::map_chr(items, ~ chr_or_na(.x$details)),
+    detailsweb = purrr::map_chr(items, ~ chr_or_na(.x$detailsweb)),
+    share_url = purrr::map_chr(items, ~ chr_or_na(.x$shareURL)),
+    update_check_url = purrr::map_chr(items, ~ chr_or_na(.x$updateCheckUrl)),
+    region_id = purrr::map_chr(items, ~ chr_or_na(.x$regionId)),
+    ressort = purrr::map_chr(items, ~ chr_or_na(.x$ressort)),
+    type = purrr::map_chr(items, ~ chr_or_na(.x$type)),
+    breaking_news = purrr::map_lgl(items, ~ lgl_or_na(.x$breakingNews)),
+    copyright = purrr::map_chr(items, ~ chr_or_na(.x$copyright)),
+    alttext = purrr::map_chr(items, ~ chr_or_na(.x$alttext)),
+    teaser_image = purrr::map(items, ~ list_or_empty(.x$teaserImage)),
+    tracking = purrr::map(items, ~ list_or_empty(.x$tracking)),
+    tags = purrr::map(items, ~ list_or_empty(.x$tags)),
+    images = purrr::map(items, ~ list_or_empty(.x$images)),
+    streams = purrr::map(items, ~ list_or_empty(.x$streams)),
+    geotags = purrr::map(items, ~ list_or_empty(.x$geotags)),
+    branding_image = purrr::map(items, ~ list_or_empty(.x$brandingImage)),
+    first_frame = purrr::map(items, ~ list_or_empty(.x$firstFrame))
+  )
+}

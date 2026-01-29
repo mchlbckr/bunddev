@@ -4,12 +4,19 @@
 \alias{bunddev_autobahn_webcam_details}
 \title{Get Autobahn webcam details}
 \usage{
-bunddev_autobahn_webcam_details(webcam_id, flatten = FALSE)
+bunddev_autobahn_webcam_details(
+  webcam_id,
+  flatten = FALSE,
+  flatten_mode = "json"
+)
 }
 \arguments{
 \item{webcam_id}{Webcam identifier.}
 
 \item{flatten}{Logical; drop nested list columns.}
+
+\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
+expand list-columns into multiple rows.}
 }
 \value{
 A tibble with webcam details.

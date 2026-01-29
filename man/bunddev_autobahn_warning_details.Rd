@@ -4,12 +4,19 @@
 \alias{bunddev_autobahn_warning_details}
 \title{Get Autobahn warning details}
 \usage{
-bunddev_autobahn_warning_details(warning_id, flatten = FALSE)
+bunddev_autobahn_warning_details(
+  warning_id,
+  flatten = FALSE,
+  flatten_mode = "json"
+)
 }
 \arguments{
 \item{warning_id}{Warning identifier.}
 
 \item{flatten}{Logical; drop nested list columns.}
+
+\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
+expand list-columns into multiple rows.}
 }
 \value{
 A tibble with warning details.

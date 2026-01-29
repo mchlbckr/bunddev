@@ -27,6 +27,9 @@ details for service-specific guidance.
 API-specific helpers return tidy tibbles by default. Use `bunddev_call()` for
 raw responses.
 
+When `flatten = TRUE`, set `flatten_mode` to "json" (default), "drop", or
+"unnest". Note that "unnest" expands list-columns into multiple rows.
+
 The package separates a core OpenAPI layer from adapter helpers for specific
 APIs.
 

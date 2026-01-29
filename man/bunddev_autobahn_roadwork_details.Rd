@@ -4,12 +4,19 @@
 \alias{bunddev_autobahn_roadwork_details}
 \title{Get Autobahn roadwork details}
 \usage{
-bunddev_autobahn_roadwork_details(roadwork_id, flatten = FALSE)
+bunddev_autobahn_roadwork_details(
+  roadwork_id,
+  flatten = FALSE,
+  flatten_mode = "json"
+)
 }
 \arguments{
 \item{roadwork_id}{Roadwork identifier.}
 
 \item{flatten}{Logical; drop nested list columns.}
+
+\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
+expand list-columns into multiple rows.}
 }
 \value{
 A tibble with roadwork details.

@@ -4,12 +4,19 @@
 \alias{bunddev_bewerberboerse_details}
 \title{Retrieve Bewerberboerse candidate details}
 \usage{
-bunddev_bewerberboerse_details(referenznummer, flatten = FALSE)
+bunddev_bewerberboerse_details(
+  referenznummer,
+  flatten = FALSE,
+  flatten_mode = "json"
+)
 }
 \arguments{
 \item{referenznummer}{Bewerber referenznummer.}
 
 \item{flatten}{Logical; drop nested list columns.}
+
+\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
+expand list-columns into multiple rows.}
 }
 \value{
 A tibble with tidied results.

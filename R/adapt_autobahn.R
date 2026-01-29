@@ -10,16 +10,19 @@ bunddev_autobahn_roads <- function() {
 #'
 #' @param road_id Road identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with roadworks.
 #' @export
-bunddev_autobahn_roadworks <- function(road_id, flatten = FALSE) {
+bunddev_autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-roadworks",
     params = list(roadId = road_id),
     road_id = road_id,
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -27,16 +30,19 @@ bunddev_autobahn_roadworks <- function(road_id, flatten = FALSE) {
 #'
 #' @param road_id Road identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with warnings.
 #' @export
-bunddev_autobahn_warnings <- function(road_id, flatten = FALSE) {
+bunddev_autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-warnings",
     params = list(roadId = road_id),
     road_id = road_id,
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -44,16 +50,19 @@ bunddev_autobahn_warnings <- function(road_id, flatten = FALSE) {
 #'
 #' @param road_id Road identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with webcams.
 #' @export
-bunddev_autobahn_webcams <- function(road_id, flatten = FALSE) {
+bunddev_autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-webcams",
     params = list(roadId = road_id),
     road_id = road_id,
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -61,16 +70,19 @@ bunddev_autobahn_webcams <- function(road_id, flatten = FALSE) {
 #'
 #' @param road_id Road identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with closures.
 #' @export
-bunddev_autobahn_closures <- function(road_id, flatten = FALSE) {
+bunddev_autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-closures",
     params = list(roadId = road_id),
     road_id = road_id,
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -78,16 +90,19 @@ bunddev_autobahn_closures <- function(road_id, flatten = FALSE) {
 #'
 #' @param road_id Road identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with charging stations.
 #' @export
-bunddev_autobahn_charging_stations <- function(road_id, flatten = FALSE) {
+bunddev_autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-charging-stations",
     params = list(roadId = road_id),
     road_id = road_id,
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -95,16 +110,19 @@ bunddev_autobahn_charging_stations <- function(road_id, flatten = FALSE) {
 #'
 #' @param road_id Road identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with lorry parking areas.
 #' @export
-bunddev_autobahn_parking_lorries <- function(road_id, flatten = FALSE) {
+bunddev_autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-parking-lorries",
     params = list(roadId = road_id),
     road_id = road_id,
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -112,15 +130,18 @@ bunddev_autobahn_parking_lorries <- function(road_id, flatten = FALSE) {
 #'
 #' @param roadwork_id Roadwork identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with roadwork details.
 #' @export
-bunddev_autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE) {
+bunddev_autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-roadwork",
     params = list(roadworkId = roadwork_id),
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -128,15 +149,18 @@ bunddev_autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE) {
 #'
 #' @param warning_id Warning identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with warning details.
 #' @export
-bunddev_autobahn_warning_details <- function(warning_id, flatten = FALSE) {
+bunddev_autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-warning",
     params = list(warningId = warning_id),
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -144,15 +168,18 @@ bunddev_autobahn_warning_details <- function(warning_id, flatten = FALSE) {
 #'
 #' @param webcam_id Webcam identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with webcam details.
 #' @export
-bunddev_autobahn_webcam_details <- function(webcam_id, flatten = FALSE) {
+bunddev_autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-webcam",
     params = list(webcamId = webcam_id),
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -160,15 +187,18 @@ bunddev_autobahn_webcam_details <- function(webcam_id, flatten = FALSE) {
 #'
 #' @param closure_id Closure identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with closure details.
 #' @export
-bunddev_autobahn_closure_details <- function(closure_id, flatten = FALSE) {
+bunddev_autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-closure",
     params = list(closureId = closure_id),
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -176,15 +206,18 @@ bunddev_autobahn_closure_details <- function(closure_id, flatten = FALSE) {
 #'
 #' @param station_id Charging station identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with charging station details.
 #' @export
-bunddev_autobahn_charging_station_details <- function(station_id, flatten = FALSE) {
+bunddev_autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-charging-station",
     params = list(stationId = station_id),
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -192,20 +225,23 @@ bunddev_autobahn_charging_station_details <- function(station_id, flatten = FALS
 #'
 #' @param lorry_id Lorry parking identifier.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with lorry parking details.
 #' @export
-bunddev_autobahn_parking_lorry_details <- function(lorry_id, flatten = FALSE) {
+bunddev_autobahn_parking_lorry_details <- function(lorry_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-parking-lorry",
     params = list(lorryId = lorry_id),
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
 bunddev_tidy_autobahn <- function(response, operation_id = NULL, flatten = FALSE,
-                                  road_id = NA_character_) {
+                                  road_id = NA_character_, flatten_mode = "json") {
   if (operation_id == "list-autobahnen") {
     roads <- response$roads
     if (is.null(roads)) {
@@ -242,10 +278,16 @@ bunddev_tidy_autobahn <- function(response, operation_id = NULL, flatten = FALSE
     return(tibble::tibble())
   }
 
-  bunddev_tidy_autobahn_items(items, road_id = road_id, flatten = flatten)
+  bunddev_tidy_autobahn_items(
+    items,
+    road_id = road_id,
+    flatten = flatten,
+    flatten_mode = flatten_mode
+  )
 }
 
-bunddev_tidy_autobahn_items <- function(items, road_id = NA_character_, flatten = FALSE) {
+bunddev_tidy_autobahn_items <- function(items, road_id = NA_character_,
+                                        flatten = FALSE, flatten_mode = "json") {
   chr_or_na <- function(value) {
     if (is.null(value)) NA_character_ else as.character(value)
   }
@@ -280,9 +322,10 @@ bunddev_tidy_autobahn_items <- function(items, road_id = NA_character_, flatten 
   )
 
   if (flatten) {
-    return(dplyr::select(
+    return(bunddev_flatten_list_cols(
       data,
-      -dplyr::any_of(c("route_recommendation", "lorry_parking_feature_icons"))
+      cols = c("route_recommendation", "lorry_parking_feature_icons"),
+      mode = flatten_mode
     ))
   }
 

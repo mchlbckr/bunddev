@@ -355,6 +355,7 @@
   spec_url: https://raw.githubusercontent.com/bundesAPI/tagesschau-api/main/openapi.yaml
   docs_url: https://bundesapi.github.io/tagesschau-api/
   auth: none
+  rate_limit: Mehr als 60 Abrufe pro Stunde sind unzulässig.
   tags:
     - news
     - media

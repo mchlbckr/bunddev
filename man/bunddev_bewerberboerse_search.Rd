@@ -4,12 +4,19 @@
 \alias{bunddev_bewerberboerse_search}
 \title{Search the Bewerberboerse API}
 \usage{
-bunddev_bewerberboerse_search(params = list(), flatten = FALSE)
+bunddev_bewerberboerse_search(
+  params = list(),
+  flatten = FALSE,
+  flatten_mode = "json"
+)
 }
 \arguments{
 \item{params}{List of query parameters.}
 
 \item{flatten}{Logical; drop nested list columns.}
+
+\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
+expand list-columns into multiple rows.}
 }
 \value{
 A tibble with tidied results.

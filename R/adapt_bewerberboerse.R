@@ -2,15 +2,20 @@
 #'
 #' @param params List of query parameters.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with tidied results.
 #' @export
-bunddev_bewerberboerse_search <- function(params = list(), flatten = FALSE) {
+bunddev_bewerberboerse_search <- function(params = list(),
+                                          flatten = FALSE,
+                                          flatten_mode = "json") {
   bunddev_call_tidy(
     "bewerberboerse",
     "bewerberboerse",
     params = params,
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
@@ -18,19 +23,25 @@ bunddev_bewerberboerse_search <- function(params = list(), flatten = FALSE) {
 #'
 #' @param referenznummer Bewerber referenznummer.
 #' @param flatten Logical; drop nested list columns.
+#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
+#'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with tidied results.
 #' @export
-bunddev_bewerberboerse_details <- function(referenznummer, flatten = FALSE) {
+bunddev_bewerberboerse_details <- function(referenznummer,
+                                           flatten = FALSE,
+                                           flatten_mode = "json") {
   bunddev_call_tidy(
     "bewerberboerse",
     "bewerberdetails",
     params = list(referenznummer = referenznummer),
-    flatten = flatten
+    flatten = flatten,
+    flatten_mode = flatten_mode
   )
 }
 
-bunddev_tidy_bewerberboerse <- function(response, operation_id = NULL, flatten = FALSE) {
+bunddev_tidy_bewerberboerse <- function(response, operation_id = NULL,
+                                        flatten = FALSE, flatten_mode = "json") {
   bewerber <- response$bewerber
   if (is.null(bewerber) || length(bewerber) == 0) {
     return(tibble::tibble())
@@ -82,7 +93,11 @@ bunddev_tidy_bewerberboerse <- function(response, operation_id = NULL, flatten =
   )
 
   if (flatten) {
-    return(dplyr::select(data, -dplyr::any_of(c("ausbildungen", "erfahrung"))))
+    return(bunddev_flatten_list_cols(
+      data,
+      cols = c("ausbildungen", "erfahrung"),
+      mode = flatten_mode
+    ))
   }
 
   data

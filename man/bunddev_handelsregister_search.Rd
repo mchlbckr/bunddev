@@ -8,7 +8,9 @@ bunddev_handelsregister_search(
   schlagwoerter,
   schlagwort_optionen = c("all", "min", "exact"),
   safe = TRUE,
-  refresh = FALSE
+  refresh = FALSE,
+  flatten = FALSE,
+  flatten_mode = "json"
 )
 }
 \arguments{
@@ -19,6 +21,11 @@ bunddev_handelsregister_search(
 \item{safe}{Logical; apply throttling and caching.}
 
 \item{refresh}{Logical; refresh cached responses.}
+
+\item{flatten}{Logical; drop nested list columns.}
+
+\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
+expand list-columns into multiple rows.}
 }
 \value{
 A tibble with search results.

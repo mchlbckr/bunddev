@@ -26,6 +26,7 @@ Imports:
     rlang,
     stringr,
     tibble,
+    tidyr,
     tools,
     xml2,
     yaml

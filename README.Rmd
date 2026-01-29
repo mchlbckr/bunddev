@@ -26,6 +26,10 @@ the registry details for service-specific guidance.
 API-specific helpers return tidy tibbles by default. Use `bunddev_call()` for
 raw responses.
 
+When `flatten = TRUE`, use `flatten_mode` to control list columns: "json" keeps
+data as JSON strings (default), "drop" removes list columns, and "unnest"
+expands list-columns into multiple rows.
+
 The package is organized into a core layer (registry, caching, OpenAPI parsing)
 and adapter helpers for individual APIs.
 
