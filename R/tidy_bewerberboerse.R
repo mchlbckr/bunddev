@@ -1,0 +1,89 @@
+#' Search the Bewerberboerse API
+#'
+#' @param params List of query parameters.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with tidied results.
+#' @export
+bunddev_bewerberboerse_search <- function(params = list(), flatten = FALSE) {
+  bunddev_call_tidy(
+    "bewerberboerse",
+    "bewerberboerse",
+    params = params,
+    flatten = flatten
+  )
+}
+
+#' Retrieve Bewerberboerse candidate details
+#'
+#' @param referenznummer Bewerber referenznummer.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with tidied results.
+#' @export
+bunddev_bewerberboerse_details <- function(referenznummer, flatten = FALSE) {
+  bunddev_call_tidy(
+    "bewerberboerse",
+    "bewerberdetails",
+    params = list(referenznummer = referenznummer),
+    flatten = flatten
+  )
+}
+
+bunddev_tidy_bewerberboerse <- function(response, operation_id = NULL, flatten = FALSE) {
+  bewerber <- response$bewerber
+  if (is.null(bewerber) || length(bewerber) == 0) {
+    return(tibble::tibble())
+  }
+
+  chr_or_na <- function(value) {
+    if (is.null(value)) NA_character_ else as.character(value)
+  }
+  lgl_or_na <- function(value) {
+    if (is.null(value)) NA else isTRUE(value)
+  }
+  collapse_or_na <- function(value) {
+    if (is.null(value)) NA_character_ else paste(value, collapse = ", ")
+  }
+  list_or_empty <- function(value) {
+    if (is.null(value)) list() else value
+  }
+
+  meta_page <- if (is.null(response$page)) NA_integer_ else as.integer(response$page)
+  meta_size <- if (is.null(response$size)) NA_integer_ else as.integer(response$size)
+  meta_total <- if (is.null(response$maxErgebnisse)) NA_integer_ else as.integer(response$maxErgebnisse)
+
+  data <- tibble::tibble(
+    refnr = purrr::map_chr(bewerber, ~ chr_or_na(.x$refnr)),
+    verfuegbarkeit_von = purrr::map_chr(bewerber, ~ chr_or_na(.x$verfuegbarkeitVon)),
+    aktualisierungsdatum = purrr::map_chr(bewerber, ~ chr_or_na(.x$aktualisierungsdatum)),
+    veroeffentlichungsdatum = purrr::map_chr(bewerber, ~ chr_or_na(.x$veroeffentlichungsdatum)),
+    stellenart = purrr::map_chr(bewerber, ~ chr_or_na(.x$stellenart)),
+    arbeitszeit_modelle = purrr::map_chr(bewerber, ~ collapse_or_na(.x$arbeitszeitModelle)),
+    berufe = purrr::map_chr(bewerber, ~ collapse_or_na(.x$berufe)),
+    letzte_taetigkeit_jahr = purrr::map_chr(bewerber, ~ chr_or_na(.x$letzteTaetigkeit$jahr)),
+    letzte_taetigkeit_bezeichnung = purrr::map_chr(bewerber, ~ chr_or_na(.x$letzteTaetigkeit$bezeichnung)),
+    letzte_taetigkeit_aktuell = purrr::map_lgl(bewerber, ~ lgl_or_na(.x$letzteTaetigkeit$aktuell)),
+    hat_email = purrr::map_lgl(bewerber, ~ lgl_or_na(.x$hatEmail)),
+    hat_telefon = purrr::map_lgl(bewerber, ~ lgl_or_na(.x$hatTelefon)),
+    hat_adresse = purrr::map_lgl(bewerber, ~ lgl_or_na(.x$hatAdresse)),
+    ort = purrr::map_chr(bewerber, ~ chr_or_na(.x$lokation$ort)),
+    plz = purrr::map_chr(bewerber, ~ chr_or_na(.x$lokation$plz)),
+    umkreis = purrr::map_chr(bewerber, ~ chr_or_na(.x$lokation$umkreis)),
+    region = purrr::map_chr(bewerber, ~ chr_or_na(.x$lokation$region)),
+    land = purrr::map_chr(bewerber, ~ chr_or_na(.x$lokation$land)),
+    mehrere_arbeitsorte = purrr::map_lgl(bewerber, ~ lgl_or_na(.x$mehrereArbeitsorte)),
+    ausbildungen = purrr::map(bewerber, ~ list_or_empty(.x$ausbildungen)),
+    erfahrung = purrr::map(bewerber, ~ list_or_empty(.x$erfahrung)),
+    operation_id = operation_id,
+    page = meta_page,
+    size = meta_size,
+    max_ergebnisse = meta_total
+  )
+
+  if (flatten) {
+    return(dplyr::select(data, -dplyr::any_of(c("ausbildungen", "erfahrung"))))
+  }
+
+  data
+}

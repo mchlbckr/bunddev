@@ -1,0 +1,290 @@
+#' List Autobahn road ids
+#'
+#' @return A tibble with available road ids.
+#' @export
+bunddev_autobahn_roads <- function() {
+  bunddev_call_tidy("autobahn", "list-autobahnen")
+}
+
+#' List Autobahn roadworks
+#'
+#' @param road_id Road identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with roadworks.
+#' @export
+bunddev_autobahn_roadworks <- function(road_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "list-roadworks",
+    params = list(roadId = road_id),
+    road_id = road_id,
+    flatten = flatten
+  )
+}
+
+#' List Autobahn warnings
+#'
+#' @param road_id Road identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with warnings.
+#' @export
+bunddev_autobahn_warnings <- function(road_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "list-warnings",
+    params = list(roadId = road_id),
+    road_id = road_id,
+    flatten = flatten
+  )
+}
+
+#' List Autobahn webcams
+#'
+#' @param road_id Road identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with webcams.
+#' @export
+bunddev_autobahn_webcams <- function(road_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "list-webcams",
+    params = list(roadId = road_id),
+    road_id = road_id,
+    flatten = flatten
+  )
+}
+
+#' List Autobahn closures
+#'
+#' @param road_id Road identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with closures.
+#' @export
+bunddev_autobahn_closures <- function(road_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "list-closures",
+    params = list(roadId = road_id),
+    road_id = road_id,
+    flatten = flatten
+  )
+}
+
+#' List Autobahn charging stations
+#'
+#' @param road_id Road identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with charging stations.
+#' @export
+bunddev_autobahn_charging_stations <- function(road_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "list-charging-stations",
+    params = list(roadId = road_id),
+    road_id = road_id,
+    flatten = flatten
+  )
+}
+
+#' List Autobahn lorry parking areas
+#'
+#' @param road_id Road identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with lorry parking areas.
+#' @export
+bunddev_autobahn_parking_lorries <- function(road_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "list-parking-lorries",
+    params = list(roadId = road_id),
+    road_id = road_id,
+    flatten = flatten
+  )
+}
+
+#' Get Autobahn roadwork details
+#'
+#' @param roadwork_id Roadwork identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with roadwork details.
+#' @export
+bunddev_autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "get-roadwork",
+    params = list(roadworkId = roadwork_id),
+    flatten = flatten
+  )
+}
+
+#' Get Autobahn warning details
+#'
+#' @param warning_id Warning identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with warning details.
+#' @export
+bunddev_autobahn_warning_details <- function(warning_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "get-warning",
+    params = list(warningId = warning_id),
+    flatten = flatten
+  )
+}
+
+#' Get Autobahn webcam details
+#'
+#' @param webcam_id Webcam identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with webcam details.
+#' @export
+bunddev_autobahn_webcam_details <- function(webcam_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "get-webcam",
+    params = list(webcamId = webcam_id),
+    flatten = flatten
+  )
+}
+
+#' Get Autobahn closure details
+#'
+#' @param closure_id Closure identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with closure details.
+#' @export
+bunddev_autobahn_closure_details <- function(closure_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "get-closure",
+    params = list(closureId = closure_id),
+    flatten = flatten
+  )
+}
+
+#' Get Autobahn charging station details
+#'
+#' @param station_id Charging station identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with charging station details.
+#' @export
+bunddev_autobahn_charging_station_details <- function(station_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "get-charging-station",
+    params = list(stationId = station_id),
+    flatten = flatten
+  )
+}
+
+#' Get Autobahn lorry parking details
+#'
+#' @param lorry_id Lorry parking identifier.
+#' @param flatten Logical; drop nested list columns.
+#'
+#' @return A tibble with lorry parking details.
+#' @export
+bunddev_autobahn_parking_lorry_details <- function(lorry_id, flatten = FALSE) {
+  bunddev_call_tidy(
+    "autobahn",
+    "get-parking-lorry",
+    params = list(lorryId = lorry_id),
+    flatten = flatten
+  )
+}
+
+bunddev_tidy_autobahn <- function(response, operation_id = NULL, flatten = FALSE,
+                                  road_id = NA_character_) {
+  if (operation_id == "list-autobahnen") {
+    roads <- response$roads
+    if (is.null(roads)) {
+      return(tibble::tibble())
+    }
+    return(tibble::tibble(road_id = as.character(roads)))
+  }
+
+  items <- NULL
+  if (operation_id == "list-roadworks") {
+    items <- response$roadworks
+  } else if (operation_id == "list-warnings") {
+    items <- response$warning
+  } else if (operation_id == "list-webcams") {
+    items <- response$webcam
+  } else if (operation_id == "list-closures") {
+    items <- response$closure
+  } else if (operation_id == "list-charging-stations") {
+    items <- response$electric_charging_station
+  } else if (operation_id == "list-parking-lorries") {
+    items <- response$parking_lorry
+  } else if (operation_id %in% c("get-roadwork", "get-warning")) {
+    items <- list(response)
+  } else if (operation_id %in% c(
+    "get-webcam",
+    "get-closure",
+    "get-charging-station",
+    "get-parking-lorry"
+  )) {
+    items <- list(response)
+  }
+
+  if (is.null(items) || length(items) == 0) {
+    return(tibble::tibble())
+  }
+
+  bunddev_tidy_autobahn_items(items, road_id = road_id, flatten = flatten)
+}
+
+bunddev_tidy_autobahn_items <- function(items, road_id = NA_character_, flatten = FALSE) {
+  chr_or_na <- function(value) {
+    if (is.null(value)) NA_character_ else as.character(value)
+  }
+  lgl_or_na <- function(value) {
+    if (is.null(value)) NA else tolower(as.character(value)) == "true"
+  }
+  collapse_or_na <- function(value) {
+    if (is.null(value)) NA_character_ else paste(value, collapse = " ")
+  }
+  list_or_empty <- function(value) {
+    if (is.null(value)) list() else value
+  }
+
+  data <- tibble::tibble(
+    road_id = road_id,
+    identifier = purrr::map_chr(items, ~ chr_or_na(.x$identifier)),
+    title = purrr::map_chr(items, ~ chr_or_na(.x$title)),
+    subtitle = purrr::map_chr(items, ~ chr_or_na(.x$subtitle)),
+    display_type = purrr::map_chr(items, ~ chr_or_na(.x$display_type)),
+    icon = purrr::map_chr(items, ~ chr_or_na(.x$icon)),
+    is_blocked = purrr::map_lgl(items, ~ lgl_or_na(.x$isBlocked)),
+    future = purrr::map_lgl(items, ~ if (is.null(.x$future)) NA else isTRUE(.x$future)),
+    start_timestamp = purrr::map_chr(items, ~ chr_or_na(.x$startTimestamp)),
+    point = purrr::map_chr(items, ~ chr_or_na(.x$point)),
+    extent = purrr::map_chr(items, ~ chr_or_na(.x$extent)),
+    coordinate_lat = purrr::map_chr(items, ~ chr_or_na(.x$coordinate$lat)),
+    coordinate_long = purrr::map_chr(items, ~ chr_or_na(.x$coordinate$long)),
+    description = purrr::map_chr(items, ~ collapse_or_na(.x$description)),
+    footer = purrr::map_chr(items, ~ collapse_or_na(.x$footer)),
+    route_recommendation = purrr::map(items, ~ list_or_empty(.x$routeRecommendation)),
+    lorry_parking_feature_icons = purrr::map(items, ~ list_or_empty(.x$lorryParkingFeatureIcons))
+  )
+
+  if (flatten) {
+    return(dplyr::select(
+      data,
+      -dplyr::any_of(c("route_recommendation", "lorry_parking_feature_icons"))
+    ))
+  }
+
+  data
+}
