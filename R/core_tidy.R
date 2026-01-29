@@ -28,6 +28,12 @@ bunddev_tidy_dispatch <- function(api) {
   if (api == "tagesschau") {
     return(bunddev_tidy_tagesschau)
   }
+  if (api == "smard") {
+    return(bunddev_tidy_smard)
+  }
+  if (api == "dwd") {
+    return(bunddev_tidy_dwd)
+  }
   NULL
 }
 
