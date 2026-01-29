@@ -16,6 +16,9 @@ limits; check the registry details for service-specific guidance.
 API-specific helpers return tidy tibbles by default. Use
 `bunddev_call()` for raw responses.
 
+The package is organized into a core layer (registry, caching, OpenAPI
+parsing) and adapter helpers for individual APIs.
+
 ## Installation
 
 You can install the development version of bunddev like so:
@@ -78,10 +81,9 @@ roadwork_details <- bunddev_autobahn_roadwork_details(roadworks$identifier[[1]],
 warning_details <- bunddev_autobahn_warning_details(warnings$identifier[[1]], flatten = TRUE)
 ```
 
-Handelsregister search (respect the 60 requests/hour guideline):
+Handelsregister search (default rate limit is applied from the
+registry):
 
 ``` r
-bunddev_rate_limit_set("handelsregister", 60)
-
 companies <- bunddev_handelsregister_search("deutsche bahn")
 ```

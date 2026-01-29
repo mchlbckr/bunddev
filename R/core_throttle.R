@@ -30,6 +30,22 @@ bunddev_rate_limit_get <- function(api) {
   entry <- limits[[api]]
 
   if (is.null(entry)) {
+    registry <- tryCatch(bunddev_info(api), error = function(e) NULL)
+    rate_limit <- NULL
+    if (!is.null(registry) && "rate_limit" %in% names(registry)) {
+      rate_limit <- registry$rate_limit[[1]]
+    }
+
+    if (!is.null(rate_limit) && !is.na(rate_limit)) {
+      limit_value <- stringr::str_extract(rate_limit, "\\d+")
+      if (!is.na(limit_value)) {
+        entry <- list(max_per_hour = as.integer(limit_value), timestamps = numeric())
+        limits[[api]] <- entry
+        options(bunddev.rate_limit = limits)
+        return(entry)
+      }
+    }
+
     return(list(max_per_hour = NA_integer_, timestamps = numeric()))
   }
 

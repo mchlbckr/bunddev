@@ -27,6 +27,9 @@ details for service-specific guidance.
 API-specific helpers return tidy tibbles by default. Use `bunddev_call()` for
 raw responses.
 
+The package separates a core OpenAPI layer from adapter helpers for specific
+APIs.
+
 ## Browse the registry
 
 ```{r registry}
@@ -82,7 +85,5 @@ warning_details <- bunddev_autobahn_warning_details(warnings$identifier[[1]], fl
 ## Handelsregister workflow
 
 ```{r handelsregister, eval = FALSE}
-bunddev_rate_limit_set("handelsregister", 60)
-
 companies <- bunddev_handelsregister_search("deutsche bahn")
 ```

@@ -122,6 +122,14 @@ bunddev_handelsregister_form_fields <- function(form) {
 }
 
 bunddev_handelsregister_parse <- function(html) {
+  if (stringr::str_detect(html, "Your session has expired")) {
+    cli::cli_abort("Handelsregister session expired; please retry.")
+  }
+  if (stringr::str_detect(html, "Es ist ein Fehler aufgetreten") ||
+    stringr::str_detect(html, "An error has occurred")) {
+    cli::cli_abort("Handelsregister returned an error page; please retry.")
+  }
+
   doc <- xml2::read_html(html)
   table <- xml2::xml_find_first(doc, "//table[@role='grid']")
   if (is.na(table)) {
@@ -141,7 +149,9 @@ bunddev_handelsregister_parse <- function(html) {
     state = purrr::map_chr(results, "state"),
     status = purrr::map_chr(results, "status"),
     status_current = purrr::map_chr(results, "status_current"),
-    documents = purrr::map_chr(results, "documents"),
+    documents_text = purrr::map_chr(results, "documents_text"),
+    documents_count = purrr::map_int(results, "documents_count"),
+    documents_links = purrr::map(results, "documents_links"),
     history = purrr::map(results, "history")
   )
 }
@@ -154,7 +164,9 @@ bunddev_handelsregister_parse_row <- function(row) {
   name <- bunddev_handelsregister_value(values, 3)
   state <- bunddev_handelsregister_value(values, 4)
   status <- bunddev_handelsregister_value(values, 5)
-  documents <- bunddev_handelsregister_value(values, 6)
+  documents_text <- bunddev_handelsregister_value(values, 6)
+  documents_links <- bunddev_handelsregister_document_links(row)
+  documents_count <- length(documents_links)
 
   register_num <- bunddev_handelsregister_extract_register(court)
   status_current <- stringr::str_to_upper(stringr::str_replace_all(status, " ", "_"))
@@ -167,9 +179,21 @@ bunddev_handelsregister_parse_row <- function(row) {
     state = state,
     status = status,
     status_current = status_current,
-    documents = documents,
+    documents_text = documents_text,
+    documents_links = documents_links,
+    documents_count = documents_count,
     history = history
   )
+}
+
+bunddev_handelsregister_document_links <- function(row) {
+  links <- xml2::xml_find_all(row, ".//td[6]//a")
+  hrefs <- xml2::xml_attr(links, "href")
+  hrefs <- hrefs[!is.na(hrefs) & hrefs != ""]
+  if (length(hrefs) == 0) {
+    return(list())
+  }
+  purrr::map_chr(hrefs, ~ httr2::url_absolute(.x, "https://www.handelsregister.de"))
 }
 
 bunddev_handelsregister_value <- function(values, index) {
