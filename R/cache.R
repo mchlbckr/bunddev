@@ -56,3 +56,31 @@ bunddev_spec <- function(id, refresh = FALSE) {
 
   cli::cli_abort("Unsupported spec file extension '{ext}'.")
 }
+
+bunddev_response_cache_dir <- function() {
+  cache_dir <- file.path(tools::R_user_dir("bunddev", "cache"), "responses")
+  if (!dir.exists(cache_dir)) {
+    dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
+  }
+  cache_dir
+}
+
+bunddev_response_cache_key <- function(api, operation_id, params) {
+  if (length(params) > 0) {
+    params <- params[order(names(params))]
+  }
+  payload <- jsonlite::toJSON(
+    list(api = api, operation_id = operation_id, params = params),
+    auto_unbox = TRUE,
+    null = "null"
+  )
+  tmp <- tempfile(fileext = ".json")
+  on.exit(unlink(tmp), add = TRUE)
+  writeLines(payload, tmp)
+  tools::md5sum(tmp)
+}
+
+bunddev_response_cache_path <- function(api, operation_id, params) {
+  key <- bunddev_response_cache_key(api, operation_id, params)
+  file.path(bunddev_response_cache_dir(), paste0(key, ".bin"))
+}

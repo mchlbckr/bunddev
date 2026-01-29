@@ -21,7 +21,11 @@ library(bunddev)
 # Overview
 
 `bunddev` provides a small registry of public APIs and helpers to explore
-their OpenAPI specifications.
+their OpenAPI specifications. Some APIs enforce rate limits; check the registry
+details for service-specific guidance.
+
+API-specific helpers return tidy tibbles by default. Use `bunddev_call()` for
+raw responses.
 
 ## Browse the registry
 

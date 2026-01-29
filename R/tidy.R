@@ -8,7 +8,7 @@
 #' @return A tibble with tidied results.
 #' @export
 bunddev_call_tidy <- function(api, operation_id, params = list(), ...) {
-  response <- bunddev_call(api, operation_id, params = params, parse = "json")
+  response <- bunddev_call(api, operation_id, params = params, parse = "json", safe = TRUE)
   tidier <- bunddev_tidy_dispatch(api)
 
   if (is.null(tidier)) {

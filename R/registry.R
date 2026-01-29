@@ -30,13 +30,18 @@ bunddev_registry <- function() {
     cli::cli_abort("Registry auth must be one of: {auth_values}.")
   }
 
+  null_chr <- function(value) {
+    if (is.null(value) || identical(value, "")) NA_character_ else as.character(value)
+  }
+
   registry_tbl <- tibble::tibble(
     id = ids,
-    title = purrr::map_chr(registry, "title"),
-    provider = purrr::map_chr(registry, "provider"),
-    spec_url = purrr::map_chr(registry, "spec_url"),
-    docs_url = purrr::map_chr(registry, "docs_url"),
-    auth = purrr::map_chr(registry, "auth"),
+    title = purrr::map_chr(registry, ~ null_chr(.x$title)),
+    provider = purrr::map_chr(registry, ~ null_chr(.x$provider)),
+    spec_url = purrr::map_chr(registry, ~ null_chr(.x$spec_url)),
+    docs_url = purrr::map_chr(registry, ~ null_chr(.x$docs_url)),
+    auth = purrr::map_chr(registry, ~ null_chr(.x$auth)),
+    rate_limit = purrr::map_chr(registry, ~ null_chr(.x$rate_limit)),
     tags = purrr::map(registry, "tags")
   )
 

@@ -3,7 +3,7 @@ test_that("bunddev_registry returns a valid tibble", {
 
   expect_s3_class(registry, "tbl_df")
   expect_true(all(
-    c("id", "title", "provider", "spec_url", "docs_url", "auth", "tags") %in%
+    c("id", "title", "provider", "spec_url", "docs_url", "auth", "rate_limit", "tags") %in%
       names(registry)
   ))
   expect_equal(anyDuplicated(registry$id), 0)

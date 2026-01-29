@@ -1,14 +1,20 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# bunddev
+# bunddev <img src="man/figures/bunddev_hexagon.png" align="right" width="120" />
 
 <!-- badges: start -->
 
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->
 
 The goal of bunddev is to provide a lightweight registry of public APIs
-and helpers to explore their OpenAPI specs.
+and helpers to explore their OpenAPI specs. Some APIs enforce rate
+limits; check the registry details for service-specific guidance.
+
+API-specific helpers return tidy tibbles by default. Use
+`bunddev_call()` for raw responses.
 
 ## Installation
 
@@ -26,19 +32,19 @@ Browse the registry:
 library(bunddev)
 
 bunddev_list(tag = "jobs")
-#> # A tibble: 5 × 7
-#>   id               title                provider   spec_url docs_url auth  tags 
-#>   <chr>            <chr>                <chr>      <chr>    <chr>    <chr> <lis>
-#> 1 ausbildungssuche Ausbildungssuche API Bundesage… https:/… https:/… none  <chr>
-#> 2 bewerberboerse   Bewerberboerse API   Bundesage… https:/… https:/… api_… <chr>
-#> 3 coachingangebote Coachingangebote API Bundesage… https:/… https:/… none  <chr>
-#> 4 entgeltatlas     Entgeltatlas API     Bundesage… https:/… https:/… none  <chr>
-#> 5 jobsuche         Jobsuche API         Bundesage… https:/… https:/… none  <chr>
+#> # A tibble: 5 × 8
+#>   id               title       provider spec_url docs_url auth  rate_limit tags 
+#>   <chr>            <chr>       <chr>    <chr>    <chr>    <chr> <chr>      <lis>
+#> 1 ausbildungssuche Ausbildung… Bundesa… https:/… https:/… none  <NA>       <chr>
+#> 2 bewerberboerse   Bewerberbo… Bundesa… https:/… https:/… api_… <NA>       <chr>
+#> 3 coachingangebote Coachingan… Bundesa… https:/… https:/… none  <NA>       <chr>
+#> 4 entgeltatlas     Entgeltatl… Bundesa… https:/… https:/… none  <NA>       <chr>
+#> 5 jobsuche         Jobsuche A… Bundesa… https:/… https:/… none  <NA>       <chr>
 bunddev_info("abfallnavi")
-#> # A tibble: 1 × 7
-#>   id         title          provider spec_url               docs_url auth  tags 
-#>   <chr>      <chr>          <chr>    <chr>                  <chr>    <chr> <lis>
-#> 1 abfallnavi Abfallnavi API regio iT https://raw.githubuse… https:/… none  <chr>
+#> # A tibble: 1 × 8
+#>   id         title          provider spec_url    docs_url auth  rate_limit tags 
+#>   <chr>      <chr>          <chr>    <chr>       <chr>    <chr> <chr>      <lis>
+#> 1 abfallnavi Abfallnavi API regio iT https://ra… https:/… none  <NA>       <chr>
 ```
 
 Call the Bewerberboerse API (requires an API key header):

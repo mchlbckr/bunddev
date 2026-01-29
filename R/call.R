@@ -4,11 +4,14 @@
 #' @param operation_id OpenAPI operationId.
 #' @param params List of parameters.
 #' @param parse Response parsing mode.
+#' @param safe Logical; apply throttling and caching.
+#' @param refresh Logical; refresh cached GET responses.
 #'
 #' @return Parsed response.
 #' @export
 bunddev_call <- function(api, operation_id, params = list(),
-                         parse = c("json", "text", "raw")) {
+                         parse = c("json", "text", "raw"),
+                         safe = TRUE, refresh = FALSE) {
   parse <- rlang::arg_match(parse)
   spec <- bunddev_spec(api)
 
@@ -86,8 +89,24 @@ bunddev_call <- function(api, operation_id, params = list(),
   path <- stringr::str_remove(path, "^/")
   url <- paste0(base_url, "/", path)
 
+  method <- toupper(endpoint$method)
+  method_lower <- tolower(endpoint$method)
+
+  if (isTRUE(safe)) {
+    bunddev_rate_limit_wait(api)
+  }
+
+  cache_path <- NULL
+  if (isTRUE(safe) && method_lower == "get") {
+    cache_path <- bunddev_response_cache_path(api, operation_id, params)
+    if (!isTRUE(refresh) && file.exists(cache_path)) {
+      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
+      return(bunddev_parse_response(raw_body, parse))
+    }
+  }
+
   req <- httr2::request(url)
-  req <- httr2::req_method(req, toupper(endpoint$method))
+  req <- httr2::req_method(req, method)
 
   if (length(params) > 0) {
     req <- httr2::req_url_query(req, !!!params)
@@ -108,13 +127,22 @@ bunddev_call <- function(api, operation_id, params = list(),
   }
 
   resp <- httr2::req_perform(req)
+  raw_body <- httr2::resp_body_raw(resp)
 
+  if (!is.null(cache_path)) {
+    writeBin(raw_body, cache_path)
+  }
+
+  bunddev_parse_response(raw_body, parse)
+}
+
+bunddev_parse_response <- function(raw_body, parse) {
   if (parse == "json") {
-    return(httr2::resp_body_json(resp, simplifyVector = FALSE))
+    return(jsonlite::fromJSON(rawToChar(raw_body), simplifyVector = FALSE))
   }
   if (parse == "text") {
-    return(httr2::resp_body_string(resp))
+    return(rawToChar(raw_body))
   }
 
-  httr2::resp_body_raw(resp)
+  raw_body
 }

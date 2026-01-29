@@ -8,7 +8,9 @@ bunddev_call(
   api,
   operation_id,
   params = list(),
-  parse = c("json", "text", "raw")
+  parse = c("json", "text", "raw"),
+  safe = TRUE,
+  refresh = FALSE
 )
 }
 \arguments{
@@ -19,6 +21,10 @@ bunddev_call(
 \item{params}{List of parameters.}
 
 \item{parse}{Response parsing mode.}
+
+\item{safe}{Logical; apply throttling and caching.}
+
+\item{refresh}{Logical; refresh cached GET responses.}
 }
 \value{
 Parsed response.

@@ -13,13 +13,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-# bunddev
+# bunddev <img src="man/figures/bunddev_hexagon.png" align="right" width="120" />
 
 <!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->
 
 The goal of bunddev is to provide a lightweight registry of public APIs and
-helpers to explore their OpenAPI specs.
+helpers to explore their OpenAPI specs. Some APIs enforce rate limits; check
+the registry details for service-specific guidance.
+
+API-specific helpers return tidy tibbles by default. Use `bunddev_call()` for
+raw responses.
 
 ## Installation
 
