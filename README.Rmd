@@ -40,6 +40,11 @@ You can install the development version of bunddev like so:
 remotes::install_github("mchlbckr/bunddev")
 ```
 
+## Acknowledgements
+
+This package builds on the work of the bund.dev team, who curate and centralize
+public sector APIs for the community (https://bund.dev, https://github.com/bundesAPI).
+
 ## Examples
 
 Browse the registry:

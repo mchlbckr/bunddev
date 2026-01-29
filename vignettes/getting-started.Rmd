@@ -36,6 +36,11 @@ APIs.
 bunddev_list()
 ```
 
+## Acknowledgements
+
+This package builds on the work of the bund.dev team, who curate and centralize
+public sector APIs for the community (https://bund.dev, https://github.com/bundesAPI).
+
 Filter by tag to narrow down the list.
 
 ```{r registry-filter}
