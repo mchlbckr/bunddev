@@ -8,12 +8,6 @@ bunddev_endpoints(id)
 }
 \arguments{
 \item{id}{Registry id.}
-
-\item{name}{Optional parameter name to filter.}
-
-\item{path}{Optional endpoint path to filter.}
-
-\item{method}{Optional HTTP method to filter.}
 }
 \value{
 A tibble with endpoints.

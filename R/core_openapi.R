@@ -1,9 +1,6 @@
 #' List OpenAPI endpoints for an API
 #'
 #' @param id Registry id.
-#' @param name Optional parameter name to filter.
-#' @param path Optional endpoint path to filter.
-#' @param method Optional HTTP method to filter.
 #'
 #' @return A tibble with endpoints.
 #' @export
@@ -49,6 +46,9 @@ bunddev_endpoints <- function(id) {
 #' List OpenAPI parameters for an API
 #'
 #' @param id Registry id.
+#' @param name Optional parameter name to filter.
+#' @param path Optional endpoint path to filter.
+#' @param method Optional HTTP method to filter.
 #'
 #' @return A tibble with parameter metadata.
 #' @export

@@ -3,3 +3,8 @@
 ^bunddev_hexagon\.png$
 ^doc$
 ^Meta$
+^\.DS_Store$
+^\.git$
+^\.gitignore$
+^\.\.Rcheck$
+^\.Rcheck$
