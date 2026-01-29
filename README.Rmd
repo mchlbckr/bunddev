@@ -1,0 +1,41 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# bunddev
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of bunddev is to provide a lightweight registry of public APIs and
+helpers to explore their OpenAPI specs.
+
+## Installation
+
+You can install the development version of bunddev like so:
+
+``` r
+remotes::install_github("mchlbckr/bunddev")
+```
+
+## Example
+
+This is a basic example showing how to browse the registry:
+
+```{r example}
+library(bunddev)
+
+bunddev_list(tag = "jobs")
+bunddev_info("abfallnavi")
+```

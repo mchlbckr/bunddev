@@ -1,0 +1,49 @@
+---
+title: "Getting started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bunddev)
+```
+
+# Overview
+
+`bunddev` provides a small registry of public APIs and helpers to explore
+their OpenAPI specifications.
+
+## Browse the registry
+
+```{r registry}
+bunddev_list()
+```
+
+Filter by tag to narrow down the list.
+
+```{r registry-filter}
+bunddev_list(tag = "jobs")
+```
+
+## Inspect one API
+
+```{r registry-info}
+bunddev_info("abfallnavi")
+```
+
+## List endpoints
+
+```{r registry-endpoints}
+endpoints <- bunddev_endpoints("abfallnavi")
+head(endpoints, 5)
+```
