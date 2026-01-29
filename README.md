@@ -77,3 +77,11 @@ warnings <- bunddev_autobahn_warnings(road_id, flatten = TRUE)
 roadwork_details <- bunddev_autobahn_roadwork_details(roadworks$identifier[[1]], flatten = TRUE)
 warning_details <- bunddev_autobahn_warning_details(warnings$identifier[[1]], flatten = TRUE)
 ```
+
+Handelsregister search (respect the 60 requests/hour guideline):
+
+``` r
+bunddev_rate_limit_set("handelsregister", 60)
+
+companies <- bunddev_handelsregister_search("deutsche bahn")
+```
