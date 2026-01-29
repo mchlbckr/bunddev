@@ -486,6 +486,11 @@ bunddev_endpoint_map <- function() {
       api = "travelwarning",
       path = "/healthcare",
       method = "get"
+    ),
+    ladestationen_query = list(
+      api = "ladestationen",
+      path = "/query",
+      method = "get"
     )
   )
 }

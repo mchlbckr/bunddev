@@ -27,7 +27,7 @@
 - [ ] hochwasserzentralen
 - [ ] interpol
 - [x] jobsuche
-- [ ] ladestationen
+- [x] ladestationen
 - [x] lebensmittelwarnung
 - [x] luftqualitaet
 - [ ] marktstammdaten
