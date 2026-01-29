@@ -101,3 +101,22 @@ registry):
 ``` r
 companies <- handelsregister_search("deutsche bahn")
 ```
+
+SMARD time series example (historical timestamp):
+
+``` r
+library(bunddev)
+
+timestamp <- 1627250400000
+series <- smard_timeseries(410, region = "DE", resolution = "hour", timestamp = timestamp)
+
+plot(series$timestamp, series$value, type = "l", xlab = "Timestamp", ylab = "MW")
+```
+
+DWD station overview example:
+
+``` r
+library(bunddev)
+
+stations <- dwd_station_overview(c("10865", "G005"), flatten = TRUE)
+```
