@@ -29,6 +29,9 @@ raw responses.
 The package is organized into a core layer (registry, caching, OpenAPI parsing)
 and adapter helpers for individual APIs.
 
+Core files live in `R/core_*`, while adapters live in `R/adapt_*`. Add new
+adapters by implementing tidy helpers that wrap `bunddev_call_tidy()`.
+
 ## Installation
 
 You can install the development version of bunddev like so:
