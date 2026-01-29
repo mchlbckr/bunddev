@@ -1,9 +1,12 @@
 Package: bunddev
-Title: What the Package Does (One Line, Title Case)
+Title: Discover and Call bund.dev APIs
 Version: 0.0.0.9000
 Authors@R: 
     person("Michael", "Bücker", , "michael.buecker@fh-muenster.de", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: Provides a registry of APIs listed on bund.dev and a core OpenAPI
+    client layer to explore specs and perform requests. Adapter helpers return
+    tidy tibbles for supported APIs, with optional response caching and rate
+    limiting guidance.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
