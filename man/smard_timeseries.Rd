@@ -28,6 +28,9 @@ smard_timeseries(
 }
 \value{
 A tibble of time series values.
+
+Use \code{bunddev_parameters("smard")} to see the currently valid parameters
+if the API has changed.
 }
 \description{
 Fetch SMARD timeseries data

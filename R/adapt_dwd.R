@@ -8,6 +8,9 @@
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with station data.
+#'
+#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 dwd_station_overview <- function(station_ids,
                                  safe = TRUE,
@@ -45,6 +48,9 @@ dwd_station_overview <- function(station_ids,
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with crowd reports.
+#'
+#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 dwd_crowd_reports <- function(safe = TRUE,
                               refresh = FALSE,
@@ -80,6 +86,9 @@ dwd_crowd_reports <- function(safe = TRUE,
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with nowcast warnings.
+#'
+#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 dwd_warnings_nowcast <- function(language = c("de", "en"),
                                  safe = TRUE,
@@ -118,6 +127,9 @@ dwd_warnings_nowcast <- function(language = c("de", "en"),
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with municipality warnings.
+#'
+#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 dwd_municipality_warnings <- function(language = c("de", "en"),
                                       safe = TRUE,
@@ -156,6 +168,9 @@ dwd_municipality_warnings <- function(language = c("de", "en"),
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with coastal warnings.
+#'
+#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 dwd_coast_warnings <- function(language = c("de", "en"),
                                safe = TRUE,
@@ -190,6 +205,9 @@ dwd_coast_warnings <- function(language = c("de", "en"),
 #' @param refresh Logical; refresh cached responses.
 #'
 #' @return A tibble with the warning text.
+#'
+#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(
@@ -209,6 +227,9 @@ dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; refresh cached responses.
 #'
 #' @return A tibble with the forecast text.
+#'
+#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(
@@ -228,6 +249,9 @@ dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; refresh cached responses.
 #'
 #' @return A tibble with avalanche data.
+#'
+#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 dwd_avalanche_warnings <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(

@@ -13,6 +13,9 @@ dwd_avalanche_warnings(safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with avalanche data.
+
+Use \code{bunddev_parameters("dwd")} to see the currently valid parameters
+if the API has changed.
 }
 \description{
 Fetch DWD avalanche warnings

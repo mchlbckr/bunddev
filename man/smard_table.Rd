@@ -19,6 +19,9 @@ smard_table(filter, region = "DE", timestamp, safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble of table values.
+
+Use \code{bunddev_parameters("smard")} to see the currently valid parameters
+if the API has changed.
 }
 \description{
 Fetch SMARD table data

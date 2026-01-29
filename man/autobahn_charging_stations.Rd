@@ -16,6 +16,9 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with charging stations.
+
+Use \code{bunddev_parameters("autobahn")} to see the currently valid parameters
+if the API has changed.
 }
 \description{
 List Autobahn charging stations

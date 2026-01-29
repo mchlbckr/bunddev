@@ -30,6 +30,9 @@ raw responses.
 When `flatten = TRUE`, set `flatten_mode` to "json" (default), "drop", or
 "unnest". Note that "unnest" expands list-columns into multiple rows.
 
+Use `bunddev_parameters("<api>")` to see the currently valid parameters for an
+API if the upstream spec has changed.
+
 The package separates a core OpenAPI layer from adapter helpers for specific
 APIs.
 
@@ -114,4 +117,10 @@ ggplot(series, aes(time, value)) +
 
 ```{r dwd, eval = FALSE}
 stations <- dwd_station_overview(c("10865", "G005"), flatten = TRUE)
+```
+
+## Parameter discovery
+
+```{r params, eval = FALSE}
+bunddev_parameters("smard")
 ```

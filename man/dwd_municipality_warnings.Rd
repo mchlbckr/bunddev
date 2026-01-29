@@ -26,6 +26,9 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with municipality warnings.
+
+Use \code{bunddev_parameters("dwd")} to see the currently valid parameters
+if the API has changed.
 }
 \description{
 Fetch DWD municipality warnings

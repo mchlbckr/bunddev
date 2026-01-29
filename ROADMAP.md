@@ -1,0 +1,49 @@
+# bunddev Roadmap
+
+## Bucket list
+- [ ] Add DWD historical data adapter for opendata.dwd.de (FTP/HTTP datasets)
+- [ ] Expand SMARD helper coverage (table data metadata, resolution helpers)
+- [ ] Add adapter-specific rate limit notes where sources are documented
+
+## Adapters pending
+- [ ] abfallnavi
+- [ ] ausbildungssuche
+- [ ] berufssprachkurssuche
+- [ ] bundeshaushalt
+- [ ] bundesrat
+- [ ] bundestag
+- [ ] bundestag_lobbyregister
+- [ ] coachingangebote
+- [ ] dashboard_deutschland
+- [ ] ddb
+- [ ] destatis
+- [ ] deutschlandatlas
+- [ ] diga
+- [ ] dip_bundestag
+- [ ] eco_visio
+- [ ] entgeltatlas
+- [ ] feiertage
+- [ ] hilfsmittel
+- [ ] hochwasserzentralen
+- [ ] interpol
+- [ ] jobsuche
+- [ ] ladestationen
+- [ ] lebensmittelwarnung
+- [ ] luftqualitaet
+- [ ] marktstammdaten
+- [ ] mudab
+- [ ] nina
+- [ ] pegel_online
+- [ ] pflanzenschutzmittelzulassung
+- [ ] polizei_brandenburg
+- [ ] regionalatlas
+- [ ] rigoletto
+- [ ] risikogebiete
+- [ ] strahlenschutz
+- [ ] studiensuche
+- [ ] travelwarning
+- [ ] vag
+- [ ] weiterbildungssuche
+- [ ] zoll
+- [ ] rechtsinformationsportal
+- [ ] fit_connect

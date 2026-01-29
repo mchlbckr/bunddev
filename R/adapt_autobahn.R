@@ -1,6 +1,9 @@
 #' List Autobahn road ids
 #'
 #' @return A tibble with available road ids.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_roads <- function() {
   bunddev_call_tidy("autobahn", "list-autobahnen")
@@ -14,6 +17,9 @@ autobahn_roads <- function() {
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with roadworks.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -34,6 +40,9 @@ autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") 
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with warnings.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -54,6 +63,9 @@ autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with webcams.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -74,6 +86,9 @@ autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with closures.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -94,6 +109,9 @@ autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with charging stations.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -114,6 +132,9 @@ autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = 
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with lorry parking areas.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -134,6 +155,9 @@ autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "j
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with roadwork details.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -153,6 +177,9 @@ autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with warning details.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -172,6 +199,9 @@ autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode =
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with webcam details.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -191,6 +221,9 @@ autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with closure details.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -210,6 +243,9 @@ autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode =
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with charging station details.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -229,6 +265,9 @@ autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatt
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with lorry parking details.
+#'
+#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+#' if the API has changed.
 #' @export
 autobahn_parking_lorry_details <- function(lorry_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(

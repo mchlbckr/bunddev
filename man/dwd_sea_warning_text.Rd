@@ -13,6 +13,9 @@ dwd_sea_warning_text(safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with the warning text.
+
+Use \code{bunddev_parameters("dwd")} to see the currently valid parameters
+if the API has changed.
 }
 \description{
 Fetch DWD sea warning text

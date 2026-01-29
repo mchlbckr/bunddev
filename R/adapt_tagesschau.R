@@ -5,6 +5,9 @@
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with homepage items.
+#'
+#' Use `bunddev_parameters("tagesschau")` to see the currently valid
+#' parameters if the API has changed.
 #' @export
 tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -24,6 +27,9 @@ tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with news items.
+#'
+#' Use `bunddev_parameters("tagesschau")` to see the currently valid
+#' parameters if the API has changed.
 #' @export
 tagesschau_news <- function(regions = NULL, ressort = NULL,
                             flatten = FALSE, flatten_mode = "json") {
@@ -53,6 +59,9 @@ tagesschau_news <- function(regions = NULL, ressort = NULL,
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with search results.
+#'
+#' Use `bunddev_parameters("tagesschau")` to see the currently valid
+#' parameters if the API has changed.
 #' @export
 tagesschau_search <- function(search_text = NULL,
                               page_size = NULL,
@@ -85,6 +94,9 @@ tagesschau_search <- function(search_text = NULL,
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with channels.
+#'
+#' Use `bunddev_parameters("tagesschau")` to see the currently valid
+#' parameters if the API has changed.
 #' @export
 tagesschau_channels <- function(flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(

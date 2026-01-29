@@ -20,6 +20,9 @@ When `flatten = TRUE`, use `flatten_mode` to control list columns:
 “json” keeps data as JSON strings (default), “drop” removes list
 columns, and “unnest” expands list-columns into multiple rows.
 
+Use `bunddev_parameters("<api>")` to see the currently valid parameters
+for an API if the upstream spec has changed.
+
 The package is organized into a core layer (registry, caching, OpenAPI
 parsing) and adapter helpers for individual APIs.
 
@@ -123,4 +126,10 @@ DWD station overview example:
 library(bunddev)
 
 stations <- dwd_station_overview(c("10865", "G005"), flatten = TRUE)
+```
+
+Inspect current parameters from the OpenAPI spec:
+
+``` r
+bunddev_parameters("smard")
 ```

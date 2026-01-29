@@ -12,7 +12,10 @@ bewerberboerse_search(params = list(), flatten = FALSE, flatten_mode = "json")
 \item{flatten}{Logical; drop nested list columns.}
 
 \item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+expand list-columns into multiple rows.
+
+Use \code{bunddev_parameters("bewerberboerse")} to see the currently valid
+parameters if the API has changed.}
 }
 \value{
 A tibble with tidied results.

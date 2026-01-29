@@ -20,6 +20,9 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with lorry parking details.
+
+Use \code{bunddev_parameters("autobahn")} to see the currently valid parameters
+if the API has changed.
 }
 \description{
 Get Autobahn lorry parking details

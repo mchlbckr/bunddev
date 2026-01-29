@@ -5,6 +5,9 @@
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
 #'
+#' Use `bunddev_parameters("bewerberboerse")` to see the currently valid
+#' parameters if the API has changed.
+#'
 #' @return A tibble with tidied results.
 #' @export
 bewerberboerse_search <- function(params = list(),
@@ -25,6 +28,9 @@ bewerberboerse_search <- function(params = list(),
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
+#'
+#' Use `bunddev_parameters("bewerberboerse")` to see the currently valid
+#' parameters if the API has changed.
 #'
 #' @return A tibble with tidied results.
 #' @export

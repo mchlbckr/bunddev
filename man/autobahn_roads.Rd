@@ -8,6 +8,9 @@ autobahn_roads()
 }
 \value{
 A tibble with available road ids.
+
+Use \code{bunddev_parameters("autobahn")} to see the currently valid parameters
+if the API has changed.
 }
 \description{
 List Autobahn road ids
