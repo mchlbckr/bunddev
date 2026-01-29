@@ -1,5 +1,8 @@
 #' Search the Handelsregister portal
 #'
+#' This adapter scrapes the public Handelsregister search form because no
+#' official OpenAPI specification is available for this service.
+#'
 #' @param schlagwoerter Search terms.
 #' @param schlagwort_optionen Keyword options.
 #' @param safe Logical; apply throttling and caching.

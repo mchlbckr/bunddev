@@ -31,5 +31,6 @@ expand list-columns into multiple rows.}
 A tibble with search results.
 }
 \description{
-Search the Handelsregister portal
+This adapter scrapes the public Handelsregister search form because no
+official OpenAPI specification is available for this service.
 }
