@@ -32,3 +32,21 @@ if the API has changed.
 \description{
 List available SMARD timestamps
 }
+\details{
+The SMARD API provides power market data published by the Bundesnetzagentur.
+Use this helper to retrieve available timestamps for a given filter/region
+and resolution. Official docs: https://smard.api.bund.dev.
+
+Note: The registry rate limit states that more than 60 requests per hour are
+not permitted. Use \code{safe = TRUE} to respect the limit.
+}
+\examples{
+\dontrun{
+smard_indices(410, region = "DE", resolution = "hour")
+}
+
+}
+\seealso{
+\code{\link[=smard_timeseries]{smard_timeseries()}} and \code{\link[=smard_table]{smard_table()}} for data retrieval, and
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} for parameter discovery.
+}

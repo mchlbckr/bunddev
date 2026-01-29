@@ -3,6 +3,16 @@
 #' @param api Registry id.
 #' @param max_per_hour Maximum number of calls per hour.
 #'
+#' @details
+#' Use this to override or enforce a per-hour rate limit for a given API.
+#' The default is inferred from the registry entry when available.
+#'
+#' @seealso
+#' [bunddev_rate_limit_get()] to inspect the current setting.
+#'
+#' @examples
+#' bunddev_rate_limit_set("smard", max_per_hour = 60)
+#'
 #' @return The stored rate limit configuration.
 #' @export
 bunddev_rate_limit_set <- function(api, max_per_hour) {
@@ -22,6 +32,16 @@ bunddev_rate_limit_set <- function(api, max_per_hour) {
 #' Get API rate limit configuration
 #'
 #' @param api Registry id.
+#'
+#' @details
+#' If no explicit limit was set, the function tries to infer one from the
+#' registry entry. The result is used by adapter helpers when `safe = TRUE`.
+#'
+#' @seealso
+#' [bunddev_rate_limit_set()] to override the default.
+#'
+#' @examples
+#' bunddev_rate_limit_get("smard")
 #'
 #' @return The rate limit configuration.
 #' @export

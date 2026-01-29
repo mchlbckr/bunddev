@@ -16,12 +16,26 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with webcam details.
-
-Includes \code{start_time} as POSIXct in Europe/Berlin when available.
-
-Use \code{bunddev_parameters("autobahn")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Autobahn webcam details
+}
+\details{
+Returns full details for a single webcam entry.
+Official docs: https://autobahn.api.bund.dev.
+}
+\examples{
+\dontrun{
+roads <- autobahn_roads()
+webcams <- autobahn_webcams(roads$road_id[[1]])
+autobahn_webcam_details(webcams$identifier[[1]])
+}
+
+Includes `start_time` as POSIXct in Europe/Berlin when available.
+
+Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+if the API has changed.
+}
+\seealso{
+\code{\link[=autobahn_webcams]{autobahn_webcams()}} to list webcams.
 }

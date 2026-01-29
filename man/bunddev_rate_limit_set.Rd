@@ -17,3 +17,14 @@ The stored rate limit configuration.
 \description{
 Set API rate limit configuration
 }
+\details{
+Use this to override or enforce a per-hour rate limit for a given API.
+The default is inferred from the registry entry when available.
+}
+\examples{
+bunddev_rate_limit_set("smard", max_per_hour = 60)
+
+}
+\seealso{
+\code{\link[=bunddev_rate_limit_get]{bunddev_rate_limit_get()}} to inspect the current setting.
+}

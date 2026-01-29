@@ -6,6 +6,23 @@
 #' @param safe Logical; apply throttling and caching.
 #' @param refresh Logical; refresh cached responses.
 #'
+#' @details
+#' The SMARD API provides power market data published by the Bundesnetzagentur.
+#' Use this helper to retrieve available timestamps for a given filter/region
+#' and resolution. Official docs: https://smard.api.bund.dev.
+#'
+#' Note: The registry rate limit states that more than 60 requests per hour are
+#' not permitted. Use `safe = TRUE` to respect the limit.
+#'
+#' @seealso
+#' [smard_timeseries()] and [smard_table()] for data retrieval, and
+#' [bunddev_parameters()] for parameter discovery.
+#'
+#' @examples
+#' \dontrun{
+#' smard_indices(410, region = "DE", resolution = "hour")
+#' }
+#'
 #' @return A tibble of timestamps.
 #'
 #' Use `bunddev_parameters("smard")` to see the currently valid parameters
@@ -31,6 +48,20 @@ smard_indices <- function(filter, region = "DE", resolution = "hour", safe = TRU
 #' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @param safe Logical; apply throttling and caching.
 #' @param refresh Logical; refresh cached responses.
+#'
+#' @details
+#' Returns a tidy time series for a single filter/region. Use
+#' [smard_indices()] to obtain a valid timestamp. Official docs:
+#' https://smard.api.bund.dev.
+#'
+#' @seealso
+#' [smard_indices()] for timestamps and [smard_table()] for table output.
+#'
+#' @examples
+#' \dontrun{
+#' indices <- smard_indices(410, region = "DE", resolution = "hour")
+#' smard_timeseries(410, region = "DE", resolution = "hour", timestamp = indices$timestamp[[1]])
+#' }
 #'
 #' @return A tibble of time series values.
 #'
@@ -71,6 +102,20 @@ smard_timeseries <- function(filter, region = "DE", resolution = "hour", timesta
 #' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @param safe Logical; apply throttling and caching.
 #' @param refresh Logical; refresh cached responses.
+#'
+#' @details
+#' Returns table-style SMARD data for a single timestamp. Use
+#' [smard_indices()] to obtain a valid timestamp. Official docs:
+#' https://smard.api.bund.dev.
+#'
+#' @seealso
+#' [smard_indices()] for timestamps and [smard_timeseries()] for time series.
+#'
+#' @examples
+#' \dontrun{
+#' indices <- smard_indices(410, region = "DE", resolution = "hour")
+#' smard_table(410, region = "DE", timestamp = indices$timestamp[[1]])
+#' }
 #'
 #' @return A tibble of table values.
 #'

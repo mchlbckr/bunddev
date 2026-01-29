@@ -34,3 +34,20 @@ A tibble with search results.
 This adapter scrapes the public Handelsregister search form because no
 official OpenAPI specification is available for this service.
 }
+\details{
+The Handelsregister search is provided via a public web form. This helper
+automates the form flow and parses the result table into a tidy tibble.
+Official docs: https://github.com/bundesAPI/handelsregister.
+
+The registry notes that more than 60 requests per hour may violate the terms
+of use. Use \code{safe = TRUE} to respect the built-in rate limiting.
+}
+\examples{
+\dontrun{
+handelsregister_search("Deutsche Bahn", schlagwort_optionen = "all")
+}
+
+}
+\seealso{
+\code{\link[=bunddev_rate_limit_get]{bunddev_rate_limit_get()}} to inspect the configured limit.
+}

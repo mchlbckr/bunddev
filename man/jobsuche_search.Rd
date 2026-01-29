@@ -35,3 +35,23 @@ if the API has changed.
 \description{
 Search Jobsuche listings
 }
+\details{
+The Jobsuche API provides access to job listings from the Bundesagentur fuer
+Arbeit. Authentication is required via an API key passed as \code{X-API-Key}.
+See https://jobsuche.api.bund.dev for the official API documentation.
+
+Use \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} to configure the key and \code{\link[=bunddev_parameters]{bunddev_parameters()}} to
+discover supported query parameters.
+}
+\examples{
+\dontrun{
+Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
+}
+
+}
+\seealso{
+\code{\link[=jobsuche_search_app]{jobsuche_search_app()}} for the app endpoint, \code{\link[=jobsuche_logo]{jobsuche_logo()}} to fetch
+employer logos, and \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} for authentication.
+}

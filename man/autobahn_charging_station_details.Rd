@@ -20,12 +20,26 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with charging station details.
-
-Includes \code{start_time} as POSIXct in Europe/Berlin when available.
-
-Use \code{bunddev_parameters("autobahn")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Autobahn charging station details
+}
+\details{
+Returns full details for a single charging station entry.
+Official docs: https://autobahn.api.bund.dev.
+}
+\examples{
+\dontrun{
+roads <- autobahn_roads()
+stations <- autobahn_charging_stations(roads$road_id[[1]])
+autobahn_charging_station_details(stations$identifier[[1]])
+}
+
+Includes `start_time` as POSIXct in Europe/Berlin when available.
+
+Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+if the API has changed.
+}
+\seealso{
+\code{\link[=autobahn_charging_stations]{autobahn_charging_stations()}} to list stations.
 }

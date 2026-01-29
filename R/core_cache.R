@@ -1,5 +1,16 @@
 #' Locate the bunddev cache directory
 #'
+#' @details
+#' The cache directory is used to store downloaded OpenAPI specs and cached
+#' API responses. Use this to inspect or clean cached files.
+#'
+#' @seealso
+#' [bunddev_spec()] to download specs, and [bunddev_spec_path()] to locate
+#' a specific spec file.
+#'
+#' @examples
+#' bunddev_cache_dir()
+#'
 #' @return Cache directory path.
 #' @export
 bunddev_cache_dir <- function() {
@@ -13,6 +24,15 @@ bunddev_cache_dir <- function() {
 #' Build a cache path for an API spec
 #'
 #' @param id Registry id.
+#'
+#' @details
+#' Determines the cache file name based on the spec URL extension (.yaml/.json).
+#'
+#' @seealso
+#' [bunddev_spec()] to download and parse specs.
+#'
+#' @examples
+#' bunddev_spec_path("smard")
 #'
 #' @return File path for the cached spec.
 #' @export
@@ -31,6 +51,17 @@ bunddev_spec_path <- function(id) {
 #'
 #' @param id Registry id.
 #' @param refresh Logical; refresh cached spec.
+#'
+#' @details
+#' Downloads the OpenAPI spec from the registry if it is missing or when
+#' `refresh = TRUE`. Parsed specs are returned as lists.
+#'
+#' @seealso
+#' [bunddev_endpoints()] to list operations and [bunddev_parameters()] to
+#' inspect parameters.
+#'
+#' @examples
+#' bunddev_spec("smard")
 #'
 #' @return Parsed OpenAPI spec.
 #' @export

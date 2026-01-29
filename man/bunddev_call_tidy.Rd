@@ -21,3 +21,18 @@ A tibble with tidied results.
 \description{
 Call an API operation and return tidy data
 }
+\details{
+This helper calls \code{\link[=bunddev_call]{bunddev_call()}} and then applies the adapter-specific
+tidier for the API. If no tidier is registered, a tibble containing the raw
+response is returned.
+}
+\examples{
+
+# Tidy Autobahn roadworks
+bunddev_call_tidy("autobahn", "list-roadworks", params = list(roadId = "A1"))
+
+}
+\seealso{
+\code{\link[=bunddev_call]{bunddev_call()}} for raw responses, and \code{\link[=bunddev_parameters]{bunddev_parameters()}} to discover
+available parameters.
+}

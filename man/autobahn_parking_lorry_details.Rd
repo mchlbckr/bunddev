@@ -20,12 +20,26 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with lorry parking details.
-
-Includes \code{start_time} as POSIXct in Europe/Berlin when available.
-
-Use \code{bunddev_parameters("autobahn")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Autobahn lorry parking details
+}
+\details{
+Returns full details for a single lorry parking entry.
+Official docs: https://autobahn.api.bund.dev.
+}
+\examples{
+\dontrun{
+roads <- autobahn_roads()
+parking <- autobahn_parking_lorries(roads$road_id[[1]])
+autobahn_parking_lorry_details(parking$identifier[[1]])
+}
+
+Includes `start_time` as POSIXct in Europe/Berlin when available.
+
+Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+if the API has changed.
+}
+\seealso{
+\code{\link[=autobahn_parking_lorries]{autobahn_parking_lorries()}} to list parking areas.
 }

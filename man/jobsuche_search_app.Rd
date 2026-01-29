@@ -35,3 +35,21 @@ if the API has changed.
 \description{
 Search Jobsuche listings (app endpoint)
 }
+\details{
+This uses the mobile app endpoint of the Jobsuche API. It shares the same
+authentication mechanism and parameters as \code{\link[=jobsuche_search]{jobsuche_search()}}.
+
+See https://jobsuche.api.bund.dev for API documentation.
+}
+\examples{
+\dontrun{
+Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+jobsuche_search_app(params = list(was = "data", size = 5), flatten = TRUE)
+}
+
+}
+\seealso{
+\code{\link[=jobsuche_search]{jobsuche_search()}} for the standard endpoint and \code{\link[=bunddev_parameters]{bunddev_parameters()}} for
+parameter discovery.
+}

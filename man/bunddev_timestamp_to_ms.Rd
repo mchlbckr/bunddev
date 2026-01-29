@@ -17,3 +17,11 @@ Numeric timestamp in milliseconds.
 \description{
 Convert timestamps to milliseconds
 }
+\details{
+This helper standardizes timestamps for APIs that expect epoch milliseconds.
+Dates are interpreted in the supplied timezone.
+}
+\examples{
+bunddev_timestamp_to_ms(as.POSIXct("2024-01-01 00:00:00", tz = "Europe/Berlin"))
+
+}

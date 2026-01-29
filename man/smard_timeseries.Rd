@@ -39,3 +39,18 @@ if the API has changed.
 \description{
 Fetch SMARD timeseries data
 }
+\details{
+Returns a tidy time series for a single filter/region. Use
+\code{\link[=smard_indices]{smard_indices()}} to obtain a valid timestamp. Official docs:
+https://smard.api.bund.dev.
+}
+\examples{
+\dontrun{
+indices <- smard_indices(410, region = "DE", resolution = "hour")
+smard_timeseries(410, region = "DE", resolution = "hour", timestamp = indices$timestamp[[1]])
+}
+
+}
+\seealso{
+\code{\link[=smard_indices]{smard_indices()}} for timestamps and \code{\link[=smard_table]{smard_table()}} for table output.
+}

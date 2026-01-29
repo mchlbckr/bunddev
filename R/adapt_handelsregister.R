@@ -3,6 +3,22 @@
 #' This adapter scrapes the public Handelsregister search form because no
 #' official OpenAPI specification is available for this service.
 #'
+#' @details
+#' The Handelsregister search is provided via a public web form. This helper
+#' automates the form flow and parses the result table into a tidy tibble.
+#' Official docs: https://github.com/bundesAPI/handelsregister.
+#'
+#' The registry notes that more than 60 requests per hour may violate the terms
+#' of use. Use `safe = TRUE` to respect the built-in rate limiting.
+#'
+#' @seealso
+#' [bunddev_rate_limit_get()] to inspect the configured limit.
+#'
+#' @examples
+#' \dontrun{
+#' handelsregister_search("Deutsche Bahn", schlagwort_optionen = "all")
+#' }
+#'
 #' @param schlagwoerter Search terms.
 #' @param schlagwort_optionen Keyword options.
 #' @param safe Logical; apply throttling and caching.

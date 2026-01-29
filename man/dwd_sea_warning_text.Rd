@@ -22,3 +22,16 @@ Timestamps are interpreted in the Europe/Berlin timezone.
 \description{
 Fetch DWD sea warning text
 }
+\details{
+Retrieves sea warning text from the DWD App API.
+Official docs: https://dwd.api.bund.dev.
+}
+\examples{
+\dontrun{
+dwd_sea_warning_text()
+}
+
+}
+\seealso{
+\code{\link[=dwd_alpine_forecast_text]{dwd_alpine_forecast_text()}} and \code{\link[=dwd_avalanche_warnings]{dwd_avalanche_warnings()}}.
+}

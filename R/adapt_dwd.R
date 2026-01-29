@@ -7,6 +7,19 @@
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
 #'
+#' @details
+#' Retrieves station overview data from the DWD App API. Official docs:
+#' https://dwd.api.bund.dev. Station IDs can be looked up via DWD opendata
+#' resources or the API documentation.
+#'
+#' @seealso
+#' [dwd_crowd_reports()] and [dwd_warnings_nowcast()].
+#'
+#' @examples
+#' \dontrun{
+#' dwd_station_overview(c("10865", "G005"), flatten = TRUE)
+#' }
+#'
 #' @return A tibble with station data.
 #'
 #' Includes forecast time columns (`forecast_start_time`, `forecast1_start_time`,
@@ -52,6 +65,18 @@ dwd_station_overview <- function(station_ids,
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
 #'
+#' @details
+#' Retrieves crowd-sourced weather reports from the DWD App API.
+#' Official docs: https://dwd.api.bund.dev.
+#'
+#' @seealso
+#' [dwd_station_overview()] and [dwd_warnings_nowcast()].
+#'
+#' @examples
+#' \dontrun{
+#' dwd_crowd_reports(flatten = TRUE)
+#' }
+#'
 #' @return A tibble with crowd reports.
 #'
 #' Includes `timestamp_time` as POSIXct in Europe/Berlin.
@@ -93,6 +118,18 @@ dwd_crowd_reports <- function(safe = TRUE,
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
+#'
+#' @details
+#' Retrieves nowcast weather warnings from the DWD App API.
+#' Official docs: https://dwd.api.bund.dev.
+#'
+#' @seealso
+#' [dwd_municipality_warnings()] and [dwd_coast_warnings()].
+#'
+#' @examples
+#' \dontrun{
+#' dwd_warnings_nowcast(language = "de", flatten = TRUE)
+#' }
 #'
 #' @return A tibble with nowcast warnings.
 #'
@@ -139,6 +176,18 @@ dwd_warnings_nowcast <- function(language = c("de", "en"),
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
 #'
+#' @details
+#' Retrieves municipality warnings from the DWD App API.
+#' Official docs: https://dwd.api.bund.dev.
+#'
+#' @seealso
+#' [dwd_warnings_nowcast()] and [dwd_coast_warnings()].
+#'
+#' @examples
+#' \dontrun{
+#' dwd_municipality_warnings(language = "de", flatten = TRUE)
+#' }
+#'
 #' @return A tibble with municipality warnings.
 #'
 #' Includes `start_time` and `end_time` as POSIXct in Europe/Berlin.
@@ -184,6 +233,18 @@ dwd_municipality_warnings <- function(language = c("de", "en"),
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
 #'
+#' @details
+#' Retrieves coastal warnings from the DWD App API.
+#' Official docs: https://dwd.api.bund.dev.
+#'
+#' @seealso
+#' [dwd_warnings_nowcast()] and [dwd_municipality_warnings()].
+#'
+#' @examples
+#' \dontrun{
+#' dwd_coast_warnings(language = "de", flatten = TRUE)
+#' }
+#'
 #' @return A tibble with coastal warnings.
 #'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
@@ -223,6 +284,18 @@ dwd_coast_warnings <- function(language = c("de", "en"),
 #' @param safe Logical; apply throttling and caching.
 #' @param refresh Logical; refresh cached responses.
 #'
+#' @details
+#' Retrieves sea warning text from the DWD App API.
+#' Official docs: https://dwd.api.bund.dev.
+#'
+#' @seealso
+#' [dwd_alpine_forecast_text()] and [dwd_avalanche_warnings()].
+#'
+#' @examples
+#' \dontrun{
+#' dwd_sea_warning_text()
+#' }
+#'
 #' @return A tibble with the warning text.
 #'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
@@ -247,6 +320,18 @@ dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
 #' @param safe Logical; apply throttling and caching.
 #' @param refresh Logical; refresh cached responses.
 #'
+#' @details
+#' Retrieves alpine forecast text from the DWD App API.
+#' Official docs: https://dwd.api.bund.dev.
+#'
+#' @seealso
+#' [dwd_sea_warning_text()] and [dwd_avalanche_warnings()].
+#'
+#' @examples
+#' \dontrun{
+#' dwd_alpine_forecast_text()
+#' }
+#'
 #' @return A tibble with the forecast text.
 #'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
@@ -270,6 +355,18 @@ dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @param safe Logical; apply throttling and caching.
 #' @param refresh Logical; refresh cached responses.
+#'
+#' @details
+#' Retrieves avalanche warnings from the DWD App API.
+#' Official docs: https://dwd.api.bund.dev.
+#'
+#' @seealso
+#' [dwd_alpine_forecast_text()] and [dwd_sea_warning_text()].
+#'
+#' @examples
+#' \dontrun{
+#' dwd_avalanche_warnings()
+#' }
 #'
 #' @return A tibble with avalanche data.
 #'

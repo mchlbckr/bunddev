@@ -17,3 +17,13 @@ A character vector of enum values.
 \description{
 Extract parameter enum values
 }
+\details{
+Returns unique enum values for a parameter defined on the adapter endpoint.
+}
+\examples{
+bunddev_parameter_values(smard_timeseries, "resolution")
+
+}
+\seealso{
+\code{\link[=bunddev_parameters_for]{bunddev_parameters_for()}} to inspect all parameters for an adapter.
+}

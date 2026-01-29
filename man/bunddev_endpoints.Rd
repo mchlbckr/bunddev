@@ -15,3 +15,15 @@ A tibble with endpoints.
 \description{
 List OpenAPI endpoints for an API
 }
+\details{
+Parses the cached OpenAPI spec and returns every available path + method with
+its operationId and summary, if provided.
+}
+\examples{
+bunddev_endpoints("autobahn")
+
+}
+\seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect parameters and \code{\link[=bunddev_spec]{bunddev_spec()}} to access
+the full spec.
+}

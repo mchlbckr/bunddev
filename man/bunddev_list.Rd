@@ -17,3 +17,15 @@ A tibble of registry entries.
 \description{
 List registry entries
 }
+\details{
+Use this to quickly narrow down APIs by topic or authentication type. Tags
+correspond to the taxonomy in the bundled registry.
+}
+\examples{
+bunddev_list(tag = "jobs")
+bunddev_list(auth = "api_key")
+
+}
+\seealso{
+\code{\link[=bunddev_registry]{bunddev_registry()}} for the full table and \code{\link[=bunddev_info]{bunddev_info()}} for one entry.
+}

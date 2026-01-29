@@ -4,6 +4,22 @@
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
 #'
+#' @details
+#' Fetches the Tagesschau homepage feed as provided by the ARD Tagesschau API.
+#' Official docs: https://bundesapi.github.io/tagesschau-api/.
+#'
+#' Note: The registry rate limit allows up to 60 requests per hour. Usage of
+#' content is restricted to private, non-commercial use unless otherwise stated
+#' by the source (see Tagesschau CC license notes).
+#'
+#' @seealso
+#' [tagesschau_news()], [tagesschau_search()], and [tagesschau_channels()].
+#'
+#' @examples
+#' \dontrun{
+#' tagesschau_homepage(flatten = TRUE)
+#' }
+#'
 #' @return A tibble with homepage items.
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
@@ -27,6 +43,18 @@ tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
+#'
+#' @details
+#' Returns current news items with optional filters for region or ressort.
+#' Official docs: https://bundesapi.github.io/tagesschau-api/.
+#'
+#' @seealso
+#' [tagesschau_homepage()] and [tagesschau_search()].
+#'
+#' @examples
+#' \dontrun{
+#' tagesschau_news(ressort = "inland", flatten = TRUE)
+#' }
 #'
 #' @return A tibble with news items.
 #'
@@ -61,6 +89,18 @@ tagesschau_news <- function(regions = NULL, ressort = NULL,
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
+#'
+#' @details
+#' Searches Tagesschau content by free-text query. Official docs:
+#' https://bundesapi.github.io/tagesschau-api/.
+#'
+#' @seealso
+#' [tagesschau_news()] and [tagesschau_homepage()].
+#'
+#' @examples
+#' \dontrun{
+#' tagesschau_search(search_text = "energie", page_size = 10, flatten = TRUE)
+#' }
 #'
 #' @return A tibble with search results.
 #'
@@ -98,6 +138,18 @@ tagesschau_search <- function(search_text = NULL,
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
+#'
+#' @details
+#' Lists the Tagesschau channels endpoint. Official docs:
+#' https://bundesapi.github.io/tagesschau-api/.
+#'
+#' @seealso
+#' [tagesschau_news()] and [tagesschau_homepage()].
+#'
+#' @examples
+#' \dontrun{
+#' tagesschau_channels(flatten = TRUE)
+#' }
 #'
 #' @return A tibble with channels.
 #'

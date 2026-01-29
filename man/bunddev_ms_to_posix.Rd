@@ -17,3 +17,10 @@ POSIXct timestamp.
 \description{
 Convert milliseconds to POSIXct
 }
+\details{
+Converts epoch milliseconds to POSIXct in the requested timezone.
+}
+\examples{
+bunddev_ms_to_posix(1704067200000, tz = "Europe/Berlin")
+
+}

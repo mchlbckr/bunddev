@@ -7,6 +7,25 @@
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
 #'
+#' @details
+#' The Jobsuche API provides access to job listings from the Bundesagentur fuer
+#' Arbeit. Authentication is required via an API key passed as `X-API-Key`.
+#' See https://jobsuche.api.bund.dev for the official API documentation.
+#'
+#' Use [bunddev_auth_set()] to configure the key and [bunddev_parameters()] to
+#' discover supported query parameters.
+#'
+#' @seealso
+#' [jobsuche_search_app()] for the app endpoint, [jobsuche_logo()] to fetch
+#' employer logos, and [bunddev_auth_set()] for authentication.
+#'
+#' @examples
+#' \dontrun{
+#' Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+#' bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+#' jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
+#' }
+#'
 #' @return A tibble with job listings.
 #'
 #' Includes parsed POSIXct columns (suffix `_time`) in Europe/Berlin.
@@ -38,6 +57,23 @@ jobsuche_search <- function(params = list(),
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
 #'
+#' @details
+#' This uses the mobile app endpoint of the Jobsuche API. It shares the same
+#' authentication mechanism and parameters as [jobsuche_search()].
+#'
+#' See https://jobsuche.api.bund.dev for API documentation.
+#'
+#' @seealso
+#' [jobsuche_search()] for the standard endpoint and [bunddev_parameters()] for
+#' parameter discovery.
+#'
+#' @examples
+#' \dontrun{
+#' Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+#' bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+#' jobsuche_search_app(params = list(was = "data", size = 5), flatten = TRUE)
+#' }
+#'
 #' @return A tibble with job listings.
 #'
 #' Includes parsed POSIXct columns (suffix `_time`) in Europe/Berlin.
@@ -65,6 +101,22 @@ jobsuche_search_app <- function(params = list(),
 #' @param hash_id Logo hash id.
 #' @param safe Logical; apply throttling and caching.
 #' @param refresh Logical; refresh cached responses.
+#'
+#' @details
+#' Returns the raw logo bytes for a given employer hash id. Use this together
+#' with listings returned by [jobsuche_search()] or [jobsuche_search_app()].
+#'
+#' See https://jobsuche.api.bund.dev for API documentation.
+#'
+#' @seealso
+#' [jobsuche_search()] for listings and [bunddev_auth_set()] for auth setup.
+#'
+#' @examples
+#' \dontrun{
+#' Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+#' bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+#' logo <- jobsuche_logo("abc123")
+#' }
 #'
 #' @return A tibble with raw logo bytes.
 #'

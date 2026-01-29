@@ -23,3 +23,16 @@ parameters if the API has changed.
 \description{
 Fetch Tagesschau channels
 }
+\details{
+Lists the Tagesschau channels endpoint. Official docs:
+https://bundesapi.github.io/tagesschau-api/.
+}
+\examples{
+\dontrun{
+tagesschau_channels(flatten = TRUE)
+}
+
+}
+\seealso{
+\code{\link[=tagesschau_news]{tagesschau_news()}} and \code{\link[=tagesschau_homepage]{tagesschau_homepage()}}.
+}

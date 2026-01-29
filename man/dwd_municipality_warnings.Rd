@@ -37,3 +37,16 @@ Timestamps are interpreted in the Europe/Berlin timezone.
 \description{
 Fetch DWD municipality warnings
 }
+\details{
+Retrieves municipality warnings from the DWD App API.
+Official docs: https://dwd.api.bund.dev.
+}
+\examples{
+\dontrun{
+dwd_municipality_warnings(language = "de", flatten = TRUE)
+}
+
+}
+\seealso{
+\code{\link[=dwd_warnings_nowcast]{dwd_warnings_nowcast()}} and \code{\link[=dwd_coast_warnings]{dwd_coast_warnings()}}.
+}

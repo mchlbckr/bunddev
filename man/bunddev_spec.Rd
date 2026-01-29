@@ -17,3 +17,15 @@ Parsed OpenAPI spec.
 \description{
 Retrieve a cached API spec
 }
+\details{
+Downloads the OpenAPI spec from the registry if it is missing or when
+\code{refresh = TRUE}. Parsed specs are returned as lists.
+}
+\examples{
+bunddev_spec("smard")
+
+}
+\seealso{
+\code{\link[=bunddev_endpoints]{bunddev_endpoints()}} to list operations and \code{\link[=bunddev_parameters]{bunddev_parameters()}} to
+inspect parameters.
+}

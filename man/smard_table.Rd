@@ -30,3 +30,18 @@ if the API has changed.
 \description{
 Fetch SMARD table data
 }
+\details{
+Returns table-style SMARD data for a single timestamp. Use
+\code{\link[=smard_indices]{smard_indices()}} to obtain a valid timestamp. Official docs:
+https://smard.api.bund.dev.
+}
+\examples{
+\dontrun{
+indices <- smard_indices(410, region = "DE", resolution = "hour")
+smard_table(410, region = "DE", timestamp = indices$timestamp[[1]])
+}
+
+}
+\seealso{
+\code{\link[=smard_indices]{smard_indices()}} for timestamps and \code{\link[=smard_timeseries]{smard_timeseries()}} for time series.
+}

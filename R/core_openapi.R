@@ -2,6 +2,17 @@
 #'
 #' @param id Registry id.
 #'
+#' @details
+#' Parses the cached OpenAPI spec and returns every available path + method with
+#' its operationId and summary, if provided.
+#'
+#' @seealso
+#' [bunddev_parameters()] to inspect parameters and [bunddev_spec()] to access
+#' the full spec.
+#'
+#' @examples
+#' bunddev_endpoints("autobahn")
+#'
 #' @return A tibble with endpoints.
 #' @export
 bunddev_endpoints <- function(id) {
@@ -49,6 +60,18 @@ bunddev_endpoints <- function(id) {
 #' @param name Optional parameter name to filter.
 #' @param path Optional endpoint path to filter.
 #' @param method Optional HTTP method to filter.
+#'
+#' @details
+#' Returns one row per parameter defined in the OpenAPI spec. Enumerations are
+#' stored in a list-column (`enum`). Use the filter arguments to narrow down
+#' results to a specific endpoint or parameter name.
+#'
+#' @seealso
+#' [bunddev_parameters_for()] for adapter-specific parameters and
+#' [bunddev_parameter_values()] for enum values.
+#'
+#' @examples
+#' bunddev_parameters("smard", name = "resolution")
 #'
 #' @return A tibble with parameter metadata.
 #' @export
@@ -135,6 +158,15 @@ bunddev_resolve_parameter <- function(param, spec) {
 #' @param endpoint Adapter function or its name.
 #' @param name Parameter name.
 #'
+#' @details
+#' Returns unique enum values for a parameter defined on the adapter endpoint.
+#'
+#' @seealso
+#' [bunddev_parameters_for()] to inspect all parameters for an adapter.
+#'
+#' @examples
+#' bunddev_parameter_values(smard_timeseries, "resolution")
+#'
 #' @return A character vector of enum values.
 #' @export
 bunddev_parameter_values <- function(endpoint, name) {
@@ -153,6 +185,16 @@ bunddev_parameter_values <- function(endpoint, name) {
 #' List OpenAPI parameters for a specific adapter
 #'
 #' @param endpoint Adapter function or its name.
+#'
+#' @details
+#' Resolves the adapter to an OpenAPI path/method mapping and filters parameters
+#' accordingly.
+#'
+#' @seealso
+#' [bunddev_parameters()] for the full API parameter table.
+#'
+#' @examples
+#' bunddev_parameters_for(smard_timeseries)
 #'
 #' @return A tibble with parameter metadata.
 #' @export

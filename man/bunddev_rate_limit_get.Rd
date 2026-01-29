@@ -15,3 +15,14 @@ The rate limit configuration.
 \description{
 Get API rate limit configuration
 }
+\details{
+If no explicit limit was set, the function tries to infer one from the
+registry entry. The result is used by adapter helpers when \code{safe = TRUE}.
+}
+\examples{
+bunddev_rate_limit_get("smard")
+
+}
+\seealso{
+\code{\link[=bunddev_rate_limit_set]{bunddev_rate_limit_set()}} to override the default.
+}

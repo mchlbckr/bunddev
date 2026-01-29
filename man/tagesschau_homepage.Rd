@@ -23,3 +23,20 @@ parameters if the API has changed.
 \description{
 Fetch Tagesschau homepage items
 }
+\details{
+Fetches the Tagesschau homepage feed as provided by the ARD Tagesschau API.
+Official docs: https://bundesapi.github.io/tagesschau-api/.
+
+Note: The registry rate limit allows up to 60 requests per hour. Usage of
+content is restricted to private, non-commercial use unless otherwise stated
+by the source (see Tagesschau CC license notes).
+}
+\examples{
+\dontrun{
+tagesschau_homepage(flatten = TRUE)
+}
+
+}
+\seealso{
+\code{\link[=tagesschau_news]{tagesschau_news()}}, \code{\link[=tagesschau_search]{tagesschau_search()}}, and \code{\link[=tagesschau_channels]{tagesschau_channels()}}.
+}

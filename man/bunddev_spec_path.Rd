@@ -15,3 +15,13 @@ File path for the cached spec.
 \description{
 Build a cache path for an API spec
 }
+\details{
+Determines the cache file name based on the spec URL extension (.yaml/.json).
+}
+\examples{
+bunddev_spec_path("smard")
+
+}
+\seealso{
+\code{\link[=bunddev_spec]{bunddev_spec()}} to download and parse specs.
+}

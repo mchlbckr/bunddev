@@ -15,3 +15,14 @@ A list with auth settings.
 \description{
 Get authentication configuration for an API
 }
+\details{
+Returns the stored auth configuration for the API or a default \code{none} entry
+if no auth has been configured.
+}
+\examples{
+bunddev_auth_get("jobsuche")
+
+}
+\seealso{
+\code{\link[=bunddev_auth_set]{bunddev_auth_set()}} to configure credentials.
+}

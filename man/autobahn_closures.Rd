@@ -16,12 +16,25 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with closures.
-
-Includes \code{start_time} as POSIXct in Europe/Berlin when available.
-
-Use \code{bunddev_parameters("autobahn")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List Autobahn closures
+}
+\details{
+Returns current closures for a specific Autobahn road id.
+Official docs: https://autobahn.api.bund.dev.
+}
+\examples{
+\dontrun{
+roads <- autobahn_roads()
+autobahn_closures(roads$road_id[[1]], flatten = TRUE)
+}
+
+Includes `start_time` as POSIXct in Europe/Berlin when available.
+
+Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+if the API has changed.
+}
+\seealso{
+\code{\link[=autobahn_roads]{autobahn_roads()}} and \code{\link[=autobahn_closure_details]{autobahn_closure_details()}}.
 }

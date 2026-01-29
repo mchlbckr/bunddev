@@ -38,3 +38,17 @@ Timestamps are interpreted in the Europe/Berlin timezone.
 \description{
 Fetch DWD station overview data
 }
+\details{
+Retrieves station overview data from the DWD App API. Official docs:
+https://dwd.api.bund.dev. Station IDs can be looked up via DWD opendata
+resources or the API documentation.
+}
+\examples{
+\dontrun{
+dwd_station_overview(c("10865", "G005"), flatten = TRUE)
+}
+
+}
+\seealso{
+\code{\link[=dwd_crowd_reports]{dwd_crowd_reports()}} and \code{\link[=dwd_warnings_nowcast]{dwd_warnings_nowcast()}}.
+}

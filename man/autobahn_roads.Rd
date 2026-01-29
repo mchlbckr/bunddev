@@ -8,10 +8,22 @@ autobahn_roads()
 }
 \value{
 A tibble with available road ids.
-
-Use \code{bunddev_parameters("autobahn")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List Autobahn road ids
+}
+\details{
+Lists Autobahn road ids from the Autobahn App API (Autobahn GmbH).
+Official docs: https://autobahn.api.bund.dev.
+}
+\examples{
+\dontrun{
+autobahn_roads()
+}
+
+Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+if the API has changed.
+}
+\seealso{
+\code{\link[=autobahn_roadworks]{autobahn_roadworks()}} and \code{\link[=autobahn_warnings]{autobahn_warnings()}} for road-specific data.
 }

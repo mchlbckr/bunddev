@@ -32,3 +32,16 @@ parameters if the API has changed.
 \description{
 Fetch Tagesschau news items
 }
+\details{
+Returns current news items with optional filters for region or ressort.
+Official docs: https://bundesapi.github.io/tagesschau-api/.
+}
+\examples{
+\dontrun{
+tagesschau_news(ressort = "inland", flatten = TRUE)
+}
+
+}
+\seealso{
+\code{\link[=tagesschau_homepage]{tagesschau_homepage()}} and \code{\link[=tagesschau_search]{tagesschau_search()}}.
+}

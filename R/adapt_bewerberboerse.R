@@ -5,6 +5,25 @@
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
 #'
+#' @details
+#' The Bewerberboerse API provides access to candidate listings. Authentication
+#' uses an API key passed as `X-API-Key` (clientId `jobboerse-bewerbersuche-ui`).
+#' See https://bundesapi.github.io/bewerberboerse-api/ for official docs.
+#'
+#' Use [bunddev_auth_set()] to configure the key and [bunddev_parameters()] to
+#' inspect available query parameters.
+#'
+#' @seealso
+#' [bewerberboerse_details()] for detailed entries and [bunddev_auth_set()] for
+#' authentication setup.
+#'
+#' @examples
+#' \dontrun{
+#' Sys.setenv(BEWERBERBOERSE_API_KEY = "jobboerse-bewerbersuche-ui")
+#' bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
+#' bewerberboerse_search(params = list(was = "data", size = 10), flatten = TRUE)
+#' }
+#'
 #' Use `bunddev_parameters("bewerberboerse")` to see the currently valid
 #' parameters if the API has changed.
 #'
@@ -28,6 +47,20 @@ bewerberboerse_search <- function(params = list(),
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
+#'
+#' @details
+#' Fetches details for a single candidate. The `referenznummer` typically comes
+#' from [bewerberboerse_search()]. See https://bundesapi.github.io/bewerberboerse-api/.
+#'
+#' @seealso
+#' [bewerberboerse_search()] to find candidates and [bunddev_auth_set()] for auth.
+#'
+#' @examples
+#' \dontrun{
+#' Sys.setenv(BEWERBERBOERSE_API_KEY = "jobboerse-bewerbersuche-ui")
+#' bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
+#' bewerberboerse_details("12345", flatten = TRUE)
+#' }
 #'
 #' Use `bunddev_parameters("bewerberboerse")` to see the currently valid
 #' parameters if the API has changed.

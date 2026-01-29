@@ -22,3 +22,20 @@ if the API has changed.
 \description{
 Fetch Jobsuche employer logo
 }
+\details{
+Returns the raw logo bytes for a given employer hash id. Use this together
+with listings returned by \code{\link[=jobsuche_search]{jobsuche_search()}} or \code{\link[=jobsuche_search_app]{jobsuche_search_app()}}.
+
+See https://jobsuche.api.bund.dev for API documentation.
+}
+\examples{
+\dontrun{
+Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+logo <- jobsuche_logo("abc123")
+}
+
+}
+\seealso{
+\code{\link[=jobsuche_search]{jobsuche_search()}} for listings and \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} for auth setup.
+}

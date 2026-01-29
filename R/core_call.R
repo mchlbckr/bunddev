@@ -7,6 +7,23 @@
 #' @param safe Logical; apply throttling and caching.
 #' @param refresh Logical; refresh cached GET responses.
 #'
+#' @details
+#' This is the low-level OpenAPI caller. It resolves an `operation_id` from the
+#' cached OpenAPI spec, fills path parameters from `params`, applies auth (if
+#' configured), and optionally caches GET responses when `safe = TRUE`.
+#'
+#' Use [bunddev_parameters()] and [bunddev_parameter_values()] to discover valid
+#' parameters before calling.
+#'
+#' @seealso
+#' [bunddev_call_tidy()] for adapter-specific tidy outputs, and
+#' [bunddev_auth_set()] to configure API keys.
+#'
+#' @examples
+#' 
+#' # Retrieve Autobahn road ids (raw response)
+#' bunddev_call("autobahn", "list-autobahnen")
+#'
 #' @return Parsed response.
 #' @export
 bunddev_call <- function(api, operation_id, params = list(),

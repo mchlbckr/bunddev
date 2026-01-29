@@ -35,3 +35,16 @@ parameters if the API has changed.
 \description{
 Search Tagesschau content
 }
+\details{
+Searches Tagesschau content by free-text query. Official docs:
+https://bundesapi.github.io/tagesschau-api/.
+}
+\examples{
+\dontrun{
+tagesschau_search(search_text = "energie", page_size = 10, flatten = TRUE)
+}
+
+}
+\seealso{
+\code{\link[=tagesschau_news]{tagesschau_news()}} and \code{\link[=tagesschau_homepage]{tagesschau_homepage()}}.
+}

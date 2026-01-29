@@ -16,12 +16,25 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with lorry parking areas.
-
-Includes \code{start_time} as POSIXct in Europe/Berlin when available.
-
-Use \code{bunddev_parameters("autobahn")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List Autobahn lorry parking areas
+}
+\details{
+Returns lorry parking areas for a specific Autobahn road id.
+Official docs: https://autobahn.api.bund.dev.
+}
+\examples{
+\dontrun{
+roads <- autobahn_roads()
+autobahn_parking_lorries(roads$road_id[[1]], flatten = TRUE)
+}
+
+Includes `start_time` as POSIXct in Europe/Berlin when available.
+
+Use `bunddev_parameters("autobahn")` to see the currently valid parameters
+if the API has changed.
+}
+\seealso{
+\code{\link[=autobahn_roads]{autobahn_roads()}} and \code{\link[=autobahn_parking_lorry_details]{autobahn_parking_lorry_details()}}.
 }

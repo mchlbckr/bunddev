@@ -12,14 +12,29 @@ bewerberboerse_details(referenznummer, flatten = FALSE, flatten_mode = "json")
 \item{flatten}{Logical; drop nested list columns.}
 
 \item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.
-
-Use \code{bunddev_parameters("bewerberboerse")} to see the currently valid
-parameters if the API has changed.}
+expand list-columns into multiple rows.}
 }
 \value{
 A tibble with tidied results.
 }
 \description{
 Retrieve Bewerberboerse candidate details
+}
+\details{
+Fetches details for a single candidate. The \code{referenznummer} typically comes
+from \code{\link[=bewerberboerse_search]{bewerberboerse_search()}}. See https://bundesapi.github.io/bewerberboerse-api/.
+}
+\examples{
+\dontrun{
+Sys.setenv(BEWERBERBOERSE_API_KEY = "jobboerse-bewerbersuche-ui")
+bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
+bewerberboerse_details("12345", flatten = TRUE)
+}
+
+Use `bunddev_parameters("bewerberboerse")` to see the currently valid
+parameters if the API has changed.
+
+}
+\seealso{
+\code{\link[=bewerberboerse_search]{bewerberboerse_search()}} to find candidates and \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} for auth.
 }

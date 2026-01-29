@@ -12,3 +12,18 @@ A tibble with registry entries.
 \description{
 Read the bundled API registry
 }
+\details{
+The registry is bundled with the package and contains metadata such as the
+API title, provider, documentation URL, OpenAPI spec URL, authentication
+type, and any declared rate limits. The data originates from bund.dev and
+the bundesAPI registry.
+}
+\examples{
+registry <- bunddev_registry()
+head(registry, 3)
+
+}
+\seealso{
+\code{\link[=bunddev_list]{bunddev_list()}} for filtered listings, \code{\link[=bunddev_search]{bunddev_search()}} for keyword
+searches, and \code{\link[=bunddev_info]{bunddev_info()}} for a single entry.
+}

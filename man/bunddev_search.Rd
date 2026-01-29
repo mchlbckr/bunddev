@@ -15,3 +15,15 @@ A tibble of matching registry entries.
 \description{
 Search registry entries
 }
+\details{
+Searches across registry ids, titles, providers, and tags using a simple
+substring match.
+}
+\examples{
+bunddev_search("weather")
+
+}
+\seealso{
+\code{\link[=bunddev_list]{bunddev_list()}} to filter by tag or auth, and \code{\link[=bunddev_info]{bunddev_info()}} for details
+on a single API.
+}

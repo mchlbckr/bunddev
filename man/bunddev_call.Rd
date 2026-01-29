@@ -32,3 +32,21 @@ Parsed response.
 \description{
 Call an API operation
 }
+\details{
+This is the low-level OpenAPI caller. It resolves an \code{operation_id} from the
+cached OpenAPI spec, fills path parameters from \code{params}, applies auth (if
+configured), and optionally caches GET responses when \code{safe = TRUE}.
+
+Use \code{\link[=bunddev_parameters]{bunddev_parameters()}} and \code{\link[=bunddev_parameter_values]{bunddev_parameter_values()}} to discover valid
+parameters before calling.
+}
+\examples{
+
+# Retrieve Autobahn road ids (raw response)
+bunddev_call("autobahn", "list-autobahnen")
+
+}
+\seealso{
+\code{\link[=bunddev_call_tidy]{bunddev_call_tidy()}} for adapter-specific tidy outputs, and
+\code{\link[=bunddev_auth_set]{bunddev_auth_set()}} to configure API keys.
+}

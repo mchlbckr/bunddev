@@ -3,6 +3,13 @@
 #' @param value Timestamp as numeric (ms), Date, or POSIXct.
 #' @param tz Timezone for Date/POSIXct conversion.
 #'
+#' @details
+#' This helper standardizes timestamps for APIs that expect epoch milliseconds.
+#' Dates are interpreted in the supplied timezone.
+#'
+#' @examples
+#' bunddev_timestamp_to_ms(as.POSIXct("2024-01-01 00:00:00", tz = "Europe/Berlin"))
+#'
 #' @return Numeric timestamp in milliseconds.
 bunddev_timestamp_to_ms <- function(value, tz = "Europe/Berlin") {
   if (length(value) != 1) {
@@ -25,6 +32,12 @@ bunddev_timestamp_to_ms <- function(value, tz = "Europe/Berlin") {
 #'
 #' @param value Timestamp in milliseconds.
 #' @param tz Timezone for conversion.
+#'
+#' @details
+#' Converts epoch milliseconds to POSIXct in the requested timezone.
+#'
+#' @examples
+#' bunddev_ms_to_posix(1704067200000, tz = "Europe/Berlin")
 #'
 #' @return POSIXct timestamp.
 bunddev_ms_to_posix <- function(value, tz = "Europe/Berlin") {

@@ -19,3 +19,18 @@ The updated auth configuration.
 \description{
 Set authentication configuration for an API
 }
+\details{
+Store auth configuration used by \code{\link[=bunddev_call]{bunddev_call()}} and adapter helpers. For
+APIs that require an API key, set \code{env_var} to the name of an environment
+variable containing the key. The key is sent as \code{X-API-Key}.
+}
+\examples{
+
+Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+
+}
+\seealso{
+\code{\link[=bunddev_auth_get]{bunddev_auth_get()}} to inspect the stored configuration, and
+\code{\link[=bunddev_call]{bunddev_call()}} to make authenticated requests.
+}

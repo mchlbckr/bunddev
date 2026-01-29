@@ -12,3 +12,15 @@ Cache directory path.
 \description{
 Locate the bunddev cache directory
 }
+\details{
+The cache directory is used to store downloaded OpenAPI specs and cached
+API responses. Use this to inspect or clean cached files.
+}
+\examples{
+bunddev_cache_dir()
+
+}
+\seealso{
+\code{\link[=bunddev_spec]{bunddev_spec()}} to download specs, and \code{\link[=bunddev_spec_path]{bunddev_spec_path()}} to locate
+a specific spec file.
+}

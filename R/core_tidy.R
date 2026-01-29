@@ -5,6 +5,20 @@
 #' @param params List of parameters.
 #' @param ... Additional arguments passed to the tidier.
 #'
+#' @details
+#' This helper calls [bunddev_call()] and then applies the adapter-specific
+#' tidier for the API. If no tidier is registered, a tibble containing the raw
+#' response is returned.
+#'
+#' @seealso
+#' [bunddev_call()] for raw responses, and [bunddev_parameters()] to discover
+#' available parameters.
+#'
+#' @examples
+#' 
+#' # Tidy Autobahn roadworks
+#' bunddev_call_tidy("autobahn", "list-roadworks", params = list(roadId = "A1"))
+#'
 #' @return A tibble with tidied results.
 #' @export
 bunddev_call_tidy <- function(api, operation_id, params = list(), ...) {

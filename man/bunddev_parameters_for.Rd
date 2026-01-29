@@ -15,3 +15,14 @@ A tibble with parameter metadata.
 \description{
 List OpenAPI parameters for a specific adapter
 }
+\details{
+Resolves the adapter to an OpenAPI path/method mapping and filters parameters
+accordingly.
+}
+\examples{
+bunddev_parameters_for(smard_timeseries)
+
+}
+\seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} for the full API parameter table.
+}

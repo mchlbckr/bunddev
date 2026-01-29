@@ -2,6 +2,18 @@
 #'
 #' @return A tibble with available road ids.
 #'
+#' @details
+#' Lists Autobahn road ids from the Autobahn App API (Autobahn GmbH).
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_roadworks()] and [autobahn_warnings()] for road-specific data.
+#'
+#' @examples
+#' \dontrun{
+#' autobahn_roads()
+#' }
+#'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
 #' @export
@@ -17,6 +29,20 @@ autobahn_roads <- function() {
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with roadworks.
+#'
+#' @details
+#' Returns current roadworks for a specific Autobahn road id.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_roads()] to list available roads, and [autobahn_roadwork_details()]
+#' for detail records.
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' autobahn_roadworks(roads$road_id[[1]], flatten = TRUE)
+#' }
 #'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
@@ -43,6 +69,19 @@ autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") 
 #'
 #' @return A tibble with warnings.
 #'
+#' @details
+#' Returns current warnings for a specific Autobahn road id.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_roads()] to list roads and [autobahn_warning_details()] for details.
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' autobahn_warnings(roads$road_id[[1]], flatten = TRUE)
+#' }
+#'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
@@ -67,6 +106,19 @@ autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with webcams.
+#'
+#' @details
+#' Returns webcam entries for a specific Autobahn road id.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_roads()] and [autobahn_webcam_details()].
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' autobahn_webcams(roads$road_id[[1]], flatten = TRUE)
+#' }
 #'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
@@ -93,6 +145,19 @@ autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'
 #' @return A tibble with closures.
 #'
+#' @details
+#' Returns current closures for a specific Autobahn road id.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_roads()] and [autobahn_closure_details()].
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' autobahn_closures(roads$road_id[[1]], flatten = TRUE)
+#' }
+#'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
@@ -117,6 +182,19 @@ autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with charging stations.
+#'
+#' @details
+#' Returns charging stations for a specific Autobahn road id.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_roads()] and [autobahn_charging_station_details()].
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' autobahn_charging_stations(roads$road_id[[1]], flatten = TRUE)
+#' }
 #'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
@@ -143,6 +221,19 @@ autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = 
 #'
 #' @return A tibble with lorry parking areas.
 #'
+#' @details
+#' Returns lorry parking areas for a specific Autobahn road id.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_roads()] and [autobahn_parking_lorry_details()].
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' autobahn_parking_lorries(roads$road_id[[1]], flatten = TRUE)
+#' }
+#'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
@@ -168,6 +259,20 @@ autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "j
 #'
 #' @return A tibble with roadwork details.
 #'
+#' @details
+#' Returns full details for a single roadwork entry.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_roadworks()] to list roadworks.
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' roadworks <- autobahn_roadworks(roads$road_id[[1]])
+#' autobahn_roadwork_details(roadworks$identifier[[1]])
+#' }
+#'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
@@ -191,6 +296,20 @@ autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with warning details.
+#'
+#' @details
+#' Returns full details for a single warning entry.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_warnings()] to list warnings.
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' warnings <- autobahn_warnings(roads$road_id[[1]])
+#' autobahn_warning_details(warnings$identifier[[1]])
+#' }
 #'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
@@ -216,6 +335,20 @@ autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode =
 #'
 #' @return A tibble with webcam details.
 #'
+#' @details
+#' Returns full details for a single webcam entry.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_webcams()] to list webcams.
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' webcams <- autobahn_webcams(roads$road_id[[1]])
+#' autobahn_webcam_details(webcams$identifier[[1]])
+#' }
+#'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
@@ -239,6 +372,20 @@ autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with closure details.
+#'
+#' @details
+#' Returns full details for a single closure entry.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_closures()] to list closures.
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' closures <- autobahn_closures(roads$road_id[[1]])
+#' autobahn_closure_details(closures$identifier[[1]])
+#' }
 #'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
@@ -264,6 +411,20 @@ autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode =
 #'
 #' @return A tibble with charging station details.
 #'
+#' @details
+#' Returns full details for a single charging station entry.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_charging_stations()] to list stations.
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' stations <- autobahn_charging_stations(roads$road_id[[1]])
+#' autobahn_charging_station_details(stations$identifier[[1]])
+#' }
+#'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
@@ -287,6 +448,20 @@ autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatt
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with lorry parking details.
+#'
+#' @details
+#' Returns full details for a single lorry parking entry.
+#' Official docs: https://autobahn.api.bund.dev.
+#'
+#' @seealso
+#' [autobahn_parking_lorries()] to list parking areas.
+#'
+#' @examples
+#' \dontrun{
+#' roads <- autobahn_roads()
+#' parking <- autobahn_parking_lorries(roads$road_id[[1]])
+#' autobahn_parking_lorry_details(parking$identifier[[1]])
+#' }
 #'
 #' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'

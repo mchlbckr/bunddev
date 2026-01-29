@@ -1,5 +1,19 @@
 #' Read the bundled API registry
 #'
+#' @details
+#' The registry is bundled with the package and contains metadata such as the
+#' API title, provider, documentation URL, OpenAPI spec URL, authentication
+#' type, and any declared rate limits. The data originates from bund.dev and
+#' the bundesAPI registry.
+#'
+#' @seealso
+#' [bunddev_list()] for filtered listings, [bunddev_search()] for keyword
+#' searches, and [bunddev_info()] for a single entry.
+#'
+#' @examples
+#' registry <- bunddev_registry()
+#' head(registry, 3)
+#' 
 #' @return A tibble with registry entries.
 #' @export
 bunddev_registry <- function() {
@@ -53,6 +67,17 @@ bunddev_registry <- function() {
 #' @param tag Optional tag to filter on.
 #' @param auth Optional auth type to filter on.
 #'
+#' @details
+#' Use this to quickly narrow down APIs by topic or authentication type. Tags
+#' correspond to the taxonomy in the bundled registry.
+#'
+#' @seealso
+#' [bunddev_registry()] for the full table and [bunddev_info()] for one entry.
+#'
+#' @examples
+#' bunddev_list(tag = "jobs")
+#' bunddev_list(auth = "api_key")
+#'
 #' @return A tibble of registry entries.
 #' @export
 bunddev_list <- function(tag = NULL, auth = NULL) {
@@ -73,6 +98,17 @@ bunddev_list <- function(tag = NULL, auth = NULL) {
 #'
 #' @param q Search query.
 #'
+#' @details
+#' Searches across registry ids, titles, providers, and tags using a simple
+#' substring match.
+#'
+#' @seealso
+#' [bunddev_list()] to filter by tag or auth, and [bunddev_info()] for details
+#' on a single API.
+#'
+#' @examples
+#' bunddev_search("weather")
+#'
 #' @return A tibble of matching registry entries.
 #' @export
 bunddev_search <- function(q) {
@@ -91,6 +127,16 @@ bunddev_search <- function(q) {
 #' Get a registry entry by id
 #'
 #' @param id Registry id.
+#'
+#' @details
+#' Use this to access the spec URL, documentation URL, and authentication
+#' requirements for a single API.
+#'
+#' @seealso
+#' [bunddev_list()] for discovery and [bunddev_registry()] for the full table.
+#'
+#' @examples
+#' bunddev_info("smard")
 #'
 #' @return A tibble with a single registry entry.
 #' @export

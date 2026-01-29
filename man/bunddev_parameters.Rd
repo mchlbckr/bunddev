@@ -21,3 +21,16 @@ A tibble with parameter metadata.
 \description{
 List OpenAPI parameters for an API
 }
+\details{
+Returns one row per parameter defined in the OpenAPI spec. Enumerations are
+stored in a list-column (\code{enum}). Use the filter arguments to narrow down
+results to a specific endpoint or parameter name.
+}
+\examples{
+bunddev_parameters("smard", name = "resolution")
+
+}
+\seealso{
+\code{\link[=bunddev_parameters_for]{bunddev_parameters_for()}} for adapter-specific parameters and
+\code{\link[=bunddev_parameter_values]{bunddev_parameter_values()}} for enum values.
+}

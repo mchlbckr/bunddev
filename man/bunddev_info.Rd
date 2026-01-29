@@ -15,3 +15,14 @@ A tibble with a single registry entry.
 \description{
 Get a registry entry by id
 }
+\details{
+Use this to access the spec URL, documentation URL, and authentication
+requirements for a single API.
+}
+\examples{
+bunddev_info("smard")
+
+}
+\seealso{
+\code{\link[=bunddev_list]{bunddev_list()}} for discovery and \code{\link[=bunddev_registry]{bunddev_registry()}} for the full table.
+}
