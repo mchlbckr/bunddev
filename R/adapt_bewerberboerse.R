@@ -7,9 +7,9 @@
 #'
 #' @return A tibble with tidied results.
 #' @export
-bunddev_bewerberboerse_search <- function(params = list(),
-                                          flatten = FALSE,
-                                          flatten_mode = "json") {
+bewerberboerse_search <- function(params = list(),
+                                  flatten = FALSE,
+                                  flatten_mode = "json") {
   bunddev_call_tidy(
     "bewerberboerse",
     "bewerberboerse",
@@ -28,13 +28,29 @@ bunddev_bewerberboerse_search <- function(params = list(),
 #'
 #' @return A tibble with tidied results.
 #' @export
-bunddev_bewerberboerse_details <- function(referenznummer,
-                                           flatten = FALSE,
-                                           flatten_mode = "json") {
+bewerberboerse_details <- function(referenznummer,
+                                   flatten = FALSE,
+                                   flatten_mode = "json") {
   bunddev_call_tidy(
     "bewerberboerse",
     "bewerberdetails",
     params = list(referenznummer = referenznummer),
+    flatten = flatten,
+    flatten_mode = flatten_mode
+  )
+}
+
+bunddev_bewerberboerse_search <- function(params = list(),
+                                          flatten = FALSE,
+                                          flatten_mode = "json") {
+  bewerberboerse_search(params = params, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_bewerberboerse_details <- function(referenznummer,
+                                           flatten = FALSE,
+                                           flatten_mode = "json") {
+  bewerberboerse_details(
+    referenznummer,
     flatten = flatten,
     flatten_mode = flatten_mode
   )

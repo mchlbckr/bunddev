@@ -72,12 +72,12 @@ library(bunddev)
 Sys.setenv(BEWERBERBOERSE_API_KEY = "jobboerse-bewerbersuche-ui")
 bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
 
-bewerber <- bunddev_bewerberboerse_search(
+bewerber <- bewerberboerse_search(
   params = list(was = "data", size = 10),
   flatten = TRUE
 )
 
-details <- bunddev_bewerberboerse_details(bewerber$refnr[[1]], flatten = TRUE)
+details <- bewerberboerse_details(bewerber$refnr[[1]], flatten = TRUE)
 ```
 
 Use the Autobahn API with list and detail helpers:
@@ -85,19 +85,19 @@ Use the Autobahn API with list and detail helpers:
 ``` r
 library(bunddev)
 
-roads <- bunddev_autobahn_roads()
+roads <- autobahn_roads()
 road_id <- roads$road_id[[1]]
 
-roadworks <- bunddev_autobahn_roadworks(road_id, flatten = TRUE)
-warnings <- bunddev_autobahn_warnings(road_id, flatten = TRUE)
+roadworks <- autobahn_roadworks(road_id, flatten = TRUE)
+warnings <- autobahn_warnings(road_id, flatten = TRUE)
 
-roadwork_details <- bunddev_autobahn_roadwork_details(roadworks$identifier[[1]], flatten = TRUE)
-warning_details <- bunddev_autobahn_warning_details(warnings$identifier[[1]], flatten = TRUE)
+roadwork_details <- autobahn_roadwork_details(roadworks$identifier[[1]], flatten = TRUE)
+warning_details <- autobahn_warning_details(warnings$identifier[[1]], flatten = TRUE)
 ```
 
 Handelsregister search (default rate limit is applied from the
 registry):
 
 ``` r
-companies <- bunddev_handelsregister_search("deutsche bahn")
+companies <- handelsregister_search("deutsche bahn")
 ```

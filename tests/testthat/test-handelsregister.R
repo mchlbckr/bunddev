@@ -3,7 +3,7 @@ test_that("handelsregister search returns a tibble", {
   skip_on_cran()
   skip_if(Sys.getenv("BUNDDEV_RUN_HANDELSREGISTER") != "true")
 
-  result <- bunddev_handelsregister_search(
+  result <- handelsregister_search(
     "bunddev",
     safe = FALSE,
     flatten = TRUE,

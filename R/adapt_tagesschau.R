@@ -6,7 +6,7 @@
 #'
 #' @return A tibble with homepage items.
 #' @export
-bunddev_tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
+tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "tagesschau",
     "homepage",
@@ -25,8 +25,8 @@ bunddev_tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") 
 #'
 #' @return A tibble with news items.
 #' @export
-bunddev_tagesschau_news <- function(regions = NULL, ressort = NULL,
-                                    flatten = FALSE, flatten_mode = "json") {
+tagesschau_news <- function(regions = NULL, ressort = NULL,
+                            flatten = FALSE, flatten_mode = "json") {
   params <- list()
   if (!is.null(regions)) {
     params$regions <- regions
@@ -54,11 +54,11 @@ bunddev_tagesschau_news <- function(regions = NULL, ressort = NULL,
 #'
 #' @return A tibble with search results.
 #' @export
-bunddev_tagesschau_search <- function(search_text = NULL,
-                                      page_size = NULL,
-                                      result_page = NULL,
-                                      flatten = FALSE,
-                                      flatten_mode = "json") {
+tagesschau_search <- function(search_text = NULL,
+                              page_size = NULL,
+                              result_page = NULL,
+                              flatten = FALSE,
+                              flatten_mode = "json") {
   params <- list()
   if (!is.null(search_text)) {
     params$searchText <- search_text
@@ -86,7 +86,7 @@ bunddev_tagesschau_search <- function(search_text = NULL,
 #'
 #' @return A tibble with channels.
 #' @export
-bunddev_tagesschau_channels <- function(flatten = FALSE, flatten_mode = "json") {
+tagesschau_channels <- function(flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "tagesschau",
     "channels",
@@ -127,6 +127,38 @@ bunddev_tidy_tagesschau <- function(response, operation_id = NULL,
   }
 
   data
+}
+
+bunddev_tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
+  tagesschau_homepage(flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_tagesschau_news <- function(regions = NULL, ressort = NULL,
+                                    flatten = FALSE, flatten_mode = "json") {
+  tagesschau_news(
+    regions = regions,
+    ressort = ressort,
+    flatten = flatten,
+    flatten_mode = flatten_mode
+  )
+}
+
+bunddev_tagesschau_search <- function(search_text = NULL,
+                                      page_size = NULL,
+                                      result_page = NULL,
+                                      flatten = FALSE,
+                                      flatten_mode = "json") {
+  tagesschau_search(
+    search_text = search_text,
+    page_size = page_size,
+    result_page = result_page,
+    flatten = flatten,
+    flatten_mode = flatten_mode
+  )
+}
+
+bunddev_tagesschau_channels <- function(flatten = FALSE, flatten_mode = "json") {
+  tagesschau_channels(flatten = flatten, flatten_mode = flatten_mode)
 }
 
 bunddev_tidy_tagesschau_items <- function(items, section) {

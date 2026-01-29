@@ -10,12 +10,12 @@
 #'
 #' @return A tibble with search results.
 #' @export
-bunddev_handelsregister_search <- function(schlagwoerter,
-                                           schlagwort_optionen = c("all", "min", "exact"),
-                                           safe = TRUE,
-                                           refresh = FALSE,
-                                           flatten = FALSE,
-                                           flatten_mode = "json") {
+handelsregister_search <- function(schlagwoerter,
+                                   schlagwort_optionen = c("all", "min", "exact"),
+                                   safe = TRUE,
+                                   refresh = FALSE,
+                                   flatten = FALSE,
+                                   flatten_mode = "json") {
   schlagwort_optionen <- rlang::arg_match(schlagwort_optionen)
 
   if (isTRUE(safe)) {
@@ -87,6 +87,22 @@ bunddev_handelsregister_search <- function(schlagwoerter,
   data
 }
 
+bunddev_handelsregister_search <- function(schlagwoerter,
+                                           schlagwort_optionen = c("all", "min", "exact"),
+                                           safe = TRUE,
+                                           refresh = FALSE,
+                                           flatten = FALSE,
+                                           flatten_mode = "json") {
+  handelsregister_search(
+    schlagwoerter,
+    schlagwort_optionen = schlagwort_optionen,
+    safe = safe,
+    refresh = refresh,
+    flatten = flatten,
+    flatten_mode = flatten_mode
+  )
+}
+
 bunddev_handelsregister_option_id <- function(option) {
   switch(
     option,
@@ -98,13 +114,7 @@ bunddev_handelsregister_option_id <- function(option) {
 
 bunddev_handelsregister_form_action <- function(form, base_url) {
   action <- xml2::xml_attr(form, "action")
-  if (is.na(action) || action == "") {
-    return(base_url)
-  }
-  if (stringr::str_starts(action, "http")) {
-    return(action)
-  }
-  httr2::url_absolute(action, base_url)
+  bunddev_handelsregister_url_absolute(action, base_url)
 }
 
 bunddev_handelsregister_find_form <- function(html, name) {
@@ -207,7 +217,24 @@ bunddev_handelsregister_document_links <- function(row) {
   if (length(hrefs) == 0) {
     return(list())
   }
-  purrr::map_chr(hrefs, ~ httr2::url_absolute(.x, "https://www.handelsregister.de"))
+  purrr::map_chr(hrefs, ~ bunddev_handelsregister_url_absolute(.x, "https://www.handelsregister.de"))
+}
+
+bunddev_handelsregister_url_absolute <- function(path, base_url) {
+  if (is.na(path) || path == "") {
+    return(base_url)
+  }
+  if (stringr::str_starts(path, "http")) {
+    return(path)
+  }
+  if (stringr::str_starts(path, "//")) {
+    return(paste0("https:", path))
+  }
+  base_url <- stringr::str_remove(base_url, "/$")
+  if (stringr::str_starts(path, "/")) {
+    return(paste0(base_url, path))
+  }
+  paste0(base_url, "/", path)
 }
 
 bunddev_handelsregister_value <- function(values, index) {

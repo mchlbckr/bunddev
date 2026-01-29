@@ -5,7 +5,7 @@ test_that("bunddev_call_tidy returns a tibble", {
   Sys.setenv(BEWERBERBOERSE_API_KEY = "jobboerse-bewerbersuche-ui")
   bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
 
-  result <- bunddev_bewerberboerse_search(
+  result <- bewerberboerse_search(
     params = list(was = "data", size = 5),
     flatten = TRUE,
     flatten_mode = "json"

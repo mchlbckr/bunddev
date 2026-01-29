@@ -2,7 +2,7 @@
 #'
 #' @return A tibble with available road ids.
 #' @export
-bunddev_autobahn_roads <- function() {
+autobahn_roads <- function() {
   bunddev_call_tidy("autobahn", "list-autobahnen")
 }
 
@@ -15,7 +15,7 @@ bunddev_autobahn_roads <- function() {
 #'
 #' @return A tibble with roadworks.
 #' @export
-bunddev_autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-roadworks",
@@ -35,7 +35,7 @@ bunddev_autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = 
 #'
 #' @return A tibble with warnings.
 #' @export
-bunddev_autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-warnings",
@@ -55,7 +55,7 @@ bunddev_autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "
 #'
 #' @return A tibble with webcams.
 #' @export
-bunddev_autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-webcams",
@@ -75,7 +75,7 @@ bunddev_autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "j
 #'
 #' @return A tibble with closures.
 #' @export
-bunddev_autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-closures",
@@ -95,7 +95,7 @@ bunddev_autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "
 #'
 #' @return A tibble with charging stations.
 #' @export
-bunddev_autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-charging-stations",
@@ -115,7 +115,7 @@ bunddev_autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten
 #'
 #' @return A tibble with lorry parking areas.
 #' @export
-bunddev_autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "list-parking-lorries",
@@ -135,7 +135,7 @@ bunddev_autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_m
 #'
 #' @return A tibble with roadwork details.
 #' @export
-bunddev_autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-roadwork",
@@ -154,7 +154,7 @@ bunddev_autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flat
 #'
 #' @return A tibble with warning details.
 #' @export
-bunddev_autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-warning",
@@ -173,7 +173,7 @@ bunddev_autobahn_warning_details <- function(warning_id, flatten = FALSE, flatte
 #'
 #' @return A tibble with webcam details.
 #' @export
-bunddev_autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-webcam",
@@ -192,7 +192,7 @@ bunddev_autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_
 #'
 #' @return A tibble with closure details.
 #' @export
-bunddev_autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-closure",
@@ -211,7 +211,7 @@ bunddev_autobahn_closure_details <- function(closure_id, flatten = FALSE, flatte
 #'
 #' @return A tibble with charging station details.
 #' @export
-bunddev_autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-charging-station",
@@ -230,7 +230,7 @@ bunddev_autobahn_charging_station_details <- function(station_id, flatten = FALS
 #'
 #' @return A tibble with lorry parking details.
 #' @export
-bunddev_autobahn_parking_lorry_details <- function(lorry_id, flatten = FALSE, flatten_mode = "json") {
+autobahn_parking_lorry_details <- function(lorry_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
     "autobahn",
     "get-parking-lorry",
@@ -284,6 +284,58 @@ bunddev_tidy_autobahn <- function(response, operation_id = NULL, flatten = FALSE
     flatten = flatten,
     flatten_mode = flatten_mode
   )
+}
+
+bunddev_autobahn_roads <- function() {
+  autobahn_roads()
+}
+
+bunddev_autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_roadworks(road_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_warnings(road_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_webcams(road_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_closures(road_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_charging_stations(road_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_parking_lorries(road_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_roadwork_details(roadwork_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_warning_details(warning_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_webcam_details(webcam_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_closure_details(closure_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_charging_station_details(station_id, flatten = flatten, flatten_mode = flatten_mode)
+}
+
+bunddev_autobahn_parking_lorry_details <- function(lorry_id, flatten = FALSE, flatten_mode = "json") {
+  autobahn_parking_lorry_details(lorry_id, flatten = flatten, flatten_mode = flatten_mode)
 }
 
 bunddev_tidy_autobahn_items <- function(items, road_id = NA_character_,
