@@ -119,6 +119,15 @@ ggplot(series, aes(time, value)) +
 stations <- dwd_station_overview(c("10865", "G005"), flatten = TRUE)
 ```
 
+## Jobsuche workflow
+
+```{r jobsuche, eval = FALSE}
+Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+
+jobs <- jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
+```
+
 ## Parameter discovery
 
 ```{r params, eval = FALSE}

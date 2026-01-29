@@ -59,7 +59,7 @@ bunddev_list(tag = "jobs")
 #> 2 bewerberboerse   Bewerberbo… Bundesa… https:/… https:/… api_… <NA>       <chr>
 #> 3 coachingangebote Coachingan… Bundesa… https:/… https:/… none  <NA>       <chr>
 #> 4 entgeltatlas     Entgeltatl… Bundesa… https:/… https:/… none  <NA>       <chr>
-#> 5 jobsuche         Jobsuche A… Bundesa… https:/… https:/… none  <NA>       <chr>
+#> 5 jobsuche         Jobsuche A… Bundesa… https:/… https:/… api_… <NA>       <chr>
 bunddev_info("abfallnavi")
 #> # A tibble: 1 × 8
 #>   id         title          provider spec_url    docs_url auth  rate_limit tags 
@@ -126,6 +126,17 @@ DWD station overview example:
 library(bunddev)
 
 stations <- dwd_station_overview(c("10865", "G005"), flatten = TRUE)
+```
+
+Jobsuche example (requires API key header):
+
+``` r
+library(bunddev)
+
+Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+
+jobs <- jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
 ```
 
 Inspect current parameters from the OpenAPI spec:

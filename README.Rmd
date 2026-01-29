@@ -123,6 +123,17 @@ library(bunddev)
 stations <- dwd_station_overview(c("10865", "G005"), flatten = TRUE)
 ```
 
+Jobsuche example (requires API key header):
+
+```{r jobsuche, eval = FALSE}
+library(bunddev)
+
+Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+
+jobs <- jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
+```
+
 Inspect current parameters from the OpenAPI spec:
 
 ```{r params, eval = FALSE}

@@ -34,6 +34,9 @@ bunddev_tidy_dispatch <- function(api) {
   if (api == "dwd") {
     return(bunddev_tidy_dwd)
   }
+  if (api == "jobsuche") {
+    return(bunddev_tidy_jobsuche)
+  }
   NULL
 }
 
