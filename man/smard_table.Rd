@@ -11,7 +11,9 @@ smard_table(filter, region = "DE", timestamp, safe = TRUE, refresh = FALSE)
 
 \item{region}{Region code.}
 
-\item{timestamp}{Timestamp from indices.}
+\item{timestamp}{Timestamp from indices (ms), POSIXct, or Date.
+
+Timestamps are interpreted in the Europe/Berlin timezone.}
 
 \item{safe}{Logical; apply throttling and caching.}
 
@@ -19,6 +21,8 @@ smard_table(filter, region = "DE", timestamp, safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble of table values.
+
+Includes a \code{time} column with POSIXct timestamps in Europe/Berlin.
 
 Use \code{bunddev_parameters("smard")} to see the currently valid parameters
 if the API has changed.

@@ -14,4 +14,5 @@ test_that("smard helpers return tibbles", {
     smard_timeseries(410, region = "DE", resolution = "hour", timestamp = timestamp)
   )
   expect_s3_class(series, "tbl_df")
+  expect_true("time" %in% names(series))
 })

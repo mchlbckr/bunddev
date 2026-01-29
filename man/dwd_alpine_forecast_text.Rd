@@ -16,6 +16,8 @@ A tibble with the forecast text.
 
 Use \code{bunddev_parameters("dwd")} to see the currently valid parameters
 if the API has changed.
+
+Timestamps are interpreted in the Europe/Berlin timezone.
 }
 \description{
 Fetch DWD alpine forecast text

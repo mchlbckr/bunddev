@@ -6,6 +6,8 @@
 #'
 #' @return A tibble with homepage items.
 #'
+#' Includes `date_time` as POSIXct in Europe/Berlin.
+#'
 #' Use `bunddev_parameters("tagesschau")` to see the currently valid
 #' parameters if the API has changed.
 #' @export
@@ -27,6 +29,8 @@ tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with news items.
+#'
+#' Includes `date_time` as POSIXct in Europe/Berlin.
 #'
 #' Use `bunddev_parameters("tagesschau")` to see the currently valid
 #' parameters if the API has changed.
@@ -59,6 +63,8 @@ tagesschau_news <- function(regions = NULL, ressort = NULL,
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with search results.
+#'
+#' Includes `date_time` as POSIXct in Europe/Berlin.
 #'
 #' Use `bunddev_parameters("tagesschau")` to see the currently valid
 #' parameters if the API has changed.
@@ -94,6 +100,8 @@ tagesschau_search <- function(search_text = NULL,
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with channels.
+#'
+#' Includes `date_time` as POSIXct in Europe/Berlin.
 #'
 #' Use `bunddev_parameters("tagesschau")` to see the currently valid
 #' parameters if the API has changed.
@@ -188,12 +196,13 @@ bunddev_tidy_tagesschau_items <- function(items, section) {
     if (is.null(value)) list() else value
   }
 
-  tibble::tibble(
+  data <- tibble::tibble(
     section = section,
     sophora_id = purrr::map_chr(items, ~ chr_or_na(.x$sophoraId)),
     external_id = purrr::map_chr(items, ~ chr_or_na(.x$externalId)),
     title = purrr::map_chr(items, ~ chr_or_na(.x$title)),
     date = purrr::map_chr(items, ~ chr_or_na(.x$date)),
+    date_time = purrr::map(items, ~ as.POSIXct(.x$date, tz = "Europe/Berlin")),
     topline = purrr::map_chr(items, ~ chr_or_na(.x$topline)),
     first_sentence = purrr::map_chr(items, ~ chr_or_na(.x$firstSentence)),
     details = purrr::map_chr(items, ~ chr_or_na(.x$details)),
@@ -215,4 +224,6 @@ bunddev_tidy_tagesschau_items <- function(items, section) {
     branding_image = purrr::map(items, ~ list_or_empty(.x$brandingImage)),
     first_frame = purrr::map(items, ~ list_or_empty(.x$firstFrame))
   )
+
+  data
 }

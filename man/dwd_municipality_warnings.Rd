@@ -27,8 +27,12 @@ expand list-columns into multiple rows.}
 \value{
 A tibble with municipality warnings.
 
+Includes \code{start_time} and \code{end_time} as POSIXct in Europe/Berlin.
+
 Use \code{bunddev_parameters("dwd")} to see the currently valid parameters
 if the API has changed.
+
+Timestamps are interpreted in the Europe/Berlin timezone.
 }
 \description{
 Fetch DWD municipality warnings

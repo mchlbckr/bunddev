@@ -1,6 +1,9 @@
 #' List OpenAPI endpoints for an API
 #'
 #' @param id Registry id.
+#' @param name Optional parameter name to filter.
+#' @param path Optional endpoint path to filter.
+#' @param method Optional HTTP method to filter.
 #'
 #' @return A tibble with endpoints.
 #' @export
@@ -49,7 +52,7 @@ bunddev_endpoints <- function(id) {
 #'
 #' @return A tibble with parameter metadata.
 #' @export
-bunddev_parameters <- function(id) {
+bunddev_parameters <- function(id, name = NULL, path = NULL, method = NULL) {
   spec <- bunddev_spec(id)
   paths <- spec$paths
 
@@ -99,6 +102,16 @@ bunddev_parameters <- function(id) {
     cli::cli_abort("No parameters found in the OpenAPI spec.")
   }
 
+  if (!is.null(name)) {
+    params <- dplyr::filter(params, .data$name == name)
+  }
+  if (!is.null(path)) {
+    params <- dplyr::filter(params, .data$path == path)
+  }
+  if (!is.null(method)) {
+    params <- dplyr::filter(params, .data$method == method)
+  }
+
   params
 }
 
@@ -115,4 +128,187 @@ bunddev_resolve_parameter <- function(param, spec) {
     return(NULL)
   }
   param
+}
+
+#' Extract parameter enum values
+#'
+#' @param endpoint Adapter function or its name.
+#' @param name Parameter name.
+#'
+#' @return A character vector of enum values.
+#' @export
+bunddev_parameter_values <- function(endpoint, name) {
+  endpoint_name <- bunddev_endpoint_name(endpoint)
+  spec <- bunddev_endpoint_spec(endpoint_name)
+  params <- bunddev_parameters(
+    spec$api,
+    name = name,
+    path = spec$path,
+    method = spec$method
+  )
+  enums <- purrr::map(params$enum, ~ as.character(.x))
+  unique(unlist(enums))
+}
+
+#' List OpenAPI parameters for a specific adapter
+#'
+#' @param endpoint Adapter function or its name.
+#'
+#' @return A tibble with parameter metadata.
+#' @export
+bunddev_parameters_for <- function(endpoint) {
+  endpoint_name <- bunddev_endpoint_name(endpoint)
+  spec <- bunddev_endpoint_spec(endpoint_name)
+  bunddev_parameters(spec$api, path = spec$path, method = spec$method)
+}
+
+bunddev_endpoint_name <- function(endpoint) {
+  if (is.character(endpoint) && length(endpoint) == 1) {
+    return(endpoint)
+  }
+
+  name <- deparse(substitute(endpoint))
+  if (!identical(name, "endpoint")) {
+    return(name)
+  }
+
+  if (is.function(endpoint)) {
+    name <- deparse(substitute(endpoint, parent.frame()))
+    return(name)
+  }
+
+  "endpoint"
+}
+
+bunddev_endpoint_spec <- function(endpoint) {
+  spec <- bunddev_endpoint_map()[[endpoint]]
+  if (is.null(spec)) {
+    cli::cli_abort("No endpoint mapping found for '{endpoint}'.")
+  }
+  spec
+}
+
+bunddev_endpoint_map <- function() {
+  list(
+    smard_indices = list(
+      api = "smard",
+      path = "/chart_data/{filter}/{region}/index_{resolution}.json",
+      method = "get"
+    ),
+    smard_timeseries = list(
+      api = "smard",
+      path = "/chart_data/{filter}/{region}/{filterCopy}_{regionCopy}_{resolution}_{timestamp}.json",
+      method = "get"
+    ),
+    smard_table = list(
+      api = "smard",
+      path = "/table_data/{filter}/{region}/{filterCopy}_{regionCopy}_quarterhour_{timestamp}.json",
+      method = "get"
+    ),
+    dwd_station_overview = list(
+      api = "dwd",
+      path = "/stationOverviewExtended",
+      method = "get"
+    ),
+    dwd_crowd_reports = list(
+      api = "dwd",
+      path = "/crowd_meldungen_overview_v2.json",
+      method = "get"
+    ),
+    dwd_warnings_nowcast = list(
+      api = "dwd",
+      path = "/warnings_nowcast.json",
+      method = "get"
+    ),
+    dwd_municipality_warnings = list(
+      api = "dwd",
+      path = "/gemeinde_warnings_v2.json",
+      method = "get"
+    ),
+    dwd_coast_warnings = list(
+      api = "dwd",
+      path = "/warnings_coast.json",
+      method = "get"
+    ),
+    jobsuche_search = list(
+      api = "jobsuche",
+      path = "/pc/v4/jobs",
+      method = "get"
+    ),
+    jobsuche_search_app = list(
+      api = "jobsuche",
+      path = "/pc/v4/app/jobs",
+      method = "get"
+    ),
+    jobsuche_logo = list(
+      api = "jobsuche",
+      path = "/ed/v1/arbeitgeberlogo/{hashID}",
+      method = "get"
+    ),
+    tagesschau_homepage = list(
+      api = "tagesschau",
+      path = "/homepage",
+      method = "get"
+    ),
+    tagesschau_news = list(
+      api = "tagesschau",
+      path = "/news",
+      method = "get"
+    ),
+    tagesschau_search = list(
+      api = "tagesschau",
+      path = "/search",
+      method = "get"
+    ),
+    tagesschau_channels = list(
+      api = "tagesschau",
+      path = "/channels",
+      method = "get"
+    ),
+    autobahn_roads = list(
+      api = "autobahn",
+      path = "/autobahnen",
+      method = "get"
+    ),
+    autobahn_roadworks = list(
+      api = "autobahn",
+      path = "/autobahn/{roadId}/services/roadworks",
+      method = "get"
+    ),
+    autobahn_warnings = list(
+      api = "autobahn",
+      path = "/autobahn/{roadId}/services/warning",
+      method = "get"
+    ),
+    autobahn_webcams = list(
+      api = "autobahn",
+      path = "/autobahn/{roadId}/services/webcam",
+      method = "get"
+    ),
+    autobahn_closures = list(
+      api = "autobahn",
+      path = "/autobahn/{roadId}/services/closure",
+      method = "get"
+    ),
+    autobahn_charging_stations = list(
+      api = "autobahn",
+      path = "/autobahn/{roadId}/services/charging_station",
+      method = "get"
+    ),
+    autobahn_parking_lorries = list(
+      api = "autobahn",
+      path = "/autobahn/{roadId}/services/parking_lorry",
+      method = "get"
+    ),
+    bewerberboerse_search = list(
+      api = "bewerberboerse",
+      path = "/pc/v1/bewerber",
+      method = "get"
+    ),
+    bewerberboerse_details = list(
+      api = "bewerberboerse",
+      path = "/pc/v1/bewerber/{referenznummer}",
+      method = "get"
+    )
+  )
 }

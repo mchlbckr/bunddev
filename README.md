@@ -21,7 +21,12 @@ When `flatten = TRUE`, use `flatten_mode` to control list columns:
 columns, and “unnest” expands list-columns into multiple rows.
 
 Use `bunddev_parameters("<api>")` to see the currently valid parameters
-for an API if the upstream spec has changed.
+for an API if the upstream spec has changed. For endpoint-specific
+enums, use `bunddev_parameter_values(smard_timeseries, "resolution")`.
+
+Several adapters add parsed POSIXct time columns (suffix `_time`) using
+the Europe/Berlin timezone (for example `time` in SMARD, `start_time` in
+DWD, and `date_time` in Tagesschau).
 
 The package is organized into a core layer (registry, caching, OpenAPI
 parsing) and adapter helpers for individual APIs.
@@ -113,12 +118,13 @@ library(ggplot2)
 
 timestamp <- 1627250400000
 series <- smard_timeseries(410, region = "DE", resolution = "hour", timestamp = timestamp)
-series$time <- as.POSIXct(series$timestamp / 1000, origin = "1970-01-01", tz = "UTC")
 
 ggplot(series, aes(time, value)) +
   geom_line() +
   labs(x = "Time", y = "MW")
 ```
+
+`series$time` is a POSIXct column parsed in Europe/Berlin.
 
 DWD station overview example:
 
@@ -143,4 +149,5 @@ Inspect current parameters from the OpenAPI spec:
 
 ``` r
 bunddev_parameters("smard")
+bunddev_parameter_values(smard_timeseries, "resolution")
 ```

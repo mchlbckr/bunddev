@@ -27,8 +27,13 @@ expand list-columns into multiple rows.}
 \value{
 A tibble with station data.
 
+Includes forecast time columns (\code{forecast_start_time}, \code{forecast1_start_time},
+\code{forecast2_start_time}) as POSIXct in Europe/Berlin.
+
 Use \code{bunddev_parameters("dwd")} to see the currently valid parameters
 if the API has changed.
+
+Timestamps are interpreted in the Europe/Berlin timezone.
 }
 \description{
 Fetch DWD station overview data

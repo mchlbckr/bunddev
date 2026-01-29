@@ -9,8 +9,13 @@
 #'
 #' @return A tibble with station data.
 #'
+#' Includes forecast time columns (`forecast_start_time`, `forecast1_start_time`,
+#' `forecast2_start_time`) as POSIXct in Europe/Berlin.
+#'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
 #' if the API has changed.
+#'
+#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_station_overview <- function(station_ids,
                                  safe = TRUE,
@@ -49,8 +54,12 @@ dwd_station_overview <- function(station_ids,
 #'
 #' @return A tibble with crowd reports.
 #'
+#' Includes `timestamp_time` as POSIXct in Europe/Berlin.
+#'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
 #' if the API has changed.
+#'
+#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_crowd_reports <- function(safe = TRUE,
                               refresh = FALSE,
@@ -87,8 +96,12 @@ dwd_crowd_reports <- function(safe = TRUE,
 #'
 #' @return A tibble with nowcast warnings.
 #'
+#' Includes `start_time` and `end_time` as POSIXct in Europe/Berlin.
+#'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
 #' if the API has changed.
+#'
+#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_warnings_nowcast <- function(language = c("de", "en"),
                                  safe = TRUE,
@@ -128,8 +141,12 @@ dwd_warnings_nowcast <- function(language = c("de", "en"),
 #'
 #' @return A tibble with municipality warnings.
 #'
+#' Includes `start_time` and `end_time` as POSIXct in Europe/Berlin.
+#'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
 #' if the API has changed.
+#'
+#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_municipality_warnings <- function(language = c("de", "en"),
                                       safe = TRUE,
@@ -171,6 +188,8 @@ dwd_municipality_warnings <- function(language = c("de", "en"),
 #'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
 #' if the API has changed.
+#'
+#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_coast_warnings <- function(language = c("de", "en"),
                                safe = TRUE,
@@ -208,6 +227,8 @@ dwd_coast_warnings <- function(language = c("de", "en"),
 #'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
 #' if the API has changed.
+#'
+#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(
@@ -230,6 +251,8 @@ dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
 #' if the API has changed.
+#'
+#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(
@@ -252,6 +275,8 @@ dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' Use `bunddev_parameters("dwd")` to see the currently valid parameters
 #' if the API has changed.
+#'
+#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_avalanche_warnings <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(
@@ -275,9 +300,12 @@ bunddev_tidy_dwd <- function(response, operation_id = NULL) {
       forecast1 = purrr::map(response, ~ .x$forecast1 %||% list()),
       forecast2 = purrr::map(response, ~ .x$forecast2 %||% list()),
       forecast_start = purrr::map_chr(response, ~ if (is.null(.x$forecastStart)) NA_character_ else .x$forecastStart),
+      forecast_start_time = purrr::map(response, ~ bunddev_ms_to_posix(.x$forecastStart)),
       days = purrr::map(response, ~ .x$days %||% list()),
       warnings = purrr::map(response, ~ .x$warnings %||% list()),
-      three_hour_summaries = purrr::map(response, ~ .x$threeHourSummaries %||% list())
+      three_hour_summaries = purrr::map(response, ~ .x$threeHourSummaries %||% list()),
+      forecast1_start_time = purrr::map(response, ~ bunddev_ms_to_posix(.x$forecast1$start)),
+      forecast2_start_time = purrr::map(response, ~ bunddev_ms_to_posix(.x$forecast2$start))
     ))
   }
 
@@ -295,6 +323,7 @@ bunddev_tidy_dwd <- function(response, operation_id = NULL) {
     return(tibble::tibble(
       meldung_id = purrr::map_dbl(meldungen, ~ num_or_na(.x$meldungId)),
       timestamp = purrr::map_dbl(meldungen, ~ num_or_na(.x$timestamp)),
+      timestamp_time = purrr::map(meldungen, ~ bunddev_ms_to_posix(.x$timestamp)),
       lat = purrr::map_chr(meldungen, ~ chr_or_na(.x$lat)),
       lon = purrr::map_chr(meldungen, ~ chr_or_na(.x$lon)),
       place = purrr::map_chr(meldungen, ~ chr_or_na(.x$place)),
@@ -309,11 +338,15 @@ bunddev_tidy_dwd <- function(response, operation_id = NULL) {
     if (is.null(warnings) || length(warnings) == 0) {
       return(tibble::tibble())
     }
+    starts <- purrr::map_dbl(warnings, ~ as.numeric(.x$start))
+    ends <- purrr::map_dbl(warnings, ~ as.numeric(.x$end))
     return(tibble::tibble(
       type = purrr::map_dbl(warnings, ~ as.numeric(.x$type)),
       level = purrr::map_dbl(warnings, ~ as.numeric(.x$level)),
-      start = purrr::map_dbl(warnings, ~ as.numeric(.x$start)),
-      end = purrr::map_dbl(warnings, ~ as.numeric(.x$end)),
+      start = starts,
+      start_time = bunddev_ms_to_posix(starts),
+      end = ends,
+      end_time = bunddev_ms_to_posix(ends),
       description = purrr::map_chr(warnings, ~ as.character(.x$description)),
       description_text = purrr::map_chr(warnings, ~ as.character(.x$descriptionText)),
       event = purrr::map_chr(warnings, ~ as.character(.x$event)),

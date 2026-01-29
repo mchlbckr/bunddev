@@ -21,6 +21,8 @@ expand list-columns into multiple rows.}
 \value{
 A tibble with charging station details.
 
+Includes \code{start_time} as POSIXct in Europe/Berlin when available.
+
 Use \code{bunddev_parameters("autobahn")} to see the currently valid parameters
 if the API has changed.
 }

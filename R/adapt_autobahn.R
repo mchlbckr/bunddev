@@ -18,6 +18,8 @@ autobahn_roads <- function() {
 #'
 #' @return A tibble with roadworks.
 #'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
+#'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
 #' @export
@@ -40,6 +42,8 @@ autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") 
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with warnings.
+#'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
@@ -64,6 +68,8 @@ autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'
 #' @return A tibble with webcams.
 #'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
+#'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
 #' @export
@@ -86,6 +92,8 @@ autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with closures.
+#'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
@@ -110,6 +118,8 @@ autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'
 #' @return A tibble with charging stations.
 #'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
+#'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
 #' @export
@@ -132,6 +142,8 @@ autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = 
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with lorry parking areas.
+#'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
@@ -156,6 +168,8 @@ autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "j
 #'
 #' @return A tibble with roadwork details.
 #'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
+#'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
 #' @export
@@ -177,6 +191,8 @@ autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with warning details.
+#'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
@@ -200,6 +216,8 @@ autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode =
 #'
 #' @return A tibble with webcam details.
 #'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
+#'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
 #' @export
@@ -221,6 +239,8 @@ autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with closure details.
+#'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
@@ -244,6 +264,8 @@ autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode =
 #'
 #' @return A tibble with charging station details.
 #'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
+#'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
 #' @export
@@ -265,6 +287,8 @@ autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatt
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with lorry parking details.
+#'
+#' Includes `start_time` as POSIXct in Europe/Berlin when available.
 #'
 #' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
 #' if the API has changed.
@@ -402,6 +426,7 @@ bunddev_tidy_autobahn_items <- function(items, road_id = NA_character_,
     is_blocked = purrr::map_lgl(items, ~ lgl_or_na(.x$isBlocked)),
     future = purrr::map_lgl(items, ~ if (is.null(.x$future)) NA else isTRUE(.x$future)),
     start_timestamp = purrr::map_chr(items, ~ chr_or_na(.x$startTimestamp)),
+    start_time = purrr::map(items, ~ bunddev_ms_to_posix(.x$startTimestamp)),
     point = purrr::map_chr(items, ~ chr_or_na(.x$point)),
     extent = purrr::map_chr(items, ~ chr_or_na(.x$extent)),
     coordinate_lat = purrr::map_chr(items, ~ chr_or_na(.x$coordinate$lat)),

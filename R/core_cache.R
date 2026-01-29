@@ -48,7 +48,7 @@ bunddev_spec <- function(id, refresh = FALSE) {
 
   ext <- tools::file_ext(spec_path)
   if (ext %in% c("yaml", "yml")) {
-    return(yaml::read_yaml(spec_path))
+    return(suppressWarnings(yaml::read_yaml(spec_path)))
   }
   if (ext == "json") {
     return(jsonlite::fromJSON(spec_path, simplifyVector = FALSE))

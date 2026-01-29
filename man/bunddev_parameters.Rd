@@ -4,7 +4,7 @@
 \alias{bunddev_parameters}
 \title{List OpenAPI parameters for an API}
 \usage{
-bunddev_parameters(id)
+bunddev_parameters(id, name = NULL, path = NULL, method = NULL)
 }
 \arguments{
 \item{id}{Registry id.}

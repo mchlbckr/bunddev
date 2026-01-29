@@ -23,6 +23,7 @@ test_that("autobahn helpers return tibbles", {
   expect_s3_class(closures, "tbl_df")
   expect_s3_class(charging, "tbl_df")
   expect_s3_class(parking, "tbl_df")
+  expect_true("start_time" %in% names(roadworks))
 
   if (nrow(roadworks) > 0) {
     details <- autobahn_roadwork_details(

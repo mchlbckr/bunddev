@@ -29,6 +29,8 @@ A tibble with coastal warnings.
 
 Use \code{bunddev_parameters("dwd")} to see the currently valid parameters
 if the API has changed.
+
+Timestamps are interpreted in the Europe/Berlin timezone.
 }
 \description{
 Fetch DWD coastal warnings

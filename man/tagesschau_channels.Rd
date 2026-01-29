@@ -15,6 +15,8 @@ expand list-columns into multiple rows.}
 \value{
 A tibble with channels.
 
+Includes \code{date_time} as POSIXct in Europe/Berlin.
+
 Use \code{bunddev_parameters("tagesschau")} to see the currently valid
 parameters if the API has changed.
 }
