@@ -9,6 +9,8 @@
 #'
 #' @return A tibble with job listings.
 #'
+#' Includes parsed POSIXct columns (suffix `_time`) in Europe/Berlin.
+#'
 #' Use `bunddev_parameters("jobsuche")` to see the currently valid parameters
 #' if the API has changed.
 #' @export
@@ -37,6 +39,8 @@ jobsuche_search <- function(params = list(),
 #'   expand list-columns into multiple rows.
 #'
 #' @return A tibble with job listings.
+#'
+#' Includes parsed POSIXct columns (suffix `_time`) in Europe/Berlin.
 #'
 #' Use `bunddev_parameters("jobsuche")` to see the currently valid parameters
 #' if the API has changed.
@@ -89,6 +93,25 @@ jobsuche_tidy_response <- function(response, flatten = FALSE, flatten_mode = "js
     return(tibble::tibble())
   }
 
+  parse_time <- function(value, tz = "Europe/Berlin") {
+    if (is.null(value)) {
+      return(as.POSIXct(NA_real_, origin = "1970-01-01", tz = tz))
+    }
+    if (inherits(value, "POSIXct")) {
+      return(value)
+    }
+    if (inherits(value, "Date")) {
+      return(as.POSIXct(value, tz = tz))
+    }
+    if (is.numeric(value)) {
+      return(bunddev_ms_to_posix(value, tz = tz))
+    }
+    if (is.character(value) && grepl("^\\d{12,}$", value)) {
+      return(bunddev_ms_to_posix(value, tz = tz))
+    }
+    suppressWarnings(as.POSIXct(value, tz = tz))
+  }
+
   chr_or_na <- function(value) {
     if (is.null(value)) NA_character_ else as.character(value)
   }
@@ -105,7 +128,12 @@ jobsuche_tidy_response <- function(response, flatten = FALSE, flatten_mode = "js
       listings,
       ~ chr_or_na(.x$aktuelleVeroeffentlichungsdatum)
     ),
+    aktuelle_veroeffentlichungsdatum_time = purrr::map(
+      listings,
+      ~ parse_time(.x$aktuelleVeroeffentlichungsdatum)
+    ),
     eintrittsdatum = purrr::map_chr(listings, ~ chr_or_na(.x$eintrittsdatum)),
+    eintrittsdatum_time = purrr::map(listings, ~ parse_time(.x$eintrittsdatum)),
     arbeitsort_plz = purrr::map_chr(listings, ~ chr_or_na(.x$arbeitsort$plz)),
     arbeitsort_ort = purrr::map_chr(listings, ~ chr_or_na(.x$arbeitsort$ort)),
     arbeitsort_strasse = purrr::map_chr(listings, ~ chr_or_na(.x$arbeitsort$strasse)),
@@ -114,6 +142,7 @@ jobsuche_tidy_response <- function(response, flatten = FALSE, flatten_mode = "js
     arbeitsort_lat = purrr::map_dbl(listings, ~ num_or_na(.x$arbeitsort$koordinaten$lat)),
     arbeitsort_lon = purrr::map_dbl(listings, ~ num_or_na(.x$arbeitsort$koordinaten$lon)),
     modifikations_timestamp = purrr::map_chr(listings, ~ chr_or_na(.x$modifikationsTimestamp)),
+    modifikations_timestamp_time = purrr::map(listings, ~ parse_time(.x$modifikationsTimestamp)),
     page = chr_or_na(response$page),
     size = chr_or_na(response$size),
     max_ergebnisse = chr_or_na(response$maxErgebnisse),

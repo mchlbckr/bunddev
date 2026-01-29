@@ -12,4 +12,11 @@ test_that("jobsuche search returns a tibble", {
   )
 
   expect_s3_class(results, "tbl_df")
+  if (nrow(results) > 0) {
+    expect_true(all(c(
+      "aktuelle_veroeffentlichungsdatum_time",
+      "eintrittsdatum_time",
+      "modifikations_timestamp_time"
+    ) %in% names(results)))
+  }
 })
