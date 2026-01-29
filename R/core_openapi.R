@@ -351,6 +351,11 @@ bunddev_endpoint_map <- function() {
       api = "bewerberboerse",
       path = "/pc/v1/bewerber/{referenznummer}",
       method = "get"
+    ),
+    feiertage_list = list(
+      api = "feiertage",
+      path = "/",
+      method = "get"
     )
   )
 }

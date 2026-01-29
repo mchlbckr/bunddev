@@ -22,11 +22,11 @@
 - [ ] dip_bundestag
 - [ ] eco_visio
 - [ ] entgeltatlas
-- [ ] feiertage
+- [x] feiertage
 - [ ] hilfsmittel
 - [ ] hochwasserzentralen
 - [ ] interpol
-- [ ] jobsuche
+- [x] jobsuche
 - [ ] ladestationen
 - [ ] lebensmittelwarnung
 - [ ] luftqualitaet
