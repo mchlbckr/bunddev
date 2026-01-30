@@ -647,6 +647,26 @@ bunddev_endpoint_map <- function() {
       path = "/institutions/sectors",
       method = "get"
     ),
+    destatis_catalogue_tables = list(
+      api = "destatis",
+      path = "/catalogue/tables",
+      method = "get"
+    ),
+    destatis_catalogue_cubes = list(
+      api = "destatis",
+      path = "/catalogue/cubes",
+      method = "get"
+    ),
+    destatis_data_table = list(
+      api = "destatis",
+      path = "/data/table",
+      method = "get"
+    ),
+    destatis_data_cube = list(
+      api = "destatis",
+      path = "/data/cube",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",

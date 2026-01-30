@@ -16,7 +16,7 @@
 - [x] coachingangebote
 - [x] dashboard_deutschland
 - [x] ddb
-- [ ] destatis
+- [x] destatis
 - [ ] deutschlandatlas
 - [ ] diga
 - [ ] dip_bundestag
