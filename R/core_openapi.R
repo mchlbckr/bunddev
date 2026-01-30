@@ -447,6 +447,51 @@ bunddev_endpoint_map <- function() {
       path = "/Nachweisschema/{id}",
       method = "get"
     ),
+    interpol_red_notices = list(
+      api = "interpol",
+      path = "/notices/v1/red",
+      method = "get"
+    ),
+    interpol_red_notice = list(
+      api = "interpol",
+      path = "/notices/v1/red/{noticeID}",
+      method = "get"
+    ),
+    interpol_red_notice_images = list(
+      api = "interpol",
+      path = "/notices/v1/red/{noticeID}/images",
+      method = "get"
+    ),
+    interpol_yellow_notices = list(
+      api = "interpol",
+      path = "/notices/v1/yellow",
+      method = "get"
+    ),
+    interpol_yellow_notice = list(
+      api = "interpol",
+      path = "/notices/v1/yellow/{noticeID}",
+      method = "get"
+    ),
+    interpol_yellow_notice_images = list(
+      api = "interpol",
+      path = "/notices/v1/yellow/{noticeID}/images",
+      method = "get"
+    ),
+    interpol_un_notices = list(
+      api = "interpol",
+      path = "/notices/v1/un",
+      method = "get"
+    ),
+    interpol_un_notice = list(
+      api = "interpol",
+      path = "/notices/v1/un/{noticeType}/{noticeID}",
+      method = "get"
+    ),
+    interpol_un_notice_images = list(
+      api = "interpol",
+      path = "/notices/v1/un/{noticeType}/{noticeID}/images",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",

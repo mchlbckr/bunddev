@@ -25,7 +25,7 @@
 - [x] feiertage
 - [x] hilfsmittel
 - [x] hochwasserzentralen
-- [ ] interpol
+- [x] interpol
 - [x] jobsuche
 - [x] ladestationen
 - [x] lebensmittelwarnung
