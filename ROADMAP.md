@@ -32,7 +32,7 @@
 - [x] luftqualitaet
 - [ ] marktstammdaten
 - [ ] mudab
-- [ ] nina
+- [x] nina
 - [x] pegel_online
 - [ ] pflanzenschutzmittelzulassung
 - [ ] polizei_brandenburg

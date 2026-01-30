@@ -491,6 +491,156 @@ bunddev_endpoint_map <- function() {
       api = "ladestationen",
       path = "/query",
       method = "get"
+    ),
+    nina_warnings = list(
+      api = "nina",
+      path = "/travelwarning",
+      method = "get"
+    ),
+    nina_warning = list(
+      api = "nina",
+      path = "/travelwarning/{contentId}",
+      method = "get"
+    ),
+    nina_warning_json = list(
+      api = "nina",
+      path = "/warnings/{identifier}.json",
+      method = "get"
+    ),
+    nina_warning_geojson = list(
+      api = "nina",
+      path = "/warnings/{identifier}.geojson",
+      method = "get"
+    ),
+    nina_dashboard = list(
+      api = "nina",
+      path = "/dashboard/{ARS}.json",
+      method = "get"
+    ),
+    nina_covid_rules = list(
+      api = "nina",
+      path = "/appdata/covid/covidrules/DE/{ARS}.json",
+      method = "get"
+    ),
+    nina_covid_infos = list(
+      api = "nina",
+      path = "/appdata/covid/covidinfos/DE/covidinfos.json",
+      method = "get"
+    ),
+    nina_covid_ticker = list(
+      api = "nina",
+      path = "/appdata/covid/covidticker/DE/covidticker.json",
+      method = "get"
+    ),
+    nina_covid_ticker_message = list(
+      api = "nina",
+      path = "/appdata/covid/covidticker/DE/tickermeldungen/{id}.json",
+      method = "get"
+    ),
+    nina_covid_map = list(
+      api = "nina",
+      path = "/appdata/covid/covidmap/DE/covidmap.json",
+      method = "get"
+    ),
+    nina_logos = list(
+      api = "nina",
+      path = "/appdata/gsb/logos/logos.json",
+      method = "get"
+    ),
+    nina_logo = list(
+      api = "nina",
+      path = "/appdata/gsb/logos/{filename}",
+      method = "get"
+    ),
+    nina_event_codes = list(
+      api = "nina",
+      path = "/appdata/gsb/eventCodes/eventCodes.json",
+      method = "get"
+    ),
+    nina_event_code = list(
+      api = "nina",
+      path = "/appdata/gsb/eventCodes/{filename}",
+      method = "get"
+    ),
+    nina_notfalltipps = list(
+      api = "nina",
+      path = "/appdata/gsb/notfalltipps/DE/notfalltipps.json",
+      method = "get"
+    ),
+    nina_faqs = list(
+      api = "nina",
+      path = "/appdata/gsb/faqs/DE/faq.json",
+      method = "get"
+    ),
+    nina_version = list(
+      api = "nina",
+      path = "/dynamic/version/dataVersion.json",
+      method = "get"
+    ),
+    nina_mapdata_katwarn = list(
+      api = "nina",
+      path = "/katwarn/mapData.json",
+      method = "get"
+    ),
+    nina_mapdata_biwapp = list(
+      api = "nina",
+      path = "/biwapp/mapData.json",
+      method = "get"
+    ),
+    nina_mapdata_mowas = list(
+      api = "nina",
+      path = "/mowas/mapData.json",
+      method = "get"
+    ),
+    nina_mapdata_dwd = list(
+      api = "nina",
+      path = "/dwd/mapData.json",
+      method = "get"
+    ),
+    nina_mapdata_lhp = list(
+      api = "nina",
+      path = "/lhp/mapData.json",
+      method = "get"
+    ),
+    nina_mapdata_police = list(
+      api = "nina",
+      path = "/police/mapData.json",
+      method = "get"
+    ),
+    nina_archive_mowas_mapping = list(
+      api = "nina",
+      path = "/archive.mowas/{identifier}-mapping.json",
+      method = "get"
+    ),
+    nina_archive_mowas = list(
+      api = "nina",
+      path = "/archive.mowas/{identifier}.json",
+      method = "get"
+    ),
+    nina_mowas_rss = list(
+      api = "nina",
+      path = "/mowas/rss/{ARS}.rss",
+      method = "get"
+    ),
+    nina_representatives_germany = list(
+      api = "nina",
+      path = "/representativesInGermany",
+      method = "get"
+    ),
+    nina_representatives_country = list(
+      api = "nina",
+      path = "/representativesInCountry",
+      method = "get"
+    ),
+    nina_state_names = list(
+      api = "nina",
+      path = "/stateNames",
+      method = "get"
+    ),
+    nina_healthcare = list(
+      api = "nina",
+      path = "/healthcare",
+      method = "get"
     )
   )
 }
