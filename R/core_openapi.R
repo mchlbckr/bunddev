@@ -392,6 +392,21 @@ bunddev_endpoint_map <- function() {
       path = "/internalapi/budgetData",
       method = "get"
     ),
+    dashboard_deutschland_get = list(
+      api = "dashboard_deutschland",
+      path = "/api/dashboard/get",
+      method = "get"
+    ),
+    dashboard_deutschland_indicators = list(
+      api = "dashboard_deutschland",
+      path = "/api/tile/indicators",
+      method = "get"
+    ),
+    dashboard_deutschland_geo = list(
+      api = "dashboard_deutschland",
+      path = "/geojson/de-all.geo.json",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",

@@ -14,7 +14,7 @@
 - [ ] bundestag
 - [ ] bundestag_lobbyregister
 - [x] coachingangebote
-- [ ] dashboard_deutschland
+- [x] dashboard_deutschland
 - [ ] ddb
 - [ ] destatis
 - [ ] deutschlandatlas
