@@ -12,7 +12,7 @@
   provider: Bundesagentur fuer Arbeit
   spec_url: https://raw.githubusercontent.com/bundesAPI/ausbildungssuche-api/main/openapi.yaml
   docs_url: https://bundesapi.github.io/ausbildungssuche-api/
-  auth: none
+  auth: api_key
   tags:
     - education
     - jobs

@@ -691,6 +691,16 @@ bunddev_endpoint_map <- function() {
       api = "abfallnavi",
       path = "/kalender-{region}/downloadfile.jsp",
       method = "get"
+    ),
+    ausbildungssuche_search = list(
+      api = "ausbildungssuche",
+      path = "/pc/v1/ausbildungsangebot",
+      method = "get"
+    ),
+    ausbildungssuche_details = list(
+      api = "ausbildungssuche",
+      path = "/pc/v1/ausbildungsangebot/{id}",
+      method = "get"
     )
   )
 }
