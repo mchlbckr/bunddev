@@ -37,12 +37,22 @@ Search language course offers
 }
 \details{
 The Berufssprachkurssuche API provides language course data. Authentication
-uses \code{X-API-Key} (clientId \verb{bd24f42e-ad0b-4005-b834-23bb6800dc6c}). Official
-docs: https://bundesapi.github.io/berufssprachkurssuche-api/.
+can be done via OAuth2 client credentials or by sending the public client id
+as \code{X-API-Key} (clientId \verb{bd24f42e-ad0b-4005-b834-23bb6800dc6c}). Official
+docs: https://berufssprachkurssuche.api.bund.dev/.
+
+This adapter uses the \code{X-API-Key} header by default. Set it via
+\code{\link[=bunddev_auth_set]{bunddev_auth_set()}} and \code{BERUFSSPRACHKURSSUCHE_API_KEY}. If you also set
+\code{BERUFSSPRACHKURSSUCHE_CLIENT_SECRET}, the adapter requests an OAuth token from
+\verb{https://rest.arbeitsagentur.de/oauth/gettoken_cc} and sends it as
+\code{OAuthAccessToken}.
 }
 \examples{
 \dontrun{
-Sys.setenv(BERUFSSPRACHKURSSUCHE_API_KEY = "bd24f42e-ad0b-4005-b834-23bb6800dc6c")
+Sys.setenv(
+  BERUFSSPRACHKURSSUCHE_API_KEY = "bd24f42e-ad0b-4005-b834-23bb6800dc6c",
+  BERUFSSPRACHKURSSUCHE_CLIENT_SECRET = "<client-secret>"
+)
 bunddev_auth_set("berufssprachkurssuche", type = "api_key", env_var = "BERUFSSPRACHKURSSUCHE_API_KEY")
 berufssprachkurssuche_search(params = list(page = 0, systematiken = "MC"))
 }

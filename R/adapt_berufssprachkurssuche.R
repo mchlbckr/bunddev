@@ -9,15 +9,25 @@
 #'
 #' @details
 #' The Berufssprachkurssuche API provides language course data. Authentication
-#' uses `X-API-Key` (clientId `bd24f42e-ad0b-4005-b834-23bb6800dc6c`). Official
-#' docs: https://bundesapi.github.io/berufssprachkurssuche-api/.
+#' can be done via OAuth2 client credentials or by sending the public client id
+#' as `X-API-Key` (clientId `bd24f42e-ad0b-4005-b834-23bb6800dc6c`). Official
+#' docs: https://berufssprachkurssuche.api.bund.dev/.
+#'
+#' This adapter uses the `X-API-Key` header by default. Set it via
+#' [bunddev_auth_set()] and `BERUFSSPRACHKURSSUCHE_API_KEY`. If you also set
+#' `BERUFSSPRACHKURSSUCHE_CLIENT_SECRET`, the adapter requests an OAuth token from
+#' `https://rest.arbeitsagentur.de/oauth/gettoken_cc` and sends it as
+#' `OAuthAccessToken`.
 #'
 #' @seealso
 #' [bunddev_auth_set()] to configure authentication.
 #'
 #' @examples
 #' \dontrun{
-#' Sys.setenv(BERUFSSPRACHKURSSUCHE_API_KEY = "bd24f42e-ad0b-4005-b834-23bb6800dc6c")
+#' Sys.setenv(
+#'   BERUFSSPRACHKURSSUCHE_API_KEY = "bd24f42e-ad0b-4005-b834-23bb6800dc6c",
+#'   BERUFSSPRACHKURSSUCHE_CLIENT_SECRET = "<client-secret>"
+#' )
 #' bunddev_auth_set("berufssprachkurssuche", type = "api_key", env_var = "BERUFSSPRACHKURSSUCHE_API_KEY")
 #' berufssprachkurssuche_search(params = list(page = 0, systematiken = "MC"))
 #' }
@@ -34,11 +44,8 @@ berufssprachkurssuche_search <- function(params = list(),
                                          refresh = FALSE,
                                          flatten = FALSE,
                                          flatten_mode = "json") {
-  response <- bunddev_call(
-    "berufssprachkurssuche",
-    "berufssprachkurssuche",
+  response <- berufssprachkurssuche_request(
     params = params,
-    parse = "json",
     safe = safe,
     refresh = refresh
   )
@@ -53,6 +60,100 @@ berufssprachkurssuche_search <- function(params = list(),
   }
 
   data
+}
+
+berufssprachkurssuche_request <- function(params, safe = TRUE, refresh = FALSE, parse = "json") {
+  spec <- bunddev_spec("berufssprachkurssuche")
+  base_url <- spec$servers[[1]]$url
+  url <- paste0(stringr::str_remove(base_url, "/$"), "/pc/v1/bildungsangebot")
+
+  if (isTRUE(safe)) {
+    bunddev_rate_limit_wait("berufssprachkurssuche")
+  }
+
+  cache_path <- NULL
+  if (isTRUE(safe)) {
+    cache_path <- bunddev_response_cache_path("berufssprachkurssuche", "berufssprachkurssuche", params)
+    if (!isTRUE(refresh) && file.exists(cache_path)) {
+      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
+      return(bunddev_parse_response(raw_body, parse))
+    }
+  }
+
+  req <- httr2::request(url)
+  if (length(params) > 0) {
+    req <- httr2::req_url_query(req, !!!params)
+  }
+
+  client_id <- berufssprachkurssuche_client_id()
+  token <- berufssprachkurssuche_oauth_token(client_id)
+  if (!is.null(token)) {
+    req <- httr2::req_headers(req, OAuthAccessToken = token)
+  } else {
+    req <- httr2::req_headers(req, `X-API-Key` = client_id)
+  }
+
+  resp <- httr2::req_perform(req)
+  raw_body <- httr2::resp_body_raw(resp)
+
+  if (!is.null(cache_path)) {
+    writeBin(raw_body, cache_path)
+  }
+
+  bunddev_parse_response(raw_body, parse)
+}
+
+berufssprachkurssuche_client_id <- function() {
+  default_id <- "bd24f42e-ad0b-4005-b834-23bb6800dc6c"
+  auth <- bunddev_auth_get("berufssprachkurssuche")
+  if (auth$type == "api_key") {
+    client_id <- Sys.getenv(auth$env_var)
+    if (client_id == "") {
+      cli::cli_abort("Environment variable '{auth$env_var}' is not set.")
+    }
+    return(client_id)
+  }
+
+  env_id <- Sys.getenv("BERUFSSPRACHKURSSUCHE_API_KEY")
+  if (env_id != "") {
+    return(env_id)
+  }
+
+  default_id
+}
+
+berufssprachkurssuche_oauth_token <- function(client_id) {
+  client_secret <- Sys.getenv("BERUFSSPRACHKURSSUCHE_CLIENT_SECRET")
+  if (client_secret == "") {
+    return(NULL)
+  }
+
+  req <- httr2::request("https://rest.arbeitsagentur.de/oauth/gettoken_cc") |>
+    httr2::req_method("POST") |>
+    httr2::req_body_form(
+      client_id = client_id,
+      client_secret = client_secret,
+      grant_type = "client_credentials"
+    )
+
+  resp <- httr2::req_perform(req)
+  raw_body <- httr2::resp_body_raw(resp)
+  text <- rawToChar(raw_body)
+
+  if (jsonlite::validate(text)) {
+    parsed <- jsonlite::fromJSON(text)
+    token <- parsed$access_token %||% parsed$token
+    if (!is.null(token) && token != "") {
+      return(token)
+    }
+  }
+
+  token <- stringr::str_extract(text, "[A-Za-z0-9-_]{200,}")
+  if (!is.na(token) && token != "") {
+    return(token)
+  }
+
+  NULL
 }
 
 berufssprachkurssuche_tidy_response <- function(response) {

@@ -26,11 +26,11 @@ Returns a warning in JSON format.
 }
 \examples{
 \dontrun{
-map <- nina_mapdata_mowas()
+map <- nina_mapdata("mowas")
 nina_warning_json(map$id[[1]])
 }
 
 }
 \seealso{
-\code{\link[=nina_mapdata_mowas]{nina_mapdata_mowas()}} to discover identifiers.
+\code{\link[=nina_mapdata]{nina_mapdata()}} to discover identifiers.
 }

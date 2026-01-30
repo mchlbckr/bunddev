@@ -1,6 +1,7 @@
 test_that("berufssprachkurssuche search returns tibble", {
   skip_if_offline()
   skip_on_cran()
+  skip_if(Sys.getenv("BUNDDEV_RUN_BERUFSSPRACHKURSSUCHE") != "true", "BUNDDEV_RUN_BERUFSSPRACHKURSSUCHE not set")
 
   key <- Sys.getenv("BERUFSSPRACHKURSSUCHE_API_KEY")
   if (key == "") {

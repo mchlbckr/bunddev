@@ -30,7 +30,7 @@
 - [x] ladestationen
 - [x] lebensmittelwarnung
 - [x] luftqualitaet
-- [ ] marktstammdaten
+- [x] marktstammdaten
 - [x] mudab
 - [x] nina
 - [x] pegel_online

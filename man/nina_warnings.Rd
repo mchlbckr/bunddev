@@ -31,6 +31,6 @@ nina_warnings()
 
 }
 \seealso{
-\code{\link[=nina_warning]{nina_warning()}} for a single warning and \code{\link[=nina_mapdata_mowas]{nina_mapdata_mowas()}} for
+\code{\link[=nina_warning]{nina_warning()}} for a single warning and \code{\link[=nina_mapdata]{nina_mapdata()}} for
 map-based alerts.
 }

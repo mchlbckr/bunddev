@@ -9,7 +9,7 @@
 #' metadata. Official docs: https://nina.api.bund.dev.
 #'
 #' @seealso
-#' [nina_warning()] for a single warning and [nina_mapdata_mowas()] for
+#' [nina_warning()] for a single warning and [nina_mapdata()] for
 #' map-based alerts.
 #'
 #' @examples
@@ -78,11 +78,11 @@ nina_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
 #' Returns a warning in JSON format.
 #'
 #' @seealso
-#' [nina_mapdata_mowas()] to discover identifiers.
+#' [nina_mapdata()] to discover identifiers.
 #'
 #' @examples
 #' \dontrun{
-#' map <- nina_mapdata_mowas()
+#' map <- nina_mapdata("mowas")
 #' nina_warning_json(map$id[[1]])
 #' }
 #'

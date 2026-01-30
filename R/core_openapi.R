@@ -547,6 +547,46 @@ bunddev_endpoint_map <- function() {
       path = "/V_MESSWERTE_PLC",
       method = "post"
     ),
+    marktstammdaten_filters_stromerzeugung = list(
+      api = "marktstammdaten",
+      path = "/Einheit/EinheitJson/GetFilterColumnsErweiterteOeffentlicheEinheitStromerzeugung",
+      method = "get"
+    ),
+    marktstammdaten_filters_stromverbrauch = list(
+      api = "marktstammdaten",
+      path = "/Einheit/EinheitJson/GetFilterColumnsErweiterteOeffentlicheEinheitStromverbrauch",
+      method = "get"
+    ),
+    marktstammdaten_filters_gaserzeugung = list(
+      api = "marktstammdaten",
+      path = "/Einheit/EinheitJson/GetFilterColumnsErweiterteOeffentlicheEinheitGaserzeugung",
+      method = "get"
+    ),
+    marktstammdaten_filters_gasverbrauch = list(
+      api = "marktstammdaten",
+      path = "/Einheit/EinheitJson/GetFilterColumnsErweiterteOeffentlicheEinheitGasverbrauch",
+      method = "get"
+    ),
+    marktstammdaten_stromerzeugung = list(
+      api = "marktstammdaten",
+      path = "/Einheit/EinheitJson/GetErweiterteOeffentlicheEinheitStromerzeugung",
+      method = "get"
+    ),
+    marktstammdaten_stromverbrauch = list(
+      api = "marktstammdaten",
+      path = "/Einheit/EinheitJson/GetErweiterteOeffentlicheEinheitStromverbrauch",
+      method = "get"
+    ),
+    marktstammdaten_gaserzeugung = list(
+      api = "marktstammdaten",
+      path = "/Einheit/EinheitJson/GetErweiterteOeffentlicheEinheitGaserzeugung",
+      method = "get"
+    ),
+    marktstammdaten_gasverbrauch = list(
+      api = "marktstammdaten",
+      path = "/Einheit/EinheitJson/GetErweiterteOeffentlicheEinheitGasverbrauch",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",
