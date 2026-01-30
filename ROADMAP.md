@@ -23,7 +23,7 @@
 - [ ] eco_visio
 - [x] entgeltatlas
 - [x] feiertage
-- [ ] hilfsmittel
+- [x] hilfsmittel
 - [x] hochwasserzentralen
 - [ ] interpol
 - [x] jobsuche

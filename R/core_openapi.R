@@ -412,6 +412,41 @@ bunddev_endpoint_map <- function() {
       path = "/pc/v1/entgelte/{kldb}",
       method = "get"
     ),
+    hilfsmittel_tree = list(
+      api = "hilfsmittel",
+      path = "/VerzeichnisTree/{level}",
+      method = "get"
+    ),
+    hilfsmittel_produktgruppe = list(
+      api = "hilfsmittel",
+      path = "/Produktgruppe/{id}",
+      method = "get"
+    ),
+    hilfsmittel_untergruppe = list(
+      api = "hilfsmittel",
+      path = "/Untergruppe/{id}",
+      method = "get"
+    ),
+    hilfsmittel_produktart = list(
+      api = "hilfsmittel",
+      path = "/Produktart/{id}",
+      method = "get"
+    ),
+    hilfsmittel_produkte = list(
+      api = "hilfsmittel",
+      path = "/Produkt",
+      method = "get"
+    ),
+    hilfsmittel_produkt = list(
+      api = "hilfsmittel",
+      path = "/Produkt/{id}",
+      method = "get"
+    ),
+    hilfsmittel_nachweisschema = list(
+      api = "hilfsmittel",
+      path = "/Nachweisschema/{id}",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",
