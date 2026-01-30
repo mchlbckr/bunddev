@@ -667,6 +667,11 @@ bunddev_endpoint_map <- function() {
       path = "/data/cube",
       method = "get"
     ),
+    deutschlandatlas_query = list(
+      api = "deutschlandatlas",
+      path = "/{table}/MapServer/0/query",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",

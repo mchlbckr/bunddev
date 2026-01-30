@@ -17,7 +17,7 @@
 - [x] dashboard_deutschland
 - [x] ddb
 - [x] destatis
-- [ ] deutschlandatlas
+- [x] deutschlandatlas
 - [ ] diga
 - [ ] dip_bundestag
 - [ ] eco_visio
