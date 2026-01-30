@@ -8,7 +8,7 @@
 ## Adapters pending
 - [x] abfallnavi
 - [x] ausbildungssuche
-- [ ] berufssprachkurssuche
+- [x] berufssprachkurssuche
 - [ ] bundeshaushalt
 - [ ] bundesrat
 - [ ] bundestag

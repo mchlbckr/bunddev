@@ -30,7 +30,7 @@
   provider: Bundesagentur fuer Arbeit
   spec_url: https://raw.githubusercontent.com/bundesAPI/berufssprachkurssuche-api/main/openapi.yaml
   docs_url: https://bundesapi.github.io/berufssprachkurssuche-api/
-  auth: none
+  auth: api_key
   tags:
     - education
     - language
