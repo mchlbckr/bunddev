@@ -13,7 +13,7 @@
 - [ ] bundesrat
 - [ ] bundestag
 - [ ] bundestag_lobbyregister
-- [ ] coachingangebote
+- [x] coachingangebote
 - [ ] dashboard_deutschland
 - [ ] ddb
 - [ ] destatis

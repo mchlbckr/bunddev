@@ -84,7 +84,7 @@
   provider: Bundesagentur fuer Arbeit
   spec_url: https://raw.githubusercontent.com/bundesAPI/coachingangebote-api/main/openapi.yaml
   docs_url: https://bundesapi.github.io/coachingangebote-api/
-  auth: none
+  auth: api_key
   tags:
     - jobs
     - training

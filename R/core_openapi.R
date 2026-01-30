@@ -706,6 +706,11 @@ bunddev_endpoint_map <- function() {
       api = "berufssprachkurssuche",
       path = "/pc/v1/bildungsangebot",
       method = "get"
+    ),
+    coachingangebote_search = list(
+      api = "coachingangebote",
+      path = "/pc/v1/aktivierungsangebote",
+      method = "get"
     )
   )
 }
