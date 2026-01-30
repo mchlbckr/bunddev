@@ -702,6 +702,86 @@ bunddev_endpoint_map <- function() {
       path = "/QuestionnaireResponse",
       method = "get"
     ),
+    dip_bundestag_vorgang_list = list(
+      api = "dip_bundestag",
+      path = "/vorgang",
+      method = "get"
+    ),
+    dip_bundestag_vorgang = list(
+      api = "dip_bundestag",
+      path = "/vorgang/{id}",
+      method = "get"
+    ),
+    dip_bundestag_vorgangsposition_list = list(
+      api = "dip_bundestag",
+      path = "/vorgangsposition",
+      method = "get"
+    ),
+    dip_bundestag_vorgangsposition = list(
+      api = "dip_bundestag",
+      path = "/vorgangsposition/{id}",
+      method = "get"
+    ),
+    dip_bundestag_drucksache_list = list(
+      api = "dip_bundestag",
+      path = "/drucksache",
+      method = "get"
+    ),
+    dip_bundestag_drucksache = list(
+      api = "dip_bundestag",
+      path = "/drucksache/{id}",
+      method = "get"
+    ),
+    dip_bundestag_drucksache_text_list = list(
+      api = "dip_bundestag",
+      path = "/drucksache-text",
+      method = "get"
+    ),
+    dip_bundestag_drucksache_text = list(
+      api = "dip_bundestag",
+      path = "/drucksache-text/{id}",
+      method = "get"
+    ),
+    dip_bundestag_plenarprotokoll_list = list(
+      api = "dip_bundestag",
+      path = "/plenarprotokoll",
+      method = "get"
+    ),
+    dip_bundestag_plenarprotokoll = list(
+      api = "dip_bundestag",
+      path = "/plenarprotokoll/{id}",
+      method = "get"
+    ),
+    dip_bundestag_plenarprotokoll_text_list = list(
+      api = "dip_bundestag",
+      path = "/plenarprotokoll-text",
+      method = "get"
+    ),
+    dip_bundestag_plenarprotokoll_text = list(
+      api = "dip_bundestag",
+      path = "/plenarprotokoll-text/{id}",
+      method = "get"
+    ),
+    dip_bundestag_aktivitaet_list = list(
+      api = "dip_bundestag",
+      path = "/aktivitaet",
+      method = "get"
+    ),
+    dip_bundestag_aktivitaet = list(
+      api = "dip_bundestag",
+      path = "/aktivitaet/{id}",
+      method = "get"
+    ),
+    dip_bundestag_person_list = list(
+      api = "dip_bundestag",
+      path = "/person",
+      method = "get"
+    ),
+    dip_bundestag_person = list(
+      api = "dip_bundestag",
+      path = "/person/{id}",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",

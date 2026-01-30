@@ -19,7 +19,7 @@
 - [x] destatis
 - [x] deutschlandatlas
 - [x] diga
-- [ ] dip_bundestag
+- [x] dip_bundestag
 - [ ] eco_visio
 - [x] entgeltatlas
 - [x] feiertage
