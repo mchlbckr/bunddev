@@ -213,7 +213,14 @@ hochwasserzentralen_request <- function(path,
   }
 
   resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
+  raw_body <- tryCatch(
+    httr2::resp_body_raw(resp),
+    error = function(e) raw(0)
+  )
+
+  if (length(raw_body) == 0) {
+    return(list())
+  }
 
   if (!is.null(cache_path)) {
     writeBin(raw_body, cache_path)

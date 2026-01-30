@@ -387,6 +387,56 @@ bunddev_endpoint_map <- function() {
       path = "/stations/{station}/{timeseries}/measurements.json",
       method = "get"
     ),
+    bundesrat_startlist = list(
+      api = "bundesrat",
+      path = "/iOS/v3/startlist_table.xml",
+      method = "get"
+    ),
+    bundesrat_aktuelles = list(
+      api = "bundesrat",
+      path = "/iOS/v3/01_Aktuelles/aktuelles_table.xml",
+      method = "get"
+    ),
+    bundesrat_termine = list(
+      api = "bundesrat",
+      path = "/iOS/v3/02_Termine/termine_table.xml",
+      method = "get"
+    ),
+    bundesrat_plenum_kompakt = list(
+      api = "bundesrat",
+      path = "/iOS/v3/03_Plenum/plenum_kompakt_table.xml",
+      method = "get"
+    ),
+    bundesrat_plenum_aktuelle_sitzung = list(
+      api = "bundesrat",
+      path = "/iOS/SharedDocs/3_Plenum/plenum_aktuelleSitzung_table.xml",
+      method = "get"
+    ),
+    bundesrat_plenum_chronologisch = list(
+      api = "bundesrat",
+      path = "/iOS/SharedDocs/3_Plenum/plenum_toChronologisch_table.xml",
+      method = "get"
+    ),
+    bundesrat_plenum_naechste_sitzungen = list(
+      api = "bundesrat",
+      path = "/iOS/SharedDocs/3_Plenum/plenum_naechsteSitzungen.xml",
+      method = "get"
+    ),
+    bundesrat_mitglieder = list(
+      api = "bundesrat",
+      path = "/iOS/SharedDocs/2_Mitglieder/mitglieder_table.xml",
+      method = "get"
+    ),
+    bundesrat_stimmverteilung = list(
+      api = "bundesrat",
+      path = "/iOS/v3/06_Stimmen/stimmverteilung.xml",
+      method = "get"
+    ),
+    bundesrat_praesidium = list(
+      api = "bundesrat",
+      path = "/iOS/v3/05_Bundesrat/Praesidium/bundesrat_praesidium.xml",
+      method = "get"
+    ),
     hochwasserzentralen_pegel_info = list(
       api = "hochwasserzentralen",
       path = "/webservices/get_infospegel.php",

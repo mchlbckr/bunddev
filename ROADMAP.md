@@ -10,7 +10,7 @@
 - [x] ausbildungssuche
 - [x] berufssprachkurssuche
 - [ ] bundeshaushalt
-- [ ] bundesrat
+- [x] bundesrat
 - [ ] bundestag
 - [ ] bundestag_lobbyregister
 - [x] coachingangebote
