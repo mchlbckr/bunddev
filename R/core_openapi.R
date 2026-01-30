@@ -407,6 +407,11 @@ bunddev_endpoint_map <- function() {
       path = "/geojson/de-all.geo.json",
       method = "get"
     ),
+    entgeltatlas_entgelte = list(
+      api = "entgeltatlas",
+      path = "/pc/v1/entgelte/{kldb}",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",

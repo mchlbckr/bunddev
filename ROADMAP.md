@@ -21,7 +21,7 @@
 - [ ] diga
 - [ ] dip_bundestag
 - [ ] eco_visio
-- [ ] entgeltatlas
+- [x] entgeltatlas
 - [x] feiertage
 - [ ] hilfsmittel
 - [x] hochwasserzentralen
