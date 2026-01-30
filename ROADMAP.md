@@ -6,7 +6,7 @@
 - [ ] Add adapter-specific rate limit notes where sources are documented
 
 ## Adapters pending
-- [ ] abfallnavi
+- [x] abfallnavi
 - [ ] ausbildungssuche
 - [ ] berufssprachkurssuche
 - [ ] bundeshaushalt

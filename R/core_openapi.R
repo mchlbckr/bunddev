@@ -641,6 +641,56 @@ bunddev_endpoint_map <- function() {
       api = "nina",
       path = "/healthcare",
       method = "get"
+    ),
+    abfallnavi_orte = list(
+      api = "abfallnavi",
+      path = "/orte",
+      method = "get"
+    ),
+    abfallnavi_ort = list(
+      api = "abfallnavi",
+      path = "/orte/{ortId}",
+      method = "get"
+    ),
+    abfallnavi_strassen = list(
+      api = "abfallnavi",
+      path = "/orte/{ortId}/strassen",
+      method = "get"
+    ),
+    abfallnavi_hausnummern = list(
+      api = "abfallnavi",
+      path = "/strassen/{strassenId}",
+      method = "get"
+    ),
+    abfallnavi_fraktionen = list(
+      api = "abfallnavi",
+      path = "/fraktionen",
+      method = "get"
+    ),
+    abfallnavi_fraktionen_hausnummern = list(
+      api = "abfallnavi",
+      path = "/hausnummern/{hausnummernId}/fraktionen",
+      method = "get"
+    ),
+    abfallnavi_fraktionen_strassen = list(
+      api = "abfallnavi",
+      path = "/strassen/{strassenId}/fraktionen",
+      method = "get"
+    ),
+    abfallnavi_termine_strassen = list(
+      api = "abfallnavi",
+      path = "/strassen/{strassenId}/termine",
+      method = "get"
+    ),
+    abfallnavi_termine_hausnummern = list(
+      api = "abfallnavi",
+      path = "/hausnummern/{hausnummernId}/termine",
+      method = "get"
+    ),
+    abfallnavi_kalender_download = list(
+      api = "abfallnavi",
+      path = "/kalender-{region}/downloadfile.jsp",
+      method = "get"
     )
   )
 }
