@@ -672,6 +672,36 @@ bunddev_endpoint_map <- function() {
       path = "/{table}/MapServer/0/query",
       method = "get"
     ),
+    diga_device_definitions = list(
+      api = "diga",
+      path = "/DeviceDefinition",
+      method = "get"
+    ),
+    diga_catalog_entries = list(
+      api = "diga",
+      path = "/CatalogEntry",
+      method = "get"
+    ),
+    diga_organizations = list(
+      api = "diga",
+      path = "/Organization",
+      method = "get"
+    ),
+    diga_charge_item_definitions = list(
+      api = "diga",
+      path = "/ChargeItemDefinition",
+      method = "get"
+    ),
+    diga_questionnaires = list(
+      api = "diga",
+      path = "/Questionnaire",
+      method = "get"
+    ),
+    diga_questionnaire_responses = list(
+      api = "diga",
+      path = "/QuestionnaireResponse",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",

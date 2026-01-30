@@ -18,7 +18,7 @@
 - [x] ddb
 - [x] destatis
 - [x] deutschlandatlas
-- [ ] diga
+- [x] diga
 - [ ] dip_bundestag
 - [ ] eco_visio
 - [x] entgeltatlas
