@@ -24,7 +24,7 @@
 - [ ] entgeltatlas
 - [x] feiertage
 - [ ] hilfsmittel
-- [ ] hochwasserzentralen
+- [x] hochwasserzentralen
 - [ ] interpol
 - [x] jobsuche
 - [x] ladestationen

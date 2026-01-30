@@ -387,6 +387,31 @@ bunddev_endpoint_map <- function() {
       path = "/stations/{station}/{timeseries}/measurements.json",
       method = "get"
     ),
+    hochwasserzentralen_pegel_info = list(
+      api = "hochwasserzentralen",
+      path = "/webservices/get_infospegel.php",
+      method = "post"
+    ),
+    hochwasserzentralen_bundeslaender = list(
+      api = "hochwasserzentralen",
+      path = "/webservices/get_infosbundesland.php",
+      method = "get"
+    ),
+    hochwasserzentralen_bundesland_info = list(
+      api = "hochwasserzentralen",
+      path = "/webservices/get_infosbundesland.php",
+      method = "post"
+    ),
+    hochwasserzentralen_lagepegel = list(
+      api = "hochwasserzentralen",
+      path = "/webservices/get_lagepegel.php",
+      method = "get"
+    ),
+    hochwasserzentralen_bundesland_geojson = list(
+      api = "hochwasserzentralen",
+      path = "/vhosts/geojson/bundesland.{version}.geojson",
+      method = "get"
+    ),
     luftqualitaet_airquality = list(
       api = "luftqualitaet",
       path = "/airquality/json",
