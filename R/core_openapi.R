@@ -632,6 +632,21 @@ bunddev_endpoint_map <- function() {
       path = "/sucheDetailJson",
       method = "get"
     ),
+    ddb_search = list(
+      api = "ddb",
+      path = "/search",
+      method = "get"
+    ),
+    ddb_institutions = list(
+      api = "ddb",
+      path = "/institutions",
+      method = "get"
+    ),
+    ddb_institution_sectors = list(
+      api = "ddb",
+      path = "/institutions/sectors",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",
