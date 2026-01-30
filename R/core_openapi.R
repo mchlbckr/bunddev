@@ -387,6 +387,11 @@ bunddev_endpoint_map <- function() {
       path = "/stations/{station}/{timeseries}/measurements.json",
       method = "get"
     ),
+    bundeshaushalt_budget_data = list(
+      api = "bundeshaushalt",
+      path = "/internalapi/budgetData",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",

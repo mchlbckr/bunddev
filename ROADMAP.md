@@ -9,7 +9,7 @@
 - [x] abfallnavi
 - [x] ausbildungssuche
 - [x] berufssprachkurssuche
-- [ ] bundeshaushalt
+- [x] bundeshaushalt
 - [x] bundesrat
 - [ ] bundestag
 - [ ] bundestag_lobbyregister
