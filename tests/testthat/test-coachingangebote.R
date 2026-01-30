@@ -1,6 +1,7 @@
 test_that("coachingangebote search returns tibble", {
   skip_if_offline()
   skip_on_cran()
+  skip_if(Sys.getenv("BUNDDEV_RUN_COACHINGANGEBOTE") != "true", "BUNDDEV_RUN_COACHINGANGEBOTE not set")
 
   key <- Sys.getenv("COACHINGANGEBOTE_API_KEY")
   if (key == "") {

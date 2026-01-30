@@ -37,13 +37,23 @@ Search coaching offers
 }
 \details{
 The Coachingangebote API provides coaching and activation offers from the
-Bundesagentur fuer Arbeit. Authentication uses \code{X-API-Key} (clientId
+Bundesagentur fuer Arbeit. Authentication can be done via OAuth2 client
+credentials or by sending the public client id as \code{X-API-Key} (clientId
 \verb{ee971dcb-96fa-47b3-b2be-00863e4fc88b}). Official docs:
 https://bundesapi.github.io/coachingangebote-api/.
+
+This adapter uses the \code{X-API-Key} header by default. Set it via
+\code{\link[=bunddev_auth_set]{bunddev_auth_set()}} and \code{COACHINGANGEBOTE_API_KEY}. If you also set
+\code{COACHINGANGEBOTE_CLIENT_SECRET}, the adapter requests an OAuth token from
+\verb{https://rest.arbeitsagentur.de/oauth/gettoken_cc} and sends it as
+\code{OAuthAccessToken}.
 }
 \examples{
 \dontrun{
-Sys.setenv(COACHINGANGEBOTE_API_KEY = "ee971dcb-96fa-47b3-b2be-00863e4fc88b")
+Sys.setenv(
+  COACHINGANGEBOTE_API_KEY = "ee971dcb-96fa-47b3-b2be-00863e4fc88b",
+  COACHINGANGEBOTE_CLIENT_SECRET = "<client-secret>"
+)
 bunddev_auth_set("coachingangebote", type = "api_key", env_var = "COACHINGANGEBOTE_API_KEY")
 coachingangebote_search(params = list(mz = "SA 01"))
 }

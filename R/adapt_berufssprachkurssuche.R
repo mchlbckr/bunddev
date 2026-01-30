@@ -128,15 +128,20 @@ berufssprachkurssuche_oauth_token <- function(client_id) {
     return(NULL)
   }
 
-  req <- httr2::request("https://rest.arbeitsagentur.de/oauth/gettoken_cc") |>
-    httr2::req_method("POST") |>
-    httr2::req_body_form(
-      client_id = client_id,
-      client_secret = client_secret,
-      grant_type = "client_credentials"
-    )
+  resp <- tryCatch({
+    httr2::request("https://rest.arbeitsagentur.de/oauth/gettoken_cc") |>
+      httr2::req_method("POST") |>
+      httr2::req_body_form(
+        client_id = client_id,
+        client_secret = client_secret,
+        grant_type = "client_credentials"
+      ) |>
+      httr2::req_perform()
+  }, error = function(e) NULL)
 
-  resp <- httr2::req_perform(req)
+  if (is.null(resp)) {
+    return(NULL)
+  }
   raw_body <- httr2::resp_body_raw(resp)
   text <- rawToChar(raw_body)
 

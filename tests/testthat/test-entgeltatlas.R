@@ -1,6 +1,7 @@
 test_that("entgeltatlas endpoint returns tibble", {
   skip_if_offline()
   skip_on_cran()
+  skip_if(Sys.getenv("BUNDDEV_RUN_ENTGELTATLAS") != "true", "BUNDDEV_RUN_ENTGELTATLAS not set")
   skip_if(Sys.getenv("ENTGELTATLAS_API_KEY") == "", "ENTGELTATLAS_API_KEY not set")
 
   bunddev_auth_set("entgeltatlas", type = "api_key", env_var = "ENTGELTATLAS_API_KEY")

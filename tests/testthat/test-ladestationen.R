@@ -3,9 +3,6 @@ test_that("ladestationen query returns a tibble", {
   skip_on_cran()
 
   token <- Sys.getenv("LADESTATIONEN_TOKEN")
-  if (token == "") {
-    skip("LADESTATIONEN_TOKEN not set")
-  }
 
   geometry <- jsonlite::toJSON(
     list(
@@ -18,7 +15,7 @@ test_that("ladestationen query returns a tibble", {
     auto_unbox = TRUE
   )
 
-  results <- ladestationen_query(params = list(
+  params <- list(
     geometry = geometry,
     geometryType = "esriGeometryEnvelope",
     where = "1=1",
@@ -26,9 +23,21 @@ test_that("ladestationen query returns a tibble", {
     outSR = 4326,
     f = "json",
     returnGeometry = "false",
-    resultRecordCount = 1,
-    token = token
-  ))
+    resultRecordCount = 1
+  )
+  if (token != "") {
+    params$token <- token
+  }
+
+  results <- tryCatch(
+    ladestationen_query(params = params),
+    error = function(e) {
+      if (grepl("Token Required", conditionMessage(e))) {
+        skip("Token required by ArcGIS service")
+      }
+      stop(e)
+    }
+  )
 
   expect_s3_class(results, "tbl_df")
 })

@@ -35,8 +35,9 @@ Query charging stations
 }
 \details{
 The Ladesaeulenregister API is backed by an ArcGIS feature service. You must
-supply a \code{geometry} filter and \code{outFields}. The API may require a \code{token}
-query parameter depending on service settings. Official docs:
+supply a \code{geometry} filter and \code{outFields}. The ArcGIS service may require a
+\code{token} query parameter even though the API docs describe the service as
+public. Official docs:
 https://ladestationen.api.bund.dev.
 }
 \examples{

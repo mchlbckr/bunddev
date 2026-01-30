@@ -10,8 +10,12 @@
 #' @details
 #' The Ausbildungssuche API provides training offer data from the
 #' Bundesagentur fuer Arbeit. Authentication is required via `X-API-Key`
-#' (clientId `infosysbub-absuche`). Official docs:
+#' (clientId `infosysbub-absuche`, discoverable from
+#' https://web.arbeitsagentur.de/weiterbildungssuche/suche). Official docs:
 #' https://bundesapi.github.io/ausbildungssuche-api/.
+#'
+#' This adapter uses the `X-API-Key` header. Set it via [bunddev_auth_set()] and
+#' `AUSBILDUNGSSUCHE_API_KEY`.
 #'
 #' @seealso
 #' [ausbildungssuche_details()] for a single offer and [bunddev_auth_set()] for

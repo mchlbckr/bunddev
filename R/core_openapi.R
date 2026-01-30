@@ -587,6 +587,51 @@ bunddev_endpoint_map <- function() {
       path = "/Einheit/EinheitJson/GetErweiterteOeffentlicheEinheitGasverbrauch",
       method = "get"
     ),
+    bundestag_article = list(
+      api = "bundestag",
+      path = "/blueprint/servlet/content/{ARTICLE_ID}/asAppV2NewsarticleXml",
+      method = "get"
+    ),
+    bundestag_speaker = list(
+      api = "bundestag",
+      path = "/static/appdata/plenum/v2/speaker.xml",
+      method = "get"
+    ),
+    bundestag_conferences = list(
+      api = "bundestag",
+      path = "/static/appdata/plenum/v2/conferences.xml",
+      method = "get"
+    ),
+    bundestag_ausschuesse = list(
+      api = "bundestag",
+      path = "/xml/v2/ausschuesse/index.xml",
+      method = "get"
+    ),
+    bundestag_ausschuss = list(
+      api = "bundestag",
+      path = "/xml/v2/ausschuesse/{AUSSCHUSS_ID}.xml",
+      method = "get"
+    ),
+    bundestag_mdb_index = list(
+      api = "bundestag",
+      path = "/xml/v2/mdb/index.xml",
+      method = "get"
+    ),
+    bundestag_mdb_bio = list(
+      api = "bundestag",
+      path = "/xml/v2/mdb/biografien/{MDB_ID}.xml",
+      method = "get"
+    ),
+    bundestag_video_feed = list(
+      api = "bundestag",
+      path = "/iptv/player/macros/_x_s-144277506/bttv/mobile/feed_vod.xml",
+      method = "get"
+    ),
+    bundestag_lobbyregister_search = list(
+      api = "bundestag_lobbyregister",
+      path = "/sucheDetailJson",
+      method = "get"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",

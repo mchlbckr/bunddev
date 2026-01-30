@@ -11,8 +11,8 @@
 - [x] berufssprachkurssuche
 - [x] bundeshaushalt
 - [x] bundesrat
-- [ ] bundestag
-- [ ] bundestag_lobbyregister
+- [x] bundestag
+- [x] bundestag_lobbyregister
 - [x] coachingangebote
 - [x] dashboard_deutschland
 - [ ] ddb

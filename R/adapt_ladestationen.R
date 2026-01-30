@@ -9,8 +9,9 @@
 #'
 #' @details
 #' The Ladesaeulenregister API is backed by an ArcGIS feature service. You must
-#' supply a `geometry` filter and `outFields`. The API may require a `token`
-#' query parameter depending on service settings. Official docs:
+#' supply a `geometry` filter and `outFields`. The ArcGIS service may require a
+#' `token` query parameter even though the API docs describe the service as
+#' public. Official docs:
 #' https://ladestationen.api.bund.dev.
 #'
 #' @seealso

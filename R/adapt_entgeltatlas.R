@@ -14,11 +14,19 @@
 #' age, sector, and performance level. Official docs:
 #' https://bundesapi.github.io/entgeltatlas-api/.
 #'
-#' Authentication uses `X-API-Key`. Set the client id via
-#' [bunddev_auth_set()] (env var name `ENTGELTATLAS_API_KEY`).
+#' Authentication can be done via OAuth2 client credentials or by sending the
+#' public client id as `X-API-Key`. Set the client id via [bunddev_auth_set()]
+#' (env var name `ENTGELTATLAS_API_KEY`). If you also set
+#' `ENTGELTATLAS_CLIENT_SECRET`, the adapter requests an OAuth token from
+#' `https://rest.arbeitsagentur.de/oauth/gettoken_cc` and sends it as
+#' `OAuthAccessToken`.
 #'
 #' @examples
 #' \dontrun{
+#' Sys.setenv(
+#'   ENTGELTATLAS_API_KEY = "c4f0d292-9d0f-4763-87dd-d3f9e78fb006",
+#'   ENTGELTATLAS_CLIENT_SECRET = "<client-secret>"
+#' )
 #' entgeltatlas_entgelte("84304", params = list(r = 1, g = 1))
 #' }
 #'
@@ -89,22 +97,12 @@ entgeltatlas_request <- function(kldb,
     req <- httr2::req_url_query(req, !!!params)
   }
 
-  auth <- bunddev_auth_get("entgeltatlas")
-  api_key <- NA_character_
-  if (auth$type == "api_key") {
-    api_key <- Sys.getenv(auth$env_var)
-    if (api_key == "") {
-      cli::cli_abort("Environment variable '{auth$env_var}' is not set.")
-    }
+  client_id <- entgeltatlas_client_id()
+  token <- entgeltatlas_oauth_token(client_id)
+  if (!is.null(token)) {
+    req <- httr2::req_headers(req, OAuthAccessToken = token)
   } else {
-    env_key <- Sys.getenv("ENTGELTATLAS_API_KEY")
-    if (env_key != "") {
-      api_key <- env_key
-    }
-  }
-
-  if (!is.na(api_key) && api_key != "") {
-    req <- httr2::req_headers(req, "X-API-Key" = api_key)
+    req <- httr2::req_headers(req, `X-API-Key` = client_id)
   }
 
   resp <- httr2::req_perform(req)
@@ -115,6 +113,65 @@ entgeltatlas_request <- function(kldb,
   }
 
   bunddev_parse_response(raw_body, parse)
+}
+
+entgeltatlas_client_id <- function() {
+  default_id <- "c4f0d292-9d0f-4763-87dd-d3f9e78fb006"
+  auth <- bunddev_auth_get("entgeltatlas")
+  if (auth$type == "api_key") {
+    client_id <- Sys.getenv(auth$env_var)
+    if (client_id == "") {
+      cli::cli_abort("Environment variable '{auth$env_var}' is not set.")
+    }
+    return(client_id)
+  }
+
+  env_id <- Sys.getenv("ENTGELTATLAS_API_KEY")
+  if (env_id != "") {
+    return(env_id)
+  }
+
+  default_id
+}
+
+entgeltatlas_oauth_token <- function(client_id) {
+  client_secret <- Sys.getenv("ENTGELTATLAS_CLIENT_SECRET")
+  if (client_secret == "") {
+    return(NULL)
+  }
+
+  resp <- tryCatch({
+    httr2::request("https://rest.arbeitsagentur.de/oauth/gettoken_cc") |>
+      httr2::req_method("POST") |>
+      httr2::req_body_form(
+        client_id = client_id,
+        client_secret = client_secret,
+        grant_type = "client_credentials"
+      ) |>
+      httr2::req_perform()
+  }, error = function(e) NULL)
+
+  if (is.null(resp)) {
+    return(NULL)
+  }
+
+  raw_body <- httr2::resp_body_raw(resp)
+  text <- rawToChar(raw_body)
+
+  if (jsonlite::validate(text)) {
+    parsed <- jsonlite::fromJSON(text)
+    token <- parsed$access_token %||% parsed$token
+    if (!is.null(token) && token != "") {
+      return(token)
+    }
+  }
+
+  token <- stringr::str_extract(text, "[A-Za-z0-9-_]{200,}")
+  if (!is.na(token) && token != "") {
+    return(token)
+  }
+
+  NULL
 }
 
 entgeltatlas_tidy_entgelte <- function(response) {
