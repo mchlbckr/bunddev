@@ -31,7 +31,7 @@
 - [x] lebensmittelwarnung
 - [x] luftqualitaet
 - [ ] marktstammdaten
-- [ ] mudab
+- [x] mudab
 - [x] nina
 - [x] pegel_online
 - [ ] pflanzenschutzmittelzulassung

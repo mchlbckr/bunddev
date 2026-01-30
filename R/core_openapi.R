@@ -492,6 +492,61 @@ bunddev_endpoint_map <- function() {
       path = "/notices/v1/un/{noticeType}/{noticeID}/images",
       method = "get"
     ),
+    mudab_project_stations = list(
+      api = "mudab",
+      path = "/PROJECTSTATION_SMALL",
+      method = "post"
+    ),
+    mudab_stations = list(
+      api = "mudab",
+      path = "/STATION_SMALL",
+      method = "post"
+    ),
+    mudab_parameters = list(
+      api = "mudab",
+      path = "/MV_PARAMETER",
+      method = "post"
+    ),
+    mudab_parameter_values = list(
+      api = "mudab",
+      path = "/MV_STATION_MSMNT",
+      method = "post"
+    ),
+    mudab_parameters_biologie = list(
+      api = "mudab",
+      path = "/MV_PARAMETER_BIOLOGIE",
+      method = "post"
+    ),
+    mudab_parameters_biota = list(
+      api = "mudab",
+      path = "/MV_PARAMETER_BIOTA",
+      method = "post"
+    ),
+    mudab_parameters_wasser = list(
+      api = "mudab",
+      path = "/MV_PARAMETER_WASSER",
+      method = "post"
+    ),
+    mudab_parameters_sediment = list(
+      api = "mudab",
+      path = "/MV_PARAMETER_SEDIMENT",
+      method = "post"
+    ),
+    mudab_plc_stations = list(
+      api = "mudab",
+      path = "/V_PLC_STATION",
+      method = "post"
+    ),
+    mudab_plc_parameters = list(
+      api = "mudab",
+      path = "/V_GEMESSENE_PARA_PLC",
+      method = "post"
+    ),
+    mudab_plc_measurements = list(
+      api = "mudab",
+      path = "/V_MESSWERTE_PLC",
+      method = "post"
+    ),
     bundesrat_startlist = list(
       api = "bundesrat",
       path = "/iOS/v3/startlist_table.xml",
