@@ -272,13 +272,16 @@ diga_add_defaults <- function(params, profile) {
 }
 
 diga_request <- function(path, params, safe = TRUE, refresh = FALSE, parse = "json") {
-  spec <- bunddev_spec("diga")
-  base_url <- spec$servers[[1]]$url
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("diga")
-  }
+  bunddev_call(
+    "diga",
+    path = path,
+    method = "GET",
+    params = params,
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
+}
 
   cache_path <- NULL
   if (isTRUE(safe)) {
