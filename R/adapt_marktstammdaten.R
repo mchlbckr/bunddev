@@ -291,17 +291,20 @@ marktstammdaten_gasverbrauch <- function(params = list(),
 }
 
 marktstammdaten_request <- function(path,
-                                    params = list(),
-                                    safe = TRUE,
-                                    refresh = FALSE,
-                                    parse = "json") {
-  spec <- bunddev_spec("marktstammdaten")
-  base_url <- spec$servers[[1]]$url
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("marktstammdaten")
-  }
+                                     params = list(),
+                                     safe = TRUE,
+                                     refresh = FALSE,
+                                     parse = "json") {
+  bunddev_call(
+    "marktstammdaten",
+    path = path,
+    method = "GET",
+    params = params,
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
+}
 
   cache_path <- NULL
   if (isTRUE(safe)) {
