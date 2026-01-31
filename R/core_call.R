@@ -60,10 +60,17 @@ bunddev_call <- function(api, operation_id, params = list(),
   }
   endpoint <- match[[1]]
 
-  if (is.null(spec$servers) || length(spec$servers) == 0) {
-    cli::cli_abort("OpenAPI spec has no servers defined.")
+  # Handle OpenAPI 3.0 (servers) and Swagger 2.0 (host + basePath) formats
+  if (!is.null(spec$servers) && length(spec$servers) > 0) {
+    base_url <- spec$servers[[1]]$url
+  } else if (!is.null(spec$host)) {
+    scheme <- if (!is.null(spec$schemes)) spec$schemes[1] else "https"
+    base_path <- spec$basePath %||% ""
+    base_url <- paste0(scheme, "://", spec$host, base_path)
+  } else {
+    cli::cli_abort("OpenAPI spec has no servers or host defined.")
   }
-  base_url <- spec$servers[[1]]$url
+
   if (is.null(base_url) || base_url == "") {
     cli::cli_abort("OpenAPI server URL is missing.")
   }
