@@ -46,9 +46,11 @@ weiterbildungssuche_search <- function(sw = NULL,
   if (!is.null(uk)) params$uk <- uk
   if (!is.null(page)) params$page <- page
 
-  response <- weiterbildungssuche_request(
-    "/pc/v2/bildungsangebot",
+  response <- bunddev_call(
+    "weiterbildungssuche",
+    "weiterbildungssuche",
     params = params,
+    parse = "json",
     safe = safe,
     refresh = refresh
   )
@@ -83,61 +85,16 @@ weiterbildungssuche_facetten <- function(sw = NULL,
                                          refresh = FALSE) {
   if (!is.null(sw)) params$sw <- sw
 
-  response <- weiterbildungssuche_request(
-    "/pc/v1/facetten",
+  response <- bunddev_call(
+    "weiterbildungssuche",
+    "facetten",
     params = params,
+    parse = "json",
     safe = safe,
     refresh = refresh
   )
 
   weiterbildungssuche_tidy_facetten(response)
-}
-
-weiterbildungssuche_request <- function(path,
-                                        params = list(),
-                                        safe = TRUE,
-                                        refresh = FALSE,
-                                        parse = "json") {
-  spec <- bunddev_spec("weiterbildungssuche")
-
-  if (!is.null(spec$servers) && length(spec$servers) > 0) {
-    base_url <- spec$servers[[1]]$url
-  } else {
-    base_url <- "https://rest.arbeitsagentur.de/infosysbub/wbsuche"
-  }
-
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("weiterbildungssuche")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    operation_id <- stringr::str_replace_all(path, "[^A-Za-z0-9]+", "_")
-    cache_path <- bunddev_response_cache_path("weiterbildungssuche", operation_id, params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-
-  # Use public client ID as X-API-Key
-  req <- httr2::req_headers(req, `X-API-Key` = "infosysbub-wbsuche")
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, parse)
 }
 
 weiterbildungssuche_tidy_response <- function(response) {

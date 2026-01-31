@@ -76,51 +76,16 @@ regionalatlas_query <- function(table,
   params$returnGeometry <- tolower(as.character(return_geometry))
   params$f <- "json"
 
-  response <- regionalatlas_request(
-    "/query",
+  response <- bunddev_call(
+    "regionalatlas",
+    "query",
     params = params,
+    parse = "json",
     safe = safe,
     refresh = refresh
   )
 
   regionalatlas_tidy_response(response)
-}
-
-regionalatlas_request <- function(path,
-                                  params = list(),
-                                  safe = TRUE,
-                                  refresh = FALSE,
-                                  parse = "json") {
-  base_url <- "https://www.gis-idmz.nrw.de/arcgis/rest/services/stba/regionalatlas/MapServer/dynamicLayer"
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("regionalatlas")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    operation_id <- stringr::str_replace_all(path, "[^A-Za-z0-9]+", "_")
-    cache_path <- bunddev_response_cache_path("regionalatlas", operation_id, params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, parse)
 }
 
 regionalatlas_tidy_response <- function(response) {

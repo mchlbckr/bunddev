@@ -61,8 +61,19 @@ bunddev_call <- function(api, operation_id, params = list(),
   endpoint <- match[[1]]
 
   # Handle OpenAPI 3.0 (servers) and Swagger 2.0 (host + basePath) formats
-  if (!is.null(spec$servers) && length(spec$servers) > 0) {
+  # Priority: operation-level servers > path-level servers > global servers > Swagger 2.0 host
+
+  # 1. Check for operation-level servers (path-specific overrides in OpenAPI 3.0)
+  if (!is.null(endpoint$operation$servers) && length(endpoint$operation$servers) > 0) {
+    base_url <- endpoint$operation$servers[[1]]$url
+  # 2. Check for path-level servers
+  } else if (!is.null(spec$paths[[endpoint$path]]$servers) &&
+             length(spec$paths[[endpoint$path]]$servers) > 0) {
+    base_url <- spec$paths[[endpoint$path]]$servers[[1]]$url
+  # 3. Fall back to global servers (OpenAPI 3.0)
+  } else if (!is.null(spec$servers) && length(spec$servers) > 0) {
     base_url <- spec$servers[[1]]$url
+  # 4. Fall back to Swagger 2.0 format
   } else if (!is.null(spec$host)) {
     scheme <- if (!is.null(spec$schemes)) spec$schemes[1] else "https"
     base_path <- spec$basePath %||% ""
@@ -136,10 +147,64 @@ bunddev_call <- function(api, operation_id, params = list(),
     req <- httr2::req_url_query(req, !!!params)
   }
 
+  # Handle authentication
   auth <- bunddev_auth_get(api)
+
+  # Check if spec requires API key but none is configured - try to extract from spec
+  if (auth$type == "none" && !is.null(spec$components$securitySchemes)) {
+    for (scheme_name in names(spec$components$securitySchemes)) {
+      scheme <- spec$components$securitySchemes[[scheme_name]]
+      if (scheme$type == "apiKey" && scheme$`in` == "header") {
+        # Check if description contains the API key value (for public keys)
+        if (!is.null(scheme$description)) {
+          # Pattern: "X-API-Key ist die Client-ID <value>"
+          match <- stringr::str_match(scheme$description, "(?:Client-ID|client[_\\s-]?id)[^a-zA-Z0-9_-]+([-a-zA-Z0-9_]+)")
+          if (!is.na(match[1, 2])) {
+            header_list <- list()
+            header_list[[scheme$name]] <- match[1, 2]
+            req <- httr2::req_headers(req, !!!header_list)
+            auth$type <- "public_key_from_spec"  # Mark as handled
+          }
+        }
+      }
+    }
+  }
+
   if (auth$type == "api_key") {
-    auth_value <- bunddev_auth_header(api)
-    req <- httr2::req_headers(req, "Authorization" = auth_value)
+    token <- bunddev_auth_token(api)
+
+    # Determine header name from OpenAPI spec security schemes
+    header_name <- "Authorization"
+    if (!is.null(spec$components$securitySchemes)) {
+      # Find the first apiKey scheme
+      for (scheme_name in names(spec$components$securitySchemes)) {
+        scheme <- spec$components$securitySchemes[[scheme_name]]
+        if (scheme$type == "apiKey" && scheme$`in` == "header") {
+          header_name <- scheme$name
+          break
+        }
+      }
+    } else if (!is.null(spec$securityDefinitions)) {
+      # Swagger 2.0 format
+      for (scheme_name in names(spec$securityDefinitions)) {
+        scheme <- spec$securityDefinitions[[scheme_name]]
+        if (scheme$type == "apiKey" && scheme$`in` == "header") {
+          header_name <- scheme$name
+          break
+        }
+      }
+    }
+
+    # Set the header with just the token value (no scheme prefix for custom headers)
+    if (header_name == "Authorization") {
+      auth_value <- bunddev_auth_header(api, token)
+    } else {
+      auth_value <- token
+    }
+
+    header_list <- list()
+    header_list[[header_name]] <- auth_value
+    req <- httr2::req_headers(req, !!!header_list)
   } else if (auth$type == "oauth2") {
     cli::cli_abort("OAuth2 is not supported in this package.")
   }

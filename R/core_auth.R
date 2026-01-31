@@ -60,6 +60,29 @@ bunddev_auth_get <- function(api) {
   auth[[api]]
 }
 
+#' Get raw auth token for an API
+#'
+#' @param api Registry id.
+#'
+#' @return The raw token value, or NULL if no auth configured.
+#' @keywords internal
+bunddev_auth_token <- function(api) {
+  auth <- bunddev_auth_get(api)
+  if (auth$type == "none") {
+    return(NULL)
+  }
+
+  if (is.na(auth$env_var) || auth$env_var == "") {
+    cli::cli_abort("API key env_var is not set for '{api}'.")
+  }
+  token <- Sys.getenv(auth$env_var)
+  if (token == "") {
+    cli::cli_abort("Environment variable '{auth$env_var}' is not set.")
+  }
+
+  token
+}
+
 #' Build Authorization header value
 #'
 #' @param api Registry id.
@@ -79,13 +102,7 @@ bunddev_auth_header <- function(api, token = NULL) {
   }
 
   if (is.null(token)) {
-    if (is.na(auth$env_var) || auth$env_var == "") {
-      cli::cli_abort("API key env_var is not set for '{api}'.")
-    }
-    token <- Sys.getenv(auth$env_var)
-    if (token == "") {
-      cli::cli_abort("Environment variable '{auth$env_var}' is not set.")
-    }
+    token <- bunddev_auth_token(api)
   }
 
   scheme <- if (!is.null(auth$scheme) && !is.na(auth$scheme) && auth$scheme != "") {
