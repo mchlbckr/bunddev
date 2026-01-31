@@ -209,13 +209,18 @@ jobsuche_tidy_response <- function(response, flatten = FALSE, flatten_mode = "js
 }
 
 jobsuche_request <- function(operation_id, path, query = NULL,
-                             safe = TRUE, refresh = FALSE, parse = "json") {
-  base_url <- "https://rest.arbeitsagentur.de/jobboerse/jobsuche-service"
-  url <- paste0(base_url, path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("jobsuche")
-  }
+                              safe = TRUE, refresh = FALSE, parse = "json") {
+  bunddev_call(
+    "jobsuche",
+    path = path,
+    method = "GET",
+    query = query,
+    base_url = "https://rest.arbeitsagentur.de/jobboerse/jobsuche-service",
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
+}
 
   cache_path <- NULL
   if (isTRUE(safe) && parse == "json") {

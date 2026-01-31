@@ -209,12 +209,89 @@ bunddev_smard_table <- function(filter, region = "DE", timestamp) {
 }
 
 smard_request <- function(operation_id, path, params, safe = TRUE, refresh = FALSE) {
-  base_url <- "https://www.smard.de/app"
-  url <- paste0(base_url, path)
+  bunddev_call(
+    "smard",
+    path = path,
+    method = "GET",
+    params = params,
+    base_url = "https://www.smard.de/app",
+    safe = safe,
+    refresh = refresh
+  )
+}
 
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("smard")
-  }
+bunddev_smard_timeseries <- function(filter, region = "DE", resolution = "hour", timestamp) {
+  smard_timeseries(filter = filter, region = region, resolution = resolution, timestamp = timestamp)
+}
+
+bunddev_smard_table <- function(filter, region = "DE", timestamp) {
+  smard_table(filter = filter, region = region, timestamp = timestamp)
+}
+
+smard_indices <- function(filter, region = "DE", resolution = "hour", safe = TRUE, refresh = FALSE) {
+  path <- sprintf("/chart_data/%s/%s/index_%s.json", filter, region, resolution)
+  bunddev_call(
+    "smard",
+    path = path,
+    method = "GET",
+    params = list(
+      filter = filter,
+      region = region,
+      resolution = resolution
+    ),
+    base_url = "https://www.smard.de/app",
+    safe = safe,
+    refresh = refresh
+  )
+}
+
+smard_timeseries <- function(filter, region = "DE", resolution = "hour", timestamp, safe = TRUE, refresh = FALSE) {
+  timestamp_ms <- bunddev_timestamp_to_ms(timestamp)
+  path <- sprintf(
+    "/chart_data/%s/%s/%s_%s_%s_%s.json",
+    filter,
+    region,
+    filter,
+    region,
+    resolution,
+    resolution,
+    timestamp_ms
+  )
+  bunddev_call(
+    "smard",
+    path = path,
+    method = "GET",
+    params = list(
+      filter = filter,
+      filterCopy = filter,
+      region = region,
+      regionCopy = region,
+      resolution = resolution,
+      timestamp = timestamp_ms
+    ),
+    base_url = "https://www.smard.de/app",
+    safe = safe,
+    refresh = refresh
+  )
+}
+
+smard_table <- function(filter, region = "DE", timestamp, safe = TRUE, refresh = FALSE) {
+  timestamp_ms <- bunddev_timestamp_to_ms(timestamp)
+  path <- sprintf("/table_data/%s/%s/table_%s_%s.json", filter, region, timestamp_ms)
+  bunddev_call(
+    "smard",
+    path = path,
+    method = "GET",
+    params = list(
+      filter = filter,
+      region = region,
+      timestamp = timestamp_ms
+    ),
+    base_url = "https://www.smard.de/app",
+    safe = safe,
+    refresh = refresh
+  )
+}
 
   cache_path <- NULL
   if (isTRUE(safe)) {

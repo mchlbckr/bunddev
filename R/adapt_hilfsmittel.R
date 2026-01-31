@@ -257,19 +257,24 @@ hilfsmittel_nachweisschema <- function(id,
 }
 
 hilfsmittel_request <- function(path,
-                                params = list(),
-                                safe = TRUE,
-                                refresh = FALSE,
-                                parse = "json") {
-  spec <- bunddev_spec("hilfsmittel")
-  base_url <- spec$servers[[1]]$url
+                              params = list(),
+                              safe = TRUE,
+                              refresh = FALSE,
+                              parse = "json") {
+  bunddev_call(
+    "hilfsmittel",
+    path = path,
+    method = "GET",
+    params = params,
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
+}
 
-  path_params <- stringr::str_match_all(path, "\\{([^}]+)\\}")[[1]]
-  if (nrow(path_params) > 0) {
-    for (param in path_params[, 2]) {
-      if (!param %in% names(params)) {
-        cli::cli_abort("Missing path parameter '{param}'.")
-      }
+bunddev_hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
+  hilfsmittel_request("/api/v1/tree", safe = safe, refresh = refresh)
+}
       value <- as.character(params[[param]])
       path <- stringr::str_replace_all(path, paste0("\\{", param, "\\}"), value)
     }

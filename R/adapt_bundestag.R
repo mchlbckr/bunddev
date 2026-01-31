@@ -240,65 +240,21 @@ bundestag_video_feed <- function(content_id, safe = TRUE, refresh = FALSE) {
 }
 
 bundestag_request <- function(path,
-                              params = list(),
-                              base_url = NULL,
-                              safe = TRUE,
-                              refresh = FALSE,
-                              parse = "xml") {
-  spec <- bunddev_spec("bundestag")
-  if (is.null(base_url)) {
-    base_url <- spec$servers[[1]]$url
-  }
-
-  path_params <- stringr::str_match_all(path, "\\{([^}]+)\\}")[[1]]
-  if (nrow(path_params) > 0) {
-    for (param in path_params[, 2]) {
-      if (!param %in% names(params)) {
-        cli::cli_abort("Missing path parameter '{param}'.")
-      }
-      value <- as.character(params[[param]])
-      path <- stringr::str_replace_all(path, paste0("\\{", param, "\\}"), value)
-    }
-    params[path_params[, 2]] <- NULL
-  }
-
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("bundestag")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    operation_id <- stringr::str_replace_all(path, "[^A-Za-z0-9]+", "_")
-    cache_path <- bunddev_response_cache_path("bundestag", operation_id, params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bundestag_parse_xml(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bundestag_parse_xml(raw_body, parse)
-}
-
-bundestag_parse_xml <- function(raw_body, parse) {
-  if (parse == "raw") {
-    return(raw_body)
-  }
-  xml_text <- rawToChar(raw_body)
-  xml2::read_xml(xml_text)
+                               params = list(),
+                               base_url = NULL,
+                               safe = TRUE,
+                               refresh = FALSE,
+                               parse = "xml") {
+  bunddev_call(
+    "bundestag",
+    path = path,
+    method = "GET",
+    params = params,
+    base_url = base_url,
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
 }
 
 bundestag_tidy_items <- function(document) {

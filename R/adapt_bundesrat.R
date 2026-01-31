@@ -317,49 +317,17 @@ bundesrat_request <- function(path,
                               params = list(),
                               safe = TRUE,
                               refresh = FALSE,
-                              parse = "text",
+                              parse = "xml",
                               operation_id = NULL) {
-  spec <- bunddev_spec("bundesrat")
-  base_url <- spec$servers[[1]]$url
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("bundesrat")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    if (is.null(operation_id)) {
-      operation_id <- stringr::str_replace_all(path, "[^A-Za-z0-9]+", "_")
-    }
-    cache_path <- bunddev_response_cache_path("bundesrat", operation_id, params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bundesrat_parse_xml(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bundesrat_parse_xml(raw_body, parse)
-}
-
-bundesrat_parse_xml <- function(raw_body, parse) {
-  if (parse == "raw") {
-    return(raw_body)
-  }
-  xml_text <- rawToChar(raw_body)
-  xml2::read_xml(xml_text)
+  bunddev_call(
+    "bundesrat",
+    path = path,
+    method = "GET",
+    params = params,
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
 }
 
 bundesrat_tidy_items <- function(document) {

@@ -68,6 +68,31 @@ entgeltatlas_request <- function(kldb,
   if (is.null(kldb) || kldb == "") {
     cli::cli_abort("kldb is required.")
   }
+  
+  # Get OAuth token using centralized auth
+  token <- bunddev_oauth_token("entgeltatlas")
+  
+  if (!is.null(token)) {
+    # No secret available, fall back to API key
+    client_id <- bunddev_oauth_client_id("entgeltatlas")
+    headers <- list(`X-API-Key` = client_id)
+  } else {
+    # Use OAuth token with configured header name
+    headers <- list(!!setNames(list(token), bunddev_auth_get("entgeltatlas")$oauth_token_header))
+  }
+  
+  bunddev_call(
+    "entgeltatlas",
+    path = paste0("/pc/v1/entgelte/", kldb),
+    method = "GET",
+    params = params,
+    headers = headers,
+    base_url = "https://rest.arbeitsagentur.de/infosysbub/entgeltatlas",
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
+}
 
   spec <- tryCatch(
     bunddev_spec("entgeltatlas"),
@@ -111,69 +136,10 @@ entgeltatlas_request <- function(kldb,
   if (!is.null(cache_path)) {
     writeBin(raw_body, cache_path)
   }
-
+  
   bunddev_parse_response(raw_body, parse)
 }
-
-entgeltatlas_client_id <- function() {
-  default_id <- "c4f0d292-9d0f-4763-87dd-d3f9e78fb006"
-  auth <- bunddev_auth_get("entgeltatlas")
-  if (auth$type == "api_key") {
-    client_id <- Sys.getenv(auth$env_var)
-    if (client_id == "") {
-      cli::cli_abort("Environment variable '{auth$env_var}' is not set.")
-    }
-    return(client_id)
-  }
-
-  env_id <- Sys.getenv("ENTGELTATLAS_API_KEY")
-  if (env_id != "") {
-    return(env_id)
-  }
-
-  default_id
-}
-
-entgeltatlas_oauth_token <- function(client_id) {
-  client_secret <- Sys.getenv("ENTGELTATLAS_CLIENT_SECRET")
-  if (client_secret == "") {
-    return(NULL)
-  }
-
-  resp <- tryCatch({
-    httr2::request("https://rest.arbeitsagentur.de/oauth/gettoken_cc") |>
-      httr2::req_method("POST") |>
-      httr2::req_body_form(
-        client_id = client_id,
-        client_secret = client_secret,
-        grant_type = "client_credentials"
-      ) |>
-      httr2::req_perform()
-  }, error = function(e) NULL)
-
-  if (is.null(resp)) {
-    return(NULL)
-  }
-
-  raw_body <- httr2::resp_body_raw(resp)
-  text <- rawToChar(raw_body)
-
-  if (jsonlite::validate(text)) {
-    parsed <- jsonlite::fromJSON(text)
-    token <- parsed$access_token %||% parsed$token
-    if (!is.null(token) && token != "") {
-      return(token)
-    }
-  }
-
-  token <- stringr::str_extract(text, "[A-Za-z0-9-_]{200,}")
-  if (!is.na(token) && token != "") {
-    return(token)
-  }
-
-  NULL
-}
-
+ 
 entgeltatlas_tidy_entgelte <- function(response) {
   if (is.null(response) || length(response) == 0) {
     return(tibble::tibble())
