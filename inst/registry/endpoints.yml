@@ -1,0 +1,14 @@
+# Auto-generated endpoint registry for bunddev
+# This file stores endpoint mappings for APIs that don't have operationIds in their OpenAPI specs
+name: smard_indices
+  api: smard
+  path: /chart_data/{filter}/{region}/index_{resolution}.json
+  method: get
+name: smard_timeseries
+  api: smard
+  path: /chart_data/{filter}/{region}/{filterCopy}_{regionCopy}_{resolution}_{timestamp}.json
+  method: get
+name: smard_table
+  api: smard
+  path: /table_data/{filter}/{region}/{filterCopy}_{regionCopy}_{resolution}_{timestamp}.json
+  method: get
