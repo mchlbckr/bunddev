@@ -218,19 +218,16 @@ psm_schadorg_gruppen <- function(params = list(),
 }
 
 psm_request <- function(path, params = list(), safe = TRUE, refresh = FALSE, parse = "json") {
-  spec <- bunddev_spec("pflanzenschutzmittelzulassung")
-
-
-  # Handle Swagger 2.0 format (host + basePath) vs OpenAPI 3.0 (servers)
-  if (!is.null(spec$servers) && length(spec$servers) > 0) {
-    base_url <- spec$servers[[1]]$url
-  } else if (!is.null(spec$host)) {
-    scheme <- if (!is.null(spec$schemes)) spec$schemes[1] else "https"
-    base_path <- spec$basePath %||% ""
-    base_url <- paste0(scheme, "://", spec$host, base_path)
-  } else {
-    base_url <- "https://psm-api.bvl.bund.de/ords/psm/api-v1"
-  }
+  bunddev_call(
+    "pflanzenschutzmittelzulassung",
+    path = path,
+    method = "GET",
+    params = params,
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
+}
 
   url <- paste0(stringr::str_remove(base_url, "/$"), path)
 
