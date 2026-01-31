@@ -428,22 +428,16 @@ mudab_build_body <- function(filter, range, orderby) {
 }
 
 mudab_request <- function(path, body, safe = TRUE, refresh = FALSE, parse = "json") {
-  spec <- bunddev_spec("mudab")
-  base_url <- spec$servers[[1]]$url
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("mudab")
-  }
-
-  req <- httr2::request(url) |>
-    httr2::req_method("POST") |>
-    httr2::req_body_json(body)
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  bunddev_parse_response(raw_body, parse)
+  bunddev_call(
+    "mudab",
+    path = path,
+    method = "POST",
+    body = body,
+    body_type = "json",
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
 }
 
 mudab_tidy_key <- function(response, key) {

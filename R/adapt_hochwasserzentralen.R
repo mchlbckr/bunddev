@@ -180,53 +180,31 @@ hochwasserzentralen_request <- function(path,
                                         refresh = FALSE,
                                         parse = "json",
                                         operation_id = NULL) {
-  spec <- bunddev_spec("hochwasserzentralen")
-  base_url <- spec$servers[[1]]$url
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("hochwasserzentralen")
-  }
-
   method_lower <- tolower(method)
-  cache_path <- NULL
-  if (isTRUE(safe) && method_lower == "get") {
-    if (is.null(operation_id)) {
-      operation_id <- stringr::str_replace_all(path, "[^A-Za-z0-9]+", "_")
-    }
-    cache_path <- bunddev_response_cache_path("hochwasserzentralen", operation_id, params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
+
+  # For POST requests, send params as form body; for GET, use query params
+  if (method_lower == "post" && length(params) > 0) {
+    bunddev_call(
+      "hochwasserzentralen",
+      path = path,
+      method = method,
+      body = params,
+      body_type = "form",
+      parse = parse,
+      safe = safe,
+      refresh = refresh
+    )
+  } else {
+    bunddev_call(
+      "hochwasserzentralen",
+      path = path,
+      method = method,
+      params = params,
+      parse = parse,
+      safe = safe,
+      refresh = refresh
+    )
   }
-
-  req <- httr2::request(url)
-  req <- httr2::req_method(req, method)
-
-  if (length(params) > 0) {
-    if (method_lower == "post") {
-      req <- httr2::req_body_form(req, !!!params)
-    } else {
-      req <- httr2::req_url_query(req, !!!params)
-    }
-  }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- tryCatch(
-    httr2::resp_body_raw(resp),
-    error = function(e) raw(0)
-  )
-
-  if (length(raw_body) == 0) {
-    return(list())
-  }
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, parse)
 }
 
 hochwasserzentralen_tidy_table <- function(response) {

@@ -486,67 +486,52 @@ dip_bundestag_request <- function(path,
                                   safe = TRUE,
                                   refresh = FALSE,
                                   parse = "json") {
-  spec <- bunddev_spec("dip_bundestag")
-  base_url <- spec$servers[[1]]$url
-
-  path_params <- stringr::str_match_all(path, "\\{([^}]+)\\}")[[1]]
-  if (nrow(path_params) > 0) {
-    for (param in path_params[, 2]) {
-      if (!param %in% names(params)) {
-        cli::cli_abort("Missing path parameter '{param}'.")
-      }
-      value <- as.character(params[[param]])
-      path <- stringr::str_replace_all(path, paste0("\\{", param, "\\}"), value)
-    }
-    params[path_params[, 2]] <- NULL
-  }
-
+  # Set default format parameter
   if (is.null(params$format)) {
     params$format <- "json"
   }
 
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
+  # bunddev_call() handles auth via bunddev_auth_get/header automatically
+  # Configure auth via: bunddev_auth_set("dip_bundestag", type = "api_key",
+  #                                      env_var = "DIP_BUNDESTAG_API_KEY", scheme = "ApiKey")
 
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("dip_bundestag")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    operation_id <- stringr::str_replace_all(path, "[^A-Za-z0-9]+", "_")
-    cache_path <- bunddev_response_cache_path("dip_bundestag", operation_id, params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-
-  # Use centralized auth - configure via bunddev_auth_set() or fall back to env var
   auth <- bunddev_auth_get("dip_bundestag")
-  if (auth$type == "api_key") {
-    auth_value <- bunddev_auth_header("dip_bundestag")
-    req <- httr2::req_headers(req, Authorization = auth_value)
-  } else {
+  if (auth$type == "none") {
     # Legacy fallback: check params or env var directly
     api_key <- dip_bundestag_api_key(params)
     if (!is.null(api_key)) {
-      req <- httr2::req_headers(req, Authorization = paste("ApiKey", api_key))
+      bunddev_call(
+        "dip_bundestag",
+        path = path,
+        method = "GET",
+        params = params,
+        headers = list(Authorization = paste("ApiKey", api_key)),
+        parse = parse,
+        safe = safe,
+        refresh = refresh
+      )
+    } else {
+      bunddev_call(
+        "dip_bundestag",
+        path = path,
+        method = "GET",
+        params = params,
+        parse = parse,
+        safe = safe,
+        refresh = refresh
+      )
     }
+  } else {
+    bunddev_call(
+      "dip_bundestag",
+      path = path,
+      method = "GET",
+      params = params,
+      parse = parse,
+      safe = safe,
+      refresh = refresh
+    )
   }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, parse)
 }
 
 dip_bundestag_api_key <- function(params) {

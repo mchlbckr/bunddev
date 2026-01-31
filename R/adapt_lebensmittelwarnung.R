@@ -59,17 +59,7 @@ lebensmittelwarnung_warnings <- function(food = list(),
 }
 
 lebensmittelwarnung_request <- function(body, safe = TRUE, refresh = FALSE) {
-  base_url <- "https://megov.bayern.de/verbraucherschutz/baystmuv-verbraucherinfo/rest/api"
-  url <- paste0(base_url, "/warnings/merged")
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("lebensmittelwarnung")
-  }
-
-  req <- httr2::request(url) |>
-    httr2::req_method("POST") |>
-    httr2::req_body_json(body)
-
+  # Get auth token or use default public key
   auth <- bunddev_auth_get("lebensmittelwarnung")
   default_key <- "baystmuv-vi-1.0 os=ios, key=9d9e8972-ff15-4943-8fea-117b5a973c61"
   auth_value <- default_key
@@ -84,11 +74,16 @@ lebensmittelwarnung_request <- function(body, safe = TRUE, refresh = FALSE) {
     auth_value <- api_key
   }
 
-  req <- httr2::req_headers(req, Authorization = auth_value)
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  bunddev_parse_response(raw_body, "json")
+  bunddev_call(
+    "lebensmittelwarnung",
+    "list-warnungen",
+    body = body,
+    body_type = "json",
+    headers = list(Authorization = auth_value),
+    parse = "json",
+    safe = safe,
+    refresh = refresh
+  )
 }
 
 lebensmittelwarnung_tidy_response <- function(response) {

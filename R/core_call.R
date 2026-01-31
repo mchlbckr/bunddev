@@ -1,15 +1,24 @@
 #' Call an API operation
 #'
 #' @param api Registry id.
-#' @param operation_id OpenAPI operationId.
-#' @param params List of parameters.
+#' @param operation_id OpenAPI operationId (use this OR path+method).
+#' @param params List of query parameters.
+#' @param path API path (use with method instead of operation_id).
+#' @param method HTTP method (use with path instead of operation_id).
 #' @param parse Response parsing mode.
+#' @param base_url Optional base URL override.
+#' @param body Optional request body (for POST/PUT requests).
+#' @param body_type Body encoding type ("json" or "form").
+#' @param headers Optional named list of custom HTTP headers.
 #' @param safe Logical; apply throttling and caching.
 #' @param refresh Logical; refresh cached GET responses.
 #'
 #' @details
-#' This is the low-level OpenAPI caller. It resolves an `operation_id` from the
-#' cached OpenAPI spec, fills path parameters from `params`, applies auth (if
+#' This is the low-level OpenAPI caller. It supports two modes:
+#' - Use `operation_id` to lookup endpoints by their OpenAPI operationId
+#' - Use `path` + `method` for APIs without operationIds
+#'
+#' The function fills path parameters from `params`, applies auth (if
 #' configured), and optionally caches GET responses when `safe = TRUE`.
 #'
 #' Use [bunddev_parameters()] and [bunddev_parameter_values()] to discover valid
@@ -26,26 +35,46 @@
 #'
 #' @return Parsed response.
 #' @export
-bunddev_call <- function(api, operation_id, params = list(),
-                         parse = c("json", "text", "raw"),
+bunddev_call <- function(api, operation_id = NULL, params = list(),
+                         path = NULL, method = NULL,
+                         parse = c("json", "text", "raw", "xml"),
+                         base_url = NULL,
+                         body = NULL, body_type = c("json", "form"),
+                         headers = NULL,
                          safe = TRUE, refresh = FALSE) {
   parse <- rlang::arg_match(parse)
+  if (!is.null(body)) {
+    body_type <- rlang::arg_match(body_type)
+  }
+
+  # Validate that exactly one approach is used
+  has_operation_id <- !is.null(operation_id)
+  has_path_method <- !is.null(path) && !is.null(method)
+
+  if (!has_operation_id && !has_path_method) {
+    cli::cli_abort("Must provide either 'operation_id' OR both 'path' and 'method'.")
+  }
+  if (has_operation_id && has_path_method) {
+    cli::cli_abort("Cannot provide both 'operation_id' AND 'path'/'method'. Choose one approach.")
+  }
+
   spec <- bunddev_spec(api)
 
-  endpoints <- purrr::imap(spec$paths, function(path_item, path) {
+  # Build endpoint list - include ALL endpoints regardless of operationId
+  endpoints <- purrr::imap(spec$paths, function(path_item, endpoint_path) {
     if (!is.list(path_item)) {
       return(NULL)
     }
     methods <- names(path_item)
-    purrr::map(methods, function(method) {
-      operation <- path_item[[method]]
-      if (is.null(operation$operationId)) {
+    purrr::map(methods, function(endpoint_method) {
+      operation <- path_item[[endpoint_method]]
+      if (!is.list(operation)) {
         return(NULL)
       }
       list(
-        method = method,
-        path = path,
-        operation_id = operation$operationId,
+        method = endpoint_method,
+        path = endpoint_path,
+        operation_id = operation$operationId,  # Can be NULL
         operation = operation
       )
     })
@@ -54,36 +83,61 @@ bunddev_call <- function(api, operation_id, params = list(),
   endpoints <- purrr::flatten(endpoints)
   endpoints <- purrr::compact(endpoints)
 
-  match <- purrr::keep(endpoints, ~ .x$operation_id == operation_id)
-  if (length(match) == 0) {
-    cli::cli_abort("Operation '{operation_id}' not found for API '{api}'.")
+  # Find endpoint by operation_id OR by path+method
+  if (has_operation_id) {
+    match <- purrr::keep(endpoints, ~ !is.null(.x$operation_id) && .x$operation_id == operation_id)
+
+    # Fallback to endpoint registry if no operationId found in spec
+    if (length(match) == 0) {
+      reg_entry <- tryCatch(bunddev_endpoint_spec(operation_id), error = function(e) NULL)
+      if (!is.null(reg_entry) && reg_entry$api == api) {
+        # Find endpoint by path and method from registry
+        match <- purrr::keep(endpoints, ~ .x$path == reg_entry$path &&
+                                           .x$method == reg_entry$method)
+      }
+
+      if (length(match) == 0) {
+        cli::cli_abort("Operation '{operation_id}' not found for API '{api}'.")
+      }
+    }
+  } else {
+    # Find by path and method
+    match <- purrr::keep(endpoints, ~ .x$path == path && .x$method == tolower(method))
+
+    if (length(match) == 0) {
+      cli::cli_abort("Endpoint '{method} {path}' not found for API '{api}'.")
+    }
   }
+
   endpoint <- match[[1]]
 
-  # Handle OpenAPI 3.0 (servers) and Swagger 2.0 (host + basePath) formats
-  # Priority: operation-level servers > path-level servers > global servers > Swagger 2.0 host
+  # Determine base URL - use override if provided, otherwise resolve from spec
+  if (is.null(base_url)) {
+    # Handle OpenAPI 3.0 (servers) and Swagger 2.0 (host + basePath) formats
+    # Priority: operation-level servers > path-level servers > global servers > Swagger 2.0 host
 
-  # 1. Check for operation-level servers (path-specific overrides in OpenAPI 3.0)
-  if (!is.null(endpoint$operation$servers) && length(endpoint$operation$servers) > 0) {
-    base_url <- endpoint$operation$servers[[1]]$url
-  # 2. Check for path-level servers
-  } else if (!is.null(spec$paths[[endpoint$path]]$servers) &&
-             length(spec$paths[[endpoint$path]]$servers) > 0) {
-    base_url <- spec$paths[[endpoint$path]]$servers[[1]]$url
-  # 3. Fall back to global servers (OpenAPI 3.0)
-  } else if (!is.null(spec$servers) && length(spec$servers) > 0) {
-    base_url <- spec$servers[[1]]$url
-  # 4. Fall back to Swagger 2.0 format
-  } else if (!is.null(spec$host)) {
-    scheme <- if (!is.null(spec$schemes)) spec$schemes[1] else "https"
-    base_path <- spec$basePath %||% ""
-    base_url <- paste0(scheme, "://", spec$host, base_path)
-  } else {
-    cli::cli_abort("OpenAPI spec has no servers or host defined.")
-  }
+    # 1. Check for operation-level servers (path-specific overrides in OpenAPI 3.0)
+    if (!is.null(endpoint$operation$servers) && length(endpoint$operation$servers) > 0) {
+      base_url <- endpoint$operation$servers[[1]]$url
+    # 2. Check for path-level servers
+    } else if (!is.null(spec$paths[[endpoint$path]]$servers) &&
+               length(spec$paths[[endpoint$path]]$servers) > 0) {
+      base_url <- spec$paths[[endpoint$path]]$servers[[1]]$url
+    # 3. Fall back to global servers (OpenAPI 3.0)
+    } else if (!is.null(spec$servers) && length(spec$servers) > 0) {
+      base_url <- spec$servers[[1]]$url
+    # 4. Fall back to Swagger 2.0 format
+    } else if (!is.null(spec$host)) {
+      scheme <- if (!is.null(spec$schemes)) spec$schemes[1] else "https"
+      base_path <- spec$basePath %||% ""
+      base_url <- paste0(scheme, "://", spec$host, base_path)
+    } else {
+      cli::cli_abort("OpenAPI spec has no servers or host defined.")
+    }
 
-  if (is.null(base_url) || base_url == "") {
-    cli::cli_abort("OpenAPI server URL is missing.")
+    if (is.null(base_url) || base_url == "") {
+      cli::cli_abort("OpenAPI server URL is missing.")
+    }
   }
 
   if (stringr::str_detect(base_url, "\\{")) {
@@ -145,6 +199,15 @@ bunddev_call <- function(api, operation_id, params = list(),
 
   if (length(params) > 0) {
     req <- httr2::req_url_query(req, !!!params)
+  }
+
+  # Add request body if provided
+  if (!is.null(body)) {
+    if (body_type == "json") {
+      req <- httr2::req_body_json(req, body)
+    } else if (body_type == "form") {
+      req <- httr2::req_body_form(req, !!!body)
+    }
   }
 
   # Handle authentication
@@ -209,6 +272,11 @@ bunddev_call <- function(api, operation_id, params = list(),
     cli::cli_abort("OAuth2 is not supported in this package.")
   }
 
+  # Add custom headers if provided
+  if (!is.null(headers) && length(headers) > 0) {
+    req <- httr2::req_headers(req, !!!headers)
+  }
+
   resp <- httr2::req_perform(req)
   raw_body <- httr2::resp_body_raw(resp)
 
@@ -225,6 +293,9 @@ bunddev_parse_response <- function(raw_body, parse) {
   }
   if (parse == "text") {
     return(rawToChar(raw_body))
+  }
+  if (parse == "xml") {
+    return(xml2::read_xml(rawToChar(raw_body)))
   }
 
   raw_body

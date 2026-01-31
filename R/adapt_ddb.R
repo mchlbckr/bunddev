@@ -136,48 +136,36 @@ ddb_request <- function(path,
                         safe = TRUE,
                         refresh = FALSE,
                         parse = "json") {
-  spec <- bunddev_spec("ddb")
-  base_url <- spec$servers[[1]]$url
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
+  # bunddev_call() handles auth via bunddev_auth_get/header automatically
+  # Configure auth via: bunddev_auth_set("ddb", type = "api_key", env_var = "DDB_API_KEY",
+  #                                      scheme = "OAuth oauth_consumer_key=\"%s\"")
+  # Or set DDB_API_KEY env var and it will use legacy fallback below
 
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("ddb")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    operation_id <- stringr::str_replace_all(path, "[^A-Za-z0-9]+", "_")
-    cache_path <- bunddev_response_cache_path("ddb", operation_id, params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-
-  # Use centralized auth - configure via bunddev_auth_set() or fall back to env var
   auth <- bunddev_auth_get("ddb")
-  if (auth$type == "api_key") {
-    auth_value <- bunddev_auth_header("ddb")
-    req <- httr2::req_headers(req, Authorization = auth_value)
-  } else {
+  if (auth$type == "none") {
     # Legacy fallback for direct env var usage
     api_key <- ddb_api_key()
-    req <- httr2::req_headers(req, Authorization = paste0("OAuth oauth_consumer_key=\"", api_key, "\""))
+    bunddev_call(
+      "ddb",
+      path = path,
+      method = "GET",
+      params = params,
+      headers = list(Authorization = paste0("OAuth oauth_consumer_key=\"", api_key, "\"")),
+      parse = parse,
+      safe = safe,
+      refresh = refresh
+    )
+  } else {
+    bunddev_call(
+      "ddb",
+      path = path,
+      method = "GET",
+      params = params,
+      parse = parse,
+      safe = safe,
+      refresh = refresh
+    )
   }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, parse)
 }
 
 ddb_api_key <- function() {

@@ -63,44 +63,26 @@ berufssprachkurssuche_search <- function(params = list(),
 }
 
 berufssprachkurssuche_request <- function(params, safe = TRUE, refresh = FALSE, parse = "json") {
-  spec <- bunddev_spec("berufssprachkurssuche")
-  base_url <- spec$servers[[1]]$url
-  url <- paste0(stringr::str_remove(base_url, "/$"), "/pc/v1/bildungsangebot")
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("berufssprachkurssuche")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    cache_path <- bunddev_response_cache_path("berufssprachkurssuche", "berufssprachkurssuche", params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-
+  # Get client ID and optionally fetch OAuth token
   client_id <- berufssprachkurssuche_client_id()
   token <- berufssprachkurssuche_oauth_token(client_id)
+
+  # Use appropriate auth header based on whether we have an OAuth token
   if (!is.null(token)) {
-    req <- httr2::req_headers(req, OAuthAccessToken = token)
+    headers <- list(OAuthAccessToken = token)
   } else {
-    req <- httr2::req_headers(req, `X-API-Key` = client_id)
+    headers <- list(`X-API-Key` = client_id)
   }
 
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, parse)
+  bunddev_call(
+    "berufssprachkurssuche",
+    "berufssprachkurssuche",
+    params = params,
+    headers = headers,
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
 }
 
 berufssprachkurssuche_client_id <- function() {
