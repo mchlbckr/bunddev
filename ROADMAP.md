@@ -20,7 +20,7 @@
 - [x] deutschlandatlas
 - [x] diga
 - [x] dip_bundestag
-- [ ] eco_visio
+- [x] eco_visio
 - [x] entgeltatlas
 - [x] feiertage
 - [x] hilfsmittel

@@ -407,6 +407,16 @@ bunddev_endpoint_map <- function() {
       path = "/geojson/de-all.geo.json",
       method = "get"
     ),
+    eco_visio_counters = list(
+      api = "eco_visio",
+      path = "/pbl/publicwebpageplus/{idOrganisme}",
+      method = "get"
+    ),
+    eco_visio_data = list(
+      api = "eco_visio",
+      path = "/pbl/publicwebpageplus/data/1",
+      method = "get"
+    ),
     entgeltatlas_entgelte = list(
       api = "entgeltatlas",
       path = "/pc/v1/entgelte/{kldb}",
