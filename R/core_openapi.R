@@ -387,6 +387,36 @@ bunddev_endpoint_map <- function() {
       path = "/stations/{station}/{timeseries}/measurements.json",
       method = "get"
     ),
+    psm_mittel = list(
+      api = "pflanzenschutzmittelzulassung",
+      path = "/mittel/",
+      method = "get"
+    ),
+    psm_wirkstoffe = list(
+      api = "pflanzenschutzmittelzulassung",
+      path = "/wirkstoff/",
+      method = "get"
+    ),
+    psm_anwendungen = list(
+      api = "pflanzenschutzmittelzulassung",
+      path = "/awg/",
+      method = "get"
+    ),
+    psm_stand = list(
+      api = "pflanzenschutzmittelzulassung",
+      path = "/stand/",
+      method = "get"
+    ),
+    psm_kultur_gruppen = list(
+      api = "pflanzenschutzmittelzulassung",
+      path = "/kultur_gruppe/",
+      method = "get"
+    ),
+    psm_schadorg_gruppen = list(
+      api = "pflanzenschutzmittelzulassung",
+      path = "/schadorg_gruppe/",
+      method = "get"
+    ),
     bundeshaushalt_budget_data = list(
       api = "bundeshaushalt",
       path = "/internalapi/budgetData",

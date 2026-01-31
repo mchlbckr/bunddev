@@ -34,7 +34,7 @@
 - [x] mudab
 - [x] nina
 - [x] pegel_online
-- [ ] pflanzenschutzmittelzulassung
+- [x] pflanzenschutzmittelzulassung
 - [ ] polizei_brandenburg
 - [ ] regionalatlas
 - [ ] rigoletto
