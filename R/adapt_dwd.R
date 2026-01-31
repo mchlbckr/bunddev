@@ -510,7 +510,8 @@ dwd_request <- function(operation_id, base_url, path, query = NULL,
     if (!isTRUE(refresh) && file.exists(cache_path)) {
       raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
       return(bunddev_parse_response(raw_body, parse))
-}
+    }
+  }
 
   url <- paste0(base_url, path)
   req <- httr2::request(url)

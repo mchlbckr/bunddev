@@ -276,7 +276,22 @@ bunddev_call <- function(api, operation_id = NULL, params = list(),
     header_list[[header_name]] <- auth_value
     req <- httr2::req_headers(req, !!!header_list)
   } else if (auth$type == "oauth2") {
-    cli::cli_abort("OAuth2 is not supported in this package.")
+    # Try to fetch OAuth token; fall back to API key if no secret available
+    token <- bunddev_oauth_token(api)
+    if (!is.null(token)) {
+      # Use OAuth token in configured header
+      oauth_header <- auth$oauth_token_header %||% "OAuthAccessToken"
+      header_list <- list()
+      header_list[[oauth_header]] <- token
+      req <- httr2::req_headers(req, !!!header_list)
+    } else {
+      # Fall back to sending client ID as API key
+      client_id <- bunddev_oauth_client_id(api)
+      fallback_header <- auth$oauth_fallback_header %||% "X-API-Key"
+      header_list <- list()
+      header_list[[fallback_header]] <- client_id
+      req <- httr2::req_headers(req, !!!header_list)
+    }
   }
 
   # Add custom headers if provided
