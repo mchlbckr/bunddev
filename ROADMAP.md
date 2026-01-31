@@ -8,7 +8,9 @@
 ## Adapters pending
 - [x] abfallnavi
 - [x] ausbildungssuche
+- [x] autobahn
 - [x] berufssprachkurssuche
+- [x] bewerberboerse
 - [x] bundeshaushalt
 - [x] bundesrat
 - [x] bundestag
@@ -18,12 +20,14 @@
 - [x] ddb
 - [x] destatis
 - [x] deutschlandatlas
+- [x] dwd
 - [x] diga
 - [x] dip_bundestag
 - [x] eco_visio
 - [x] entgeltatlas
 - [x] feiertage
 - [x] hilfsmittel
+- [x] handelsregister
 - [x] hochwasserzentralen
 - [x] interpol
 - [x] jobsuche
@@ -34,16 +38,18 @@
 - [x] mudab
 - [x] nina
 - [x] pegel_online
+- [x] smard
 - [x] pflanzenschutzmittelzulassung
-- [ ] polizei_brandenburg
 - [x] regionalatlas
+- [ ] fit_connect
+- [ ] polizei_brandenburg
+- [ ] rechtsinformationsportal
 - [ ] rigoletto
 - [ ] risikogebiete
 - [ ] strahlenschutz
 - [ ] studiensuche
+- [x] tagesschau
 - [x] travelwarning
 - [ ] vag
 - [x] weiterbildungssuche (API returns 403 - may need browser auth)
 - [x] zoll (API behind Radware bot protection - blocked)
-- [ ] rechtsinformationsportal
-- [ ] fit_connect
