@@ -1,5 +1,9 @@
-inst/doc
+/*.Rbuildignore
+/.Rproj.user
+/.Rhistory
+/.RData
+.Rproj
+/.Rlibs/
 .DS_Store
-/doc/
-/Meta/
-.notes/
+*.txt
+.claude/
