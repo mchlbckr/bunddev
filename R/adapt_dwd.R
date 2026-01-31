@@ -31,18 +31,20 @@
 #' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_station_overview <- function(station_ids,
-                                 safe = TRUE,
-                                 refresh = FALSE,
-                                 flatten = FALSE,
-                                 flatten_mode = "json") {
+                                       safe = TRUE,
+                                       refresh = FALSE,
+                                       flatten = FALSE,
+                                       flatten_mode = "json") {
   station_ids <- as.character(station_ids)
-  response <- dwd_request(
-    "station_overview",
-    base_url = "https://app-prod-ws.warnwetter.de/v30",
+  response <- bunddev_call(
+    "dwd",
     path = "/stationOverviewExtended",
-    query = list(stationIds = paste(station_ids, collapse = ",")),
+    method = "GET",
+    params = list(stationIds = paste(station_ids, collapse = ",")),
+    base_url = "https://app-prod-ws.warnwetter.de/v30",
     safe = safe,
-    refresh = refresh
+    refresh = refresh,
+    parse = "json"
   )
 
   data <- bunddev_tidy_dwd(response, operation_id = "station_overview")
@@ -87,13 +89,15 @@ dwd_station_overview <- function(station_ids,
 #' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_crowd_reports <- function(safe = TRUE,
-                              refresh = FALSE,
-                              flatten = FALSE,
-                              flatten_mode = "json") {
-  response <- dwd_request(
-    "crowd_reports",
-    base_url = "https://s3.eu-central-1.amazonaws.com/app-prod-static.warnwetter.de/v16",
+                                    refresh = FALSE,
+                                    flatten = FALSE,
+                                    flatten_mode = "json") {
+  response <- bunddev_call(
+    "dwd",
     path = "/crowd_meldungen_overview_v2.json",
+    method = "GET",
+    base_url = "https://s3.eu-central-1.amazonaws.com/app-prod-static.warnwetter.de/v16",
+    parse = "json",
     safe = safe,
     refresh = refresh
   )
@@ -102,10 +106,13 @@ dwd_crowd_reports <- function(safe = TRUE,
   if (flatten) {
     return(bunddev_flatten_list_cols(
       data,
-      cols = c("zusatz_attribute"),
+      cols = c("forecast1", "forecast2", "days", "warnings", "three_hour_summaries"),
       mode = flatten_mode
     ))
   }
+
+  data
+}
 
   data
 }
@@ -483,10 +490,19 @@ bunddev_tidy_dwd <- function(response, operation_id = NULL) {
 }
 
 dwd_request <- function(operation_id, base_url, path, query = NULL,
-                        safe = TRUE, refresh = FALSE, parse = "json") {
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("dwd")
-  }
+                              safe = TRUE, refresh = FALSE, parse = "json") {
+  bunddev_call(
+    "dwd",
+    operation_id = operation_id,
+    path = path,
+    method = "GET",
+    params = query,
+    base_url = base_url,
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
+}
 
   cache_path <- NULL
   if (isTRUE(safe) && parse == "json") {
