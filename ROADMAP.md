@@ -36,14 +36,14 @@
 - [x] pegel_online
 - [x] pflanzenschutzmittelzulassung
 - [ ] polizei_brandenburg
-- [ ] regionalatlas
+- [x] regionalatlas
 - [ ] rigoletto
 - [ ] risikogebiete
 - [ ] strahlenschutz
 - [ ] studiensuche
 - [x] travelwarning
 - [ ] vag
-- [ ] weiterbildungssuche
-- [ ] zoll
+- [x] weiterbildungssuche (API returns 403 - may need browser auth)
+- [x] zoll (API behind Radware bot protection - blocked)
 - [ ] rechtsinformationsportal
 - [ ] fit_connect

@@ -1221,6 +1221,46 @@ bunddev_endpoint_map <- function() {
       api = "coachingangebote",
       path = "/pc/v1/aktivierungsangebote",
       method = "get"
+    ),
+    regionalatlas_query = list(
+      api = "regionalatlas",
+      path = "/query",
+      method = "get"
+    ),
+    zoll_kurse = list(
+      api = "zoll",
+      path = "/Kurse/App/KursExport.txt",
+      method = "get"
+    ),
+    zoll_produkte = list(
+      api = "zoll",
+      path = "/produkte",
+      method = "get"
+    ),
+    zoll_laender = list(
+      api = "zoll",
+      path = "/laender",
+      method = "get"
+    ),
+    zoll_produktgruppen = list(
+      api = "zoll",
+      path = "/produktgruppen",
+      method = "get"
+    ),
+    zoll_kategorien = list(
+      api = "zoll",
+      path = "/kategorien",
+      method = "get"
+    ),
+    weiterbildungssuche_search = list(
+      api = "weiterbildungssuche",
+      path = "/pc/v2/bildungsangebot",
+      method = "get"
+    ),
+    weiterbildungssuche_facetten = list(
+      api = "weiterbildungssuche",
+      path = "/pc/v1/facetten",
+      method = "get"
     )
   )
 }
