@@ -1,4 +1,1 @@
-# Ignore internal helper files
-.notes/
-.vignettes/.gitignore
-.claude/
+adapt_dwd.R
