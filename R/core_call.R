@@ -105,11 +105,18 @@ bunddev_call <- function(api, operation_id = NULL, params = list(),
     match <- purrr::keep(endpoints, ~ .x$path == path && .x$method == tolower(method))
 
     if (length(match) == 0) {
-      cli::cli_abort("Endpoint '{method} {path}' not found for API '{api}'.")
+      # If endpoint not found in spec, create a synthetic endpoint for dynamic paths
+      # This allows adapters to use bunddev_call() with paths not defined in the spec
+      endpoint <- list(
+        method = tolower(method),
+        path = path,
+        operation_id = NULL,
+        operation = list()
+      )
+    } else {
+      endpoint <- match[[1]]
     }
   }
-
-  endpoint <- match[[1]]
 
   # Determine base URL - use override if provided, otherwise resolve from spec
   if (is.null(base_url)) {
@@ -278,7 +285,20 @@ bunddev_call <- function(api, operation_id = NULL, params = list(),
   }
 
   resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
+  raw_body <- tryCatch(
+    httr2::resp_body_raw(resp),
+    error = function(e) raw(0)
+  )
+
+  # Handle empty responses
+  if (length(raw_body) == 0) {
+    if (parse == "json") {
+      return(list())
+    } else if (parse == "text") {
+      return("")
+    }
+    return(raw(0))
+  }
 
   if (!is.null(cache_path)) {
     writeBin(raw_body, cache_path)
