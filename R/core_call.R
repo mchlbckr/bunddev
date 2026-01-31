@@ -131,14 +131,8 @@ bunddev_call <- function(api, operation_id, params = list(),
 
   auth <- bunddev_auth_get(api)
   if (auth$type == "api_key") {
-    if (is.na(auth$env_var) || auth$env_var == "") {
-      cli::cli_abort("API key env_var is not set for '{api}'.")
-    }
-    api_key <- Sys.getenv(auth$env_var)
-    if (api_key == "") {
-      cli::cli_abort("Environment variable '{auth$env_var}' is not set.")
-    }
-    req <- httr2::req_headers(req, "X-API-Key" = api_key)
+    auth_value <- bunddev_auth_header(api)
+    req <- httr2::req_headers(req, "Authorization" = auth_value)
   } else if (auth$type == "oauth2") {
     cli::cli_abort("OAuth2 is not supported in this package.")
   }

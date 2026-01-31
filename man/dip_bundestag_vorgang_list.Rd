@@ -35,13 +35,20 @@ List DIP Vorgang entries
 }
 \details{
 Returns metadata for DIP Vorgang entries. Requires an API key. Obtain a key
-from https://dip.bundestag.de/über-dip/hilfe/api and set it via
-\code{DIP_BUNDESTAG_API_KEY}.
+from https://dip.bundestag.de/über-dip/hilfe/api.
+
+Configure authentication via \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} or set the
+\code{DIP_BUNDESTAG_API_KEY} environment variable directly.
 }
 \examples{
 \dontrun{
+# Recommended: use bunddev_auth_set
 Sys.setenv(DIP_BUNDESTAG_API_KEY = "<api-key>")
+bunddev_auth_set("dip_bundestag", type = "api_key", env_var = "DIP_BUNDESTAG_API_KEY", scheme = "ApiKey")
 dip_bundestag_vorgang_list()
 }
 
+}
+\seealso{
+\code{\link[=bunddev_auth_set]{bunddev_auth_set()}} to configure authentication.
 }

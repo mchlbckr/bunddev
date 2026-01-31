@@ -4,7 +4,7 @@
 \alias{bunddev_auth_set}
 \title{Set authentication configuration for an API}
 \usage{
-bunddev_auth_set(api, type = "api_key", env_var)
+bunddev_auth_set(api, type = "api_key", env_var, scheme = NULL)
 }
 \arguments{
 \item{api}{Registry id.}
@@ -12,6 +12,8 @@ bunddev_auth_set(api, type = "api_key", env_var)
 \item{type}{Authentication type.}
 
 \item{env_var}{Environment variable containing credentials.}
+
+\item{scheme}{Authentication scheme used in the Authorization header (e.g., "Bearer", "ApiKey", "OAuth").}
 }
 \value{
 The updated auth configuration.
@@ -22,12 +24,12 @@ Set authentication configuration for an API
 \details{
 Store auth configuration used by \code{\link[=bunddev_call]{bunddev_call()}} and adapter helpers. For
 APIs that require an API key, set \code{env_var} to the name of an environment
-variable containing the key. The key is sent as \code{X-API-Key}.
+variable containing the key. The key is sent as an \verb{Authorization: \{scheme\} <key>}.
 }
 \examples{
 
 Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
-bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY", scheme = "X-API-Key")
 
 }
 \seealso{

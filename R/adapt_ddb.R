@@ -11,13 +11,20 @@
 #' @details
 #' Returns search results from the Deutsche Digitale Bibliothek API. You need an
 #' API key from https://www.deutsche-digitale-bibliothek.de/user/apikey. The key
-#' is sent in the `Authorization` header as
-#' `OAuth oauth_consumer_key="<key>"`.
+#' is sent in the `Authorization` header as `OAuth oauth_consumer_key="<key>"`.
+#'
+#' Configure authentication via [bunddev_auth_set()] using a template-style
+#' scheme, or set the `DDB_API_KEY` environment variable directly.
+#'
+#' @seealso
+#' [bunddev_auth_set()] to configure authentication.
 #'
 #' @examples
 #' \dontrun{
+#' # Recommended: use bunddev_auth_set with template scheme
 #' Sys.setenv(DDB_API_KEY = "<api-key>")
-#' bunddev_auth_set("ddb", type = "api_key", env_var = "DDB_API_KEY")
+#' bunddev_auth_set("ddb", type = "api_key", env_var = "DDB_API_KEY",
+#'                  scheme = "OAuth oauth_consumer_key=\"%s\"")
 #' ddb_search(query = "berlin", params = list(rows = 5))
 #' }
 #'
@@ -152,8 +159,16 @@ ddb_request <- function(path,
     req <- httr2::req_url_query(req, !!!params)
   }
 
-  api_key <- ddb_api_key()
-  req <- httr2::req_headers(req, Authorization = paste0("OAuth oauth_consumer_key=\"", api_key, "\""))
+  # Use centralized auth - configure via bunddev_auth_set() or fall back to env var
+  auth <- bunddev_auth_get("ddb")
+  if (auth$type == "api_key") {
+    auth_value <- bunddev_auth_header("ddb")
+    req <- httr2::req_headers(req, Authorization = auth_value)
+  } else {
+    # Legacy fallback for direct env var usage
+    api_key <- ddb_api_key()
+    req <- httr2::req_headers(req, Authorization = paste0("OAuth oauth_consumer_key=\"", api_key, "\""))
+  }
 
   resp <- httr2::req_perform(req)
   raw_body <- httr2::resp_body_raw(resp)

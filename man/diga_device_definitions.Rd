@@ -35,15 +35,22 @@ List DiGA device definitions
 }
 \details{
 Returns FHIR device definitions from the DiGA directory. The API requires a
-bearer token (env var \code{DIGA_BEARER_TOKEN}) which can be extracted from
-https://diga.bfarm.de/de/verzeichnis (meta name
-"host-app/config/environment" -> APP -> fhir -> token). Official docs:
-https://github.com/AndreasFischer1985/diga-api.
+bearer token which can be extracted from https://diga.bfarm.de/de/verzeichnis
+(meta name "host-app/config/environment" -> APP -> fhir -> token).
+Official docs: https://github.com/AndreasFischer1985/diga-api.
+
+Configure authentication via \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} or set the
+\code{DIGA_BEARER_TOKEN} environment variable directly.
 }
 \examples{
 \dontrun{
+# Recommended: use bunddev_auth_set
 Sys.setenv(DIGA_BEARER_TOKEN = "<token>")
+bunddev_auth_set("diga", type = "api_key", env_var = "DIGA_BEARER_TOKEN", scheme = "Bearer")
 diga_device_definitions()
 }
 
+}
+\seealso{
+\code{\link[=bunddev_auth_set]{bunddev_auth_set()}} to configure authentication.
 }

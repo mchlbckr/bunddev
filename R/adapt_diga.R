@@ -9,14 +9,21 @@
 #'
 #' @details
 #' Returns FHIR device definitions from the DiGA directory. The API requires a
-#' bearer token (env var `DIGA_BEARER_TOKEN`) which can be extracted from
-#' https://diga.bfarm.de/de/verzeichnis (meta name
-#' "host-app/config/environment" -> APP -> fhir -> token). Official docs:
-#' https://github.com/AndreasFischer1985/diga-api.
+#' bearer token which can be extracted from https://diga.bfarm.de/de/verzeichnis
+#' (meta name "host-app/config/environment" -> APP -> fhir -> token).
+#' Official docs: https://github.com/AndreasFischer1985/diga-api.
+#'
+#' Configure authentication via [bunddev_auth_set()] or set the
+#' `DIGA_BEARER_TOKEN` environment variable directly.
+#'
+#' @seealso
+#' [bunddev_auth_set()] to configure authentication.
 #'
 #' @examples
 #' \dontrun{
+#' # Recommended: use bunddev_auth_set
 #' Sys.setenv(DIGA_BEARER_TOKEN = "<token>")
+#' bunddev_auth_set("diga", type = "api_key", env_var = "DIGA_BEARER_TOKEN", scheme = "Bearer")
 #' diga_device_definitions()
 #' }
 #'
@@ -288,11 +295,23 @@ diga_request <- function(path, params, safe = TRUE, refresh = FALSE, parse = "js
     req <- httr2::req_url_query(req, !!!params)
   }
 
-  token <- Sys.getenv("DIGA_BEARER_TOKEN")
-  if (token == "") {
-    cli::cli_abort("DIGA_BEARER_TOKEN is not set.")
+  # Use centralized auth - configure via bunddev_auth_set() or fall back to env var
+  auth <- bunddev_auth_get("diga")
+  if (auth$type == "api_key") {
+    auth_value <- bunddev_auth_header("diga")
+    req <- httr2::req_headers(req, Authorization = auth_value)
+  } else {
+    # Legacy fallback for direct env var usage
+    token <- Sys.getenv("DIGA_BEARER_TOKEN")
+    if (token == "") {
+      cli::cli_abort(
+        c("DiGA authentication not configured.",
+          "i" = "Set up auth with: bunddev_auth_set(\"diga\", type = \"api_key\", env_var = \"DIGA_BEARER_TOKEN\", scheme = \"Bearer\")",
+          "i" = "Or set DIGA_BEARER_TOKEN environment variable directly.")
+      )
+    }
+    req <- httr2::req_headers(req, Authorization = paste("Bearer", token))
   }
-  req <- httr2::req_headers(req, authorization = paste("Bearer", token))
 
   resp <- httr2::req_perform(req)
   raw_body <- httr2::resp_body_raw(resp)

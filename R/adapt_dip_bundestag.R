@@ -9,12 +9,19 @@
 #'
 #' @details
 #' Returns metadata for DIP Vorgang entries. Requires an API key. Obtain a key
-#' from https://dip.bundestag.de/über-dip/hilfe/api and set it via
-#' `DIP_BUNDESTAG_API_KEY`.
+#' from https://dip.bundestag.de/über-dip/hilfe/api.
+#'
+#' Configure authentication via [bunddev_auth_set()] or set the
+#' `DIP_BUNDESTAG_API_KEY` environment variable directly.
+#'
+#' @seealso
+#' [bunddev_auth_set()] to configure authentication.
 #'
 #' @examples
 #' \dontrun{
+#' # Recommended: use bunddev_auth_set
 #' Sys.setenv(DIP_BUNDESTAG_API_KEY = "<api-key>")
+#' bunddev_auth_set("dip_bundestag", type = "api_key", env_var = "DIP_BUNDESTAG_API_KEY", scheme = "ApiKey")
 #' dip_bundestag_vorgang_list()
 #' }
 #'
@@ -519,9 +526,17 @@ dip_bundestag_request <- function(path,
     req <- httr2::req_url_query(req, !!!params)
   }
 
-  api_key <- dip_bundestag_api_key(params)
-  if (!is.null(api_key)) {
-    req <- httr2::req_headers(req, Authorization = paste("ApiKey", api_key))
+  # Use centralized auth - configure via bunddev_auth_set() or fall back to env var
+  auth <- bunddev_auth_get("dip_bundestag")
+  if (auth$type == "api_key") {
+    auth_value <- bunddev_auth_header("dip_bundestag")
+    req <- httr2::req_headers(req, Authorization = auth_value)
+  } else {
+    # Legacy fallback: check params or env var directly
+    api_key <- dip_bundestag_api_key(params)
+    if (!is.null(api_key)) {
+      req <- httr2::req_headers(req, Authorization = paste("ApiKey", api_key))
+    }
   }
 
   resp <- httr2::req_perform(req)
