@@ -1,9 +1,7 @@
-/*.Rbuildignore
-/.Rproj.user
-/.Rhistory
-/.RData
-.Rproj
-/.Rlibs/
-.DS_Store
-*.txt
+# Ignore internal helper files
+.notes/
+.vignettes/.gitignore
 .claude/
+Meta/
+adapt_dwd.R
+adapt_entgeltatlas.R
