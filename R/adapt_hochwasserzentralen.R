@@ -212,6 +212,17 @@ hochwasserzentralen_tidy_table <- function(response) {
     return(tibble::tibble())
   }
 
+  # If response has GeoJSON features, extract properties from each feature
+  if (is.list(response) && !is.null(response$features) && length(response$features) > 0) {
+    rows <- purrr::map(response$features, function(feature) {
+      if (!is.null(feature$properties)) {
+        return(feature$properties)
+      }
+      return(list())
+    })
+    return(dplyr::bind_rows(rows))
+  }
+
   if (!is.list(response)) {
     return(tibble::tibble(value = response))
   }

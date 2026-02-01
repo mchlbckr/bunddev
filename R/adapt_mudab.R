@@ -431,8 +431,8 @@ mudab_request <- function(path, body, safe = TRUE, refresh = FALSE, parse = "jso
   bunddev_call(
     "mudab",
     path = path,
-    method = "GET",
-    params = body,
+    method = "POST",
+    body = body,
     parse = parse,
     safe = safe,
     refresh = refresh

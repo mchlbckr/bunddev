@@ -175,22 +175,34 @@ destatis_request <- function(path,
                              safe = TRUE,
                              refresh = FALSE,
                              parse = "json") {
-  response <- bunddev_call(
+  # Always get raw text first, since destatis sometimes returns HTML error pages
+  response_text <- bunddev_call(
     "destatis",
     path = path,
     method = "GET",
     params = params,
-    parse = parse,
+    parse = "text",
     safe = safe,
     refresh = refresh
   )
 
-  # For JSON parsing, apply custom fallback for non-JSON responses
-  if (parse == "json" && is.character(response)) {
-    return(response)
+  # Apply custom parsing with fallback for non-JSON responses
+  if (parse == "json") {
+    trimmed <- trimws(response_text)
+    if (trimmed != "" && grepl("^[\\[{]", trimmed)) {
+      parsed <- tryCatch(
+        jsonlite::fromJSON(response_text, simplifyVector = FALSE),
+        error = function(e) NULL
+      )
+      if (!is.null(parsed)) {
+        return(parsed)
+      }
+    }
+    # Return text if not valid JSON (e.g., HTML error page)
+    return(response_text)
   }
 
-  response
+  response_text
 }
 
 destatis_base_url <- function(spec) {
