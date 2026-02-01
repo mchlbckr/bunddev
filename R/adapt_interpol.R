@@ -351,50 +351,16 @@ interpol_request <- function(path,
                              safe = TRUE,
                              refresh = FALSE,
                              parse = "json") {
-  spec <- bunddev_spec("interpol")
-  base_url <- spec$servers[[1]]$url
-
-  path_params <- stringr::str_match_all(path, "\\{([^}]+)\\}")[[1]]
-  if (nrow(path_params) > 0) {
-    for (param in path_params[, 2]) {
-      if (!param %in% names(params)) {
-        cli::cli_abort("Missing path parameter '{param}'.")
-      }
-      value <- as.character(params[[param]])
-      path <- stringr::str_replace_all(path, paste0("\\{", param, "\\}"), value)
-    }
-    params[path_params[, 2]] <- NULL
-  }
-
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("interpol")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    operation_id <- stringr::str_replace_all(path, "[^A-Za-z0-9]+", "_")
-    cache_path <- bunddev_response_cache_path("interpol", operation_id, params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, parse)
+  # bunddev_call() now handles path parameters automatically
+  bunddev_call(
+    "interpol",
+    path = path,
+    method = "GET",
+    params = params,
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
 }
 
 interpol_tidy_list_response <- function(response) {

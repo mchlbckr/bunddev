@@ -14,19 +14,23 @@
 #' age, sector, and performance level. Official docs:
 #' https://bundesapi.github.io/entgeltatlas-api/.
 #'
-#' Authentication can be done via OAuth2 client credentials or by sending the
-#' public client id as `X-API-Key`. Set the client id via [bunddev_auth_set()]
-#' (env var name `ENTGELTATLAS_API_KEY`). If you also set
-#' `ENTGELTATLAS_CLIENT_SECRET`, the adapter requests an OAuth token from
-#' `https://rest.arbeitsagentur.de/oauth/gettoken_cc` and sends it as
-#' `OAuthAccessToken`.
+#' **Recommended:** Configure OAuth2 via [bunddev_auth_set()] with type `"oauth2"`.
+#' If you provide a client secret, it fetches an OAuth token; otherwise it falls
+#' back to sending the client ID as `X-API-Key`.
 #'
 #' @examples
 #' \dontrun{
+#' # Recommended: OAuth2 configuration
 #' Sys.setenv(
 #'   ENTGELTATLAS_API_KEY = "c4f0d292-9d0f-4763-87dd-d3f9e78fb006",
 #'   ENTGELTATLAS_CLIENT_SECRET = "<client-secret>"
 #' )
+#' bunddev_auth_set("entgeltatlas",
+#'   type = "oauth2",
+#'   oauth_url = "https://rest.arbeitsagentur.de/oauth/gettoken_cc",
+#'   env_var = "ENTGELTATLAS_API_KEY",
+#'   oauth_secret_env = "ENTGELTATLAS_CLIENT_SECRET",
+#'   oauth_default_id = "c4f0d292-9d0f-4763-87dd-d3f9e78fb006")
 #' entgeltatlas_entgelte("84304", params = list(r = 1, g = 1))
 #' }
 #'
@@ -68,25 +72,14 @@ entgeltatlas_request <- function(kldb,
   if (is.null(kldb) || kldb == "") {
     cli::cli_abort("kldb is required.")
   }
-  
-  # Get OAuth token using centralized auth
-  token <- bunddev_oauth_token("entgeltatlas")
-  
-  if (!is.null(token)) {
-    # No secret available, fall back to API key
-    client_id <- bunddev_oauth_client_id("entgeltatlas")
-    headers <- list(`X-API-Key` = client_id)
-  } else {
-    # Use OAuth token with configured header name
-    headers <- list(!!setNames(list(token), bunddev_auth_get("entgeltatlas")$oauth_token_header))
-  }
-  
+
+  # OAuth2 is now handled centrally in bunddev_call()
+  # Just call bunddev_call() - it automatically handles OAuth2 when configured
   bunddev_call(
     "entgeltatlas",
     path = paste0("/pc/v1/entgelte/", kldb),
     method = "GET",
     params = params,
-    headers = headers,
     base_url = "https://rest.arbeitsagentur.de/infosysbub/entgeltatlas",
     parse = parse,
     safe = safe,
@@ -94,52 +87,6 @@ entgeltatlas_request <- function(kldb,
   )
 }
 
-  spec <- tryCatch(
-    bunddev_spec("entgeltatlas"),
-    error = function(e) NULL
-  )
-  base_url <- "https://rest.arbeitsagentur.de/infosysbub/entgeltatlas"
-  if (!is.null(spec) && !is.null(spec$servers) && length(spec$servers) > 0) {
-    base_url <- spec$servers[[1]]$url %||% base_url
-  }
-  url <- paste0(stringr::str_remove(base_url, "/$"), "/pc/v1/entgelte/", kldb)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("entgeltatlas")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    cache_path <- bunddev_response_cache_path("entgeltatlas", "entgelte", c(list(kldb = kldb), params))
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-
-  client_id <- entgeltatlas_client_id()
-  token <- entgeltatlas_oauth_token(client_id)
-  if (!is.null(token)) {
-    req <- httr2::req_headers(req, OAuthAccessToken = token)
-  } else {
-    req <- httr2::req_headers(req, `X-API-Key` = client_id)
-  }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-  
-  bunddev_parse_response(raw_body, parse)
-}
- 
 entgeltatlas_tidy_entgelte <- function(response) {
   if (is.null(response) || length(response) == 0) {
     return(tibble::tibble())

@@ -172,34 +172,19 @@ zoll_kategorien <- function(last_modified_date = NULL,
 }
 
 zoll_request <- function(url, params = list(), safe = TRUE, refresh = FALSE, parse = "json") {
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("zoll")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    operation_id <- digest::digest(url)
-    cache_path <- bunddev_response_cache_path("zoll", operation_id, params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-  req <- httr2::req_headers(req, `User-Agent` = "zollundpost/2 CFNetwork/1220.1 Darwin/20.3.0")
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, parse)
+  # Zoll API uses full URLs, so we pass it as base_url with empty path
+  # Custom User-Agent header required for zoll API
+  bunddev_call(
+    "zoll",
+    path = "",
+    method = "GET",
+    params = params,
+    base_url = url,
+    headers = list(`User-Agent` = "zollundpost/2 CFNetwork/1220.1 Darwin/20.3.0"),
+    parse = parse,
+    safe = safe,
+    refresh = refresh
+  )
 }
 
 zoll_request_bmf <- function(path, last_modified_date = NULL, safe = TRUE, refresh = FALSE) {

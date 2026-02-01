@@ -286,37 +286,15 @@ luftqualitaet_meta <- function(params = list(), safe = TRUE, refresh = FALSE) {
 }
 
 luftqualitaet_request <- function(path, query, safe = TRUE, refresh = FALSE) {
-  spec <- bunddev_spec("luftqualitaet")
-  base_url <- spec$servers[[1]]$url
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("luftqualitaet")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    operation_id <- stringr::str_replace_all(path, "[^A-Za-z0-9]+", "_")
-    cache_path <- bunddev_response_cache_path("luftqualitaet", operation_id, query %||% list())
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, "json"))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (!is.null(query) && length(query) > 0) {
-    req <- httr2::req_url_query(req, !!!query)
-  }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, "json")
+  bunddev_call(
+    "luftqualitaet",
+    path = path,
+    method = "GET",
+    params = query %||% list(),
+    parse = "json",
+    safe = safe,
+    refresh = refresh
+  )
 }
 
 luftqualitaet_tidy_table <- function(response) {

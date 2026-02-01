@@ -214,48 +214,12 @@ jobsuche_request <- function(operation_id, path, query = NULL,
     "jobsuche",
     path = path,
     method = "GET",
-    query = query,
+    params = query,
     base_url = "https://rest.arbeitsagentur.de/jobboerse/jobsuche-service",
     parse = parse,
     safe = safe,
     refresh = refresh
   )
-}
-
-  cache_path <- NULL
-  if (isTRUE(safe) && parse == "json") {
-    cache_path <- bunddev_response_cache_path("jobsuche", operation_id, query %||% list())
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (!is.null(query)) {
-    req <- httr2::req_url_query(req, !!!query)
-  }
-
-  auth <- bunddev_auth_get("jobsuche")
-  if (auth$type == "api_key") {
-    if (is.na(auth$env_var) || auth$env_var == "") {
-      cli::cli_abort("API key env_var is not set for 'jobsuche'.")
-    }
-    api_key <- Sys.getenv(auth$env_var)
-    if (api_key == "") {
-      cli::cli_abort("Environment variable '{auth$env_var}' is not set.")
-    }
-    req <- httr2::req_headers(req, "X-API-Key" = api_key)
-  }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, parse)
 }
 
 bunddev_jobsuche_search <- function(params = list(),

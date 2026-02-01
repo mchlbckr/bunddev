@@ -68,23 +68,12 @@ coachingangebote_search <- function(params = list(),
 }
 
 coachingangebote_request <- function(params, safe = TRUE, refresh = FALSE, parse = "json") {
-  # Get OAuth token using centralized auth
-  token <- bunddev_oauth_token("coachingangebote")
-  
-  if (!is.null(token)) {
-    # No secret available, fall back to API key
-    client_id <- bunddev_oauth_client_id("coachingangebote")
-    headers <- list(`X-API-Key` = client_id)
-  } else {
-    # Use OAuth token with configured header name
-    headers <- list(!!setNames(list(token), bunddev_auth_get("coachingangebote")$oauth_token_header))
-  }
-  
+  # OAuth2 is now handled centrally in bunddev_call()
+  # Just call bunddev_call() - it automatically handles OAuth2 when configured
   bunddev_call(
     "coachingangebote",
     "aktivierungsangebote",
     params = params,
-    headers = headers,
     parse = parse,
     safe = safe,
     refresh = refresh

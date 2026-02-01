@@ -100,6 +100,8 @@ bunddev_call <- function(api, operation_id = NULL, params = list(),
         cli::cli_abort("Operation '{operation_id}' not found for API '{api}'.")
       }
     }
+
+    endpoint <- match[[1]]
   } else {
     # Find by path and method
     match <- purrr::keep(endpoints, ~ .x$path == path && .x$method == tolower(method))

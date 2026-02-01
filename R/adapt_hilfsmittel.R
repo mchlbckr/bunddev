@@ -275,42 +275,6 @@ hilfsmittel_request <- function(path,
 bunddev_hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
   hilfsmittel_request("/api/v1/tree", safe = safe, refresh = refresh)
 }
-      value <- as.character(params[[param]])
-      path <- stringr::str_replace_all(path, paste0("\\{", param, "\\}"), value)
-    }
-    params[path_params[, 2]] <- NULL
-  }
-
-  url <- paste0(stringr::str_remove(base_url, "/$"), path)
-
-  if (isTRUE(safe)) {
-    bunddev_rate_limit_wait("hilfsmittel")
-  }
-
-  cache_path <- NULL
-  if (isTRUE(safe)) {
-    operation_id <- stringr::str_replace_all(path, "[^A-Za-z0-9]+", "_")
-    cache_path <- bunddev_response_cache_path("hilfsmittel", operation_id, params)
-    if (!isTRUE(refresh) && file.exists(cache_path)) {
-      raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
-      return(bunddev_parse_response(raw_body, parse))
-    }
-  }
-
-  req <- httr2::request(url)
-  if (length(params) > 0) {
-    req <- httr2::req_url_query(req, !!!params)
-  }
-
-  resp <- httr2::req_perform(req)
-  raw_body <- httr2::resp_body_raw(resp)
-
-  if (!is.null(cache_path)) {
-    writeBin(raw_body, cache_path)
-  }
-
-  bunddev_parse_response(raw_body, parse)
-}
 
 hilfsmittel_tidy_response <- function(response) {
   if (is.null(response) || length(response) == 0) {

@@ -72,6 +72,49 @@ ladestationen_query <- function(params = list(),
   data
 }
 
+ladestationen_request <- function(params, safe = TRUE, refresh = FALSE) {
+  bunddev_call(
+    "ladestationen",
+    path = "/query",
+    method = "GET",
+    params = params,
+    parse = "json",
+    safe = safe,
+    refresh = refresh
+  )
+}
+
+ladestationen_tidy_response <- function(response) {
+  features <- response$features
+  if (is.null(features) || length(features) == 0) {
+    return(tibble::tibble())
+  }
+
+  sanitize_name <- function(name) {
+    ascii <- iconv(name, from = "UTF-8", to = "ASCII//TRANSLIT")
+    ascii <- stringr::str_replace_all(ascii, "[^A-Za-z0-9]+", "_")
+    ascii <- stringr::str_replace_all(ascii, "^_+|_+$", "")
+    tolower(ascii)
+  }
+
+  rows <- purrr::map(features, function(feature) {
+    attrs <- feature$attributes %||% list()
+    geometry <- feature$geometry %||% list()
+    attrs$geometry <- geometry
+    attrs
+  })
+
+  data <- dplyr::bind_rows(rows)
+  names(data) <- vapply(names(data), sanitize_name, character(1))
+  data
+}
+
+bunddev_ladestationen_query <- function(params = list(),
+                                        safe = TRUE,
+                                        refresh = FALSE,
+                                        flatten = FALSE,
+                                        flatten_mode = "json") {
+  ladestationen_query(
     params = params,
     safe = safe,
     refresh = refresh,
