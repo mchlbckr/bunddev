@@ -1,5 +1,5 @@
 Package: bunddev
-Title: Discover and Call bund.dev APIs
+Title: Discover and Call Bund.dev APIs
 Version: 0.1.0
 Authors@R: 
     person("Michael", "Bücker", , "michael.buecker@fh-muenster.de", role = c("aut", "cre"))
