@@ -21,7 +21,8 @@
 #' \dontrun{
 #' # Recommended: use bunddev_auth_set
 #' Sys.setenv(DIP_BUNDESTAG_API_KEY = "<api-key>")
-#' bunddev_auth_set("dip_bundestag", type = "api_key", env_var = "DIP_BUNDESTAG_API_KEY", scheme = "ApiKey")
+#' bunddev_auth_set("dip_bundestag", type = "api_key",
+#'                  env_var = "DIP_BUNDESTAG_API_KEY", scheme = "ApiKey")
 #' dip_bundestag_vorgang_list()
 #' }
 #'
