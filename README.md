@@ -4,6 +4,10 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/bunddev)](https://CRAN.R-project.org/package=bunddev)
+[![CRAN
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/bunddev)](https://CRAN.R-project.org/package=bunddev)
 [![R-CMD-check](https://github.com/mchlbckr/bunddev/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mchlbckr/bunddev/actions/workflows/R-CMD-check.yaml)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -43,7 +47,11 @@ new adapters by implementing tidy helpers that wrap
 
 ## Installation
 
-You can install bunddev from GitHub:
+Install the released version from CRAN:
+
+    install.packages("bunddev")
+
+Or install the development version from GitHub:
 
     remotes::install_github("mchlbckr/bunddev")
 
