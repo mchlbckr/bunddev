@@ -30,11 +30,6 @@ roads <- autobahn_roads()
 warnings <- autobahn_warnings(roads$road_id[[1]])
 autobahn_warning_details(warnings$identifier[[1]])
 }
-
-Includes `start_time` as POSIXct in Europe/Berlin when available.
-
-Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-if the API has changed.
 }
 \seealso{
 \code{\link[=autobahn_warnings]{autobahn_warnings()}} to list warnings.

@@ -22,9 +22,6 @@ psm_wirkstoffe(
 }
 \value{
 A tibble with active ingredient data.
-
-Use \code{bunddev_parameters("pflanzenschutzmittelzulassung")} to see the
-currently valid parameters if the API has changed.
 }
 \description{
 List active ingredients

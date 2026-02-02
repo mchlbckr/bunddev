@@ -26,9 +26,6 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with charging station records.
-
-Use \code{bunddev_parameters("ladestationen")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Query charging stations

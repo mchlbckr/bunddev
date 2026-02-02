@@ -32,9 +32,6 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with project stations.
-
-Use \code{bunddev_parameters("mudab")} to see the currently valid parameters if
-the API has changed.
 }
 \description{
 List MUDAB project stations

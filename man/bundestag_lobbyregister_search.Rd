@@ -29,9 +29,6 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with search metadata and result entries.
-
-Use \code{bunddev_parameters("bundestag_lobbyregister")} to see the currently
-valid parameters if the API has changed.
 }
 \description{
 Search the Bundestag lobbyregister

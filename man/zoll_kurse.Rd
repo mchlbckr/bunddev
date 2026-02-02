@@ -16,9 +16,6 @@ this date (format: "YYYY-MM-DD" or "YYYY-MM-DDTHH:MM:SS").}
 }
 \value{
 A tibble with exchange rate data.
-
-Use \code{bunddev_parameters("zoll")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get exchange rates for customs calculations

@@ -14,9 +14,6 @@ bewerberboerse_search(params = list(), flatten = FALSE, flatten_mode = "json")
 \item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
 expand list-columns into multiple rows.}
 }
-\value{
-A tibble with tidied results.
-}
 \description{
 Search the Bewerberboerse API
 }
@@ -34,10 +31,6 @@ Sys.setenv(BEWERBERBOERSE_API_KEY = "jobboerse-bewerbersuche-ui")
 bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
 bewerberboerse_search(params = list(was = "data", size = 10), flatten = TRUE)
 }
-
-Use `bunddev_parameters("bewerberboerse")` to see the currently valid
-parameters if the API has changed.
-
 }
 \seealso{
 \code{\link[=bewerberboerse_details]{bewerberboerse_details()}} for detailed entries and \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} for

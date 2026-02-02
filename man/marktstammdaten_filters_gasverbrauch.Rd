@@ -23,9 +23,6 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with filter metadata.
-
-Use \code{bunddev_parameters("marktstammdaten")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 List MaStR filter options for gas consumption

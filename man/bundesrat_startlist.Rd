@@ -15,9 +15,6 @@ bundesrat_startlist(view = "renderXml", safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with endpoint metadata.
-
-Use \code{bunddev_parameters("bundesrat")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List Bundesrat API endpoints

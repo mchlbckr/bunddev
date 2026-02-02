@@ -22,9 +22,6 @@
 #' }
 #'
 #' @return A tibble with air quality data.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_airquality <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/airquality/json", params, safe, refresh)
@@ -59,9 +56,6 @@ luftqualitaet_airquality_limits <- function(safe = TRUE, refresh = FALSE) {
 #' https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with annual balance data.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_annualbalances <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/annualbalances/json", params, safe, refresh)
@@ -79,9 +73,6 @@ luftqualitaet_annualbalances <- function(params = list(), safe = TRUE, refresh =
 #' https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with component metadata.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_components <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/components/json", params, safe, refresh)
@@ -99,9 +90,6 @@ luftqualitaet_components <- function(params = list(), safe = TRUE, refresh = FAL
 #' docs: https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with measurement metadata.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_measures <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/measures/json", params, safe, refresh)
@@ -136,9 +124,6 @@ luftqualitaet_measures_limits <- function(safe = TRUE, refresh = FALSE) {
 #' https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with network metadata.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_networks <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/networks/json", params, safe, refresh)
@@ -156,9 +141,6 @@ luftqualitaet_networks <- function(params = list(), safe = TRUE, refresh = FALSE
 #' https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with scope metadata.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_scopes <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/scopes/json", params, safe, refresh)
@@ -176,9 +158,6 @@ luftqualitaet_scopes <- function(params = list(), safe = TRUE, refresh = FALSE) 
 #' https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with station settings metadata.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_stationsettings <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/stationsettings/json", params, safe, refresh)
@@ -196,9 +175,6 @@ luftqualitaet_stationsettings <- function(params = list(), safe = TRUE, refresh 
 #' https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with station types metadata.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_stationtypes <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/stationtypes/json", params, safe, refresh)
@@ -216,9 +192,6 @@ luftqualitaet_stationtypes <- function(params = list(), safe = TRUE, refresh = F
 #' https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with threshold metadata.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_thresholds <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/thresholds/json", params, safe, refresh)
@@ -236,9 +209,6 @@ luftqualitaet_thresholds <- function(params = list(), safe = TRUE, refresh = FAL
 #' https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with transgressions data.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_transgressions <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/transgressions/json", params, safe, refresh)
@@ -256,9 +226,6 @@ luftqualitaet_transgressions <- function(params = list(), safe = TRUE, refresh =
 #' https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with transgression type metadata.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_transgressiontypes <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/transgressiontypes/json", params, safe, refresh)
@@ -276,9 +243,6 @@ luftqualitaet_transgressiontypes <- function(params = list(), safe = TRUE, refre
 #' https://luftqualitaet.api.bund.dev.
 #'
 #' @return A tibble with combined metadata.
-#'
-#' Use `bunddev_parameters("luftqualitaet")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 luftqualitaet_meta <- function(params = list(), safe = TRUE, refresh = FALSE) {
   response <- luftqualitaet_request("/meta/json", params, safe, refresh)

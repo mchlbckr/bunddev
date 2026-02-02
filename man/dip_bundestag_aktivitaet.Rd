@@ -22,9 +22,6 @@ dip_bundestag_aktivitaet(
 }
 \value{
 A tibble with Aktivität metadata.
-
-Use \code{bunddev_parameters("dip_bundestag")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Get a DIP Aktivität

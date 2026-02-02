@@ -19,9 +19,6 @@ hochwasserzentralen_bundesland_info(
 }
 \value{
 A tibble with Bundesland metadata.
-
-Use \code{bunddev_parameters("hochwasserzentralen")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Get flood portal metadata for a Bundesland

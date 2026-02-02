@@ -31,9 +31,6 @@
 #' }
 #'
 #' @return A tibble with indicator records.
-#'
-#' Use `bunddev_parameters("deutschlandatlas")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 deutschlandatlas_query <- function(table = "p_apo_f_ZA2022",
                                    params = list(),

@@ -19,9 +19,6 @@ bundesrat_plenum_aktuelle_sitzung(
 }
 \value{
 A tibble with current plenum session entries.
-
-Use \code{bunddev_parameters("bundesrat")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List Bundesrat current plenum session entries

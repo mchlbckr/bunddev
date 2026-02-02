@@ -29,9 +29,6 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with search metadata and result payload.
-
-Use \code{bunddev_parameters("ddb")} to see the currently valid parameters if the
-API has changed.
 }
 \description{
 Search Deutsche Digitale Bibliothek

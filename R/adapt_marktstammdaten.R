@@ -16,9 +16,6 @@
 #' }
 #'
 #' @return A tibble with filter metadata.
-#'
-#' Use `bunddev_parameters("marktstammdaten")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 marktstammdaten_filters_stromerzeugung <- function(safe = TRUE,
                                                    refresh = FALSE,
@@ -51,9 +48,6 @@ marktstammdaten_filters_stromerzeugung <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with filter metadata.
-#'
-#' Use `bunddev_parameters("marktstammdaten")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 marktstammdaten_filters_stromverbrauch <- function(safe = TRUE,
                                                    refresh = FALSE,
@@ -86,9 +80,6 @@ marktstammdaten_filters_stromverbrauch <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with filter metadata.
-#'
-#' Use `bunddev_parameters("marktstammdaten")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 marktstammdaten_filters_gaserzeugung <- function(safe = TRUE,
                                                  refresh = FALSE,
@@ -121,9 +112,6 @@ marktstammdaten_filters_gaserzeugung <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with filter metadata.
-#'
-#' Use `bunddev_parameters("marktstammdaten")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 marktstammdaten_filters_gasverbrauch <- function(safe = TRUE,
                                                  refresh = FALSE,
@@ -157,9 +145,6 @@ marktstammdaten_filters_gasverbrauch <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with MaStR entries.
-#'
-#' Use `bunddev_parameters("marktstammdaten")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 marktstammdaten_stromerzeugung <- function(params = list(),
                                            safe = TRUE,
@@ -195,9 +180,6 @@ marktstammdaten_stromerzeugung <- function(params = list(),
 #' }
 #'
 #' @return A tibble with MaStR entries.
-#'
-#' Use `bunddev_parameters("marktstammdaten")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 marktstammdaten_stromverbrauch <- function(params = list(),
                                            safe = TRUE,
@@ -233,9 +215,6 @@ marktstammdaten_stromverbrauch <- function(params = list(),
 #' }
 #'
 #' @return A tibble with MaStR entries.
-#'
-#' Use `bunddev_parameters("marktstammdaten")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 marktstammdaten_gaserzeugung <- function(params = list(),
                                          safe = TRUE,
@@ -271,9 +250,6 @@ marktstammdaten_gaserzeugung <- function(params = list(),
 #' }
 #'
 #' @return A tibble with MaStR entries.
-#'
-#' Use `bunddev_parameters("marktstammdaten")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 marktstammdaten_gasverbrauch <- function(params = list(),
                                          safe = TRUE,

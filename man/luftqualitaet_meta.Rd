@@ -15,9 +15,6 @@ luftqualitaet_meta(params = list(), safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with combined metadata.
-
-Use \code{bunddev_parameters("luftqualitaet")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List combined metadata

@@ -15,9 +15,6 @@ luftqualitaet_networks(params = list(), safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with network metadata.
-
-Use \code{bunddev_parameters("luftqualitaet")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List networks

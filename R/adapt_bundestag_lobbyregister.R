@@ -18,9 +18,6 @@
 #' }
 #'
 #' @return A tibble with search metadata and result entries.
-#'
-#' Use `bunddev_parameters("bundestag_lobbyregister")` to see the currently
-#' valid parameters if the API has changed.
 #' @export
 bundestag_lobbyregister_search <- function(q = NULL,
                                            sort = NULL,

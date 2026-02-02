@@ -21,36 +21,11 @@ diga_device_definitions(
 
 \item{flatten}{Logical; drop nested list columns.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
-}
-\value{
-A tibble with FHIR entries.
-
-Use \code{bunddev_parameters("diga")} to see the currently valid parameters if
-the API has changed.
+\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to expand list-columns into multiple rows.}
 }
 \description{
 List DiGA device definitions
 }
-\details{
-Returns FHIR device definitions from the DiGA directory. The API requires a
-bearer token which can be extracted from https://diga.bfarm.de/de/verzeichnis
-(meta name "host-app/config/environment" -> APP -> fhir -> token).
-Official docs: https://github.com/AndreasFischer1985/diga-api.
-
-Configure authentication via \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} or set the
-\code{DIGA_BEARER_TOKEN} environment variable directly.
-}
 \examples{
-\dontrun{
-# Recommended: use bunddev_auth_set
-Sys.setenv(DIGA_BEARER_TOKEN = "<token>")
-bunddev_auth_set("diga", type = "api_key", env_var = "DIGA_BEARER_TOKEN", scheme = "Bearer")
-diga_device_definitions()
-}
-
-}
-\seealso{
-\code{\link[=bunddev_auth_set]{bunddev_auth_set()}} to configure authentication.
+\dontrun{dig_device_definitions()}
 }

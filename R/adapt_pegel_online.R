@@ -22,9 +22,6 @@
 #' }
 #'
 #' @return A tibble with station metadata.
-#'
-#' Use `bunddev_parameters("pegel_online")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 pegel_online_stations <- function(params = list(),
                                   safe = TRUE,
@@ -72,9 +69,6 @@ pegel_online_stations <- function(params = list(),
 #' }
 #'
 #' @return A tibble with station metadata.
-#'
-#' Use `bunddev_parameters("pegel_online")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 pegel_online_station <- function(station,
                                  params = list(),
@@ -122,9 +116,6 @@ pegel_online_station <- function(station,
 #' }
 #'
 #' @return A tibble with water metadata.
-#'
-#' Use `bunddev_parameters("pegel_online")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 pegel_online_waters <- function(params = list(),
                                 safe = TRUE,
@@ -170,9 +161,6 @@ pegel_online_waters <- function(params = list(),
 #' }
 #'
 #' @return A tibble with timeseries metadata.
-#'
-#' Use `bunddev_parameters("pegel_online")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 pegel_online_timeseries <- function(station,
                                     timeseries,
@@ -222,9 +210,6 @@ pegel_online_timeseries <- function(station,
 #' @return A tibble with measurements.
 #'
 #' Includes `timestamp_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("pegel_online")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 pegel_online_measurements <- function(station,
                                       timeseries,
@@ -278,9 +263,6 @@ pegel_online_measurements <- function(station,
 #' }
 #'
 #' @return A tibble with raw PNG bytes.
-#'
-#' Use `bunddev_parameters("pegel_online")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 pegel_online_measurements_plot <- function(station,
                                            timeseries,

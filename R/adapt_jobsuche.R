@@ -29,9 +29,6 @@
 #' @return A tibble with job listings.
 #'
 #' Includes parsed POSIXct columns (suffix `_time`) in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("jobsuche")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 jobsuche_search <- function(params = list(),
                             safe = TRUE,
@@ -77,9 +74,6 @@ jobsuche_search <- function(params = list(),
 #' @return A tibble with job listings.
 #'
 #' Includes parsed POSIXct columns (suffix `_time`) in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("jobsuche")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 jobsuche_search_app <- function(params = list(),
                                 safe = TRUE,
@@ -119,9 +113,6 @@ jobsuche_search_app <- function(params = list(),
 #' }
 #'
 #' @return A tibble with raw logo bytes.
-#'
-#' Use `bunddev_parameters("jobsuche")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 jobsuche_logo <- function(hash_id, safe = TRUE, refresh = FALSE) {
   response <- jobsuche_request(

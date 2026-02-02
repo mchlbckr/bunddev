@@ -25,9 +25,6 @@ destatis_catalogue_cubes(
 }
 \value{
 A tibble with the raw response payload.
-
-Use \code{bunddev_parameters("destatis")} to see the currently valid parameters if
-the API has changed.
 }
 \description{
 List Destatis cubes

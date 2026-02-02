@@ -26,9 +26,6 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with DIP response metadata.
-
-Use \code{bunddev_parameters("dip_bundestag")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 List DIP Aktivitäten

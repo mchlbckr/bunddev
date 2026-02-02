@@ -1,3 +1,6 @@
+#' @importFrom stats setNames
+NULL
+
 #' List OpenAPI endpoints for an API
 #'
 #' @param id Registry id.

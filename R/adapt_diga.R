@@ -2,7 +2,7 @@
 #'
 #' Functions to call the DiGA API endpoints.
 #'
-#' @docType package
+#' @keywords internal
 #' @name adapt_diga
 NULL
 

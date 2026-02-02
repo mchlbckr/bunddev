@@ -15,9 +15,6 @@ bundesrat_mitglieder(view = "renderXml", safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with member entries.
-
-Use \code{bunddev_parameters("bundesrat")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List Bundesrat members

@@ -24,9 +24,6 @@
 #' }
 #'
 #' @return A tibble of timestamps.
-#'
-#' Use `bunddev_parameters("smard")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 smard_indices <- function(filter, region = "DE", resolution = "hour", safe = TRUE, refresh = FALSE) {
   path <- sprintf("/chart_data/%s/%s/index_%s.json", filter, region, resolution)
@@ -66,9 +63,6 @@ smard_indices <- function(filter, region = "DE", resolution = "hour", safe = TRU
 #' @return A tibble of time series values.
 #'
 #' Includes a `time` column with POSIXct timestamps in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("smard")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 smard_timeseries <- function(filter, region = "DE", resolution = "hour", timestamp,
                              safe = TRUE, refresh = FALSE) {
@@ -120,9 +114,6 @@ smard_timeseries <- function(filter, region = "DE", resolution = "hour", timesta
 #' @return A tibble of table values.
 #'
 #' Includes a `time` column with POSIXct timestamps in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("smard")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 smard_table <- function(filter, region = "DE", timestamp, safe = TRUE, refresh = FALSE) {
   timestamp_ms <- bunddev_timestamp_to_ms(timestamp)

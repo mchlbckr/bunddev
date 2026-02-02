@@ -13,9 +13,6 @@ bundestag_conferences(safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with conference fields.
-
-Use \code{bunddev_parameters("bundestag")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Bundestag conferences overview

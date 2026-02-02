@@ -23,9 +23,6 @@
 #' @return A tibble with homepage items.
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("tagesschau")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -59,9 +56,6 @@ tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
 #' @return A tibble with news items.
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("tagesschau")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 tagesschau_news <- function(regions = NULL, ressort = NULL,
                             flatten = FALSE, flatten_mode = "json") {
@@ -105,9 +99,6 @@ tagesschau_news <- function(regions = NULL, ressort = NULL,
 #' @return A tibble with search results.
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("tagesschau")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 tagesschau_search <- function(search_text = NULL,
                               page_size = NULL,
@@ -154,9 +145,6 @@ tagesschau_search <- function(search_text = NULL,
 #' @return A tibble with channels.
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("tagesschau")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 tagesschau_channels <- function(flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(

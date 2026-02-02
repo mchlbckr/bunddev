@@ -1,1 +1,14 @@
-adapt_dwd.R
+^\.DS_Store$
+^\.claude$
+^\.notes$
+^\.gitignore$
+^vignettes/\.gitignore$
+^\.Renviron$
+^\.git$
+^\.\.Rcheck$
+^doc$
+^Meta$
+^LICENSE\.md$
+^README\.Rmd$
+^ROADMAP\.md$
+^.*\.png$

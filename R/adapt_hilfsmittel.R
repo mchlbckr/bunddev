@@ -14,9 +14,6 @@
 #' }
 #'
 #' @return A tibble with tree nodes.
-#'
-#' Use `bunddev_parameters("hilfsmittel")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
   response <- hilfsmittel_request(
@@ -49,9 +46,6 @@ hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with product group details.
-#'
-#' Use `bunddev_parameters("hilfsmittel")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 hilfsmittel_produktgruppe <- function(id,
                                       safe = TRUE,
@@ -87,9 +81,6 @@ hilfsmittel_produktgruppe <- function(id,
 #' }
 #'
 #' @return A tibble with subgroup details.
-#'
-#' Use `bunddev_parameters("hilfsmittel")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 hilfsmittel_untergruppe <- function(id,
                                     safe = TRUE,
@@ -125,9 +116,6 @@ hilfsmittel_untergruppe <- function(id,
 #' }
 #'
 #' @return A tibble with product type details.
-#'
-#' Use `bunddev_parameters("hilfsmittel")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 hilfsmittel_produktart <- function(id,
                                    safe = TRUE,
@@ -162,9 +150,6 @@ hilfsmittel_produktart <- function(id,
 #' }
 #'
 #' @return A tibble with products.
-#'
-#' Use `bunddev_parameters("hilfsmittel")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 hilfsmittel_produkte <- function(safe = TRUE,
                                  refresh = FALSE,
@@ -199,9 +184,6 @@ hilfsmittel_produkte <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with product details.
-#'
-#' Use `bunddev_parameters("hilfsmittel")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 hilfsmittel_produkt <- function(id,
                                 safe = TRUE,
@@ -237,9 +219,6 @@ hilfsmittel_produkt <- function(id,
 #' }
 #'
 #' @return A tibble with Nachweisschema details.
-#'
-#' Use `bunddev_parameters("hilfsmittel")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 hilfsmittel_nachweisschema <- function(id,
                                        safe = TRUE,

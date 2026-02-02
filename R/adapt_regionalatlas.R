@@ -43,9 +43,6 @@
 #' }
 #'
 #' @return A tibble with regional indicator data.
-#'
-#' Use `bunddev_parameters("regionalatlas")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 regionalatlas_query <- function(table,
                                 where = "1=1",

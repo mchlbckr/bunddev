@@ -17,9 +17,6 @@ dashboard_deutschland_indicators(ids = NULL, safe = TRUE, refresh = FALSE)
 A tibble with indicator data.
 
 Includes \code{date_time} as POSIXct in Europe/Berlin.
-
-Use \code{bunddev_parameters("dashboard_deutschland")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Query Dashboard Deutschland indicators

@@ -25,9 +25,6 @@ pegel_online_timeseries(
 }
 \value{
 A tibble with timeseries metadata.
-
-Use \code{bunddev_parameters("pegel_online")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Pegel-Online timeseries metadata

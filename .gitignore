@@ -5,3 +5,7 @@
 Meta/
 adapt_dwd.R
 adapt_entgeltatlas.R
+.Renviron
+/doc/
+/Meta/
+*.bak

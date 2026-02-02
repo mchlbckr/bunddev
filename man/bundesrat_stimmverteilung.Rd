@@ -19,9 +19,6 @@ bundesrat_stimmverteilung(
 }
 \value{
 A tibble with voting distribution metadata.
-
-Use \code{bunddev_parameters("bundesrat")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Bundesrat voting distribution

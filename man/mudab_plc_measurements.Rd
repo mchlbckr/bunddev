@@ -25,9 +25,6 @@ mudab_plc_measurements(
 }
 \value{
 A tibble with PLC measurements.
-
-Use \code{bunddev_parameters("mudab")} to see the currently valid parameters if
-the API has changed.
 }
 \description{
 List MUDAB PLC measurement values

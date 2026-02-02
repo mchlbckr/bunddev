@@ -31,9 +31,6 @@
 #' @return A tibble with training offers.
 #'
 #' Includes `aktualisierungsdatum_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("ausbildungssuche")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 ausbildungssuche_search <- function(params = list(),
                                     safe = TRUE,
@@ -81,9 +78,6 @@ ausbildungssuche_search <- function(params = list(),
 #' }
 #'
 #' @return A tibble with offer details.
-#'
-#' Use `bunddev_parameters("ausbildungssuche")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 ausbildungssuche_details <- function(offer_id, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(

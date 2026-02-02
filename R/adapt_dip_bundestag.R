@@ -26,9 +26,6 @@
 #' }
 #'
 #' @return A tibble with DIP response metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_vorgang_list <- function(params = list(),
                                        safe = TRUE,
@@ -55,9 +52,6 @@ dip_bundestag_vorgang_list <- function(params = list(),
 #' }
 #'
 #' @return A tibble with Vorgang metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_vorgang <- function(vorgang_id,
                                   params = list(),
@@ -90,9 +84,6 @@ dip_bundestag_vorgang <- function(vorgang_id,
 #' }
 #'
 #' @return A tibble with DIP response metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_vorgangsposition_list <- function(params = list(),
                                                 safe = TRUE,
@@ -116,9 +107,6 @@ dip_bundestag_vorgangsposition_list <- function(params = list(),
 #' }
 #'
 #' @return A tibble with Vorgangsposition metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_vorgangsposition <- function(vorgangsposition_id,
                                            params = list(),
@@ -148,9 +136,6 @@ dip_bundestag_vorgangsposition <- function(vorgangsposition_id,
 #' }
 #'
 #' @return A tibble with DIP response metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_drucksache_list <- function(params = list(),
                                           safe = TRUE,
@@ -174,9 +159,6 @@ dip_bundestag_drucksache_list <- function(params = list(),
 #' }
 #'
 #' @return A tibble with Drucksache metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_drucksache <- function(drucksache_id,
                                      params = list(),
@@ -206,9 +188,6 @@ dip_bundestag_drucksache <- function(drucksache_id,
 #' }
 #'
 #' @return A tibble with DIP response metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_drucksache_text_list <- function(params = list(),
                                                safe = TRUE,
@@ -232,9 +211,6 @@ dip_bundestag_drucksache_text_list <- function(params = list(),
 #' }
 #'
 #' @return A tibble with Drucksache text metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_drucksache_text <- function(drucksache_id,
                                           params = list(),
@@ -264,9 +240,6 @@ dip_bundestag_drucksache_text <- function(drucksache_id,
 #' }
 #'
 #' @return A tibble with DIP response metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_plenarprotokoll_list <- function(params = list(),
                                                safe = TRUE,
@@ -290,9 +263,6 @@ dip_bundestag_plenarprotokoll_list <- function(params = list(),
 #' }
 #'
 #' @return A tibble with Plenarprotokoll metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_plenarprotokoll <- function(plenarprotokoll_id,
                                           params = list(),
@@ -322,9 +292,6 @@ dip_bundestag_plenarprotokoll <- function(plenarprotokoll_id,
 #' }
 #'
 #' @return A tibble with DIP response metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_plenarprotokoll_text_list <- function(params = list(),
                                                     safe = TRUE,
@@ -348,9 +315,6 @@ dip_bundestag_plenarprotokoll_text_list <- function(params = list(),
 #' }
 #'
 #' @return A tibble with Plenarprotokoll text metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_plenarprotokoll_text <- function(plenarprotokoll_id,
                                                params = list(),
@@ -380,9 +344,6 @@ dip_bundestag_plenarprotokoll_text <- function(plenarprotokoll_id,
 #' }
 #'
 #' @return A tibble with DIP response metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_aktivitaet_list <- function(params = list(),
                                           safe = TRUE,
@@ -406,9 +367,6 @@ dip_bundestag_aktivitaet_list <- function(params = list(),
 #' }
 #'
 #' @return A tibble with Aktivität metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_aktivitaet <- function(aktivitaet_id,
                                      params = list(),
@@ -438,9 +396,6 @@ dip_bundestag_aktivitaet <- function(aktivitaet_id,
 #' }
 #'
 #' @return A tibble with DIP response metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_person_list <- function(params = list(),
                                       safe = TRUE,
@@ -464,9 +419,6 @@ dip_bundestag_person_list <- function(params = list(),
 #' }
 #'
 #' @return A tibble with person metadata.
-#'
-#' Use `bunddev_parameters("dip_bundestag")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dip_bundestag_person <- function(person_id,
                                  params = list(),

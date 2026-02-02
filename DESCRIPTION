@@ -1,6 +1,6 @@
 Package: bunddev
 Title: Discover and Call bund.dev APIs
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Michael", "Bücker", , "michael.buecker@fh-muenster.de", role = c("aut", "cre"))
 Author: Michael Bücker [aut, cre]
@@ -35,4 +35,4 @@ Imports:
     tools,
     xml2,
     yaml
-VignetteBuilder: knitr
+VignetteBuilder: knitr, rmarkdown

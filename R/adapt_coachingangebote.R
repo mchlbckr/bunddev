@@ -40,9 +40,6 @@
 #' @return A tibble with coaching offers.
 #'
 #' Includes `gueltig_von_time`, `gueltig_bis_time`, and `aktualisierungsdatum_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("coachingangebote")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 coachingangebote_search <- function(params = list(),
                                     safe = TRUE,

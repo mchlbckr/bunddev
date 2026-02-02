@@ -15,9 +15,6 @@
 #' }
 #'
 #' @return A tibble with endpoint metadata.
-#'
-#' Use `bunddev_parameters("bundesrat")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundesrat_startlist <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -46,9 +43,6 @@ bundesrat_startlist <- function(view = "renderXml", safe = TRUE, refresh = FALSE
 #' }
 #'
 #' @return A tibble with news items.
-#'
-#' Use `bunddev_parameters("bundesrat")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundesrat_aktuelles <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -77,9 +71,6 @@ bundesrat_aktuelles <- function(view = "renderXml", safe = TRUE, refresh = FALSE
 #' }
 #'
 #' @return A tibble with dates and events.
-#'
-#' Use `bunddev_parameters("bundesrat")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundesrat_termine <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -108,9 +99,6 @@ bundesrat_termine <- function(view = "renderXml", safe = TRUE, refresh = FALSE) 
 #' }
 #'
 #' @return A tibble with plenum compact entries.
-#'
-#' Use `bunddev_parameters("bundesrat")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundesrat_plenum_kompakt <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -139,9 +127,6 @@ bundesrat_plenum_kompakt <- function(view = "renderXml", safe = TRUE, refresh = 
 #' }
 #'
 #' @return A tibble with current plenum session entries.
-#'
-#' Use `bunddev_parameters("bundesrat")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundesrat_plenum_aktuelle_sitzung <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -170,9 +155,6 @@ bundesrat_plenum_aktuelle_sitzung <- function(view = "renderXml", safe = TRUE, r
 #' }
 #'
 #' @return A tibble with plenum entries.
-#'
-#' Use `bunddev_parameters("bundesrat")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundesrat_plenum_chronologisch <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -201,9 +183,6 @@ bundesrat_plenum_chronologisch <- function(view = "renderXml", safe = TRUE, refr
 #' }
 #'
 #' @return A tibble with upcoming session metadata.
-#'
-#' Use `bunddev_parameters("bundesrat")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundesrat_plenum_naechste_sitzungen <- function(view = "render[iOSDetailsWithoutInnerDate]",
                                                 safe = TRUE,
@@ -234,9 +213,6 @@ bundesrat_plenum_naechste_sitzungen <- function(view = "render[iOSDetailsWithout
 #' }
 #'
 #' @return A tibble with member entries.
-#'
-#' Use `bunddev_parameters("bundesrat")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundesrat_mitglieder <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -265,9 +241,6 @@ bundesrat_mitglieder <- function(view = "renderXml", safe = TRUE, refresh = FALS
 #' }
 #'
 #' @return A tibble with voting distribution metadata.
-#'
-#' Use `bunddev_parameters("bundesrat")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundesrat_stimmverteilung <- function(view = "render[iOSDetailsWithoutInnerDate]",
                                       safe = TRUE,
@@ -298,9 +271,6 @@ bundesrat_stimmverteilung <- function(view = "render[iOSDetailsWithoutInnerDate]
 #' }
 #'
 #' @return A tibble with presidium entries.
-#'
-#' Use `bunddev_parameters("bundesrat")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundesrat_praesidium <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(

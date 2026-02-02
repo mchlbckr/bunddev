@@ -25,9 +25,6 @@ smard_indices(
 }
 \value{
 A tibble of timestamps.
-
-Use \code{bunddev_parameters("smard")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List available SMARD timestamps

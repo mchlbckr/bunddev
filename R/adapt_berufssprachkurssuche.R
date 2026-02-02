@@ -39,9 +39,6 @@
 #' @return A tibble with course offers.
 #'
 #' Includes `beginn_time`, `ende_time`, and `anmeldeschluss_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("berufssprachkurssuche")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 berufssprachkurssuche_search <- function(params = list(),
                                          safe = TRUE,

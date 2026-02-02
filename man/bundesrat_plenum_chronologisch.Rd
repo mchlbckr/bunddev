@@ -19,9 +19,6 @@ bundesrat_plenum_chronologisch(
 }
 \value{
 A tibble with plenum entries.
-
-Use \code{bunddev_parameters("bundesrat")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List Bundesrat plenum entries in chronological order

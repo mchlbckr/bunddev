@@ -6,9 +6,15 @@
 \usage{
 bunddev_call(
   api,
-  operation_id,
+  operation_id = NULL,
   params = list(),
-  parse = c("json", "text", "raw"),
+  path = NULL,
+  method = NULL,
+  parse = c("json", "text", "raw", "xml"),
+  base_url = NULL,
+  body = NULL,
+  body_type = c("json", "form"),
+  headers = NULL,
   safe = TRUE,
   refresh = FALSE
 )
@@ -16,11 +22,23 @@ bunddev_call(
 \arguments{
 \item{api}{Registry id.}
 
-\item{operation_id}{OpenAPI operationId.}
+\item{operation_id}{OpenAPI operationId (use this OR path+method).}
 
-\item{params}{List of parameters.}
+\item{params}{List of query parameters.}
+
+\item{path}{API path (use with method instead of operation_id).}
+
+\item{method}{HTTP method (use with path instead of operation_id).}
 
 \item{parse}{Response parsing mode.}
+
+\item{base_url}{Optional base URL override.}
+
+\item{body}{Optional request body (for POST/PUT requests).}
+
+\item{body_type}{Body encoding type ("json" or "form").}
+
+\item{headers}{Optional named list of custom HTTP headers.}
 
 \item{safe}{Logical; apply throttling and caching.}
 
@@ -33,8 +51,13 @@ Parsed response.
 Call an API operation
 }
 \details{
-This is the low-level OpenAPI caller. It resolves an \code{operation_id} from the
-cached OpenAPI spec, fills path parameters from \code{params}, applies auth (if
+This is the low-level OpenAPI caller. It supports two modes:
+\itemize{
+\item Use \code{operation_id} to lookup endpoints by their OpenAPI operationId
+\item Use \code{path} + \code{method} for APIs without operationIds
+}
+
+The function fills path parameters from \code{params}, applies auth (if
 configured), and optionally caches GET responses when \code{safe = TRUE}.
 
 Use \code{\link[=bunddev_parameters]{bunddev_parameters()}} and \code{\link[=bunddev_parameter_values]{bunddev_parameter_values()}} to discover valid

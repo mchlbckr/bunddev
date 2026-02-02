@@ -11,6 +11,7 @@
 #' bunddev_timestamp_to_ms(as.POSIXct("2024-01-01 00:00:00", tz = "Europe/Berlin"))
 #'
 #' @return Numeric timestamp in milliseconds.
+#' @export
 bunddev_timestamp_to_ms <- function(value, tz = "Europe/Berlin") {
   if (length(value) != 1) {
     cli::cli_abort("Timestamp must be length 1.")
@@ -40,6 +41,7 @@ bunddev_timestamp_to_ms <- function(value, tz = "Europe/Berlin") {
 #' bunddev_ms_to_posix(1704067200000, tz = "Europe/Berlin")
 #'
 #' @return POSIXct timestamp.
+#' @export
 bunddev_ms_to_posix <- function(value, tz = "Europe/Berlin") {
   if (is.null(value)) {
     return(as.POSIXct(NA_real_, origin = "1970-01-01", tz = tz))

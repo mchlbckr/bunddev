@@ -29,9 +29,6 @@
 #' }
 #'
 #' @return A tibble with search metadata and result payload.
-#'
-#' Use `bunddev_parameters("ddb")` to see the currently valid parameters if the
-#' API has changed.
 #' @export
 ddb_search <- function(query,
                        params = list(),
@@ -78,9 +75,6 @@ ddb_search <- function(query,
 #' }
 #'
 #' @return A tibble with institution entries.
-#'
-#' Use `bunddev_parameters("ddb")` to see the currently valid parameters if the
-#' API has changed.
 #' @export
 ddb_institutions <- function(params = list(),
                              safe = TRUE,
@@ -117,9 +111,6 @@ ddb_institutions <- function(params = list(),
 #' }
 #'
 #' @return A tibble with sector entries.
-#'
-#' Use `bunddev_parameters("ddb")` to see the currently valid parameters if the
-#' API has changed.
 #' @export
 ddb_institution_sectors <- function(safe = TRUE, refresh = FALSE) {
   response <- ddb_request(

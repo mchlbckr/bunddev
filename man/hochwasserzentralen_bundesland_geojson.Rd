@@ -26,9 +26,6 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with GeoJSON metadata and feature list-columns.
-
-Use \code{bunddev_parameters("hochwasserzentralen")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Get Bundesland GeoJSON boundaries

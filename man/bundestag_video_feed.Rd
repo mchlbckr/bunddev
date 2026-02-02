@@ -15,9 +15,6 @@ bundestag_video_feed(content_id, safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with video feed fields.
-
-Use \code{bunddev_parameters("bundestag")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get a Bundestag video feed entry

@@ -24,11 +24,6 @@
 #'
 #' Includes forecast time columns (`forecast_start_time`, `forecast1_start_time`,
 #' `forecast2_start_time`) as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
-#' if the API has changed.
-#'
-#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_station_overview <- function(station_ids,
                                        safe = TRUE,
@@ -82,11 +77,6 @@ dwd_station_overview <- function(station_ids,
 #' @return A tibble with crowd reports.
 #'
 #' Includes `timestamp_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
-#' if the API has changed.
-#'
-#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_crowd_reports <- function(safe = TRUE,
                                     refresh = FALSE,
@@ -138,11 +128,6 @@ dwd_crowd_reports <- function(safe = TRUE,
 #' @return A tibble with nowcast warnings.
 #'
 #' Includes `start_time` and `end_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
-#' if the API has changed.
-#'
-#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_warnings_nowcast <- function(language = c("de", "en"),
                                  safe = TRUE,
@@ -195,11 +180,6 @@ dwd_warnings_nowcast <- function(language = c("de", "en"),
 #' @return A tibble with municipality warnings.
 #'
 #' Includes `start_time` and `end_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
-#' if the API has changed.
-#'
-#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_municipality_warnings <- function(language = c("de", "en"),
                                       safe = TRUE,
@@ -250,11 +230,6 @@ dwd_municipality_warnings <- function(language = c("de", "en"),
 #' }
 #'
 #' @return A tibble with coastal warnings.
-#'
-#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
-#' if the API has changed.
-#'
-#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_coast_warnings <- function(language = c("de", "en"),
                                safe = TRUE,
@@ -301,11 +276,6 @@ dwd_coast_warnings <- function(language = c("de", "en"),
 #' }
 #'
 #' @return A tibble with the warning text.
-#'
-#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
-#' if the API has changed.
-#'
-#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(
@@ -337,11 +307,6 @@ dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with the forecast text.
-#'
-#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
-#' if the API has changed.
-#'
-#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(
@@ -373,11 +338,6 @@ dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with avalanche data.
-#'
-#' Use `bunddev_parameters("dwd")` to see the currently valid parameters
-#' if the API has changed.
-#'
-#' Timestamps are interpreted in the Europe/Berlin timezone.
 #' @export
 dwd_avalanche_warnings <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(

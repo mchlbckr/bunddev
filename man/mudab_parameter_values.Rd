@@ -28,9 +28,6 @@ A tibble with parameter values.
 
 Includes \code{datetime_time} as POSIXct in Europe/Berlin when date/time fields are
 present.
-
-Use \code{bunddev_parameters("mudab")} to see the currently valid parameters if
-the API has changed.
 }
 \description{
 List MUDAB parameter values

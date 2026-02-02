@@ -17,9 +17,6 @@ dip_bundestag_person(person_id, params = list(), safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with person metadata.
-
-Use \code{bunddev_parameters("dip_bundestag")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Get a DIP Person

@@ -25,9 +25,6 @@ mudab_plc_stations(
 }
 \value{
 A tibble with PLC stations.
-
-Use \code{bunddev_parameters("mudab")} to see the currently valid parameters if
-the API has changed.
 }
 \description{
 List MUDAB PLC stations

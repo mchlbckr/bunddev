@@ -15,9 +15,6 @@ luftqualitaet_transgressiontypes(params = list(), safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with transgression type metadata.
-
-Use \code{bunddev_parameters("luftqualitaet")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List transgression types

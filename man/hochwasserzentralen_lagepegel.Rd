@@ -13,9 +13,6 @@ hochwasserzentralen_lagepegel(safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with pegel coordinates.
-
-Use \code{bunddev_parameters("hochwasserzentralen")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 List flood gauge locations

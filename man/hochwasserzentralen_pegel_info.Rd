@@ -15,9 +15,6 @@ hochwasserzentralen_pegel_info(pegelnummer, safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with pegel metadata.
-
-Use \code{bunddev_parameters("hochwasserzentralen")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Get flood gauge information

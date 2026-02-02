@@ -26,9 +26,6 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with institution entries.
-
-Use \code{bunddev_parameters("ddb")} to see the currently valid parameters if the
-API has changed.
 }
 \description{
 List DDB institutions

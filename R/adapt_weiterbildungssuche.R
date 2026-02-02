@@ -30,9 +30,6 @@
 #' }
 #'
 #' @return A tibble with course offerings.
-#'
-#' Use `bunddev_parameters("weiterbildungssuche")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 weiterbildungssuche_search <- function(sw = NULL,
                                        orte = NULL,

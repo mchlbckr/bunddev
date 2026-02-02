@@ -25,9 +25,6 @@ mudab_stations(
 }
 \value{
 A tibble with stations.
-
-Use \code{bunddev_parameters("mudab")} to see the currently valid parameters if
-the API has changed.
 }
 \description{
 List MUDAB stations

@@ -46,7 +46,7 @@ adapters by implementing tidy helpers that wrap `bunddev_call_tidy()`.
 
 ## Installation
 
-You can install the development version of bunddev like so:
+You can install bunddev from GitHub:
 
 ``` r
 remotes::install_github("mchlbckr/bunddev")

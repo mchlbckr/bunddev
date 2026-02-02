@@ -30,9 +30,6 @@ Region-level results include a \code{region} column and a \code{note} column for
 holiday-specific hints.
 
 Includes \code{date_time} as POSIXct in Europe/Berlin.
-
-Use \code{bunddev_parameters("feiertage")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List German public holidays

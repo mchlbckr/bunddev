@@ -28,9 +28,6 @@ expand list-columns into multiple rows.}
 A tibble with course offers.
 
 Includes \code{beginn_time}, \code{ende_time}, and \code{anmeldeschluss_time} as POSIXct in Europe/Berlin.
-
-Use \code{bunddev_parameters("berufssprachkurssuche")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Search language course offers
@@ -41,19 +38,23 @@ can be done via OAuth2 client credentials or by sending the public client id
 as \code{X-API-Key} (clientId \verb{bd24f42e-ad0b-4005-b834-23bb6800dc6c}). Official
 docs: https://berufssprachkurssuche.api.bund.dev/.
 
-This adapter uses the \code{X-API-Key} header by default. Set it via
-\code{\link[=bunddev_auth_set]{bunddev_auth_set()}} and \code{BERUFSSPRACHKURSSUCHE_API_KEY}. If you also set
-\code{BERUFSSPRACHKURSSUCHE_CLIENT_SECRET}, the adapter requests an OAuth token from
-\verb{https://rest.arbeitsagentur.de/oauth/gettoken_cc} and sends it as
-\code{OAuthAccessToken}.
+\strong{Recommended:} Configure OAuth2 via \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} with type \code{"oauth2"}.
+If you provide a client secret, it fetches an OAuth token; otherwise it falls
+back to sending the client ID as \code{X-API-Key}.
 }
 \examples{
 \dontrun{
+# Recommended: OAuth2 configuration
 Sys.setenv(
   BERUFSSPRACHKURSSUCHE_API_KEY = "bd24f42e-ad0b-4005-b834-23bb6800dc6c",
   BERUFSSPRACHKURSSUCHE_CLIENT_SECRET = "<client-secret>"
 )
-bunddev_auth_set("berufssprachkurssuche", type = "api_key", env_var = "BERUFSSPRACHKURSSUCHE_API_KEY")
+bunddev_auth_set("berufssprachkurssuche",
+  type = "oauth2",
+  oauth_url = "https://rest.arbeitsagentur.de/oauth/gettoken_cc",
+  env_var = "BERUFSSPRACHKURSSUCHE_API_KEY",
+  oauth_secret_env = "BERUFSSPRACHKURSSUCHE_CLIENT_SECRET",
+  oauth_default_id = "bd24f42e-ad0b-4005-b834-23bb6800dc6c")
 berufssprachkurssuche_search(params = list(page = 0, systematiken = "MC"))
 }
 

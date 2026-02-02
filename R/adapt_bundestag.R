@@ -14,9 +14,6 @@
 #' }
 #'
 #' @return A tibble with article fields.
-#'
-#' Use `bunddev_parameters("bundestag")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundestag_article <- function(article_id, safe = TRUE, refresh = FALSE) {
   response <- bundestag_request(
@@ -44,9 +41,6 @@ bundestag_article <- function(article_id, safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with speaker fields.
-#'
-#' Use `bunddev_parameters("bundestag")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundestag_speaker <- function(safe = TRUE, refresh = FALSE) {
   response <- bundestag_request(
@@ -73,9 +67,6 @@ bundestag_speaker <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with conference fields.
-#'
-#' Use `bunddev_parameters("bundestag")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundestag_conferences <- function(safe = TRUE, refresh = FALSE) {
   response <- bundestag_request(
@@ -102,9 +93,6 @@ bundestag_conferences <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with committee entries.
-#'
-#' Use `bunddev_parameters("bundestag")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundestag_ausschuesse <- function(safe = TRUE, refresh = FALSE) {
   response <- bundestag_request(
@@ -132,9 +120,6 @@ bundestag_ausschuesse <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with committee details.
-#'
-#' Use `bunddev_parameters("bundestag")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundestag_ausschuss <- function(ausschuss_id, safe = TRUE, refresh = FALSE) {
   response <- bundestag_request(
@@ -162,9 +147,6 @@ bundestag_ausschuss <- function(ausschuss_id, safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with member entries.
-#'
-#' Use `bunddev_parameters("bundestag")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundestag_mdb_index <- function(safe = TRUE, refresh = FALSE) {
   response <- bundestag_request(
@@ -192,9 +174,6 @@ bundestag_mdb_index <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with biography fields.
-#'
-#' Use `bunddev_parameters("bundestag")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundestag_mdb_bio <- function(mdb_id, safe = TRUE, refresh = FALSE) {
   response <- bundestag_request(
@@ -223,9 +202,6 @@ bundestag_mdb_bio <- function(mdb_id, safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with video feed fields.
-#'
-#' Use `bunddev_parameters("bundestag")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 bundestag_video_feed <- function(content_id, safe = TRUE, refresh = FALSE) {
   response <- bundestag_request(

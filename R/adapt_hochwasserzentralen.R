@@ -15,9 +15,6 @@
 #' }
 #'
 #' @return A tibble with pegel metadata.
-#'
-#' Use `bunddev_parameters("hochwasserzentralen")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 hochwasserzentralen_pegel_info <- function(pegelnummer, safe = TRUE, refresh = FALSE) {
   params <- list(pgnr = pegelnummer)
@@ -48,9 +45,6 @@ hochwasserzentralen_pegel_info <- function(pegelnummer, safe = TRUE, refresh = F
 #' }
 #'
 #' @return A tibble with Bundesland metadata.
-#'
-#' Use `bunddev_parameters("hochwasserzentralen")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
   response <- hochwasserzentralen_request(
@@ -80,9 +74,6 @@ hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with Bundesland metadata.
-#'
-#' Use `bunddev_parameters("hochwasserzentralen")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refresh = FALSE) {
   params <- list(id = bundesland_id)
@@ -113,9 +104,6 @@ hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refr
 #' }
 #'
 #' @return A tibble with pegel coordinates.
-#'
-#' Use `bunddev_parameters("hochwasserzentralen")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 hochwasserzentralen_lagepegel <- function(safe = TRUE, refresh = FALSE) {
   response <- hochwasserzentralen_request(
@@ -148,9 +136,6 @@ hochwasserzentralen_lagepegel <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with GeoJSON metadata and feature list-columns.
-#'
-#' Use `bunddev_parameters("hochwasserzentralen")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 hochwasserzentralen_bundesland_geojson <- function(version,
                                                    safe = TRUE,

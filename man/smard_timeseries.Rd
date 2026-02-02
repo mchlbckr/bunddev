@@ -32,9 +32,6 @@ Timestamps are interpreted in the Europe/Berlin timezone.}
 A tibble of time series values.
 
 Includes a \code{time} column with POSIXct timestamps in Europe/Berlin.
-
-Use \code{bunddev_parameters("smard")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Fetch SMARD timeseries data

@@ -26,9 +26,6 @@
 #' holiday-specific hints.
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("feiertage")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 feiertage_list <- function(jahr = NULL,
                            nur_land = NULL,

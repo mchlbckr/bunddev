@@ -16,9 +16,6 @@
 #' }
 #'
 #' @return A tibble with dashboard entries.
-#'
-#' Use `bunddev_parameters("dashboard_deutschland")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dashboard_deutschland_get <- function(safe = TRUE,
                                       refresh = FALSE,
@@ -62,9 +59,6 @@ dashboard_deutschland_get <- function(safe = TRUE,
 #' @return A tibble with indicator data.
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("dashboard_deutschland")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dashboard_deutschland_indicators <- function(ids = NULL,
                                              safe = TRUE,
@@ -107,9 +101,6 @@ dashboard_deutschland_indicators <- function(ids = NULL,
 #' }
 #'
 #' @return A tibble with GeoJSON metadata.
-#'
-#' Use `bunddev_parameters("dashboard_deutschland")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 dashboard_deutschland_geo <- function(safe = TRUE,
                                       refresh = FALSE,

@@ -39,9 +39,6 @@
 #' }
 #'
 #' @return A tibble with charging station records.
-#'
-#' Use `bunddev_parameters("ladestationen")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 ladestationen_query <- function(params = list(),
                                 safe = TRUE,

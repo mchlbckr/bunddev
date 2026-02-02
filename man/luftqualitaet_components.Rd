@@ -15,9 +15,6 @@ luftqualitaet_components(params = list(), safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with component metadata.
-
-Use \code{bunddev_parameters("luftqualitaet")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List components

@@ -16,9 +16,6 @@ expand list-columns into multiple rows.}
 A tibble with homepage items.
 
 Includes \code{date_time} as POSIXct in Europe/Berlin.
-
-Use \code{bunddev_parameters("tagesschau")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Fetch Tagesschau homepage items

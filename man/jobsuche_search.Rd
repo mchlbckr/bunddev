@@ -28,9 +28,6 @@ expand list-columns into multiple rows.}
 A tibble with job listings.
 
 Includes parsed POSIXct columns (suffix \verb{_time}) in Europe/Berlin.
-
-Use \code{bunddev_parameters("jobsuche")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Search Jobsuche listings

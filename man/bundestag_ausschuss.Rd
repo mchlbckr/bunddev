@@ -15,9 +15,6 @@ bundestag_ausschuss(ausschuss_id, safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with committee details.
-
-Use \code{bunddev_parameters("bundestag")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Bundestag committee details

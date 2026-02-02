@@ -15,9 +15,6 @@ hilfsmittel_tree(level, safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with tree nodes.
-
-Use \code{bunddev_parameters("hilfsmittel")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List Hilfsmittel tree nodes

@@ -25,9 +25,6 @@ mudab_parameters_biologie(
 }
 \value{
 A tibble with parameters.
-
-Use \code{bunddev_parameters("mudab")} to see the currently valid parameters if
-the API has changed.
 }
 \description{
 List MUDAB parameters (Biologie)

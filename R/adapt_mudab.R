@@ -19,9 +19,6 @@
 #' }
 #'
 #' @return A tibble with project stations.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_project_stations <- function(filter = NULL,
                                    range = NULL,
@@ -58,9 +55,6 @@ mudab_project_stations <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with stations.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_stations <- function(filter = NULL,
                            range = NULL,
@@ -95,9 +89,6 @@ mudab_stations <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with parameters.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_parameters <- function(filter = NULL,
                              range = NULL,
@@ -135,9 +126,6 @@ mudab_parameters <- function(filter = NULL,
 #'
 #' Includes `datetime_time` as POSIXct in Europe/Berlin when date/time fields are
 #' present.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_parameter_values <- function(filter = NULL,
                                    range = NULL,
@@ -172,9 +160,6 @@ mudab_parameter_values <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with parameters.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_parameters_biologie <- function(filter = NULL,
                                       range = NULL,
@@ -209,9 +194,6 @@ mudab_parameters_biologie <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with parameters.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_parameters_biota <- function(filter = NULL,
                                    range = NULL,
@@ -246,9 +228,6 @@ mudab_parameters_biota <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with parameters.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_parameters_wasser <- function(filter = NULL,
                                     range = NULL,
@@ -283,9 +262,6 @@ mudab_parameters_wasser <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with parameters.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_parameters_sediment <- function(filter = NULL,
                                       range = NULL,
@@ -320,9 +296,6 @@ mudab_parameters_sediment <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with PLC stations.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_plc_stations <- function(filter = NULL,
                                range = NULL,
@@ -357,9 +330,6 @@ mudab_plc_stations <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with PLC parameters.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_plc_parameters <- function(filter = NULL,
                                  range = NULL,
@@ -394,9 +364,6 @@ mudab_plc_parameters <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with PLC measurements.
-#'
-#' Use `bunddev_parameters("mudab")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 mudab_plc_measurements <- function(filter = NULL,
                                    range = NULL,

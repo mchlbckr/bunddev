@@ -18,9 +18,6 @@
 #' }
 #'
 #' @return A tibble with counter metadata.
-#'
-#' Use `bunddev_parameters("eco_visio")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 eco_visio_counters <- function(id_organisme,
                                safe = TRUE,
@@ -75,9 +72,6 @@ eco_visio_counters <- function(id_organisme,
 #' @return A tibble with measurement data.
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("eco_visio")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 eco_visio_data <- function(id_organisme,
                            id_pdc,

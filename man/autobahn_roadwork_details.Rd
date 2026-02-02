@@ -30,11 +30,6 @@ roads <- autobahn_roads()
 roadworks <- autobahn_roadworks(roads$road_id[[1]])
 autobahn_roadwork_details(roadworks$identifier[[1]])
 }
-
-Includes `start_time` as POSIXct in Europe/Berlin when available.
-
-Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-if the API has changed.
 }
 \seealso{
 \code{\link[=autobahn_roadworks]{autobahn_roadworks()}} to list roadworks.

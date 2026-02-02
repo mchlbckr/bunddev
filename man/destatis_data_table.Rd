@@ -28,9 +28,6 @@ destatis_data_table(
 }
 \value{
 A tibble with table data in a text column.
-
-Use \code{bunddev_parameters("destatis")} to see the currently valid parameters if
-the API has changed.
 }
 \description{
 Retrieve Destatis table data

@@ -29,9 +29,6 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with indicator records.
-
-Use \code{bunddev_parameters("deutschlandatlas")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Query Deutschlandatlas indicators

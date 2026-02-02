@@ -30,9 +30,6 @@ pegel_online_measurements(
 A tibble with measurements.
 
 Includes \code{timestamp_time} as POSIXct in Europe/Berlin.
-
-Use \code{bunddev_parameters("pegel_online")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Pegel-Online measurements

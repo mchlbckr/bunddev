@@ -25,9 +25,6 @@ psm_anwendungen(
 }
 \value{
 A tibble with application data.
-
-Use \code{bunddev_parameters("pflanzenschutzmittelzulassung")} to see the
-currently valid parameters if the API has changed.
 }
 \description{
 List approved applications

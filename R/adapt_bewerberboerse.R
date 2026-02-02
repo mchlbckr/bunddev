@@ -23,11 +23,6 @@
 #' bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
 #' bewerberboerse_search(params = list(was = "data", size = 10), flatten = TRUE)
 #' }
-#'
-#' Use `bunddev_parameters("bewerberboerse")` to see the currently valid
-#' parameters if the API has changed.
-#'
-#' @return A tibble with tidied results.
 #' @export
 bewerberboerse_search <- function(params = list(),
                                   flatten = FALSE,
@@ -61,11 +56,6 @@ bewerberboerse_search <- function(params = list(),
 #' bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
 #' bewerberboerse_details("12345", flatten = TRUE)
 #' }
-#'
-#' Use `bunddev_parameters("bewerberboerse")` to see the currently valid
-#' parameters if the API has changed.
-#'
-#' @return A tibble with tidied results.
 #' @export
 bewerberboerse_details <- function(referenznummer,
                                    flatten = FALSE,

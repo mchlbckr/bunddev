@@ -30,11 +30,6 @@ roads <- autobahn_roads()
 closures <- autobahn_closures(roads$road_id[[1]])
 autobahn_closure_details(closures$identifier[[1]])
 }
-
-Includes `start_time` as POSIXct in Europe/Berlin when available.
-
-Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-if the API has changed.
 }
 \seealso{
 \code{\link[=autobahn_closures]{autobahn_closures()}} to list closures.

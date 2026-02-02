@@ -29,11 +29,6 @@ Official docs: https://autobahn.api.bund.dev.
 roads <- autobahn_roads()
 autobahn_roadworks(roads$road_id[[1]], flatten = TRUE)
 }
-
-Includes `start_time` as POSIXct in Europe/Berlin when available.
-
-Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-if the API has changed.
 }
 \seealso{
 \code{\link[=autobahn_roads]{autobahn_roads()}} to list available roads, and \code{\link[=autobahn_roadwork_details]{autobahn_roadwork_details()}}

@@ -17,9 +17,6 @@
 #' }
 #'
 #' @return A tibble with notices metadata.
-#'
-#' Use `bunddev_parameters("interpol")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 interpol_red_notices <- function(params = list(),
                                  safe = TRUE,
@@ -55,9 +52,6 @@ interpol_red_notices <- function(params = list(),
 #' }
 #'
 #' @return A tibble with notice details.
-#'
-#' Use `bunddev_parameters("interpol")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 interpol_red_notice <- function(notice_id,
                                 safe = TRUE,
@@ -93,9 +87,6 @@ interpol_red_notice <- function(notice_id,
 #' }
 #'
 #' @return A tibble with image metadata.
-#'
-#' Use `bunddev_parameters("interpol")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 interpol_red_notice_images <- function(notice_id,
                                        safe = TRUE,
@@ -131,9 +122,6 @@ interpol_red_notice_images <- function(notice_id,
 #' }
 #'
 #' @return A tibble with notices metadata.
-#'
-#' Use `bunddev_parameters("interpol")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 interpol_yellow_notices <- function(params = list(),
                                     safe = TRUE,
@@ -169,9 +157,6 @@ interpol_yellow_notices <- function(params = list(),
 #' }
 #'
 #' @return A tibble with notice details.
-#'
-#' Use `bunddev_parameters("interpol")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 interpol_yellow_notice <- function(notice_id,
                                    safe = TRUE,
@@ -207,9 +192,6 @@ interpol_yellow_notice <- function(notice_id,
 #' }
 #'
 #' @return A tibble with image metadata.
-#'
-#' Use `bunddev_parameters("interpol")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 interpol_yellow_notice_images <- function(notice_id,
                                           safe = TRUE,
@@ -245,9 +227,6 @@ interpol_yellow_notice_images <- function(notice_id,
 #' }
 #'
 #' @return A tibble with notices metadata.
-#'
-#' Use `bunddev_parameters("interpol")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 interpol_un_notices <- function(params = list(),
                                 safe = TRUE,
@@ -284,9 +263,6 @@ interpol_un_notices <- function(params = list(),
 #' }
 #'
 #' @return A tibble with notice details.
-#'
-#' Use `bunddev_parameters("interpol")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 interpol_un_notice <- function(notice_type,
                                notice_id,
@@ -325,9 +301,6 @@ interpol_un_notice <- function(notice_type,
 #' }
 #'
 #' @return A tibble with image metadata.
-#'
-#' Use `bunddev_parameters("interpol")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 interpol_un_notice_images <- function(notice_type,
                                       notice_id,

@@ -13,9 +13,6 @@ bundestag_mdb_index(safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with member entries.
-
-Use \code{bunddev_parameters("bundestag")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List Bundestag members of parliament

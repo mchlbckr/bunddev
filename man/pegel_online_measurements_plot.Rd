@@ -28,9 +28,6 @@ pegel_online_measurements_plot(
 }
 \value{
 A tibble with raw PNG bytes.
-
-Use \code{bunddev_parameters("pegel_online")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Pegel-Online measurements plot

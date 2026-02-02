@@ -29,11 +29,6 @@ Official docs: https://autobahn.api.bund.dev.
 roads <- autobahn_roads()
 autobahn_parking_lorries(roads$road_id[[1]], flatten = TRUE)
 }
-
-Includes `start_time` as POSIXct in Europe/Berlin when available.
-
-Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-if the API has changed.
 }
 \seealso{
 \code{\link[=autobahn_roads]{autobahn_roads()}} and \code{\link[=autobahn_parking_lorry_details]{autobahn_parking_lorry_details()}}.

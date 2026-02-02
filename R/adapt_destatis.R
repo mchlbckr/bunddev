@@ -16,9 +16,6 @@
 #' }
 #'
 #' @return A tibble with the raw response payload.
-#'
-#' Use `bunddev_parameters("destatis")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 destatis_catalogue_tables <- function(params = list(),
                                       username = "GAST",
@@ -55,9 +52,6 @@ destatis_catalogue_tables <- function(params = list(),
 #' }
 #'
 #' @return A tibble with the raw response payload.
-#'
-#' Use `bunddev_parameters("destatis")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 destatis_catalogue_cubes <- function(params = list(),
                                      username = "GAST",
@@ -95,9 +89,6 @@ destatis_catalogue_cubes <- function(params = list(),
 #' }
 #'
 #' @return A tibble with table data in a text column.
-#'
-#' Use `bunddev_parameters("destatis")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 destatis_data_table <- function(name,
                                 params = list(),
@@ -137,9 +128,6 @@ destatis_data_table <- function(name,
 #' }
 #'
 #' @return A tibble with cube data in a text column.
-#'
-#' Use `bunddev_parameters("destatis")` to see the currently valid parameters if
-#' the API has changed.
 #' @export
 destatis_data_cube <- function(name,
                                params = list(),

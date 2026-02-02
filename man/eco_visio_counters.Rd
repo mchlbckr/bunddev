@@ -15,9 +15,6 @@ eco_visio_counters(id_organisme, safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with counter metadata.
-
-Use \code{bunddev_parameters("eco_visio")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List Eco-Visio counters for an organization

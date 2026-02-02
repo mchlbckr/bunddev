@@ -28,9 +28,6 @@ expand list-columns into multiple rows.}
 A tibble with budget data and nested detail lists.
 
 Includes \code{timestamp_time} as POSIXct in Europe/Berlin.
-
-Use \code{bunddev_parameters("bundeshaushalt")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Query Bundeshaushalt budget data

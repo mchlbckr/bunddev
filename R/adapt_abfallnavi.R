@@ -17,9 +17,6 @@
 #' }
 #'
 #' @return A tibble with places.
-#'
-#' Use `bunddev_parameters("abfallnavi")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 abfallnavi_orte <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(

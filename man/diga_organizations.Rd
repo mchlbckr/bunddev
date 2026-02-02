@@ -21,25 +21,8 @@ diga_organizations(
 
 \item{flatten}{Logical; drop nested list columns.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
-}
-\value{
-A tibble with FHIR entries.
-
-Use \code{bunddev_parameters("diga")} to see the currently valid parameters if
-the API has changed.
+\item{flatten_mode}{Flatten strategy for list columns.}
 }
 \description{
 List DiGA manufacturers
-}
-\details{
-Returns FHIR organization entries for manufacturers.
-Requires \code{DIGA_BEARER_TOKEN}.
-}
-\examples{
-\dontrun{
-diga_organizations()
-}
-
 }

@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # bunddev <img src="man/figures/bunddev_hexagon.png" align="right" width="120" />
@@ -37,11 +36,9 @@ new adapters by implementing tidy helpers that wrap
 
 ## Installation
 
-You can install the development version of bunddev like so:
+You can install bunddev from GitHub:
 
-``` r
-remotes::install_github("mchlbckr/bunddev")
-```
+    remotes::install_github("mchlbckr/bunddev")
 
 ## Acknowledgements
 
@@ -53,101 +50,85 @@ centralize public sector APIs for the community (<https://bund.dev>,
 
 Browse the registry:
 
-``` r
-library(bunddev)
+    library(bunddev)
 
-bunddev_list(tag = "jobs")
-#> # A tibble: 5 × 8
-#>   id               title       provider spec_url docs_url auth  rate_limit tags 
-#>   <chr>            <chr>       <chr>    <chr>    <chr>    <chr> <chr>      <lis>
-#> 1 ausbildungssuche Ausbildung… Bundesa… https:/… https:/… none  <NA>       <chr>
-#> 2 bewerberboerse   Bewerberbo… Bundesa… https:/… https:/… api_… <NA>       <chr>
-#> 3 coachingangebote Coachingan… Bundesa… https:/… https:/… none  <NA>       <chr>
-#> 4 entgeltatlas     Entgeltatl… Bundesa… https:/… https:/… none  <NA>       <chr>
-#> 5 jobsuche         Jobsuche A… Bundesa… https:/… https:/… api_… <NA>       <chr>
-bunddev_info("abfallnavi")
-#> # A tibble: 1 × 8
-#>   id         title          provider spec_url    docs_url auth  rate_limit tags 
-#>   <chr>      <chr>          <chr>    <chr>       <chr>    <chr> <chr>      <lis>
-#> 1 abfallnavi Abfallnavi API regio iT https://ra… https:/… none  <NA>       <chr>
-```
+    bunddev_list(tag = "jobs")
+    #> # A tibble: 5 × 8
+    #>   id               title       provider spec_url docs_url auth  rate_limit tags 
+    #>   <chr>            <chr>       <chr>    <chr>    <chr>    <chr> <chr>      <lis>
+    #> 1 ausbildungssuche Ausbildung… Bundesa… https:/… https:/… api_… <NA>       <chr>
+    #> 2 bewerberboerse   Bewerberbo… Bundesa… https:/… https:/… api_… <NA>       <chr>
+    #> 3 coachingangebote Coachingan… Bundesa… https:/… https:/… api_… <NA>       <chr>
+    #> 4 entgeltatlas     Entgeltatl… Bundesa… https:/… https:/… none  <NA>       <chr>
+    #> 5 jobsuche         Jobsuche A… Bundesa… https:/… https:/… api_… <NA>       <chr>
+    bunddev_info("abfallnavi")
+    #> # A tibble: 1 × 8
+    #>   id         title          provider spec_url    docs_url auth  rate_limit tags 
+    #>   <chr>      <chr>          <chr>    <chr>       <chr>    <chr> <chr>      <lis>
+    #> 1 abfallnavi Abfallnavi API regio iT https://ra… https:/… none  <NA>       <chr>
 
 Call the Bewerberboerse API (requires an API key header):
 
-``` r
-library(bunddev)
+    library(bunddev)
 
-Sys.setenv(BEWERBERBOERSE_API_KEY = "jobboerse-bewerbersuche-ui")
-bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
+    Sys.setenv(BEWERBERBOERSE_API_KEY = "jobboerse-bewerbersuche-ui")
+    bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
 
-bewerber <- bewerberboerse_search(
-  params = list(was = "data", size = 10),
-  flatten = TRUE
-)
+    bewerber <- bewerberboerse_search(
+      params = list(was = "data", size = 10),
+      flatten = TRUE
+    )
 
-details <- bewerberboerse_details(bewerber$refnr[[1]], flatten = TRUE)
-```
+    details <- bewerberboerse_details(bewerber$refnr[[1]], flatten = TRUE)
 
 Use the Autobahn API with list and detail helpers:
 
-``` r
-library(bunddev)
+    library(bunddev)
 
-roads <- autobahn_roads()
-road_id <- roads$road_id[[1]]
+    roads <- autobahn_roads()
+    road_id <- roads$road_id[[1]]
 
-roadworks <- autobahn_roadworks(road_id, flatten = TRUE)
-warnings <- autobahn_warnings(road_id, flatten = TRUE)
+    roadworks <- autobahn_roadworks(road_id, flatten = TRUE)
+    warnings <- autobahn_warnings(road_id, flatten = TRUE)
 
-roadwork_details <- autobahn_roadwork_details(roadworks$identifier[[1]], flatten = TRUE)
-warning_details <- autobahn_warning_details(warnings$identifier[[1]], flatten = TRUE)
-```
+    roadwork_details <- autobahn_roadwork_details(roadworks$identifier[[1]], flatten = TRUE)
+    warning_details <- autobahn_warning_details(warnings$identifier[[1]], flatten = TRUE)
 
 Handelsregister search (default rate limit is applied from the
 registry):
 
-``` r
-companies <- handelsregister_search("deutsche bahn")
-```
+    companies <- handelsregister_search("deutsche bahn")
 
 SMARD time series example (historical timestamp):
 
-``` r
-library(bunddev)
-library(ggplot2)
+    library(bunddev)
+    library(ggplot2)
 
-timestamp <- 1627250400000
-series <- smard_timeseries(410, region = "DE", resolution = "hour", timestamp = timestamp)
+    timestamp <- 1627250400000
+    series <- smard_timeseries(410, region = "DE", resolution = "hour", timestamp = timestamp)
 
-ggplot(series, aes(time, value)) +
-  geom_line() +
-  labs(x = "Time", y = "MW")
-```
+    ggplot(series, aes(time, value)) +
+      geom_line() +
+      labs(x = "Time", y = "MW")
 
 `series$time` is a POSIXct column parsed in Europe/Berlin.
 
 DWD station overview example:
 
-``` r
-library(bunddev)
+    library(bunddev)
 
-stations <- dwd_station_overview(c("10865", "G005"), flatten = TRUE)
-```
+    stations <- dwd_station_overview(c("10865", "G005"), flatten = TRUE)
 
 Jobsuche example (requires API key header):
 
-``` r
-library(bunddev)
+    library(bunddev)
 
-Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
-bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+    Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+    bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
 
-jobs <- jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
-```
+    jobs <- jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
 
 Inspect current parameters from the OpenAPI spec:
 
-``` r
-bunddev_parameters("smard")
-bunddev_parameter_values(smard_timeseries, "resolution")
-```
+    bunddev_parameters("smard")
+    bunddev_parameter_values(smard_timeseries, "resolution")

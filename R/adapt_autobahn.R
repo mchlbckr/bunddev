@@ -13,9 +13,6 @@
 #' \dontrun{
 #' autobahn_roads()
 #' }
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_roads <- function() {
   bunddev_call_tidy("autobahn", "list-autobahnen")
@@ -43,11 +40,6 @@ autobahn_roads <- function() {
 #' roads <- autobahn_roads()
 #' autobahn_roadworks(roads$road_id[[1]], flatten = TRUE)
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -81,11 +73,6 @@ autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") 
 #' roads <- autobahn_roads()
 #' autobahn_warnings(roads$road_id[[1]], flatten = TRUE)
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -119,11 +106,6 @@ autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #' roads <- autobahn_roads()
 #' autobahn_webcams(roads$road_id[[1]], flatten = TRUE)
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -157,11 +139,6 @@ autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #' roads <- autobahn_roads()
 #' autobahn_closures(roads$road_id[[1]], flatten = TRUE)
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -195,11 +172,6 @@ autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #' roads <- autobahn_roads()
 #' autobahn_charging_stations(roads$road_id[[1]], flatten = TRUE)
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -233,11 +205,6 @@ autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = 
 #' roads <- autobahn_roads()
 #' autobahn_parking_lorries(roads$road_id[[1]], flatten = TRUE)
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -272,11 +239,6 @@ autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "j
 #' roadworks <- autobahn_roadworks(roads$road_id[[1]])
 #' autobahn_roadwork_details(roadworks$identifier[[1]])
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -310,11 +272,6 @@ autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode
 #' warnings <- autobahn_warnings(roads$road_id[[1]])
 #' autobahn_warning_details(warnings$identifier[[1]])
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -348,11 +305,6 @@ autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode =
 #' webcams <- autobahn_webcams(roads$road_id[[1]])
 #' autobahn_webcam_details(webcams$identifier[[1]])
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -386,11 +338,6 @@ autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "
 #' closures <- autobahn_closures(roads$road_id[[1]])
 #' autobahn_closure_details(closures$identifier[[1]])
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -424,11 +371,6 @@ autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode =
 #' stations <- autobahn_charging_stations(roads$road_id[[1]])
 #' autobahn_charging_station_details(stations$identifier[[1]])
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(
@@ -462,11 +404,6 @@ autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatt
 #' parking <- autobahn_parking_lorries(roads$road_id[[1]])
 #' autobahn_parking_lorry_details(parking$identifier[[1]])
 #' }
-#'
-#' Includes `start_time` as POSIXct in Europe/Berlin when available.
-#'
-#' Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 autobahn_parking_lorry_details <- function(lorry_id, flatten = FALSE, flatten_mode = "json") {
   bunddev_call_tidy(

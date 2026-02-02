@@ -21,9 +21,6 @@
 #' }
 #'
 #' @return A tibble with exchange rate data.
-#'
-#' Use `bunddev_parameters("zoll")` to see the currently valid parameters
-#' if the API has changed.
 #' @export
 zoll_kurse <- function(last_modified_date = NULL,
                        safe = TRUE,

@@ -31,9 +31,6 @@ weiterbildungssuche_search(
 }
 \value{
 A tibble with course offerings.
-
-Use \code{bunddev_parameters("weiterbildungssuche")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Search continuing education courses

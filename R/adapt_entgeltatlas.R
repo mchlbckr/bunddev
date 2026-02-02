@@ -35,9 +35,6 @@
 #' }
 #'
 #' @return A tibble with entgelt entries.
-#'
-#' Use `bunddev_parameters("entgeltatlas")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 entgeltatlas_entgelte <- function(kldb,
                                   params = list(),

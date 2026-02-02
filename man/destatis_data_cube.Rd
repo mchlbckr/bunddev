@@ -28,9 +28,6 @@ destatis_data_cube(
 }
 \value{
 A tibble with cube data in a text column.
-
-Use \code{bunddev_parameters("destatis")} to see the currently valid parameters if
-the API has changed.
 }
 \description{
 Retrieve Destatis cube data

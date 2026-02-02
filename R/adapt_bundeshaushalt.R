@@ -20,9 +20,6 @@
 #' @return A tibble with budget data and nested detail lists.
 #'
 #' Includes `timestamp_time` as POSIXct in Europe/Berlin.
-#'
-#' Use `bunddev_parameters("bundeshaushalt")` to see the currently valid
-#' parameters if the API has changed.
 #' @export
 bundeshaushalt_budget_data <- function(params = list(),
                                        safe = TRUE,

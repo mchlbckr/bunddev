@@ -34,11 +34,6 @@ roads <- autobahn_roads()
 stations <- autobahn_charging_stations(roads$road_id[[1]])
 autobahn_charging_station_details(stations$identifier[[1]])
 }
-
-Includes `start_time` as POSIXct in Europe/Berlin when available.
-
-Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-if the API has changed.
 }
 \seealso{
 \code{\link[=autobahn_charging_stations]{autobahn_charging_stations()}} to list stations.

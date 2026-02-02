@@ -22,9 +22,6 @@
 #' }
 #'
 #' @return A tibble with plant protection product data.
-#'
-#' Use `bunddev_parameters("pflanzenschutzmittelzulassung")` to see the
-#' currently valid parameters if the API has changed.
 #' @export
 psm_mittel <- function(kennr = NULL,
                        params = list(),
@@ -64,9 +61,6 @@ psm_mittel <- function(kennr = NULL,
 #' }
 #'
 #' @return A tibble with active ingredient data.
-#'
-#' Use `bunddev_parameters("pflanzenschutzmittelzulassung")` to see the
-#' currently valid parameters if the API has changed.
 #' @export
 psm_wirkstoffe <- function(wirkstoffId = NULL,
                            params = list(),
@@ -107,9 +101,6 @@ psm_wirkstoffe <- function(wirkstoffId = NULL,
 #' }
 #'
 #' @return A tibble with application data.
-#'
-#' Use `bunddev_parameters("pflanzenschutzmittelzulassung")` to see the
-#' currently valid parameters if the API has changed.
 #' @export
 psm_anwendungen <- function(kennr = NULL,
                             awg_id = NULL,

@@ -29,9 +29,6 @@ expand list-columns into multiple rows.}
 }
 \value{
 A tibble with entgelt entries.
-
-Use \code{bunddev_parameters("entgeltatlas")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Query Entgeltatlas data by KldB key
@@ -42,19 +39,23 @@ identified by KldB keys. The API accepts optional filters for region, gender,
 age, sector, and performance level. Official docs:
 https://bundesapi.github.io/entgeltatlas-api/.
 
-Authentication can be done via OAuth2 client credentials or by sending the
-public client id as \code{X-API-Key}. Set the client id via \code{\link[=bunddev_auth_set]{bunddev_auth_set()}}
-(env var name \code{ENTGELTATLAS_API_KEY}). If you also set
-\code{ENTGELTATLAS_CLIENT_SECRET}, the adapter requests an OAuth token from
-\verb{https://rest.arbeitsagentur.de/oauth/gettoken_cc} and sends it as
-\code{OAuthAccessToken}.
+\strong{Recommended:} Configure OAuth2 via \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} with type \code{"oauth2"}.
+If you provide a client secret, it fetches an OAuth token; otherwise it falls
+back to sending the client ID as \code{X-API-Key}.
 }
 \examples{
 \dontrun{
+# Recommended: OAuth2 configuration
 Sys.setenv(
   ENTGELTATLAS_API_KEY = "c4f0d292-9d0f-4763-87dd-d3f9e78fb006",
   ENTGELTATLAS_CLIENT_SECRET = "<client-secret>"
 )
+bunddev_auth_set("entgeltatlas",
+  type = "oauth2",
+  oauth_url = "https://rest.arbeitsagentur.de/oauth/gettoken_cc",
+  env_var = "ENTGELTATLAS_API_KEY",
+  oauth_secret_env = "ENTGELTATLAS_CLIENT_SECRET",
+  oauth_default_id = "c4f0d292-9d0f-4763-87dd-d3f9e78fb006")
 entgeltatlas_entgelte("84304", params = list(r = 1, g = 1))
 }
 

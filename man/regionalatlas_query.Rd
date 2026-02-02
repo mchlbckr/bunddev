@@ -32,9 +32,6 @@ population density). See Details for common tables.}
 }
 \value{
 A tibble with regional indicator data.
-
-Use \code{bunddev_parameters("regionalatlas")} to see the currently valid
-parameters if the API has changed.
 }
 \description{
 Query Regionalatlas data

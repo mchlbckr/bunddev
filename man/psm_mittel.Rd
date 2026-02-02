@@ -17,9 +17,6 @@ psm_mittel(kennr = NULL, params = list(), safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with plant protection product data.
-
-Use \code{bunddev_parameters("pflanzenschutzmittelzulassung")} to see the
-currently valid parameters if the API has changed.
 }
 \description{
 List approved plant protection products

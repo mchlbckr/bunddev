@@ -15,9 +15,6 @@ luftqualitaet_airquality(params = list(), safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with air quality data.
-
-Use \code{bunddev_parameters("luftqualitaet")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 List air quality measurements

@@ -28,9 +28,6 @@ expand list-columns into multiple rows.}
 A tibble with coaching offers.
 
 Includes \code{gueltig_von_time}, \code{gueltig_bis_time}, and \code{aktualisierungsdatum_time} as POSIXct in Europe/Berlin.
-
-Use \code{bunddev_parameters("coachingangebote")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Search coaching offers
@@ -42,19 +39,23 @@ credentials or by sending the public client id as \code{X-API-Key} (clientId
 \verb{ee971dcb-96fa-47b3-b2be-00863e4fc88b}). Official docs:
 https://bundesapi.github.io/coachingangebote-api/.
 
-This adapter uses the \code{X-API-Key} header by default. Set it via
-\code{\link[=bunddev_auth_set]{bunddev_auth_set()}} and \code{COACHINGANGEBOTE_API_KEY}. If you also set
-\code{COACHINGANGEBOTE_CLIENT_SECRET}, the adapter requests an OAuth token from
-\verb{https://rest.arbeitsagentur.de/oauth/gettoken_cc} and sends it as
-\code{OAuthAccessToken}.
+\strong{Recommended:} Configure OAuth2 via \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} with type \code{"oauth2"}.
+If you provide a client secret, it fetches an OAuth token; otherwise it falls
+back to sending the client ID as \code{X-API-Key}.
 }
 \examples{
 \dontrun{
+# Recommended: OAuth2 configuration
 Sys.setenv(
   COACHINGANGEBOTE_API_KEY = "ee971dcb-96fa-47b3-b2be-00863e4fc88b",
   COACHINGANGEBOTE_CLIENT_SECRET = "<client-secret>"
 )
-bunddev_auth_set("coachingangebote", type = "api_key", env_var = "COACHINGANGEBOTE_API_KEY")
+bunddev_auth_set("coachingangebote",
+  type = "oauth2",
+  oauth_url = "https://rest.arbeitsagentur.de/oauth/gettoken_cc",
+  env_var = "COACHINGANGEBOTE_API_KEY",
+  oauth_secret_env = "COACHINGANGEBOTE_CLIENT_SECRET",
+  oauth_default_id = "ee971dcb-96fa-47b3-b2be-00863e4fc88b")
 coachingangebote_search(params = list(mz = "SA 01"))
 }
 

@@ -19,9 +19,6 @@ bundesrat_plenum_naechste_sitzungen(
 }
 \value{
 A tibble with upcoming session metadata.
-
-Use \code{bunddev_parameters("bundesrat")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Bundesrat upcoming plenum sessions

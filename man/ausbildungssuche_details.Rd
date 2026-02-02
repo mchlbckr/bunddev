@@ -15,9 +15,6 @@ ausbildungssuche_details(offer_id, safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with offer details.
-
-Use \code{bunddev_parameters("ausbildungssuche")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get training offer details

@@ -20,9 +20,6 @@ Official docs: https://autobahn.api.bund.dev.
 \dontrun{
 autobahn_roads()
 }
-
-Use `bunddev_parameters("autobahn")` to see the currently valid parameters
-if the API has changed.
 }
 \seealso{
 \code{\link[=autobahn_roadworks]{autobahn_roadworks()}} and \code{\link[=autobahn_warnings]{autobahn_warnings()}} for road-specific data.

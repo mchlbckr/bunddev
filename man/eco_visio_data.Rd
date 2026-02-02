@@ -37,9 +37,6 @@ eco_visio_data(
 A tibble with measurement data.
 
 Includes \code{date_time} as POSIXct in Europe/Berlin.
-
-Use \code{bunddev_parameters("eco_visio")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Get Eco-Visio counter measurement data

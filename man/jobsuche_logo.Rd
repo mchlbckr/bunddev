@@ -15,9 +15,6 @@ jobsuche_logo(hash_id, safe = TRUE, refresh = FALSE)
 }
 \value{
 A tibble with raw logo bytes.
-
-Use \code{bunddev_parameters("jobsuche")} to see the currently valid parameters
-if the API has changed.
 }
 \description{
 Fetch Jobsuche employer logo
