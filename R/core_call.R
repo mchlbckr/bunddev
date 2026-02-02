@@ -170,6 +170,9 @@ bunddev_call <- function(api, operation_id = NULL, params = list(),
     }
   }
 
+  # Save original params before path substitution for cache key calculation
+  original_params <- params
+
   path <- endpoint$path
   path_params <- stringr::str_match_all(path, "\\{([^}]+)\\}")[[1]]
   if (nrow(path_params) > 0) {
@@ -196,7 +199,7 @@ bunddev_call <- function(api, operation_id = NULL, params = list(),
 
   cache_path <- NULL
   if (isTRUE(safe) && method_lower == "get") {
-    cache_path <- bunddev_response_cache_path(api, operation_id, params)
+    cache_path <- bunddev_response_cache_path(api, operation_id, original_params)
     if (!isTRUE(refresh) && file.exists(cache_path)) {
       raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
       return(bunddev_parse_response(raw_body, parse))
