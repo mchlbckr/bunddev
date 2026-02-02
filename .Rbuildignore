@@ -12,3 +12,4 @@
 ^README\.Rmd$
 ^ROADMAP\.md$
 ^.*\.png$
+^\.github$
