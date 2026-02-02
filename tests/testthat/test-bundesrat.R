@@ -1,6 +1,7 @@
 test_that("bundesrat endpoints return tibbles", {
   skip_if_offline()
   skip_on_cran()
+  skip_on_ci()
 
   startlist <- bundesrat_startlist()
   expect_s3_class(startlist, "tbl_df")
