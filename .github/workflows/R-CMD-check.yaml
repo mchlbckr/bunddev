@@ -46,6 +46,15 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+        continue-on-error: true
+        id: install-deps
+
+      - name: Retry R dependencies on failure
+        if: steps.install-deps.outcome == 'failure'
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck
+          needs: check
 
       - uses: r-lib/actions/check-r-package@v2
         with:
