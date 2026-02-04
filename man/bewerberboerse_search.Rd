@@ -14,6 +14,12 @@ bewerberboerse_search(params = list(), flatten = FALSE, flatten_mode = "json")
 \item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
 expand list-columns into multiple rows.}
 }
+\value{
+A tibble containing candidate listings with columns including
+reference number, availability, location, skills, and contact flags. When
+\code{flatten = FALSE}, includes nested list columns for education and
+experience. Metadata columns include \code{page}, \code{size}, and \code{max_ergebnisse}.
+}
 \description{
 Search the Bewerberboerse API
 }

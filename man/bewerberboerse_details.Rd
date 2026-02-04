@@ -14,6 +14,11 @@ bewerberboerse_details(referenznummer, flatten = FALSE, flatten_mode = "json")
 \item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
 expand list-columns into multiple rows.}
 }
+\value{
+A tibble containing detailed information for a single candidate,
+including personal details, skills, work history, education, and contact
+preferences. Structure is similar to \code{\link[=bewerberboerse_search]{bewerberboerse_search()}} results.
+}
 \description{
 Retrieve Bewerberboerse candidate details
 }

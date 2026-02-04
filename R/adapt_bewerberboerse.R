@@ -5,6 +5,11 @@
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
 #'
+#' @return A tibble containing candidate listings with columns including
+#'   reference number, availability, location, skills, and contact flags. When
+#'   `flatten = FALSE`, includes nested list columns for education and
+#'   experience. Metadata columns include `page`, `size`, and `max_ergebnisse`.
+#'
 #' @details
 #' The Bewerberboerse API provides access to candidate listings. Authentication
 #' uses an API key passed as `X-API-Key` (clientId `jobboerse-bewerbersuche-ui`).
@@ -42,6 +47,10 @@ bewerberboerse_search <- function(params = list(),
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
 #'   expand list-columns into multiple rows.
+#'
+#' @return A tibble containing detailed information for a single candidate,
+#'   including personal details, skills, work history, education, and contact
+#'   preferences. Structure is similar to [bewerberboerse_search()] results.
 #'
 #' @details
 #' Fetches details for a single candidate. The `referenznummer` typically comes

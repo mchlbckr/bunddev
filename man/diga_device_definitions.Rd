@@ -23,6 +23,12 @@ diga_device_definitions(
 
 \item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to expand list-columns into multiple rows.}
 }
+\value{
+A tibble containing DiGA device definitions from the FHIR API. When
+\code{flatten = FALSE}, nested FHIR resource elements are preserved as list
+columns. When \code{flatten = TRUE}, list columns are expanded based on the
+specified \code{flatten_mode}.
+}
 \description{
 List DiGA device definitions
 }

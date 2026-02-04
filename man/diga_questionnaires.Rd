@@ -23,6 +23,10 @@ diga_questionnaires(
 
 \item{flatten_mode}{Flatten strategy for list columns.}
 }
+\value{
+A tibble containing DiGA questionnaire resources from the FHIR API.
+Structure depends on \code{flatten} setting.
+}
 \description{
 List DiGA questionnaires
 }

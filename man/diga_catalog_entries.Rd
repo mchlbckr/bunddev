@@ -23,6 +23,10 @@ diga_catalog_entries(
 
 \item{flatten_mode}{Flatten strategy for list columns.}
 }
+\value{
+A tibble containing DiGA catalog entry resources from the FHIR API.
+Structure depends on \code{flatten} setting (see \code{\link[=diga_device_definitions]{diga_device_definitions()}}).
+}
 \description{
 List DiGA catalog entries
 }

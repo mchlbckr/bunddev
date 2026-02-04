@@ -23,6 +23,10 @@ diga_charge_item_definitions(
 
 \item{flatten_mode}{Flatten strategy for list columns.}
 }
+\value{
+A tibble containing DiGA prescription unit (ChargeItemDefinition)
+resources from the FHIR API. Structure depends on \code{flatten} setting.
+}
 \description{
 List DiGA prescription units
 }

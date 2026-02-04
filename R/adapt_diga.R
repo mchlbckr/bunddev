@@ -13,6 +13,12 @@ NULL
 #' @param refresh Logical; refresh cached responses.
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns. Use "unnest" to expand list-columns into multiple rows.
+#'
+#' @return A tibble containing DiGA device definitions from the FHIR API. When
+#'   `flatten = FALSE`, nested FHIR resource elements are preserved as list
+#'   columns. When `flatten = TRUE`, list columns are expanded based on the
+#'   specified `flatten_mode`.
+#'
 #' @export
 #' @examples
 #' \dontrun{dig_device_definitions()}
@@ -30,6 +36,10 @@ diga_device_definitions <- function(params = list(), safe = TRUE, refresh = FALS
 #' @param refresh Logical; refresh cached responses.
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns.
+#'
+#' @return A tibble containing DiGA catalog entry resources from the FHIR API.
+#'   Structure depends on `flatten` setting (see [diga_device_definitions()]).
+#'
 #' @export
 
 diga_catalog_entries <- function(params = list(), safe = TRUE, refresh = FALSE, flatten = FALSE, flatten_mode = "json") {
@@ -45,6 +55,10 @@ diga_catalog_entries <- function(params = list(), safe = TRUE, refresh = FALSE, 
 #' @param refresh Logical; refresh cached responses.
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns.
+#'
+#' @return A tibble containing DiGA manufacturer organization resources from
+#'   the FHIR API. Structure depends on `flatten` setting.
+#'
 #' @export
 
 diga_organizations <- function(params = list(), safe = TRUE, refresh = FALSE, flatten = FALSE, flatten_mode = "json") {
@@ -60,6 +74,10 @@ diga_organizations <- function(params = list(), safe = TRUE, refresh = FALSE, fl
 #' @param refresh Logical; refresh cached responses.
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns.
+#'
+#' @return A tibble containing DiGA prescription unit (ChargeItemDefinition)
+#'   resources from the FHIR API. Structure depends on `flatten` setting.
+#'
 #' @export
 
 diga_charge_item_definitions <- function(params = list(), safe = TRUE, refresh = FALSE, flatten = FALSE, flatten_mode = "json") {
@@ -75,6 +93,10 @@ diga_charge_item_definitions <- function(params = list(), safe = TRUE, refresh =
 #' @param refresh Logical; refresh cached responses.
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns.
+#'
+#' @return A tibble containing DiGA questionnaire resources from the FHIR API.
+#'   Structure depends on `flatten` setting.
+#'
 #' @export
 
 diga_questionnaires <- function(params = list(), safe = TRUE, refresh = FALSE, flatten = FALSE, flatten_mode = "json") {
@@ -90,6 +112,10 @@ diga_questionnaires <- function(params = list(), safe = TRUE, refresh = FALSE, f
 #' @param refresh Logical; refresh cached responses.
 #' @param flatten Logical; drop nested list columns.
 #' @param flatten_mode Flatten strategy for list columns.
+#'
+#' @return A tibble containing DiGA questionnaire response resources from the
+#'   FHIR API. Structure depends on `flatten` setting.
+#'
 #' @export
 
 diga_questionnaire_responses <- function(params = list(), safe = TRUE, refresh = FALSE, flatten = FALSE, flatten_mode = "json") {
