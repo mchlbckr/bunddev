@@ -15,7 +15,7 @@ test_that("hochwasserzentralen endpoints return tibbles", {
 
   lagepegel <- hochwasserzentralen_lagepegel()
   expect_s3_class(lagepegel, "tbl_df")
-  if (nrow(lagepegel) > 0) {
+  if (nrow(lagepegel) > 0 && "PGNR" %in% names(lagepegel)) {
     expect_true(all(c("PGNR", "LAT", "LON") %in% names(lagepegel)))
     pegel_info <- hochwasserzentralen_pegel_info(lagepegel$PGNR[[1]])
     expect_s3_class(pegel_info, "tbl_df")

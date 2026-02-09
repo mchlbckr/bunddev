@@ -79,7 +79,18 @@ bunddev_spec <- function(id, refresh = FALSE) {
 
   ext <- tools::file_ext(spec_path)
   if (ext %in% c("yaml", "yml")) {
-    return(suppressWarnings(yaml::read_yaml(spec_path)))
+    spec <- tryCatch(
+      suppressWarnings(yaml::read_yaml(spec_path)),
+      error = function(e) {
+        cli::cli_abort(c(
+          "Failed to parse OpenAPI spec for {.val {id}}.",
+          "i" = "The upstream YAML at {.url {spec_url}} may be malformed.",
+          "i" = "Cached file: {.file {spec_path}}",
+          "x" = conditionMessage(e)
+        ))
+      }
+    )
+    return(spec)
   }
   if (ext == "json") {
     return(jsonlite::fromJSON(spec_path, simplifyVector = FALSE))

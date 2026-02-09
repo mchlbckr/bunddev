@@ -138,7 +138,7 @@
   provider: Deutscher Bundestag
   spec_url: https://raw.githubusercontent.com/bundesAPI/dip-bundestag-api/main/openapi.yaml
   docs_url: https://dip.bundestag.de/%C3%BCber-dip/hilfe/api
-  auth: none
+  auth: api_key
   tags:
     - parliament
     - documents
@@ -165,7 +165,7 @@
   provider: Bundesagentur fuer Arbeit
   spec_url: https://raw.githubusercontent.com/bundesAPI/entgeltatlas-api/main/openapi.yaml
   docs_url: https://bundesapi.github.io/entgeltatlas-api/
-  auth: none
+  auth: oauth2
   tags:
     - jobs
     - salary
