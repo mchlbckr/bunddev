@@ -2,9 +2,8 @@ test_that("ausbildungssuche endpoints return tibbles", {
   skip_if_offline()
   skip_on_cran()
 
-  key <- Sys.getenv("AUSBILDUNGSSUCHE_API_KEY")
-  if (key == "") {
-    skip("AUSBILDUNGSSUCHE_API_KEY not set")
+  if (Sys.getenv("AUSBILDUNGSSUCHE_API_KEY") == "") {
+    Sys.setenv(AUSBILDUNGSSUCHE_API_KEY = "infosysbub-absuche")
   }
 
   bunddev_auth_set("ausbildungssuche", type = "api_key", env_var = "AUSBILDUNGSSUCHE_API_KEY")

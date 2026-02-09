@@ -63,6 +63,9 @@
 | **zoll** | Blocked by bot protection | `zoll.api.bund.dev` rejects automated requests. All endpoints (`zoll_kurse`, `zoll_produktgruppen`, etc.) return errors. |
 | **weiterbildungssuche** | HTTP 403 Forbidden | The Bundesagentur endpoint rejects requests. Both `weiterbildungssuche_search()` and `weiterbildungssuche_facetten()` fail. |
 | **interpol** | HTTP 403 Forbidden | `interpol.api.bund.dev` returns 403 for red/yellow/UN notice queries. May require updated authentication or user-agent headers. |
+| **berufssprachkurssuche** | HTTP 401/403 | Public client ID `bd24f42e-ad0b-4005-b834-23bb6800dc6c` and secret `6776b89e-5728-4643-8cd5-c93aefb5314b` (from [GitHub docs](https://github.com/bundesAPI/berufssprachkurssuche-api)) no longer accepted. OAuth token endpoint also returns 403. |
+| **coachingangebote** | HTTP 403 | Public client ID `ee971dcb-96fa-47b3-b2be-00863e4fc88b` and secret `1050e0b7-6db8-49e8-aff9-0e58e556681f` (from [GitHub docs](https://github.com/bundesAPI/coachingangebote-api)) no longer accepted. |
+| **entgeltatlas** | HTTP 401/403 | Public client ID `c4f0d292-9d0f-4763-87dd-d3f9e78fb006` and secret `566c4dd6-942f-4cda-aad6-8d611c577107` (from [GitHub docs](https://github.com/bundesAPI/entgeltatlas-api)) no longer accepted. |
 
 ### Unreliable / Intermittent Failures
 
@@ -75,11 +78,7 @@
 
 | API | Auth Type | What's Needed | Provider |
 |-----|-----------|---------------|----------|
-| **ausbildungssuche** | API Key | `AUSBILDUNGSSUCHE_API_KEY` | Bundesagentur fuer Arbeit |
-| **berufssprachkurssuche** | OAuth2 | `BERUFSSPRACHKURSSUCHE_CLIENT_SECRET` | Bundesagentur fuer Arbeit |
-| **coachingangebote** | API Key | `COACHINGANGEBOTE_API_KEY` | Bundesagentur fuer Arbeit |
 | **diga** | Bearer Token | `DIGA_BEARER_TOKEN` | BfArM (applied, pending) |
-| **entgeltatlas** | OAuth2 | Valid client credentials (public ones from upstream spec are expired) | Bundesagentur fuer Arbeit |
 
 ### Upstream Spec Issues
 
@@ -91,3 +90,4 @@
 
 - **dip_bundestag**: Changed `auth` from `none` to `api_key`. The API requires an `ApiKey` header. A public key is available at https://dip.bundestag.de/ueber-dip/hilfe/api.
 - **entgeltatlas**: Changed `auth` from `none` to `oauth2`. The API requires OAuth2 client credentials.
+- **ausbildungssuche**: Public key `infosysbub-absuche` works. Test updated to use it by default.
