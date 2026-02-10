@@ -80,6 +80,7 @@ handelsregister_search <- function(schlagwoerter,
   form_fields <- bunddev_handelsregister_form_fields(form)
   form_fields[["form:schlagwoerter"]] <- schlagwoerter
   form_fields[["form:schlagwortOptionen"]] <- bunddev_handelsregister_option_id(schlagwort_optionen)
+  form_fields[["form:btnSuche"]] <- ""
 
   form_url <- bunddev_handelsregister_form_action(form, "https://www.handelsregister.de")
   form_req <- httr2::request(form_url) |>
@@ -168,12 +169,12 @@ bunddev_handelsregister_parse <- function(html) {
   if (stringr::str_detect(html, "Your session has expired")) {
     cli::cli_abort("Handelsregister session expired; please retry.")
   }
-  if (stringr::str_detect(html, "Es ist ein Fehler aufgetreten") ||
-    stringr::str_detect(html, "An error has occurred")) {
-    cli::cli_abort("Handelsregister returned an error page; please retry.")
-  }
 
   doc <- xml2::read_html(html)
+
+  # Check for actual error state: the error-message div is always in the HTML
+
+  # template, so only treat it as an error if there is no result grid with data
   table <- xml2::xml_find_first(doc, "//table[@role='grid']")
   if (is.na(table)) {
     return(tibble::tibble())

@@ -199,7 +199,8 @@ bunddev_call <- function(api, operation_id = NULL, params = list(),
 
   cache_path <- NULL
   if (isTRUE(safe) && method_lower == "get") {
-    cache_path <- bunddev_response_cache_path(api, operation_id, original_params)
+    cache_path <- bunddev_response_cache_path(api, operation_id, original_params,
+                                                path = endpoint$path)
     if (!isTRUE(refresh) && file.exists(cache_path)) {
       raw_body <- readBin(cache_path, "raw", n = file.info(cache_path)$size)
       return(bunddev_parse_response(raw_body, parse))

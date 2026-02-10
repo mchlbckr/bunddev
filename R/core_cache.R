@@ -107,12 +107,13 @@ bunddev_response_cache_dir <- function() {
   cache_dir
 }
 
-bunddev_response_cache_key <- function(api, operation_id, params) {
+bunddev_response_cache_key <- function(api, operation_id, params,
+                                       path = NULL) {
   if (length(params) > 0) {
     params <- params[order(names(params))]
   }
   payload <- jsonlite::toJSON(
-    list(api = api, operation_id = operation_id, params = params),
+    list(api = api, operation_id = operation_id, path = path, params = params),
     auto_unbox = TRUE,
     null = "null"
   )
@@ -122,7 +123,8 @@ bunddev_response_cache_key <- function(api, operation_id, params) {
   tools::md5sum(tmp)
 }
 
-bunddev_response_cache_path <- function(api, operation_id, params) {
-  key <- bunddev_response_cache_key(api, operation_id, params)
+bunddev_response_cache_path <- function(api, operation_id, params,
+                                        path = NULL) {
+  key <- bunddev_response_cache_key(api, operation_id, params, path = path)
   file.path(bunddev_response_cache_dir(), paste0(key, ".bin"))
 }

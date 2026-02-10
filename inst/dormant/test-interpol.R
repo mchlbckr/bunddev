@@ -1,9 +1,16 @@
 test_that("interpol endpoints return tibbles", {
   skip_if_offline()
   skip_on_cran()
-  skip_if(Sys.getenv("BUNDDEV_RUN_INTERPOL") != "true", "BUNDDEV_RUN_INTERPOL not set")
 
-  red <- interpol_red_notices(params = list(resultPerPage = 1, page = 1))
+  red <- tryCatch(
+    interpol_red_notices(params = list(resultPerPage = 1, page = 1)),
+    error = function(e) {
+      if (grepl("403|Forbidden", e$message)) {
+        skip("interpol API returns 403 (access denied)")
+      }
+      stop(e)
+    }
+  )
   expect_s3_class(red, "tbl_df")
 
   yellow <- interpol_yellow_notices(params = list(resultPerPage = 1, page = 1))

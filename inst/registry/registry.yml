@@ -196,15 +196,6 @@
   tags:
     - environment
     - flood
-- id: interpol
-  title: Interpol Notices API
-  provider: Interpol
-  spec_url: https://raw.githubusercontent.com/bundesAPI/interpol-api/main/openapi.yaml
-  docs_url: https://interpol.api.bund.dev
-  auth: none
-  tags:
-    - safety
-    - law
 - id: jobsuche
   title: Jobsuche API
   provider: Bundesagentur fuer Arbeit
@@ -387,15 +378,6 @@
   tags:
     - education
     - training
-- id: zoll
-  title: Einfuhrzoll API
-  provider: Bundeszollverwaltung
-  spec_url: https://raw.githubusercontent.com/bundesAPI/zoll-api/main/openapi.yaml
-  docs_url: https://zoll.api.bund.dev
-  auth: none
-  tags:
-    - customs
-    - finance
 - id: rechtsinformationsportal
   title: Rechtsinformationsportal
   provider: Bundesministerium der Justiz und fuer Verbraucherschutz

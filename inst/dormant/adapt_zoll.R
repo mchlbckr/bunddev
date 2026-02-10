@@ -31,7 +31,7 @@ zoll_kurse <- function(last_modified_date = NULL,
   }
 
   response <- zoll_request(
-    "https://zoll.de/SiteGlobals/Functions/Kurse/App/KursExport.txt",
+    "https://zoll.api.proxy.bund.dev/SiteGlobals/Functions/Kurse/App/KursExport.txt",
     params = params,
     safe = safe,
     refresh = refresh,
@@ -185,7 +185,7 @@ zoll_request <- function(url, params = list(), safe = TRUE, refresh = FALSE, par
 }
 
 zoll_request_bmf <- function(path, last_modified_date = NULL, safe = TRUE, refresh = FALSE) {
-  base_url <- "https://www.bundesfinanzministerium.de/SiteGlobals/Functions/Apps/retrieve"
+  base_url <- "https://zoll.api.proxy.bund.dev/SiteGlobals/Functions/Apps/retrieve"
   url <- paste0(base_url, path)
 
   params <- list(

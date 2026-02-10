@@ -535,7 +535,11 @@ dip_bundestag_tidy_detail <- function(response) {
     return(tibble::tibble())
   }
 
-  cleaned <- purrr::map(response, ~ if (is.null(.x)) NA else .x)
+  cleaned <- purrr::map(response, function(x) {
+    if (is.null(x)) return(NA)
+    if (is.list(x) || length(x) > 1) return(list(x))
+    x
+  })
   tibble::as_tibble(cleaned)
 }
 
