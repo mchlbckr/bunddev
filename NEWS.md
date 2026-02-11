@@ -1,3 +1,28 @@
+# bunddev 0.2.0
+
+## Bug Fixes
+
+- Fixed response cache collision for path-based API calls (dip_bundestag): `path` was not included in the cache key, causing all list endpoints to return identical data.
+- Fixed dip_bundestag detail endpoints crashing on responses with mixed-length list fields by wrapping list/vector values as list-columns.
+- Fixed handelsregister search returning 0 results due to missing JSF submit button field (`form:btnSuche`).
+- Fixed handelsregister false-positive error detection (the error-message div is always present in the HTML template).
+
+## Improvements
+
+- Expanded dip_bundestag test coverage to all 16 exported functions.
+- Updated active adapter count from 39 to 33.
+
+## Dormant Adapters
+
+Moved 6 adapters to `inst/dormant/` due to upstream issues:
+
+- **interpol**: Akamai JavaScript-based bot detection blocks non-browser clients.
+- **zoll**: Endpoints removed (site redesigned) and Radware bot protection.
+- **berufssprachkurssuche**: Public OAuth2 credentials revoked by Bundesagentur fuer Arbeit.
+- **coachingangebote**: Public OAuth2 credentials revoked by Bundesagentur fuer Arbeit.
+- **entgeltatlas**: Public OAuth2 credentials revoked by Bundesagentur fuer Arbeit; confirmed no official public API.
+- **weiterbildungssuche**: Endpoint returns HTTP 403; undocumented internal endpoint with revoked credentials.
+
 # bunddev 0.1.0
 
 ## Initial Release

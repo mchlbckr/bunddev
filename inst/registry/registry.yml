@@ -25,15 +25,6 @@
   tags:
     - transport
     - traffic
-- id: berufssprachkurssuche
-  title: Berufssprachkurssuche API
-  provider: Bundesagentur fuer Arbeit
-  spec_url: https://raw.githubusercontent.com/bundesAPI/berufssprachkurssuche-api/main/openapi.yaml
-  docs_url: https://bundesapi.github.io/berufssprachkurssuche-api/
-  auth: api_key
-  tags:
-    - education
-    - language
 - id: bewerberboerse
   title: Bewerberboerse API
   provider: Bundesagentur fuer Arbeit
@@ -79,15 +70,6 @@
   tags:
     - lobbying
     - transparency
-- id: coachingangebote
-  title: Coachingangebote API
-  provider: Bundesagentur fuer Arbeit
-  spec_url: https://raw.githubusercontent.com/bundesAPI/coachingangebote-api/main/openapi.yaml
-  docs_url: https://bundesapi.github.io/coachingangebote-api/
-  auth: api_key
-  tags:
-    - jobs
-    - training
 - id: dashboard_deutschland
   title: Dashboard Deutschland API
   provider: Statistisches Bundesamt
@@ -160,15 +142,6 @@
   tags:
     - mobility
     - counts
-- id: entgeltatlas
-  title: Entgeltatlas API
-  provider: Bundesagentur fuer Arbeit
-  spec_url: https://raw.githubusercontent.com/bundesAPI/entgeltatlas-api/main/openapi.yaml
-  docs_url: https://bundesapi.github.io/entgeltatlas-api/
-  auth: oauth2
-  tags:
-    - jobs
-    - salary
 - id: feiertage
   title: Feiertage API
   provider: Wikipedia
@@ -369,15 +342,6 @@
   tags:
     - transport
     - realtime
-- id: weiterbildungssuche
-  title: Weiterbildungssuche API
-  provider: Bundesagentur fuer Arbeit
-  spec_url: https://raw.githubusercontent.com/bundesAPI/weiterbildungssuche-api/main/openapi.yaml
-  docs_url: https://bundesapi.github.io/weiterbildungssuche-api/
-  auth: none
-  tags:
-    - education
-    - training
 - id: rechtsinformationsportal
   title: Rechtsinformationsportal
   provider: Bundesministerium der Justiz und fuer Verbraucherschutz

@@ -4,8 +4,9 @@
 .claude/
 Meta/
 adapt_dwd.R
-adapt_entgeltatlas.R
 .Renviron
 /doc/
 /Meta/
 *.bak
+.DS_Store
+**/.DS_Store

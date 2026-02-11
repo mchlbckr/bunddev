@@ -106,7 +106,7 @@ companies <- handelsregister_search("deutsche bahn")
 
 ## SMARD workflow
 
-```{r smard, eval = TRUE}
+```{r smard, eval = FALSE}
 library(ggplot2)
 
 timestamp <- 1627250400000

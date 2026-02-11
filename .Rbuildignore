@@ -13,3 +13,5 @@
 ^ROADMAP\.md$
 ^.*\.png$
 ^\.github$
+^inst/dormant$
+^cran-comments\.md$
