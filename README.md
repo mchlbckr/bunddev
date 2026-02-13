@@ -244,6 +244,13 @@ bunddev_parameters("smard")
 bunddev_parameter_values(smard_timeseries, "resolution")
 ```
 
+## Related projects
+
+| Language | Package | Repository |
+|----|----|----|
+| Python | deutschland | [bundesAPI/deutschland](https://github.com/bundesAPI/deutschland) |
+| Perl | WWW::Bund | [Getty/p5-www-bund](https://github.com/Getty/p5-www-bund) |
+
 ## Acknowledgements
 
 This package builds on the work of the [bund.dev](https://bund.dev) team
