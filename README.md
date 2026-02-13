@@ -1,3 +1,4 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # bunddev <img src="man/figures/bunddev_hexagon.png" align="right" width="120" />
@@ -19,131 +20,158 @@ issues](https://img.shields.io/github/issues/mchlbckr/bunddev)](https://github.c
 stars](https://img.shields.io/github/stars/mchlbckr/bunddev?style=social)](https://github.com/mchlbckr/bunddev/stargazers)
 <!-- badges: end -->
 
-The goal of bunddev is to provide a lightweight registry of public APIs
-and helpers to explore their OpenAPI specs. Some APIs enforce rate
-limits; check the registry details for service-specific guidance.
+An R interface to German government and public sector APIs listed on
+[bund.dev](https://bund.dev). **33 ready-to-use adapters** return tidy
+tibbles for immediate use in dplyr/ggplot2 workflows.
 
-API-specific helpers return tidy tibbles by default. Use
-`bunddev_call()` for raw responses.
+## Three-layer architecture
 
-When `flatten = TRUE`, use `flatten_mode` to control list columns:
-“json” keeps data as JSON strings (default), “drop” removes list
-columns, and “unnest” expands list-columns into multiple rows.
+| Layer | What it does | Entry point |
+|----|----|----|
+| **Registry** | Browse and search all APIs on bund.dev | `bunddev_list()`, `bunddev_info()` |
+| **OpenAPI core** | Explore specs and call any endpoint | `bunddev_spec()`, `bunddev_call()` |
+| **Adapters** | Ready-made functions returning tidy tibbles | e.g. `smard_timeseries()`, `autobahn_roadworks()` |
 
-Use `bunddev_parameters("<api>")` to see the currently valid parameters
-for an API if the upstream spec has changed. For endpoint-specific
-enums, use `bunddev_parameter_values(smard_timeseries, "resolution")`.
-
-Several adapters add parsed POSIXct time columns (suffix `_time`) using
-the Europe/Berlin timezone (for example `time` in SMARD, `start_time` in
-DWD, and `date_time` in Tagesschau).
-
-The package is organized into a core layer (registry, caching, OpenAPI
-parsing) and adapter helpers for individual APIs.
-
-Core files live in `R/core_*`, while adapters live in `R/adapt_*`. Add
-new adapters by implementing tidy helpers that wrap
-`bunddev_call_tidy()`.
+Adapters include built-in response caching and rate limiting.
 
 ## Installation
 
 Install the released version from CRAN:
 
-    install.packages("bunddev")
+``` r
+install.packages("bunddev")
+```
 
 Or install the development version from GitHub:
 
-    remotes::install_github("mchlbckr/bunddev")
+``` r
+remotes::install_github("mchlbckr/bunddev")
+```
 
-## Acknowledgements
+## Quick start
 
-This package builds on the work of the bund.dev team, who curate and
-centralize public sector APIs for the community (<https://bund.dev>,
-<https://github.com/bundesAPI>).
+``` r
+library(bunddev)
+
+# Energy market data
+series <- smard_timeseries(410, region = "DE", resolution = "hour")
+
+# Weather warnings
+dwd_warnings()
+
+# Current news
+tagesschau_homepage()
+
+# Company search
+handelsregister_search("deutsche bahn")
+
+# Water levels
+pegel_online_stations()
+
+# Parliamentary documents
+dip_bundestag_drucksache_list()
+```
+
+## Available adapters (33)
+
+**Government & Parliament** — bundestag, bundesrat,
+bundestag_lobbyregister, dip_bundestag, bundeshaushalt
+
+**Environment & Weather** — dwd, luftqualitaet, hochwasserzentralen,
+pegel_online, mudab, smard
+
+**Statistics & Data** — destatis, deutschlandatlas, regionalatlas,
+dashboard_deutschland
+
+**Jobs & Education** — jobsuche, ausbildungssuche, bewerberboerse
+
+**Transport & Infrastructure** — autobahn, ladestationen, eco_visio
+
+**Safety & Alerts** — nina, lebensmittelwarnung, travelwarning,
+pflanzenschutzmittelzulassung
+
+**Health** — diga, hilfsmittel
+
+**Culture & Media** — tagesschau, ddb
+
+**Business** — handelsregister, marktstammdaten
+
+**Other** — abfallnavi, feiertage
 
 ## Examples
 
-Browse the registry:
+### Browse the registry
 
-    library(bunddev)
+``` r
+library(bunddev)
 
-    bunddev_list(tag = "jobs")
-    #> # A tibble: 5 × 8
-    #>   id               title       provider spec_url docs_url auth  rate_limit tags 
-    #>   <chr>            <chr>       <chr>    <chr>    <chr>    <chr> <chr>      <lis>
-    #> 1 ausbildungssuche Ausbildung… Bundesa… https:/… https:/… api_… <NA>       <chr>
-    #> 2 bewerberboerse   Bewerberbo… Bundesa… https:/… https:/… api_… <NA>       <chr>
-    #> 3 coachingangebote Coachingan… Bundesa… https:/… https:/… api_… <NA>       <chr>
-    #> 4 entgeltatlas     Entgeltatl… Bundesa… https:/… https:/… none  <NA>       <chr>
-    #> 5 jobsuche         Jobsuche A… Bundesa… https:/… https:/… api_… <NA>       <chr>
-    bunddev_info("abfallnavi")
-    #> # A tibble: 1 × 8
-    #>   id         title          provider spec_url    docs_url auth  rate_limit tags 
-    #>   <chr>      <chr>          <chr>    <chr>       <chr>    <chr> <chr>      <lis>
-    #> 1 abfallnavi Abfallnavi API regio iT https://ra… https:/… none  <NA>       <chr>
+bunddev_list(tag = "energy")
+bunddev_info("smard")
+```
 
-Call the Bewerberboerse API (requires an API key header):
+### SMARD energy data with ggplot2
 
-    library(bunddev)
+``` r
+library(bunddev)
+library(ggplot2)
 
-    Sys.setenv(BEWERBERBOERSE_API_KEY = "jobboerse-bewerbersuche-ui")
-    bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
+series <- smard_timeseries(410, region = "DE", resolution = "hour",
+                           timestamp = 1627250400000)
 
-    bewerber <- bewerberboerse_search(
-      params = list(was = "data", size = 10),
-      flatten = TRUE
-    )
-
-    details <- bewerberboerse_details(bewerber$refnr[[1]], flatten = TRUE)
-
-Use the Autobahn API with list and detail helpers:
-
-    library(bunddev)
-
-    roads <- autobahn_roads()
-    road_id <- roads$road_id[[1]]
-
-    roadworks <- autobahn_roadworks(road_id, flatten = TRUE)
-    warnings <- autobahn_warnings(road_id, flatten = TRUE)
-
-    roadwork_details <- autobahn_roadwork_details(roadworks$identifier[[1]], flatten = TRUE)
-    warning_details <- autobahn_warning_details(warnings$identifier[[1]], flatten = TRUE)
-
-Handelsregister search (default rate limit is applied from the
-registry):
-
-    companies <- handelsregister_search("deutsche bahn")
-
-SMARD time series example (historical timestamp):
-
-    library(bunddev)
-    library(ggplot2)
-
-    timestamp <- 1627250400000
-    series <- smard_timeseries(410, region = "DE", resolution = "hour", timestamp = timestamp)
-
-    ggplot(series, aes(time, value)) +
-      geom_line() +
-      labs(x = "Time", y = "MW")
+ggplot(series, aes(time, value)) +
+  geom_line() +
+  labs(x = "Time", y = "MW", title = "Electricity generation")
+```
 
 `series$time` is a POSIXct column parsed in Europe/Berlin.
 
-DWD station overview example:
+### Autobahn roadworks
 
-    library(bunddev)
+``` r
+library(bunddev)
 
-    stations <- dwd_station_overview(c("10865", "G005"), flatten = TRUE)
+roads <- autobahn_roads()
+roadworks <- autobahn_roadworks(roads$road_id[[1]], flatten = TRUE)
+```
 
-Jobsuche example (requires API key header):
+### DIP Bundestag parliamentary data
 
-    library(bunddev)
+``` r
+library(bunddev)
 
-    Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
-    bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+# List recent documents
+docs <- dip_bundestag_drucksache_list(params = list(
+  f.datum.start = "2025-01-01",
+  f.drucksachetyp = "Gesetzentwurf"
+))
 
-    jobs <- jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
+# Get details for a specific document
+dip_bundestag_drucksache(284229)
 
-Inspect current parameters from the OpenAPI spec:
+# Full text (includes text column)
+dip_bundestag_drucksache_text(284229)
+```
 
-    bunddev_parameters("smard")
-    bunddev_parameter_values(smard_timeseries, "resolution")
+### Jobsuche (requires API key)
+
+``` r
+library(bunddev)
+
+Sys.setenv(JOBBOERSE_API_KEY = "jobboerse-jobsuche")
+bunddev_auth_set("jobsuche", type = "api_key", env_var = "JOBBOERSE_API_KEY")
+
+jobs <- jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
+```
+
+### Discover parameters from OpenAPI specs
+
+``` r
+bunddev_parameters("smard")
+bunddev_parameter_values(smard_timeseries, "resolution")
+```
+
+## Acknowledgements
+
+This package builds on the work of the [bund.dev](https://bund.dev) team
+and the [bundesAPI](https://github.com/bundesAPI) community, who curate
+and document public sector APIs.
