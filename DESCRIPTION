@@ -2,7 +2,8 @@ Package: bunddev
 Title: Discover and Call 'Bund.dev' APIs
 Version: 0.2.0
 Authors@R: 
-    person("Michael", "Bücker", , "michael.buecker@fh-muenster.de", role = c("aut", "cre"))
+    person("Michael", "Bücker", , "michael.buecker@fh-muenster.de", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-0045-8460"))
 Author: Michael Bücker [aut, cre]
 Maintainer: Michael Bücker <michael.buecker@fh-muenster.de>
 Depends:
