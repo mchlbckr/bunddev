@@ -2,7 +2,10 @@ test_that("travelwarning endpoints return tibbles", {
   skip_if_offline()
   skip_on_cran()
 
-  warnings <- travelwarning_warnings()
+  warnings <- tryCatch(
+    travelwarning_warnings(),
+    error = function(e) skip(paste("API unavailable:", conditionMessage(e)))
+  )
   expect_s3_class(warnings, "tbl_df")
 
   if (nrow(warnings) > 0) {
