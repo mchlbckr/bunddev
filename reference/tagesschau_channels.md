@@ -40,6 +40,15 @@ A tibble with the same columns as
 [`tagesschau_homepage()`](https://buecker.ms/bunddev/reference/tagesschau_homepage.md),
 restricted to channel entries.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Lists the Tagesschau channels endpoint. API documentation:

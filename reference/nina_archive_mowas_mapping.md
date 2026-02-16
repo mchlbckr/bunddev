@@ -28,6 +28,15 @@ nina_archive_mowas_mapping(identifier, safe = TRUE, refresh = FALSE)
 
 A one-row tibble with archive mapping payload in list-columns.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## See also
 
 Other NINA:

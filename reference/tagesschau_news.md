@@ -53,6 +53,15 @@ A tibble with the same columns as
 [`tagesschau_homepage()`](https://buecker.ms/bunddev/reference/tagesschau_homepage.md),
 filtered by optional region/ressort parameters.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns current news items with optional filters for region or ressort.

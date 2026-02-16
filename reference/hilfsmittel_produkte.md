@@ -54,6 +54,15 @@ hilfsmittel_produkte(
 A tibble with one row per product entry in the product list. Columns
 follow upstream schema; nested values may appear as list-columns.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns the full product list (large payload). API documentation:

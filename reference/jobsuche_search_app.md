@@ -116,6 +116,15 @@ jobsuche_search_app(
 A tibble with the same columns as
 [`jobsuche_search()`](https://buecker.ms/bunddev/reference/jobsuche_search.md).
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 This uses the mobile app endpoint of the Jobsuche API. It shares the

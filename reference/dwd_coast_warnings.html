@@ -99,7 +99,14 @@ the number of rows.</p></dd>
     <p>A tibble with one row per coastal warning and columns:
 <code>region_id</code>, <code>type</code>, <code>level</code>, <code>description</code>, <code>description_text</code>, <code>event</code>,
 and <code>headline</code>.</p>
-    </div>
+<dl><dt>Scalar fields</dt>
+<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Retrieves coastal warnings from the DWD App API.

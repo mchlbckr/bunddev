@@ -55,6 +55,15 @@ A tibble with one row per crowd report and columns including
 `meldung_id`, `timestamp`, `timestamp_time`, `lat`, `lon`, `place`,
 `category`, `auspraegung`, and `zusatz_attribute` (list-column).
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Retrieves crowd-sourced weather reports from the DWD App API. API

@@ -59,6 +59,15 @@ hilfsmittel_nachweisschema(
 A tibble with detail fields for one Nachweisschema resource. Columns
 follow upstream schema; nested values may appear as list-columns.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns detail information for a Nachweisschema. API documentation:

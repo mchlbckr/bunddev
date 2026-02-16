@@ -29,6 +29,15 @@ hochwasserzentralen_pegel_info(pegelnummer, safe = TRUE, refresh = FALSE)
 A tibble with one row of gauge metadata for the selected `pegelnummer`.
 Columns follow the upstream service field names.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns metadata for a single flood gauge (pegel) from

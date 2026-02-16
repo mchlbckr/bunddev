@@ -33,6 +33,15 @@ columns as
 Includes `last_modified_time` and `effective_time` as POSIXct in
 Europe/Berlin.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns full travel warning content, including HTML blocks.

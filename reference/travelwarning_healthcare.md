@@ -26,6 +26,15 @@ A tibble with healthcare entries and common metadata columns as returned
 by
 [`travelwarning_warnings()`](https://buecker.ms/bunddev/reference/travelwarning_warnings.md).
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns healthcare documents provided by the Auswaertiges Amt. API

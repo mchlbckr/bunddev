@@ -44,6 +44,15 @@ A tibble with one row per returned `MV_STATION_MSMNT` record. Includes
 parsed `*_time` columns (`POSIXct`, Europe/Berlin) when matching
 date/time fields are present.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns measurement values for parameters from the MUDAB database. API

@@ -28,6 +28,15 @@ including `content_id`, `last_modified_time`, and `effective_time`.
 Includes `last_modified_time` and `effective_time` as POSIXct in
 Europe/Berlin.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 The NINA API provides warnings and app data from the Bundesamt fuer

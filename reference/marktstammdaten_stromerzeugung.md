@@ -76,6 +76,15 @@ A tibble with one row per MaStR entry. Includes a `total` column with
 the total result count and additional `_time` columns for date fields
 when available.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns public electricity generation data from the MaStR. API

@@ -30,6 +30,15 @@ A one-row tibble with fields extracted from the XML document. Column
 names correspond to XML element names; repeated elements are
 list-columns.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns a single Bundestag news article in XML format. API

@@ -53,6 +53,15 @@ guaranteed columns as
 `coordinate_long`, `description`, `footer`, `route_recommendation`
 (list-column), and `lorry_parking_feature_icons` (list-column).
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns full details for a single lorry parking entry. API

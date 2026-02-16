@@ -48,6 +48,15 @@ are: `road_id`, `identifier`, `title`, `subtitle`, `display_type`,
 `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the
 two list-columns are transformed according to `flatten_mode`.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns charging stations for a specific Autobahn road id. API

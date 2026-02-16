@@ -15,6 +15,15 @@ A tibble with one row per Autobahn id and column `road_id`.
 Guaranteed column is `road_id` (character), one row per Autobahn
 identifier.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Lists Autobahn road ids from the Autobahn App API (Autobahn GmbH). API

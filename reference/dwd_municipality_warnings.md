@@ -59,6 +59,15 @@ dwd_municipality_warnings(
 A tibble with the same columns as
 [`dwd_warnings_nowcast()`](https://buecker.ms/bunddev/reference/dwd_warnings_nowcast.md).
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Retrieves municipality warnings from the DWD App API. API documentation:

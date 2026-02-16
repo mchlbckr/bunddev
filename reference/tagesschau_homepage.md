@@ -43,6 +43,15 @@ A tibble with one row per item and columns: `section`, `sophora_id`,
 `copyright`, `alttext`, and list-columns `teaser_image`, `tracking`,
 `tags`, `images`, `streams`, `geotags`, `branding_image`, `first_frame`.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Fetches the Tagesschau homepage feed as provided by the ARD Tagesschau

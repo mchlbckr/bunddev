@@ -65,7 +65,14 @@ from the API (default <code>FALSE</code>).</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with representative entries and common metadata columns as
 returned by <code><a href="travelwarning_warnings.html">travelwarning_warnings()</a></code>.</p>
-    </div>
+<dl><dt>Scalar fields</dt>
+<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns a list of German representatives in foreign countries. API documentation: <a href="https://travelwarning.api.bund.dev" class="external-link">https://travelwarning.api.bund.dev</a>.</p>

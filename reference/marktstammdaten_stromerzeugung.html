@@ -112,7 +112,14 @@ the number of rows.</p></dd>
     <p>A tibble with one row per MaStR entry. Includes a <code>total</code> column with
 the total result count and additional <code>_time</code> columns for date fields when
 available.</p>
-    </div>
+<dl><dt>Scalar fields</dt>
+<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns public electricity generation data from the MaStR.

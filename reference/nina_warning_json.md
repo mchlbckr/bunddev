@@ -32,6 +32,15 @@ columns as
 
 Includes `sent_time` as POSIXct in Europe/Berlin.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns a warning in JSON format.

@@ -68,7 +68,14 @@ from the API (default <code>FALSE</code>).</p></dd>
 <code>response_last_modified</code>, <code>response_last_modified_time</code>,
 <code>last_modified_time</code>, and <code>effective_time</code>, plus additional warning fields
 mapped from the upstream payload.</p>
-    </div>
+<dl><dt>Scalar fields</dt>
+<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The travelwarning API provides travel and safety information from the

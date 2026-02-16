@@ -28,6 +28,15 @@ A tibble with one row per warning entry. Common columns include
 `last_modified_time`, and `effective_time`, plus additional warning
 fields mapped from the upstream payload.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 The travelwarning API provides travel and safety information from the

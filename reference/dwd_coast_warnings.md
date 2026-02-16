@@ -60,6 +60,15 @@ A tibble with one row per coastal warning and columns: `region_id`,
 `type`, `level`, `description`, `description_text`, `event`, and
 `headline`.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Retrieves coastal warnings from the DWD App API. API documentation:

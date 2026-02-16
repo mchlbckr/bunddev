@@ -84,7 +84,14 @@ from the API (default <code>FALSE</code>).</p></dd>
     <p>A tibble with one row per returned <code>MV_STATION_MSMNT</code> record.
 Includes parsed <code>*_time</code> columns (<code>POSIXct</code>, Europe/Berlin) when matching
 date/time fields are present.</p>
-    </div>
+<dl><dt>Scalar fields</dt>
+<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns measurement values for parameters from the MUDAB database.

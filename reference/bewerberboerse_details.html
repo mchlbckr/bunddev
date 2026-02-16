@@ -82,7 +82,14 @@ the number of rows.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with the same columns as <code><a href="bewerberboerse_search.html">bewerberboerse_search()</a></code>, filtered
 to the requested <code>referenznummer</code>.</p>
-    </div>
+<dl><dt>Scalar fields</dt>
+<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Fetches details for a single candidate. The <code>referenznummer</code> typically comes

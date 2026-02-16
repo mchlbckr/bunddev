@@ -59,6 +59,15 @@ hilfsmittel_produktgruppe(
 A tibble with detail fields for one product group. Columns follow
 upstream schema; nested values may appear as list-columns.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns details for a product group (Produktgruppe). API documentation:

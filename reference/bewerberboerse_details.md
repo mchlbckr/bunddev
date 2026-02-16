@@ -44,6 +44,15 @@ A tibble with the same columns as
 [`bewerberboerse_search()`](https://buecker.ms/bunddev/reference/bewerberboerse_search.md),
 filtered to the requested `referenznummer`.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Fetches details for a single candidate. The `referenznummer` typically

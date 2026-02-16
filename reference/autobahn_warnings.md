@@ -48,6 +48,15 @@ A tibble with one row per warning entry. Guaranteed columns are:
 (list-column). With `flatten = TRUE`, the two list-columns are
 transformed according to `flatten_mode`.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns current warnings for a specific Autobahn road id. API

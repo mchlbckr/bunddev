@@ -82,7 +82,14 @@ the number of rows.</p></dd>
 <code>update_check_url</code>, <code>region_id</code>, <code>ressort</code>, <code>type</code>, <code>breaking_news</code>,
 <code>copyright</code>, <code>alttext</code>, and list-columns <code>teaser_image</code>, <code>tracking</code>, <code>tags</code>,
 <code>images</code>, <code>streams</code>, <code>geotags</code>, <code>branding_image</code>, <code>first_frame</code>.</p>
-    </div>
+<dl><dt>Scalar fields</dt>
+<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Fetches the Tagesschau homepage feed as provided by the ARD Tagesschau API.

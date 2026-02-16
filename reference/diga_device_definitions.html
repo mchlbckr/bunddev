@@ -106,7 +106,14 @@ the number of rows.</p></dd>
     <p>A tibble with one row per FHIR resource in the returned bundle.
 Column structure depends on the resource profile and may include nested
 list-columns when <code>flatten = FALSE</code>.</p>
-    </div>
+<dl><dt>Scalar fields</dt>
+<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other DiGA:

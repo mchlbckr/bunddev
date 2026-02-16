@@ -61,6 +61,15 @@ A tibble with one row per warning and columns: `type`, `level`, `start`,
 `event`, `headline`, `regions` (list-column), `urls` (list-column), and
 `is_vorabinfo`.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Retrieves nowcast weather warnings from the DWD App API. API

@@ -79,7 +79,14 @@ from the API (default <code>FALSE</code>).</p></dd>
     <p>A tibble with one row per collection date and columns <code>date</code>,
 <code>fraction</code>, and <code>date_time</code> (<code>POSIXct</code> in Europe/Berlin) when available.</p>
 <p>Includes <code>date_time</code> as POSIXct in Europe/Berlin.</p>
-    </div>
+<dl><dt>Scalar fields</dt>
+<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other Abfallnavi:

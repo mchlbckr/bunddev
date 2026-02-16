@@ -29,6 +29,15 @@ hilfsmittel_tree(level, safe = TRUE, refresh = FALSE)
 A tibble with one row per tree node at the requested level. Columns
 follow upstream schema; repeated nested values are list-columns.
 
+- Scalar fields:
+
+  One column per top-level scalar field returned by the endpoint.
+
+- Nested fields:
+
+  Kept as list-columns; for endpoints with `flatten` controls these can
+  be transformed.
+
 ## Details
 
 Returns nodes from the Hilfsmittel product tree up to the selected
