@@ -27,9 +27,10 @@ nina_logo(filename, safe = TRUE, refresh = FALSE)
 ## Value
 
 A one-row tibble with `filename` and raw `bytes` in a list-column.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-`flatten` / `flatten_mode` controls.
+Guaranteed columns are endpoint-specific: content endpoints include
+`content_id` plus response metadata/time columns; map and archive
+endpoints expose documented identifiers and keep nested blocks as
+list-columns.
 
 ## See also
 

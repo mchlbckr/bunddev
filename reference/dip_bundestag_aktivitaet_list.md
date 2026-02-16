@@ -81,9 +81,9 @@ dip_bundestag_aktivitaet_list(
 ## Value
 
 A one-row tibble with list-response metadata: `num_found`, `cursor`, and
-`documents` (list-column). Top-level scalar API fields are returned as
-tibble columns; nested objects or arrays are kept in list-columns unless
-the function provides `flatten` / `flatten_mode` controls.
+`documents` (list-column). Guaranteed columns for list endpoints are
+`num_found`, `cursor`, and `documents` (list-column). Detail endpoints
+return top-level scalar fields with nested structures as list-columns.
 
 ## See also
 

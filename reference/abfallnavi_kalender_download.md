@@ -61,9 +61,9 @@ abfallnavi_kalender_download(
 ## Value
 
 A one-row tibble with raw downloaded file bytes in a list-column.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-`flatten` / `flatten_mode` controls.
+Guaranteed columns are endpoint-specific top-level fields from the
+Abfallnavi API (via `abfallnavi_tidy_list()` /
+`abfallnavi_tidy_single()`). Nested values are kept as list-columns.
 
 ## Details
 

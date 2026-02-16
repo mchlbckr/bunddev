@@ -77,10 +77,8 @@ regionalatlas_query(
 ## Value
 
 A tibble with one row per returned feature and one column per attribute
-provided by the selected Regionalatlas table. Top-level scalar API
-fields are returned as tibble columns; nested objects or arrays are kept
-in list-columns unless the function provides `flatten` / `flatten_mode`
-controls.
+provided by the selected Regionalatlas table. Guaranteed columns are
+ArcGIS feature `attributes` fields for each row.
 
 ## Details
 

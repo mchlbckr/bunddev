@@ -51,10 +51,10 @@ marktstammdaten_filters_stromverbrauch(
 
 ## Value
 
-A tibble with filter definitions for electricity consumption. Top-level
-scalar API fields are returned as tibble columns; nested objects or
-arrays are kept in list-columns unless the function provides `flatten` /
-`flatten_mode` controls.
+A tibble with filter definitions for electricity consumption. Guaranteed
+columns are top-level MaStR filter/entry fields. Entry endpoints always
+include `total` and add parsed `*Datum_time` columns when matching date
+fields exist.
 
 ## Details
 

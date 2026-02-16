@@ -73,9 +73,8 @@ from the API (default <code>FALSE</code>).</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with one row per XML <code>&lt;item&gt;</code> in the voting distribution
 feed.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-<code>flatten</code> / <code>flatten_mode</code> controls.</p>
+Guaranteed columns are scalar child tags from each XML <code>&lt;item&gt;</code> node.
+Recognized date fields additionally get parsed <code>*_time</code> POSIXct columns.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>

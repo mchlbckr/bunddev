@@ -54,10 +54,9 @@ luftqualitaet_components(params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per component metadata entry. Top-level scalar API
-fields are returned as tibble columns; nested objects or arrays are kept
-in list-columns unless the function provides `flatten` / `flatten_mode`
-controls.
+A tibble with one row per component metadata entry. Guaranteed columns
+follow the API `indices` metadata; rows contain indexed scalar values
+with names resolved from `indices` when provided.
 
 ## Details
 

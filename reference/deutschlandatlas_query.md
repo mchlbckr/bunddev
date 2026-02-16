@@ -86,10 +86,9 @@ deutschlandatlas_query(
 ## Value
 
 A tibble with one row per ArcGIS feature. Attribute names are normalized
-to lower snake_case. Includes a `geometry` list-column. Top-level scalar
-API fields are returned as tibble columns; nested objects or arrays are
-kept in list-columns unless the function provides `flatten` /
-`flatten_mode` controls.
+to lower snake_case. Includes a `geometry` list-column. Guaranteed
+columns are ArcGIS attribute fields, with `geometry` retained as a
+list-column when geometry is present.
 
 ## Details
 

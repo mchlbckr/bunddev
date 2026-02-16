@@ -27,9 +27,10 @@ nina_covid_ticker_message(id, safe = TRUE, refresh = FALSE)
 ## Value
 
 A one-row tibble with `id` and list-column `data` containing message
-payload. Top-level scalar API fields are returned as tibble columns;
-nested objects or arrays are kept in list-columns unless the function
-provides `flatten` / `flatten_mode` controls.
+payload. Guaranteed columns are endpoint-specific: content endpoints
+include `content_id` plus response metadata/time columns; map and
+archive endpoints expose documented identifiers and keep nested blocks
+as list-columns.
 
 ## See also
 

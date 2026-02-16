@@ -23,10 +23,9 @@ hochwasserzentralen_bundeslaender(safe = TRUE, refresh = FALSE)
 ## Value
 
 A tibble with one row per Bundesland/region entry. Column names follow
-the upstream service field names. Top-level scalar API fields are
-returned as tibble columns; nested objects or arrays are kept in
-list-columns unless the function provides `flatten` / `flatten_mode`
-controls.
+the upstream service field names. Guaranteed columns are top-level
+scalar fields from returned JSON objects or GeoJSON feature properties;
+`features` is used as a list-column for GeoJSON container endpoints.
 
 ## Details
 

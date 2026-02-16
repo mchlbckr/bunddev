@@ -24,10 +24,11 @@ nina_faqs(safe = TRUE, refresh = FALSE)
 
 A tibble with one row per FAQ category/entry as returned by the API.
 
-Includes `last_modification_time` as POSIXct in Europe/Berlin. Top-level
-scalar API fields are returned as tibble columns; nested objects or
-arrays are kept in list-columns unless the function provides `flatten` /
-`flatten_mode` controls.
+Includes `last_modification_time` as POSIXct in Europe/Berlin.
+Guaranteed columns are endpoint-specific: content endpoints include
+`content_id` plus response metadata/time columns; map and archive
+endpoints expose documented identifiers and keep nested blocks as
+list-columns.
 
 ## See also
 

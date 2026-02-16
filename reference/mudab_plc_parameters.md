@@ -41,9 +41,8 @@ mudab_plc_parameters(
 ## Value
 
 A tibble with one row per returned `V_GEMESSENE_PARA_PLC` record.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-`flatten` / `flatten_mode` controls.
+Guaranteed columns are scalar fields of the selected MUDAB record type.
+`datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
 
 ## Details
 

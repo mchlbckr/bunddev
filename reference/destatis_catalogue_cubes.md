@@ -89,9 +89,9 @@ destatis_catalogue_cubes(
 ## Value
 
 A one-row tibble with one list-column `response` containing the parsed
-catalogue payload. Top-level scalar API fields are returned as tibble
-columns; nested objects or arrays are kept in list-columns unless the
-function provides `flatten` / `flatten_mode` controls.
+catalogue payload. Guaranteed columns are `response` (list-column) for
+catalogue endpoints and `name` plus `data` (list-column) for data
+retrieval endpoints.
 
 ## Details
 

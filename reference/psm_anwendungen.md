@@ -72,10 +72,9 @@ psm_anwendungen(
 
 ## Value
 
-A tibble with one row per approved application item. Top-level scalar
-API fields are returned as tibble columns; nested objects or arrays are
-kept in list-columns unless the function provides `flatten` /
-`flatten_mode` controls.
+A tibble with one row per approved application item. Guaranteed columns
+are top-level fields of each `items` element (with `m_row$$` removed).
+Non-item payloads are returned in a `response` list-column.
 
 ## Details
 

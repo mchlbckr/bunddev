@@ -12,9 +12,8 @@ autobahn_roads()
 
 A tibble with one row per Autobahn id and column `road_id`.
 
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-`flatten` / `flatten_mode` controls.
+Guaranteed column is `road_id` (character), one row per Autobahn
+identifier.
 
 ## Details
 

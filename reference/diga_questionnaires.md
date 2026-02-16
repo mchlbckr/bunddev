@@ -68,9 +68,9 @@ A tibble with one row per questionnaire resource (same structure rules
 as
 [`diga_device_definitions()`](https://buecker.ms/bunddev/reference/diga_device_definitions.md)).
 
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-`flatten` / `flatten_mode` controls.
+Guaranteed columns are top-level FHIR resource fields from each bundle
+`entry` resource; if no entries exist, a single `bundle` list-column is
+returned.
 
 ## See also
 

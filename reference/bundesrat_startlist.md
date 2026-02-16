@@ -26,10 +26,9 @@ bundesrat_startlist(view = "renderXml", safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per XML `<item>` in the start list feed. Top-level
-scalar API fields are returned as tibble columns; nested objects or
-arrays are kept in list-columns unless the function provides `flatten` /
-`flatten_mode` controls.
+A tibble with one row per XML `<item>` in the start list feed.
+Guaranteed columns are scalar child tags from each XML `<item>` node.
+Recognized date fields additionally get parsed `*_time` POSIXct columns.
 
 ## Details
 

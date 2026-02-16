@@ -22,10 +22,10 @@ abfallnavi_orte(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per place entry returned by the API. Top-level
-scalar API fields are returned as tibble columns; nested objects or
-arrays are kept in list-columns unless the function provides `flatten` /
-`flatten_mode` controls.
+A tibble with one row per place entry returned by the API. Guaranteed
+columns are endpoint-specific top-level fields from the Abfallnavi API
+(via `abfallnavi_tidy_list()` / `abfallnavi_tidy_single()`). Nested
+values are kept as list-columns.
 
 ## Details
 

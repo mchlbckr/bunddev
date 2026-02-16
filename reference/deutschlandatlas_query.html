@@ -122,9 +122,8 @@ the number of rows.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with one row per ArcGIS feature. Attribute names are
 normalized to lower snake_case. Includes a <code>geometry</code> list-column.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-<code>flatten</code> / <code>flatten_mode</code> controls.</p>
+Guaranteed columns are ArcGIS attribute fields, with <code>geometry</code> retained as
+a list-column when geometry is present.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>

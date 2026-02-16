@@ -23,9 +23,9 @@ bundestag_ausschuesse(safe = TRUE, refresh = FALSE)
 ## Value
 
 A tibble with one row per committee `<item>` from the index feed.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-`flatten` / `flatten_mode` controls.
+Guaranteed columns are scalar child tags from XML `<item>` entries (or
+root-level fields for single-document endpoints); repeated tags become
+list-columns.
 
 ## Details
 
