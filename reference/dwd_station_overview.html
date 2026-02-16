@@ -62,37 +62,88 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with station data.</p>
-<p>Includes forecast time columns (<code>forecast_start_time</code>, <code>forecast1_start_time</code>,
-<code>forecast2_start_time</code>) as POSIXct in Europe/Berlin.</p>
-    </div>
+    <p>A tibble with one row per station id:</p><dl><dt>station_id</dt>
+<dd><p>Station id (character).</p></dd>
+
+<dt>forecast1</dt>
+<dd><p>Forecast block 1 (list-column).</p></dd>
+
+<dt>forecast2</dt>
+<dd><p>Forecast block 2 (list-column).</p></dd>
+
+<dt>forecast_start</dt>
+<dd><p>Forecast start timestamp (character).</p></dd>
+
+<dt>forecast_start_time</dt>
+<dd><p>Forecast start as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+<dt>days</dt>
+<dd><p>Daily forecast summaries (list-column).</p></dd>
+
+<dt>warnings</dt>
+<dd><p>Warning entries (list-column).</p></dd>
+
+<dt>three_hour_summaries</dt>
+<dd><p>Three-hour summaries (list-column).</p></dd>
+
+<dt>forecast1_start_time</dt>
+<dd><p><code>forecast1</code> start as <code>POSIXct</code>.</p></dd>
+
+<dt>forecast2_start_time</dt>
+<dd><p><code>forecast2</code> start as <code>POSIXct</code>.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Retrieves station overview data from the DWD App API. Official docs:
-https://dwd.api.bund.dev. Station IDs can be looked up via DWD opendata
+    <p>Retrieves station overview data from the DWD App API. API documentation: <a href="https://dwd.api.bund.dev" class="external-link">https://dwd.api.bund.dev</a>.
 resources or the API documentation.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="dwd_crowd_reports.html">dwd_crowd_reports()</a></code> and <code><a href="dwd_warnings_nowcast.html">dwd_warnings_nowcast()</a></code>.</p></div>
+    <div class="dont-index"><p><code><a href="dwd_crowd_reports.html">dwd_crowd_reports()</a></code> and <code><a href="dwd_warnings_nowcast.html">dwd_warnings_nowcast()</a></code>.</p>
+<p>Other DWD:
+<code><a href="dwd_alpine_forecast_text.html">dwd_alpine_forecast_text()</a></code>,
+<code><a href="dwd_avalanche_warnings.html">dwd_avalanche_warnings()</a></code>,
+<code><a href="dwd_coast_warnings.html">dwd_coast_warnings()</a></code>,
+<code><a href="dwd_crowd_reports.html">dwd_crowd_reports()</a></code>,
+<code><a href="dwd_municipality_warnings.html">dwd_municipality_warnings()</a></code>,
+<code><a href="dwd_sea_warning_text.html">dwd_sea_warning_text()</a></code>,
+<code><a href="dwd_warnings_nowcast.html">dwd_warnings_nowcast()</a></code></p></div>
     </div>
 
     <div class="section level2">

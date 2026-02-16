@@ -22,37 +22,64 @@ dwd_warnings_nowcast(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 - flatten:
 
-  Logical; drop nested list columns.
+  Logical; if `TRUE`, simplify nested list columns according to
+  `flatten_mode`. Default `FALSE` keeps list columns as-is.
 
 - flatten_mode:
 
-  Flatten strategy for list columns. Use "unnest" to expand list-columns
-  into multiple rows.
+  How to handle list columns when `flatten = TRUE`:
+
+  `"drop"`
+
+  :   Remove list columns entirely. Use when nested data is not needed.
+
+  `"json"`
+
+  :   Convert each list element to a JSON string. Preserves all data in
+      a text-queryable format. This is the **default**.
+
+  `"unnest"`
+
+  :   Expand list columns into multiple rows via
+      [`tidyr::unnest_longer()`](https://tidyr.tidyverse.org/reference/unnest_longer.html).
+      **Warning:** this can significantly increase the number of rows.
 
 ## Value
 
-A tibble with nowcast warnings.
-
-Includes `start_time` and `end_time` as POSIXct in Europe/Berlin.
+A tibble with one row per warning and columns: `type`, `level`, `start`,
+`start_time`, `end`, `end_time`, `description`, `description_text`,
+`event`, `headline`, `regions` (list-column), `urls` (list-column), and
+`is_vorabinfo`.
 
 ## Details
 
-Retrieves nowcast weather warnings from the DWD App API. Official docs:
-https://dwd.api.bund.dev.
+Retrieves nowcast weather warnings from the DWD App API. API
+documentation: <https://dwd.api.bund.dev>.
 
 ## See also
 
 [`dwd_municipality_warnings()`](https://buecker.ms/bunddev/reference/dwd_municipality_warnings.md)
 and
 [`dwd_coast_warnings()`](https://buecker.ms/bunddev/reference/dwd_coast_warnings.md).
+
+Other DWD:
+[`dwd_alpine_forecast_text()`](https://buecker.ms/bunddev/reference/dwd_alpine_forecast_text.md),
+[`dwd_avalanche_warnings()`](https://buecker.ms/bunddev/reference/dwd_avalanche_warnings.md),
+[`dwd_coast_warnings()`](https://buecker.ms/bunddev/reference/dwd_coast_warnings.md),
+[`dwd_crowd_reports()`](https://buecker.ms/bunddev/reference/dwd_crowd_reports.md),
+[`dwd_municipality_warnings()`](https://buecker.ms/bunddev/reference/dwd_municipality_warnings.md),
+[`dwd_sea_warning_text()`](https://buecker.ms/bunddev/reference/dwd_sea_warning_text.md),
+[`dwd_station_overview()`](https://buecker.ms/bunddev/reference/dwd_station_overview.md)
 
 ## Examples
 

@@ -30,22 +30,28 @@ smard_indices(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble of timestamps.
+A tibble with one column:
+
+- timestamp:
+
+  Available SMARD timestamp in milliseconds since epoch (numeric).
 
 ## Details
 
 The SMARD API provides power market data published by the
 Bundesnetzagentur. Use this helper to retrieve available timestamps for
-a given filter/region and resolution. Official docs:
-https://smard.api.bund.dev.
+a given filter/region and resolution. API documentation:
+<https://smard.api.bund.dev>.
 
 Note: The registry rate limit states that more than 60 requests per hour
 are not permitted. Use `safe = TRUE` to respect the limit.
@@ -58,6 +64,10 @@ and
 for data retrieval, and
 [`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 for parameter discovery.
+
+Other SMARD:
+[`smard_table()`](https://buecker.ms/bunddev/reference/smard_table.md),
+[`smard_timeseries()`](https://buecker.ms/bunddev/reference/smard_timeseries.md)
 
 ## Examples
 

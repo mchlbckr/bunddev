@@ -37,27 +37,55 @@ regionalatlas_query(
 
 - params:
 
-  Additional query parameters.
+  Additional ArcGIS query parameters merged with adapter defaults.
+  Common keys:
+
+  layer
+
+  :   JSON-encoded layer definition (set automatically from `table`).
+
+  where
+
+  :   SQL-like filter expression (set from `where`).
+
+  outFields
+
+  :   Fields to return (set from `out_fields`).
+
+  returnGeometry
+
+  :   Whether to include geometry (`"true"`/`"false"`).
+
+  f
+
+  :   Output format (`"json"` by default).
+
+  spatialRel
+
+  :   Spatial relation, e.g. `"esriSpatialRelIntersects"`.
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with regional indicator data.
+A tibble with one row per returned feature and one column per attribute
+provided by the selected Regionalatlas table.
 
 ## Details
 
 The Regionalatlas API provides access to over 160 regional indicators
 from the German statistical offices. Data is available at various
 administrative levels (Bundeslaender, Regierungsbezirke, Kreise,
-Gemeinden). Official docs:
-https://github.com/bundesAPI/regionalatlas-api.
+Gemeinden). API documentation:
+<https://github.com/bundesAPI/regionalatlas-api>.
 
 Common tables and their indicators:
 

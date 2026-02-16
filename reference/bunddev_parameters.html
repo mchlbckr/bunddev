@@ -69,8 +69,32 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with parameter metadata.</p>
-    </div>
+    <p>A tibble with one row per parameter definition:</p><dl><dt>method</dt>
+<dd><p>HTTP method in lower-case (character).</p></dd>
+
+<dt>path</dt>
+<dd><p>OpenAPI path template where the parameter applies (character).</p></dd>
+
+<dt>name</dt>
+<dd><p>Parameter name (character).</p></dd>
+
+<dt>location</dt>
+<dd><p>Parameter location such as <code>"query"</code> or <code>"path"</code> (character).</p></dd>
+
+<dt>required</dt>
+<dd><p>Whether the parameter is required (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>description</dt>
+<dd><p>Parameter description from the spec (character or <code>NA</code>).</p></dd>
+
+<dt>schema_type</dt>
+<dd><p>OpenAPI schema type, e.g. <code>"string"</code> (character or <code>NA</code>).</p></dd>
+
+<dt>enum</dt>
+<dd><p>List-column of allowed values (list of character vectors).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns one row per parameter defined in the OpenAPI spec. Enumerations are
@@ -80,7 +104,18 @@ results to a specific endpoint or parameter name.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="bunddev_parameters_for.html">bunddev_parameters_for()</a></code> for adapter-specific parameters and
-<code><a href="bunddev_parameter_values.html">bunddev_parameter_values()</a></code> for enum values.</p></div>
+<code><a href="bunddev_parameter_values.html">bunddev_parameter_values()</a></code> for enum values.</p>
+<p>Other OpenAPI:
+<code><a href="bunddev_cache_dir.html">bunddev_cache_dir()</a></code>,
+<code><a href="bunddev_call.html">bunddev_call()</a></code>,
+<code><a href="bunddev_call_tidy.html">bunddev_call_tidy()</a></code>,
+<code><a href="bunddev_endpoints.html">bunddev_endpoints()</a></code>,
+<code><a href="bunddev_ms_to_posix.html">bunddev_ms_to_posix()</a></code>,
+<code><a href="bunddev_parameter_values.html">bunddev_parameter_values()</a></code>,
+<code><a href="bunddev_parameters_for.html">bunddev_parameters_for()</a></code>,
+<code><a href="bunddev_spec.html">bunddev_spec()</a></code>,
+<code><a href="bunddev_spec_path.html">bunddev_spec_path()</a></code>,
+<code><a href="bunddev_timestamp_to_ms.html">bunddev_timestamp_to_ms()</a></code></p></div>
     </div>
 
     <div class="section level2">

@@ -52,25 +52,145 @@
 
 
 <dl><dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>List of query parameters.</p></dd>
+<dd><p>Named list of query parameters:</p><dl><dt>was</dt>
+<dd><p>Search terms (skills, professions, keywords) (character).</p></dd>
+
+<dt>ausbildungsart</dt>
+<dd><p>Training type code, e.g. <code>au</code>, <code>ba</code>, <code>fo</code> (character).</p></dd>
+
+<dt>wo</dt>
+<dd><p>Location query (place/PLZ/state/country) (character).</p></dd>
+
+<dt>umkreis</dt>
+<dd><p>Radius in km around <code>wo</code> (integer).</p></dd>
+
+<dt>angebotsart</dt>
+<dd><p>Offer type code, e.g. <code>ar</code>, <code>az</code> (character).</p></dd>
+
+<dt>arbeitszeit</dt>
+<dd><p>Work time code, e.g. <code>vz</code>, <code>tz</code> (character).</p></dd>
+
+<dt>berufserfahrung</dt>
+<dd><p>Experience level code, e.g. <code>be</code>, <code>bg</code> (character).</p></dd>
+
+<dt>vertragsart</dt>
+<dd><p>Contract type code, e.g. <code>be</code>, <code>ub</code> (character).</p></dd>
+
+<dt>behinderung</dt>
+<dd><p>Accessibility filter code (character).</p></dd>
+
+<dt>page</dt>
+<dd><p>Page index (integer).</p></dd>
+
+<dt>size</dt>
+<dd><p>Number of results per page (integer).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble containing candidate listings with columns including
-reference number, availability, location, skills, and contact flags. When
-<code>flatten = FALSE</code>, includes nested list columns for education and
-experience. Metadata columns include <code>page</code>, <code>size</code>, and <code>max_ergebnisse</code>.</p>
-    </div>
+    <p>A tibble with one row per candidate profile:</p><dl><dt>refnr</dt>
+<dd><p>Candidate reference number (character).</p></dd>
+
+<dt>verfuegbarkeit_von</dt>
+<dd><p>Availability date text (character).</p></dd>
+
+<dt>aktualisierungsdatum</dt>
+<dd><p>Last update date text (character).</p></dd>
+
+<dt>veroeffentlichungsdatum</dt>
+<dd><p>Publication date text (character).</p></dd>
+
+<dt>stellenart</dt>
+<dd><p>Position type (character).</p></dd>
+
+<dt>arbeitszeit_modelle</dt>
+<dd><p>Work-time models, collapsed string (character).</p></dd>
+
+<dt>berufe</dt>
+<dd><p>Occupations, collapsed string (character).</p></dd>
+
+<dt>letzte_taetigkeit_jahr</dt>
+<dd><p>Year of most recent activity (character).</p></dd>
+
+<dt>letzte_taetigkeit_bezeichnung</dt>
+<dd><p>Label of most recent activity (character).</p></dd>
+
+<dt>letzte_taetigkeit_aktuell</dt>
+<dd><p>Whether latest activity is current (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>hat_email</dt>
+<dd><p>Email contact available (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>hat_telefon</dt>
+<dd><p>Phone contact available (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>hat_adresse</dt>
+<dd><p>Postal address available (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>ort</dt>
+<dd><p>City/locality (character).</p></dd>
+
+<dt>plz</dt>
+<dd><p>Postal code (character).</p></dd>
+
+<dt>umkreis</dt>
+<dd><p>Radius text returned by API (character).</p></dd>
+
+<dt>region</dt>
+<dd><p>Region/state (character).</p></dd>
+
+<dt>land</dt>
+<dd><p>Country (character).</p></dd>
+
+<dt>mehrere_arbeitsorte</dt>
+<dd><p>Multiple work locations flag (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>ausbildungen</dt>
+<dd><p>Education entries (list-column).</p></dd>
+
+<dt>erfahrung</dt>
+<dd><p>Experience entries (list-column).</p></dd>
+
+<dt>operation_id</dt>
+<dd><p>Operation identifier used by the tidier (character).</p></dd>
+
+<dt>page</dt>
+<dd><p>Returned page index (integer).</p></dd>
+
+<dt>size</dt>
+<dd><p>Returned page size (integer).</p></dd>
+
+<dt>max_ergebnisse</dt>
+<dd><p>Total matching result count (integer).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The Bewerberboerse API provides access to candidate listings. Authentication
@@ -82,7 +202,9 @@ inspect available query parameters.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="bewerberboerse_details.html">bewerberboerse_details()</a></code> for detailed entries and <code><a href="bunddev_auth_set.html">bunddev_auth_set()</a></code> for
-authentication setup.</p></div>
+authentication setup.</p>
+<p>Other Bewerberboerse:
+<code><a href="bewerberboerse_details.html">bewerberboerse_details()</a></code></p></div>
     </div>
 
     <div class="section level2">

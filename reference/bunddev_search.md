@@ -16,7 +16,9 @@ bunddev_search(q)
 
 ## Value
 
-A tibble of matching registry entries.
+A tibble with the same columns as
+[`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md),
+containing entries that match `q`.
 
 ## Details
 
@@ -29,6 +31,11 @@ substring match.
 to filter by tag or auth, and
 [`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md)
 for details on a single API.
+
+Other Registry:
+[`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md),
+[`bunddev_list()`](https://buecker.ms/bunddev/reference/bunddev_list.md),
+[`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md)
 
 ## Examples
 

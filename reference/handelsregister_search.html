@@ -70,31 +70,77 @@ official OpenAPI specification is available for this service.</p>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with search results.</p>
-    </div>
+    <p>A tibble with one row per register entry:</p><dl><dt>name</dt>
+<dd><p>Company/entity name (character).</p></dd>
+
+<dt>court</dt>
+<dd><p>Register court and register label (character).</p></dd>
+
+<dt>register_num</dt>
+<dd><p>Extracted register number (character).</p></dd>
+
+<dt>state</dt>
+<dd><p>Federal state (character).</p></dd>
+
+<dt>status</dt>
+<dd><p>Status text from the listing (character).</p></dd>
+
+<dt>status_current</dt>
+<dd><p>Uppercase status code derived from <code>status</code> (character).</p></dd>
+
+<dt>documents_text</dt>
+<dd><p>Document summary text (character).</p></dd>
+
+<dt>documents_count</dt>
+<dd><p>Number of linked documents (integer).</p></dd>
+
+<dt>documents_links</dt>
+<dd><p>Document URLs (list-column of character vectors).</p></dd>
+
+<dt>history</dt>
+<dd><p>Additional parsed history tokens (list-column).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The Handelsregister search is provided via a public web form. This helper
 automates the form flow and parses the result table into a tidy tibble.
-Official docs: https://github.com/bundesAPI/handelsregister.</p>
+API documentation: <a href="https://github.com/bundesAPI/handelsregister" class="external-link">https://github.com/bundesAPI/handelsregister</a>.</p>
 <p>The registry notes that more than 60 requests per hour may violate the terms
 of use. Use <code>safe = TRUE</code> to respect the built-in rate limiting.</p>
     </div>

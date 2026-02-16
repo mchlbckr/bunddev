@@ -58,31 +58,152 @@
 
 
 <dl><dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters.</p></dd>
+<dd><p>Named list of query parameters:</p><dl><dt>was</dt>
+<dd><p>Free-text job/keyword query (character).</p></dd>
+
+<dt>wo</dt>
+<dd><p>Location query (character).</p></dd>
+
+<dt>berufsfeld</dt>
+<dd><p>Occupational field filter (character).</p></dd>
+
+<dt>page</dt>
+<dd><p>Page index (integer).</p></dd>
+
+<dt>size</dt>
+<dd><p>Number of results per page (integer).</p></dd>
+
+<dt>arbeitgeber</dt>
+<dd><p>Employer filter (character).</p></dd>
+
+<dt>veroeffentlichtseit</dt>
+<dd><p>Only offers published within N days (integer).</p></dd>
+
+<dt>zeitarbeit</dt>
+<dd><p>Filter temporary-agency postings (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>angebotsart</dt>
+<dd><p>Offer type code(s), semicolon-separated (integer/character).</p></dd>
+
+<dt>befristung</dt>
+<dd><p>Contract duration code(s), semicolon-separated (integer/character).</p></dd>
+
+<dt>arbeitszeit</dt>
+<dd><p>Work time model code(s), semicolon-separated (character).</p></dd>
+
+<dt>behinderung</dt>
+<dd><p>Accessibility/disability filter (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>corona</dt>
+<dd><p>Only postings with corona flag (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>umkreis</dt>
+<dd><p>Radius in kilometers around <code>wo</code> (integer).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with job listings.</p>
-<p>Includes parsed POSIXct columns (suffix <code>_time</code>) in Europe/Berlin.</p>
-    </div>
+    <p>A tibble with one row per job listing:</p><dl><dt>hash_id</dt>
+<dd><p>Posting hash id (character).</p></dd>
+
+<dt>beruf</dt>
+<dd><p>Job title/occupation (character).</p></dd>
+
+<dt>refnr</dt>
+<dd><p>Reference number (character).</p></dd>
+
+<dt>arbeitgeber</dt>
+<dd><p>Employer name (character).</p></dd>
+
+<dt>aktuelle_veroeffentlichungsdatum</dt>
+<dd><p>Published date/time text (character).</p></dd>
+
+<dt>aktuelle_veroeffentlichungsdatum_time</dt>
+<dd><p>Published timestamp as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+<dt>eintrittsdatum</dt>
+<dd><p>Start date text (character).</p></dd>
+
+<dt>eintrittsdatum_time</dt>
+<dd><p>Start timestamp as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+<dt>arbeitsort_plz</dt>
+<dd><p>Postal code (character).</p></dd>
+
+<dt>arbeitsort_ort</dt>
+<dd><p>City/locality (character).</p></dd>
+
+<dt>arbeitsort_strasse</dt>
+<dd><p>Street (character).</p></dd>
+
+<dt>arbeitsort_region</dt>
+<dd><p>Region/state (character).</p></dd>
+
+<dt>arbeitsort_land</dt>
+<dd><p>Country code/name (character).</p></dd>
+
+<dt>arbeitsort_lat</dt>
+<dd><p>Latitude (numeric).</p></dd>
+
+<dt>arbeitsort_lon</dt>
+<dd><p>Longitude (numeric).</p></dd>
+
+<dt>modifikations_timestamp</dt>
+<dd><p>Modification timestamp text (character).</p></dd>
+
+<dt>modifikations_timestamp_time</dt>
+<dd><p>Modification timestamp as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+<dt>page</dt>
+<dd><p>Returned page number (character).</p></dd>
+
+<dt>size</dt>
+<dd><p>Returned page size (character).</p></dd>
+
+<dt>max_ergebnisse</dt>
+<dd><p>Total result count (character).</p></dd>
+
+<dt>facetten</dt>
+<dd><p>Facet metadata (list-column).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The Jobsuche API provides access to job listings from the Bundesagentur fuer
@@ -94,7 +215,10 @@ discover supported query parameters.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="jobsuche_search_app.html">jobsuche_search_app()</a></code> for the app endpoint, <code><a href="jobsuche_logo.html">jobsuche_logo()</a></code> to fetch
-employer logos, and <code><a href="bunddev_auth_set.html">bunddev_auth_set()</a></code> for authentication.</p></div>
+employer logos, and <code><a href="bunddev_auth_set.html">bunddev_auth_set()</a></code> for authentication.</p>
+<p>Other Jobsuche:
+<code><a href="jobsuche_logo.html">jobsuche_logo()</a></code>,
+<code><a href="jobsuche_search_app.html">jobsuche_search_app()</a></code></p></div>
     </div>
 
     <div class="section level2">

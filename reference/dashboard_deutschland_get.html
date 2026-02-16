@@ -57,30 +57,106 @@
 
 
 <dl><dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with dashboard entries.</p>
-    </div>
+    <p>A tibble with one row per dashboard tile:</p><dl><dt>id</dt>
+<dd><p>Tile identifier (character).</p></dd>
+
+<dt>name</dt>
+<dd><p>Title in German (character).</p></dd>
+
+<dt>name_en</dt>
+<dd><p>Title in English (character).</p></dd>
+
+<dt>description</dt>
+<dd><p>Description in German (character).</p></dd>
+
+<dt>description_en</dt>
+<dd><p>Description in English (character).</p></dd>
+
+<dt>teaser</dt>
+<dd><p>Teaser text in German (character).</p></dd>
+
+<dt>teaser_en</dt>
+<dd><p>Teaser text in English (character).</p></dd>
+
+<dt>conclusion</dt>
+<dd><p>Conclusion text in German (character).</p></dd>
+
+<dt>conclusion_en</dt>
+<dd><p>Conclusion text in English (character).</p></dd>
+
+<dt>category</dt>
+<dd><p>Category metadata (list-column).</p></dd>
+
+<dt>tags</dt>
+<dd><p>Tag metadata (list-column).</p></dd>
+
+<dt>image</dt>
+<dd><p>Image path/url (character).</p></dd>
+
+<dt>clicks</dt>
+<dd><p>Click counter (integer).</p></dd>
+
+<dt>order_id</dt>
+<dd><p>Ordering index (integer).</p></dd>
+
+<dt>trending</dt>
+<dd><p>Whether tile is marked as trending (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>top</dt>
+<dd><p>Whether tile is marked as top (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>layout_tiles</dt>
+<dd><p>Layout tile metadata (list-column).</p></dd>
+
+<dt>layout_mode</dt>
+<dd><p>Layout mode identifier (character).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns the full list of dashboard entries and metadata for each item.
-Official docs: https://bundesapi.github.io/dashboard-deutschland-api/.</p>
+API documentation: <a href="https://bundesapi.github.io/dashboard-deutschland-api/" class="external-link">https://bundesapi.github.io/dashboard-deutschland-api/</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other Dashboard Deutschland:
+<code><a href="dashboard_deutschland_geo.html">dashboard_deutschland_geo()</a></code>,
+<code><a href="dashboard_deutschland_indicators.html">dashboard_deutschland_indicators()</a></code></p></div>
     </div>
 
     <div class="section level2">

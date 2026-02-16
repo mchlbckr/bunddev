@@ -56,16 +56,31 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with house numbers.</p>
+    <p>A tibble with one row per available house number entry.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other Abfallnavi:
+<code><a href="abfallnavi_fraktionen.html">abfallnavi_fraktionen()</a></code>,
+<code><a href="abfallnavi_fraktionen_hausnummern.html">abfallnavi_fraktionen_hausnummern()</a></code>,
+<code><a href="abfallnavi_fraktionen_strassen.html">abfallnavi_fraktionen_strassen()</a></code>,
+<code><a href="abfallnavi_kalender_download.html">abfallnavi_kalender_download()</a></code>,
+<code><a href="abfallnavi_ort.html">abfallnavi_ort()</a></code>,
+<code><a href="abfallnavi_orte.html">abfallnavi_orte()</a></code>,
+<code><a href="abfallnavi_strassen.html">abfallnavi_strassen()</a></code>,
+<code><a href="abfallnavi_termine_hausnummern.html">abfallnavi_termine_hausnummern()</a></code>,
+<code><a href="abfallnavi_termine_strassen.html">abfallnavi_termine_strassen()</a></code></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

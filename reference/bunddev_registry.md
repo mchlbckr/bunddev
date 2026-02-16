@@ -10,7 +10,39 @@ bunddev_registry()
 
 ## Value
 
-A tibble with registry entries.
+A tibble with one row per API registry entry:
+
+- id:
+
+  Stable API identifier used throughout `bunddev` (character).
+
+- title:
+
+  Human-readable API title (character).
+
+- provider:
+
+  API provider or owning institution (character).
+
+- spec_url:
+
+  OpenAPI specification URL (character).
+
+- docs_url:
+
+  Upstream API documentation URL (character).
+
+- auth:
+
+  Authentication type (`"none"`, `"api_key"`, `"oauth2"`).
+
+- rate_limit:
+
+  Declared upstream rate limit text (character or `NA`).
+
+- tags:
+
+  List-column of taxonomy tags (list of character vectors).
 
 ## Details
 
@@ -27,6 +59,11 @@ for filtered listings,
 for keyword searches, and
 [`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md)
 for a single entry.
+
+Other Registry:
+[`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md),
+[`bunddev_list()`](https://buecker.ms/bunddev/reference/bunddev_list.md),
+[`bunddev_search()`](https://buecker.ms/bunddev/reference/bunddev_search.md)
 
 ## Examples
 

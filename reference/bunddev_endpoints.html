@@ -63,8 +63,20 @@ List OpenAPI endpoints for an API"></head><body>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with columns method, path, operation_id, summary</p>
-<p>A tibble with endpoints.</p>
-    </div>
+<p>A tibble with one row per OpenAPI operation:</p><dl><dt>method</dt>
+<dd><p>HTTP method in lower-case, e.g. <code>"get"</code> (character).</p></dd>
+
+<dt>path</dt>
+<dd><p>OpenAPI path template, e.g. <code>"/v1/items/{id}"</code> (character).</p></dd>
+
+<dt>operation_id</dt>
+<dd><p>OpenAPI <code>operationId</code> (character or <code>NA</code>).</p></dd>
+
+<dt>summary</dt>
+<dd><p>Operation summary from the spec (character or <code>NA</code>).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Parses the cached OpenAPI spec and returns every available path + method with
@@ -73,7 +85,29 @@ its operationId and summary, if provided.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect parameters and <code><a href="bunddev_spec.html">bunddev_spec()</a></code> to access
-the full spec.</p></div>
+the full spec.</p>
+<p>Other OpenAPI:
+<code><a href="bunddev_cache_dir.html">bunddev_cache_dir()</a></code>,
+<code><a href="bunddev_call.html">bunddev_call()</a></code>,
+<code><a href="bunddev_call_tidy.html">bunddev_call_tidy()</a></code>,
+<code><a href="bunddev_ms_to_posix.html">bunddev_ms_to_posix()</a></code>,
+<code><a href="bunddev_parameter_values.html">bunddev_parameter_values()</a></code>,
+<code><a href="bunddev_parameters.html">bunddev_parameters()</a></code>,
+<code><a href="bunddev_parameters_for.html">bunddev_parameters_for()</a></code>,
+<code><a href="bunddev_spec.html">bunddev_spec()</a></code>,
+<code><a href="bunddev_spec_path.html">bunddev_spec_path()</a></code>,
+<code><a href="bunddev_timestamp_to_ms.html">bunddev_timestamp_to_ms()</a></code></p>
+<p>Other OpenAPI:
+<code><a href="bunddev_cache_dir.html">bunddev_cache_dir()</a></code>,
+<code><a href="bunddev_call.html">bunddev_call()</a></code>,
+<code><a href="bunddev_call_tidy.html">bunddev_call_tidy()</a></code>,
+<code><a href="bunddev_ms_to_posix.html">bunddev_ms_to_posix()</a></code>,
+<code><a href="bunddev_parameter_values.html">bunddev_parameter_values()</a></code>,
+<code><a href="bunddev_parameters.html">bunddev_parameters()</a></code>,
+<code><a href="bunddev_parameters_for.html">bunddev_parameters_for()</a></code>,
+<code><a href="bunddev_spec.html">bunddev_spec()</a></code>,
+<code><a href="bunddev_spec_path.html">bunddev_spec_path()</a></code>,
+<code><a href="bunddev_timestamp_to_ms.html">bunddev_timestamp_to_ms()</a></code></p></div>
     </div>
 
     <div class="section level2">

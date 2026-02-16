@@ -18,30 +18,186 @@ jobsuche_search(
 
 - params:
 
-  Query parameters.
+  Named list of query parameters:
+
+  was
+
+  :   Free-text job/keyword query (character).
+
+  wo
+
+  :   Location query (character).
+
+  berufsfeld
+
+  :   Occupational field filter (character).
+
+  page
+
+  :   Page index (integer).
+
+  size
+
+  :   Number of results per page (integer).
+
+  arbeitgeber
+
+  :   Employer filter (character).
+
+  veroeffentlichtseit
+
+  :   Only offers published within N days (integer).
+
+  zeitarbeit
+
+  :   Filter temporary-agency postings (`TRUE`/`FALSE`).
+
+  angebotsart
+
+  :   Offer type code(s), semicolon-separated (integer/character).
+
+  befristung
+
+  :   Contract duration code(s), semicolon-separated
+      (integer/character).
+
+  arbeitszeit
+
+  :   Work time model code(s), semicolon-separated (character).
+
+  behinderung
+
+  :   Accessibility/disability filter (`TRUE`/`FALSE`).
+
+  corona
+
+  :   Only postings with corona flag (`TRUE`/`FALSE`).
+
+  umkreis
+
+  :   Radius in kilometers around `wo` (integer).
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 - flatten:
 
-  Logical; drop nested list columns.
+  Logical; if `TRUE`, simplify nested list columns according to
+  `flatten_mode`. Default `FALSE` keeps list columns as-is.
 
 - flatten_mode:
 
-  Flatten strategy for list columns. Use "unnest" to expand list-columns
-  into multiple rows.
+  How to handle list columns when `flatten = TRUE`:
+
+  `"drop"`
+
+  :   Remove list columns entirely. Use when nested data is not needed.
+
+  `"json"`
+
+  :   Convert each list element to a JSON string. Preserves all data in
+      a text-queryable format. This is the **default**.
+
+  `"unnest"`
+
+  :   Expand list columns into multiple rows via
+      [`tidyr::unnest_longer()`](https://tidyr.tidyverse.org/reference/unnest_longer.html).
+      **Warning:** this can significantly increase the number of rows.
 
 ## Value
 
-A tibble with job listings.
+A tibble with one row per job listing:
 
-Includes parsed POSIXct columns (suffix `_time`) in Europe/Berlin.
+- hash_id:
+
+  Posting hash id (character).
+
+- beruf:
+
+  Job title/occupation (character).
+
+- refnr:
+
+  Reference number (character).
+
+- arbeitgeber:
+
+  Employer name (character).
+
+- aktuelle_veroeffentlichungsdatum:
+
+  Published date/time text (character).
+
+- aktuelle_veroeffentlichungsdatum_time:
+
+  Published timestamp as `POSIXct` in Europe/Berlin.
+
+- eintrittsdatum:
+
+  Start date text (character).
+
+- eintrittsdatum_time:
+
+  Start timestamp as `POSIXct` in Europe/Berlin.
+
+- arbeitsort_plz:
+
+  Postal code (character).
+
+- arbeitsort_ort:
+
+  City/locality (character).
+
+- arbeitsort_strasse:
+
+  Street (character).
+
+- arbeitsort_region:
+
+  Region/state (character).
+
+- arbeitsort_land:
+
+  Country code/name (character).
+
+- arbeitsort_lat:
+
+  Latitude (numeric).
+
+- arbeitsort_lon:
+
+  Longitude (numeric).
+
+- modifikations_timestamp:
+
+  Modification timestamp text (character).
+
+- modifikations_timestamp_time:
+
+  Modification timestamp as `POSIXct` in Europe/Berlin.
+
+- page:
+
+  Returned page number (character).
+
+- size:
+
+  Returned page size (character).
+
+- max_ergebnisse:
+
+  Total result count (character).
+
+- facetten:
+
+  Facet metadata (list-column).
 
 ## Details
 
@@ -64,6 +220,10 @@ for the app endpoint,
 to fetch employer logos, and
 [`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 for authentication.
+
+Other Jobsuche:
+[`jobsuche_logo()`](https://buecker.ms/bunddev/reference/jobsuche_logo.md),
+[`jobsuche_search_app()`](https://buecker.ms/bunddev/reference/jobsuche_search_app.md)
 
 ## Examples
 

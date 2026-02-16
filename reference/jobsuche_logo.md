@@ -16,15 +16,25 @@ jobsuche_logo(hash_id, safe = TRUE, refresh = FALSE)
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with raw logo bytes.
+A one-row tibble with:
+
+- hash_id:
+
+  Requested logo hash id (character).
+
+- logo:
+
+  Raw logo bytes (list-column with raw vector).
 
 ## Details
 
@@ -42,6 +52,10 @@ See https://jobsuche.api.bund.dev for API documentation.
 for listings and
 [`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 for auth setup.
+
+Other Jobsuche:
+[`jobsuche_search()`](https://buecker.ms/bunddev/reference/jobsuche_search.md),
+[`jobsuche_search_app()`](https://buecker.ms/bunddev/reference/jobsuche_search_app.md)
 
 ## Examples
 

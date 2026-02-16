@@ -16,7 +16,8 @@ bunddev_info(id)
 
 ## Value
 
-A tibble with a single registry entry.
+A one-row tibble with the same columns as
+[`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md).
 
 ## Details
 
@@ -29,6 +30,11 @@ requirements for a single API.
 for discovery and
 [`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md)
 for the full table.
+
+Other Registry:
+[`bunddev_list()`](https://buecker.ms/bunddev/reference/bunddev_list.md),
+[`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md),
+[`bunddev_search()`](https://buecker.ms/bunddev/reference/bunddev_search.md)
 
 ## Examples
 

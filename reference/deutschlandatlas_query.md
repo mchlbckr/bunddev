@@ -23,35 +23,77 @@ deutschlandatlas_query(
 
 - params:
 
-  Query parameters for the ArcGIS service.
+  Named list of ArcGIS query parameters:
+
+  where
+
+  :   SQL-like filter expression (required by this adapter).
+
+  f
+
+  :   Output format (`"json"` default).
+
+  outFields
+
+  :   Fields to return (`"*"` default).
+
+  returnGeometry
+
+  :   Whether to include geometry (`"true"`/`"false"`).
+
+  spatialRel
+
+  :   Spatial relation, e.g. `"esriSpatialRelIntersects"`.
+
+  geometry
+
+  :   Optional geometry filter (JSON string or R list).
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 - flatten:
 
-  Logical; drop nested list columns.
+  Logical; if `TRUE`, simplify nested list columns according to
+  `flatten_mode`. Default `FALSE` keeps list columns as-is.
 
 - flatten_mode:
 
-  Flatten strategy for list columns. Use "unnest" to expand list-columns
-  into multiple rows.
+  How to handle list columns when `flatten = TRUE`:
+
+  `"drop"`
+
+  :   Remove list columns entirely. Use when nested data is not needed.
+
+  `"json"`
+
+  :   Convert each list element to a JSON string. Preserves all data in
+      a text-queryable format. This is the **default**.
+
+  `"unnest"`
+
+  :   Expand list columns into multiple rows via
+      [`tidyr::unnest_longer()`](https://tidyr.tidyverse.org/reference/unnest_longer.html).
+      **Warning:** this can significantly increase the number of rows.
 
 ## Value
 
-A tibble with indicator records.
+A tibble with one row per ArcGIS feature. Attribute names are normalized
+to lower snake_case. Includes a `geometry` list-column.
 
 ## Details
 
 The Deutschlandatlas API is backed by an ArcGIS feature service. You
-must supply a `where` filter and output format `f` (usually "json").
-Official docs:
-https://github.com/AndreasFischer1985/deutschlandatlas-api.
+must supply a `where` filter and output format `f` (usually "json"). API
+documentation:
+<https://github.com/AndreasFischer1985/deutschlandatlas-api>.
 
 ## See also
 

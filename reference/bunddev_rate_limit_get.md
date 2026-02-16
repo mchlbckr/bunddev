@@ -16,7 +16,15 @@ bunddev_rate_limit_get(api)
 
 ## Value
 
-The rate limit configuration.
+A named list with:
+
+- max_per_hour:
+
+  Configured/inferred calls-per-hour limit (integer or `NA`).
+
+- timestamps:
+
+  Numeric Unix timestamps of tracked requests.
 
 ## Details
 
@@ -28,6 +36,9 @@ registry entry. The result is used by adapter helpers when
 
 [`bunddev_rate_limit_set()`](https://buecker.ms/bunddev/reference/bunddev_rate_limit_set.md)
 to override the default.
+
+Other Throttling:
+[`bunddev_rate_limit_set()`](https://buecker.ms/bunddev/reference/bunddev_rate_limit_set.md)
 
 ## Examples
 

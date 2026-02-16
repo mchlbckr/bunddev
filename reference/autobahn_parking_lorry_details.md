@@ -20,26 +20,56 @@ autobahn_parking_lorry_details(
 
 - flatten:
 
-  Logical; drop nested list columns.
+  Logical; if `TRUE`, simplify nested list columns according to
+  `flatten_mode`. Default `FALSE` keeps list columns as-is.
 
 - flatten_mode:
 
-  Flatten strategy for list columns. Use "unnest" to expand list-columns
-  into multiple rows.
+  How to handle list columns when `flatten = TRUE`:
+
+  `"drop"`
+
+  :   Remove list columns entirely. Use when nested data is not needed.
+
+  `"json"`
+
+  :   Convert each list element to a JSON string. Preserves all data in
+      a text-queryable format. This is the **default**.
+
+  `"unnest"`
+
+  :   Expand list columns into multiple rows via
+      [`tidyr::unnest_longer()`](https://tidyr.tidyverse.org/reference/unnest_longer.html).
+      **Warning:** this can significantly increase the number of rows.
 
 ## Value
 
-A tibble with lorry parking details.
+A one-row tibble with detailed fields for the selected lorry parking
+entry.
 
 ## Details
 
-Returns full details for a single lorry parking entry. Official docs:
-https://autobahn.api.bund.dev.
+Returns full details for a single lorry parking entry. API
+documentation: <https://autobahn.api.bund.dev>.
 
 ## See also
 
 [`autobahn_parking_lorries()`](https://buecker.ms/bunddev/reference/autobahn_parking_lorries.md)
 to list parking areas.
+
+Other Autobahn:
+[`autobahn_charging_station_details()`](https://buecker.ms/bunddev/reference/autobahn_charging_station_details.md),
+[`autobahn_charging_stations()`](https://buecker.ms/bunddev/reference/autobahn_charging_stations.md),
+[`autobahn_closure_details()`](https://buecker.ms/bunddev/reference/autobahn_closure_details.md),
+[`autobahn_closures()`](https://buecker.ms/bunddev/reference/autobahn_closures.md),
+[`autobahn_parking_lorries()`](https://buecker.ms/bunddev/reference/autobahn_parking_lorries.md),
+[`autobahn_roads()`](https://buecker.ms/bunddev/reference/autobahn_roads.md),
+[`autobahn_roadwork_details()`](https://buecker.ms/bunddev/reference/autobahn_roadwork_details.md),
+[`autobahn_roadworks()`](https://buecker.ms/bunddev/reference/autobahn_roadworks.md),
+[`autobahn_warning_details()`](https://buecker.ms/bunddev/reference/autobahn_warning_details.md),
+[`autobahn_warnings()`](https://buecker.ms/bunddev/reference/autobahn_warnings.md),
+[`autobahn_webcam_details()`](https://buecker.ms/bunddev/reference/autobahn_webcam_details.md),
+[`autobahn_webcams()`](https://buecker.ms/bunddev/reference/autobahn_webcams.md)
 
 ## Examples
 

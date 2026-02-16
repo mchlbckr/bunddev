@@ -16,7 +16,8 @@ bunddev_auth_get(api)
 
 ## Value
 
-A list with auth settings.
+A named list with auth settings for `api`. If no configuration was set,
+returns defaults with `type = "none"`.
 
 ## Details
 
@@ -27,6 +28,9 @@ entry if no auth has been configured.
 
 [`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 to configure credentials.
+
+Other Authentication:
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 
 ## Examples
 

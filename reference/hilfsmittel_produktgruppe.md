@@ -22,29 +22,57 @@ hilfsmittel_produktgruppe(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 - flatten:
 
-  Logical; drop nested list columns.
+  Logical; if `TRUE`, simplify nested list columns according to
+  `flatten_mode`. Default `FALSE` keeps list columns as-is.
 
 - flatten_mode:
 
-  Flatten strategy for list columns. Use "unnest" to expand list-columns
-  into multiple rows.
+  How to handle list columns when `flatten = TRUE`:
+
+  `"drop"`
+
+  :   Remove list columns entirely. Use when nested data is not needed.
+
+  `"json"`
+
+  :   Convert each list element to a JSON string. Preserves all data in
+      a text-queryable format. This is the **default**.
+
+  `"unnest"`
+
+  :   Expand list columns into multiple rows via
+      [`tidyr::unnest_longer()`](https://tidyr.tidyverse.org/reference/unnest_longer.html).
+      **Warning:** this can significantly increase the number of rows.
 
 ## Value
 
-A tibble with product group details.
+A tibble with detail fields for one product group. Columns follow
+upstream schema; nested values may appear as list-columns.
 
 ## Details
 
-Returns details for a product group (Produktgruppe). Official docs:
-https://github.com/bundesAPI/hilfsmittel-api.
+Returns details for a product group (Produktgruppe). API documentation:
+<https://github.com/bundesAPI/hilfsmittel-api>.
+
+## See also
+
+Other Hilfsmittel:
+[`hilfsmittel_nachweisschema()`](https://buecker.ms/bunddev/reference/hilfsmittel_nachweisschema.md),
+[`hilfsmittel_produkt()`](https://buecker.ms/bunddev/reference/hilfsmittel_produkt.md),
+[`hilfsmittel_produktart()`](https://buecker.ms/bunddev/reference/hilfsmittel_produktart.md),
+[`hilfsmittel_produkte()`](https://buecker.ms/bunddev/reference/hilfsmittel_produkte.md),
+[`hilfsmittel_tree()`](https://buecker.ms/bunddev/reference/hilfsmittel_tree.md),
+[`hilfsmittel_untergruppe()`](https://buecker.ms/bunddev/reference/hilfsmittel_untergruppe.md)
 
 ## Examples
 

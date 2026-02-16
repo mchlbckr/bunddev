@@ -20,7 +20,9 @@ bunddev_list(tag = NULL, auth = NULL)
 
 ## Value
 
-A tibble of registry entries.
+A tibble with the same columns as
+[`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md),
+filtered by tag and/or auth when provided.
 
 ## Details
 
@@ -33,6 +35,11 @@ Tags correspond to the taxonomy in the bundled registry.
 for the full table and
 [`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md)
 for one entry.
+
+Other Registry:
+[`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md),
+[`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md),
+[`bunddev_search()`](https://buecker.ms/bunddev/reference/bunddev_search.md)
 
 ## Examples
 

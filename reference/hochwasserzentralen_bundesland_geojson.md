@@ -22,30 +22,67 @@ hochwasserzentralen_bundesland_geojson(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 - flatten:
 
-  Logical; drop nested list columns.
+  Logical; if `TRUE`, simplify nested list columns according to
+  `flatten_mode`. Default `FALSE` keeps list columns as-is.
 
 - flatten_mode:
 
-  Flatten strategy for list columns. Use "unnest" to expand list-columns
-  into multiple rows.
+  How to handle list columns when `flatten = TRUE`:
+
+  `"drop"`
+
+  :   Remove list columns entirely. Use when nested data is not needed.
+
+  `"json"`
+
+  :   Convert each list element to a JSON string. Preserves all data in
+      a text-queryable format. This is the **default**.
+
+  `"unnest"`
+
+  :   Expand list columns into multiple rows via
+      [`tidyr::unnest_longer()`](https://tidyr.tidyverse.org/reference/unnest_longer.html).
+      **Warning:** this can significantly increase the number of rows.
 
 ## Value
 
-A tibble with GeoJSON metadata and feature list-columns.
+A one-row tibble with:
+
+- type:
+
+  GeoJSON object type (character).
+
+- name:
+
+  GeoJSON dataset name (character).
+
+- features:
+
+  GeoJSON feature list (list-column).
 
 ## Details
 
 Returns GeoJSON boundaries for Bundeslaender and connected regions from
-the hochwasserzentralen.de portal. Official docs:
-https://bundesapi.github.io/hochwasserzentralen-api/.
+the hochwasserzentralen.de portal. API documentation:
+<https://bundesapi.github.io/hochwasserzentralen-api/>.
+
+## See also
+
+Other Hochwasserzentralen:
+[`hochwasserzentralen_bundeslaender()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_bundeslaender.md),
+[`hochwasserzentralen_bundesland_info()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_bundesland_info.md),
+[`hochwasserzentralen_lagepegel()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_lagepegel.md),
+[`hochwasserzentralen_pegel_info()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_pegel_info.md)
 
 ## Examples
 

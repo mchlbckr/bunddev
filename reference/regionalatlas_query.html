@@ -77,27 +77,50 @@ population density). See Details for common tables.</p></dd>
 
 
 <dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Additional query parameters.</p></dd>
+<dd><p>Additional ArcGIS query parameters merged with adapter defaults.
+Common keys:</p><dl><dt>layer</dt>
+<dd><p>JSON-encoded layer definition (set automatically from <code>table</code>).</p></dd>
+
+<dt>where</dt>
+<dd><p>SQL-like filter expression (set from <code>where</code>).</p></dd>
+
+<dt>outFields</dt>
+<dd><p>Fields to return (set from <code>out_fields</code>).</p></dd>
+
+<dt>returnGeometry</dt>
+<dd><p>Whether to include geometry (<code>"true"</code>/<code>"false"</code>).</p></dd>
+
+<dt>f</dt>
+<dd><p>Output format (<code>"json"</code> by default).</p></dd>
+
+<dt>spatialRel</dt>
+<dd><p>Spatial relation, e.g. <code>"esriSpatialRelIntersects"</code>.</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with regional indicator data.</p>
+    <p>A tibble with one row per returned feature and one column per
+attribute provided by the selected Regionalatlas table.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The Regionalatlas API provides access to over 160 regional indicators from
 the German statistical offices. Data is available at various administrative
 levels (Bundeslaender, Regierungsbezirke, Kreise, Gemeinden).
-Official docs: https://github.com/bundesAPI/regionalatlas-api.</p>
+API documentation: <a href="https://github.com/bundesAPI/regionalatlas-api" class="external-link">https://github.com/bundesAPI/regionalatlas-api</a>.</p>
 <p>Common tables and their indicators:</p><ul><li><p><code>ai002_1_5</code>: Population (ai0201=density, ai0202=change, ai0208=foreigners %)</p></li>
 <li><p><code>ai002_4_5</code>: Age (ai0218=average age, ai0219=mother age at 1st child)</p></li>
 <li><p><code>ai008_1_5</code>: Employment (ai0801=unemployment rate)</p></li>

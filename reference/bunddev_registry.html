@@ -49,8 +49,32 @@
 
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with registry entries.</p>
-    </div>
+    <p>A tibble with one row per API registry entry:</p><dl><dt>id</dt>
+<dd><p>Stable API identifier used throughout <code>bunddev</code> (character).</p></dd>
+
+<dt>title</dt>
+<dd><p>Human-readable API title (character).</p></dd>
+
+<dt>provider</dt>
+<dd><p>API provider or owning institution (character).</p></dd>
+
+<dt>spec_url</dt>
+<dd><p>OpenAPI specification URL (character).</p></dd>
+
+<dt>docs_url</dt>
+<dd><p>Upstream API documentation URL (character).</p></dd>
+
+<dt>auth</dt>
+<dd><p>Authentication type (<code>"none"</code>, <code>"api_key"</code>, <code>"oauth2"</code>).</p></dd>
+
+<dt>rate_limit</dt>
+<dd><p>Declared upstream rate limit text (character or <code>NA</code>).</p></dd>
+
+<dt>tags</dt>
+<dd><p>List-column of taxonomy tags (list of character vectors).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The registry is bundled with the package and contains metadata such as the
@@ -61,7 +85,11 @@ the bundesAPI registry.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="bunddev_list.html">bunddev_list()</a></code> for filtered listings, <code><a href="bunddev_search.html">bunddev_search()</a></code> for keyword
-searches, and <code><a href="bunddev_info.html">bunddev_info()</a></code> for a single entry.</p></div>
+searches, and <code><a href="bunddev_info.html">bunddev_info()</a></code> for a single entry.</p>
+<p>Other Registry:
+<code><a href="bunddev_info.html">bunddev_info()</a></code>,
+<code><a href="bunddev_list.html">bunddev_list()</a></code>,
+<code><a href="bunddev_search.html">bunddev_search()</a></code></p></div>
     </div>
 
     <div class="section level2">

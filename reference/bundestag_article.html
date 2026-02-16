@@ -56,21 +56,35 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with article fields.</p>
+    <p>A one-row tibble with fields extracted from the XML document. Column
+names correspond to XML element names; repeated elements are list-columns.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns a single Bundestag news article in XML format.
-Official docs: https://bundesapi.github.io/bundestag-api/.</p>
+API documentation: <a href="https://bundesapi.github.io/bundestag-api/" class="external-link">https://bundesapi.github.io/bundestag-api/</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other Bundestag:
+<code><a href="bundestag_ausschuesse.html">bundestag_ausschuesse()</a></code>,
+<code><a href="bundestag_ausschuss.html">bundestag_ausschuss()</a></code>,
+<code><a href="bundestag_conferences.html">bundestag_conferences()</a></code>,
+<code><a href="bundestag_mdb_bio.html">bundestag_mdb_bio()</a></code>,
+<code><a href="bundestag_mdb_index.html">bundestag_mdb_index()</a></code>,
+<code><a href="bundestag_speaker.html">bundestag_speaker()</a></code>,
+<code><a href="bundestag_video_feed.html">bundestag_video_feed()</a></code></p></div>
     </div>
 
     <div class="section level2">

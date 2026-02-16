@@ -30,20 +30,37 @@ feiertage_list(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with holiday names and dates.
+A tibble with one row per holiday:
 
-Region-level results include a `region` column and a `note` column for
-holiday-specific hints.
+- region:
 
-Includes `date_time` as POSIXct in Europe/Berlin.
+  Bundesland code (character, `NA` for nationwide results).
+
+- holiday:
+
+  Holiday name (character).
+
+- date:
+
+  Date in `YYYY-MM-DD` format (character).
+
+- note:
+
+  Optional holiday note from the API (character or `NA`).
+
+- date_time:
+
+  Date as `POSIXct` in Europe/Berlin.
 
 ## Details
 

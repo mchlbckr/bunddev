@@ -35,25 +35,46 @@ pegel_online_measurements_plot(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with raw PNG bytes.
+A one-row tibble with:
+
+- station:
+
+  Requested station id (character).
+
+- timeseries:
+
+  Requested timeseries shortname (character).
+
+- png:
+
+  Raw PNG bytes (list-column with raw vector).
 
 ## Details
 
-Returns a PNG plot for the measurements endpoint. Official docs:
-https://pegel-online.api.bund.dev.
+Returns a PNG plot for the measurements endpoint. API documentation:
+<https://pegel-online.api.bund.dev>.
 
 ## See also
 
 [`pegel_online_measurements()`](https://buecker.ms/bunddev/reference/pegel_online_measurements.md)
 for numeric values.
+
+Other Pegel Online:
+[`pegel_online_measurements()`](https://buecker.ms/bunddev/reference/pegel_online_measurements.md),
+[`pegel_online_station()`](https://buecker.ms/bunddev/reference/pegel_online_station.md),
+[`pegel_online_stations()`](https://buecker.ms/bunddev/reference/pegel_online_stations.md),
+[`pegel_online_timeseries()`](https://buecker.ms/bunddev/reference/pegel_online_timeseries.md),
+[`pegel_online_waters()`](https://buecker.ms/bunddev/reference/pegel_online_waters.md)
 
 ## Examples
 

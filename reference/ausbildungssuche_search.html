@@ -58,45 +58,180 @@
 
 
 <dl><dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters.</p></dd>
+<dd><p>Named list of query parameters:</p><dl><dt>sty</dt>
+<dd><p>Training type filter (integer).</p></dd>
+
+<dt>ids</dt>
+<dd><p>Occupation id(s), comma-separated (integer/character).</p></dd>
+
+<dt>orte</dt>
+<dd><p>Location id(s), comma-separated (integer/character).</p></dd>
+
+<dt>page</dt>
+<dd><p>Page index, starting at <code>0</code> (integer).</p></dd>
+
+<dt>size</dt>
+<dd><p>Page size (integer, max defined by API).</p></dd>
+
+<dt>uk</dt>
+<dd><p>Radius filter, e.g. <code>"25"</code> or <code>"Bundesweit"</code> (character).</p></dd>
+
+<dt>re</dt>
+<dd><p>Region/Bundesland code (character).</p></dd>
+
+<dt>bart</dt>
+<dd><p>Training category filter (integer).</p></dd>
+
+<dt>ityp</dt>
+<dd><p>Integration type filter (integer).</p></dd>
+
+<dt>bt</dt>
+<dd><p>Start date/time window filter (integer code).</p></dd>
+
+<dt>ban</dt>
+<dd><p>Provider id(s), comma-separated (integer/character).</p></dd>
+
+<dt>bg</dt>
+<dd><p>Only entries with Bildungsgutschein support (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with training offers.</p>
-<p>Includes <code>aktualisierungsdatum_time</code> as POSIXct in Europe/Berlin.</p>
-    </div>
+    <p>A tibble with one row per training offer:</p><dl><dt>id</dt>
+<dd><p>Offer id (integer).</p></dd>
+
+<dt>unterrichtsform</dt>
+<dd><p>Teaching format metadata (list-column).</p></dd>
+
+<dt>dauer</dt>
+<dd><p>Duration metadata (list-column).</p></dd>
+
+<dt>anbieterbewertung</dt>
+<dd><p>Provider rating text (character).</p></dd>
+
+<dt>angebot</dt>
+<dd><p>Offer metadata (list-column).</p></dd>
+
+<dt>adresse</dt>
+<dd><p>Address metadata (list-column).</p></dd>
+
+<dt>unterrichtszeiten</dt>
+<dd><p>Class schedule text (character).</p></dd>
+
+<dt>kosten_wert</dt>
+<dd><p>Cost value (character).</p></dd>
+
+<dt>kosten_waehrung</dt>
+<dd><p>Cost currency (character).</p></dd>
+
+<dt>kosten_bemerkung</dt>
+<dd><p>Cost note (character).</p></dd>
+
+<dt>foerderung</dt>
+<dd><p>Funding flag (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>link</dt>
+<dd><p>Offer link (character).</p></dd>
+
+<dt>bemerkung</dt>
+<dd><p>Additional note text (character).</p></dd>
+
+<dt>beginn</dt>
+<dd><p>Start date text (character).</p></dd>
+
+<dt>ende</dt>
+<dd><p>End date text (character).</p></dd>
+
+<dt>individueller_einstieg</dt>
+<dd><p>Flexible start flag (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>anmeldeschluss</dt>
+<dd><p>Registration deadline text (character).</p></dd>
+
+<dt>bemerkung_zeit</dt>
+<dd><p>Timing note (character).</p></dd>
+
+<dt>pruefende_stelle</dt>
+<dd><p>Examining body (character).</p></dd>
+
+<dt>eigene_angebotsnummer</dt>
+<dd><p>Provider's own offer id (character).</p></dd>
+
+<dt>teilnehmer_min</dt>
+<dd><p>Minimum participants (integer).</p></dd>
+
+<dt>teilnehmer_max</dt>
+<dd><p>Maximum participants (integer).</p></dd>
+
+<dt>aktualisierungsdatum</dt>
+<dd><p>Update timestamp in milliseconds (numeric).</p></dd>
+
+<dt>aktualisierungsdatum_time</dt>
+<dd><p>Update timestamp as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+<dt>links</dt>
+<dd><p>Top-level links object (list-column).</p></dd>
+
+<dt>aggregations</dt>
+<dd><p>Aggregation metadata (list-column).</p></dd>
+
+<dt>page</dt>
+<dd><p>Paging metadata (list-column).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The Ausbildungssuche API provides training offer data from the
 Bundesagentur fuer Arbeit. Authentication is required via <code>X-API-Key</code>
 (clientId <code>infosysbub-absuche</code>, discoverable from
-https://web.arbeitsagentur.de/weiterbildungssuche/suche). Official docs:
-https://bundesapi.github.io/ausbildungssuche-api/.</p>
+https://web.arbeitsagentur.de/weiterbildungssuche/suche). API documentation: <a href="https://bundesapi.github.io/ausbildungssuche-api/" class="external-link">https://bundesapi.github.io/ausbildungssuche-api/</a>.</p>
 <p>This adapter uses the <code>X-API-Key</code> header. Set it via <code><a href="bunddev_auth_set.html">bunddev_auth_set()</a></code> and
 <code>AUSBILDUNGSSUCHE_API_KEY</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="ausbildungssuche_details.html">ausbildungssuche_details()</a></code> for a single offer and <code><a href="bunddev_auth_set.html">bunddev_auth_set()</a></code> for
-authentication.</p></div>
+    <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.
+<code><a href="ausbildungssuche_details.html">ausbildungssuche_details()</a></code> for a single offer and <code><a href="bunddev_auth_set.html">bunddev_auth_set()</a></code> for
+authentication.</p>
+<p>Other Ausbildungssuche:
+<code><a href="ausbildungssuche_details.html">ausbildungssuche_details()</a></code></p></div>
     </div>
 
     <div class="section level2">

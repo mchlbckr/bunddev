@@ -58,29 +58,63 @@
 
 
 <dl><dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters.</p></dd>
+<dd><p>Named list of FHIR search parameters:</p><dl><dt><code>_count</code></dt>
+<dd><p>Maximum bundle size per request (integer, default <code>1000</code>).</p></dd>
+
+<dt><code>_profile</code></dt>
+<dd><p>FHIR profile URL used to restrict resource type (character).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble containing DiGA catalog entry resources from the FHIR API.
-Structure depends on <code>flatten</code> setting (see <code><a href="diga_device_definitions.html">diga_device_definitions()</a></code>).</p>
+    <p>A tibble with one row per catalog entry resource (same structure
+rules as <code><a href="diga_device_definitions.html">diga_device_definitions()</a></code>).</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.</p>
+<p>Other DiGA:
+<code><a href="diga_charge_item_definitions.html">diga_charge_item_definitions()</a></code>,
+<code><a href="diga_device_definitions.html">diga_device_definitions()</a></code>,
+<code><a href="diga_organizations.html">diga_organizations()</a></code>,
+<code><a href="diga_questionnaire_responses.html">diga_questionnaire_responses()</a></code>,
+<code><a href="diga_questionnaires.html">diga_questionnaires()</a></code></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

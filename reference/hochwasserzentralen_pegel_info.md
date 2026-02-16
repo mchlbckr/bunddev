@@ -16,21 +16,32 @@ hochwasserzentralen_pegel_info(pegelnummer, safe = TRUE, refresh = FALSE)
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with pegel metadata.
+A tibble with one row of gauge metadata for the selected `pegelnummer`.
+Columns follow the upstream service field names.
 
 ## Details
 
 Returns metadata for a single flood gauge (pegel) from
-hochwasserzentralen.de. Official docs:
-https://bundesapi.github.io/hochwasserzentralen-api/.
+hochwasserzentralen.de. API documentation:
+<https://bundesapi.github.io/hochwasserzentralen-api/>.
+
+## See also
+
+Other Hochwasserzentralen:
+[`hochwasserzentralen_bundeslaender()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_bundeslaender.md),
+[`hochwasserzentralen_bundesland_geojson()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_bundesland_geojson.md),
+[`hochwasserzentralen_bundesland_info()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_bundesland_info.md),
+[`hochwasserzentralen_lagepegel()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_lagepegel.md)
 
 ## Examples
 

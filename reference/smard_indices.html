@@ -70,29 +70,37 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble of timestamps.</p>
-    </div>
+    <p>A tibble with one column:</p><dl><dt>timestamp</dt>
+<dd><p>Available SMARD timestamp in milliseconds since epoch (numeric).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The SMARD API provides power market data published by the Bundesnetzagentur.
 Use this helper to retrieve available timestamps for a given filter/region
-and resolution. Official docs: https://smard.api.bund.dev.</p>
+and resolution. API documentation: <a href="https://smard.api.bund.dev" class="external-link">https://smard.api.bund.dev</a>.</p>
 <p>Note: The registry rate limit states that more than 60 requests per hour are
 not permitted. Use <code>safe = TRUE</code> to respect the limit.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="smard_timeseries.html">smard_timeseries()</a></code> and <code><a href="smard_table.html">smard_table()</a></code> for data retrieval, and
-<code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> for parameter discovery.</p></div>
+<code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> for parameter discovery.</p>
+<p>Other SMARD:
+<code><a href="smard_table.html">smard_table()</a></code>,
+<code><a href="smard_timeseries.html">smard_timeseries()</a></code></p></div>
     </div>
 
     <div class="section level2">

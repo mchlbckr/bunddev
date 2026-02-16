@@ -56,21 +56,34 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with tree nodes.</p>
+    <p>A tibble with one row per tree node at the requested level.
+Columns follow upstream schema; repeated nested values are list-columns.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns nodes from the Hilfsmittel product tree up to the selected level.
-Official docs: https://github.com/bundesAPI/hilfsmittel-api.</p>
+API documentation: <a href="https://github.com/bundesAPI/hilfsmittel-api" class="external-link">https://github.com/bundesAPI/hilfsmittel-api</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other Hilfsmittel:
+<code><a href="hilfsmittel_nachweisschema.html">hilfsmittel_nachweisschema()</a></code>,
+<code><a href="hilfsmittel_produkt.html">hilfsmittel_produkt()</a></code>,
+<code><a href="hilfsmittel_produktart.html">hilfsmittel_produktart()</a></code>,
+<code><a href="hilfsmittel_produkte.html">hilfsmittel_produkte()</a></code>,
+<code><a href="hilfsmittel_produktgruppe.html">hilfsmittel_produktgruppe()</a></code>,
+<code><a href="hilfsmittel_untergruppe.html">hilfsmittel_untergruppe()</a></code></p></div>
     </div>
 
     <div class="section level2">

@@ -23,28 +23,69 @@ ddb_search(
 
 - params:
 
-  Additional query parameters.
+  Named list of query parameters. Common keys:
+
+  query
+
+  :   Search string (set automatically from `query`).
+
+  offset
+
+  :   Start index for pagination (integer).
+
+  length
+
+  :   Maximum number of returned items (integer).
+
+  facet
+
+  :   Facet selection(s) supported by the DDB search API (character).
+
+  sort
+
+  :   Sort key/order (character).
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 - flatten:
 
-  Logical; drop nested list columns.
+  Logical; if `TRUE`, simplify nested list columns according to
+  `flatten_mode`. Default `FALSE` keeps list columns as-is.
 
 - flatten_mode:
 
-  Flatten strategy for list columns. Use "unnest" to expand list-columns
-  into multiple rows.
+  How to handle list columns when `flatten = TRUE`:
+
+  `"drop"`
+
+  :   Remove list columns entirely. Use when nested data is not needed.
+
+  `"json"`
+
+  :   Convert each list element to a JSON string. Preserves all data in
+      a text-queryable format. This is the **default**.
+
+  `"unnest"`
+
+  :   Expand list columns into multiple rows via
+      [`tidyr::unnest_longer()`](https://tidyr.tidyverse.org/reference/unnest_longer.html).
+      **Warning:** this can significantly increase the number of rows.
 
 ## Value
 
-A tibble with search metadata and result payload.
+A one-row tibble with one list-column:
+
+- response:
+
+  Full parsed DDB search payload (list-column).
 
 ## Details
 
@@ -60,8 +101,14 @@ variable directly.
 
 ## See also
 
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
+to inspect available query parameters.
 [`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 to configure authentication.
+
+Other DDB:
+[`ddb_institution_sectors()`](https://buecker.ms/bunddev/reference/ddb_institution_sectors.md),
+[`ddb_institutions()`](https://buecker.ms/bunddev/reference/ddb_institutions.md)
 
 ## Examples
 

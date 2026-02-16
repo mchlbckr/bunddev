@@ -58,34 +58,76 @@
 
 
 <dl><dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters.</p></dd>
+<dd><p>Named list of query parameters:</p><dl><dt>sort</dt>
+<dd><p>Sort definition string (character).</p></dd>
+
+<dt>page</dt>
+<dd><p>Page index (integer).</p></dd>
+
+<dt>pageSize</dt>
+<dd><p>Page size/number of returned entries (integer).</p></dd>
+
+<dt>filter</dt>
+<dd><p>Serialized filter expression from filter endpoints (character).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with MaStR entries.</p>
+    <p>A tibble with one row per electricity-consumption entry (same column
+conventions as <code><a href="marktstammdaten_stromerzeugung.html">marktstammdaten_stromerzeugung()</a></code>).</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns public electricity consumption data from the MaStR.
-Official docs: https://github.com/bundesAPI/marktstammdaten-api.</p>
+API documentation: <a href="https://github.com/bundesAPI/marktstammdaten-api" class="external-link">https://github.com/bundesAPI/marktstammdaten-api</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.</p>
+<p>Other Marktstammdaten:
+<code><a href="marktstammdaten_filters_gaserzeugung.html">marktstammdaten_filters_gaserzeugung()</a></code>,
+<code><a href="marktstammdaten_filters_gasverbrauch.html">marktstammdaten_filters_gasverbrauch()</a></code>,
+<code><a href="marktstammdaten_filters_stromerzeugung.html">marktstammdaten_filters_stromerzeugung()</a></code>,
+<code><a href="marktstammdaten_filters_stromverbrauch.html">marktstammdaten_filters_stromverbrauch()</a></code>,
+<code><a href="marktstammdaten_gaserzeugung.html">marktstammdaten_gaserzeugung()</a></code>,
+<code><a href="marktstammdaten_gasverbrauch.html">marktstammdaten_gasverbrauch()</a></code>,
+<code><a href="marktstammdaten_stromerzeugung.html">marktstammdaten_stromerzeugung()</a></code></p></div>
     </div>
 
     <div class="section level2">

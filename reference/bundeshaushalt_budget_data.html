@@ -58,36 +58,112 @@
 
 
 <dl><dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters.</p></dd>
+<dd><p>Named list of query parameters:</p><dl><dt>year</dt>
+<dd><p>Budget year (integer, required).</p></dd>
+
+<dt>account</dt>
+<dd><p>Account type (<code>"income"</code> or <code>"expenses"</code>, required).</p></dd>
+
+<dt>quota</dt>
+<dd><p>Target value mode, e.g. planned/actual values (character).</p></dd>
+
+<dt>unit</dt>
+<dd><p>Budget unit/granularity level (character).</p></dd>
+
+<dt>id</dt>
+<dd><p>Optional budget node id to drill into a specific subtree (character).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with budget data and nested detail lists.</p>
-<p>Includes <code>timestamp_time</code> as POSIXct in Europe/Berlin.</p>
-    </div>
+    <p>A one-row tibble with budget metadata and nested payloads:</p><dl><dt>account</dt>
+<dd><p>Requested account type (character).</p></dd>
+
+<dt>entity</dt>
+<dd><p>Entity label from the API response (character).</p></dd>
+
+<dt>level_cur</dt>
+<dd><p>Current hierarchy level (integer).</p></dd>
+
+<dt>level_max</dt>
+<dd><p>Maximum hierarchy level (integer).</p></dd>
+
+<dt>modify_date</dt>
+<dd><p>Upstream modification date (character).</p></dd>
+
+<dt>quota</dt>
+<dd><p>Quota/target mode (character).</p></dd>
+
+<dt>timestamp</dt>
+<dd><p>Response timestamp in milliseconds (numeric).</p></dd>
+
+<dt>timestamp_time</dt>
+<dd><p>Response timestamp as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+<dt>unit</dt>
+<dd><p>Selected unit/granularity (character).</p></dd>
+
+<dt>year</dt>
+<dd><p>Budget year (integer).</p></dd>
+
+<dt>details</dt>
+<dd><p>Detailed budget rows (list-column).</p></dd>
+
+<dt>children</dt>
+<dd><p>Child nodes in the budget hierarchy (list-column).</p></dd>
+
+<dt>parents</dt>
+<dd><p>Parent nodes in the hierarchy (list-column).</p></dd>
+
+<dt>related</dt>
+<dd><p>Related nodes from the API response (list-column).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The Bundeshaushalt API provides budget data for federal income and expenses.
-Required query parameters are <code>year</code> and <code>account</code>. Official docs:
-https://github.com/bundesAPI/bundeshaushalt-api.</p>
+Required query parameters are <code>year</code> and <code>account</code>. API documentation: <a href="https://github.com/bundesAPI/bundeshaushalt-api" class="external-link">https://github.com/bundesAPI/bundeshaushalt-api</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect parameter metadata from the OpenAPI spec.</p></div>
     </div>
 
     <div class="section level2">

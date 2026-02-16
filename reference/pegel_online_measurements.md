@@ -35,22 +35,35 @@ pegel_online_measurements(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with measurements.
+A tibble with one row per measurement:
 
-Includes `timestamp_time` as POSIXct in Europe/Berlin.
+- timestamp:
+
+  Measurement timestamp string (character).
+
+- value:
+
+  Measured value (numeric).
+
+- timestamp_time:
+
+  Measurement timestamp as `POSIXct` in Europe/Berlin.
 
 ## Details
 
 Returns measurement values for a station timeseries. Timestamps must be
-ISO 8601 strings. Official docs: https://pegel-online.api.bund.dev.
+ISO 8601 strings. API documentation:
+<https://pegel-online.api.bund.dev>.
 
 ## See also
 
@@ -58,6 +71,13 @@ ISO 8601 strings. Official docs: https://pegel-online.api.bund.dev.
 for metadata and
 [`pegel_online_measurements_plot()`](https://buecker.ms/bunddev/reference/pegel_online_measurements_plot.md)
 for PNG plots.
+
+Other Pegel Online:
+[`pegel_online_measurements_plot()`](https://buecker.ms/bunddev/reference/pegel_online_measurements_plot.md),
+[`pegel_online_station()`](https://buecker.ms/bunddev/reference/pegel_online_station.md),
+[`pegel_online_stations()`](https://buecker.ms/bunddev/reference/pegel_online_stations.md),
+[`pegel_online_timeseries()`](https://buecker.ms/bunddev/reference/pegel_online_timeseries.md),
+[`pegel_online_waters()`](https://buecker.ms/bunddev/reference/pegel_online_waters.md)
 
 ## Examples
 

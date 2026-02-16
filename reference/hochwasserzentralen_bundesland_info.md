@@ -20,21 +20,31 @@ hochwasserzentralen_bundesland_info(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with Bundesland metadata.
+A tibble with one row of metadata for the selected Bundesland id.
 
 ## Details
 
 Returns metadata for a single Bundesland or region in the
-hochwasserzentralen.de portal. Official docs:
-https://bundesapi.github.io/hochwasserzentralen-api/.
+hochwasserzentralen.de portal. API documentation:
+<https://bundesapi.github.io/hochwasserzentralen-api/>.
+
+## See also
+
+Other Hochwasserzentralen:
+[`hochwasserzentralen_bundeslaender()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_bundeslaender.md),
+[`hochwasserzentralen_bundesland_geojson()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_bundesland_geojson.md),
+[`hochwasserzentralen_lagepegel()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_lagepegel.md),
+[`hochwasserzentralen_pegel_info()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_pegel_info.md)
 
 ## Examples
 

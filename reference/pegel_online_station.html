@@ -63,38 +63,91 @@
 
 
 <dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters.</p></dd>
+<dd><p>Named list of query parameters:</p><dl><dt>includeTimeseries</dt>
+<dd><p>Include timeseries metadata (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>includeCurrentMeasurement</dt>
+<dd><p>Include current measurement metadata (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>includeCharacteristicValues</dt>
+<dd><p>Include characteristic values (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>waters</dt>
+<dd><p>Filter by water shortnames (character vector).</p></dd>
+
+<dt>ids</dt>
+<dd><p>Filter by station ids (character vector).</p></dd>
+
+<dt>timeseries</dt>
+<dd><p>Timeseries shortname filter (character).</p></dd>
+
+<dt>fuzzyId</dt>
+<dd><p>Fuzzy station id/name search (character).</p></dd>
+
+<dt>latitude</dt>
+<dd><p>Latitude center for geo search (numeric).</p></dd>
+
+<dt>longitude</dt>
+<dd><p>Longitude center for geo search (numeric).</p></dd>
+
+<dt>radius</dt>
+<dd><p>Radius for geo search (numeric).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with station metadata.</p>
+    <p>A one-row tibble with the same columns as <code><a href="pegel_online_stations.html">pegel_online_stations()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Fetches a single station record. Official docs:
-https://pegel-online.api.bund.dev.</p>
+    <p>Fetches a single station record. API documentation: <a href="https://pegel-online.api.bund.dev" class="external-link">https://pegel-online.api.bund.dev</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="pegel_online_stations.html">pegel_online_stations()</a></code> and <code><a href="pegel_online_timeseries.html">pegel_online_timeseries()</a></code>.</p></div>
+    <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.
+<code><a href="pegel_online_stations.html">pegel_online_stations()</a></code> and <code><a href="pegel_online_timeseries.html">pegel_online_timeseries()</a></code>.</p>
+<p>Other Pegel Online:
+<code><a href="pegel_online_measurements.html">pegel_online_measurements()</a></code>,
+<code><a href="pegel_online_measurements_plot.html">pegel_online_measurements_plot()</a></code>,
+<code><a href="pegel_online_stations.html">pegel_online_stations()</a></code>,
+<code><a href="pegel_online_timeseries.html">pegel_online_timeseries()</a></code>,
+<code><a href="pegel_online_waters.html">pegel_online_waters()</a></code></p></div>
     </div>
 
     <div class="section level2">

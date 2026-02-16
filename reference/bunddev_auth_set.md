@@ -60,7 +60,39 @@ bunddev_auth_set(
 
 ## Value
 
-The updated auth configuration.
+A named list with stored authentication settings:
+
+- type:
+
+  Authentication type (`"none"`, `"api_key"`, `"oauth2"`).
+
+- env_var:
+
+  Environment variable name for credential lookup.
+
+- scheme:
+
+  Header scheme/template used for auth header construction.
+
+- oauth_url:
+
+  OAuth token endpoint URL (oauth2 only).
+
+- oauth_secret_env:
+
+  Environment variable name for OAuth client secret.
+
+- oauth_default_id:
+
+  Fallback OAuth client ID when `env_var` is unset.
+
+- oauth_token_header:
+
+  Header name used for OAuth access tokens.
+
+- oauth_fallback_header:
+
+  Header name used for fallback API key mode.
 
 ## Details
 
@@ -82,6 +114,9 @@ otherwise falls back to sending the client ID as an API key.
 to inspect the stored configuration, and
 [`bunddev_call()`](https://buecker.ms/bunddev/reference/bunddev_call.md)
 to make authenticated requests.
+
+Other Authentication:
+[`bunddev_auth_get()`](https://buecker.ms/bunddev/reference/bunddev_auth_get.md)
 
 ## Examples
 

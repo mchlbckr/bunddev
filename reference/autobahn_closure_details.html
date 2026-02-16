@@ -56,26 +56,53 @@
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with closure details.</p>
+    <p>A one-row tibble with detailed fields for the selected closure.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns full details for a single closure entry.
-Official docs: https://autobahn.api.bund.dev.</p>
+API documentation: <a href="https://autobahn.api.bund.dev" class="external-link">https://autobahn.api.bund.dev</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="autobahn_closures.html">autobahn_closures()</a></code> to list closures.</p></div>
+    <div class="dont-index"><p><code><a href="autobahn_closures.html">autobahn_closures()</a></code> to list closures.</p>
+<p>Other Autobahn:
+<code><a href="autobahn_charging_station_details.html">autobahn_charging_station_details()</a></code>,
+<code><a href="autobahn_charging_stations.html">autobahn_charging_stations()</a></code>,
+<code><a href="autobahn_closures.html">autobahn_closures()</a></code>,
+<code><a href="autobahn_parking_lorries.html">autobahn_parking_lorries()</a></code>,
+<code><a href="autobahn_parking_lorry_details.html">autobahn_parking_lorry_details()</a></code>,
+<code><a href="autobahn_roads.html">autobahn_roads()</a></code>,
+<code><a href="autobahn_roadwork_details.html">autobahn_roadwork_details()</a></code>,
+<code><a href="autobahn_roadworks.html">autobahn_roadworks()</a></code>,
+<code><a href="autobahn_warning_details.html">autobahn_warning_details()</a></code>,
+<code><a href="autobahn_warnings.html">autobahn_warnings()</a></code>,
+<code><a href="autobahn_webcam_details.html">autobahn_webcam_details()</a></code>,
+<code><a href="autobahn_webcams.html">autobahn_webcams()</a></code></p></div>
     </div>
 
     <div class="section level2">

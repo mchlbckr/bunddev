@@ -32,29 +32,60 @@ mudab_project_stations(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 - flatten:
 
-  Logical; drop nested list columns.
+  Logical; if `TRUE`, simplify nested list columns according to
+  `flatten_mode`. Default `FALSE` keeps list columns as-is.
 
 - flatten_mode:
 
-  Flatten strategy for list columns. Use "unnest" to expand list-columns
-  into multiple rows.
+  How to handle list columns when `flatten = TRUE`:
+
+  `"drop"`
+
+  :   Remove list columns entirely. Use when nested data is not needed.
+
+  `"json"`
+
+  :   Convert each list element to a JSON string. Preserves all data in
+      a text-queryable format. This is the **default**.
+
+  `"unnest"`
+
+  :   Expand list columns into multiple rows via
+      [`tidyr::unnest_longer()`](https://tidyr.tidyverse.org/reference/unnest_longer.html).
+      **Warning:** this can significantly increase the number of rows.
 
 ## Value
 
-A tibble with project stations.
+A tibble with one row per returned `V_MUDAB_PROJECTSTATION` record.
 
 ## Details
 
-Returns project stations from the MUDAB database. Official docs:
-https://mudab.api.bund.dev.
+Returns project stations from the MUDAB database. API documentation:
+<https://mudab.api.bund.dev>.
+
+## See also
+
+Other MUDAB:
+[`mudab_parameter_values()`](https://buecker.ms/bunddev/reference/mudab_parameter_values.md),
+[`mudab_parameters()`](https://buecker.ms/bunddev/reference/mudab_parameters.md),
+[`mudab_parameters_biologie()`](https://buecker.ms/bunddev/reference/mudab_parameters_biologie.md),
+[`mudab_parameters_biota()`](https://buecker.ms/bunddev/reference/mudab_parameters_biota.md),
+[`mudab_parameters_sediment()`](https://buecker.ms/bunddev/reference/mudab_parameters_sediment.md),
+[`mudab_parameters_wasser()`](https://buecker.ms/bunddev/reference/mudab_parameters_wasser.md),
+[`mudab_plc_measurements()`](https://buecker.ms/bunddev/reference/mudab_plc_measurements.md),
+[`mudab_plc_parameters()`](https://buecker.ms/bunddev/reference/mudab_plc_parameters.md),
+[`mudab_plc_stations()`](https://buecker.ms/bunddev/reference/mudab_plc_stations.md),
+[`mudab_stations()`](https://buecker.ms/bunddev/reference/mudab_stations.md)
 
 ## Examples
 

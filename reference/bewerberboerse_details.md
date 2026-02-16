@@ -16,20 +16,33 @@ bewerberboerse_details(referenznummer, flatten = FALSE, flatten_mode = "json")
 
 - flatten:
 
-  Logical; drop nested list columns.
+  Logical; if `TRUE`, simplify nested list columns according to
+  `flatten_mode`. Default `FALSE` keeps list columns as-is.
 
 - flatten_mode:
 
-  Flatten strategy for list columns. Use "unnest" to expand list-columns
-  into multiple rows.
+  How to handle list columns when `flatten = TRUE`:
+
+  `"drop"`
+
+  :   Remove list columns entirely. Use when nested data is not needed.
+
+  `"json"`
+
+  :   Convert each list element to a JSON string. Preserves all data in
+      a text-queryable format. This is the **default**.
+
+  `"unnest"`
+
+  :   Expand list columns into multiple rows via
+      [`tidyr::unnest_longer()`](https://tidyr.tidyverse.org/reference/unnest_longer.html).
+      **Warning:** this can significantly increase the number of rows.
 
 ## Value
 
-A tibble containing detailed information for a single candidate,
-including personal details, skills, work history, education, and contact
-preferences. Structure is similar to
-[`bewerberboerse_search()`](https://buecker.ms/bunddev/reference/bewerberboerse_search.md)
-results.
+A tibble with the same columns as
+[`bewerberboerse_search()`](https://buecker.ms/bunddev/reference/bewerberboerse_search.md),
+filtered to the requested `referenznummer`.
 
 ## Details
 
@@ -44,6 +57,9 @@ See https://bundesapi.github.io/bewerberboerse-api/.
 to find candidates and
 [`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 for auth.
+
+Other Bewerberboerse:
+[`bewerberboerse_search()`](https://buecker.ms/bunddev/reference/bewerberboerse_search.md)
 
 ## Examples
 

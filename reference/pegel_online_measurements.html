@@ -75,27 +75,43 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with measurements.</p>
-<p>Includes <code>timestamp_time</code> as POSIXct in Europe/Berlin.</p>
-    </div>
+    <p>A tibble with one row per measurement:</p><dl><dt>timestamp</dt>
+<dd><p>Measurement timestamp string (character).</p></dd>
+
+<dt>value</dt>
+<dd><p>Measured value (numeric).</p></dd>
+
+<dt>timestamp_time</dt>
+<dd><p>Measurement timestamp as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns measurement values for a station timeseries. Timestamps must be
-ISO 8601 strings. Official docs: https://pegel-online.api.bund.dev.</p>
+ISO 8601 strings. API documentation: <a href="https://pegel-online.api.bund.dev" class="external-link">https://pegel-online.api.bund.dev</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="pegel_online_timeseries.html">pegel_online_timeseries()</a></code> for metadata and
-<code><a href="pegel_online_measurements_plot.html">pegel_online_measurements_plot()</a></code> for PNG plots.</p></div>
+<code><a href="pegel_online_measurements_plot.html">pegel_online_measurements_plot()</a></code> for PNG plots.</p>
+<p>Other Pegel Online:
+<code><a href="pegel_online_measurements_plot.html">pegel_online_measurements_plot()</a></code>,
+<code><a href="pegel_online_station.html">pegel_online_station()</a></code>,
+<code><a href="pegel_online_stations.html">pegel_online_stations()</a></code>,
+<code><a href="pegel_online_timeseries.html">pegel_online_timeseries()</a></code>,
+<code><a href="pegel_online_waters.html">pegel_online_waters()</a></code></p></div>
     </div>
 
     <div class="section level2">

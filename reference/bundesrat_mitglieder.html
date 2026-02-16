@@ -56,21 +56,35 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with member entries.</p>
+    <p>A tibble with one row per XML <code>&lt;item&gt;</code> in the member feed.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Returns Bundesrat member entries from the mobile feed. Official docs:
-https://bundesrat.api.bund.dev.</p>
+    <p>Returns Bundesrat member entries from the mobile feed. API documentation: <a href="https://bundesrat.api.bund.dev" class="external-link">https://bundesrat.api.bund.dev</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other Bundesrat:
+<code><a href="bundesrat_aktuelles.html">bundesrat_aktuelles()</a></code>,
+<code><a href="bundesrat_plenum_aktuelle_sitzung.html">bundesrat_plenum_aktuelle_sitzung()</a></code>,
+<code><a href="bundesrat_plenum_chronologisch.html">bundesrat_plenum_chronologisch()</a></code>,
+<code><a href="bundesrat_plenum_kompakt.html">bundesrat_plenum_kompakt()</a></code>,
+<code><a href="bundesrat_plenum_naechste_sitzungen.html">bundesrat_plenum_naechste_sitzungen()</a></code>,
+<code><a href="bundesrat_praesidium.html">bundesrat_praesidium()</a></code>,
+<code><a href="bundesrat_startlist.html">bundesrat_startlist()</a></code>,
+<code><a href="bundesrat_stimmverteilung.html">bundesrat_stimmverteilung()</a></code>,
+<code><a href="bundesrat_termine.html">bundesrat_termine()</a></code></p></div>
     </div>
 
     <div class="section level2">

@@ -1,4 +1,4 @@
-# bunddev ![](reference/figures/bunddev_hexagon.png)
+# bunddev ![bunddev hexagon logo](reference/figures/bunddev_hexagon.png)
 
 An R interface to German government and public sector APIs listed on
 [bund.dev](https://bund.dev). **33 ready-to-use adapters** return tidy
@@ -239,7 +239,58 @@ and document public sector APIs.
 
 # Package index
 
-## All functions
+## Registry
+
+Discover available APIs in the bundled registry.
+
+- [`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md)
+  : Read the bundled API registry
+- [`bunddev_list()`](https://buecker.ms/bunddev/reference/bunddev_list.md)
+  : List registry entries
+- [`bunddev_search()`](https://buecker.ms/bunddev/reference/bunddev_search.md)
+  : Search registry entries
+- [`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md)
+  : Get a registry entry by id
+
+## OpenAPI Core
+
+Explore specs and call endpoints.
+
+- [`bunddev_endpoints()`](https://buecker.ms/bunddev/reference/bunddev_endpoints.md)
+  : Retrieve endpoints for a given API
+- [`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
+  : List OpenAPI parameters for an API
+- [`bunddev_parameter_values()`](https://buecker.ms/bunddev/reference/bunddev_parameter_values.md)
+  : Extract parameter enum values
+- [`bunddev_parameters_for()`](https://buecker.ms/bunddev/reference/bunddev_parameters_for.md)
+  : List OpenAPI parameters for a specific adapter
+- [`bunddev_timestamp_to_ms()`](https://buecker.ms/bunddev/reference/bunddev_timestamp_to_ms.md)
+  : Convert timestamps to milliseconds
+- [`bunddev_ms_to_posix()`](https://buecker.ms/bunddev/reference/bunddev_ms_to_posix.md)
+  : Convert milliseconds to POSIXct
+- [`bunddev_spec()`](https://buecker.ms/bunddev/reference/bunddev_spec.md)
+  : Retrieve a cached API spec
+- [`bunddev_spec_path()`](https://buecker.ms/bunddev/reference/bunddev_spec_path.md)
+  : Build a cache path for an API spec
+- [`bunddev_cache_dir()`](https://buecker.ms/bunddev/reference/bunddev_cache_dir.md)
+  : Locate the bunddev cache directory
+- [`bunddev_call()`](https://buecker.ms/bunddev/reference/bunddev_call.md)
+  : Call an API operation
+- [`bunddev_call_tidy()`](https://buecker.ms/bunddev/reference/bunddev_call_tidy.md)
+  : Call an API operation and return tidy data
+
+## Authentication and Throttling
+
+- [`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
+  : Set authentication configuration for an API
+- [`bunddev_auth_get()`](https://buecker.ms/bunddev/reference/bunddev_auth_get.md)
+  : Get authentication configuration for an API
+- [`bunddev_rate_limit_set()`](https://buecker.ms/bunddev/reference/bunddev_rate_limit_set.md)
+  : Set API rate limit configuration
+- [`bunddev_rate_limit_get()`](https://buecker.ms/bunddev/reference/bunddev_rate_limit_get.md)
+  : Get API rate limit configuration
+
+## Abfallnavi
 
 - [`abfallnavi_fraktionen()`](https://buecker.ms/bunddev/reference/abfallnavi_fraktionen.md)
   : List waste fractions
@@ -261,10 +312,16 @@ and document public sector APIs.
   : List collection dates for a house number
 - [`abfallnavi_termine_strassen()`](https://buecker.ms/bunddev/reference/abfallnavi_termine_strassen.md)
   : List collection dates for a street
+
+## Ausbildungssuche
+
 - [`ausbildungssuche_details()`](https://buecker.ms/bunddev/reference/ausbildungssuche_details.md)
   : Get training offer details
 - [`ausbildungssuche_search()`](https://buecker.ms/bunddev/reference/ausbildungssuche_search.md)
   : Search training offers
+
+## Autobahn
+
 - [`autobahn_charging_station_details()`](https://buecker.ms/bunddev/reference/autobahn_charging_station_details.md)
   : Get Autobahn charging station details
 - [`autobahn_charging_stations()`](https://buecker.ms/bunddev/reference/autobahn_charging_stations.md)
@@ -291,50 +348,21 @@ and document public sector APIs.
   : Get Autobahn webcam details
 - [`autobahn_webcams()`](https://buecker.ms/bunddev/reference/autobahn_webcams.md)
   : List Autobahn webcams
+
+## Bewerberboerse
+
 - [`bewerberboerse_details()`](https://buecker.ms/bunddev/reference/bewerberboerse_details.md)
   : Retrieve Bewerberboerse candidate details
 - [`bewerberboerse_search()`](https://buecker.ms/bunddev/reference/bewerberboerse_search.md)
   : Search the Bewerberboerse API
-- [`bunddev_auth_get()`](https://buecker.ms/bunddev/reference/bunddev_auth_get.md)
-  : Get authentication configuration for an API
-- [`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
-  : Set authentication configuration for an API
-- [`bunddev_cache_dir()`](https://buecker.ms/bunddev/reference/bunddev_cache_dir.md)
-  : Locate the bunddev cache directory
-- [`bunddev_call()`](https://buecker.ms/bunddev/reference/bunddev_call.md)
-  : Call an API operation
-- [`bunddev_call_tidy()`](https://buecker.ms/bunddev/reference/bunddev_call_tidy.md)
-  : Call an API operation and return tidy data
-- [`bunddev_endpoints()`](https://buecker.ms/bunddev/reference/bunddev_endpoints.md)
-  : Retrieve endpoints for a given API
-- [`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md)
-  : Get a registry entry by id
-- [`bunddev_list()`](https://buecker.ms/bunddev/reference/bunddev_list.md)
-  : List registry entries
-- [`bunddev_ms_to_posix()`](https://buecker.ms/bunddev/reference/bunddev_ms_to_posix.md)
-  : Convert milliseconds to POSIXct
-- [`bunddev_parameter_values()`](https://buecker.ms/bunddev/reference/bunddev_parameter_values.md)
-  : Extract parameter enum values
-- [`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
-  : List OpenAPI parameters for an API
-- [`bunddev_parameters_for()`](https://buecker.ms/bunddev/reference/bunddev_parameters_for.md)
-  : List OpenAPI parameters for a specific adapter
-- [`bunddev_rate_limit_get()`](https://buecker.ms/bunddev/reference/bunddev_rate_limit_get.md)
-  : Get API rate limit configuration
-- [`bunddev_rate_limit_set()`](https://buecker.ms/bunddev/reference/bunddev_rate_limit_set.md)
-  : Set API rate limit configuration
-- [`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md)
-  : Read the bundled API registry
-- [`bunddev_search()`](https://buecker.ms/bunddev/reference/bunddev_search.md)
-  : Search registry entries
-- [`bunddev_spec()`](https://buecker.ms/bunddev/reference/bunddev_spec.md)
-  : Retrieve a cached API spec
-- [`bunddev_spec_path()`](https://buecker.ms/bunddev/reference/bunddev_spec_path.md)
-  : Build a cache path for an API spec
-- [`bunddev_timestamp_to_ms()`](https://buecker.ms/bunddev/reference/bunddev_timestamp_to_ms.md)
-  : Convert timestamps to milliseconds
+
+## Bundeshaushalt
+
 - [`bundeshaushalt_budget_data()`](https://buecker.ms/bunddev/reference/bundeshaushalt_budget_data.md)
   : Query Bundeshaushalt budget data
+
+## Bundesrat
+
 - [`bundesrat_aktuelles()`](https://buecker.ms/bunddev/reference/bundesrat_aktuelles.md)
   : List current Bundesrat news
 - [`bundesrat_mitglieder()`](https://buecker.ms/bunddev/reference/bundesrat_mitglieder.md)
@@ -355,6 +383,9 @@ and document public sector APIs.
   : Get Bundesrat voting distribution
 - [`bundesrat_termine()`](https://buecker.ms/bunddev/reference/bundesrat_termine.md)
   : List Bundesrat dates and events
+
+## Bundestag
+
 - [`bundestag_article()`](https://buecker.ms/bunddev/reference/bundestag_article.md)
   : Get a Bundestag news article
 - [`bundestag_ausschuesse()`](https://buecker.ms/bunddev/reference/bundestag_ausschuesse.md)
@@ -373,18 +404,27 @@ and document public sector APIs.
   : Get the current Bundestag speaker
 - [`bundestag_video_feed()`](https://buecker.ms/bunddev/reference/bundestag_video_feed.md)
   : Get a Bundestag video feed entry
+
+## Dashboard Deutschland
+
 - [`dashboard_deutschland_geo()`](https://buecker.ms/bunddev/reference/dashboard_deutschland_geo.md)
   : Get Dashboard Deutschland GeoJSON
 - [`dashboard_deutschland_get()`](https://buecker.ms/bunddev/reference/dashboard_deutschland_get.md)
   : List Dashboard Deutschland entries
 - [`dashboard_deutschland_indicators()`](https://buecker.ms/bunddev/reference/dashboard_deutschland_indicators.md)
   : Query Dashboard Deutschland indicators
+
+## DDB
+
 - [`ddb_institution_sectors()`](https://buecker.ms/bunddev/reference/ddb_institution_sectors.md)
   : List DDB institution sectors
 - [`ddb_institutions()`](https://buecker.ms/bunddev/reference/ddb_institutions.md)
   : List DDB institutions
 - [`ddb_search()`](https://buecker.ms/bunddev/reference/ddb_search.md) :
   Search Deutsche Digitale Bibliothek
+
+## Destatis
+
 - [`destatis_catalogue_cubes()`](https://buecker.ms/bunddev/reference/destatis_catalogue_cubes.md)
   : List Destatis cubes
 - [`destatis_catalogue_tables()`](https://buecker.ms/bunddev/reference/destatis_catalogue_tables.md)
@@ -393,8 +433,14 @@ and document public sector APIs.
   : Retrieve Destatis cube data
 - [`destatis_data_table()`](https://buecker.ms/bunddev/reference/destatis_data_table.md)
   : Retrieve Destatis table data
+
+## Deutschlandatlas
+
 - [`deutschlandatlas_query()`](https://buecker.ms/bunddev/reference/deutschlandatlas_query.md)
   : Query Deutschlandatlas indicators
+
+## DiGA
+
 - [`diga_catalog_entries()`](https://buecker.ms/bunddev/reference/diga_catalog_entries.md)
   : List DiGA catalog entries
 - [`diga_charge_item_definitions()`](https://buecker.ms/bunddev/reference/diga_charge_item_definitions.md)
@@ -407,6 +453,9 @@ and document public sector APIs.
   : List DiGA questionnaire responses
 - [`diga_questionnaires()`](https://buecker.ms/bunddev/reference/diga_questionnaires.md)
   : List DiGA questionnaires
+
+## DIP Bundestag
+
 - [`dip_bundestag_aktivitaet()`](https://buecker.ms/bunddev/reference/dip_bundestag_aktivitaet.md)
   : Get a DIP Aktivität
 - [`dip_bundestag_aktivitaet_list()`](https://buecker.ms/bunddev/reference/dip_bundestag_aktivitaet_list.md)
@@ -439,6 +488,9 @@ and document public sector APIs.
   : Get a DIP Vorgangsposition
 - [`dip_bundestag_vorgangsposition_list()`](https://buecker.ms/bunddev/reference/dip_bundestag_vorgangsposition_list.md)
   : List DIP Vorgangsposition entries
+
+## DWD
+
 - [`dwd_alpine_forecast_text()`](https://buecker.ms/bunddev/reference/dwd_alpine_forecast_text.md)
   : Fetch DWD alpine forecast text
 - [`dwd_avalanche_warnings()`](https://buecker.ms/bunddev/reference/dwd_avalanche_warnings.md)
@@ -455,14 +507,26 @@ and document public sector APIs.
   : Fetch DWD station overview data
 - [`dwd_warnings_nowcast()`](https://buecker.ms/bunddev/reference/dwd_warnings_nowcast.md)
   : Fetch DWD nowcast warnings
+
+## Eco Visio
+
 - [`eco_visio_counters()`](https://buecker.ms/bunddev/reference/eco_visio_counters.md)
   : List Eco-Visio counters for an organization
 - [`eco_visio_data()`](https://buecker.ms/bunddev/reference/eco_visio_data.md)
   : Get Eco-Visio counter measurement data
+
+## Feiertage
+
 - [`feiertage_list()`](https://buecker.ms/bunddev/reference/feiertage_list.md)
   : List German public holidays
+
+## Handelsregister
+
 - [`handelsregister_search()`](https://buecker.ms/bunddev/reference/handelsregister_search.md)
   : Search the Handelsregister portal
+
+## Hilfsmittel
+
 - [`hilfsmittel_nachweisschema()`](https://buecker.ms/bunddev/reference/hilfsmittel_nachweisschema.md)
   : Get Hilfsmittel verification schema details
 - [`hilfsmittel_produkt()`](https://buecker.ms/bunddev/reference/hilfsmittel_produkt.md)
@@ -477,6 +541,9 @@ and document public sector APIs.
   : List Hilfsmittel tree nodes
 - [`hilfsmittel_untergruppe()`](https://buecker.ms/bunddev/reference/hilfsmittel_untergruppe.md)
   : Get Hilfsmittel subgroup details
+
+## Hochwasserzentralen
+
 - [`hochwasserzentralen_bundeslaender()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_bundeslaender.md)
   : List flood portal states and connected regions
 - [`hochwasserzentralen_bundesland_geojson()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_bundesland_geojson.md)
@@ -487,16 +554,28 @@ and document public sector APIs.
   : List flood gauge locations
 - [`hochwasserzentralen_pegel_info()`](https://buecker.ms/bunddev/reference/hochwasserzentralen_pegel_info.md)
   : Get flood gauge information
+
+## Jobsuche
+
 - [`jobsuche_logo()`](https://buecker.ms/bunddev/reference/jobsuche_logo.md)
   : Fetch Jobsuche employer logo
 - [`jobsuche_search()`](https://buecker.ms/bunddev/reference/jobsuche_search.md)
   : Search Jobsuche listings
 - [`jobsuche_search_app()`](https://buecker.ms/bunddev/reference/jobsuche_search_app.md)
   : Search Jobsuche listings (app endpoint)
+
+## Ladestationen
+
 - [`ladestationen_query()`](https://buecker.ms/bunddev/reference/ladestationen_query.md)
   : Query charging stations
+
+## Lebensmittelwarnung
+
 - [`lebensmittelwarnung_warnings()`](https://buecker.ms/bunddev/reference/lebensmittelwarnung_warnings.md)
   : List food and product warnings
+
+## Luftqualitaet
+
 - [`luftqualitaet_airquality()`](https://buecker.ms/bunddev/reference/luftqualitaet_airquality.md)
   : List air quality measurements
 - [`luftqualitaet_airquality_limits()`](https://buecker.ms/bunddev/reference/luftqualitaet_airquality_limits.md)
@@ -525,6 +604,9 @@ and document public sector APIs.
   : List transgressions
 - [`luftqualitaet_transgressiontypes()`](https://buecker.ms/bunddev/reference/luftqualitaet_transgressiontypes.md)
   : List transgression types
+
+## Marktstammdaten
+
 - [`marktstammdaten_filters_gaserzeugung()`](https://buecker.ms/bunddev/reference/marktstammdaten_filters_gaserzeugung.md)
   : List MaStR filter options for gas generation
 - [`marktstammdaten_filters_gasverbrauch()`](https://buecker.ms/bunddev/reference/marktstammdaten_filters_gasverbrauch.md)
@@ -541,6 +623,9 @@ and document public sector APIs.
   : List MaStR electricity generation data
 - [`marktstammdaten_stromverbrauch()`](https://buecker.ms/bunddev/reference/marktstammdaten_stromverbrauch.md)
   : List MaStR electricity consumption data
+
+## MUDAB
+
 - [`mudab_parameter_values()`](https://buecker.ms/bunddev/reference/mudab_parameter_values.md)
   : List MUDAB parameter values
 - [`mudab_parameters()`](https://buecker.ms/bunddev/reference/mudab_parameters.md)
@@ -563,6 +648,9 @@ and document public sector APIs.
   : List MUDAB project stations
 - [`mudab_stations()`](https://buecker.ms/bunddev/reference/mudab_stations.md)
   : List MUDAB stations
+
+## NINA
+
 - [`nina_archive_mowas()`](https://buecker.ms/bunddev/reference/nina_archive_mowas.md)
   : Get MOWAS archive entry
 - [`nina_archive_mowas_mapping()`](https://buecker.ms/bunddev/reference/nina_archive_mowas_mapping.md)
@@ -605,6 +693,9 @@ and document public sector APIs.
   : Get a NINA warning (JSON)
 - [`nina_warnings()`](https://buecker.ms/bunddev/reference/nina_warnings.md)
   : List NINA travel warnings
+
+## Pegel Online
+
 - [`pegel_online_measurements()`](https://buecker.ms/bunddev/reference/pegel_online_measurements.md)
   : Get Pegel-Online measurements
 - [`pegel_online_measurements_plot()`](https://buecker.ms/bunddev/reference/pegel_online_measurements_plot.md)
@@ -617,6 +708,9 @@ and document public sector APIs.
   : Get Pegel-Online timeseries metadata
 - [`pegel_online_waters()`](https://buecker.ms/bunddev/reference/pegel_online_waters.md)
   : List Pegel-Online waters
+
+## Pflanzenschutzmittelzulassung
+
 - [`psm_anwendungen()`](https://buecker.ms/bunddev/reference/psm_anwendungen.md)
   : List approved applications
 - [`psm_kultur_gruppen()`](https://buecker.ms/bunddev/reference/psm_kultur_gruppen.md)
@@ -629,14 +723,23 @@ and document public sector APIs.
   Get data version
 - [`psm_wirkstoffe()`](https://buecker.ms/bunddev/reference/psm_wirkstoffe.md)
   : List active ingredients
+
+## Regionalatlas
+
 - [`regionalatlas_query()`](https://buecker.ms/bunddev/reference/regionalatlas_query.md)
   : Query Regionalatlas data
+
+## SMARD
+
 - [`smard_indices()`](https://buecker.ms/bunddev/reference/smard_indices.md)
   : List available SMARD timestamps
 - [`smard_table()`](https://buecker.ms/bunddev/reference/smard_table.md)
   : Fetch SMARD table data
 - [`smard_timeseries()`](https://buecker.ms/bunddev/reference/smard_timeseries.md)
   : Fetch SMARD timeseries data
+
+## Tagesschau
+
 - [`tagesschau_channels()`](https://buecker.ms/bunddev/reference/tagesschau_channels.md)
   : Fetch Tagesschau channels
 - [`tagesschau_homepage()`](https://buecker.ms/bunddev/reference/tagesschau_homepage.md)
@@ -645,6 +748,9 @@ and document public sector APIs.
   : Fetch Tagesschau news items
 - [`tagesschau_search()`](https://buecker.ms/bunddev/reference/tagesschau_search.md)
   : Search Tagesschau content
+
+## Travelwarning
+
 - [`travelwarning_healthcare()`](https://buecker.ms/bunddev/reference/travelwarning_healthcare.md)
   : List healthcare documents
 - [`travelwarning_representatives_country()`](https://buecker.ms/bunddev/reference/travelwarning_representatives_country.md)

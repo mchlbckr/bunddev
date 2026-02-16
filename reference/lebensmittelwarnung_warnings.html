@@ -67,32 +67,85 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with warning entries.</p>
-<p>Includes <code>published_date_time</code> as POSIXct in Europe/Berlin.</p>
-    </div>
+    <p>A tibble with one row per warning:</p><dl><dt>type</dt>
+<dd><p>Warning type from the source index (character).</p></dd>
+
+<dt>archived</dt>
+<dd><p>Whether the warning is archived (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>id</dt>
+<dd><p>Warning identifier (integer).</p></dd>
+
+<dt>link</dt>
+<dd><p>Link to the warning details page (character).</p></dd>
+
+<dt>title</dt>
+<dd><p>Warning title (character).</p></dd>
+
+<dt>warning</dt>
+<dd><p>Warning text/summary (character).</p></dd>
+
+<dt>affected_states</dt>
+<dd><p>Affected German states (list-column).</p></dd>
+
+<dt>product</dt>
+<dd><p>Structured product details (list-column).</p></dd>
+
+<dt>rapex_information</dt>
+<dd><p>RAPEX metadata when present (list-column).</p></dd>
+
+<dt>safety_information</dt>
+<dd><p>Additional safety metadata (list-column).</p></dd>
+
+<dt>published_date</dt>
+<dd><p>Published timestamp in milliseconds since epoch (numeric).</p></dd>
+
+<dt>published_date_time</dt>
+<dd><p>Published timestamp as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+<dt>num_found</dt>
+<dd><p>Total number of matching warnings in the response (integer).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The Lebensmittelwarnungen API returns German food and product safety warnings.
-Requests are sent as JSON to the <code>warnings/merged</code> endpoint. Official docs:
-https://lebensmittelwarnung.api.bund.dev and
+Requests are sent as JSON to the <code>warnings/merged</code> endpoint. API documentation: <a href="https://lebensmittelwarnung.api.bund.dev" class="external-link">https://lebensmittelwarnung.api.bund.dev</a>.
 https://github.com/bundesAPI/lebensmittelwarnung-api.</p>
 <p>The API expects an <code>Authorization</code> header. By default the adapter uses the
 public key documented in the OpenAPI spec. Override it with

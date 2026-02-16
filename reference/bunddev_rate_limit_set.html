@@ -61,8 +61,14 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>The stored rate limit configuration.</p>
-    </div>
+    <p>A named list with:</p><dl><dt>max_per_hour</dt>
+<dd><p>Maximum allowed calls per hour (integer).</p></dd>
+
+<dt>timestamps</dt>
+<dd><p>Numeric Unix timestamps of tracked requests.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Use this to override or enforce a per-hour rate limit for a given API.
@@ -70,7 +76,9 @@ The default is inferred from the registry entry when available.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="bunddev_rate_limit_get.html">bunddev_rate_limit_get()</a></code> to inspect the current setting.</p></div>
+    <div class="dont-index"><p><code><a href="bunddev_rate_limit_get.html">bunddev_rate_limit_get()</a></code> to inspect the current setting.</p>
+<p>Other Throttling:
+<code><a href="bunddev_rate_limit_get.html">bunddev_rate_limit_get()</a></code></p></div>
     </div>
 
     <div class="section level2">

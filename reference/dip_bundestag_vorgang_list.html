@@ -58,29 +58,64 @@
 
 
 <dl><dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters.</p></dd>
+<dd><p>Named list of query parameters. Common keys:</p><dl><dt>format</dt>
+<dd><p>Response format (<code>"json"</code> recommended; default set by adapter).</p></dd>
+
+<dt>apikey</dt>
+<dd><p>Optional API key as query parameter (prefer auth header).</p></dd>
+
+<dt>fuzzy</dt>
+<dd><p>Free-text search string (character).</p></dd>
+
+<dt>sort</dt>
+<dd><p>Sort field/order definition (character).</p></dd>
+
+<dt>cursor</dt>
+<dd><p>Cursor for pagination (character).</p></dd>
+
+<dt>limit</dt>
+<dd><p>Page size/maximum number of documents (integer).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with DIP response metadata.</p>
+    <p>A one-row tibble with list-response metadata: <code>num_found</code>, <code>cursor</code>, and <code>documents</code> (list-column).</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -91,7 +126,24 @@ from https://dip.bundestag.de/über-dip/hilfe/api.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="bunddev_auth_set.html">bunddev_auth_set()</a></code> to configure authentication.</p></div>
+    <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.
+<code><a href="bunddev_auth_set.html">bunddev_auth_set()</a></code> to configure authentication.</p>
+<p>Other DIP Bundestag:
+<code><a href="dip_bundestag_aktivitaet.html">dip_bundestag_aktivitaet()</a></code>,
+<code><a href="dip_bundestag_aktivitaet_list.html">dip_bundestag_aktivitaet_list()</a></code>,
+<code><a href="dip_bundestag_drucksache.html">dip_bundestag_drucksache()</a></code>,
+<code><a href="dip_bundestag_drucksache_list.html">dip_bundestag_drucksache_list()</a></code>,
+<code><a href="dip_bundestag_drucksache_text.html">dip_bundestag_drucksache_text()</a></code>,
+<code><a href="dip_bundestag_drucksache_text_list.html">dip_bundestag_drucksache_text_list()</a></code>,
+<code><a href="dip_bundestag_person.html">dip_bundestag_person()</a></code>,
+<code><a href="dip_bundestag_person_list.html">dip_bundestag_person_list()</a></code>,
+<code><a href="dip_bundestag_plenarprotokoll.html">dip_bundestag_plenarprotokoll()</a></code>,
+<code><a href="dip_bundestag_plenarprotokoll_list.html">dip_bundestag_plenarprotokoll_list()</a></code>,
+<code><a href="dip_bundestag_plenarprotokoll_text.html">dip_bundestag_plenarprotokoll_text()</a></code>,
+<code><a href="dip_bundestag_plenarprotokoll_text_list.html">dip_bundestag_plenarprotokoll_text_list()</a></code>,
+<code><a href="dip_bundestag_vorgang.html">dip_bundestag_vorgang()</a></code>,
+<code><a href="dip_bundestag_vorgangsposition.html">dip_bundestag_vorgangsposition()</a></code>,
+<code><a href="dip_bundestag_vorgangsposition_list.html">dip_bundestag_vorgangsposition_list()</a></code></p></div>
     </div>
 
     <div class="section level2">

@@ -58,37 +58,83 @@
 
 
 <dl><dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters for the ArcGIS service.</p></dd>
+<dd><p>Named list of ArcGIS query parameters. Common keys:</p><dl><dt>geometry</dt>
+<dd><p>Geometry filter (required by this adapter). Can be a JSON
+string or an R list that is converted to JSON.</p></dd>
+
+<dt>geometryType</dt>
+<dd><p>Geometry type, e.g. <code>"esriGeometryEnvelope"</code>.</p></dd>
+
+<dt>where</dt>
+<dd><p>SQL-like filter expression (default often <code>"1=1"</code>).</p></dd>
+
+<dt>outFields</dt>
+<dd><p>Fields to return (default <code>"*"</code>).</p></dd>
+
+<dt>returnGeometry</dt>
+<dd><p>Whether to include feature geometry (<code>"true"</code>/<code>"false"</code>).</p></dd>
+
+<dt>outSR</dt>
+<dd><p>Output spatial reference id, e.g. <code>4326</code>.</p></dd>
+
+<dt>f</dt>
+<dd><p>Output format (default <code>"json"</code>).</p></dd>
+
+<dt>resultRecordCount</dt>
+<dd><p>Maximum number of returned rows (integer).</p></dd>
+
+<dt>token</dt>
+<dd><p>Optional ArcGIS access token if required by upstream service.</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-flatten">flatten<a class="anchor" aria-label="anchor" href="#arg-flatten"></a></dt>
-<dd><p>Logical; drop nested list columns.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, simplify nested list columns according to
+<code>flatten_mode</code>. Default <code>FALSE</code> keeps list columns as-is.</p></dd>
 
 
 <dt id="arg-flatten-mode">flatten_mode<a class="anchor" aria-label="anchor" href="#arg-flatten-mode"></a></dt>
-<dd><p>Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.</p></dd>
+<dd><p>How to handle list columns when <code>flatten = TRUE</code>:</p><dl><dt><code>"drop"</code></dt>
+<dd><p>Remove list columns entirely. Use when nested data is not
+needed.</p></dd>
+
+<dt><code>"json"</code></dt>
+<dd><p>Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the <strong>default</strong>.</p></dd>
+
+<dt><code>"unnest"</code></dt>
+<dd><p>Expand list columns into multiple rows via
+<code><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">tidyr::unnest_longer()</a></code>. <strong>Warning:</strong> this can significantly increase
+the number of rows.</p></dd>
+
+
+</dl></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with charging station records.</p>
+    <p>A tibble with one row per ArcGIS feature. Attribute names are
+normalized to lower snake_case. Includes a <code>geometry</code> list-column with the
+feature geometry object.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The Ladesaeulenregister API is backed by an ArcGIS feature service. You must
 supply a <code>geometry</code> filter and <code>outFields</code>. The ArcGIS service may require a
 <code>token</code> query parameter even though the API docs describe the service as
-public. Official docs:
-https://ladestationen.api.bund.dev.</p>
+public. API documentation: <a href="https://ladestationen.api.bund.dev" class="external-link">https://ladestationen.api.bund.dev</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

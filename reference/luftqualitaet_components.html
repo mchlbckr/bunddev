@@ -52,25 +52,66 @@
 
 
 <dl><dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters.</p></dd>
+<dd><p>Named list of query parameters. Common keys:</p><dl><dt>date_from</dt>
+<dd><p>Start date/time filter (character, ISO-8601/date).</p></dd>
+
+<dt>date_to</dt>
+<dd><p>End date/time filter (character, ISO-8601/date).</p></dd>
+
+<dt>component</dt>
+<dd><p>Pollutant component id/code (character).</p></dd>
+
+<dt>scope</dt>
+<dd><p>Scope id/code (character).</p></dd>
+
+<dt>station</dt>
+<dd><p>Station id/code (character).</p></dd>
+
+<dt>network</dt>
+<dd><p>Network id/code (character).</p></dd>
+
+<dt>lang</dt>
+<dd><p>Language code for labels/descriptions (character).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with component metadata.</p>
+    <p>A tibble with one row per component metadata entry.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Returns available pollutant components. Official docs:
-https://luftqualitaet.api.bund.dev.</p>
+    <p>Returns available pollutant components. API documentation: <a href="https://luftqualitaet.api.bund.dev" class="external-link">https://luftqualitaet.api.bund.dev</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.</p>
+<p>Other Luftqualitaet:
+<code><a href="luftqualitaet_airquality.html">luftqualitaet_airquality()</a></code>,
+<code><a href="luftqualitaet_airquality_limits.html">luftqualitaet_airquality_limits()</a></code>,
+<code><a href="luftqualitaet_annualbalances.html">luftqualitaet_annualbalances()</a></code>,
+<code><a href="luftqualitaet_measures.html">luftqualitaet_measures()</a></code>,
+<code><a href="luftqualitaet_measures_limits.html">luftqualitaet_measures_limits()</a></code>,
+<code><a href="luftqualitaet_meta.html">luftqualitaet_meta()</a></code>,
+<code><a href="luftqualitaet_networks.html">luftqualitaet_networks()</a></code>,
+<code><a href="luftqualitaet_scopes.html">luftqualitaet_scopes()</a></code>,
+<code><a href="luftqualitaet_stationsettings.html">luftqualitaet_stationsettings()</a></code>,
+<code><a href="luftqualitaet_stationtypes.html">luftqualitaet_stationtypes()</a></code>,
+<code><a href="luftqualitaet_thresholds.html">luftqualitaet_thresholds()</a></code>,
+<code><a href="luftqualitaet_transgressions.html">luftqualitaet_transgressions()</a></code>,
+<code><a href="luftqualitaet_transgressiontypes.html">luftqualitaet_transgressiontypes()</a></code></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -63,7 +63,44 @@
 
 
 <dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters.</p></dd>
+<dd><p>Named list of Genesis API query parameters. Common keys:</p><dl><dt>username</dt>
+<dd><p>Genesis username (added automatically from <code>username</code> if missing).</p></dd>
+
+<dt>password</dt>
+<dd><p>Genesis password (added automatically from <code>password</code> if missing).</p></dd>
+
+<dt>name</dt>
+<dd><p>Table/cube name for data endpoints (also set by <code>name</code> argument).</p></dd>
+
+<dt>selection</dt>
+<dd><p>Selection filter expression (character).</p></dd>
+
+<dt>area</dt>
+<dd><p>Regional scope code (character).</p></dd>
+
+<dt>pagelength</dt>
+<dd><p>Maximum number of returned entries (integer).</p></dd>
+
+<dt>language</dt>
+<dd><p>Response language code (character).</p></dd>
+
+<dt>searchcriterion</dt>
+<dd><p>Catalogue search field (character).</p></dd>
+
+<dt>sortcriterion</dt>
+<dd><p>Catalogue sort field (character).</p></dd>
+
+<dt>type</dt>
+<dd><p>Resource type filter (character).</p></dd>
+
+<dt>startyear</dt>
+<dd><p>Start year filter (integer).</p></dd>
+
+<dt>endyear</dt>
+<dd><p>End year filter (integer).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-username">username<a class="anchor" aria-label="anchor" href="#arg-username"></a></dt>
@@ -75,21 +112,37 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with cube data in a text column.</p>
-    </div>
+    <p>A one-row tibble with:</p><dl><dt>name</dt>
+<dd><p>Requested cube id (character).</p></dd>
+
+<dt>data</dt>
+<dd><p>Raw response body (typically CSV/text) (character).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns cube data as text (csv by default).
-Official docs: https://github.com/bundesAPI/destatis-api.</p>
+API documentation: <a href="https://github.com/bundesAPI/destatis-api" class="external-link">https://github.com/bundesAPI/destatis-api</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.</p>
+<p>Other Destatis:
+<code><a href="destatis_catalogue_cubes.html">destatis_catalogue_cubes()</a></code>,
+<code><a href="destatis_catalogue_tables.html">destatis_catalogue_tables()</a></code>,
+<code><a href="destatis_data_table.html">destatis_data_table()</a></code></p></div>
     </div>
 
     <div class="section level2">

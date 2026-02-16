@@ -18,7 +18,55 @@ destatis_catalogue_tables(
 
 - params:
 
-  Query parameters.
+  Named list of Genesis API query parameters. Common keys:
+
+  username
+
+  :   Genesis username (added automatically from `username` if missing).
+
+  password
+
+  :   Genesis password (added automatically from `password` if missing).
+
+  name
+
+  :   Table/cube name for data endpoints (also set by `name` argument).
+
+  selection
+
+  :   Selection filter expression (character).
+
+  area
+
+  :   Regional scope code (character).
+
+  pagelength
+
+  :   Maximum number of returned entries (integer).
+
+  language
+
+  :   Response language code (character).
+
+  searchcriterion
+
+  :   Catalogue search field (character).
+
+  sortcriterion
+
+  :   Catalogue sort field (character).
+
+  type
+
+  :   Resource type filter (character).
+
+  startyear
+
+  :   Start year filter (integer).
+
+  endyear
+
+  :   End year filter (integer).
 
 - username:
 
@@ -30,20 +78,33 @@ destatis_catalogue_tables(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with the raw response payload.
+A one-row tibble with one list-column `response` containing the parsed
+catalogue payload.
 
 ## Details
 
-Returns the table catalogue from the Destatis Genesis API. Official
-docs: https://github.com/bundesAPI/destatis-api.
+Returns the table catalogue from the Destatis Genesis API. API
+documentation: <https://github.com/bundesAPI/destatis-api>.
+
+## See also
+
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
+to inspect available query parameters.
+
+Other Destatis:
+[`destatis_catalogue_cubes()`](https://buecker.ms/bunddev/reference/destatis_catalogue_cubes.md),
+[`destatis_data_cube()`](https://buecker.ms/bunddev/reference/destatis_data_cube.md),
+[`destatis_data_table()`](https://buecker.ms/bunddev/reference/destatis_data_table.md)
 
 ## Examples
 

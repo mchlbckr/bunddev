@@ -56,22 +56,43 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with indicator data.</p>
-<p>Includes <code>date_time</code> as POSIXct in Europe/Berlin.</p>
-    </div>
+    <p>A tibble with one row per indicator entry:</p><dl><dt>id</dt>
+<dd><p>Indicator id (character).</p></dd>
+
+<dt>date</dt>
+<dd><p>Timestamp in milliseconds since epoch (numeric).</p></dd>
+
+<dt>date_time</dt>
+<dd><p>Timestamp as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+<dt>json</dt>
+<dd><p>Indicator payload as JSON string (character).</p></dd>
+
+<dt>title</dt>
+<dd><p>Indicator title (character).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Returns indicator data for the specified ids. Official docs:
-https://bundesapi.github.io/dashboard-deutschland-api/.</p>
+    <p>Returns indicator data for the specified ids. API documentation: <a href="https://bundesapi.github.io/dashboard-deutschland-api/" class="external-link">https://bundesapi.github.io/dashboard-deutschland-api/</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other Dashboard Deutschland:
+<code><a href="dashboard_deutschland_geo.html">dashboard_deutschland_geo()</a></code>,
+<code><a href="dashboard_deutschland_get.html">dashboard_deutschland_get()</a></code></p></div>
     </div>
 
     <div class="section level2">

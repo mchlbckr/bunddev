@@ -46,17 +46,29 @@ eco_visio_data(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with measurement data.
+A tibble with one row per measurement interval:
 
-Includes `date_time` as POSIXct in Europe/Berlin.
+- date:
+
+  Interval timestamp/date label from the API (character).
+
+- count:
+
+  Count value for the selected flow(s) (integer).
+
+- date_time:
+
+  `date` converted to `POSIXct` in Europe/Berlin.
 
 ## Details
 
@@ -70,6 +82,9 @@ to discover available counters and their flow IDs.
 
 [`eco_visio_counters()`](https://buecker.ms/bunddev/reference/eco_visio_counters.md)
 to list available counters.
+
+Other Eco Visio:
+[`eco_visio_counters()`](https://buecker.ms/bunddev/reference/eco_visio_counters.md)
 
 ## Examples
 

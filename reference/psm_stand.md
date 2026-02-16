@@ -12,20 +12,31 @@ psm_stand(safe = TRUE, refresh = FALSE)
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with version information.
+A one-row tibble with version/release metadata.
 
 ## Details
 
 Returns the release date/version of the plant protection product
 database.
+
+## See also
+
+Other Pflanzenschutzmittelzulassung:
+[`psm_anwendungen()`](https://buecker.ms/bunddev/reference/psm_anwendungen.md),
+[`psm_kultur_gruppen()`](https://buecker.ms/bunddev/reference/psm_kultur_gruppen.md),
+[`psm_mittel()`](https://buecker.ms/bunddev/reference/psm_mittel.md),
+[`psm_schadorg_gruppen()`](https://buecker.ms/bunddev/reference/psm_schadorg_gruppen.md),
+[`psm_wirkstoffe()`](https://buecker.ms/bunddev/reference/psm_wirkstoffe.md)
 
 ## Examples
 

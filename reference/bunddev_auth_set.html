@@ -99,8 +99,32 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>The updated auth configuration.</p>
-    </div>
+    <p>A named list with stored authentication settings:</p><dl><dt>type</dt>
+<dd><p>Authentication type (<code>"none"</code>, <code>"api_key"</code>, <code>"oauth2"</code>).</p></dd>
+
+<dt>env_var</dt>
+<dd><p>Environment variable name for credential lookup.</p></dd>
+
+<dt>scheme</dt>
+<dd><p>Header scheme/template used for auth header construction.</p></dd>
+
+<dt>oauth_url</dt>
+<dd><p>OAuth token endpoint URL (oauth2 only).</p></dd>
+
+<dt>oauth_secret_env</dt>
+<dd><p>Environment variable name for OAuth client secret.</p></dd>
+
+<dt>oauth_default_id</dt>
+<dd><p>Fallback OAuth client ID when <code>env_var</code> is unset.</p></dd>
+
+<dt>oauth_token_header</dt>
+<dd><p>Header name used for OAuth access tokens.</p></dd>
+
+<dt>oauth_fallback_header</dt>
+<dd><p>Header name used for fallback API key mode.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Store auth configuration used by <code><a href="bunddev_call.html">bunddev_call()</a></code> and adapter helpers.</p>
@@ -114,7 +138,9 @@ back to sending the client ID as an API key.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="bunddev_auth_get.html">bunddev_auth_get()</a></code> to inspect the stored configuration, and
-<code><a href="bunddev_call.html">bunddev_call()</a></code> to make authenticated requests.</p></div>
+<code><a href="bunddev_call.html">bunddev_call()</a></code> to make authenticated requests.</p>
+<p>Other Authentication:
+<code><a href="bunddev_auth_get.html">bunddev_auth_get()</a></code></p></div>
     </div>
 
     <div class="section level2">

@@ -66,21 +66,81 @@
 
 
 <dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Query parameters.</p></dd>
+<dd><p>Named list of query parameters:</p><dl><dt>includeTimeseries</dt>
+<dd><p>Include timeseries metadata (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>includeCurrentMeasurement</dt>
+<dd><p>Include current measurement metadata (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>includeCharacteristicValues</dt>
+<dd><p>Include characteristic values (<code>TRUE</code>/<code>FALSE</code>).</p></dd>
+
+<dt>waters</dt>
+<dd><p>Filter by water shortnames (character vector).</p></dd>
+
+<dt>ids</dt>
+<dd><p>Filter by station ids (character vector).</p></dd>
+
+<dt>timeseries</dt>
+<dd><p>Timeseries shortname filter (character).</p></dd>
+
+<dt>fuzzyId</dt>
+<dd><p>Fuzzy station id/name search (character).</p></dd>
+
+<dt>latitude</dt>
+<dd><p>Latitude center for geo search (numeric).</p></dd>
+
+<dt>longitude</dt>
+<dd><p>Longitude center for geo search (numeric).</p></dd>
+
+<dt>radius</dt>
+<dd><p>Radius for geo search (numeric).</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with timeseries metadata.</p>
-    </div>
+    <p>A one-row tibble with timeseries metadata:</p><dl><dt>shortname</dt>
+<dd><p>Timeseries shortname (character).</p></dd>
+
+<dt>longname</dt>
+<dd><p>Timeseries long name (character).</p></dd>
+
+<dt>unit</dt>
+<dd><p>Measurement unit (character).</p></dd>
+
+<dt>equidistance</dt>
+<dd><p>Sampling interval/equidistance (numeric).</p></dd>
+
+<dt>gauge_zero</dt>
+<dd><p>Gauge zero metadata (list-column).</p></dd>
+
+<dt>characteristic_values</dt>
+<dd><p>Characteristic values (list-column).</p></dd>
+
+<dt>current_value</dt>
+<dd><p>Current measured value (numeric).</p></dd>
+
+<dt>current_timestamp</dt>
+<dd><p>Current timestamp as string (character).</p></dd>
+
+<dt>current_timestamp_time</dt>
+<dd><p>Current timestamp as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns metadata for a timeseries, including unit and gauge zero. Official
@@ -88,7 +148,14 @@ docs: https://pegel-online.api.bund.dev.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="pegel_online_measurements.html">pegel_online_measurements()</a></code> for measurement values.</p></div>
+    <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.
+<code><a href="pegel_online_measurements.html">pegel_online_measurements()</a></code> for measurement values.</p>
+<p>Other Pegel Online:
+<code><a href="pegel_online_measurements.html">pegel_online_measurements()</a></code>,
+<code><a href="pegel_online_measurements_plot.html">pegel_online_measurements_plot()</a></code>,
+<code><a href="pegel_online_station.html">pegel_online_station()</a></code>,
+<code><a href="pegel_online_stations.html">pegel_online_stations()</a></code>,
+<code><a href="pegel_online_waters.html">pegel_online_waters()</a></code></p></div>
     </div>
 
     <div class="section level2">

@@ -20,7 +20,15 @@ bunddev_rate_limit_set(api, max_per_hour)
 
 ## Value
 
-The stored rate limit configuration.
+A named list with:
+
+- max_per_hour:
+
+  Maximum allowed calls per hour (integer).
+
+- timestamps:
+
+  Numeric Unix timestamps of tracked requests.
 
 ## Details
 
@@ -31,6 +39,9 @@ The default is inferred from the registry entry when available.
 
 [`bunddev_rate_limit_get()`](https://buecker.ms/bunddev/reference/bunddev_rate_limit_get.md)
 to inspect the current setting.
+
+Other Throttling:
+[`bunddev_rate_limit_get()`](https://buecker.ms/bunddev/reference/bunddev_rate_limit_get.md)
 
 ## Examples
 

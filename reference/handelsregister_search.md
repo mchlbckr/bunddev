@@ -28,30 +28,88 @@ handelsregister_search(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 - flatten:
 
-  Logical; drop nested list columns.
+  Logical; if `TRUE`, simplify nested list columns according to
+  `flatten_mode`. Default `FALSE` keeps list columns as-is.
 
 - flatten_mode:
 
-  Flatten strategy for list columns. Use "unnest" to expand list-columns
-  into multiple rows.
+  How to handle list columns when `flatten = TRUE`:
+
+  `"drop"`
+
+  :   Remove list columns entirely. Use when nested data is not needed.
+
+  `"json"`
+
+  :   Convert each list element to a JSON string. Preserves all data in
+      a text-queryable format. This is the **default**.
+
+  `"unnest"`
+
+  :   Expand list columns into multiple rows via
+      [`tidyr::unnest_longer()`](https://tidyr.tidyverse.org/reference/unnest_longer.html).
+      **Warning:** this can significantly increase the number of rows.
 
 ## Value
 
-A tibble with search results.
+A tibble with one row per register entry:
+
+- name:
+
+  Company/entity name (character).
+
+- court:
+
+  Register court and register label (character).
+
+- register_num:
+
+  Extracted register number (character).
+
+- state:
+
+  Federal state (character).
+
+- status:
+
+  Status text from the listing (character).
+
+- status_current:
+
+  Uppercase status code derived from `status` (character).
+
+- documents_text:
+
+  Document summary text (character).
+
+- documents_count:
+
+  Number of linked documents (integer).
+
+- documents_links:
+
+  Document URLs (list-column of character vectors).
+
+- history:
+
+  Additional parsed history tokens (list-column).
 
 ## Details
 
 The Handelsregister search is provided via a public web form. This
 helper automates the form flow and parses the result table into a tidy
-tibble. Official docs: https://github.com/bundesAPI/handelsregister.
+tibble. API documentation:
+<https://github.com/bundesAPI/handelsregister>.
 
 The registry notes that more than 60 requests per hour may violate the
 terms of use. Use `safe = TRUE` to respect the built-in rate limiting.

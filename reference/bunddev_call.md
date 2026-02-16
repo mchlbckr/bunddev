@@ -33,7 +33,8 @@ bunddev_call(
 
 - params:
 
-  List of query parameters.
+  Named list of query and path parameters passed to the selected
+  operation.
 
 - path:
 
@@ -65,15 +66,34 @@ bunddev_call(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`. responses to
+  `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached GET responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`). the API (default `FALSE`).
 
 ## Value
 
-Parsed response.
+Parsed response according to `parse`:
+
+- `parse = "json"`:
+
+  Parsed JSON as an R list.
+
+- `parse = "text"`:
+
+  Character scalar with response body text.
+
+- `parse = "raw"`:
+
+  Raw vector with response bytes.
+
+- `parse = "xml"`:
+
+  `xml2` document object.
 
 ## Details
 
@@ -98,6 +118,18 @@ to discover valid parameters before calling.
 for adapter-specific tidy outputs, and
 [`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 to configure API keys.
+
+Other OpenAPI:
+[`bunddev_cache_dir()`](https://buecker.ms/bunddev/reference/bunddev_cache_dir.md),
+[`bunddev_call_tidy()`](https://buecker.ms/bunddev/reference/bunddev_call_tidy.md),
+[`bunddev_endpoints()`](https://buecker.ms/bunddev/reference/bunddev_endpoints.md),
+[`bunddev_ms_to_posix()`](https://buecker.ms/bunddev/reference/bunddev_ms_to_posix.md),
+[`bunddev_parameter_values()`](https://buecker.ms/bunddev/reference/bunddev_parameter_values.md),
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md),
+[`bunddev_parameters_for()`](https://buecker.ms/bunddev/reference/bunddev_parameters_for.md),
+[`bunddev_spec()`](https://buecker.ms/bunddev/reference/bunddev_spec.md),
+[`bunddev_spec_path()`](https://buecker.ms/bunddev/reference/bunddev_spec_path.md),
+[`bunddev_timestamp_to_ms()`](https://buecker.ms/bunddev/reference/bunddev_timestamp_to_ms.md)
 
 ## Examples
 

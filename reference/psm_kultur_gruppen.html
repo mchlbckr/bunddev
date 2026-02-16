@@ -52,24 +52,61 @@
 
 
 <dl><dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
-<dd><p>Additional query parameters.</p></dd>
+<dd><p>Named list of query parameters. Frequently used keys:</p><dl><dt>kennr</dt>
+<dd><p>Product id (e.g. <code>"024780-00"</code>).</p></dd>
+
+<dt>wirkstoffId</dt>
+<dd><p>Active ingredient id.</p></dd>
+
+<dt>awg_id</dt>
+<dd><p>Application id.</p></dd>
+
+<dt>kultur</dt>
+<dd><p>Crop filter code.</p></dd>
+
+<dt>kultur_gruppe</dt>
+<dd><p>Crop group filter code.</p></dd>
+
+<dt>kode</dt>
+<dd><p>Code filter for catalog lookups.</p></dd>
+
+<dt>kodeliste</dt>
+<dd><p>Code list name.</p></dd>
+
+<dt>sprache</dt>
+<dd><p>Language code.</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with crop group data.</p>
+    <p>A tibble with crop group catalog entries.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns hierarchical crop group classifications.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.</p>
+<p>Other Pflanzenschutzmittelzulassung:
+<code><a href="psm_anwendungen.html">psm_anwendungen()</a></code>,
+<code><a href="psm_mittel.html">psm_mittel()</a></code>,
+<code><a href="psm_schadorg_gruppen.html">psm_schadorg_gruppen()</a></code>,
+<code><a href="psm_stand.html">psm_stand()</a></code>,
+<code><a href="psm_wirkstoffe.html">psm_wirkstoffe()</a></code></p></div>
     </div>
 
     <div class="section level2">

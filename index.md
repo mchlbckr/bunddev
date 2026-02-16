@@ -1,4 +1,4 @@
-# bunddev ![](reference/figures/bunddev_hexagon.png)
+# bunddev ![bunddev hexagon logo](reference/figures/bunddev_hexagon.png)
 
 An R interface to German government and public sector APIs listed on
 [bund.dev](https://bund.dev). **33 ready-to-use adapters** return tidy

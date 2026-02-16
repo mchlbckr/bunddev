@@ -1,5 +1,36 @@
 # Changelog
 
+## bunddev 0.2.1
+
+CRAN release: 2026-02-16
+
+### Documentation
+
+- Expanded function documentation across core modules and all adapters:
+  - standardized `safe` / `refresh` parameter wording,
+  - fully documented `flatten` / `flatten_mode` behavior,
+  - added explicit return-structure descriptions for adapter and core
+    helpers.
+- Improved parameter discoverability:
+  - added detailed `@param params` documentation where stable,
+  - added consistent `@seealso` links to
+    [`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
+    for functions with query params.
+- Standardized upstream API links in help pages
+  (`API documentation: \\url{...}`).
+
+### pkgdown
+
+- Added `@family` coverage across exported functions for better
+  reference grouping.
+- Reorganized `_pkgdown.yml` reference sections by core topics and
+  adapter families.
+- Added
+  [`bunddev_ms_to_posix()`](https://buecker.ms/bunddev/reference/bunddev_ms_to_posix.md)
+  and
+  [`bunddev_timestamp_to_ms()`](https://buecker.ms/bunddev/reference/bunddev_timestamp_to_ms.md)
+  to the pkgdown reference index.
+
 ## bunddev 0.2.0
 
 CRAN release: 2026-02-13

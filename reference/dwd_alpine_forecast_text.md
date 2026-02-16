@@ -12,26 +12,37 @@ dwd_alpine_forecast_text(safe = TRUE, refresh = FALSE)
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble with the forecast text.
+A one-row tibble with one column `text` containing the forecast text.
 
 ## Details
 
-Retrieves alpine forecast text from the DWD App API. Official docs:
-https://dwd.api.bund.dev.
+Retrieves alpine forecast text from the DWD App API. API documentation:
+<https://dwd.api.bund.dev>.
 
 ## See also
 
 [`dwd_sea_warning_text()`](https://buecker.ms/bunddev/reference/dwd_sea_warning_text.md)
 and
 [`dwd_avalanche_warnings()`](https://buecker.ms/bunddev/reference/dwd_avalanche_warnings.md).
+
+Other DWD:
+[`dwd_avalanche_warnings()`](https://buecker.ms/bunddev/reference/dwd_avalanche_warnings.md),
+[`dwd_coast_warnings()`](https://buecker.ms/bunddev/reference/dwd_coast_warnings.md),
+[`dwd_crowd_reports()`](https://buecker.ms/bunddev/reference/dwd_crowd_reports.md),
+[`dwd_municipality_warnings()`](https://buecker.ms/bunddev/reference/dwd_municipality_warnings.md),
+[`dwd_sea_warning_text()`](https://buecker.ms/bunddev/reference/dwd_sea_warning_text.md),
+[`dwd_station_overview()`](https://buecker.ms/bunddev/reference/dwd_station_overview.md),
+[`dwd_warnings_nowcast()`](https://buecker.ms/bunddev/reference/dwd_warnings_nowcast.md)
 
 ## Examples
 

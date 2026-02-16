@@ -37,23 +37,36 @@ smard_timeseries(
 
 - safe:
 
-  Logical; apply throttling and caching.
+  Logical; if `TRUE` (default), apply rate-limiting and cache GET
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
-  Logical; refresh cached responses.
+  Logical; if `TRUE`, ignore cached responses and re-fetch from the API
+  (default `FALSE`).
 
 ## Value
 
-A tibble of time series values.
+A tibble with one row per time point:
 
-Includes a `time` column with POSIXct timestamps in Europe/Berlin.
+- timestamp:
+
+  Timestamp in milliseconds since epoch (numeric).
+
+- time:
+
+  Timestamp as `POSIXct` in Europe/Berlin.
+
+- value:
+
+  Series value for the selected filter/region (numeric).
 
 ## Details
 
 Returns a tidy time series for a single filter/region. Use
 [`smard_indices()`](https://buecker.ms/bunddev/reference/smard_indices.md)
-to obtain a valid timestamp. Official docs: https://smard.api.bund.dev.
+to obtain a valid timestamp. API documentation:
+<https://smard.api.bund.dev>.
 
 ## See also
 
@@ -61,6 +74,10 @@ to obtain a valid timestamp. Official docs: https://smard.api.bund.dev.
 for timestamps and
 [`smard_table()`](https://buecker.ms/bunddev/reference/smard_table.md)
 for table output.
+
+Other SMARD:
+[`smard_indices()`](https://buecker.ms/bunddev/reference/smard_indices.md),
+[`smard_table()`](https://buecker.ms/bunddev/reference/smard_table.md)
 
 ## Examples
 

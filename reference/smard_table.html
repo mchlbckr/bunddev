@@ -65,27 +65,42 @@
 
 
 <dt id="arg-safe">safe<a class="anchor" aria-label="anchor" href="#arg-safe"></a></dt>
-<dd><p>Logical; apply throttling and caching.</p></dd>
+<dd><p>Logical; if <code>TRUE</code> (default), apply rate-limiting and cache
+GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 
 
 <dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
-<dd><p>Logical; refresh cached responses.</p></dd>
+<dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
+from the API (default <code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble of table values.</p>
-<p>Includes a <code>time</code> column with POSIXct timestamps in Europe/Berlin.</p>
-    </div>
+    <p>A tibble with one row per returned value/version:</p><dl><dt>timestamp</dt>
+<dd><p>Timestamp in milliseconds since epoch (numeric).</p></dd>
+
+<dt>time</dt>
+<dd><p>Timestamp as <code>POSIXct</code> in Europe/Berlin.</p></dd>
+
+<dt>value</dt>
+<dd><p>Reported value (numeric).</p></dd>
+
+<dt>name</dt>
+<dd><p>Version/series label when provided by the API (character).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns table-style SMARD data for a single timestamp. Use
-<code><a href="smard_indices.html">smard_indices()</a></code> to obtain a valid timestamp. Official docs:
-https://smard.api.bund.dev.</p>
+<code><a href="smard_indices.html">smard_indices()</a></code> to obtain a valid timestamp. API documentation: <a href="https://smard.api.bund.dev" class="external-link">https://smard.api.bund.dev</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="smard_indices.html">smard_indices()</a></code> for timestamps and <code><a href="smard_timeseries.html">smard_timeseries()</a></code> for time series.</p></div>
+    <div class="dont-index"><p><code><a href="smard_indices.html">smard_indices()</a></code> for timestamps and <code><a href="smard_timeseries.html">smard_timeseries()</a></code> for time series.</p>
+<p>Other SMARD:
+<code><a href="smard_indices.html">smard_indices()</a></code>,
+<code><a href="smard_timeseries.html">smard_timeseries()</a></code></p></div>
     </div>
 
     <div class="section level2">
