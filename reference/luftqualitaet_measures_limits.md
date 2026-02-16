@@ -24,6 +24,10 @@ luftqualitaet_measures_limits(safe = TRUE, refresh = FALSE)
 
 A one-row tibble with available date limits for the endpoint.
 
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+`flatten` / `flatten_mode` controls.
+
 ## Details
 
 Returns date limits for measurement metadata. API documentation:

@@ -55,6 +55,9 @@ dip_bundestag_person(person_id, params = list(), safe = TRUE, refresh = FALSE)
 ## Value
 
 A one-row tibble with detailed fields for the selected person record.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+`flatten` / `flatten_mode` controls.
 
 ## See also
 

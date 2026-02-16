@@ -29,6 +29,9 @@ travelwarning_warning(content_id, safe = TRUE, refresh = FALSE)
 A tibble with one row per warning content block and the same column
 structure as
 [`travelwarning_warnings()`](https://buecker.ms/bunddev/reference/travelwarning_warnings.md).
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+`flatten` / `flatten_mode` controls.
 
 ## Details
 

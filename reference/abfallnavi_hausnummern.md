@@ -28,6 +28,10 @@ abfallnavi_hausnummern(strassen_id, safe = TRUE, refresh = FALSE)
 
 A tibble with one row per available house number entry.
 
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+`flatten` / `flatten_mode` controls.
+
 ## See also
 
 Other Abfallnavi:

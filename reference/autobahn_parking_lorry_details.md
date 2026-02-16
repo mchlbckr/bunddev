@@ -44,8 +44,14 @@ autobahn_parking_lorry_details(
 
 ## Value
 
-A one-row tibble with detailed fields for the selected lorry parking
-entry.
+A one-row tibble for the selected lorry-parking entry with the same
+guaranteed columns as
+[`autobahn_parking_lorries()`](https://buecker.ms/bunddev/reference/autobahn_parking_lorries.md):
+`road_id` (typically `NA` for detail calls), `identifier`, `title`,
+`subtitle`, `display_type`, `icon`, `is_blocked`, `future`,
+`start_timestamp`, `start_time`, `point`, `extent`, `coordinate_lat`,
+`coordinate_long`, `description`, `footer`, `route_recommendation`
+(list-column), and `lorry_parking_feature_icons` (list-column).
 
 ## Details
 

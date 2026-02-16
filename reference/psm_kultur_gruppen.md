@@ -58,7 +58,10 @@ psm_kultur_gruppen(params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with crop group catalog entries.
+A tibble with crop group catalog entries. Top-level scalar API fields
+are returned as tibble columns; nested objects or arrays are kept in
+list-columns unless the function provides `flatten` / `flatten_mode`
+controls.
 
 ## Details
 

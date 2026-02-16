@@ -25,6 +25,9 @@ bundestag_speaker(safe = TRUE, refresh = FALSE)
 A one-row tibble with fields extracted from the XML document (same
 structure rules as
 [`bundestag_article()`](https://buecker.ms/bunddev/reference/bundestag_article.md)).
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+`flatten` / `flatten_mode` controls.
 
 ## Details
 

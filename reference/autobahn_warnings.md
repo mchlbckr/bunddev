@@ -40,8 +40,13 @@ autobahn_warnings(road_id, flatten = FALSE, flatten_mode = "json")
 
 ## Value
 
-A tibble with one row per warning entry and standard Autobahn item
-columns (including `identifier` and `road_id`).
+A tibble with one row per warning entry. Guaranteed columns are:
+`road_id`, `identifier`, `title`, `subtitle`, `display_type`, `icon`,
+`is_blocked`, `future`, `start_timestamp`, `start_time`, `point`,
+`extent`, `coordinate_lat`, `coordinate_long`, `description`, `footer`,
+`route_recommendation` (list-column), and `lorry_parking_feature_icons`
+(list-column). With `flatten = TRUE`, the two list-columns are
+transformed according to `flatten_mode`.
 
 ## Details
 

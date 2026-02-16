@@ -51,7 +51,10 @@ marktstammdaten_filters_gasverbrauch(
 
 ## Value
 
-A tibble with filter definitions for gas consumption.
+A tibble with filter definitions for gas consumption. Top-level scalar
+API fields are returned as tibble columns; nested objects or arrays are
+kept in list-columns unless the function provides `flatten` /
+`flatten_mode` controls.
 
 ## Details
 

@@ -26,7 +26,10 @@ bundestag_video_feed(content_id, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with video feed fields extracted from XML.
+A one-row tibble with video feed fields extracted from XML. Top-level
+scalar API fields are returned as tibble columns; nested objects or
+arrays are kept in list-columns unless the function provides `flatten` /
+`flatten_mode` controls.
 
 ## Details
 

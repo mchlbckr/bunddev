@@ -40,7 +40,14 @@ autobahn_closure_details(closure_id, flatten = FALSE, flatten_mode = "json")
 
 ## Value
 
-A one-row tibble with detailed fields for the selected closure.
+A one-row tibble for the selected closure with the same guaranteed
+columns as
+[`autobahn_closures()`](https://buecker.ms/bunddev/reference/autobahn_closures.md):
+`road_id` (typically `NA` for detail calls), `identifier`, `title`,
+`subtitle`, `display_type`, `icon`, `is_blocked`, `future`,
+`start_timestamp`, `start_time`, `point`, `extent`, `coordinate_lat`,
+`coordinate_long`, `description`, `footer`, `route_recommendation`
+(list-column), and `lorry_parking_feature_icons` (list-column).
 
 ## Details
 

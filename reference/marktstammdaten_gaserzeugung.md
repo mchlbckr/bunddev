@@ -75,6 +75,9 @@ marktstammdaten_gaserzeugung(
 A tibble with one row per gas-generation entry (same column conventions
 as
 [`marktstammdaten_stromerzeugung()`](https://buecker.ms/bunddev/reference/marktstammdaten_stromerzeugung.md)).
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+`flatten` / `flatten_mode` controls.
 
 ## Details
 

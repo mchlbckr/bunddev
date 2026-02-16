@@ -81,7 +81,9 @@ dip_bundestag_plenarprotokoll_text_list(
 ## Value
 
 A one-row tibble with list-response metadata: `num_found`, `cursor`, and
-`documents` (list-column).
+`documents` (list-column). Top-level scalar API fields are returned as
+tibble columns; nested objects or arrays are kept in list-columns unless
+the function provides `flatten` / `flatten_mode` controls.
 
 ## See also
 

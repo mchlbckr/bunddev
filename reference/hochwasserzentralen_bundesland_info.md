@@ -31,6 +31,9 @@ hochwasserzentralen_bundesland_info(
 ## Value
 
 A tibble with one row of metadata for the selected Bundesland id.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+`flatten` / `flatten_mode` controls.
 
 ## Details
 

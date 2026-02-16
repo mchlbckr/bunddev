@@ -52,7 +52,10 @@ marktstammdaten_filters_stromerzeugung(
 ## Value
 
 A tibble with filter definitions. Each row describes an available filter
-field and its selectable values/options.
+field and its selectable values/options. Top-level scalar API fields are
+returned as tibble columns; nested objects or arrays are kept in
+list-columns unless the function provides `flatten` / `flatten_mode`
+controls.
 
 ## Details
 

@@ -60,7 +60,9 @@ dip_bundestag_plenarprotokoll_text(
 ## Value
 
 A one-row tibble with detailed fields for the selected Plenarprotokoll
-text record.
+text record. Top-level scalar API fields are returned as tibble columns;
+nested objects or arrays are kept in list-columns unless the function
+provides `flatten` / `flatten_mode` controls.
 
 ## See also
 

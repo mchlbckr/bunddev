@@ -32,7 +32,10 @@ nina_mapdata(
 
 A tibble with one row per map-data warning entry.
 
-Includes `start_date_time` as POSIXct in Europe/Berlin.
+Includes `start_date_time` as POSIXct in Europe/Berlin. Top-level scalar
+API fields are returned as tibble columns; nested objects or arrays are
+kept in list-columns unless the function provides `flatten` /
+`flatten_mode` controls.
 
 ## Details
 

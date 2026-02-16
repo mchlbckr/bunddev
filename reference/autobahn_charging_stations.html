@@ -80,8 +80,13 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per charging-station entry and standard
-Autobahn item columns (including <code>identifier</code> and <code>road_id</code>).</p>
+    <p>A tibble with one row per charging-station entry. Guaranteed columns
+are: <code>road_id</code>, <code>identifier</code>, <code>title</code>, <code>subtitle</code>, <code>display_type</code>, <code>icon</code>,
+<code>is_blocked</code>, <code>future</code>, <code>start_timestamp</code>, <code>start_time</code>, <code>point</code>, <code>extent</code>,
+<code>coordinate_lat</code>, <code>coordinate_long</code>, <code>description</code>, <code>footer</code>,
+<code>route_recommendation</code> (list-column), and
+<code>lorry_parking_feature_icons</code> (list-column). With <code>flatten = TRUE</code>, the two
+list-columns are transformed according to <code>flatten_mode</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>

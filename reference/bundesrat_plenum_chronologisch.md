@@ -30,7 +30,10 @@ bundesrat_plenum_chronologisch(
 
 ## Value
 
-A tibble with one row per XML `<item>` in chronological order.
+A tibble with one row per XML `<item>` in chronological order. Top-level
+scalar API fields are returned as tibble columns; nested objects or
+arrays are kept in list-columns unless the function provides `flatten` /
+`flatten_mode` controls.
 
 ## Details
 

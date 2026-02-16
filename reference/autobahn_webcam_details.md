@@ -40,7 +40,14 @@ autobahn_webcam_details(webcam_id, flatten = FALSE, flatten_mode = "json")
 
 ## Value
 
-A one-row tibble with detailed fields for the selected webcam.
+A one-row tibble for the selected webcam with the same guaranteed
+columns as
+[`autobahn_webcams()`](https://buecker.ms/bunddev/reference/autobahn_webcams.md):
+`road_id` (typically `NA` for detail calls), `identifier`, `title`,
+`subtitle`, `display_type`, `icon`, `is_blocked`, `future`,
+`start_timestamp`, `start_time`, `point`, `extent`, `coordinate_lat`,
+`coordinate_long`, `description`, `footer`, `route_recommendation`
+(list-column), and `lorry_parking_feature_icons` (list-column).
 
 ## Details
 

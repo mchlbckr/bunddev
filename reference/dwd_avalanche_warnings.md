@@ -23,7 +23,9 @@ dwd_avalanche_warnings(safe = TRUE, refresh = FALSE)
 ## Value
 
 A one-row tibble with one list-column `raw` containing the parsed
-avalanche warning payload.
+avalanche warning payload. Top-level scalar API fields are returned as
+tibble columns; nested objects or arrays are kept in list-columns unless
+the function provides `flatten` / `flatten_mode` controls.
 
 ## Details
 

@@ -23,7 +23,10 @@ ddb_institution_sectors(safe = TRUE, refresh = FALSE)
 ## Value
 
 A tibble with sector entries when the API returns a homogeneous list;
-otherwise a one-row tibble with list-column `response`.
+otherwise a one-row tibble with list-column `response`. Top-level scalar
+API fields are returned as tibble columns; nested objects or arrays are
+kept in list-columns unless the function provides `flatten` /
+`flatten_mode` controls.
 
 ## Details
 

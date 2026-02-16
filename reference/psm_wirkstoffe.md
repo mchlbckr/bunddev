@@ -67,7 +67,10 @@ psm_wirkstoffe(
 
 ## Value
 
-A tibble with one row per active ingredient item.
+A tibble with one row per active ingredient item. Top-level scalar API
+fields are returned as tibble columns; nested objects or arrays are kept
+in list-columns unless the function provides `flatten` / `flatten_mode`
+controls.
 
 ## Details
 

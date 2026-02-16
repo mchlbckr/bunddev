@@ -105,6 +105,9 @@ the number of rows.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with one row per catalog entry resource (same structure
 rules as <code><a href="diga_device_definitions.html">diga_device_definitions()</a></code>).</p>
+<p>Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+<code>flatten</code> / <code>flatten_mode</code> controls.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

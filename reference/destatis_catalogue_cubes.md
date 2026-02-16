@@ -89,7 +89,9 @@ destatis_catalogue_cubes(
 ## Value
 
 A one-row tibble with one list-column `response` containing the parsed
-catalogue payload.
+catalogue payload. Top-level scalar API fields are returned as tibble
+columns; nested objects or arrays are kept in list-columns unless the
+function provides `flatten` / `flatten_mode` controls.
 
 ## Details
 
