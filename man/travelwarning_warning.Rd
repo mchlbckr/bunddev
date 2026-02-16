@@ -16,24 +16,30 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per warning content block and the same column
-structure as \code{\link[=travelwarning_warnings]{travelwarning_warnings()}}.
+A tibble with one row per warning content block. Same metadata
+columns as \code{\link[=travelwarning_warnings]{travelwarning_warnings()}}, plus the full warning detail fields:
 \describe{
-\item{content_id}{Entry/content identifier (character).}
-\item{parent_content_id}{Parent identifier for nested entry records, if
-applicable (character).}
-\item{response_country}{Country code from response metadata (character).}
-\item{response_last_modified}{Feed-level modification timestamp in
-milliseconds (numeric).}
-\item{response_last_modified_time}{Feed-level modification timestamp as
-\code{POSIXct} (Europe/Berlin), when \code{response_last_modified} is non-\code{NA}.}
-\item{last_modified_time}{Entry-level modification timestamp as \code{POSIXct}
-(Europe/Berlin), parsed from the entry \code{lastModified} field.}
-\item{effective_time}{Entry effective timestamp as \code{POSIXct}
-(Europe/Berlin), parsed from the entry \code{effective} field.}
-\item{\verb{<entry_field>}}{Additional columns (snake_case) from each entry
-payload. Scalar values become character/numeric columns; nested
-structures remain list-columns.}
+\item{content_id}{Character. Entry/content identifier.}
+\item{parent_content_id}{Character. Parent identifier for nested records.}
+\item{response_country}{Character. Country code from response metadata.}
+\item{response_last_modified}{Numeric. Feed-level modification timestamp
+in milliseconds.}
+\item{response_last_modified_time}{POSIXct. Parsed feed-level timestamp
+(Europe/Berlin).}
+\item{last_modified_time}{POSIXct. Entry-level modification timestamp
+(Europe/Berlin).}
+\item{effective_time}{POSIXct. Entry effective timestamp (Europe/Berlin).}
+\item{last_modified}{Numeric. Raw entry modification timestamp in ms.}
+\item{effective}{Numeric. Raw entry effective timestamp in ms.}
+\item{title}{Character. Country travel warning title.}
+\item{country_code}{Character. Two-letter country code.}
+\item{iso3_country_code}{Character. Three-letter ISO country code.}
+\item{country_name}{Character. Country name (German).}
+\item{warning}{Logical. Full travel warning issued.}
+\item{partial_warning}{Logical. Partial travel warning issued.}
+\item{situation_warning}{Logical. Situation-based travel warning.}
+\item{situation_part_warning}{Logical. Situation-based partial warning.}
+\item{content}{Character. HTML content of the warning.}
 }
 }
 \description{

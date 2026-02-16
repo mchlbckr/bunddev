@@ -19,13 +19,15 @@
 #' nina_warnings()
 #' }
 #'
-#' @return A tibble with one row per warning entry and common metadata columns including `content_id`, `last_modified_time`, and `effective_time`.
-#'
-#' Includes `last_modified_time` and `effective_time` as POSIXct in Europe/Berlin.
-#'
+#' @return A tibble with one row per warning entry. Columns include scalar fields
+#'   from each entry (names converted to snake_case) plus the following added
+#'   metadata:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{content_id}{Content identifier from the NINA feed (character).}
+#'   \item{response_country}{Feed-level country code (character).}
+#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
+#'   \item{last_modified_time}{Entry-level last-modified timestamp (`POSIXct`, Europe/Berlin).}
+#'   \item{effective_time}{Entry-level effective timestamp (`POSIXct`, Europe/Berlin).}
 #' }
 #' @family NINA
 #' @export
@@ -61,14 +63,10 @@ nina_warnings <- function(safe = TRUE, refresh = FALSE) {
 #' nina_warning(warnings$content_id[[1]])
 #' }
 #'
-#' @return A tibble with detailed warning content rows (same common metadata columns as [nina_warnings()]).
-#'
-#' Includes `last_modified_time` and `effective_time` as POSIXct in Europe/Berlin.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A tibble with detailed warning content rows. Same column structure as
+#'   [nina_warnings()]: entry scalar fields (snake_case), plus `content_id`,
+#'   `response_country`, `response_last_modified`, `last_modified_time`, and
+#'   `effective_time` (`POSIXct`, Europe/Berlin).
 #' @family NINA
 #' @export
 nina_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
@@ -104,13 +102,17 @@ nina_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
 #' nina_warning_json(map$id[[1]])
 #' }
 #'
-#' @return A tibble with detailed warning content rows (same common metadata columns as [nina_warnings()]).
-#'
-#' Includes `sent_time` as POSIXct in Europe/Berlin.
-#'
+#' @return A one-row tibble with CAP warning fields.
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{identifier}{Warning identifier (character).}
+#'   \item{sender}{Sender identifier (character).}
+#'   \item{sent}{Sent timestamp string (character).}
+#'   \item{status}{Alert status (character).}
+#'   \item{msg_type}{Message type (character).}
+#'   \item{scope}{Alert scope (character).}
+#'   \item{code}{Alert code entries (list).}
+#'   \item{info}{Alert info blocks (list).}
+#'   \item{sent_time}{Parsed sent timestamp (`POSIXct`, Europe/Berlin).}
 #' }
 #' @family NINA
 #' @export
@@ -138,13 +140,10 @@ nina_warning_json <- function(identifier, safe = TRUE, refresh = FALSE) {
 #' @details
 #' Returns a warning in GeoJSON format.
 #'
-#' @return A one-row tibble with `identifier` and `geojson` (list-column).
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{identifier}{Warning identifier (character).}
+#'   \item{geojson}{Full GeoJSON response payload (list).}
 #' }
 #' @family NINA
 #' @export
@@ -172,13 +171,10 @@ nina_warning_geojson <- function(identifier, safe = TRUE, refresh = FALSE) {
 #' @details
 #' Returns dashboard data for the given ARS code. API documentation: \url{https://nina.api.bund.dev}.
 #'
-#' @return A one-row tibble with `ars` and a list-column `data` containing dashboard payload.
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{ars}{The ARS code used in the request (character).}
+#'   \item{data}{Dashboard response payload (list).}
 #' }
 #' @family NINA
 #' @export
@@ -203,13 +199,10 @@ nina_dashboard <- function(ars, safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with `ars` and a list-column `data` containing COVID rules payload.
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{ars}{The ARS code used in the request (character).}
+#'   \item{data}{COVID rules response payload (list).}
 #' }
 #' @family NINA
 #' @export
@@ -233,13 +226,9 @@ nina_covid_rules <- function(ars, safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with list-column `data` containing COVID info payload.
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{data}{COVID info response payload (list).}
 #' }
 #' @family NINA
 #' @export
@@ -262,13 +251,9 @@ nina_covid_infos <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with list-column `data` containing ticker payload.
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{data}{COVID ticker response payload (list).}
 #' }
 #' @family NINA
 #' @export
@@ -292,13 +277,10 @@ nina_covid_ticker <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with `id` and list-column `data` containing message payload.
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{id}{Ticker message identifier (character).}
+#'   \item{data}{Ticker message response payload (list).}
 #' }
 #' @family NINA
 #' @export
@@ -322,13 +304,9 @@ nina_covid_ticker_message <- function(id, safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with list-column `data` containing COVID map payload.
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{data}{COVID map response payload (list).}
 #' }
 #' @family NINA
 #' @export
@@ -351,15 +329,11 @@ nina_covid_map <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per logo metadata entry; includes `last_modification_time` (`POSIXct`).
-#'
-#' Includes `last_modification_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per logo metadata entry. Columns are bound from
+#'   the upstream `logos` array, plus:
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{last_modification_date}{Feed-level modification timestamp in milliseconds (numeric).}
+#'   \item{last_modification_time}{Parsed modification timestamp (`POSIXct`, Europe/Berlin).}
 #' }
 #' @family NINA
 #' @export
@@ -383,13 +357,10 @@ nina_logos <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with `filename` and raw `bytes` in a list-column.
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{filename}{Logo file name (character).}
+#'   \item{bytes}{Raw file content (list of raw vectors).}
 #' }
 #' @family NINA
 #' @export
@@ -413,15 +384,11 @@ nina_logo <- function(filename, safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per event code entry; includes `last_modification_time` (`POSIXct`).
-#'
-#' Includes `last_modification_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per event code entry. Columns are bound from
+#'   the upstream `eventCodes` array, plus:
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{last_modification_date}{Feed-level modification timestamp in milliseconds (numeric).}
+#'   \item{last_modification_time}{Parsed modification timestamp (`POSIXct`, Europe/Berlin).}
 #' }
 #' @family NINA
 #' @export
@@ -445,13 +412,10 @@ nina_event_codes <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with `filename` and raw `bytes` in a list-column.
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{filename}{Event code file name (character).}
+#'   \item{bytes}{Raw file content (list of raw vectors).}
 #' }
 #' @family NINA
 #' @export
@@ -475,15 +439,12 @@ nina_event_code <- function(filename, safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per emergency-tip category, including `tips` (list-column).
-#'
-#' Includes `last_modification_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per emergency-tip category.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{title}{Category title (character).}
+#'   \item{tips}{Tips for this category (list).}
+#'   \item{last_modification_date}{Modification timestamp in milliseconds (numeric).}
+#'   \item{last_modification_time}{Parsed modification timestamp (`POSIXct`, Europe/Berlin).}
 #' }
 #' @family NINA
 #' @export
@@ -517,15 +478,12 @@ nina_notfalltipps <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per FAQ category/entry as returned by the API.
-#'
-#' Includes `last_modification_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per FAQ entry.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{question}{FAQ question text (character).}
+#'   \item{answer}{FAQ answer text (character).}
+#'   \item{last_modification_date}{Modification timestamp in milliseconds (numeric).}
+#'   \item{last_modification_time}{Parsed modification timestamp (`POSIXct`, Europe/Berlin).}
 #' }
 #' @family NINA
 #' @export
@@ -559,15 +517,9 @@ nina_faqs <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with version metadata fields.
-#'
-#' Includes `last_modification_time` as POSIXct in Europe/Berlin.
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{data}{Version/data-version response payload (list).}
 #' }
 #' @family NINA
 #' @export
@@ -597,14 +549,17 @@ nina_version <- function(safe = TRUE, refresh = FALSE) {
 #' Valid sources are: `katwarn`, `biwapp`, `mowas`, `dwd`, `lhp`, `police`.
 #'
 #' @return A tibble with one row per map-data warning entry.
-#'
-#' Includes `start_date_time` as POSIXct in Europe/Berlin.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{id}{Warning identifier (character).}
+#'   \item{version}{Warning version (integer).}
+#'   \item{start_date}{Start date string from the API (character).}
+#'   \item{severity}{Warning severity level (character).}
+#'   \item{urgency}{Warning urgency level (character).}
+#'   \item{type}{Warning type (character).}
+#'   \item{i18n_title}{Internationalised title entries (list).}
+#'   \item{trans_keys}{Translation key entries (list).}
+#'   \item{start_date_time}{Parsed start date (`POSIXct`, Europe/Berlin).}
+#'   \item{source}{Map data source used in the request (character).}
 #' }
 #' @family NINA
 #' @export
@@ -667,11 +622,10 @@ nina_mapdata_police <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with archive mapping payload in list-columns.
-#'
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{identifier}{Warning identifier (character).}
+#'   \item{data}{Archive mapping response payload (list).}
 #' }
 #' @family NINA
 #' @export
@@ -696,11 +650,10 @@ nina_archive_mowas_mapping <- function(identifier, safe = TRUE, refresh = FALSE)
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with archive entry payload in list-columns.
-#'
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{identifier}{Warning identifier (character).}
+#'   \item{data}{Archive entry response payload (list).}
 #' }
 #' @family NINA
 #' @export
@@ -725,13 +678,10 @@ nina_archive_mowas <- function(identifier, safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with RSS XML text in column `xml`.
+#' @return A one-row tibble.
 #' \describe{
-#'   \item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-#'   \item{response_country}{Feed-level country code, when provided (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+#'   \item{ars}{The ARS code used in the request (character).}
+#'   \item{rss}{RSS XML text returned by the API (character).}
 #' }
 #' @family NINA
 #' @export

@@ -16,11 +16,12 @@
 #' }
 #'
 #' @return A one-row tibble with fields extracted from the XML document. Column
-#' names correspond to XML element names; repeated elements are list-columns.
-#'
+#' names correspond to XML element names.
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{`<tag>`}{One column per unique scalar child element of the XML root
+#'     (character). Exact names depend on the XML document structure.}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once.}
 #' }
 #' @family Bundestag
 #' @export
@@ -54,8 +55,10 @@ bundestag_article <- function(article_id, safe = TRUE, refresh = FALSE) {
 #' @return A one-row tibble with fields extracted from the XML document (same
 #' structure rules as [bundestag_article()]).
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` entry (or root-level document field for single-document endpoints).}
-#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`<tag>`}{One column per unique scalar child element of the XML root
+#'     (character). Exact names depend on the XML document structure.}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once.}
 #' }
 #' @family Bundestag
 #' @export
@@ -86,10 +89,12 @@ bundestag_speaker <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with one row per `<item>` entry from the conferences feed.
-#' Column names correspond to XML element names.
+#' Column names correspond to XML child element names within each `<item>`.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` entry (or root-level document field for single-document endpoints).}
-#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`<tag>`}{One column per unique scalar child element in each
+#'     `<item>` (character). Exact names depend on the feed structure.}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
 #' }
 #' @family Bundestag
 #' @export
@@ -120,9 +125,12 @@ bundestag_conferences <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with one row per committee `<item>` from the index feed.
+#' Column names correspond to XML child element names within each `<item>`.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` entry (or root-level document field for single-document endpoints).}
-#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`<tag>`}{One column per unique scalar child element in each
+#'     `<item>` (character). Exact names depend on the feed structure.}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
 #' }
 #' @family Bundestag
 #' @export
@@ -154,9 +162,12 @@ bundestag_ausschuesse <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A one-row tibble with committee detail fields extracted from XML.
+#' Column names correspond to XML element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` entry (or root-level document field for single-document endpoints).}
-#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`<tag>`}{One column per unique scalar child element of the XML root
+#'     (character). Exact names depend on the XML document structure.}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once.}
 #' }
 #' @family Bundestag
 #' @export
@@ -188,9 +199,12 @@ bundestag_ausschuss <- function(ausschuss_id, safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with one row per member `<item>` from the index feed.
+#' Column names correspond to XML child element names within each `<item>`.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` entry (or root-level document field for single-document endpoints).}
-#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`<tag>`}{One column per unique scalar child element in each
+#'     `<item>` (character). Exact names depend on the feed structure.}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
 #' }
 #' @family Bundestag
 #' @export
@@ -221,10 +235,13 @@ bundestag_mdb_index <- function(safe = TRUE, refresh = FALSE) {
 #' bundestag_mdb_bio(1769)
 #' }
 #'
-#' @return A one-row tibble with biography fields extracted from XML.
+#' @return A one-row tibble with biography fields extracted from XML. Column
+#' names correspond to XML element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` entry (or root-level document field for single-document endpoints).}
-#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`<tag>`}{One column per unique scalar child element of the XML root
+#'     (character). Exact names depend on the XML document structure.}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once.}
 #' }
 #' @family Bundestag
 #' @export
@@ -256,10 +273,13 @@ bundestag_mdb_bio <- function(mdb_id, safe = TRUE, refresh = FALSE) {
 #' bundestag_video_feed(7529016)
 #' }
 #'
-#' @return A one-row tibble with video feed fields extracted from XML.
+#' @return A one-row tibble with video feed fields extracted from XML. Column
+#' names correspond to XML element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` entry (or root-level document field for single-document endpoints).}
-#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`<tag>`}{One column per unique scalar child element of the XML root
+#'     (character). Exact names depend on the XML document structure.}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once.}
 #' }
 #' @family Bundestag
 #' @export

@@ -18,15 +18,27 @@
 #' travelwarning_warnings()
 #' }
 #'
-#' @return A tibble with one row per warning entry. Common columns include
-#' `content_id`, `parent_content_id`, `response_country`,
-#' `response_last_modified`, `response_last_modified_time`,
-#' `last_modified_time`, and `effective_time`, plus additional warning fields
-#' mapped from the upstream payload.
-#'
+#' @return A tibble with one row per warning entry.
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{content_id}{Character. Entry/content identifier.}
+#'   \item{parent_content_id}{Character. Parent identifier for nested records.}
+#'   \item{response_country}{Character. Country code from response metadata.}
+#'   \item{response_last_modified}{Numeric. Feed-level modification timestamp
+#'     in milliseconds.}
+#'   \item{response_last_modified_time}{POSIXct. Parsed feed-level timestamp
+#'     (Europe/Berlin).}
+#'   \item{last_modified_time}{POSIXct. Entry-level modification timestamp
+#'     (Europe/Berlin).}
+#'   \item{effective_time}{POSIXct. Entry effective timestamp (Europe/Berlin).}
+#'   \item{last_modified}{Numeric. Raw entry modification timestamp in ms.}
+#'   \item{effective}{Numeric. Raw entry effective timestamp in ms.}
+#'   \item{title}{Character. Country travel warning title.}
+#'   \item{country_code}{Character. Two-letter country code.}
+#'   \item{country_name}{Character. Country name (German).}
+#'   \item{warning}{Logical. Full travel warning issued.}
+#'   \item{partial_warning}{Logical. Partial travel warning issued.}
+#'   \item{situation_warning}{Logical. Situation-based travel warning.}
+#'   \item{situation_part_warning}{Logical. Situation-based partial warning.}
 #' }
 #' @family Travelwarning
 #' @export
@@ -63,15 +75,30 @@ travelwarning_warnings <- function(safe = TRUE, refresh = FALSE) {
 #' travelwarning_warning(warnings$content_id[[1]])
 #' }
 #'
-#' @return A tibble with one row per warning content block and the same column
-#' structure as [travelwarning_warnings()].
+#' @return A tibble with one row per warning content block. Same metadata
+#' columns as [travelwarning_warnings()], plus the full warning detail fields:
 #' \describe{
-#'   \item{content_id}{Entry/content identifier (character).}
-#'   \item{parent_content_id}{Parent identifier for nested entry records, if applicable (character).}
-#'   \item{response_country}{Country code from response metadata (character).}
-#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
-#'   \item{Entry fields}{Additional scalar fields from each entry payload; nested structures remain list-columns.}
+#'   \item{content_id}{Character. Entry/content identifier.}
+#'   \item{parent_content_id}{Character. Parent identifier for nested records.}
+#'   \item{response_country}{Character. Country code from response metadata.}
+#'   \item{response_last_modified}{Numeric. Feed-level modification timestamp
+#'     in milliseconds.}
+#'   \item{response_last_modified_time}{POSIXct. Parsed feed-level timestamp
+#'     (Europe/Berlin).}
+#'   \item{last_modified_time}{POSIXct. Entry-level modification timestamp
+#'     (Europe/Berlin).}
+#'   \item{effective_time}{POSIXct. Entry effective timestamp (Europe/Berlin).}
+#'   \item{last_modified}{Numeric. Raw entry modification timestamp in ms.}
+#'   \item{effective}{Numeric. Raw entry effective timestamp in ms.}
+#'   \item{title}{Character. Country travel warning title.}
+#'   \item{country_code}{Character. Two-letter country code.}
+#'   \item{iso3_country_code}{Character. Three-letter ISO country code.}
+#'   \item{country_name}{Character. Country name (German).}
+#'   \item{warning}{Logical. Full travel warning issued.}
+#'   \item{partial_warning}{Logical. Partial travel warning issued.}
+#'   \item{situation_warning}{Logical. Situation-based travel warning.}
+#'   \item{situation_part_warning}{Logical. Situation-based partial warning.}
+#'   \item{content}{Character. HTML content of the warning.}
 #' }
 #' @family Travelwarning
 #' @export
@@ -103,12 +130,35 @@ travelwarning_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
 #' travelwarning_representatives_germany()
 #' }
 #'
-#' @return A tibble with representative entries and common metadata columns as
-#' returned by [travelwarning_warnings()].
-#'
+#' @return A tibble with one row per foreign representative in Germany:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{content_id}{Character. Entry/content identifier.}
+#'   \item{parent_content_id}{Character. Parent identifier for nested records.}
+#'   \item{response_country}{Character. Country code from response metadata.}
+#'   \item{response_last_modified}{Numeric. Feed-level modification timestamp.}
+#'   \item{response_last_modified_time}{POSIXct. Parsed feed-level timestamp.}
+#'   \item{last_modified_time}{POSIXct. Entry-level modification timestamp.}
+#'   \item{effective_time}{POSIXct. Entry effective timestamp.}
+#'   \item{last_modified}{Numeric. Raw entry modification timestamp in ms.}
+#'   \item{title}{Character. Representation title.}
+#'   \item{leader}{Character. Head of mission.}
+#'   \item{locales}{Character. Languages spoken.}
+#'   \item{country}{Character. Country.}
+#'   \item{zip}{Character. Postal code.}
+#'   \item{city}{Character. City.}
+#'   \item{region}{Character. Region.}
+#'   \item{street}{Character. Street.}
+#'   \item{number}{Character. House number.}
+#'   \item{departments}{Character. Department details.}
+#'   \item{fax}{Character. Fax number.}
+#'   \item{telefone}{Character. Phone number.}
+#'   \item{mail}{Character. Email address.}
+#'   \item{misc}{Character. Miscellaneous notes.}
+#'   \item{url}{Character. External link.}
+#'   \item{postal}{Character. Postal address.}
+#'   \item{type}{Character. Address type (e.g. Botschaft).}
+#'   \item{remark}{Character. Remark.}
+#'   \item{open}{Character. Opening hours.}
 #' }
 #' @family Travelwarning
 #' @export
@@ -139,12 +189,35 @@ travelwarning_representatives_germany <- function(safe = TRUE, refresh = FALSE) 
 #' travelwarning_representatives_country()
 #' }
 #'
-#' @return A tibble with representative entries and common metadata columns as
-#' returned by [travelwarning_warnings()].
-#'
+#' @return A tibble with one row per German representative abroad:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{content_id}{Character. Entry/content identifier.}
+#'   \item{parent_content_id}{Character. Parent identifier for nested records.}
+#'   \item{response_country}{Character. Country code from response metadata.}
+#'   \item{response_last_modified}{Numeric. Feed-level modification timestamp.}
+#'   \item{response_last_modified_time}{POSIXct. Parsed feed-level timestamp.}
+#'   \item{last_modified_time}{POSIXct. Entry-level modification timestamp.}
+#'   \item{effective_time}{POSIXct. Entry effective timestamp.}
+#'   \item{last_modified}{Numeric. Raw entry modification timestamp in ms.}
+#'   \item{title}{Character. Representation title.}
+#'   \item{leader}{Character. Head of mission.}
+#'   \item{locales}{Character. Languages spoken.}
+#'   \item{country}{Character. Country.}
+#'   \item{zip}{Character. Postal code.}
+#'   \item{city}{Character. City.}
+#'   \item{region}{Character. Region.}
+#'   \item{street}{Character. Street.}
+#'   \item{number}{Character. House number.}
+#'   \item{departments}{Character. Department details.}
+#'   \item{fax}{Character. Fax number.}
+#'   \item{telefone}{Character. Phone number.}
+#'   \item{mail}{Character. Email address.}
+#'   \item{misc}{Character. Miscellaneous notes.}
+#'   \item{url}{Character. External link.}
+#'   \item{postal}{Character. Postal address.}
+#'   \item{type}{Character. Address type (e.g. Botschaft).}
+#'   \item{remark}{Character. Remark.}
+#'   \item{open}{Character. Opening hours.}
 #' }
 #' @family Travelwarning
 #' @export
@@ -175,12 +248,18 @@ travelwarning_representatives_country <- function(safe = TRUE, refresh = FALSE) 
 #' travelwarning_state_names()
 #' }
 #'
-#' @return A tibble with state-name entries and common metadata columns as
-#' returned by [travelwarning_warnings()].
-#'
+#' @return A tibble with one row per state-name document:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{content_id}{Character. Entry/content identifier.}
+#'   \item{parent_content_id}{Character. Parent identifier for nested records.}
+#'   \item{response_country}{Character. Country code from response metadata.}
+#'   \item{response_last_modified}{Numeric. Feed-level modification timestamp.}
+#'   \item{response_last_modified_time}{POSIXct. Parsed feed-level timestamp.}
+#'   \item{last_modified_time}{POSIXct. Entry-level modification timestamp.}
+#'   \item{effective_time}{POSIXct. Entry effective timestamp.}
+#'   \item{last_modified}{Numeric. Raw entry modification timestamp in ms.}
+#'   \item{name}{Character. Document name.}
+#'   \item{url}{Character. Download URL.}
 #' }
 #' @family Travelwarning
 #' @export
@@ -212,12 +291,18 @@ travelwarning_state_names <- function(safe = TRUE, refresh = FALSE) {
 #' travelwarning_healthcare()
 #' }
 #'
-#' @return A tibble with healthcare entries and common metadata columns as
-#' returned by [travelwarning_warnings()].
-#'
+#' @return A tibble with one row per healthcare document:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{content_id}{Character. Entry/content identifier.}
+#'   \item{parent_content_id}{Character. Parent identifier for nested records.}
+#'   \item{response_country}{Character. Country code from response metadata.}
+#'   \item{response_last_modified}{Numeric. Feed-level modification timestamp.}
+#'   \item{response_last_modified_time}{POSIXct. Parsed feed-level timestamp.}
+#'   \item{last_modified_time}{POSIXct. Entry-level modification timestamp.}
+#'   \item{effective_time}{POSIXct. Entry effective timestamp.}
+#'   \item{last_modified}{Numeric. Raw entry modification timestamp in ms.}
+#'   \item{name}{Character. Document name.}
+#'   \item{url}{Character. Download URL.}
 #' }
 #' @family Travelwarning
 #' @export

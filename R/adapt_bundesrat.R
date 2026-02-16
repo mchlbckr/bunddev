@@ -15,11 +15,16 @@
 #' bundesrat_startlist()
 #' }
 #'
-#' @return A tibble with one row per XML `<item>` in the start list feed.
+#' @return A tibble with one row per XML `<item>` in the start list feed. Column
+#' names correspond to the XML child element names within each `<item>`.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
-#'   \item{Repeated child tags}{Stored as list-columns.}
-#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#'   \item{`<tag>`}{One column per unique scalar child element (character).
+#'     Exact names depend on the XML feed structure.}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
+#'   \item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+#'     field (`date`, `dateOfIssue`, `imageDate`, `layoutDate`, `startdate`,
+#'     `stopdate`) is present.}
 #' }
 #' @family Bundesrat
 #' @export
@@ -51,10 +56,13 @@ bundesrat_startlist <- function(view = "renderXml", safe = TRUE, refresh = FALSE
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the current news feed.
+#' Column names correspond to the XML child element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
-#'   \item{Repeated child tags}{Stored as list-columns.}
-#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#'   \item{`<tag>`}{One column per unique scalar child element (character).}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
+#'   \item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+#'     field is present.}
 #' }
 #' @family Bundesrat
 #' @export
@@ -86,10 +94,13 @@ bundesrat_aktuelles <- function(view = "renderXml", safe = TRUE, refresh = FALSE
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the dates/events feed.
+#' Column names correspond to the XML child element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
-#'   \item{Repeated child tags}{Stored as list-columns.}
-#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#'   \item{`<tag>`}{One column per unique scalar child element (character).}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
+#'   \item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+#'     field is present.}
 #' }
 #' @family Bundesrat
 #' @export
@@ -121,10 +132,13 @@ bundesrat_termine <- function(view = "renderXml", safe = TRUE, refresh = FALSE) 
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the plenum compact feed.
+#' Column names correspond to the XML child element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
-#'   \item{Repeated child tags}{Stored as list-columns.}
-#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#'   \item{`<tag>`}{One column per unique scalar child element (character).}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
+#'   \item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+#'     field is present.}
 #' }
 #' @family Bundesrat
 #' @export
@@ -156,10 +170,13 @@ bundesrat_plenum_kompakt <- function(view = "renderXml", safe = TRUE, refresh = 
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` for the current session feed.
+#' Column names correspond to the XML child element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
-#'   \item{Repeated child tags}{Stored as list-columns.}
-#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#'   \item{`<tag>`}{One column per unique scalar child element (character).}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
+#'   \item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+#'     field is present.}
 #' }
 #' @family Bundesrat
 #' @export
@@ -191,10 +208,13 @@ bundesrat_plenum_aktuelle_sitzung <- function(view = "renderXml", safe = TRUE, r
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in chronological order.
+#' Column names correspond to the XML child element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
-#'   \item{Repeated child tags}{Stored as list-columns.}
-#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#'   \item{`<tag>`}{One column per unique scalar child element (character).}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
+#'   \item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+#'     field is present.}
 #' }
 #' @family Bundesrat
 #' @export
@@ -226,10 +246,13 @@ bundesrat_plenum_chronologisch <- function(view = "renderXml", safe = TRUE, refr
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the upcoming sessions feed.
+#' Column names correspond to the XML child element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
-#'   \item{Repeated child tags}{Stored as list-columns.}
-#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#'   \item{`<tag>`}{One column per unique scalar child element (character).}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
+#'   \item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+#'     field is present.}
 #' }
 #' @family Bundesrat
 #' @export
@@ -262,11 +285,14 @@ bundesrat_plenum_naechste_sitzungen <- function(view = "render[iOSDetailsWithout
 #' bundesrat_mitglieder()
 #' }
 #'
-#' @return A tibble with one row per XML `<item>` in the member feed.
+#' @return A tibble with one row per XML `<item>` in the member feed. Column
+#' names correspond to the XML child element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
-#'   \item{Repeated child tags}{Stored as list-columns.}
-#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#'   \item{`<tag>`}{One column per unique scalar child element (character).}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
+#'   \item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+#'     field is present.}
 #' }
 #' @family Bundesrat
 #' @export
@@ -298,11 +324,13 @@ bundesrat_mitglieder <- function(view = "renderXml", safe = TRUE, refresh = FALS
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the voting distribution
-#' feed.
+#' feed. Column names correspond to the XML child element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
-#'   \item{Repeated child tags}{Stored as list-columns.}
-#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#'   \item{`<tag>`}{One column per unique scalar child element (character).}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
+#'   \item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+#'     field is present.}
 #' }
 #' @family Bundesrat
 #' @export
@@ -335,11 +363,14 @@ bundesrat_stimmverteilung <- function(view = "render[iOSDetailsWithoutInnerDate]
 #' bundesrat_praesidium()
 #' }
 #'
-#' @return A tibble with one row per XML `<item>` in the presidium feed.
+#' @return A tibble with one row per XML `<item>` in the presidium feed. Column
+#' names correspond to the XML child element names.
 #' \describe{
-#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
-#'   \item{Repeated child tags}{Stored as list-columns.}
-#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#'   \item{`<tag>`}{One column per unique scalar child element (character).}
+#'   \item{`<repeated_tag>`}{List-column when a child element name appears more
+#'     than once in a single `<item>`.}
+#'   \item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+#'     field is present.}
 #' }
 #' @family Bundesrat
 #' @export

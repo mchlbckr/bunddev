@@ -15,13 +15,11 @@
 #' hochwasserzentralen_pegel_info("HE_24820206")
 #' }
 #'
-#' @return A tibble with one row of gauge metadata for the selected
-#' `pegelnummer`. Columns follow the upstream service field names.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A one-row tibble of gauge metadata for the selected `pegelnummer`.
+#' Columns are created dynamically from the upstream service response fields.
+#' If the response contains GeoJSON features, each feature's `properties` are
+#' used as columns; otherwise each top-level field becomes a column. Scalar
+#' values become atomic columns and nested structures become list-columns.
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_pegel_info <- function(pegelnummer, safe = TRUE, refresh = FALSE) {
@@ -53,13 +51,11 @@ hochwasserzentralen_pegel_info <- function(pegelnummer, safe = TRUE, refresh = F
 #' hochwasserzentralen_bundeslaender()
 #' }
 #'
-#' @return A tibble with one row per Bundesland/region entry. Column names follow
-#' the upstream service field names.
-#' \describe{
-#'   \item{Top-level fields}{One column per scalar top-level field (or per GeoJSON feature `properties` field).}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{features}{GeoJSON container endpoint: feature collection as list-column.}
-#' }
+#' @return A tibble with one row per Bundesland/region entry. Columns are created
+#' dynamically from the upstream service response fields. If the response
+#' contains GeoJSON features, each feature's `properties` are used as columns;
+#' otherwise each top-level field becomes a column. Scalar values become atomic
+#' columns and nested structures become list-columns.
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
@@ -90,12 +86,11 @@ hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
 #' hochwasserzentralen_bundesland_info("HE")
 #' }
 #'
-#' @return A tibble with one row of metadata for the selected Bundesland id.
-#' \describe{
-#'   \item{Top-level fields}{One column per scalar top-level field (or per GeoJSON feature `properties` field).}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{features}{GeoJSON container endpoint: feature collection as list-column.}
-#' }
+#' @return A one-row tibble of metadata for the selected Bundesland id. Columns
+#' are created dynamically from the upstream service response fields. If the
+#' response contains GeoJSON features, each feature's `properties` are used as
+#' columns; otherwise each top-level field becomes a column. Scalar values
+#' become atomic columns and nested structures become list-columns.
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refresh = FALSE) {
@@ -127,12 +122,11 @@ hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refr
 #' hochwasserzentralen_lagepegel()
 #' }
 #'
-#' @return A tibble with one row per gauge location and coordinate metadata.
-#' \describe{
-#'   \item{Top-level fields}{One column per scalar top-level field (or per GeoJSON feature `properties` field).}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{features}{GeoJSON container endpoint: feature collection as list-column.}
-#' }
+#' @return A tibble with one row per gauge location. Columns are created
+#' dynamically from the upstream service response fields. If the response
+#' contains GeoJSON features, each feature's `properties` are used as columns;
+#' otherwise each top-level field becomes a column. Scalar values become atomic
+#' columns and nested structures become list-columns.
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_lagepegel <- function(safe = TRUE, refresh = FALSE) {

@@ -58,7 +58,6 @@ bunddev_spec_path <- function(id) {
 #' @param id Registry id.
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
-#' the API (default `FALSE`).
 #'
 #' @details
 #' Downloads the OpenAPI spec from the registry if it is missing or when

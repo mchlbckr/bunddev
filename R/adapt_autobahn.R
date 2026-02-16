@@ -1,12 +1,8 @@
 #' List Autobahn road ids
 #'
-#' @return A tibble with one row per Autobahn id and column `road_id`.
-#'
-#' Guaranteed column is `road_id` (character), one row per Autobahn identifier.
-#'
+#' @return A tibble with one row per Autobahn id:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{road_id}{Autobahn identifier (character).}
 #' }
 #' @details
 #' Lists Autobahn road ids from the Autobahn App API (Autobahn GmbH).
@@ -41,19 +37,29 @@ autobahn_roads <- function() {
 #'       the number of rows.}
 #'   }
 #'
-#' @return A tibble with one row per roadwork entry. Guaranteed columns are:
-#' `road_id`, `identifier`, `title`, `subtitle`, `display_type`, `icon`,
-#' `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`, `extent`,
-#' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
-#' list-columns are transformed according to `flatten_mode`.
-#'
-#'
+#' @return A tibble with one row per roadwork entry:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{road_id}{Road identifier (character).}
+#'   \item{identifier}{Entry identifier (character).}
+#'   \item{title}{Title (character).}
+#'   \item{subtitle}{Subtitle (character).}
+#'   \item{display_type}{Display type (character).}
+#'   \item{icon}{Icon identifier (character).}
+#'   \item{is_blocked}{Whether the road is blocked (logical).}
+#'   \item{future}{Whether the entry is future-dated (logical).}
+#'   \item{start_timestamp}{Start timestamp string (character).}
+#'   \item{start_time}{Parsed start time (POSIXct).}
+#'   \item{point}{Point coordinate string (character).}
+#'   \item{extent}{Extent coordinate string (character).}
+#'   \item{coordinate_lat}{Latitude (character).}
+#'   \item{coordinate_long}{Longitude (character).}
+#'   \item{description}{Description text (character).}
+#'   \item{footer}{Footer text (character).}
+#'   \item{route_recommendation}{Route recommendations (list-column).}
+#'   \item{lorry_parking_feature_icons}{Lorry parking feature icons (list-column).}
 #' }
+#' With `flatten = TRUE`, the two list-columns are transformed according to
+#' `flatten_mode`.
 #' @details
 #' Returns current roadworks for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -96,19 +102,29 @@ autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") 
 #'       the number of rows.}
 #'   }
 #'
-#' @return A tibble with one row per warning entry. Guaranteed columns are:
-#' `road_id`, `identifier`, `title`, `subtitle`, `display_type`, `icon`,
-#' `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`, `extent`,
-#' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
-#' list-columns are transformed according to `flatten_mode`.
-#'
-#'
+#' @return A tibble with one row per warning entry:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{road_id}{Road identifier (character).}
+#'   \item{identifier}{Entry identifier (character).}
+#'   \item{title}{Title (character).}
+#'   \item{subtitle}{Subtitle (character).}
+#'   \item{display_type}{Display type (character).}
+#'   \item{icon}{Icon identifier (character).}
+#'   \item{is_blocked}{Whether the road is blocked (logical).}
+#'   \item{future}{Whether the entry is future-dated (logical).}
+#'   \item{start_timestamp}{Start timestamp string (character).}
+#'   \item{start_time}{Parsed start time (POSIXct).}
+#'   \item{point}{Point coordinate string (character).}
+#'   \item{extent}{Extent coordinate string (character).}
+#'   \item{coordinate_lat}{Latitude (character).}
+#'   \item{coordinate_long}{Longitude (character).}
+#'   \item{description}{Description text (character).}
+#'   \item{footer}{Footer text (character).}
+#'   \item{route_recommendation}{Route recommendations (list-column).}
+#'   \item{lorry_parking_feature_icons}{Lorry parking feature icons (list-column).}
 #' }
+#' With `flatten = TRUE`, the two list-columns are transformed according to
+#' `flatten_mode`.
 #' @details
 #' Returns current warnings for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -150,19 +166,29 @@ autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'       the number of rows.}
 #'   }
 #'
-#' @return A tibble with one row per webcam entry. Guaranteed columns are:
-#' `road_id`, `identifier`, `title`, `subtitle`, `display_type`, `icon`,
-#' `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`, `extent`,
-#' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
-#' list-columns are transformed according to `flatten_mode`.
-#'
-#'
+#' @return A tibble with one row per webcam entry:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{road_id}{Road identifier (character).}
+#'   \item{identifier}{Entry identifier (character).}
+#'   \item{title}{Title (character).}
+#'   \item{subtitle}{Subtitle (character).}
+#'   \item{display_type}{Display type (character).}
+#'   \item{icon}{Icon identifier (character).}
+#'   \item{is_blocked}{Whether the road is blocked (logical).}
+#'   \item{future}{Whether the entry is future-dated (logical).}
+#'   \item{start_timestamp}{Start timestamp string (character).}
+#'   \item{start_time}{Parsed start time (POSIXct).}
+#'   \item{point}{Point coordinate string (character).}
+#'   \item{extent}{Extent coordinate string (character).}
+#'   \item{coordinate_lat}{Latitude (character).}
+#'   \item{coordinate_long}{Longitude (character).}
+#'   \item{description}{Description text (character).}
+#'   \item{footer}{Footer text (character).}
+#'   \item{route_recommendation}{Route recommendations (list-column).}
+#'   \item{lorry_parking_feature_icons}{Lorry parking feature icons (list-column).}
 #' }
+#' With `flatten = TRUE`, the two list-columns are transformed according to
+#' `flatten_mode`.
 #' @details
 #' Returns webcam entries for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -204,19 +230,29 @@ autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'       the number of rows.}
 #'   }
 #'
-#' @return A tibble with one row per closure entry. Guaranteed columns are:
-#' `road_id`, `identifier`, `title`, `subtitle`, `display_type`, `icon`,
-#' `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`, `extent`,
-#' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
-#' list-columns are transformed according to `flatten_mode`.
-#'
-#'
+#' @return A tibble with one row per closure entry:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{road_id}{Road identifier (character).}
+#'   \item{identifier}{Entry identifier (character).}
+#'   \item{title}{Title (character).}
+#'   \item{subtitle}{Subtitle (character).}
+#'   \item{display_type}{Display type (character).}
+#'   \item{icon}{Icon identifier (character).}
+#'   \item{is_blocked}{Whether the road is blocked (logical).}
+#'   \item{future}{Whether the entry is future-dated (logical).}
+#'   \item{start_timestamp}{Start timestamp string (character).}
+#'   \item{start_time}{Parsed start time (POSIXct).}
+#'   \item{point}{Point coordinate string (character).}
+#'   \item{extent}{Extent coordinate string (character).}
+#'   \item{coordinate_lat}{Latitude (character).}
+#'   \item{coordinate_long}{Longitude (character).}
+#'   \item{description}{Description text (character).}
+#'   \item{footer}{Footer text (character).}
+#'   \item{route_recommendation}{Route recommendations (list-column).}
+#'   \item{lorry_parking_feature_icons}{Lorry parking feature icons (list-column).}
 #' }
+#' With `flatten = TRUE`, the two list-columns are transformed according to
+#' `flatten_mode`.
 #' @details
 #' Returns current closures for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -258,19 +294,29 @@ autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #'       the number of rows.}
 #'   }
 #'
-#' @return A tibble with one row per charging-station entry. Guaranteed columns
-#' are: `road_id`, `identifier`, `title`, `subtitle`, `display_type`, `icon`,
-#' `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`, `extent`,
-#' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
-#' list-columns are transformed according to `flatten_mode`.
-#'
-#'
+#' @return A tibble with one row per charging-station entry:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{road_id}{Road identifier (character).}
+#'   \item{identifier}{Entry identifier (character).}
+#'   \item{title}{Title (character).}
+#'   \item{subtitle}{Subtitle (character).}
+#'   \item{display_type}{Display type (character).}
+#'   \item{icon}{Icon identifier (character).}
+#'   \item{is_blocked}{Whether the road is blocked (logical).}
+#'   \item{future}{Whether the entry is future-dated (logical).}
+#'   \item{start_timestamp}{Start timestamp string (character).}
+#'   \item{start_time}{Parsed start time (POSIXct).}
+#'   \item{point}{Point coordinate string (character).}
+#'   \item{extent}{Extent coordinate string (character).}
+#'   \item{coordinate_lat}{Latitude (character).}
+#'   \item{coordinate_long}{Longitude (character).}
+#'   \item{description}{Description text (character).}
+#'   \item{footer}{Footer text (character).}
+#'   \item{route_recommendation}{Route recommendations (list-column).}
+#'   \item{lorry_parking_feature_icons}{Lorry parking feature icons (list-column).}
 #' }
+#' With `flatten = TRUE`, the two list-columns are transformed according to
+#' `flatten_mode`.
 #' @details
 #' Returns charging stations for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -312,19 +358,29 @@ autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = 
 #'       the number of rows.}
 #'   }
 #'
-#' @return A tibble with one row per lorry-parking entry. Guaranteed columns are:
-#' `road_id`, `identifier`, `title`, `subtitle`, `display_type`, `icon`,
-#' `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`, `extent`,
-#' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
-#' list-columns are transformed according to `flatten_mode`.
-#'
-#'
+#' @return A tibble with one row per lorry-parking entry:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{road_id}{Road identifier (character).}
+#'   \item{identifier}{Entry identifier (character).}
+#'   \item{title}{Title (character).}
+#'   \item{subtitle}{Subtitle (character).}
+#'   \item{display_type}{Display type (character).}
+#'   \item{icon}{Icon identifier (character).}
+#'   \item{is_blocked}{Whether the road is blocked (logical).}
+#'   \item{future}{Whether the entry is future-dated (logical).}
+#'   \item{start_timestamp}{Start timestamp string (character).}
+#'   \item{start_time}{Parsed start time (POSIXct).}
+#'   \item{point}{Point coordinate string (character).}
+#'   \item{extent}{Extent coordinate string (character).}
+#'   \item{coordinate_lat}{Latitude (character).}
+#'   \item{coordinate_long}{Longitude (character).}
+#'   \item{description}{Description text (character).}
+#'   \item{footer}{Footer text (character).}
+#'   \item{route_recommendation}{Route recommendations (list-column).}
+#'   \item{lorry_parking_feature_icons}{Lorry parking feature icons (list-column).}
 #' }
+#' With `flatten = TRUE`, the two list-columns are transformed according to
+#' `flatten_mode`.
 #' @details
 #' Returns lorry parking areas for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -366,18 +422,8 @@ autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "j
 #'       the number of rows.}
 #'   }
 #'
-#' @return A one-row tibble for the selected roadwork with the same guaranteed
-#' columns as [autobahn_roadworks()]: `road_id` (typically `NA` for detail
-#' calls), `identifier`, `title`, `subtitle`, `display_type`, `icon`,
-#' `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`, `extent`,
-#' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column).
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A one-row tibble for the selected roadwork with the same columns as
+#' [autobahn_roadworks()]. `road_id` is typically `NA` for detail calls.
 #' @details
 #' Returns full details for a single roadwork entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -419,18 +465,8 @@ autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode
 #'       the number of rows.}
 #'   }
 #'
-#' @return A one-row tibble for the selected warning with the same guaranteed
-#' columns as [autobahn_warnings()]: `road_id` (typically `NA` for detail
-#' calls), `identifier`, `title`, `subtitle`, `display_type`, `icon`,
-#' `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`, `extent`,
-#' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column).
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A one-row tibble for the selected warning with the same columns as
+#' [autobahn_warnings()]. `road_id` is typically `NA` for detail calls.
 #' @details
 #' Returns full details for a single warning entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -472,18 +508,8 @@ autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode =
 #'       the number of rows.}
 #'   }
 #'
-#' @return A one-row tibble for the selected webcam with the same guaranteed
-#' columns as [autobahn_webcams()]: `road_id` (typically `NA` for detail calls),
-#' `identifier`, `title`, `subtitle`, `display_type`, `icon`, `is_blocked`,
-#' `future`, `start_timestamp`, `start_time`, `point`, `extent`,
-#' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column).
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A one-row tibble for the selected webcam with the same columns as
+#' [autobahn_webcams()]. `road_id` is typically `NA` for detail calls.
 #' @details
 #' Returns full details for a single webcam entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -525,18 +551,8 @@ autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "
 #'       the number of rows.}
 #'   }
 #'
-#' @return A one-row tibble for the selected closure with the same guaranteed
-#' columns as [autobahn_closures()]: `road_id` (typically `NA` for detail
-#' calls), `identifier`, `title`, `subtitle`, `display_type`, `icon`,
-#' `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`, `extent`,
-#' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column).
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A one-row tibble for the selected closure with the same columns as
+#' [autobahn_closures()]. `road_id` is typically `NA` for detail calls.
 #' @details
 #' Returns full details for a single closure entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -579,17 +595,8 @@ autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode =
 #'   }
 #'
 #' @return A one-row tibble for the selected charging station with the same
-#' guaranteed columns as [autobahn_charging_stations()]: `road_id` (typically
-#' `NA` for detail calls), `identifier`, `title`, `subtitle`, `display_type`,
-#' `icon`, `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`,
-#' `extent`, `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column).
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' columns as [autobahn_charging_stations()]. `road_id` is typically `NA` for
+#' detail calls.
 #' @details
 #' Returns full details for a single charging station entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -632,17 +639,8 @@ autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatt
 #'   }
 #'
 #' @return A one-row tibble for the selected lorry-parking entry with the same
-#' guaranteed columns as [autobahn_parking_lorries()]: `road_id` (typically
-#' `NA` for detail calls), `identifier`, `title`, `subtitle`, `display_type`,
-#' `icon`, `is_blocked`, `future`, `start_timestamp`, `start_time`, `point`,
-#' `extent`, `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-#' `route_recommendation` (list-column), and
-#' `lorry_parking_feature_icons` (list-column).
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' columns as [autobahn_parking_lorries()]. `road_id` is typically `NA` for
+#' detail calls.
 #' @details
 #' Returns full details for a single lorry parking entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.

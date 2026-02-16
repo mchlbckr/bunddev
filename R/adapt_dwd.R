@@ -105,13 +105,17 @@ dwd_station_overview <- function(station_ids,
 #' dwd_crowd_reports(flatten = TRUE)
 #' }
 #'
-#' @return A tibble with one row per crowd report and columns including
-#' `meldung_id`, `timestamp`, `timestamp_time`, `lat`, `lon`, `place`,
-#' `category`, `auspraegung`, and `zusatz_attribute` (list-column).
-#'
+#' @return A tibble with one row per crowd report:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{meldung_id}{Report identifier (numeric).}
+#'   \item{timestamp}{Report timestamp in milliseconds (numeric).}
+#'   \item{timestamp_time}{Parsed report time (POSIXct).}
+#'   \item{lat}{Latitude (character).}
+#'   \item{lon}{Longitude (character).}
+#'   \item{place}{Place name (character).}
+#'   \item{category}{Weather category (character).}
+#'   \item{auspraegung}{Severity/manifestation (character).}
+#'   \item{zusatz_attribute}{Additional attributes (list-column).}
 #' }
 #' @family DWD
 #' @export
@@ -173,15 +177,24 @@ dwd_crowd_reports <- function(safe = TRUE,
 #' dwd_warnings_nowcast(language = "de", flatten = TRUE)
 #' }
 #'
-#' @return A tibble with one row per warning and columns:
-#' `type`, `level`, `start`, `start_time`, `end`, `end_time`, `description`,
-#' `description_text`, `event`, `headline`, `regions` (list-column),
-#' `urls` (list-column), and `is_vorabinfo`.
-#'
+#' @return A tibble with one row per warning:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{type}{Warning type code (numeric).}
+#'   \item{level}{Warning severity level (numeric).}
+#'   \item{start}{Start timestamp in milliseconds (numeric).}
+#'   \item{start_time}{Parsed start time (POSIXct).}
+#'   \item{end}{End timestamp in milliseconds (numeric).}
+#'   \item{end_time}{Parsed end time (POSIXct).}
+#'   \item{description}{Warning description HTML (character).}
+#'   \item{description_text}{Warning description plain text (character).}
+#'   \item{event}{Event name (character).}
+#'   \item{headline}{Warning headline (character).}
+#'   \item{regions}{Affected regions (list-column).}
+#'   \item{urls}{Related URLs (list-column).}
+#'   \item{is_vorabinfo}{Whether this is a preliminary warning (logical).}
 #' }
+#' With `flatten = TRUE`, the list-columns are transformed according to
+#' `flatten_mode`.
 #' @family DWD
 #' @export
 dwd_warnings_nowcast <- function(language = c("de", "en"),
@@ -244,11 +257,6 @@ dwd_warnings_nowcast <- function(language = c("de", "en"),
 #' }
 #'
 #' @return A tibble with the same columns as [dwd_warnings_nowcast()].
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
 #' @family DWD
 #' @export
 dwd_municipality_warnings <- function(language = c("de", "en"),
@@ -310,13 +318,15 @@ dwd_municipality_warnings <- function(language = c("de", "en"),
 #' dwd_coast_warnings(language = "de", flatten = TRUE)
 #' }
 #'
-#' @return A tibble with one row per coastal warning and columns:
-#' `region_id`, `type`, `level`, `description`, `description_text`, `event`,
-#' and `headline`.
-#'
+#' @return A tibble with one row per coastal warning:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{region_id}{Warning region identifier (character).}
+#'   \item{type}{Warning type code (numeric).}
+#'   \item{level}{Warning severity level (numeric).}
+#'   \item{description}{Warning description HTML (character).}
+#'   \item{description_text}{Warning description plain text (character).}
+#'   \item{event}{Event name (character).}
+#'   \item{headline}{Warning headline (character).}
 #' }
 #' @family DWD
 #' @export
@@ -366,11 +376,9 @@ dwd_coast_warnings <- function(language = c("de", "en"),
 #' dwd_sea_warning_text()
 #' }
 #'
-#' @return A one-row tibble with one column `text` containing the warning text.
+#' @return A one-row tibble:
 #' \describe{
-#'   \item{text}{Text endpoints: warning/forecast text (character).}
-#'   \item{raw}{Avalanche endpoint: full parsed payload as list-column.}
-#'   \item{Operation-specific fields}{For station/crowd/warning endpoints, columns follow the documented schemas of `bunddev_tidy_dwd()`, including parsed time columns where available.}
+#'   \item{text}{Sea warning text (character).}
 #' }
 #' @family DWD
 #' @export
@@ -405,11 +413,9 @@ dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
 #' dwd_alpine_forecast_text()
 #' }
 #'
-#' @return A one-row tibble with one column `text` containing the forecast text.
+#' @return A one-row tibble:
 #' \describe{
-#'   \item{text}{Text endpoints: warning/forecast text (character).}
-#'   \item{raw}{Avalanche endpoint: full parsed payload as list-column.}
-#'   \item{Operation-specific fields}{For station/crowd/warning endpoints, columns follow the documented schemas of `bunddev_tidy_dwd()`, including parsed time columns where available.}
+#'   \item{text}{Alpine forecast text (character).}
 #' }
 #' @family DWD
 #' @export
@@ -444,12 +450,9 @@ dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
 #' dwd_avalanche_warnings()
 #' }
 #'
-#' @return A one-row tibble with one list-column `raw` containing the parsed
-#' avalanche warning payload.
+#' @return A one-row tibble:
 #' \describe{
-#'   \item{text}{Text endpoints: warning/forecast text (character).}
-#'   \item{raw}{Avalanche endpoint: full parsed payload as list-column.}
-#'   \item{Operation-specific fields}{For station/crowd/warning endpoints, columns follow the documented schemas of `bunddev_tidy_dwd()`, including parsed time columns where available.}
+#'   \item{raw}{Full parsed avalanche warning payload (list-column).}
 #' }
 #' @family DWD
 #' @export

@@ -14,17 +14,35 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with representative entries and the same metadata columns as
-\code{\link[=travelwarning_warnings]{travelwarning_warnings()}}: \code{content_id}, \code{parent_content_id},
-\code{response_country}, \code{response_last_modified}, \code{response_last_modified_time},
-\code{last_modified_time}, \code{effective_time}, plus snake_cased entry fields.
+A tibble with one row per foreign representative in Germany:
 \describe{
-\item{content_id}{Entry/content identifier (character).}
-\item{parent_content_id}{Parent identifier (character).}
-\item{response_country}{Country code from response metadata (character).}
-\item{response_last_modified}{Feed-level modification timestamp (numeric).}
-\item{last_modified_time / effective_time}{Parsed \code{POSIXct} (Europe/Berlin).}
-\item{\verb{<entry_field>}}{Additional snake_cased columns from each entry.}
+\item{content_id}{Character. Entry/content identifier.}
+\item{parent_content_id}{Character. Parent identifier for nested records.}
+\item{response_country}{Character. Country code from response metadata.}
+\item{response_last_modified}{Numeric. Feed-level modification timestamp.}
+\item{response_last_modified_time}{POSIXct. Parsed feed-level timestamp.}
+\item{last_modified_time}{POSIXct. Entry-level modification timestamp.}
+\item{effective_time}{POSIXct. Entry effective timestamp.}
+\item{last_modified}{Numeric. Raw entry modification timestamp in ms.}
+\item{title}{Character. Representation title.}
+\item{leader}{Character. Head of mission.}
+\item{locales}{Character. Languages spoken.}
+\item{country}{Character. Country.}
+\item{zip}{Character. Postal code.}
+\item{city}{Character. City.}
+\item{region}{Character. Region.}
+\item{street}{Character. Street.}
+\item{number}{Character. House number.}
+\item{departments}{Character. Department details.}
+\item{fax}{Character. Fax number.}
+\item{telefone}{Character. Phone number.}
+\item{mail}{Character. Email address.}
+\item{misc}{Character. Miscellaneous notes.}
+\item{url}{Character. External link.}
+\item{postal}{Character. Postal address.}
+\item{type}{Character. Address type (e.g. Botschaft).}
+\item{remark}{Character. Remark.}
+\item{open}{Character. Opening hours.}
 }
 }
 \description{

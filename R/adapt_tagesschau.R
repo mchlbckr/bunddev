@@ -29,17 +29,37 @@
 #' tagesschau_homepage(flatten = TRUE)
 #' }
 #'
-#' @return A tibble with one row per item and columns:
-#' `section`, `sophora_id`, `external_id`, `title`, `date`, `date_time`,
-#' `topline`, `first_sentence`, `details`, `detailsweb`, `share_url`,
-#' `update_check_url`, `region_id`, `ressort`, `type`, `breaking_news`,
-#' `copyright`, `alttext`, and list-columns `teaser_image`, `tracking`, `tags`,
-#' `images`, `streams`, `geotags`, `branding_image`, `first_frame`.
-#'
+#' @return A tibble with one row per item:
 #' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#'   \item{section}{Feed section, e.g. "news" or "regional" (character).}
+#'   \item{sophora_id}{Sophora CMS identifier (character).}
+#'   \item{external_id}{External identifier (character).}
+#'   \item{title}{Article title (character).}
+#'   \item{date}{Publication date string (character).}
+#'   \item{date_time}{Parsed publication date (POSIXct).}
+#'   \item{topline}{Topline/kicker text (character).}
+#'   \item{first_sentence}{First sentence of the article (character).}
+#'   \item{details}{API details URL (character).}
+#'   \item{detailsweb}{Web details URL (character).}
+#'   \item{share_url}{Share URL (character).}
+#'   \item{update_check_url}{Update-check URL (character).}
+#'   \item{region_id}{Region identifier (character).}
+#'   \item{ressort}{Editorial section/ressort (character).}
+#'   \item{type}{Content type (character).}
+#'   \item{breaking_news}{Whether the item is breaking news (logical).}
+#'   \item{copyright}{Copyright notice (character).}
+#'   \item{alttext}{Image alt text (character).}
+#'   \item{teaser_image}{Teaser image metadata (list-column).}
+#'   \item{tracking}{Tracking metadata (list-column).}
+#'   \item{tags}{Associated tags (list-column).}
+#'   \item{images}{Image collection (list-column).}
+#'   \item{streams}{Media streams (list-column).}
+#'   \item{geotags}{Geographic tags (list-column).}
+#'   \item{branding_image}{Branding image metadata (list-column).}
+#'   \item{first_frame}{First video frame metadata (list-column).}
 #' }
+#' With `flatten = TRUE`, the list-columns are transformed according to
+#' `flatten_mode`.
 #' @family Tagesschau
 #' @export
 tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
@@ -82,11 +102,6 @@ tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
 #'
 #' @return A tibble with the same columns as [tagesschau_homepage()], filtered
 #' by optional region/ressort parameters.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
 #' @family Tagesschau
 #' @export
 tagesschau_news <- function(regions = NULL, ressort = NULL,
@@ -138,11 +153,6 @@ tagesschau_news <- function(regions = NULL, ressort = NULL,
 #'
 #' @return A tibble with the same columns as [tagesschau_homepage()], restricted
 #' to search results.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
 #' @family Tagesschau
 #' @export
 tagesschau_search <- function(search_text = NULL,
@@ -197,11 +207,6 @@ tagesschau_search <- function(search_text = NULL,
 #'
 #' @return A tibble with the same columns as [tagesschau_homepage()], restricted
 #' to channel entries.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
 #' @family Tagesschau
 #' @export
 tagesschau_channels <- function(flatten = FALSE, flatten_mode = "json") {
