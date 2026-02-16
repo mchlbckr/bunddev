@@ -17,7 +17,7 @@ bunddev_spec(id, refresh = FALSE)
 - refresh:
 
   Logical; if `TRUE`, ignore cached responses and re-fetch from the API
-  (default `FALSE`). the API (default `FALSE`).
+  (default `FALSE`).
 
 ## Value
 

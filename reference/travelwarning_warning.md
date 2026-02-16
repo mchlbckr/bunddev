@@ -46,14 +46,26 @@ structure as
 
   Feed-level modification timestamp in milliseconds (numeric).
 
-- last_modified_time / effective_time:
+- response_last_modified_time:
 
-  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
+  Feed-level modification timestamp as `POSIXct` (Europe/Berlin), when
+  `response_last_modified` is non-`NA`.
 
-- Entry fields:
+- last_modified_time:
 
-  Additional scalar fields from each entry payload; nested structures
-  remain list-columns.
+  Entry-level modification timestamp as `POSIXct` (Europe/Berlin),
+  parsed from the entry `lastModified` field.
+
+- effective_time:
+
+  Entry effective timestamp as `POSIXct` (Europe/Berlin), parsed from
+  the entry `effective` field.
+
+- `<entry_field>`:
+
+  Additional columns (snake_case) from each entry payload. Scalar values
+  become character/numeric columns; nested structures remain
+  list-columns.
 
 ## Details
 

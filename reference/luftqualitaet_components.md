@@ -54,17 +54,11 @@ luftqualitaet_components(params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per component metadata entry.
-
-- Indexed value columns:
-
-  Columns are derived from API `indices` metadata and represent scalar
-  values for each returned record.
-
-- Index key column:
-
-  Included when the API provides a named index key (for example station
-  id/date key).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per component. Column names are derived from the `indices` metadata
+in the API response and typically include a component id/code key column
+followed by `component id`, `component code`, `component symbol`,
+`component unit`, and `component name`.
 
 ## Details
 

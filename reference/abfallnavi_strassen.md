@@ -26,21 +26,36 @@ abfallnavi_strassen(ort_id, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per street in the selected place.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per street and columns:
 
-- Top-level scalar fields:
+- id:
 
-  One column per scalar field returned by the endpoint (for example ids,
-  names, labels, and codes).
+  Integer. Street identifier.
 
-- Nested fields:
+- name:
 
-  Kept as list-columns.
+  Character. Street name.
 
-- date_time:
+- staticId:
 
-  Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in
-  Europe/Berlin, when available.
+  Character. Static identifier (base64-encoded).
+
+- hausNrList:
+
+  List. House numbers for this street.
+
+- plz:
+
+  Character. Postal code (may be `NA`).
+
+- ortsteilName:
+
+  Character. District name.
+
+- ort:
+
+  List. Nested place object.
 
 ## See also
 

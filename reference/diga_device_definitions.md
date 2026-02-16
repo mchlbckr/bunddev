@@ -64,18 +64,52 @@ diga_device_definitions(
 
 ## Value
 
-A tibble with one row per FHIR resource in the returned bundle. Column
-structure depends on the resource profile and may include nested
-list-columns when `flatten = FALSE`.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per device definition and columns:
 
-- Scalar fields:
+- resourceType:
 
-  One column per top-level scalar field returned by the endpoint.
+  Character. FHIR resource type, always `"DeviceDefinition"`.
 
-- Nested fields:
+- id:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Character. FHIR resource identifier.
+
+- url:
+
+  Character. Canonical URL of the resource.
+
+- status:
+
+  Character. Publication status.
+
+- description:
+
+  Character. Device description text.
+
+- meta:
+
+  List. Resource metadata (profile, timestamps).
+
+- identifier:
+
+  List. Business identifiers.
+
+- type:
+
+  List. Device type coding.
+
+- deviceName:
+
+  List. Device name entries.
+
+- property:
+
+  List. Device properties.
+
+- extension:
+
+  List. FHIR profile extensions.
 
 ## See also
 

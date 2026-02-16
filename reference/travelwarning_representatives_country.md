@@ -22,18 +22,35 @@ travelwarning_representatives_country(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with representative entries and common metadata columns as
-returned by
-[`travelwarning_warnings()`](https://buecker.ms/bunddev/reference/travelwarning_warnings.md).
+A tibble with representative entries and the same metadata columns as
+[`travelwarning_warnings()`](https://buecker.ms/bunddev/reference/travelwarning_warnings.md):
+`content_id`, `parent_content_id`, `response_country`,
+`response_last_modified`, `response_last_modified_time`,
+`last_modified_time`, `effective_time`, plus snake_cased entry fields.
 
-- Scalar fields:
+- content_id:
 
-  One column per top-level scalar field returned by the endpoint.
+  Entry/content identifier (character).
 
-- Nested fields:
+- parent_content_id:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Parent identifier (character).
+
+- response_country:
+
+  Country code from response metadata (character).
+
+- response_last_modified:
+
+  Feed-level modification timestamp (numeric).
+
+- last_modified_time / effective_time:
+
+  Parsed `POSIXct` (Europe/Berlin).
+
+- `<entry_field>`:
+
+  Additional snake_cased columns from each entry.
 
 ## Details
 

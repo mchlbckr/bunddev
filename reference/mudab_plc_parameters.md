@@ -40,21 +40,48 @@ mudab_plc_parameters(
 
 ## Value
 
-A tibble with one row per returned `V_GEMESSENE_PARA_PLC` record.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per PLC parameter and columns:
 
-- Record fields:
+- metadataid:
 
-  One column per top-level scalar field of the selected MUDAB record
-  type.
+  Integer. Metadata identifier.
 
-- Nested fields:
+- PARAMETER:
 
-  Stored as list-columns.
+  Character. Parameter abbreviation.
 
-- datetime_time:
+- PARAMETERGRUPPE:
 
-  Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM`
-  exist.
+  Character. Parameter group code.
+
+- STATION_CODE:
+
+  Character. Station code.
+
+- LETZTE_MESSUNG:
+
+  Character. Year of last measurement.
+
+- PRKEY:
+
+  Character. Unique key (station + parameter).
+
+- STATION_NAME:
+
+  Character. Station name.
+
+- ANZ_MESSWERTE:
+
+  Integer. Number of measured values.
+
+- SUBCM_CODE:
+
+  Character. Sub-compartment code.
+
+- SUBCM_NAME:
+
+  Character. Sub-compartment name.
 
 ## Details
 

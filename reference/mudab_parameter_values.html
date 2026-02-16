@@ -81,14 +81,32 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per returned <code>MV_STATION_MSMNT</code> record.
-Includes parsed <code>*_time</code> columns (<code>POSIXct</code>, Europe/Berlin) when matching
-date/time fields are present.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per measurement value and columns:</p><dl><dt>metadataid</dt>
+<dd><p>Integer. Metadata identifier.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>STATNAME_ST</dt>
+<dd><p>Character. Station name.</p></dd>
+
+<dt>STATNAME_DATE_TIME</dt>
+<dd><p>Character. Composite station-date-time string.</p></dd>
+
+<dt>PARAMETERID_PM</dt>
+<dd><p>Character. Parameter identifier.</p></dd>
+
+<dt>PARAMCODE_PM</dt>
+<dd><p>Character. Parameter code name.</p></dd>
+
+<dt>DATE_STM</dt>
+<dd><p>Character. Measurement date (YYYYMMDD).</p></dd>
+
+<dt>TIME_STM</dt>
+<dd><p>Character. Measurement time (HHMM).</p></dd>
+
+<dt>VALUE_MS</dt>
+<dd><p>Character. Measured value.</p></dd>
+
+<dt>datetime_time</dt>
+<dd><p>POSIXct. Parsed date-time (Europe/Berlin).</p></dd>
 
 
 </dl></div>

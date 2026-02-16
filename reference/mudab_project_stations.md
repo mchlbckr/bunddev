@@ -66,21 +66,28 @@ mudab_project_stations(
 
 ## Value
 
-A tibble with one row per returned `V_MUDAB_PROJECTSTATION` record.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per project station and columns:
 
-- Record fields:
+- metadataid:
 
-  One column per top-level scalar field of the selected MUDAB record
-  type.
+  Integer. Metadata identifier.
 
-- Nested fields:
+- PROJECTSTATIONID:
 
-  Stored as list-columns.
+  Integer. Project station identifier.
 
-- datetime_time:
+- NAME_PS:
 
-  Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM`
-  exist.
+  Character. Project station name.
+
+- REGION:
+
+  Character. Region of the station.
+
+- INSTITUT:
+
+  Character. Responsible institute.
 
 ## Details
 

@@ -80,25 +80,99 @@ dip_bundestag_vorgang_list(
 
 ## Value
 
-A one-row tibble with list-response metadata: `num_found`, `cursor`, and
-`documents` (list-column).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per Vorgang and columns:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Character. Unique Vorgang identifier.
 
-- cursor:
+- typ:
 
-  List endpoints: cursor for pagination (character).
+  Character. Entity type, always `"Vorgang"`.
 
-- documents:
+- beratungsstand:
 
-  List endpoints: returned records as list-column.
+  Character. Consultation status.
 
-- Detail fields:
+- vorgangstyp:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Character. Vorgang type.
+
+- wahlperiode:
+
+  Integer. Legislative period.
+
+- datum:
+
+  Character. Date of last associated document.
+
+- aktualisiert:
+
+  Character. Last update timestamp.
+
+- titel:
+
+  Character. Title text.
+
+- abstract:
+
+  Character. Summary text.
+
+- gesta:
+
+  Character. GESTA reference number.
+
+- kom:
+
+  Character. EU COM reference number.
+
+- ratsdok:
+
+  Character. EU Council document number.
+
+- archiv:
+
+  Character. Archive reference.
+
+- mitteilung:
+
+  Character. Supplementary note.
+
+- sek:
+
+  Character. EU SEC reference number.
+
+- initiative:
+
+  List. Initiating factions or bodies.
+
+- sachgebiet:
+
+  List. Subject areas.
+
+- deskriptor:
+
+  List. Thesaurus descriptor entries.
+
+- zustimmungsbeduerftigkeit:
+
+  List. Consent requirements.
+
+- verkuendung:
+
+  List. Promulgation details.
+
+- inkrafttreten:
+
+  List. Entry-into-force details.
+
+- vorgang_verlinkung:
+
+  List. Linked Vorgaenge.
+
+Wrapped in a one-row tibble with `num_found` (integer), `cursor`
+(character), and `documents` (list-column) when not yet unpacked.
 
 ## Details
 

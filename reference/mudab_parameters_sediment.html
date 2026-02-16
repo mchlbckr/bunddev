@@ -81,14 +81,26 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per returned <code>MV_PARAMETER_SEDIMENT</code> record.</p><dl><dt>Record fields</dt>
-<dd><p>One column per top-level scalar field of the selected MUDAB record type.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per parameter and columns:</p><dl><dt>metadataid</dt>
+<dd><p>Integer. Metadata identifier.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Stored as list-columns.</p></dd>
+<dt>COMPT_DS</dt>
+<dd><p>Character. Compartment code (BL, CW, CS, or CF).</p></dd>
 
-<dt>datetime_time</dt>
-<dd><p>Added as <code>POSIXct</code> (Europe/Berlin) when <code>DATE_STM</code> and <code>TIME_STM</code> exist.</p></dd>
+<dt>PARAMETER</dt>
+<dd><p>Character. Parameter abbreviation.</p></dd>
+
+<dt>PARAMETERGRUPPE</dt>
+<dd><p>Character. Parameter group code.</p></dd>
+
+<dt>PARAM_NAME</dt>
+<dd><p>Character. Parameter name.</p></dd>
+
+<dt>PARGROUP</dt>
+<dd><p>Character. Parameter group code (alternate).</p></dd>
+
+<dt>PARAMGROUP_NAME</dt>
+<dd><p>Character. Parameter group name.</p></dd>
 
 
 </dl></div>

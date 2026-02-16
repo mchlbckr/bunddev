@@ -80,25 +80,55 @@ dip_bundestag_person_list(
 
 ## Value
 
-A one-row tibble with list-response metadata: `num_found`, `cursor`, and
-`documents` (list-column).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per Person and columns:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Character. Unique person identifier.
 
-- cursor:
+- nachname:
 
-  List endpoints: cursor for pagination (character).
+  Character. Last name.
 
-- documents:
+- vorname:
 
-  List endpoints: returned records as list-column.
+  Character. First name.
 
-- Detail fields:
+- namenszusatz:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Character. Name affix.
+
+- typ:
+
+  Character. Entity type, always `"Person"`.
+
+- wahlperiode:
+
+  Integer. Legislative period of first document.
+
+- basisdatum:
+
+  Character. Date of first associated document.
+
+- datum:
+
+  Character. Date of most recent document.
+
+- aktualisiert:
+
+  Character. Last update timestamp.
+
+- titel:
+
+  Character. Display title with role.
+
+- person_roles:
+
+  List. Roles and alternative names.
+
+Wrapped in a one-row tibble with `num_found` (integer), `cursor`
+(character), and `documents` (list-column) when not yet unpacked.
 
 ## See also
 

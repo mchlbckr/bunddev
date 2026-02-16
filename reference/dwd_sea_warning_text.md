@@ -22,21 +22,11 @@ dwd_sea_warning_text(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with one column `text` containing the warning text.
+A one-row tibble:
 
 - text:
 
-  Text endpoints: warning/forecast text (character).
-
-- raw:
-
-  Avalanche endpoint: full parsed payload as list-column.
-
-- Operation-specific fields:
-
-  For station/crowd/warning endpoints, columns follow the documented
-  schemas of `bunddev_tidy_dwd()`, including parsed time columns where
-  available.
+  Sea warning text (character).
 
 ## Details
 

@@ -63,16 +63,36 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per warning entry. Common columns include
-<code>content_id</code>, <code>parent_content_id</code>, <code>response_country</code>,
-<code>response_last_modified</code>, <code>response_last_modified_time</code>,
-<code>last_modified_time</code>, and <code>effective_time</code>, plus additional warning fields
-mapped from the upstream payload.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A tibble with one row per warning entry.</p><dl><dt>content_id</dt>
+<dd><p>Entry/content identifier (character).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>parent_content_id</dt>
+<dd><p>Parent identifier for nested entry records, if
+applicable (character).</p></dd>
+
+<dt>response_country</dt>
+<dd><p>Country code from response metadata (character).</p></dd>
+
+<dt>response_last_modified</dt>
+<dd><p>Feed-level modification timestamp in
+milliseconds (numeric).</p></dd>
+
+<dt>response_last_modified_time</dt>
+<dd><p>Feed-level modification timestamp as
+<code>POSIXct</code> (Europe/Berlin), when <code>response_last_modified</code> is non-<code>NA</code>.</p></dd>
+
+<dt>last_modified_time</dt>
+<dd><p>Entry-level modification timestamp as <code>POSIXct</code>
+(Europe/Berlin), parsed from the entry <code>lastModified</code> field.</p></dd>
+
+<dt>effective_time</dt>
+<dd><p>Entry effective timestamp as <code>POSIXct</code>
+(Europe/Berlin), parsed from the entry <code>effective</code> field.</p></dd>
+
+<dt><code>&lt;entry_field&gt;</code></dt>
+<dd><p>Additional columns (snake_case) from each entry
+payload. Scalar values become character/numeric columns; nested
+structures remain list-columns.</p></dd>
 
 
 </dl></div>

@@ -40,21 +40,40 @@ mudab_plc_stations(
 
 ## Value
 
-A tibble with one row per returned `V_PLC_STATION` record.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per PLC station and columns:
 
-- Record fields:
+- STATION_NAME:
 
-  One column per top-level scalar field of the selected MUDAB record
-  type.
+  Character. Station name.
 
-- Nested fields:
+- STATION_CODE:
 
-  Stored as list-columns.
+  Character. Station code.
 
-- datetime_time:
+- LAND_CD:
 
-  Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM`
-  exist.
+  Character. Federal state code.
+
+- ST_LAT:
+
+  Numeric. Latitude.
+
+- ST_LON:
+
+  Numeric. Longitude.
+
+- SUBCM_CODE:
+
+  Character. Sub-compartment code.
+
+- SUBCM_NAME:
+
+  Character. Sub-compartment name.
+
+- MON_TYPE:
+
+  Character. Monitoring type.
 
 ## Details
 

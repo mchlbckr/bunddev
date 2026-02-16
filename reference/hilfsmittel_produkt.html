@@ -96,13 +96,72 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with detail fields for one product. Columns follow upstream
-schema; nested values may appear as list-columns.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row for the requested product
+and columns:</p><dl><dt>organisationId</dt>
+<dd><p>Character. Organisation identifier.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>produktartId</dt>
+<dd><p>Character. Product-type identifier.</p></dd>
+
+<dt>nummer</dt>
+<dd><p>Integer. Sequential product number.</p></dd>
+
+<dt>name</dt>
+<dd><p>Character. Product name.</p></dd>
+
+<dt>artikelnummern</dt>
+<dd><p>List. Article numbers (character vector).</p></dd>
+
+<dt>typenAusfuehrungen</dt>
+<dd><p>List. Type/model variants (character vector).</p></dd>
+
+<dt>aufnahmeDatum</dt>
+<dd><p>Character. Admission date (ISO-8601).</p></dd>
+
+<dt>aenderungsDatum</dt>
+<dd><p>Character. Last-modified date (ISO-8601).</p></dd>
+
+<dt>zehnSteller</dt>
+<dd><p>Character. Ten-digit product code.</p></dd>
+
+<dt>herstellerName</dt>
+<dd><p>Character. Manufacturer name.</p></dd>
+
+<dt>istHerausgenommen</dt>
+<dd><p>Logical. Whether product is withdrawn.</p></dd>
+
+<dt>istAbrechnungsposition</dt>
+<dd><p>Logical. Whether product is a billing item.</p></dd>
+
+<dt>id</dt>
+<dd><p>Character. Product identifier.</p></dd>
+
+<dt>displayName</dt>
+<dd><p>Character. Combined display label.</p></dd>
+
+<dt>produktgruppeNummer</dt>
+<dd><p>Integer. Product-group number.</p></dd>
+
+<dt>anwendungsortNummer</dt>
+<dd><p>Integer. Application-site number.</p></dd>
+
+<dt>untergruppeNummer</dt>
+<dd><p>Integer. Subgroup number.</p></dd>
+
+<dt>produktartNummer</dt>
+<dd><p>Integer. Product-type number.</p></dd>
+
+<dt>produktartBezeichnung</dt>
+<dd><p>Character. Product-type name.</p></dd>
+
+<dt>kontruktionsmerkmale</dt>
+<dd><p>List. Construction features (nested objects).</p></dd>
+
+<dt>aufnahmeDatum_time</dt>
+<dd><p>POSIXct. Parsed admission date (Europe/Berlin).</p></dd>
+
+<dt>aenderungsDatum_time</dt>
+<dd><p>POSIXct. Parsed last-modified date (Europe/Berlin).</p></dd>
 
 
 </dl></div>

@@ -96,13 +96,63 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with detail fields for one product group. Columns follow
-upstream schema; nested values may appear as list-columns.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row for the requested product
+group and columns:</p><dl><dt>id</dt>
+<dd><p>Character. Product group identifier.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>versionId</dt>
+<dd><p>Character. Internal version identifier.</p></dd>
+
+<dt>bezeichnung</dt>
+<dd><p>Character. Product group name.</p></dd>
+
+<dt>nummer</dt>
+<dd><p>Integer. Product group number.</p></dd>
+
+<dt>definition</dt>
+<dd><p>Character. Description text.</p></dd>
+
+<dt>indikation</dt>
+<dd><p>Character. Indication text.</p></dd>
+
+<dt>querverweis</dt>
+<dd><p>Character. Cross-reference to other groups.</p></dd>
+
+<dt>isNnElement</dt>
+<dd><p>Logical. Internal flag (usage unclear).</p></dd>
+
+<dt>sachbearbeiterGkvId</dt>
+<dd><p>Character. GKV case-worker identifier.</p></dd>
+
+<dt>sachbearbeiterGkv</dt>
+<dd><p>Character. Always <code>NA</code>.</p></dd>
+
+<dt>sachbearbeiterMdsId</dt>
+<dd><p>Character. MDS case-worker identifier.</p></dd>
+
+<dt>sachbearbeiterMds</dt>
+<dd><p>Character. Always <code>NA</code>.</p></dd>
+
+<dt>aufnahmeDatum</dt>
+<dd><p>Character. Admission date (ISO-8601).</p></dd>
+
+<dt>aenderungsDatum</dt>
+<dd><p>Character. Last-modified date (ISO-8601).</p></dd>
+
+<dt>veroeffentlichungsDokumentFileStoreId</dt>
+<dd><p>Character. Publication document id.</p></dd>
+
+<dt>merkblattFileStoreId</dt>
+<dd><p>Character. Always <code>NA</code>.</p></dd>
+
+<dt>isCollectionReviewable</dt>
+<dd><p>Logical. Internal flag (usage unclear).</p></dd>
+
+<dt>aufnahmeDatum_time</dt>
+<dd><p>POSIXct. Parsed admission date (Europe/Berlin).</p></dd>
+
+<dt>aenderungsDatum_time</dt>
+<dd><p>POSIXct. Parsed last-modified date (Europe/Berlin).</p></dd>
 
 
 </dl></div>

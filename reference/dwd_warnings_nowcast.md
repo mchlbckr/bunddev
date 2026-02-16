@@ -56,19 +56,62 @@ dwd_warnings_nowcast(
 
 ## Value
 
-A tibble with one row per warning and columns: `type`, `level`, `start`,
-`start_time`, `end`, `end_time`, `description`, `description_text`,
-`event`, `headline`, `regions` (list-column), `urls` (list-column), and
-`is_vorabinfo`.
+A tibble with one row per warning:
 
-- Scalar fields:
+- type:
 
-  One column per top-level scalar field returned by the endpoint.
+  Warning type code (numeric).
 
-- Nested fields:
+- level:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Warning severity level (numeric).
+
+- start:
+
+  Start timestamp in milliseconds (numeric).
+
+- start_time:
+
+  Parsed start time (POSIXct).
+
+- end:
+
+  End timestamp in milliseconds (numeric).
+
+- end_time:
+
+  Parsed end time (POSIXct).
+
+- description:
+
+  Warning description HTML (character).
+
+- description_text:
+
+  Warning description plain text (character).
+
+- event:
+
+  Event name (character).
+
+- headline:
+
+  Warning headline (character).
+
+- regions:
+
+  Affected regions (list-column).
+
+- urls:
+
+  Related URLs (list-column).
+
+- is_vorabinfo:
+
+  Whether this is a preliminary warning (logical).
+
+With `flatten = TRUE`, the list-columns are transformed according to
+`flatten_mode`.
 
 ## Details
 

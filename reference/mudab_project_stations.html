@@ -106,14 +106,20 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per returned <code>V_MUDAB_PROJECTSTATION</code> record.</p><dl><dt>Record fields</dt>
-<dd><p>One column per top-level scalar field of the selected MUDAB record type.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per project station and columns:</p><dl><dt>metadataid</dt>
+<dd><p>Integer. Metadata identifier.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Stored as list-columns.</p></dd>
+<dt>PROJECTSTATIONID</dt>
+<dd><p>Integer. Project station identifier.</p></dd>
 
-<dt>datetime_time</dt>
-<dd><p>Added as <code>POSIXct</code> (Europe/Berlin) when <code>DATE_STM</code> and <code>TIME_STM</code> exist.</p></dd>
+<dt>NAME_PS</dt>
+<dd><p>Character. Project station name.</p></dd>
+
+<dt>REGION</dt>
+<dd><p>Character. Region of the station.</p></dd>
+
+<dt>INSTITUT</dt>
+<dd><p>Character. Responsible institute.</p></dd>
 
 
 </dl></div>

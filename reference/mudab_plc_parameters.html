@@ -81,14 +81,35 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per returned <code>V_GEMESSENE_PARA_PLC</code> record.</p><dl><dt>Record fields</dt>
-<dd><p>One column per top-level scalar field of the selected MUDAB record type.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per PLC parameter and columns:</p><dl><dt>metadataid</dt>
+<dd><p>Integer. Metadata identifier.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Stored as list-columns.</p></dd>
+<dt>PARAMETER</dt>
+<dd><p>Character. Parameter abbreviation.</p></dd>
 
-<dt>datetime_time</dt>
-<dd><p>Added as <code>POSIXct</code> (Europe/Berlin) when <code>DATE_STM</code> and <code>TIME_STM</code> exist.</p></dd>
+<dt>PARAMETERGRUPPE</dt>
+<dd><p>Character. Parameter group code.</p></dd>
+
+<dt>STATION_CODE</dt>
+<dd><p>Character. Station code.</p></dd>
+
+<dt>LETZTE_MESSUNG</dt>
+<dd><p>Character. Year of last measurement.</p></dd>
+
+<dt>PRKEY</dt>
+<dd><p>Character. Unique key (station + parameter).</p></dd>
+
+<dt>STATION_NAME</dt>
+<dd><p>Character. Station name.</p></dd>
+
+<dt>ANZ_MESSWERTE</dt>
+<dd><p>Integer. Number of measured values.</p></dd>
+
+<dt>SUBCM_CODE</dt>
+<dd><p>Character. Sub-compartment code.</p></dd>
+
+<dt>SUBCM_NAME</dt>
+<dd><p>Character. Sub-compartment name.</p></dd>
 
 
 </dl></div>

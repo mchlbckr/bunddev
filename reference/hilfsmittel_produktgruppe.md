@@ -56,17 +56,84 @@ hilfsmittel_produktgruppe(
 
 ## Value
 
-A tibble with detail fields for one product group. Columns follow
-upstream schema; nested values may appear as list-columns.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row for the requested product group and columns:
 
-- Scalar fields:
+- id:
 
-  One column per top-level scalar field returned by the endpoint.
+  Character. Product group identifier.
 
-- Nested fields:
+- versionId:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Character. Internal version identifier.
+
+- bezeichnung:
+
+  Character. Product group name.
+
+- nummer:
+
+  Integer. Product group number.
+
+- definition:
+
+  Character. Description text.
+
+- indikation:
+
+  Character. Indication text.
+
+- querverweis:
+
+  Character. Cross-reference to other groups.
+
+- isNnElement:
+
+  Logical. Internal flag (usage unclear).
+
+- sachbearbeiterGkvId:
+
+  Character. GKV case-worker identifier.
+
+- sachbearbeiterGkv:
+
+  Character. Always `NA`.
+
+- sachbearbeiterMdsId:
+
+  Character. MDS case-worker identifier.
+
+- sachbearbeiterMds:
+
+  Character. Always `NA`.
+
+- aufnahmeDatum:
+
+  Character. Admission date (ISO-8601).
+
+- aenderungsDatum:
+
+  Character. Last-modified date (ISO-8601).
+
+- veroeffentlichungsDokumentFileStoreId:
+
+  Character. Publication document id.
+
+- merkblattFileStoreId:
+
+  Character. Always `NA`.
+
+- isCollectionReviewable:
+
+  Logical. Internal flag (usage unclear).
+
+- aufnahmeDatum_time:
+
+  POSIXct. Parsed admission date (Europe/Berlin).
+
+- aenderungsDatum_time:
+
+  POSIXct. Parsed last-modified date (Europe/Berlin).
 
 ## Details
 

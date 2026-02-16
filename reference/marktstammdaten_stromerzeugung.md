@@ -72,18 +72,23 @@ marktstammdaten_stromerzeugung(
 
 ## Value
 
-A tibble with one row per MaStR entry. Includes a `total` column with
-the total result count and additional `_time` columns for date fields
-when available.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per electricity generation unit and columns determined by the MaStR
+API response. Common columns include `MaStRNummer`, `EinheitName`,
+`Bundesland`, `Ort`, `Plz`, `Bruttoleistung`, `Nettonennleistung`,
+`EnergietraegerName`, `BetriebsStatusName`, `InbetriebnahmeDatum`, and
+`EinheitRegistrierungsdatum` (see
+[`marktstammdaten_filters_stromerzeugung()`](https://buecker.ms/bunddev/reference/marktstammdaten_filters_stromerzeugung.md)
+for available filter fields). Additionally:
 
-- Scalar fields:
+- total:
 
-  One column per top-level scalar field returned by the endpoint.
+  Numeric. Total number of matching records upstream.
 
-- Nested fields:
+- \*Datum_time:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  POSIXct. Parsed date column (Europe/Berlin) added for every source
+  column whose name contains `Datum`.
 
 ## Details
 

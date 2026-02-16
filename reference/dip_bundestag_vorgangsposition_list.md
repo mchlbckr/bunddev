@@ -80,25 +80,111 @@ dip_bundestag_vorgangsposition_list(
 
 ## Value
 
-A one-row tibble with list-response metadata: `num_found`, `cursor`, and
-`documents` (list-column).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per Vorgangsposition and columns:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Character. Unique Vorgangsposition identifier.
 
-- cursor:
+- vorgangsposition:
 
-  List endpoints: cursor for pagination (character).
+  Character. Step description.
 
-- documents:
+- gang:
 
-  List endpoints: returned records as list-column.
+  Logical. Key step in legislative process.
 
-- Detail fields:
+- fortsetzung:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Logical. Continuation of prior debate.
+
+- nachtrag:
+
+  Logical. Addendum entry.
+
+- vorgangstyp:
+
+  Character. Parent Vorgang type.
+
+- typ:
+
+  Character. Entity type, always `"Vorgangsposition"`.
+
+- titel:
+
+  Character. Title of the parent Vorgang.
+
+- dokumentart:
+
+  Character. Document type.
+
+- vorgang_id:
+
+  Character. Parent Vorgang identifier.
+
+- datum:
+
+  Character. Date of associated document.
+
+- aktualisiert:
+
+  Character. Last update timestamp.
+
+- aktivitaet_anzahl:
+
+  Integer. Total associated activities.
+
+- ratsdok:
+
+  Character. EU Council document number.
+
+- kom:
+
+  Character. EU COM reference number.
+
+- sek:
+
+  Character. EU SEC reference number.
+
+- abstract:
+
+  Character. Summary text.
+
+- zuordnung:
+
+  List. Assignment to BT/BR/BV/EK.
+
+- fundstelle:
+
+  List. Document reference details.
+
+- urheber:
+
+  List. Authoring bodies.
+
+- ueberweisung:
+
+  List. Committee referrals.
+
+- aktivitaet_anzeige:
+
+  List. Up to 4 display activities.
+
+- ressort:
+
+  List. Government departments involved.
+
+- beschlussfassung:
+
+  List. Voting decisions.
+
+- mitberaten:
+
+  List. Co-deliberated Vorgangspositionen.
+
+Wrapped in a one-row tibble with `num_found` (integer), `cursor`
+(character), and `documents` (list-column) when not yet unpacked.
 
 ## Details
 

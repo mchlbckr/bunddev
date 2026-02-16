@@ -95,17 +95,71 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A one-row tibble with detailed fields for the selected Vorgang.</p><dl><dt>num_found</dt>
-<dd><p>List endpoints: total number of matches (integer).</p></dd>
+    <p>A one-row tibble for the selected Vorgang:</p><dl><dt>id</dt>
+<dd><p>Vorgang identifier (character).</p></dd>
 
-<dt>cursor</dt>
-<dd><p>List endpoints: cursor for pagination (character).</p></dd>
+<dt>typ</dt>
+<dd><p>Entity type, always <code>"Vorgang"</code> (character).</p></dd>
 
-<dt>documents</dt>
-<dd><p>List endpoints: returned records as list-column.</p></dd>
+<dt>beratungsstand</dt>
+<dd><p>Consultation status, e.g. <code>"Abgeschlossen"</code> (character).</p></dd>
 
-<dt>Detail fields</dt>
-<dd><p>Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.</p></dd>
+<dt>vorgangstyp</dt>
+<dd><p>Vorgang type, e.g. <code>"Geschäftsordnung"</code> (character).</p></dd>
+
+<dt>wahlperiode</dt>
+<dd><p>Legislative period (integer).</p></dd>
+
+<dt>initiative</dt>
+<dd><p>Initiating factions/bodies (list-column).</p></dd>
+
+<dt>datum</dt>
+<dd><p>Date of most recent associated document (character, ISO date).</p></dd>
+
+<dt>aktualisiert</dt>
+<dd><p>Last update timestamp (character, ISO datetime).</p></dd>
+
+<dt>titel</dt>
+<dd><p>Title (character).</p></dd>
+
+<dt>abstract</dt>
+<dd><p>Summary text (character or <code>NA</code>).</p></dd>
+
+<dt>sachgebiet</dt>
+<dd><p>Subject areas (list-column).</p></dd>
+
+<dt>deskriptor</dt>
+<dd><p>Thesaurus descriptors (list-column of named lists).</p></dd>
+
+<dt>gesta</dt>
+<dd><p>GESTA reference number (character or <code>NA</code>).</p></dd>
+
+<dt>zustimmungsbeduerftigkeit</dt>
+<dd><p>Consent requirements (list-column).</p></dd>
+
+<dt>kom</dt>
+<dd><p>EU COM reference number (character or <code>NA</code>).</p></dd>
+
+<dt>ratsdok</dt>
+<dd><p>EU Council document number (character or <code>NA</code>).</p></dd>
+
+<dt>verkuendung</dt>
+<dd><p>Promulgation details (list-column).</p></dd>
+
+<dt>inkrafttreten</dt>
+<dd><p>Entry-into-force details (list-column).</p></dd>
+
+<dt>archiv</dt>
+<dd><p>Archive reference (character or <code>NA</code>).</p></dd>
+
+<dt>mitteilung</dt>
+<dd><p>Supplementary note (character or <code>NA</code>).</p></dd>
+
+<dt>vorgang_verlinkung</dt>
+<dd><p>Linked Vorgänge (list-column).</p></dd>
+
+<dt>sek</dt>
+<dd><p>EU SEC reference number (character or <code>NA</code>).</p></dd>
 
 
 </dl></div>

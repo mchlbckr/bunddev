@@ -67,13 +67,12 @@ bunddev_call(
 - safe:
 
   Logical; if `TRUE` (default), apply rate-limiting and cache GET
-  responses to `tools::R_user_dir("bunddev", "cache")`. responses to
-  `tools::R_user_dir("bunddev", "cache")`.
+  responses to `tools::R_user_dir("bunddev", "cache")`.
 
 - refresh:
 
   Logical; if `TRUE`, ignore cached responses and re-fetch from the API
-  (default `FALSE`). the API (default `FALSE`).
+  (default `FALSE`).
 
 ## Value
 

@@ -22,30 +22,23 @@ nina_faqs(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per FAQ category/entry as returned by the API.
+A tibble with one row per FAQ entry.
 
-Includes `last_modification_time` as POSIXct in Europe/Berlin.
+- question:
 
-- content_id:
+  FAQ question text (character).
 
-  Content identifier from NINA feeds (character), where applicable.
+- answer:
 
-- response_country:
+  FAQ answer text (character).
 
-  Feed-level country code, when provided (character).
+- last_modification_date:
 
-- response_last_modified:
+  Modification timestamp in milliseconds (numeric).
 
-  Feed-level modification timestamp in milliseconds (numeric).
+- last_modification_time:
 
-- last_modified_time / effective_time:
-
-  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
-
-- Endpoint-specific fields:
-
-  Additional scalar fields by endpoint; nested structures remain
-  list-columns.
+  Parsed modification timestamp (`POSIXct`, Europe/Berlin).
 
 ## See also
 

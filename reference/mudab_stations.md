@@ -40,21 +40,28 @@ mudab_stations(
 
 ## Value
 
-A tibble with one row per returned `STATION_SMALL` record.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per measurement station and columns:
 
-- Record fields:
+- metadataid:
 
-  One column per top-level scalar field of the selected MUDAB record
-  type.
+  Integer. Metadata identifier.
 
-- Nested fields:
+- STATNAME_ST:
 
-  Stored as list-columns.
+  Character. Station name.
 
-- datetime_time:
+- NAME_PS:
 
-  Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM`
-  exist.
+  Character. Project station name.
+
+- STATIONTYPE_ST:
+
+  Character. Station type.
+
+- COMPT_DS:
+
+  Character. Compartment code (BL, CW, CS, or CF).
 
 ## Details
 

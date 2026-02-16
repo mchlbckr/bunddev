@@ -22,28 +22,11 @@ nina_covid_ticker(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with list-column `data` containing ticker payload.
+A one-row tibble.
 
-- content_id:
+- data:
 
-  Content identifier from NINA feeds (character), where applicable.
-
-- response_country:
-
-  Feed-level country code, when provided (character).
-
-- response_last_modified:
-
-  Feed-level modification timestamp in milliseconds (numeric).
-
-- last_modified_time / effective_time:
-
-  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
-
-- Endpoint-specific fields:
-
-  Additional scalar fields by endpoint; nested structures remain
-  list-columns.
+  COVID ticker response payload (list).
 
 ## See also
 

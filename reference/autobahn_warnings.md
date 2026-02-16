@@ -40,22 +40,82 @@ autobahn_warnings(road_id, flatten = FALSE, flatten_mode = "json")
 
 ## Value
 
-A tibble with one row per warning entry. Guaranteed columns are:
-`road_id`, `identifier`, `title`, `subtitle`, `display_type`, `icon`,
-`is_blocked`, `future`, `start_timestamp`, `start_time`, `point`,
-`extent`, `coordinate_lat`, `coordinate_long`, `description`, `footer`,
-`route_recommendation` (list-column), and `lorry_parking_feature_icons`
-(list-column). With `flatten = TRUE`, the two list-columns are
-transformed according to `flatten_mode`.
+A tibble with one row per warning entry:
 
-- Scalar fields:
+- road_id:
 
-  One column per top-level scalar field returned by the endpoint.
+  Road identifier (character).
 
-- Nested fields:
+- identifier:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Entry identifier (character).
+
+- title:
+
+  Title (character).
+
+- subtitle:
+
+  Subtitle (character).
+
+- display_type:
+
+  Display type (character).
+
+- icon:
+
+  Icon identifier (character).
+
+- is_blocked:
+
+  Whether the road is blocked (logical).
+
+- future:
+
+  Whether the entry is future-dated (logical).
+
+- start_timestamp:
+
+  Start timestamp string (character).
+
+- start_time:
+
+  Parsed start time (POSIXct).
+
+- point:
+
+  Point coordinate string (character).
+
+- extent:
+
+  Extent coordinate string (character).
+
+- coordinate_lat:
+
+  Latitude (character).
+
+- coordinate_long:
+
+  Longitude (character).
+
+- description:
+
+  Description text (character).
+
+- footer:
+
+  Footer text (character).
+
+- route_recommendation:
+
+  Route recommendations (list-column).
+
+- lorry_parking_feature_icons:
+
+  Lorry parking feature icons (list-column).
+
+With `flatten = TRUE`, the two list-columns are transformed according to
+`flatten_mode`.
 
 ## Details
 

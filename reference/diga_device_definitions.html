@@ -103,14 +103,38 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per FHIR resource in the returned bundle.
-Column structure depends on the resource profile and may include nested
-list-columns when <code>flatten = FALSE</code>.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per device definition and columns:</p><dl><dt>resourceType</dt>
+<dd><p>Character. FHIR resource type, always <code>"DeviceDefinition"</code>.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>id</dt>
+<dd><p>Character. FHIR resource identifier.</p></dd>
+
+<dt>url</dt>
+<dd><p>Character. Canonical URL of the resource.</p></dd>
+
+<dt>status</dt>
+<dd><p>Character. Publication status.</p></dd>
+
+<dt>description</dt>
+<dd><p>Character. Device description text.</p></dd>
+
+<dt>meta</dt>
+<dd><p>List. Resource metadata (profile, timestamps).</p></dd>
+
+<dt>identifier</dt>
+<dd><p>List. Business identifiers.</p></dd>
+
+<dt>type</dt>
+<dd><p>List. Device type coding.</p></dd>
+
+<dt>deviceName</dt>
+<dd><p>List. Device name entries.</p></dd>
+
+<dt>property</dt>
+<dd><p>List. Device properties.</p></dd>
+
+<dt>extension</dt>
+<dd><p>List. FHIR profile extensions.</p></dd>
 
 
 </dl></div>

@@ -22,31 +22,23 @@ nina_notfalltipps(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per emergency-tip category, including `tips`
-(list-column).
+A tibble with one row per emergency-tip category.
 
-Includes `last_modification_time` as POSIXct in Europe/Berlin.
+- title:
 
-- content_id:
+  Category title (character).
 
-  Content identifier from NINA feeds (character), where applicable.
+- tips:
 
-- response_country:
+  Tips for this category (list).
 
-  Feed-level country code, when provided (character).
+- last_modification_date:
 
-- response_last_modified:
+  Modification timestamp in milliseconds (numeric).
 
-  Feed-level modification timestamp in milliseconds (numeric).
+- last_modification_time:
 
-- last_modified_time / effective_time:
-
-  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
-
-- Endpoint-specific fields:
-
-  Additional scalar fields by endpoint; nested structures remain
-  list-columns.
+  Parsed modification timestamp (`POSIXct`, Europe/Berlin).
 
 ## See also
 

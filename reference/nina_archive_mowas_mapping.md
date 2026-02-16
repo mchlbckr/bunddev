@@ -26,16 +26,15 @@ nina_archive_mowas_mapping(identifier, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with archive mapping payload in list-columns.
+A one-row tibble.
 
-- Scalar fields:
+- identifier:
 
-  One column per top-level scalar field returned by the endpoint.
+  Warning identifier (character).
 
-- Nested fields:
+- data:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Archive mapping response payload (list).
 
 ## See also
 

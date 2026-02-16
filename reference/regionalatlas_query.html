@@ -112,9 +112,26 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per returned feature and one column per
-attribute provided by the selected Regionalatlas table.</p><dl><dt>Attribute columns</dt>
-<dd><p>One column per ArcGIS feature <code>attributes</code> field.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per geographic feature and columns:</p><dl><dt>ags</dt>
+<dd><p>Character. Official municipality key (Amtlicher Gemeindeschluessel).</p></dd>
+
+<dt>ags2</dt>
+<dd><p>Character. Join key for indicator tables.</p></dd>
+
+<dt>gen</dt>
+<dd><p>Character. Region name.</p></dd>
+
+<dt>typ</dt>
+<dd><p>Integer. Administrative level (1=Bundeslaender, 2=Regierungsbezirke, 3=Kreise, 5=Gemeinden).</p></dd>
+
+<dt>jahr</dt>
+<dd><p>Integer. Reference year.</p></dd>
+
+<dt>jahr2</dt>
+<dd><p>Integer. Indicator reference year.</p></dd>
+
+<dt>ai...</dt>
+<dd><p>Numeric. Indicator values whose names depend on the selected table (e.g. <code>ai0201</code> for population density).</p></dd>
 
 
 </dl></div>

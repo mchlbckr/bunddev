@@ -67,13 +67,23 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per tree node at the requested level.
-Columns follow upstream schema; repeated nested values are list-columns.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per tree node and columns:</p><dl><dt>id</dt>
+<dd><p>Character. Node identifier.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>parentId</dt>
+<dd><p>Character. Parent node identifier (<code>NA</code> for roots).</p></dd>
+
+<dt>displayValue</dt>
+<dd><p>Character. Node display label.</p></dd>
+
+<dt>xStellerDisplayValue</dt>
+<dd><p>Character. xSteller with label.</p></dd>
+
+<dt>xSteller</dt>
+<dd><p>Character. Position code of the node.</p></dd>
+
+<dt>level</dt>
+<dd><p>Integer. Tree depth level.</p></dd>
 
 
 </dl></div>

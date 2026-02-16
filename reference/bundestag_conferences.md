@@ -23,16 +23,17 @@ bundestag_conferences(safe = TRUE, refresh = FALSE)
 ## Value
 
 A tibble with one row per `<item>` entry from the conferences feed.
-Column names correspond to XML element names.
+Column names correspond to XML child element names within each `<item>`.
 
-- XML child-tag columns:
+- `<tag>`:
 
-  One column per scalar child element in each `<item>` entry (or
-  root-level document field for single-document endpoints).
+  One column per unique scalar child element in each `<item>`
+  (character). Exact names depend on the feed structure.
 
-- Repeated child tags:
+- `<repeated_tag>`:
 
-  Stored as list-columns.
+  List-column when a child element name appears more than once in a
+  single `<item>`.
 
 ## Details
 

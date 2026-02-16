@@ -80,25 +80,87 @@ dip_bundestag_drucksache_list(
 
 ## Value
 
-A one-row tibble with list-response metadata: `num_found`, `cursor`, and
-`documents` (list-column).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per Drucksache and columns:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Character. Unique Drucksache identifier.
 
-- cursor:
+- typ:
 
-  List endpoints: cursor for pagination (character).
+  Character. Entity type, always `"Dokument"`.
 
-- documents:
+- dokumentart:
 
-  List endpoints: returned records as list-column.
+  Character. Document type, always `"Drucksache"`.
 
-- Detail fields:
+- drucksachetyp:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Character. Drucksache subtype.
+
+- dokumentnummer:
+
+  Character. Document number.
+
+- wahlperiode:
+
+  Integer. Legislative period.
+
+- herausgeber:
+
+  Character. Publisher: `"BT"` or `"BR"`.
+
+- datum:
+
+  Character. Publication date.
+
+- aktualisiert:
+
+  Character. Last update timestamp.
+
+- titel:
+
+  Character. Title text.
+
+- autoren_anzahl:
+
+  Integer. Total author count.
+
+- pdf_hash:
+
+  Character. MD5 checksum of PDF file.
+
+- vorgangsbezug_anzahl:
+
+  Integer. Total related Vorgaenge.
+
+- anlagen:
+
+  Character. Appendix description.
+
+- autoren_anzeige:
+
+  List. Up to 4 display authors.
+
+- fundstelle:
+
+  List. Document reference details.
+
+- urheber:
+
+  List. Authoring bodies.
+
+- vorgangsbezug:
+
+  List. Related Vorgaenge.
+
+- ressort:
+
+  List. Government departments involved.
+
+Wrapped in a one-row tibble with `num_found` (integer), `cursor`
+(character), and `documents` (list-column) when not yet unpacked.
 
 ## See also
 

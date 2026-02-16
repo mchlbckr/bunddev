@@ -27,17 +27,16 @@ bundestag_article(article_id, safe = TRUE, refresh = FALSE)
 ## Value
 
 A one-row tibble with fields extracted from the XML document. Column
-names correspond to XML element names; repeated elements are
-list-columns.
+names correspond to XML element names.
 
-- Scalar fields:
+- `<tag>`:
 
-  One column per top-level scalar field returned by the endpoint.
+  One column per unique scalar child element of the XML root
+  (character). Exact names depend on the XML document structure.
 
-- Nested fields:
+- `<repeated_tag>`:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  List-column when a child element name appears more than once.
 
 ## Details
 

@@ -96,18 +96,49 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per warning and columns:
-<code>type</code>, <code>level</code>, <code>start</code>, <code>start_time</code>, <code>end</code>, <code>end_time</code>, <code>description</code>,
-<code>description_text</code>, <code>event</code>, <code>headline</code>, <code>regions</code> (list-column),
-<code>urls</code> (list-column), and <code>is_vorabinfo</code>.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A tibble with one row per warning:</p><dl><dt>type</dt>
+<dd><p>Warning type code (numeric).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>level</dt>
+<dd><p>Warning severity level (numeric).</p></dd>
+
+<dt>start</dt>
+<dd><p>Start timestamp in milliseconds (numeric).</p></dd>
+
+<dt>start_time</dt>
+<dd><p>Parsed start time (POSIXct).</p></dd>
+
+<dt>end</dt>
+<dd><p>End timestamp in milliseconds (numeric).</p></dd>
+
+<dt>end_time</dt>
+<dd><p>Parsed end time (POSIXct).</p></dd>
+
+<dt>description</dt>
+<dd><p>Warning description HTML (character).</p></dd>
+
+<dt>description_text</dt>
+<dd><p>Warning description plain text (character).</p></dd>
+
+<dt>event</dt>
+<dd><p>Event name (character).</p></dd>
+
+<dt>headline</dt>
+<dd><p>Warning headline (character).</p></dd>
+
+<dt>regions</dt>
+<dd><p>Affected regions (list-column).</p></dd>
+
+<dt>urls</dt>
+<dd><p>Related URLs (list-column).</p></dd>
+
+<dt>is_vorabinfo</dt>
+<dd><p>Whether this is a preliminary warning (logical).</p></dd>
 
 
-</dl></div>
+</dl><p>With <code>flatten = TRUE</code>, the list-columns are transformed according to
+<code>flatten_mode</code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Retrieves nowcast weather warnings from the DWD App API.

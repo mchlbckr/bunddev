@@ -109,14 +109,19 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per MaStR entry. Includes a <code>total</code> column with
-the total result count and additional <code>_time</code> columns for date fields when
-available.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per electricity generation
+unit and columns determined by the MaStR API response. Common columns
+include <code>MaStRNummer</code>, <code>EinheitName</code>, <code>Bundesland</code>,
+<code>Ort</code>, <code>Plz</code>, <code>Bruttoleistung</code>, <code>Nettonennleistung</code>,
+<code>EnergietraegerName</code>, <code>BetriebsStatusName</code>,
+<code>InbetriebnahmeDatum</code>, and <code>EinheitRegistrierungsdatum</code>
+(see <code><a href="marktstammdaten_filters_stromerzeugung.html">marktstammdaten_filters_stromerzeugung()</a></code> for available filter
+fields). Additionally:</p><dl><dt>total</dt>
+<dd><p>Numeric. Total number of matching records upstream.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>*Datum_time</dt>
+<dd><p>POSIXct. Parsed date column (Europe/Berlin) added
+for every source column whose name contains <code>Datum</code>.</p></dd>
 
 
 </dl></div>

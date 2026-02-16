@@ -26,28 +26,15 @@ nina_warning_geojson(identifier, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with `identifier` and `geojson` (list-column).
+A one-row tibble.
 
-- content_id:
+- identifier:
 
-  Content identifier from NINA feeds (character), where applicable.
+  Warning identifier (character).
 
-- response_country:
+- geojson:
 
-  Feed-level country code, when provided (character).
-
-- response_last_modified:
-
-  Feed-level modification timestamp in milliseconds (numeric).
-
-- last_modified_time / effective_time:
-
-  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
-
-- Endpoint-specific fields:
-
-  Additional scalar fields by endpoint; nested structures remain
-  list-columns.
+  Full GeoJSON response payload (list).
 
 ## Details
 

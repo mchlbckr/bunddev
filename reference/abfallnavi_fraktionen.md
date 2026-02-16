@@ -22,21 +22,24 @@ abfallnavi_fraktionen(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per waste fraction entry.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per waste fraction and columns:
 
-- Top-level scalar fields:
+- id:
 
-  One column per scalar field returned by the endpoint (for example ids,
-  names, labels, and codes).
+  Integer. Fraction identifier.
 
-- Nested fields:
+- name:
 
-  Kept as list-columns.
+  Character. Fraction name (e.g. "Restabfall").
 
-- date_time:
+- iconNr:
 
-  Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in
-  Europe/Berlin, when available.
+  Integer. Icon number for display.
+
+- farbeRgb:
+
+  Character. RGB colour hex code.
 
 ## See also
 

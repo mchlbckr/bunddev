@@ -36,21 +36,114 @@ tagesschau_homepage(flatten = FALSE, flatten_mode = "json")
 
 ## Value
 
-A tibble with one row per item and columns: `section`, `sophora_id`,
-`external_id`, `title`, `date`, `date_time`, `topline`,
-`first_sentence`, `details`, `detailsweb`, `share_url`,
-`update_check_url`, `region_id`, `ressort`, `type`, `breaking_news`,
-`copyright`, `alttext`, and list-columns `teaser_image`, `tracking`,
-`tags`, `images`, `streams`, `geotags`, `branding_image`, `first_frame`.
+A tibble with one row per item:
 
-- Scalar fields:
+- section:
 
-  One column per top-level scalar field returned by the endpoint.
+  Feed section, e.g. "news" or "regional" (character).
 
-- Nested fields:
+- sophora_id:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Sophora CMS identifier (character).
+
+- external_id:
+
+  External identifier (character).
+
+- title:
+
+  Article title (character).
+
+- date:
+
+  Publication date string (character).
+
+- date_time:
+
+  Parsed publication date (POSIXct).
+
+- topline:
+
+  Topline/kicker text (character).
+
+- first_sentence:
+
+  First sentence of the article (character).
+
+- details:
+
+  API details URL (character).
+
+- detailsweb:
+
+  Web details URL (character).
+
+- share_url:
+
+  Share URL (character).
+
+- update_check_url:
+
+  Update-check URL (character).
+
+- region_id:
+
+  Region identifier (character).
+
+- ressort:
+
+  Editorial section/ressort (character).
+
+- type:
+
+  Content type (character).
+
+- breaking_news:
+
+  Whether the item is breaking news (logical).
+
+- copyright:
+
+  Copyright notice (character).
+
+- alttext:
+
+  Image alt text (character).
+
+- teaser_image:
+
+  Teaser image metadata (list-column).
+
+- tracking:
+
+  Tracking metadata (list-column).
+
+- tags:
+
+  Associated tags (list-column).
+
+- images:
+
+  Image collection (list-column).
+
+- streams:
+
+  Media streams (list-column).
+
+- geotags:
+
+  Geographic tags (list-column).
+
+- branding_image:
+
+  Branding image metadata (list-column).
+
+- first_frame:
+
+  First video frame metadata (list-column).
+
+With `flatten = TRUE`, the list-columns are transformed according to
+`flatten_mode`.
 
 ## Details
 

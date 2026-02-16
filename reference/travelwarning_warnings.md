@@ -22,20 +22,44 @@ travelwarning_warnings(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per warning entry. Common columns include
-`content_id`, `parent_content_id`, `response_country`,
-`response_last_modified`, `response_last_modified_time`,
-`last_modified_time`, and `effective_time`, plus additional warning
-fields mapped from the upstream payload.
+A tibble with one row per warning entry.
 
-- Scalar fields:
+- content_id:
 
-  One column per top-level scalar field returned by the endpoint.
+  Entry/content identifier (character).
 
-- Nested fields:
+- parent_content_id:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Parent identifier for nested entry records, if applicable (character).
+
+- response_country:
+
+  Country code from response metadata (character).
+
+- response_last_modified:
+
+  Feed-level modification timestamp in milliseconds (numeric).
+
+- response_last_modified_time:
+
+  Feed-level modification timestamp as `POSIXct` (Europe/Berlin), when
+  `response_last_modified` is non-`NA`.
+
+- last_modified_time:
+
+  Entry-level modification timestamp as `POSIXct` (Europe/Berlin),
+  parsed from the entry `lastModified` field.
+
+- effective_time:
+
+  Entry effective timestamp as `POSIXct` (Europe/Berlin), parsed from
+  the entry `effective` field.
+
+- `<entry_field>`:
+
+  Additional columns (snake_case) from each entry payload. Scalar values
+  become character/numeric columns; nested structures remain
+  list-columns.
 
 ## Details
 

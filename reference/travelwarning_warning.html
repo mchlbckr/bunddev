@@ -72,19 +72,32 @@ structure as <code><a href="travelwarning_warnings.html">travelwarning_warnings(
 <dd><p>Entry/content identifier (character).</p></dd>
 
 <dt>parent_content_id</dt>
-<dd><p>Parent identifier for nested entry records, if applicable (character).</p></dd>
+<dd><p>Parent identifier for nested entry records, if
+applicable (character).</p></dd>
 
 <dt>response_country</dt>
 <dd><p>Country code from response metadata (character).</p></dd>
 
 <dt>response_last_modified</dt>
-<dd><p>Feed-level modification timestamp in milliseconds (numeric).</p></dd>
+<dd><p>Feed-level modification timestamp in
+milliseconds (numeric).</p></dd>
 
-<dt>last_modified_time / effective_time</dt>
-<dd><p>Parsed <code>POSIXct</code> timestamps in Europe/Berlin when source fields exist.</p></dd>
+<dt>response_last_modified_time</dt>
+<dd><p>Feed-level modification timestamp as
+<code>POSIXct</code> (Europe/Berlin), when <code>response_last_modified</code> is non-<code>NA</code>.</p></dd>
 
-<dt>Entry fields</dt>
-<dd><p>Additional scalar fields from each entry payload; nested structures remain list-columns.</p></dd>
+<dt>last_modified_time</dt>
+<dd><p>Entry-level modification timestamp as <code>POSIXct</code>
+(Europe/Berlin), parsed from the entry <code>lastModified</code> field.</p></dd>
+
+<dt>effective_time</dt>
+<dd><p>Entry effective timestamp as <code>POSIXct</code>
+(Europe/Berlin), parsed from the entry <code>effective</code> field.</p></dd>
+
+<dt><code>&lt;entry_field&gt;</code></dt>
+<dd><p>Additional columns (snake_case) from each entry
+payload. Scalar values become character/numeric columns; nested
+structures remain list-columns.</p></dd>
 
 
 </dl></div>

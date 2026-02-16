@@ -22,20 +22,12 @@ psm_stand(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with version/release metadata.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row and columns:
 
-- Item fields:
+- DATUM:
 
-  One column per top-level field of each `items` element (`m_row$$`
-  removed).
-
-- Nested fields:
-
-  Stored as list-columns.
-
-- response:
-
-  Fallback payload for non-item responses (list-column).
+  Character. Release date of the current data set.
 
 ## Details
 

@@ -60,21 +60,24 @@ abfallnavi_kalender_download(
 
 ## Value
 
-A one-row tibble with raw downloaded file bytes in a list-column.
+A one-row [tibble](https://tibble.tidyverse.org/reference/tibble.html)
+with columns:
 
-- Top-level scalar fields:
+- region:
 
-  One column per scalar field returned by the endpoint (for example ids,
-  names, labels, and codes).
+  Character. Region code passed to the request.
 
-- Nested fields:
+- format:
 
-  Kept as list-columns.
+  Character. File format ("pdf" or "ics").
 
-- date_time:
+- jahr:
 
-  Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in
-  Europe/Berlin, when available.
+  Integer. Year passed to the request.
+
+- bytes:
+
+  List. Raw file bytes (raw vector).
 
 ## Details
 

@@ -40,18 +40,44 @@ mudab_parameter_values(
 
 ## Value
 
-A tibble with one row per returned `MV_STATION_MSMNT` record. Includes
-parsed `*_time` columns (`POSIXct`, Europe/Berlin) when matching
-date/time fields are present.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per measurement value and columns:
 
-- Scalar fields:
+- metadataid:
 
-  One column per top-level scalar field returned by the endpoint.
+  Integer. Metadata identifier.
 
-- Nested fields:
+- STATNAME_ST:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Character. Station name.
+
+- STATNAME_DATE_TIME:
+
+  Character. Composite station-date-time string.
+
+- PARAMETERID_PM:
+
+  Character. Parameter identifier.
+
+- PARAMCODE_PM:
+
+  Character. Parameter code name.
+
+- DATE_STM:
+
+  Character. Measurement date (YYYYMMDD).
+
+- TIME_STM:
+
+  Character. Measurement time (HHMM).
+
+- VALUE_MS:
+
+  Character. Measured value.
+
+- datetime_time:
+
+  POSIXct. Parsed date-time (Europe/Berlin).
 
 ## Details
 

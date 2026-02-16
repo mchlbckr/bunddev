@@ -67,15 +67,26 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per street in the selected place.</p>
-<dl><dt>Top-level scalar fields</dt>
-<dd><p>One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per street and columns:</p><dl><dt>id</dt>
+<dd><p>Integer. Street identifier.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns.</p></dd>
+<dt>name</dt>
+<dd><p>Character. Street name.</p></dd>
 
-<dt>date_time</dt>
-<dd><p>Added by <code>abfallnavi_termine_*()</code> from <code>datum</code> as <code>POSIXct</code> in Europe/Berlin, when available.</p></dd>
+<dt>staticId</dt>
+<dd><p>Character. Static identifier (base64-encoded).</p></dd>
+
+<dt>hausNrList</dt>
+<dd><p>List. House numbers for this street.</p></dd>
+
+<dt>plz</dt>
+<dd><p>Character. Postal code (may be <code>NA</code>).</p></dd>
+
+<dt>ortsteilName</dt>
+<dd><p>Character. District name.</p></dd>
+
+<dt>ort</dt>
+<dd><p>List. Nested place object.</p></dd>
 
 
 </dl></div>

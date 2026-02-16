@@ -112,18 +112,28 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with institution entries when the API returns a homogeneous
-list; otherwise a one-row tibble with list-column <code>response</code>.</p><dl><dt>Item fields</dt>
-<dd><p>For homogeneous list responses, one column per top-level scalar item field.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per institution and columns:</p><dl><dt>id</dt>
+<dd><p>Character. Institution identifier.</p></dd>
 
-<dt>Nested item fields</dt>
-<dd><p>Stored as list-columns.</p></dd>
+<dt>label</dt>
+<dd><p>Character. Display name.</p></dd>
 
-<dt>response</dt>
-<dd><p>For non-homogeneous responses, a single list-column containing the full payload.</p></dd>
+<dt>latitude</dt>
+<dd><p>Numeric. Geographic latitude.</p></dd>
+
+<dt>longitude</dt>
+<dd><p>Numeric. Geographic longitude.</p></dd>
+
+<dt>sector</dt>
+<dd><p>Character. Cultural sector code.</p></dd>
+
+<dt>children</dt>
+<dd><p>List. Nested child institutions.</p></dd>
 
 
-</dl></div>
+</dl><p>Falls back to a one-row tibble with list-column <code>response</code> when the
+API returns a non-homogeneous payload.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns institutions registered in the DDB.

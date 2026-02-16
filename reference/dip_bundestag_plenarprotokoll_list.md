@@ -80,25 +80,67 @@ dip_bundestag_plenarprotokoll_list(
 
 ## Value
 
-A one-row tibble with list-response metadata: `num_found`, `cursor`, and
-`documents` (list-column).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per Plenarprotokoll and columns:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Character. Unique Plenarprotokoll identifier.
 
-- cursor:
+- dokumentart:
 
-  List endpoints: cursor for pagination (character).
+  Character. Document type, always `"Plenarprotokoll"`.
 
-- documents:
+- typ:
 
-  List endpoints: returned records as list-column.
+  Character. Entity type, always `"Dokument"`.
 
-- Detail fields:
+- dokumentnummer:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Character. Document number.
+
+- wahlperiode:
+
+  Integer. Legislative period.
+
+- datum:
+
+  Character. Session date.
+
+- aktualisiert:
+
+  Character. Last update timestamp.
+
+- titel:
+
+  Character. Title text.
+
+- pdf_hash:
+
+  Character. MD5 checksum of PDF file.
+
+- vorgangsbezug_anzahl:
+
+  Integer. Total related Vorgaenge.
+
+- sitzungsbemerkung:
+
+  Character. Session remark.
+
+- herausgeber:
+
+  List. Publisher assignment.
+
+- fundstelle:
+
+  List. Document reference details.
+
+- vorgangsbezug:
+
+  List. Related Vorgaenge.
+
+Wrapped in a one-row tibble with `num_found` (integer), `cursor`
+(character), and `documents` (list-column) when not yet unpacked.
 
 ## See also
 

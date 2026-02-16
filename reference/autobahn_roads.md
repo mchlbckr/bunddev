@@ -10,19 +10,11 @@ autobahn_roads()
 
 ## Value
 
-A tibble with one row per Autobahn id and column `road_id`.
+A tibble with one row per Autobahn id:
 
-Guaranteed column is `road_id` (character), one row per Autobahn
-identifier.
+- road_id:
 
-- Scalar fields:
-
-  One column per top-level scalar field returned by the endpoint.
-
-- Nested fields:
-
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Autobahn identifier (character).
 
 ## Details
 

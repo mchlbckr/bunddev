@@ -30,20 +30,11 @@ hochwasserzentralen_bundesland_info(
 
 ## Value
 
-A tibble with one row of metadata for the selected Bundesland id.
-
-- Top-level fields:
-
-  One column per scalar top-level field (or per GeoJSON feature
-  `properties` field).
-
-- Nested fields:
-
-  Stored as list-columns.
-
-- features:
-
-  GeoJSON container endpoint: feature collection as list-column.
+A one-row tibble of metadata for the selected Bundesland id. Columns are
+created dynamically from the upstream service response fields. If the
+response contains GeoJSON features, each feature's `properties` are used
+as columns; otherwise each top-level field becomes a column. Scalar
+values become atomic columns and nested structures become list-columns.
 
 ## Details
 

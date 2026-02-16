@@ -104,15 +104,6 @@ pegel_online_station(
 A one-row tibble with the same columns as
 [`pegel_online_stations()`](https://buecker.ms/bunddev/reference/pegel_online_stations.md).
 
-- Scalar fields:
-
-  One column per top-level scalar field returned by the endpoint.
-
-- Nested fields:
-
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
-
 ## Details
 
 Fetches a single station record. API documentation:

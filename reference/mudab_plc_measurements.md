@@ -40,21 +40,80 @@ mudab_plc_measurements(
 
 ## Value
 
-A tibble with one row per returned `V_PLC_STATION_MSMNT` record.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per PLC measurement and columns:
 
-- Record fields:
+- metadataid:
 
-  One column per top-level scalar field of the selected MUDAB record
-  type.
+  Integer. Metadata identifier.
 
-- Nested fields:
+- NUMMER:
 
-  Stored as list-columns.
+  Integer. Running row number.
 
-- datetime_time:
+- NAME:
 
-  Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM`
-  exist.
+  Integer. Measurement name code.
+
+- STATION_CODE:
+
+  Character. Station code.
+
+- STATION_NAME:
+
+  Character. Station name.
+
+- VALUE:
+
+  Numeric. Measured value.
+
+- PARAM_TYPE:
+
+  Character. Aggregation type ("TOT" or "AVE").
+
+- PARAM_ID:
+
+  Character. Numeric code for NAME.
+
+- PERIOD_NAME:
+
+  Character. Measurement period (year).
+
+- PERIOD_TYPE:
+
+  Character. Aggregation duration ("A").
+
+- LAND_CD:
+
+  Character. Federal state code.
+
+- ST_LAT:
+
+  Numeric. Latitude.
+
+- ST_LON:
+
+  Numeric. Longitude.
+
+- SUBCM_CODE:
+
+  Character. Sub-compartment code.
+
+- SUBCM_NAME:
+
+  Character. Sub-compartment name.
+
+- MON_TYPE:
+
+  Character. Monitoring type.
+
+- VAL_UNIT:
+
+  Character. Measurement unit.
+
+- AREA:
+
+  Numeric. Area value.
 
 ## Details
 

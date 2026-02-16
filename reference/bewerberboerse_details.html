@@ -81,12 +81,80 @@ the number of rows.</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with the same columns as <code><a href="bewerberboerse_search.html">bewerberboerse_search()</a></code>, filtered
-to the requested <code>referenznummer</code>.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+to the requested <code>referenznummer</code>.</p><dl><dt>refnr</dt>
+<dd><p>Candidate reference number (character).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>verfuegbarkeit_von</dt>
+<dd><p>Availability date text (character).</p></dd>
+
+<dt>aktualisierungsdatum</dt>
+<dd><p>Last update date text (character).</p></dd>
+
+<dt>veroeffentlichungsdatum</dt>
+<dd><p>Publication date text (character).</p></dd>
+
+<dt>stellenart</dt>
+<dd><p>Position type (character).</p></dd>
+
+<dt>arbeitszeit_modelle</dt>
+<dd><p>Work-time models, collapsed string (character).</p></dd>
+
+<dt>berufe</dt>
+<dd><p>Occupations, collapsed string (character).</p></dd>
+
+<dt>letzte_taetigkeit_jahr</dt>
+<dd><p>Year of most recent activity (character).</p></dd>
+
+<dt>letzte_taetigkeit_bezeichnung</dt>
+<dd><p>Label of most recent activity (character).</p></dd>
+
+<dt>letzte_taetigkeit_aktuell</dt>
+<dd><p>Whether latest activity is current (logical).</p></dd>
+
+<dt>hat_email</dt>
+<dd><p>Email contact available (logical).</p></dd>
+
+<dt>hat_telefon</dt>
+<dd><p>Phone contact available (logical).</p></dd>
+
+<dt>hat_adresse</dt>
+<dd><p>Postal address available (logical).</p></dd>
+
+<dt>ort</dt>
+<dd><p>City/locality (character).</p></dd>
+
+<dt>plz</dt>
+<dd><p>Postal code (character).</p></dd>
+
+<dt>umkreis</dt>
+<dd><p>Radius text returned by API (character).</p></dd>
+
+<dt>region</dt>
+<dd><p>Region/state (character).</p></dd>
+
+<dt>land</dt>
+<dd><p>Country (character).</p></dd>
+
+<dt>mehrere_arbeitsorte</dt>
+<dd><p>Multiple work locations flag (logical).</p></dd>
+
+<dt>ausbildungen</dt>
+<dd><p>Education entries (list-column).</p></dd>
+
+<dt>erfahrung</dt>
+<dd><p>Experience entries (list-column).</p></dd>
+
+<dt>operation_id</dt>
+<dd><p>Operation identifier (character).</p></dd>
+
+<dt>page</dt>
+<dd><p>Returned page index (integer).</p></dd>
+
+<dt>size</dt>
+<dd><p>Returned page size (integer).</p></dd>
+
+<dt>max_ergebnisse</dt>
+<dd><p>Total matching result count (integer).</p></dd>
 
 
 </dl></div>

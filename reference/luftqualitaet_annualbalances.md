@@ -54,17 +54,10 @@ luftqualitaet_annualbalances(params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per annual-balance record.
-
-- Indexed value columns:
-
-  Columns are derived from API `indices` metadata and represent scalar
-  values for each returned record.
-
-- Index key column:
-
-  Included when the API provides a named index key (for example station
-  id/date key).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per annual-balance record. Column names are derived from the
+`indices` metadata in the API response and typically include
+`station id`, `component id`, `year`, `value`, and `transgression type`.
 
 ## Details
 

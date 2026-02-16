@@ -22,21 +22,16 @@ abfallnavi_orte(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per place entry returned by the API.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per place and columns:
 
-- Top-level scalar fields:
+- id:
 
-  One column per scalar field returned by the endpoint (for example ids,
-  names, labels, and codes).
+  Integer. Place identifier.
 
-- Nested fields:
+- name:
 
-  Kept as list-columns.
-
-- date_time:
-
-  Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in
-  Europe/Berlin, when available.
+  Character. Place name.
 
 ## Details
 

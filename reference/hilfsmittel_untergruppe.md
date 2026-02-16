@@ -56,17 +56,68 @@ hilfsmittel_untergruppe(
 
 ## Value
 
-A tibble with detail fields for one subgroup. Columns follow upstream
-schema; nested values may appear as list-columns.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row for the requested subgroup and columns:
 
-- Scalar fields:
+- id:
 
-  One column per top-level scalar field returned by the endpoint.
+  Character. Subgroup identifier.
 
-- Nested fields:
+- versionId:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Character. Internal version identifier.
+
+- nummer:
+
+  Integer. Subgroup number.
+
+- anwendungsortId:
+
+  Character. Application-site identifier.
+
+- bezeichnung:
+
+  Character. Subgroup name.
+
+- produktgruppeId:
+
+  Character. Parent product-group identifier.
+
+- nachweisschemaId:
+
+  Character. Verification-schema identifier.
+
+- sechsSteller:
+
+  Character. Six-digit code.
+
+- isNnElement:
+
+  Logical. Internal flag (usage unclear).
+
+- produktgruppe:
+
+  Numeric. Always `NA`.
+
+- anwendungsort:
+
+  Numeric. Always `NA`.
+
+- aufnahmeDatum:
+
+  Character. Admission date (ISO-8601).
+
+- aenderungsDatum:
+
+  Character. Last-modified date (ISO-8601).
+
+- aufnahmeDatum_time:
+
+  POSIXct. Parsed admission date (Europe/Berlin).
+
+- aenderungsDatum_time:
+
+  POSIXct. Parsed last-modified date (Europe/Berlin).
 
 ## Details
 

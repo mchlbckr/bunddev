@@ -80,25 +80,63 @@ dip_bundestag_aktivitaet_list(
 
 ## Value
 
-A one-row tibble with list-response metadata: `num_found`, `cursor`, and
-`documents` (list-column).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per Aktivitaet and columns:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Character. Unique Aktivitaet identifier.
 
-- cursor:
+- aktivitaetsart:
 
-  List endpoints: cursor for pagination (character).
+  Character. Activity type.
 
-- documents:
+- typ:
 
-  List endpoints: returned records as list-column.
+  Character. Entity type, always `"Aktivitaet"`.
 
-- Detail fields:
+- dokumentart:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Character. Document type.
+
+- wahlperiode:
+
+  Integer. Legislative period.
+
+- datum:
+
+  Character. Date of associated document.
+
+- aktualisiert:
+
+  Character. Last update timestamp.
+
+- titel:
+
+  Character. Title text.
+
+- vorgangsbezug_anzahl:
+
+  Integer. Total related Vorgaenge.
+
+- abstract:
+
+  Character. Summary text.
+
+- fundstelle:
+
+  List. Document reference details.
+
+- vorgangsbezug:
+
+  List. Related Vorgaenge.
+
+- deskriptor:
+
+  List. Thesaurus descriptor entries.
+
+Wrapped in a one-row tibble with `num_found` (integer), `cursor`
+(character), and `documents` (list-column) when not yet unpacked.
 
 ## See also
 

@@ -72,20 +72,112 @@ psm_anwendungen(
 
 ## Value
 
-A tibble with one row per approved application item.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per approved application and columns:
 
-- Item fields:
+- ANTRAGNR:
 
-  One column per top-level field of each `items` element (`m_row$$`
-  removed).
+  Character. Application request number.
 
-- Nested fields:
+- ANWENDUNGEN_ANZ_JE_BEFALL:
 
-  Stored as list-columns.
+  Numeric. Applications per infestation.
 
-- response:
+- ANWENDUNGEN_MAX_JE_KULTUR:
 
-  Fallback payload for non-item responses (list-column).
+  Numeric. Max applications per crop.
+
+- ANWENDUNGEN_MAX_JE_VEGETATION:
+
+  Numeric. Max applications per vegetation period.
+
+- ANWENDUNGSBEREICH:
+
+  Character. Area of use code.
+
+- ANWENDUNGSTECHNIK:
+
+  Character. Application technique.
+
+- AWGNR:
+
+  Character. Application group number.
+
+- AWG_ID:
+
+  Character. Application identifier (16 chars).
+
+- AW_ABSTAND_BIS:
+
+  Numeric. Application interval upper bound.
+
+- AW_ABSTAND_EINHEIT:
+
+  Character. Interval unit.
+
+- AW_ABSTAND_VON:
+
+  Numeric. Application interval lower bound.
+
+- EINSATZGEBIET:
+
+  Character. Field of use code.
+
+- GENEHMIGUNG:
+
+  Character. Approval flag.
+
+- HUK:
+
+  Character. Home-and-garden flag.
+
+- KENNR:
+
+  Character. Product identification number.
+
+- KULTUR_ERL:
+
+  Character. Crop clarification text.
+
+- SCHADORG_ERL:
+
+  Character. Pest clarification text.
+
+- STADIUM_KULTUR_BEM:
+
+  Character. Crop growth-stage note.
+
+- STADIUM_KULTUR_BIS:
+
+  Character. Crop growth-stage upper bound.
+
+- STADIUM_KULTUR_KODELISTE:
+
+  Numeric. Crop growth-stage code list.
+
+- STADIUM_KULTUR_VON:
+
+  Character. Crop growth-stage lower bound.
+
+- STADIUM_SCHADORG_BEM:
+
+  Character. Pest growth-stage note.
+
+- STADIUM_SCHADORG_BIS:
+
+  Character. Pest growth-stage upper bound.
+
+- STADIUM_SCHADORG_KODELISTE:
+
+  Numeric. Pest growth-stage code list.
+
+- STADIUM_SCHADORG_VON:
+
+  Character. Pest growth-stage lower bound.
+
+- WIRKUNGSBEREICH:
+
+  Character. Efficacy area code.
 
 ## Details
 

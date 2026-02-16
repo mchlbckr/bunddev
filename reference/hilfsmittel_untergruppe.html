@@ -96,13 +96,51 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with detail fields for one subgroup. Columns follow upstream
-schema; nested values may appear as list-columns.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row for the requested subgroup
+and columns:</p><dl><dt>id</dt>
+<dd><p>Character. Subgroup identifier.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>versionId</dt>
+<dd><p>Character. Internal version identifier.</p></dd>
+
+<dt>nummer</dt>
+<dd><p>Integer. Subgroup number.</p></dd>
+
+<dt>anwendungsortId</dt>
+<dd><p>Character. Application-site identifier.</p></dd>
+
+<dt>bezeichnung</dt>
+<dd><p>Character. Subgroup name.</p></dd>
+
+<dt>produktgruppeId</dt>
+<dd><p>Character. Parent product-group identifier.</p></dd>
+
+<dt>nachweisschemaId</dt>
+<dd><p>Character. Verification-schema identifier.</p></dd>
+
+<dt>sechsSteller</dt>
+<dd><p>Character. Six-digit code.</p></dd>
+
+<dt>isNnElement</dt>
+<dd><p>Logical. Internal flag (usage unclear).</p></dd>
+
+<dt>produktgruppe</dt>
+<dd><p>Numeric. Always <code>NA</code>.</p></dd>
+
+<dt>anwendungsort</dt>
+<dd><p>Numeric. Always <code>NA</code>.</p></dd>
+
+<dt>aufnahmeDatum</dt>
+<dd><p>Character. Admission date (ISO-8601).</p></dd>
+
+<dt>aenderungsDatum</dt>
+<dd><p>Character. Last-modified date (ISO-8601).</p></dd>
+
+<dt>aufnahmeDatum_time</dt>
+<dd><p>POSIXct. Parsed admission date (Europe/Berlin).</p></dd>
+
+<dt>aenderungsDatum_time</dt>
+<dd><p>POSIXct. Parsed last-modified date (Europe/Berlin).</p></dd>
 
 
 </dl></div>

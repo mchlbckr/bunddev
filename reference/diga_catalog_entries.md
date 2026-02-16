@@ -64,21 +64,48 @@ diga_catalog_entries(
 
 ## Value
 
-A tibble with one row per catalog entry resource (same structure rules
-as
-[`diga_device_definitions()`](https://buecker.ms/bunddev/reference/diga_device_definitions.md)).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per catalog entry and columns:
 
-- Resource fields:
+- resourceType:
 
-  One column per top-level scalar field in each FHIR `entry$resource`.
+  Character. FHIR resource type, always `"CatalogEntry"`.
 
-- Nested resource fields:
+- id:
 
-  Stored as list-columns.
+  Character. FHIR resource identifier.
 
-- bundle:
+- status:
 
-  Returned as list-column when the response has no `entry` records.
+  Character. Entry status.
+
+- orderable:
+
+  Logical. Whether the entry is orderable.
+
+- meta:
+
+  List. Resource metadata (profile, timestamps).
+
+- identifier:
+
+  List. Business identifiers.
+
+- type:
+
+  List. Catalog entry type coding.
+
+- referencedItem:
+
+  List. Referenced device definition.
+
+- extension:
+
+  List. FHIR profile extensions.
+
+- additionalCharacteristic:
+
+  List. Additional characteristics.
 
 ## See also
 

@@ -63,21 +63,12 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per logo metadata entry; includes <code>last_modification_time</code> (<code>POSIXct</code>).</p>
-<p>Includes <code>last_modification_time</code> as POSIXct in Europe/Berlin.</p><dl><dt>content_id</dt>
-<dd><p>Content identifier from NINA feeds (character), where applicable.</p></dd>
-
-<dt>response_country</dt>
-<dd><p>Feed-level country code, when provided (character).</p></dd>
-
-<dt>response_last_modified</dt>
+    <p>A tibble with one row per logo metadata entry. Columns are bound from
+the upstream <code>logos</code> array, plus:</p><dl><dt>last_modification_date</dt>
 <dd><p>Feed-level modification timestamp in milliseconds (numeric).</p></dd>
 
-<dt>last_modified_time / effective_time</dt>
-<dd><p>Parsed <code>POSIXct</code> timestamps in Europe/Berlin when source fields exist.</p></dd>
-
-<dt>Endpoint-specific fields</dt>
-<dd><p>Additional scalar fields by endpoint; nested structures remain list-columns.</p></dd>
+<dt>last_modification_time</dt>
+<dd><p>Parsed modification timestamp (<code>POSIXct</code>, Europe/Berlin).</p></dd>
 
 
 </dl></div>

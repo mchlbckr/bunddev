@@ -27,20 +27,22 @@ bundesrat_plenum_kompakt(view = "renderXml", safe = TRUE, refresh = FALSE)
 ## Value
 
 A tibble with one row per XML `<item>` in the plenum compact feed.
+Column names correspond to the XML child element names.
 
-- XML child-tag columns:
+- `<tag>`:
 
-  One column per scalar child element in each `<item>` node.
+  One column per unique scalar child element (character).
 
-- Repeated child tags:
+- `<repeated_tag>`:
 
-  Stored as list-columns.
+  List-column when a child element name appears more than once in a
+  single `<item>`.
 
-- `date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`,
-  `startdate_time`, `stopdate_time`:
+- date_time, dateOfIssue_time, imageDate_time, layoutDate_time,
+  startdate_time, stopdate_time:
 
-  Parsed `POSIXct` values in Europe/Berlin when the corresponding source
-  fields are present.
+  Parsed `POSIXct` (Europe/Berlin) added when the corresponding source
+  field is present.
 
 ## Details
 

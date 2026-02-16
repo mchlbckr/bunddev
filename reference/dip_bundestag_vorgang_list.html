@@ -115,20 +115,76 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A one-row tibble with list-response metadata: <code>num_found</code>, <code>cursor</code>, and <code>documents</code> (list-column).</p><dl><dt>num_found</dt>
-<dd><p>List endpoints: total number of matches (integer).</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per Vorgang and columns:</p><dl><dt>id</dt>
+<dd><p>Character. Unique Vorgang identifier.</p></dd>
 
-<dt>cursor</dt>
-<dd><p>List endpoints: cursor for pagination (character).</p></dd>
+<dt>typ</dt>
+<dd><p>Character. Entity type, always <code>"Vorgang"</code>.</p></dd>
 
-<dt>documents</dt>
-<dd><p>List endpoints: returned records as list-column.</p></dd>
+<dt>beratungsstand</dt>
+<dd><p>Character. Consultation status.</p></dd>
 
-<dt>Detail fields</dt>
-<dd><p>Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.</p></dd>
+<dt>vorgangstyp</dt>
+<dd><p>Character. Vorgang type.</p></dd>
+
+<dt>wahlperiode</dt>
+<dd><p>Integer. Legislative period.</p></dd>
+
+<dt>datum</dt>
+<dd><p>Character. Date of last associated document.</p></dd>
+
+<dt>aktualisiert</dt>
+<dd><p>Character. Last update timestamp.</p></dd>
+
+<dt>titel</dt>
+<dd><p>Character. Title text.</p></dd>
+
+<dt>abstract</dt>
+<dd><p>Character. Summary text.</p></dd>
+
+<dt>gesta</dt>
+<dd><p>Character. GESTA reference number.</p></dd>
+
+<dt>kom</dt>
+<dd><p>Character. EU COM reference number.</p></dd>
+
+<dt>ratsdok</dt>
+<dd><p>Character. EU Council document number.</p></dd>
+
+<dt>archiv</dt>
+<dd><p>Character. Archive reference.</p></dd>
+
+<dt>mitteilung</dt>
+<dd><p>Character. Supplementary note.</p></dd>
+
+<dt>sek</dt>
+<dd><p>Character. EU SEC reference number.</p></dd>
+
+<dt>initiative</dt>
+<dd><p>List. Initiating factions or bodies.</p></dd>
+
+<dt>sachgebiet</dt>
+<dd><p>List. Subject areas.</p></dd>
+
+<dt>deskriptor</dt>
+<dd><p>List. Thesaurus descriptor entries.</p></dd>
+
+<dt>zustimmungsbeduerftigkeit</dt>
+<dd><p>List. Consent requirements.</p></dd>
+
+<dt>verkuendung</dt>
+<dd><p>List. Promulgation details.</p></dd>
+
+<dt>inkrafttreten</dt>
+<dd><p>List. Entry-into-force details.</p></dd>
+
+<dt>vorgang_verlinkung</dt>
+<dd><p>List. Linked Vorgaenge.</p></dd>
 
 
-</dl></div>
+</dl><p>Wrapped in a one-row tibble with <code>num_found</code> (integer), <code>cursor</code>
+(character), and <code>documents</code> (list-column) when not yet unpacked.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns metadata for DIP Vorgang entries. Requires an API key. Obtain a key

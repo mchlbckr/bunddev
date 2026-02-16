@@ -64,20 +64,48 @@ diga_organizations(
 
 ## Value
 
-A tibble with one row per organization resource (same structure rules as
-[`diga_device_definitions()`](https://buecker.ms/bunddev/reference/diga_device_definitions.md)).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per organization and columns:
 
-- Resource fields:
+- resourceType:
 
-  One column per top-level scalar field in each FHIR `entry$resource`.
+  Character. FHIR resource type, always `"Organization"`.
 
-- Nested resource fields:
+- id:
 
-  Stored as list-columns.
+  Character. FHIR resource identifier.
 
-- bundle:
+- name:
 
-  Returned as list-column when the response has no `entry` records.
+  Character. Organization display name.
+
+- active:
+
+  Logical. Whether the organization is active.
+
+- meta:
+
+  List. Resource metadata (profile, timestamps).
+
+- identifier:
+
+  List. Business identifiers.
+
+- type:
+
+  List. Organization type coding.
+
+- telecom:
+
+  List. Contact details.
+
+- address:
+
+  List. Postal addresses.
+
+- extension:
+
+  List. FHIR profile extensions.
 
 ## See also
 

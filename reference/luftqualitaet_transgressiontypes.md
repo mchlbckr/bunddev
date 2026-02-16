@@ -54,17 +54,10 @@ luftqualitaet_transgressiontypes(params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per transgression-type metadata entry.
-
-- Indexed value columns:
-
-  Columns are derived from API `indices` metadata and represent scalar
-  values for each returned record.
-
-- Index key column:
-
-  Included when the API provides a named index key (for example station
-  id/date key).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per transgression type. Column names are derived from the `indices`
+metadata in the API response and typically include `exceedance type id`
+and `exceedance type name`.
 
 ## Details
 

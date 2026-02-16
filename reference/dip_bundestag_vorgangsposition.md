@@ -59,24 +59,107 @@ dip_bundestag_vorgangsposition(
 
 ## Value
 
-A one-row tibble with detailed fields for the selected Vorgangsposition.
+A one-row tibble for the selected Vorgangsposition:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Vorgangsposition identifier (character).
 
-- cursor:
+- vorgangsposition:
 
-  List endpoints: cursor for pagination (character).
+  Step description (character).
 
-- documents:
+- zuordnung:
 
-  List endpoints: returned records as list-column.
+  Assignment: `"BT"`, `"BR"`, `"BV"`, or `"EK"` (character).
 
-- Detail fields:
+- gang:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Key step in the legislative process (logical).
+
+- fortsetzung:
+
+  Continuation of a previous debate (logical).
+
+- nachtrag:
+
+  Addendum entry (logical).
+
+- vorgangstyp:
+
+  Parent Vorgang type (character).
+
+- typ:
+
+  Entity type, always `"Vorgangsposition"` (character).
+
+- titel:
+
+  Title of the parent Vorgang (character).
+
+- dokumentart:
+
+  Document type: `"Drucksache"` or `"Plenarprotokoll"` (character).
+
+- vorgang_id:
+
+  Parent Vorgang id (character).
+
+- datum:
+
+  Date of associated document (character, ISO date).
+
+- aktualisiert:
+
+  Last update timestamp (character, ISO datetime).
+
+- fundstelle:
+
+  Document reference details (list-column).
+
+- urheber:
+
+  Authoring bodies (list-column).
+
+- ueberweisung:
+
+  Committee referrals (list-column).
+
+- aktivitaet_anzeige:
+
+  Up to 4 associated activities for display (list-column).
+
+- aktivitaet_anzahl:
+
+  Total number of associated activities (integer).
+
+- ressort:
+
+  Government departments involved (list-column).
+
+- beschlussfassung:
+
+  Voting decisions (list-column).
+
+- ratsdok:
+
+  EU Council document number (character or `NA`).
+
+- kom:
+
+  EU COM reference number (character or `NA`).
+
+- sek:
+
+  EU SEC reference number (character or `NA`).
+
+- mitberaten:
+
+  Co-deliberated Vorgangspositionen (list-column).
+
+- abstract:
+
+  Summary text (character or `NA`).
 
 ## See also
 

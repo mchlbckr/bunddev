@@ -26,21 +26,24 @@ abfallnavi_hausnummern(strassen_id, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per available house number entry.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per house number and columns:
 
-- Top-level scalar fields:
+- id:
 
-  One column per scalar field returned by the endpoint (for example ids,
-  names, labels, and codes).
+  Integer. House number identifier.
 
-- Nested fields:
+- nr:
 
-  Kept as list-columns.
+  Character. House number label.
 
-- date_time:
+- plz:
 
-  Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in
-  Europe/Berlin, when available.
+  Character. Postal code.
+
+- staticId:
+
+  Character. Static identifier (base64-encoded).
 
 ## See also
 

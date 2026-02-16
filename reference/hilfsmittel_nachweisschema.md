@@ -56,17 +56,28 @@ hilfsmittel_nachweisschema(
 
 ## Value
 
-A tibble with detail fields for one Nachweisschema resource. Columns
-follow upstream schema; nested values may appear as list-columns.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row for the requested verification schema and columns:
 
-- Scalar fields:
+- id:
 
-  One column per top-level scalar field returned by the endpoint.
+  Character. Schema identifier.
 
-- Nested fields:
+- name:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Character. Schema name.
+
+- produktmusterErforderlich:
+
+  Logical. Whether a product sample is required.
+
+- nachweisschemaKategorieZuweisungen:
+
+  List. Category assignments (nested objects).
+
+- nachweisAbschnittAnforderungen:
+
+  List. Section requirements (nested objects).
 
 ## Details
 

@@ -26,21 +26,16 @@ abfallnavi_ort(ort_id, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with metadata for the selected place.
+A one-row [tibble](https://tibble.tidyverse.org/reference/tibble.html)
+with columns:
 
-- Top-level scalar fields:
+- id:
 
-  One column per scalar field returned by the endpoint (for example ids,
-  names, labels, and codes).
+  Integer. Place identifier.
 
-- Nested fields:
+- name:
 
-  Kept as list-columns.
-
-- date_time:
-
-  Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in
-  Europe/Berlin, when available.
+  Character. Place name.
 
 ## See also
 

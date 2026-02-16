@@ -56,18 +56,35 @@ dwd_coast_warnings(
 
 ## Value
 
-A tibble with one row per coastal warning and columns: `region_id`,
-`type`, `level`, `description`, `description_text`, `event`, and
-`headline`.
+A tibble with one row per coastal warning:
 
-- Scalar fields:
+- region_id:
 
-  One column per top-level scalar field returned by the endpoint.
+  Warning region identifier (character).
 
-- Nested fields:
+- type:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Warning type code (numeric).
+
+- level:
+
+  Warning severity level (numeric).
+
+- description:
+
+  Warning description HTML (character).
+
+- description_text:
+
+  Warning description plain text (character).
+
+- event:
+
+  Event name (character).
+
+- headline:
+
+  Warning headline (character).
 
 ## Details
 

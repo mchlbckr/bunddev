@@ -26,29 +26,15 @@ nina_covid_rules(ars, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with `ars` and a list-column `data` containing COVID
-rules payload.
+A one-row tibble.
 
-- content_id:
+- ars:
 
-  Content identifier from NINA feeds (character), where applicable.
+  The ARS code used in the request (character).
 
-- response_country:
+- data:
 
-  Feed-level country code, when provided (character).
-
-- response_last_modified:
-
-  Feed-level modification timestamp in milliseconds (numeric).
-
-- last_modified_time / effective_time:
-
-  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
-
-- Endpoint-specific fields:
-
-  Additional scalar fields by endpoint; nested structures remain
-  list-columns.
+  COVID rules response payload (list).
 
 ## See also
 

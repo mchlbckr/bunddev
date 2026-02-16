@@ -115,20 +115,85 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A one-row tibble with list-response metadata: <code>num_found</code>, <code>cursor</code>, and <code>documents</code> (list-column).</p><dl><dt>num_found</dt>
-<dd><p>List endpoints: total number of matches (integer).</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per Vorgangsposition and columns:</p><dl><dt>id</dt>
+<dd><p>Character. Unique Vorgangsposition identifier.</p></dd>
 
-<dt>cursor</dt>
-<dd><p>List endpoints: cursor for pagination (character).</p></dd>
+<dt>vorgangsposition</dt>
+<dd><p>Character. Step description.</p></dd>
 
-<dt>documents</dt>
-<dd><p>List endpoints: returned records as list-column.</p></dd>
+<dt>gang</dt>
+<dd><p>Logical. Key step in legislative process.</p></dd>
 
-<dt>Detail fields</dt>
-<dd><p>Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.</p></dd>
+<dt>fortsetzung</dt>
+<dd><p>Logical. Continuation of prior debate.</p></dd>
+
+<dt>nachtrag</dt>
+<dd><p>Logical. Addendum entry.</p></dd>
+
+<dt>vorgangstyp</dt>
+<dd><p>Character. Parent Vorgang type.</p></dd>
+
+<dt>typ</dt>
+<dd><p>Character. Entity type, always <code>"Vorgangsposition"</code>.</p></dd>
+
+<dt>titel</dt>
+<dd><p>Character. Title of the parent Vorgang.</p></dd>
+
+<dt>dokumentart</dt>
+<dd><p>Character. Document type.</p></dd>
+
+<dt>vorgang_id</dt>
+<dd><p>Character. Parent Vorgang identifier.</p></dd>
+
+<dt>datum</dt>
+<dd><p>Character. Date of associated document.</p></dd>
+
+<dt>aktualisiert</dt>
+<dd><p>Character. Last update timestamp.</p></dd>
+
+<dt>aktivitaet_anzahl</dt>
+<dd><p>Integer. Total associated activities.</p></dd>
+
+<dt>ratsdok</dt>
+<dd><p>Character. EU Council document number.</p></dd>
+
+<dt>kom</dt>
+<dd><p>Character. EU COM reference number.</p></dd>
+
+<dt>sek</dt>
+<dd><p>Character. EU SEC reference number.</p></dd>
+
+<dt>abstract</dt>
+<dd><p>Character. Summary text.</p></dd>
+
+<dt>zuordnung</dt>
+<dd><p>List. Assignment to BT/BR/BV/EK.</p></dd>
+
+<dt>fundstelle</dt>
+<dd><p>List. Document reference details.</p></dd>
+
+<dt>urheber</dt>
+<dd><p>List. Authoring bodies.</p></dd>
+
+<dt>ueberweisung</dt>
+<dd><p>List. Committee referrals.</p></dd>
+
+<dt>aktivitaet_anzeige</dt>
+<dd><p>List. Up to 4 display activities.</p></dd>
+
+<dt>ressort</dt>
+<dd><p>List. Government departments involved.</p></dd>
+
+<dt>beschlussfassung</dt>
+<dd><p>List. Voting decisions.</p></dd>
+
+<dt>mitberaten</dt>
+<dd><p>List. Co-deliberated Vorgangspositionen.</p></dd>
 
 
-</dl></div>
+</dl><p>Wrapped in a one-row tibble with <code>num_found</code> (integer), <code>cursor</code>
+(character), and <code>documents</code> (list-column) when not yet unpacked.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns metadata for Vorgangsposition entries.</p>

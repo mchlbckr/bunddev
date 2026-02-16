@@ -26,28 +26,15 @@ nina_logo(filename, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with `filename` and raw `bytes` in a list-column.
+A one-row tibble.
 
-- content_id:
+- filename:
 
-  Content identifier from NINA feeds (character), where applicable.
+  Logo file name (character).
 
-- response_country:
+- bytes:
 
-  Feed-level country code, when provided (character).
-
-- response_last_modified:
-
-  Feed-level modification timestamp in milliseconds (numeric).
-
-- last_modified_time / effective_time:
-
-  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
-
-- Endpoint-specific fields:
-
-  Additional scalar fields by endpoint; nested structures remain
-  list-columns.
+  Raw file content (list of raw vectors).
 
 ## See also
 

@@ -26,21 +26,11 @@ nina_warning(content_id, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with detailed warning content rows (same common metadata
-columns as
-[`nina_warnings()`](https://buecker.ms/bunddev/reference/nina_warnings.md)).
-
-Includes `last_modified_time` and `effective_time` as POSIXct in
-Europe/Berlin.
-
-- Scalar fields:
-
-  One column per top-level scalar field returned by the endpoint.
-
-- Nested fields:
-
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+A tibble with detailed warning content rows. Same column structure as
+[`nina_warnings()`](https://buecker.ms/bunddev/reference/nina_warnings.md):
+entry scalar fields (snake_case), plus `content_id`, `response_country`,
+`response_last_modified`, `last_modified_time`, and `effective_time`
+(`POSIXct`, Europe/Berlin).
 
 ## Details
 

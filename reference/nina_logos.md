@@ -22,31 +22,16 @@ nina_logos(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per logo metadata entry; includes
-`last_modification_time` (`POSIXct`).
+A tibble with one row per logo metadata entry. Columns are bound from
+the upstream `logos` array, plus:
 
-Includes `last_modification_time` as POSIXct in Europe/Berlin.
-
-- content_id:
-
-  Content identifier from NINA feeds (character), where applicable.
-
-- response_country:
-
-  Feed-level country code, when provided (character).
-
-- response_last_modified:
+- last_modification_date:
 
   Feed-level modification timestamp in milliseconds (numeric).
 
-- last_modified_time / effective_time:
+- last_modification_time:
 
-  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
-
-- Endpoint-specific fields:
-
-  Additional scalar fields by endpoint; nested structures remain
-  list-columns.
+  Parsed modification timestamp (`POSIXct`, Europe/Berlin).
 
 ## See also
 

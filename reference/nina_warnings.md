@@ -22,20 +22,29 @@ nina_warnings(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per warning entry and common metadata columns
-including `content_id`, `last_modified_time`, and `effective_time`.
+A tibble with one row per warning entry. Columns include scalar fields
+from each entry (names converted to snake_case) plus the following added
+metadata:
 
-Includes `last_modified_time` and `effective_time` as POSIXct in
-Europe/Berlin.
+- content_id:
 
-- Scalar fields:
+  Content identifier from the NINA feed (character).
 
-  One column per top-level scalar field returned by the endpoint.
+- response_country:
 
-- Nested fields:
+  Feed-level country code (character).
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+- response_last_modified:
+
+  Feed-level modification timestamp in milliseconds (numeric).
+
+- last_modified_time:
+
+  Entry-level last-modified timestamp (`POSIXct`, Europe/Berlin).
+
+- effective_time:
+
+  Entry-level effective timestamp (`POSIXct`, Europe/Berlin).
 
 ## Details
 

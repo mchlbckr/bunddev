@@ -76,12 +76,38 @@ regionalatlas_query(
 
 ## Value
 
-A tibble with one row per returned feature and one column per attribute
-provided by the selected Regionalatlas table.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per geographic feature and columns:
 
-- Attribute columns:
+- ags:
 
-  One column per ArcGIS feature `attributes` field.
+  Character. Official municipality key (Amtlicher Gemeindeschluessel).
+
+- ags2:
+
+  Character. Join key for indicator tables.
+
+- gen:
+
+  Character. Region name.
+
+- typ:
+
+  Integer. Administrative level (1=Bundeslaender, 2=Regierungsbezirke,
+  3=Kreise, 5=Gemeinden).
+
+- jahr:
+
+  Integer. Reference year.
+
+- jahr2:
+
+  Integer. Indicator reference year.
+
+- ai...:
+
+  Numeric. Indicator values whose names depend on the selected table
+  (e.g. `ai0201` for population density).
 
 ## Details
 

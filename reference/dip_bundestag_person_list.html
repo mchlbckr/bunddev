@@ -115,20 +115,43 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A one-row tibble with list-response metadata: <code>num_found</code>, <code>cursor</code>, and <code>documents</code> (list-column).</p><dl><dt>num_found</dt>
-<dd><p>List endpoints: total number of matches (integer).</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per Person and columns:</p><dl><dt>id</dt>
+<dd><p>Character. Unique person identifier.</p></dd>
 
-<dt>cursor</dt>
-<dd><p>List endpoints: cursor for pagination (character).</p></dd>
+<dt>nachname</dt>
+<dd><p>Character. Last name.</p></dd>
 
-<dt>documents</dt>
-<dd><p>List endpoints: returned records as list-column.</p></dd>
+<dt>vorname</dt>
+<dd><p>Character. First name.</p></dd>
 
-<dt>Detail fields</dt>
-<dd><p>Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.</p></dd>
+<dt>namenszusatz</dt>
+<dd><p>Character. Name affix.</p></dd>
+
+<dt>typ</dt>
+<dd><p>Character. Entity type, always <code>"Person"</code>.</p></dd>
+
+<dt>wahlperiode</dt>
+<dd><p>Integer. Legislative period of first document.</p></dd>
+
+<dt>basisdatum</dt>
+<dd><p>Character. Date of first associated document.</p></dd>
+
+<dt>datum</dt>
+<dd><p>Character. Date of most recent document.</p></dd>
+
+<dt>aktualisiert</dt>
+<dd><p>Character. Last update timestamp.</p></dd>
+
+<dt>titel</dt>
+<dd><p>Character. Display title with role.</p></dd>
+
+<dt>person_roles</dt>
+<dd><p>List. Roles and alternative names.</p></dd>
 
 
-</dl></div>
+</dl><p>Wrapped in a one-row tibble with <code>num_found</code> (integer), <code>cursor</code>
+(character), and <code>documents</code> (list-column) when not yet unpacked.</p>
+    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.</p>

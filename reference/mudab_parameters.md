@@ -40,21 +40,36 @@ mudab_parameters(
 
 ## Value
 
-A tibble with one row per returned `MV_PARAMETER` record.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per parameter and columns:
 
-- Record fields:
+- metadataid:
 
-  One column per top-level scalar field of the selected MUDAB record
-  type.
+  Integer. Metadata identifier.
 
-- Nested fields:
+- COMPT_DS:
 
-  Stored as list-columns.
+  Character. Compartment code (BL, CW, CS, or CF).
 
-- datetime_time:
+- PARAMETER:
 
-  Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM`
-  exist.
+  Character. Parameter abbreviation.
+
+- PARAMETERGRUPPE:
+
+  Character. Parameter group code.
+
+- PARAM_NAME:
+
+  Character. Parameter name.
+
+- PARGROUP:
+
+  Character. Parameter group code (alternate).
+
+- PARAMGROUP_NAME:
+
+  Character. Parameter group name.
 
 ## Details
 

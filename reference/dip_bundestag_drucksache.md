@@ -59,24 +59,83 @@ dip_bundestag_drucksache(
 
 ## Value
 
-A one-row tibble with detailed fields for the selected Drucksache.
+A one-row tibble for the selected Drucksache:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Drucksache identifier (character).
 
-- cursor:
+- typ:
 
-  List endpoints: cursor for pagination (character).
+  Entity type, always `"Dokument"` (character).
 
-- documents:
+- dokumentart:
 
-  List endpoints: returned records as list-column.
+  Document type, always `"Drucksache"` (character).
 
-- Detail fields:
+- drucksachetyp:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Drucksache subtype, e.g. `"Antrag"` (character).
+
+- dokumentnummer:
+
+  Document number, e.g. `"19/1"` (character).
+
+- wahlperiode:
+
+  Legislative period (integer).
+
+- herausgeber:
+
+  Publisher: `"BT"` or `"BR"` (character).
+
+- datum:
+
+  Publication date (character, ISO date).
+
+- aktualisiert:
+
+  Last update timestamp (character, ISO datetime).
+
+- titel:
+
+  Title (character).
+
+- autoren_anzeige:
+
+  Up to 4 authors for display (list-column).
+
+- autoren_anzahl:
+
+  Total author count (integer).
+
+- fundstelle:
+
+  Document reference details (list-column).
+
+- pdf_hash:
+
+  MD5 checksum of the PDF file (character or `NA`).
+
+- urheber:
+
+  Authoring bodies (list-column).
+
+- vorgangsbezug:
+
+  Up to 4 related Vorgänge (list-column).
+
+- vorgangsbezug_anzahl:
+
+  Total number of related Vorgänge (integer).
+
+- ressort:
+
+  Government departments involved (list-column).
+
+- anlagen:
+
+  Appendix description (character or `NA`).
 
 ## See also
 

@@ -64,21 +64,56 @@ diga_charge_item_definitions(
 
 ## Value
 
-A tibble with one row per charge item definition resource (same
-structure rules as
-[`diga_device_definitions()`](https://buecker.ms/bunddev/reference/diga_device_definitions.md)).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per charge item definition and columns:
 
-- Resource fields:
+- resourceType:
 
-  One column per top-level scalar field in each FHIR `entry$resource`.
+  Character. FHIR resource type, always `"ChargeItemDefinition"`.
 
-- Nested resource fields:
+- id:
 
-  Stored as list-columns.
+  Character. FHIR resource identifier.
 
-- bundle:
+- url:
 
-  Returned as list-column when the response has no `entry` records.
+  Character. Canonical URL of the resource.
+
+- status:
+
+  Character. Publication status.
+
+- description:
+
+  Character. Description text.
+
+- meta:
+
+  List. Resource metadata (profile, timestamps).
+
+- identifier:
+
+  List. Business identifiers.
+
+- code:
+
+  List. Charge item code.
+
+- instance:
+
+  List. Referenced device definitions.
+
+- applicability:
+
+  List. Applicability conditions.
+
+- propertyGroup:
+
+  List. Pricing properties.
+
+- extension:
+
+  List. FHIR profile extensions.
 
 ## See also
 

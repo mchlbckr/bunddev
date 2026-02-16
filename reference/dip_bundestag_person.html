@@ -90,17 +90,38 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A one-row tibble with detailed fields for the selected person record.</p><dl><dt>num_found</dt>
-<dd><p>List endpoints: total number of matches (integer).</p></dd>
+    <p>A one-row tibble for the selected person:</p><dl><dt>id</dt>
+<dd><p>Person identifier (character).</p></dd>
 
-<dt>cursor</dt>
-<dd><p>List endpoints: cursor for pagination (character).</p></dd>
+<dt>nachname</dt>
+<dd><p>Last name (character).</p></dd>
 
-<dt>documents</dt>
-<dd><p>List endpoints: returned records as list-column.</p></dd>
+<dt>vorname</dt>
+<dd><p>First name (character).</p></dd>
 
-<dt>Detail fields</dt>
-<dd><p>Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.</p></dd>
+<dt>namenszusatz</dt>
+<dd><p>Name affix, e.g. <code>"von der"</code> (character or <code>NA</code>).</p></dd>
+
+<dt>typ</dt>
+<dd><p>Entity type, always <code>"Person"</code> (character).</p></dd>
+
+<dt>wahlperiode</dt>
+<dd><p>Legislative period of first associated document (integer or <code>NA</code>).</p></dd>
+
+<dt>basisdatum</dt>
+<dd><p>Date of first associated document (character or <code>NA</code>).</p></dd>
+
+<dt>datum</dt>
+<dd><p>Date of most recent associated document (character or <code>NA</code>).</p></dd>
+
+<dt>aktualisiert</dt>
+<dd><p>Last update timestamp (character, ISO datetime).</p></dd>
+
+<dt>titel</dt>
+<dd><p>Display title with role (character).</p></dd>
+
+<dt>person_roles</dt>
+<dd><p>Roles and alternative names (list-column).</p></dd>
 
 
 </dl></div>

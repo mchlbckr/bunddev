@@ -22,30 +22,11 @@ nina_version(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with version metadata fields.
+A one-row tibble.
 
-Includes `last_modification_time` as POSIXct in Europe/Berlin.
+- data:
 
-- content_id:
-
-  Content identifier from NINA feeds (character), where applicable.
-
-- response_country:
-
-  Feed-level country code, when provided (character).
-
-- response_last_modified:
-
-  Feed-level modification timestamp in milliseconds (numeric).
-
-- last_modified_time / effective_time:
-
-  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
-
-- Endpoint-specific fields:
-
-  Additional scalar fields by endpoint; nested structures remain
-  list-columns.
+  Version/data-version response payload (list).
 
 ## See also
 

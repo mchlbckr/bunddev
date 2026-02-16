@@ -59,24 +59,59 @@ dip_bundestag_aktivitaet(
 
 ## Value
 
-A one-row tibble with detailed fields for the selected Aktivitaet.
+A one-row tibble for the selected Aktivitaet:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Aktivitaet identifier (character).
 
-- cursor:
+- aktivitaetsart:
 
-  List endpoints: cursor for pagination (character).
+  Activity type, e.g. `"Rede"` (character).
 
-- documents:
+- typ:
 
-  List endpoints: returned records as list-column.
+  Entity type, always `"Aktivität"` (character).
 
-- Detail fields:
+- dokumentart:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Document type: `"Drucksache"` or `"Plenarprotokoll"` (character).
+
+- wahlperiode:
+
+  Legislative period (integer).
+
+- datum:
+
+  Date of associated document (character, ISO date).
+
+- aktualisiert:
+
+  Last update timestamp (character, ISO datetime).
+
+- titel:
+
+  Title (character).
+
+- fundstelle:
+
+  Document reference details (list-column).
+
+- vorgangsbezug:
+
+  Up to 4 related Vorgänge (list-column).
+
+- vorgangsbezug_anzahl:
+
+  Total number of related Vorgänge (integer).
+
+- deskriptor:
+
+  Thesaurus descriptors (list-column).
+
+- abstract:
+
+  Summary text (character or `NA`).
 
 ## See also
 

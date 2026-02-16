@@ -58,20 +58,16 @@ psm_kultur_gruppen(params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with crop group catalog entries.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per crop-to-group mapping and columns:
 
-- Item fields:
+- KULTUR:
 
-  One column per top-level field of each `items` element (`m_row$$`
-  removed).
+  Character. Crop code (child).
 
-- Nested fields:
+- KULTUR_GRUPPE:
 
-  Stored as list-columns.
-
-- response:
-
-  Fallback payload for non-item responses (list-column).
+  Character. Crop group code (parent).
 
 ## Details
 

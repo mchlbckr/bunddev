@@ -62,17 +62,28 @@ psm_mittel(kennr = NULL, params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per returned API item. Column names follow the
-upstream BVL field names; nested objects remain list-columns.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per plant protection product and columns:
 
-- Scalar fields:
+- FORMULIERUNG_ART:
 
-  One column per top-level scalar field returned by the endpoint.
+  Character. Formulation type code.
 
-- Nested fields:
+- KENNR:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Character. Product identification number.
+
+- MITTELNAME:
+
+  Character. Product trade name.
+
+- ZUL_ENDE:
+
+  Character. Approval end date.
+
+- ZUL_ERSTMALIG_AM:
+
+  Character. Initial approval date.
 
 ## Details
 

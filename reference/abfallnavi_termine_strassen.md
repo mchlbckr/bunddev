@@ -35,19 +35,24 @@ abfallnavi_termine_strassen(
 
 ## Value
 
-A tibble with one row per collection date and columns `date`,
-`fraction`, and `date_time` (`POSIXct` in Europe/Berlin) when available.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per collection date and columns:
 
-Includes `date_time` as POSIXct in Europe/Berlin.
+- id:
 
-- Scalar fields:
+  Integer. Collection event identifier.
 
-  One column per top-level scalar field returned by the endpoint.
+- bezirk:
 
-- Nested fields:
+  List. District information for this collection.
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+- datum:
+
+  Character. Collection date (YYYY-MM-DD).
+
+- date_time:
+
+  POSIXct. Parsed collection date (Europe/Berlin).
 
 ## See also
 

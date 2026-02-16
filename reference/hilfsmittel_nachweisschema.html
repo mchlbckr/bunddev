@@ -96,13 +96,21 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with detail fields for one Nachweisschema resource. Columns
-follow upstream schema; nested values may appear as list-columns.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row for the requested
+verification schema and columns:</p><dl><dt>id</dt>
+<dd><p>Character. Schema identifier.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>name</dt>
+<dd><p>Character. Schema name.</p></dd>
+
+<dt>produktmusterErforderlich</dt>
+<dd><p>Logical. Whether a product sample is required.</p></dd>
+
+<dt>nachweisschemaKategorieZuweisungen</dt>
+<dd><p>List. Category assignments (nested objects).</p></dd>
+
+<dt>nachweisAbschnittAnforderungen</dt>
+<dd><p>List. Section requirements (nested objects).</p></dd>
 
 
 </dl></div>

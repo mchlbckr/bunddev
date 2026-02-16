@@ -67,13 +67,32 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with detailed warning content rows (same common metadata columns as <code><a href="nina_warnings.html">nina_warnings()</a></code>).</p>
-<p>Includes <code>sent_time</code> as POSIXct in Europe/Berlin.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A one-row tibble with CAP warning fields.</p><dl><dt>identifier</dt>
+<dd><p>Warning identifier (character).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>sender</dt>
+<dd><p>Sender identifier (character).</p></dd>
+
+<dt>sent</dt>
+<dd><p>Sent timestamp string (character).</p></dd>
+
+<dt>status</dt>
+<dd><p>Alert status (character).</p></dd>
+
+<dt>msg_type</dt>
+<dd><p>Message type (character).</p></dd>
+
+<dt>scope</dt>
+<dd><p>Alert scope (character).</p></dd>
+
+<dt>code</dt>
+<dd><p>Alert code entries (list).</p></dd>
+
+<dt>info</dt>
+<dd><p>Alert info blocks (list).</p></dd>
+
+<dt>sent_time</dt>
+<dd><p>Parsed sent timestamp (<code>POSIXct</code>, Europe/Berlin).</p></dd>
 
 
 </dl></div>

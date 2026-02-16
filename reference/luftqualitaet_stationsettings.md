@@ -54,17 +54,10 @@ luftqualitaet_stationsettings(params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per station-settings metadata entry.
-
-- Indexed value columns:
-
-  Columns are derived from API `indices` metadata and represent scalar
-  values for each returned record.
-
-- Index key column:
-
-  Included when the API provides a named index key (for example station
-  id/date key).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per station setting. Column names are derived from the `indices`
+metadata in the API response and typically include `station setting id`,
+`station setting name`, and `station setting short name`.
 
 ## Details
 

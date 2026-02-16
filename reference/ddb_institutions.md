@@ -76,22 +76,35 @@ ddb_institutions(
 
 ## Value
 
-A tibble with institution entries when the API returns a homogeneous
-list; otherwise a one-row tibble with list-column `response`.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per institution and columns:
 
-- Item fields:
+- id:
 
-  For homogeneous list responses, one column per top-level scalar item
-  field.
+  Character. Institution identifier.
 
-- Nested item fields:
+- label:
 
-  Stored as list-columns.
+  Character. Display name.
 
-- response:
+- latitude:
 
-  For non-homogeneous responses, a single list-column containing the
-  full payload.
+  Numeric. Geographic latitude.
+
+- longitude:
+
+  Numeric. Geographic longitude.
+
+- sector:
+
+  Character. Cultural sector code.
+
+- children:
+
+  List. Nested child institutions.
+
+Falls back to a one-row tibble with list-column `response` when the API
+returns a non-homogeneous payload.
 
 ## Details
 

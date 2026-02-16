@@ -63,13 +63,26 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with state-name entries and common metadata columns as
-returned by <code><a href="travelwarning_warnings.html">travelwarning_warnings()</a></code>.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A tibble with state-name entries and the same metadata columns as
+<code><a href="travelwarning_warnings.html">travelwarning_warnings()</a></code>: <code>content_id</code>, <code>parent_content_id</code>,
+<code>response_country</code>, <code>response_last_modified</code>, <code>response_last_modified_time</code>,
+<code>last_modified_time</code>, <code>effective_time</code>, plus snake_cased entry fields.</p><dl><dt>content_id</dt>
+<dd><p>Entry/content identifier (character).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>parent_content_id</dt>
+<dd><p>Parent identifier (character).</p></dd>
+
+<dt>response_country</dt>
+<dd><p>Country code from response metadata (character).</p></dd>
+
+<dt>response_last_modified</dt>
+<dd><p>Feed-level modification timestamp (numeric).</p></dd>
+
+<dt>last_modified_time / effective_time</dt>
+<dd><p>Parsed <code>POSIXct</code> (Europe/Berlin).</p></dd>
+
+<dt><code>&lt;entry_field&gt;</code></dt>
+<dd><p>Additional snake_cased columns from each entry.</p></dd>
 
 
 </dl></div>

@@ -51,23 +51,21 @@ marktstammdaten_filters_gasverbrauch(
 
 ## Value
 
-A tibble with filter definitions for gas consumption.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per available filter and columns:
 
-- Filter/entry fields:
+- FilterName:
 
-  One column per top-level scalar field returned by MaStR.
+  Character. Machine-readable filter field name.
 
-- Nested fields:
+- ListObject:
 
-  Stored as list-columns.
+  List. Selectable options (named with `Name`/`Value`).
 
-- total:
+- Type:
 
-  Entry endpoints: total number of matching records (numeric).
-
-- `*Datum_time`:
-
-  Parsed `POSIXct` columns added for date fields matching `*Datum`.
+  Character. Filter data type (`"text"`, `"number"`, `"multidropdown"`,
+  `"date"`, or `"boolean"`).
 
 ## Details
 

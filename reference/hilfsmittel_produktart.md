@@ -56,17 +56,68 @@ hilfsmittel_produktart(
 
 ## Value
 
-A tibble with detail fields for one product type. Columns follow
-upstream schema; nested values may appear as list-columns.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row for the requested product type and columns:
 
-- Scalar fields:
+- id:
 
-  One column per top-level scalar field returned by the endpoint.
+  Character. Product-type identifier.
 
-- Nested fields:
+- versionId:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Character. Internal version identifier.
+
+- nummer:
+
+  Integer. Product-type number.
+
+- beschreibung:
+
+  Character. Description text.
+
+- bezeichnung:
+
+  Character. Product-type name.
+
+- untergruppeId:
+
+  Character. Parent subgroup identifier.
+
+- indikation:
+
+  Character. Indication text.
+
+- siebenSteller:
+
+  Character. Seven-digit code.
+
+- isNnElement:
+
+  Logical. Internal flag (usage unclear).
+
+- konstruktionsmerkmalschemaId:
+
+  Character. Construction-feature schema id.
+
+- untergruppe:
+
+  Integer. Always `NA`.
+
+- aufnahmeDatum:
+
+  Character. Admission date (ISO-8601).
+
+- aenderungsDatum:
+
+  Character. Last-modified date (ISO-8601).
+
+- aufnahmeDatum_time:
+
+  POSIXct. Parsed admission date (Europe/Berlin).
+
+- aenderungsDatum_time:
+
+  POSIXct. Parsed last-modified date (Europe/Berlin).
 
 ## Details
 

@@ -26,17 +26,32 @@ hilfsmittel_tree(level, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per tree node at the requested level. Columns
-follow upstream schema; repeated nested values are list-columns.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per tree node and columns:
 
-- Scalar fields:
+- id:
 
-  One column per top-level scalar field returned by the endpoint.
+  Character. Node identifier.
 
-- Nested fields:
+- parentId:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Character. Parent node identifier (`NA` for roots).
+
+- displayValue:
+
+  Character. Node display label.
+
+- xStellerDisplayValue:
+
+  Character. xSteller with label.
+
+- xSteller:
+
+  Character. Position code of the node.
+
+- level:
+
+  Integer. Tree depth level.
 
 ## Details
 

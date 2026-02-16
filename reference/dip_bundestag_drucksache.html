@@ -95,17 +95,62 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A one-row tibble with detailed fields for the selected Drucksache.</p><dl><dt>num_found</dt>
-<dd><p>List endpoints: total number of matches (integer).</p></dd>
+    <p>A one-row tibble for the selected Drucksache:</p><dl><dt>id</dt>
+<dd><p>Drucksache identifier (character).</p></dd>
 
-<dt>cursor</dt>
-<dd><p>List endpoints: cursor for pagination (character).</p></dd>
+<dt>typ</dt>
+<dd><p>Entity type, always <code>"Dokument"</code> (character).</p></dd>
 
-<dt>documents</dt>
-<dd><p>List endpoints: returned records as list-column.</p></dd>
+<dt>dokumentart</dt>
+<dd><p>Document type, always <code>"Drucksache"</code> (character).</p></dd>
 
-<dt>Detail fields</dt>
-<dd><p>Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.</p></dd>
+<dt>drucksachetyp</dt>
+<dd><p>Drucksache subtype, e.g. <code>"Antrag"</code> (character).</p></dd>
+
+<dt>dokumentnummer</dt>
+<dd><p>Document number, e.g. <code>"19/1"</code> (character).</p></dd>
+
+<dt>wahlperiode</dt>
+<dd><p>Legislative period (integer).</p></dd>
+
+<dt>herausgeber</dt>
+<dd><p>Publisher: <code>"BT"</code> or <code>"BR"</code> (character).</p></dd>
+
+<dt>datum</dt>
+<dd><p>Publication date (character, ISO date).</p></dd>
+
+<dt>aktualisiert</dt>
+<dd><p>Last update timestamp (character, ISO datetime).</p></dd>
+
+<dt>titel</dt>
+<dd><p>Title (character).</p></dd>
+
+<dt>autoren_anzeige</dt>
+<dd><p>Up to 4 authors for display (list-column).</p></dd>
+
+<dt>autoren_anzahl</dt>
+<dd><p>Total author count (integer).</p></dd>
+
+<dt>fundstelle</dt>
+<dd><p>Document reference details (list-column).</p></dd>
+
+<dt>pdf_hash</dt>
+<dd><p>MD5 checksum of the PDF file (character or <code>NA</code>).</p></dd>
+
+<dt>urheber</dt>
+<dd><p>Authoring bodies (list-column).</p></dd>
+
+<dt>vorgangsbezug</dt>
+<dd><p>Up to 4 related Vorgänge (list-column).</p></dd>
+
+<dt>vorgangsbezug_anzahl</dt>
+<dd><p>Total number of related Vorgänge (integer).</p></dd>
+
+<dt>ressort</dt>
+<dd><p>Government departments involved (list-column).</p></dd>
+
+<dt>anlagen</dt>
+<dd><p>Appendix description (character or <code>NA</code>).</p></dd>
 
 
 </dl></div>

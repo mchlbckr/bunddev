@@ -22,17 +22,11 @@ luftqualitaet_measures_limits(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with available date limits for the endpoint.
-
-- Indexed value columns:
-
-  Columns are derived from API `indices` metadata and represent scalar
-  values for each returned record.
-
-- Index key column:
-
-  Included when the API provides a named index key (for example station
-  id/date key).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per scope/component/station combination. Column names are derived
+from the `indices` metadata in the API response and typically include
+`scope id`, `component id`, `station id`, `limit date start min (CET)`,
+and `limit date start max (CET)`.
 
 ## Details
 

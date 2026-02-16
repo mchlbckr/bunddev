@@ -26,16 +26,17 @@ bundestag_video_feed(content_id, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with video feed fields extracted from XML.
+A one-row tibble with video feed fields extracted from XML. Column names
+correspond to XML element names.
 
-- XML child-tag columns:
+- `<tag>`:
 
-  One column per scalar child element in each `<item>` entry (or
-  root-level document field for single-document endpoints).
+  One column per unique scalar child element of the XML root
+  (character). Exact names depend on the XML document structure.
 
-- Repeated child tags:
+- `<repeated_tag>`:
 
-  Stored as list-columns.
+  List-column when a child element name appears more than once.
 
 ## Details
 

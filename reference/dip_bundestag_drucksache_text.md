@@ -59,25 +59,14 @@ dip_bundestag_drucksache_text(
 
 ## Value
 
-A one-row tibble with detailed fields for the selected Drucksache text
-record.
+A one-row tibble for the selected Drucksache text record. Contains all
+columns from
+[`dip_bundestag_drucksache()`](https://buecker.ms/bunddev/reference/dip_bundestag_drucksache.md)
+plus:
 
-- num_found:
+- text:
 
-  List endpoints: total number of matches (integer).
-
-- cursor:
-
-  List endpoints: cursor for pagination (character).
-
-- documents:
-
-  List endpoints: returned records as list-column.
-
-- Detail fields:
-
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Full document text (character).
 
 ## See also
 

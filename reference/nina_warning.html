@@ -67,16 +67,11 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with detailed warning content rows (same common metadata columns as <code><a href="nina_warnings.html">nina_warnings()</a></code>).</p>
-<p>Includes <code>last_modified_time</code> and <code>effective_time</code> as POSIXct in Europe/Berlin.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
-
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
-
-
-</dl></div>
+    <p>A tibble with detailed warning content rows. Same column structure as
+<code><a href="nina_warnings.html">nina_warnings()</a></code>: entry scalar fields (snake_case), plus <code>content_id</code>,
+<code>response_country</code>, <code>response_last_modified</code>, <code>last_modified_time</code>, and
+<code>effective_time</code> (<code>POSIXct</code>, Europe/Berlin).</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns full travel warning content, including HTML blocks.</p>

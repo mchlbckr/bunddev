@@ -26,20 +26,43 @@ nina_warning_json(identifier, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with detailed warning content rows (same common metadata
-columns as
-[`nina_warnings()`](https://buecker.ms/bunddev/reference/nina_warnings.md)).
+A one-row tibble with CAP warning fields.
 
-Includes `sent_time` as POSIXct in Europe/Berlin.
+- identifier:
 
-- Scalar fields:
+  Warning identifier (character).
 
-  One column per top-level scalar field returned by the endpoint.
+- sender:
 
-- Nested fields:
+  Sender identifier (character).
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+- sent:
+
+  Sent timestamp string (character).
+
+- status:
+
+  Alert status (character).
+
+- msg_type:
+
+  Message type (character).
+
+- scope:
+
+  Alert scope (character).
+
+- code:
+
+  Alert code entries (list).
+
+- info:
+
+  Alert info blocks (list).
+
+- sent_time:
+
+  Parsed sent timestamp (`POSIXct`, Europe/Berlin).
 
 ## Details
 

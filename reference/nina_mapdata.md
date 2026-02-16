@@ -32,28 +32,45 @@ nina_mapdata(
 
 A tibble with one row per map-data warning entry.
 
-Includes `start_date_time` as POSIXct in Europe/Berlin.
+- id:
 
-- content_id:
+  Warning identifier (character).
 
-  Content identifier from NINA feeds (character), where applicable.
+- version:
 
-- response_country:
+  Warning version (integer).
 
-  Feed-level country code, when provided (character).
+- start_date:
 
-- response_last_modified:
+  Start date string from the API (character).
 
-  Feed-level modification timestamp in milliseconds (numeric).
+- severity:
 
-- last_modified_time / effective_time:
+  Warning severity level (character).
 
-  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
+- urgency:
 
-- Endpoint-specific fields:
+  Warning urgency level (character).
 
-  Additional scalar fields by endpoint; nested structures remain
-  list-columns.
+- type:
+
+  Warning type (character).
+
+- i18n_title:
+
+  Internationalised title entries (list).
+
+- trans_keys:
+
+  Translation key entries (list).
+
+- start_date_time:
+
+  Parsed start date (`POSIXct`, Europe/Berlin).
+
+- source:
+
+  Map data source used in the request (character).
 
 ## Details
 

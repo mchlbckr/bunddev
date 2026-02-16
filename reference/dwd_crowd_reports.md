@@ -51,18 +51,43 @@ dwd_crowd_reports(
 
 ## Value
 
-A tibble with one row per crowd report and columns including
-`meldung_id`, `timestamp`, `timestamp_time`, `lat`, `lon`, `place`,
-`category`, `auspraegung`, and `zusatz_attribute` (list-column).
+A tibble with one row per crowd report:
 
-- Scalar fields:
+- meldung_id:
 
-  One column per top-level scalar field returned by the endpoint.
+  Report identifier (numeric).
 
-- Nested fields:
+- timestamp:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Report timestamp in milliseconds (numeric).
+
+- timestamp_time:
+
+  Parsed report time (POSIXct).
+
+- lat:
+
+  Latitude (character).
+
+- lon:
+
+  Longitude (character).
+
+- place:
+
+  Place name (character).
+
+- category:
+
+  Weather category (character).
+
+- auspraegung:
+
+  Severity/manifestation (character).
+
+- zusatz_attribute:
+
+  Additional attributes (list-column).
 
 ## Details
 

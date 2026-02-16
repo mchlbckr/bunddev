@@ -101,14 +101,17 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A one-row tibble with raw downloaded file bytes in a list-column.</p><dl><dt>Top-level scalar fields</dt>
-<dd><p>One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).</p></dd>
+    <p>A one-row <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with columns:</p><dl><dt>region</dt>
+<dd><p>Character. Region code passed to the request.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns.</p></dd>
+<dt>format</dt>
+<dd><p>Character. File format ("pdf" or "ics").</p></dd>
 
-<dt>date_time</dt>
-<dd><p>Added by <code>abfallnavi_termine_*()</code> from <code>datum</code> as <code>POSIXct</code> in Europe/Berlin, when available.</p></dd>
+<dt>jahr</dt>
+<dd><p>Integer. Year passed to the request.</p></dd>
+
+<dt>bytes</dt>
+<dd><p>List. Raw file bytes (raw vector).</p></dd>
 
 
 </dl></div>

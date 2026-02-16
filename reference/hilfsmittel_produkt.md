@@ -56,17 +56,96 @@ hilfsmittel_produkt(
 
 ## Value
 
-A tibble with detail fields for one product. Columns follow upstream
-schema; nested values may appear as list-columns.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row for the requested product and columns:
 
-- Scalar fields:
+- organisationId:
 
-  One column per top-level scalar field returned by the endpoint.
+  Character. Organisation identifier.
 
-- Nested fields:
+- produktartId:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Character. Product-type identifier.
+
+- nummer:
+
+  Integer. Sequential product number.
+
+- name:
+
+  Character. Product name.
+
+- artikelnummern:
+
+  List. Article numbers (character vector).
+
+- typenAusfuehrungen:
+
+  List. Type/model variants (character vector).
+
+- aufnahmeDatum:
+
+  Character. Admission date (ISO-8601).
+
+- aenderungsDatum:
+
+  Character. Last-modified date (ISO-8601).
+
+- zehnSteller:
+
+  Character. Ten-digit product code.
+
+- herstellerName:
+
+  Character. Manufacturer name.
+
+- istHerausgenommen:
+
+  Logical. Whether product is withdrawn.
+
+- istAbrechnungsposition:
+
+  Logical. Whether product is a billing item.
+
+- id:
+
+  Character. Product identifier.
+
+- displayName:
+
+  Character. Combined display label.
+
+- produktgruppeNummer:
+
+  Integer. Product-group number.
+
+- anwendungsortNummer:
+
+  Integer. Application-site number.
+
+- untergruppeNummer:
+
+  Integer. Subgroup number.
+
+- produktartNummer:
+
+  Integer. Product-type number.
+
+- produktartBezeichnung:
+
+  Character. Product-type name.
+
+- kontruktionsmerkmale:
+
+  List. Construction features (nested objects).
+
+- aufnahmeDatum_time:
+
+  POSIXct. Parsed admission date (Europe/Berlin).
+
+- aenderungsDatum_time:
+
+  POSIXct. Parsed last-modified date (Europe/Berlin).
 
 ## Details
 

@@ -76,20 +76,88 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per item and columns:
-<code>section</code>, <code>sophora_id</code>, <code>external_id</code>, <code>title</code>, <code>date</code>, <code>date_time</code>,
-<code>topline</code>, <code>first_sentence</code>, <code>details</code>, <code>detailsweb</code>, <code>share_url</code>,
-<code>update_check_url</code>, <code>region_id</code>, <code>ressort</code>, <code>type</code>, <code>breaking_news</code>,
-<code>copyright</code>, <code>alttext</code>, and list-columns <code>teaser_image</code>, <code>tracking</code>, <code>tags</code>,
-<code>images</code>, <code>streams</code>, <code>geotags</code>, <code>branding_image</code>, <code>first_frame</code>.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A tibble with one row per item:</p><dl><dt>section</dt>
+<dd><p>Feed section, e.g. "news" or "regional" (character).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>sophora_id</dt>
+<dd><p>Sophora CMS identifier (character).</p></dd>
+
+<dt>external_id</dt>
+<dd><p>External identifier (character).</p></dd>
+
+<dt>title</dt>
+<dd><p>Article title (character).</p></dd>
+
+<dt>date</dt>
+<dd><p>Publication date string (character).</p></dd>
+
+<dt>date_time</dt>
+<dd><p>Parsed publication date (POSIXct).</p></dd>
+
+<dt>topline</dt>
+<dd><p>Topline/kicker text (character).</p></dd>
+
+<dt>first_sentence</dt>
+<dd><p>First sentence of the article (character).</p></dd>
+
+<dt>details</dt>
+<dd><p>API details URL (character).</p></dd>
+
+<dt>detailsweb</dt>
+<dd><p>Web details URL (character).</p></dd>
+
+<dt>share_url</dt>
+<dd><p>Share URL (character).</p></dd>
+
+<dt>update_check_url</dt>
+<dd><p>Update-check URL (character).</p></dd>
+
+<dt>region_id</dt>
+<dd><p>Region identifier (character).</p></dd>
+
+<dt>ressort</dt>
+<dd><p>Editorial section/ressort (character).</p></dd>
+
+<dt>type</dt>
+<dd><p>Content type (character).</p></dd>
+
+<dt>breaking_news</dt>
+<dd><p>Whether the item is breaking news (logical).</p></dd>
+
+<dt>copyright</dt>
+<dd><p>Copyright notice (character).</p></dd>
+
+<dt>alttext</dt>
+<dd><p>Image alt text (character).</p></dd>
+
+<dt>teaser_image</dt>
+<dd><p>Teaser image metadata (list-column).</p></dd>
+
+<dt>tracking</dt>
+<dd><p>Tracking metadata (list-column).</p></dd>
+
+<dt>tags</dt>
+<dd><p>Associated tags (list-column).</p></dd>
+
+<dt>images</dt>
+<dd><p>Image collection (list-column).</p></dd>
+
+<dt>streams</dt>
+<dd><p>Media streams (list-column).</p></dd>
+
+<dt>geotags</dt>
+<dd><p>Geographic tags (list-column).</p></dd>
+
+<dt>branding_image</dt>
+<dd><p>Branding image metadata (list-column).</p></dd>
+
+<dt>first_frame</dt>
+<dd><p>First video frame metadata (list-column).</p></dd>
 
 
-</dl></div>
+</dl><p>With <code>flatten = TRUE</code>, the list-columns are transformed according to
+<code>flatten_mode</code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Fetches the Tagesschau homepage feed as provided by the ARD Tagesschau API.

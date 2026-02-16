@@ -58,20 +58,16 @@ psm_schadorg_gruppen(params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with pest/pathogen group catalog entries.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per pest-to-group mapping and columns:
 
-- Item fields:
+- SCHADORG:
 
-  One column per top-level field of each `items` element (`m_row$$`
-  removed).
+  Character. Pest organism code (child).
 
-- Nested fields:
+- SCHADORG_GRUPPE:
 
-  Stored as list-columns.
-
-- response:
-
-  Fallback payload for non-item responses (list-column).
+  Character. Pest group code (parent).
 
 ## Details
 

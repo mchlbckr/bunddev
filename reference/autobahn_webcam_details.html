@@ -80,21 +80,9 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A one-row tibble for the selected webcam with the same guaranteed
-columns as <code><a href="autobahn_webcams.html">autobahn_webcams()</a></code>: <code>road_id</code> (typically <code>NA</code> for detail calls),
-<code>identifier</code>, <code>title</code>, <code>subtitle</code>, <code>display_type</code>, <code>icon</code>, <code>is_blocked</code>,
-<code>future</code>, <code>start_timestamp</code>, <code>start_time</code>, <code>point</code>, <code>extent</code>,
-<code>coordinate_lat</code>, <code>coordinate_long</code>, <code>description</code>, <code>footer</code>,
-<code>route_recommendation</code> (list-column), and
-<code>lorry_parking_feature_icons</code> (list-column).</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
-
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
-
-
-</dl></div>
+    <p>A one-row tibble for the selected webcam with the same columns as
+<code><a href="autobahn_webcams.html">autobahn_webcams()</a></code>. <code>road_id</code> is typically <code>NA</code> for detail calls.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns full details for a single webcam entry.

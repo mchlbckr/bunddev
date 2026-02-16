@@ -106,14 +106,84 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per approved application item.</p><dl><dt>Item fields</dt>
-<dd><p>One column per top-level field of each <code>items</code> element (<code>m_row$$</code> removed).</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per approved application and
+columns:</p><dl><dt>ANTRAGNR</dt>
+<dd><p>Character. Application request number.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Stored as list-columns.</p></dd>
+<dt>ANWENDUNGEN_ANZ_JE_BEFALL</dt>
+<dd><p>Numeric. Applications per infestation.</p></dd>
 
-<dt>response</dt>
-<dd><p>Fallback payload for non-item responses (list-column).</p></dd>
+<dt>ANWENDUNGEN_MAX_JE_KULTUR</dt>
+<dd><p>Numeric. Max applications per crop.</p></dd>
+
+<dt>ANWENDUNGEN_MAX_JE_VEGETATION</dt>
+<dd><p>Numeric. Max applications per vegetation period.</p></dd>
+
+<dt>ANWENDUNGSBEREICH</dt>
+<dd><p>Character. Area of use code.</p></dd>
+
+<dt>ANWENDUNGSTECHNIK</dt>
+<dd><p>Character. Application technique.</p></dd>
+
+<dt>AWGNR</dt>
+<dd><p>Character. Application group number.</p></dd>
+
+<dt>AWG_ID</dt>
+<dd><p>Character. Application identifier (16 chars).</p></dd>
+
+<dt>AW_ABSTAND_BIS</dt>
+<dd><p>Numeric. Application interval upper bound.</p></dd>
+
+<dt>AW_ABSTAND_EINHEIT</dt>
+<dd><p>Character. Interval unit.</p></dd>
+
+<dt>AW_ABSTAND_VON</dt>
+<dd><p>Numeric. Application interval lower bound.</p></dd>
+
+<dt>EINSATZGEBIET</dt>
+<dd><p>Character. Field of use code.</p></dd>
+
+<dt>GENEHMIGUNG</dt>
+<dd><p>Character. Approval flag.</p></dd>
+
+<dt>HUK</dt>
+<dd><p>Character. Home-and-garden flag.</p></dd>
+
+<dt>KENNR</dt>
+<dd><p>Character. Product identification number.</p></dd>
+
+<dt>KULTUR_ERL</dt>
+<dd><p>Character. Crop clarification text.</p></dd>
+
+<dt>SCHADORG_ERL</dt>
+<dd><p>Character. Pest clarification text.</p></dd>
+
+<dt>STADIUM_KULTUR_BEM</dt>
+<dd><p>Character. Crop growth-stage note.</p></dd>
+
+<dt>STADIUM_KULTUR_BIS</dt>
+<dd><p>Character. Crop growth-stage upper bound.</p></dd>
+
+<dt>STADIUM_KULTUR_KODELISTE</dt>
+<dd><p>Numeric. Crop growth-stage code list.</p></dd>
+
+<dt>STADIUM_KULTUR_VON</dt>
+<dd><p>Character. Crop growth-stage lower bound.</p></dd>
+
+<dt>STADIUM_SCHADORG_BEM</dt>
+<dd><p>Character. Pest growth-stage note.</p></dd>
+
+<dt>STADIUM_SCHADORG_BIS</dt>
+<dd><p>Character. Pest growth-stage upper bound.</p></dd>
+
+<dt>STADIUM_SCHADORG_KODELISTE</dt>
+<dd><p>Numeric. Pest growth-stage code list.</p></dd>
+
+<dt>STADIUM_SCHADORG_VON</dt>
+<dd><p>Character. Pest growth-stage lower bound.</p></dd>
+
+<dt>WIRKUNGSBEREICH</dt>
+<dd><p>Character. Efficacy area code.</p></dd>
 
 
 </dl></div>

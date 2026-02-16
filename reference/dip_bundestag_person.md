@@ -54,24 +54,51 @@ dip_bundestag_person(person_id, params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with detailed fields for the selected person record.
+A one-row tibble for the selected person:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Person identifier (character).
 
-- cursor:
+- nachname:
 
-  List endpoints: cursor for pagination (character).
+  Last name (character).
 
-- documents:
+- vorname:
 
-  List endpoints: returned records as list-column.
+  First name (character).
 
-- Detail fields:
+- namenszusatz:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Name affix, e.g. `"von der"` (character or `NA`).
+
+- typ:
+
+  Entity type, always `"Person"` (character).
+
+- wahlperiode:
+
+  Legislative period of first associated document (integer or `NA`).
+
+- basisdatum:
+
+  Date of first associated document (character or `NA`).
+
+- datum:
+
+  Date of most recent associated document (character or `NA`).
+
+- aktualisiert:
+
+  Last update timestamp (character, ISO datetime).
+
+- titel:
+
+  Display title with role (character).
+
+- person_roles:
+
+  Roles and alternative names (list-column).
 
 ## See also
 

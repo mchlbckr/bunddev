@@ -44,14 +44,105 @@ A tibble with the same columns as
 [`bewerberboerse_search()`](https://buecker.ms/bunddev/reference/bewerberboerse_search.md),
 filtered to the requested `referenznummer`.
 
-- Scalar fields:
+- refnr:
 
-  One column per top-level scalar field returned by the endpoint.
+  Candidate reference number (character).
 
-- Nested fields:
+- verfuegbarkeit_von:
 
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+  Availability date text (character).
+
+- aktualisierungsdatum:
+
+  Last update date text (character).
+
+- veroeffentlichungsdatum:
+
+  Publication date text (character).
+
+- stellenart:
+
+  Position type (character).
+
+- arbeitszeit_modelle:
+
+  Work-time models, collapsed string (character).
+
+- berufe:
+
+  Occupations, collapsed string (character).
+
+- letzte_taetigkeit_jahr:
+
+  Year of most recent activity (character).
+
+- letzte_taetigkeit_bezeichnung:
+
+  Label of most recent activity (character).
+
+- letzte_taetigkeit_aktuell:
+
+  Whether latest activity is current (logical).
+
+- hat_email:
+
+  Email contact available (logical).
+
+- hat_telefon:
+
+  Phone contact available (logical).
+
+- hat_adresse:
+
+  Postal address available (logical).
+
+- ort:
+
+  City/locality (character).
+
+- plz:
+
+  Postal code (character).
+
+- umkreis:
+
+  Radius text returned by API (character).
+
+- region:
+
+  Region/state (character).
+
+- land:
+
+  Country (character).
+
+- mehrere_arbeitsorte:
+
+  Multiple work locations flag (logical).
+
+- ausbildungen:
+
+  Education entries (list-column).
+
+- erfahrung:
+
+  Experience entries (list-column).
+
+- operation_id:
+
+  Operation identifier (character).
+
+- page:
+
+  Returned page index (integer).
+
+- size:
+
+  Returned page size (integer).
+
+- max_ergebnisse:
+
+  Total matching result count (integer).
 
 ## Details
 

@@ -59,24 +59,63 @@ dip_bundestag_plenarprotokoll(
 
 ## Value
 
-A one-row tibble with detailed fields for the selected Plenarprotokoll.
+A one-row tibble for the selected Plenarprotokoll:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Plenarprotokoll identifier (character).
 
-- cursor:
+- dokumentart:
 
-  List endpoints: cursor for pagination (character).
+  Document type, always `"Plenarprotokoll"` (character).
 
-- documents:
+- typ:
 
-  List endpoints: returned records as list-column.
+  Entity type, always `"Dokument"` (character).
 
-- Detail fields:
+- dokumentnummer:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Document number, e.g. `"19/1"` (character).
+
+- wahlperiode:
+
+  Legislative period (integer).
+
+- herausgeber:
+
+  Publisher assignment (character).
+
+- datum:
+
+  Session date (character, ISO date).
+
+- aktualisiert:
+
+  Last update timestamp (character, ISO datetime).
+
+- titel:
+
+  Title (character).
+
+- fundstelle:
+
+  Document reference details (list-column).
+
+- pdf_hash:
+
+  MD5 checksum of the PDF file (character or `NA`).
+
+- vorgangsbezug:
+
+  Up to 4 related Vorgänge (list-column).
+
+- vorgangsbezug_anzahl:
+
+  Total number of related Vorgänge (integer).
+
+- sitzungsbemerkung:
+
+  Session remark, e.g. `"Sondersitzung"` (character or `NA`).
 
 ## See also
 

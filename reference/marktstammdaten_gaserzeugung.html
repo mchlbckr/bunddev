@@ -109,18 +109,18 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per gas-generation entry (same column
-conventions as <code><a href="marktstammdaten_stromerzeugung.html">marktstammdaten_stromerzeugung()</a></code>).</p><dl><dt>Filter/entry fields</dt>
-<dd><p>One column per top-level scalar field returned by MaStR.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per gas generation unit
+and columns determined by the MaStR API response. Common columns include
+<code>MaStRNummer</code>, <code>EinheitName</code>, <code>Bundesland</code>, <code>Ort</code>,
+<code>Plz</code>, <code>BetriebsStatusName</code>, <code>InbetriebnahmeDatum</code>, and
+<code>EinheitRegistrierungsdatum</code> (see
+<code><a href="marktstammdaten_filters_gaserzeugung.html">marktstammdaten_filters_gaserzeugung()</a></code> for available filter fields).
+Additionally:</p><dl><dt>total</dt>
+<dd><p>Numeric. Total number of matching records upstream.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Stored as list-columns.</p></dd>
-
-<dt>total</dt>
-<dd><p>Entry endpoints: total number of matching records (numeric).</p></dd>
-
-<dt><code>*Datum_time</code></dt>
-<dd><p>Parsed <code>POSIXct</code> columns added for date fields matching <code>*Datum</code>.</p></dd>
+<dt>*Datum_time</dt>
+<dd><p>POSIXct. Parsed date column (Europe/Berlin) added
+for every source column whose name contains <code>Datum</code>.</p></dd>
 
 
 </dl></div>

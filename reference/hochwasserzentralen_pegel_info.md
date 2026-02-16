@@ -26,17 +26,12 @@ hochwasserzentralen_pegel_info(pegelnummer, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row of gauge metadata for the selected `pegelnummer`.
-Columns follow the upstream service field names.
-
-- Scalar fields:
-
-  One column per top-level scalar field returned by the endpoint.
-
-- Nested fields:
-
-  Kept as list-columns; for endpoints with `flatten` controls these can
-  be transformed.
+A one-row tibble of gauge metadata for the selected `pegelnummer`.
+Columns are created dynamically from the upstream service response
+fields. If the response contains GeoJSON features, each feature's
+`properties` are used as columns; otherwise each top-level field becomes
+a column. Scalar values become atomic columns and nested structures
+become list-columns.
 
 ## Details
 

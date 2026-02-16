@@ -103,16 +103,35 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per catalog entry resource (same structure
-rules as <code><a href="diga_device_definitions.html">diga_device_definitions()</a></code>).</p>
-<dl><dt>Resource fields</dt>
-<dd><p>One column per top-level scalar field in each FHIR <code>entry$resource</code>.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per catalog entry and columns:</p><dl><dt>resourceType</dt>
+<dd><p>Character. FHIR resource type, always <code>"CatalogEntry"</code>.</p></dd>
 
-<dt>Nested resource fields</dt>
-<dd><p>Stored as list-columns.</p></dd>
+<dt>id</dt>
+<dd><p>Character. FHIR resource identifier.</p></dd>
 
-<dt>bundle</dt>
-<dd><p>Returned as list-column when the response has no <code>entry</code> records.</p></dd>
+<dt>status</dt>
+<dd><p>Character. Entry status.</p></dd>
+
+<dt>orderable</dt>
+<dd><p>Logical. Whether the entry is orderable.</p></dd>
+
+<dt>meta</dt>
+<dd><p>List. Resource metadata (profile, timestamps).</p></dd>
+
+<dt>identifier</dt>
+<dd><p>List. Business identifiers.</p></dd>
+
+<dt>type</dt>
+<dd><p>List. Catalog entry type coding.</p></dd>
+
+<dt>referencedItem</dt>
+<dd><p>List. Referenced device definition.</p></dd>
+
+<dt>extension</dt>
+<dd><p>List. FHIR profile extensions.</p></dd>
+
+<dt>additionalCharacteristic</dt>
+<dd><p>List. Additional characteristics.</p></dd>
 
 
 </dl></div>

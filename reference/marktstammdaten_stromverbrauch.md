@@ -72,25 +72,22 @@ marktstammdaten_stromverbrauch(
 
 ## Value
 
-A tibble with one row per electricity-consumption entry (same column
-conventions as
-[`marktstammdaten_stromerzeugung()`](https://buecker.ms/bunddev/reference/marktstammdaten_stromerzeugung.md)).
-
-- Filter/entry fields:
-
-  One column per top-level scalar field returned by MaStR.
-
-- Nested fields:
-
-  Stored as list-columns.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per electricity consumption unit and columns determined by the MaStR
+API response. Common columns include `MaStRNummer`, `EinheitName`,
+`Bundesland`, `Ort`, `Plz`, `BetriebsStatusName`, and
+`EinheitRegistrierungsdatum` (see
+[`marktstammdaten_filters_stromverbrauch()`](https://buecker.ms/bunddev/reference/marktstammdaten_filters_stromverbrauch.md)
+for available filter fields). Additionally:
 
 - total:
 
-  Entry endpoints: total number of matching records (numeric).
+  Numeric. Total number of matching records upstream.
 
-- `*Datum_time`:
+- \*Datum_time:
 
-  Parsed `POSIXct` columns added for date fields matching `*Datum`.
+  POSIXct. Parsed date column (Europe/Berlin) added for every source
+  column whose name contains `Datum`.
 
 ## Details
 

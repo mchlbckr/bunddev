@@ -80,21 +80,64 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per lorry-parking entry. Guaranteed columns are:
-<code>road_id</code>, <code>identifier</code>, <code>title</code>, <code>subtitle</code>, <code>display_type</code>, <code>icon</code>,
-<code>is_blocked</code>, <code>future</code>, <code>start_timestamp</code>, <code>start_time</code>, <code>point</code>, <code>extent</code>,
-<code>coordinate_lat</code>, <code>coordinate_long</code>, <code>description</code>, <code>footer</code>,
-<code>route_recommendation</code> (list-column), and
-<code>lorry_parking_feature_icons</code> (list-column). With <code>flatten = TRUE</code>, the two
-list-columns are transformed according to <code>flatten_mode</code>.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A tibble with one row per lorry-parking entry:</p><dl><dt>road_id</dt>
+<dd><p>Road identifier (character).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>identifier</dt>
+<dd><p>Entry identifier (character).</p></dd>
+
+<dt>title</dt>
+<dd><p>Title (character).</p></dd>
+
+<dt>subtitle</dt>
+<dd><p>Subtitle (character).</p></dd>
+
+<dt>display_type</dt>
+<dd><p>Display type (character).</p></dd>
+
+<dt>icon</dt>
+<dd><p>Icon identifier (character).</p></dd>
+
+<dt>is_blocked</dt>
+<dd><p>Whether the road is blocked (logical).</p></dd>
+
+<dt>future</dt>
+<dd><p>Whether the entry is future-dated (logical).</p></dd>
+
+<dt>start_timestamp</dt>
+<dd><p>Start timestamp string (character).</p></dd>
+
+<dt>start_time</dt>
+<dd><p>Parsed start time (POSIXct).</p></dd>
+
+<dt>point</dt>
+<dd><p>Point coordinate string (character).</p></dd>
+
+<dt>extent</dt>
+<dd><p>Extent coordinate string (character).</p></dd>
+
+<dt>coordinate_lat</dt>
+<dd><p>Latitude (character).</p></dd>
+
+<dt>coordinate_long</dt>
+<dd><p>Longitude (character).</p></dd>
+
+<dt>description</dt>
+<dd><p>Description text (character).</p></dd>
+
+<dt>footer</dt>
+<dd><p>Footer text (character).</p></dd>
+
+<dt>route_recommendation</dt>
+<dd><p>Route recommendations (list-column).</p></dd>
+
+<dt>lorry_parking_feature_icons</dt>
+<dd><p>Lorry parking feature icons (list-column).</p></dd>
 
 
-</dl></div>
+</dl><p>With <code>flatten = TRUE</code>, the two list-columns are transformed according to
+<code>flatten_mode</code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns lorry parking areas for a specific Autobahn road id.

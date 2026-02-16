@@ -96,14 +96,26 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per coastal warning and columns:
-<code>region_id</code>, <code>type</code>, <code>level</code>, <code>description</code>, <code>description_text</code>, <code>event</code>,
-and <code>headline</code>.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A tibble with one row per coastal warning:</p><dl><dt>region_id</dt>
+<dd><p>Warning region identifier (character).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>type</dt>
+<dd><p>Warning type code (numeric).</p></dd>
+
+<dt>level</dt>
+<dd><p>Warning severity level (numeric).</p></dd>
+
+<dt>description</dt>
+<dd><p>Warning description HTML (character).</p></dd>
+
+<dt>description_text</dt>
+<dd><p>Warning description plain text (character).</p></dd>
+
+<dt>event</dt>
+<dd><p>Event name (character).</p></dd>
+
+<dt>headline</dt>
+<dd><p>Warning headline (character).</p></dd>
 
 
 </dl></div>

@@ -67,20 +67,28 @@ psm_wirkstoffe(
 
 ## Value
 
-A tibble with one row per active ingredient item.
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per active ingredient and columns:
 
-- Item fields:
+- GENEHMIGT:
 
-  One column per top-level field of each `items` element (`m_row$$`
-  removed).
+  Character. Approval flag.
 
-- Nested fields:
+- KATEGORIE:
 
-  Stored as list-columns.
+  Character. Ingredient category.
 
-- response:
+- WIRKNR:
 
-  Fallback payload for non-item responses (list-column).
+  Character. Active ingredient number.
+
+- WIRKSTOFFNAME:
+
+  Character. Active ingredient name (German).
+
+- WIRKSTOFFNAME_EN:
+
+  Character. Active ingredient name (English).
 
 ## Details
 

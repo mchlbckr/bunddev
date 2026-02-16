@@ -64,21 +64,48 @@ diga_questionnaires(
 
 ## Value
 
-A tibble with one row per questionnaire resource (same structure rules
-as
-[`diga_device_definitions()`](https://buecker.ms/bunddev/reference/diga_device_definitions.md)).
+A [tibble](https://tibble.tidyverse.org/reference/tibble.html) with one
+row per questionnaire and columns:
 
-- Resource fields:
+- resourceType:
 
-  One column per top-level scalar field in each FHIR `entry$resource`.
+  Character. FHIR resource type, always `"Questionnaire"`.
 
-- Nested resource fields:
+- id:
 
-  Stored as list-columns.
+  Character. FHIR resource identifier.
 
-- bundle:
+- url:
 
-  Returned as list-column when the response has no `entry` records.
+  Character. Canonical URL of the resource.
+
+- status:
+
+  Character. Publication status.
+
+- name:
+
+  Character. Computer-friendly name.
+
+- title:
+
+  Character. Human-readable title.
+
+- meta:
+
+  List. Resource metadata (profile, timestamps).
+
+- identifier:
+
+  List. Business identifiers.
+
+- item:
+
+  List. Questionnaire items and groups.
+
+- extension:
+
+  List. FHIR profile extensions.
 
 ## See also
 

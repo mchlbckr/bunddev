@@ -59,24 +59,95 @@ dip_bundestag_vorgang(
 
 ## Value
 
-A one-row tibble with detailed fields for the selected Vorgang.
+A one-row tibble for the selected Vorgang:
 
-- num_found:
+- id:
 
-  List endpoints: total number of matches (integer).
+  Vorgang identifier (character).
 
-- cursor:
+- typ:
 
-  List endpoints: cursor for pagination (character).
+  Entity type, always `"Vorgang"` (character).
 
-- documents:
+- beratungsstand:
 
-  List endpoints: returned records as list-column.
+  Consultation status, e.g. `"Abgeschlossen"` (character).
 
-- Detail fields:
+- vorgangstyp:
 
-  Detail endpoints: one column per top-level scalar field, with nested
-  structures in list-columns.
+  Vorgang type, e.g. `"Geschäftsordnung"` (character).
+
+- wahlperiode:
+
+  Legislative period (integer).
+
+- initiative:
+
+  Initiating factions/bodies (list-column).
+
+- datum:
+
+  Date of most recent associated document (character, ISO date).
+
+- aktualisiert:
+
+  Last update timestamp (character, ISO datetime).
+
+- titel:
+
+  Title (character).
+
+- abstract:
+
+  Summary text (character or `NA`).
+
+- sachgebiet:
+
+  Subject areas (list-column).
+
+- deskriptor:
+
+  Thesaurus descriptors (list-column of named lists).
+
+- gesta:
+
+  GESTA reference number (character or `NA`).
+
+- zustimmungsbeduerftigkeit:
+
+  Consent requirements (list-column).
+
+- kom:
+
+  EU COM reference number (character or `NA`).
+
+- ratsdok:
+
+  EU Council document number (character or `NA`).
+
+- verkuendung:
+
+  Promulgation details (list-column).
+
+- inkrafttreten:
+
+  Entry-into-force details (list-column).
+
+- archiv:
+
+  Archive reference (character or `NA`).
+
+- mitteilung:
+
+  Supplementary note (character or `NA`).
+
+- vorgang_verlinkung:
+
+  Linked Vorgänge (list-column).
+
+- sek:
+
+  EU SEC reference number (character or `NA`).
 
 ## Details
 

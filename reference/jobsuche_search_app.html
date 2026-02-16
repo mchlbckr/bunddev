@@ -139,12 +139,68 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with the same columns as <code><a href="jobsuche_search.html">jobsuche_search()</a></code>.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A tibble with the same columns as <code><a href="jobsuche_search.html">jobsuche_search()</a></code>.</p><dl><dt>hash_id</dt>
+<dd><p>Posting hash id (character).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>beruf</dt>
+<dd><p>Job title/occupation (character).</p></dd>
+
+<dt>refnr</dt>
+<dd><p>Reference number (character).</p></dd>
+
+<dt>arbeitgeber</dt>
+<dd><p>Employer name (character).</p></dd>
+
+<dt>aktuelle_veroeffentlichungsdatum</dt>
+<dd><p>Published date/time text (character).</p></dd>
+
+<dt>aktuelle_veroeffentlichungsdatum_time</dt>
+<dd><p>Published timestamp as <code>POSIXct</code> (Europe/Berlin).</p></dd>
+
+<dt>eintrittsdatum</dt>
+<dd><p>Start date text (character).</p></dd>
+
+<dt>eintrittsdatum_time</dt>
+<dd><p>Start timestamp as <code>POSIXct</code> (Europe/Berlin).</p></dd>
+
+<dt>arbeitsort_plz</dt>
+<dd><p>Postal code (character).</p></dd>
+
+<dt>arbeitsort_ort</dt>
+<dd><p>City/locality (character).</p></dd>
+
+<dt>arbeitsort_strasse</dt>
+<dd><p>Street (character).</p></dd>
+
+<dt>arbeitsort_region</dt>
+<dd><p>Region/state (character).</p></dd>
+
+<dt>arbeitsort_land</dt>
+<dd><p>Country code/name (character).</p></dd>
+
+<dt>arbeitsort_lat</dt>
+<dd><p>Latitude (numeric).</p></dd>
+
+<dt>arbeitsort_lon</dt>
+<dd><p>Longitude (numeric).</p></dd>
+
+<dt>modifikations_timestamp</dt>
+<dd><p>Modification timestamp text (character).</p></dd>
+
+<dt>modifikations_timestamp_time</dt>
+<dd><p>Modification timestamp as <code>POSIXct</code> (Europe/Berlin).</p></dd>
+
+<dt>page</dt>
+<dd><p>Returned page number (character).</p></dd>
+
+<dt>size</dt>
+<dd><p>Returned page size (character).</p></dd>
+
+<dt>max_ergebnisse</dt>
+<dd><p>Total result count (character).</p></dd>
+
+<dt>facetten</dt>
+<dd><p>Facet metadata (list-column).</p></dd>
 
 
 </dl></div>

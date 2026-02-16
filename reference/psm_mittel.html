@@ -96,13 +96,21 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per returned API item. Column names follow the
-upstream BVL field names; nested objects remain list-columns.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with one row per plant protection product
+and columns:</p><dl><dt>FORMULIERUNG_ART</dt>
+<dd><p>Character. Formulation type code.</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>KENNR</dt>
+<dd><p>Character. Product identification number.</p></dd>
+
+<dt>MITTELNAME</dt>
+<dd><p>Character. Product trade name.</p></dd>
+
+<dt>ZUL_ENDE</dt>
+<dd><p>Character. Approval end date.</p></dd>
+
+<dt>ZUL_ERSTMALIG_AM</dt>
+<dd><p>Character. Initial approval date.</p></dd>
 
 
 </dl></div>

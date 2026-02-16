@@ -91,14 +91,32 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per crowd report and columns including
-<code>meldung_id</code>, <code>timestamp</code>, <code>timestamp_time</code>, <code>lat</code>, <code>lon</code>, <code>place</code>,
-<code>category</code>, <code>auspraegung</code>, and <code>zusatz_attribute</code> (list-column).</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A tibble with one row per crowd report:</p><dl><dt>meldung_id</dt>
+<dd><p>Report identifier (numeric).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>timestamp</dt>
+<dd><p>Report timestamp in milliseconds (numeric).</p></dd>
+
+<dt>timestamp_time</dt>
+<dd><p>Parsed report time (POSIXct).</p></dd>
+
+<dt>lat</dt>
+<dd><p>Latitude (character).</p></dd>
+
+<dt>lon</dt>
+<dd><p>Longitude (character).</p></dd>
+
+<dt>place</dt>
+<dd><p>Place name (character).</p></dd>
+
+<dt>category</dt>
+<dd><p>Weather category (character).</p></dd>
+
+<dt>auspraegung</dt>
+<dd><p>Severity/manifestation (character).</p></dd>
+
+<dt>zusatz_attribute</dt>
+<dd><p>Additional attributes (list-column).</p></dd>
 
 
 </dl></div>

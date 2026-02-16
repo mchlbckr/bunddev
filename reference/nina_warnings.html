@@ -63,13 +63,22 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per warning entry and common metadata columns including <code>content_id</code>, <code>last_modified_time</code>, and <code>effective_time</code>.</p>
-<p>Includes <code>last_modified_time</code> and <code>effective_time</code> as POSIXct in Europe/Berlin.</p>
-<dl><dt>Scalar fields</dt>
-<dd><p>One column per top-level scalar field returned by the endpoint.</p></dd>
+    <p>A tibble with one row per warning entry. Columns include scalar fields
+from each entry (names converted to snake_case) plus the following added
+metadata:</p><dl><dt>content_id</dt>
+<dd><p>Content identifier from the NINA feed (character).</p></dd>
 
-<dt>Nested fields</dt>
-<dd><p>Kept as list-columns; for endpoints with <code>flatten</code> controls these can be transformed.</p></dd>
+<dt>response_country</dt>
+<dd><p>Feed-level country code (character).</p></dd>
+
+<dt>response_last_modified</dt>
+<dd><p>Feed-level modification timestamp in milliseconds (numeric).</p></dd>
+
+<dt>last_modified_time</dt>
+<dd><p>Entry-level last-modified timestamp (<code>POSIXct</code>, Europe/Berlin).</p></dd>
+
+<dt>effective_time</dt>
+<dd><p>Entry-level effective timestamp (<code>POSIXct</code>, Europe/Berlin).</p></dd>
 
 
 </dl></div>
