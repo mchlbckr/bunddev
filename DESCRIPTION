@@ -11,7 +11,8 @@ Description: Provides a registry of APIs listed on <https://bund.dev> and a core
     return tidy tibbles for supported APIs, with optional response caching and
     rate limiting guidance.
 License: MIT + file LICENSE
-URL: https://github.com/mchlbckr/bunddev
+URL: https://mchlbckr.github.io/bunddev/,
+    https://github.com/mchlbckr/bunddev
 BugReports: https://github.com/mchlbckr/bunddev/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

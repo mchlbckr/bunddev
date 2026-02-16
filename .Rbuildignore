@@ -17,3 +17,7 @@
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 ^README\.html$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$

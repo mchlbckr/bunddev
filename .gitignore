@@ -10,3 +10,7 @@ adapt_dwd.R
 *.bak
 .DS_Store
 **/.DS_Store
+docs/
+.Rhistory
+CRAN-SUBMISSION
+README.html
