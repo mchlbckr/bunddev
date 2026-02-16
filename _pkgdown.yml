@@ -11,3 +11,4 @@ navbar:
     github:
       icon: fa-github
       href: https://github.com/mchlbckr/bunddev
+      aria-label: GitHub
