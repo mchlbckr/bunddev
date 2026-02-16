@@ -29,9 +29,10 @@
 #' [bunddev_auth_set()] to configure API keys.
 #'
 #' @examples
-#' 
+#' \dontrun{
 #' # Retrieve Autobahn road ids (raw response)
 #' bunddev_call("autobahn", "list-autobahnen")
+#' }
 #'
 #' @return Parsed response.
 #' @export

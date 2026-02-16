@@ -20,7 +20,9 @@ Resolves the adapter to an OpenAPI path/method mapping and filters parameters
 accordingly.
 }
 \examples{
+\dontrun{
 bunddev_parameters_for(smard_timeseries)
+}
 
 }
 \seealso{

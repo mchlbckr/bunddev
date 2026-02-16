@@ -15,9 +15,10 @@
 #' available parameters.
 #'
 #' @examples
-#' 
+#' \dontrun{
 #' # Tidy Autobahn roadworks
 #' bunddev_call_tidy("autobahn", "list-roadworks", params = list(roadId = "A1"))
+#' }
 #'
 #' @return A tibble with tidied results.
 #' @export

@@ -27,9 +27,10 @@ tidier for the API. If no tidier is registered, a tibble containing the raw
 response is returned.
 }
 \examples{
-
+\dontrun{
 # Tidy Autobahn roadworks
 bunddev_call_tidy("autobahn", "list-roadworks", params = list(roadId = "A1"))
+}
 
 }
 \seealso{

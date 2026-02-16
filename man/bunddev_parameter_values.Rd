@@ -21,7 +21,9 @@ Extract parameter enum values
 Returns unique enum values for a parameter defined on the adapter endpoint.
 }
 \examples{
+\dontrun{
 bunddev_parameter_values(smard_timeseries, "resolution")
+}
 
 }
 \seealso{

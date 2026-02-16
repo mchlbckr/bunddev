@@ -17,7 +17,9 @@ The cache directory is used to store downloaded OpenAPI specs and cached
 API responses. Use this to inspect or clean cached files.
 }
 \examples{
+\dontrun{
 bunddev_cache_dir()
+}
 
 }
 \seealso{

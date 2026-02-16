@@ -14,7 +14,9 @@ NULL
 #' the full spec.
 #'
 #' @examples
+#' \dontrun{
 #' bunddev_endpoints("autobahn")
+#' }
 #'
 #' @return A tibble with endpoints.
 #' @export
@@ -74,7 +76,9 @@ bunddev_endpoints <- function(id) {
 #' [bunddev_parameter_values()] for enum values.
 #'
 #' @examples
+#' \dontrun{
 #' bunddev_parameters("smard", name = "resolution")
+#' }
 #'
 #' @return A tibble with parameter metadata.
 #' @export
@@ -168,7 +172,9 @@ bunddev_resolve_parameter <- function(param, spec) {
 #' [bunddev_parameters_for()] to inspect all parameters for an adapter.
 #'
 #' @examples
+#' \dontrun{
 #' bunddev_parameter_values(smard_timeseries, "resolution")
+#' }
 #'
 #' @return A character vector of enum values.
 #' @export
@@ -197,7 +203,9 @@ bunddev_parameter_values <- function(endpoint, name) {
 #' [bunddev_parameters()] for the full API parameter table.
 #'
 #' @examples
+#' \dontrun{
 #' bunddev_parameters_for(smard_timeseries)
+#' }
 #'
 #' @return A tibble with parameter metadata.
 #' @export

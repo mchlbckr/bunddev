@@ -64,9 +64,10 @@ Use \code{\link[=bunddev_parameters]{bunddev_parameters()}} and \code{\link[=bun
 parameters before calling.
 }
 \examples{
-
+\dontrun{
 # Retrieve Autobahn road ids (raw response)
 bunddev_call("autobahn", "list-autobahnen")
+}
 
 }
 \seealso{

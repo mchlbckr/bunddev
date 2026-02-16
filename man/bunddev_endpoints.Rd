@@ -26,7 +26,9 @@ Parses the cached OpenAPI spec and returns every available path + method with
 its operationId and summary, if provided.
 }
 \examples{
+\dontrun{
 bunddev_endpoints("autobahn")
+}
 
 }
 \seealso{

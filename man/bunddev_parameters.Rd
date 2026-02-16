@@ -27,7 +27,9 @@ stored in a list-column (\code{enum}). Use the filter arguments to narrow down
 results to a specific endpoint or parameter name.
 }
 \examples{
+\dontrun{
 bunddev_parameters("smard", name = "resolution")
+}
 
 }
 \seealso{

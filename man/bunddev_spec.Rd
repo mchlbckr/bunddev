@@ -22,7 +22,9 @@ Downloads the OpenAPI spec from the registry if it is missing or when
 \code{refresh = TRUE}. Parsed specs are returned as lists.
 }
 \examples{
+\dontrun{
 bunddev_spec("smard")
+}
 
 }
 \seealso{

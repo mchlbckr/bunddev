@@ -19,7 +19,9 @@ Build a cache path for an API spec
 Determines the cache file name based on the spec URL extension (.yaml/.json).
 }
 \examples{
+\dontrun{
 bunddev_spec_path("smard")
+}
 
 }
 \seealso{

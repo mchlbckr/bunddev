@@ -9,7 +9,9 @@
 #' a specific spec file.
 #'
 #' @examples
+#' \dontrun{
 #' bunddev_cache_dir()
+#' }
 #'
 #' @return Cache directory path.
 #' @export
@@ -32,7 +34,9 @@ bunddev_cache_dir <- function() {
 #' [bunddev_spec()] to download and parse specs.
 #'
 #' @examples
+#' \dontrun{
 #' bunddev_spec_path("smard")
+#' }
 #'
 #' @return File path for the cached spec.
 #' @export
@@ -61,7 +65,9 @@ bunddev_spec_path <- function(id) {
 #' inspect parameters.
 #'
 #' @examples
+#' \dontrun{
 #' bunddev_spec("smard")
+#' }
 #'
 #' @return Parsed OpenAPI spec.
 #' @export
