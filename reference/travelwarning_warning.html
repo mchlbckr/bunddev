@@ -67,37 +67,63 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per warning content block and the same column
-structure as <code><a href="travelwarning_warnings.html">travelwarning_warnings()</a></code>.</p><dl><dt>content_id</dt>
-<dd><p>Entry/content identifier (character).</p></dd>
+    <p>A tibble with one row per warning content block. Same metadata
+columns as <code><a href="travelwarning_warnings.html">travelwarning_warnings()</a></code>, plus the full warning detail fields:</p><dl><dt>content_id</dt>
+<dd><p>Character. Entry/content identifier.</p></dd>
 
 <dt>parent_content_id</dt>
-<dd><p>Parent identifier for nested entry records, if
-applicable (character).</p></dd>
+<dd><p>Character. Parent identifier for nested records.</p></dd>
 
 <dt>response_country</dt>
-<dd><p>Country code from response metadata (character).</p></dd>
+<dd><p>Character. Country code from response metadata.</p></dd>
 
 <dt>response_last_modified</dt>
-<dd><p>Feed-level modification timestamp in
-milliseconds (numeric).</p></dd>
+<dd><p>Numeric. Feed-level modification timestamp
+in milliseconds.</p></dd>
 
 <dt>response_last_modified_time</dt>
-<dd><p>Feed-level modification timestamp as
-<code>POSIXct</code> (Europe/Berlin), when <code>response_last_modified</code> is non-<code>NA</code>.</p></dd>
+<dd><p>POSIXct. Parsed feed-level timestamp
+(Europe/Berlin).</p></dd>
 
 <dt>last_modified_time</dt>
-<dd><p>Entry-level modification timestamp as <code>POSIXct</code>
-(Europe/Berlin), parsed from the entry <code>lastModified</code> field.</p></dd>
+<dd><p>POSIXct. Entry-level modification timestamp
+(Europe/Berlin).</p></dd>
 
 <dt>effective_time</dt>
-<dd><p>Entry effective timestamp as <code>POSIXct</code>
-(Europe/Berlin), parsed from the entry <code>effective</code> field.</p></dd>
+<dd><p>POSIXct. Entry effective timestamp (Europe/Berlin).</p></dd>
 
-<dt><code>&lt;entry_field&gt;</code></dt>
-<dd><p>Additional columns (snake_case) from each entry
-payload. Scalar values become character/numeric columns; nested
-structures remain list-columns.</p></dd>
+<dt>last_modified</dt>
+<dd><p>Numeric. Raw entry modification timestamp in ms.</p></dd>
+
+<dt>effective</dt>
+<dd><p>Numeric. Raw entry effective timestamp in ms.</p></dd>
+
+<dt>title</dt>
+<dd><p>Character. Country travel warning title.</p></dd>
+
+<dt>country_code</dt>
+<dd><p>Character. Two-letter country code.</p></dd>
+
+<dt>iso3_country_code</dt>
+<dd><p>Character. Three-letter ISO country code.</p></dd>
+
+<dt>country_name</dt>
+<dd><p>Character. Country name (German).</p></dd>
+
+<dt>warning</dt>
+<dd><p>Logical. Full travel warning issued.</p></dd>
+
+<dt>partial_warning</dt>
+<dd><p>Logical. Partial travel warning issued.</p></dd>
+
+<dt>situation_warning</dt>
+<dd><p>Logical. Situation-based travel warning.</p></dd>
+
+<dt>situation_part_warning</dt>
+<dd><p>Logical. Situation-based partial warning.</p></dd>
+
+<dt>content</dt>
+<dd><p>Character. HTML content of the warning.</p></dd>
 
 
 </dl></div>

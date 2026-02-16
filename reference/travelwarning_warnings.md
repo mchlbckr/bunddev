@@ -26,40 +26,67 @@ A tibble with one row per warning entry.
 
 - content_id:
 
-  Entry/content identifier (character).
+  Character. Entry/content identifier.
 
 - parent_content_id:
 
-  Parent identifier for nested entry records, if applicable (character).
+  Character. Parent identifier for nested records.
 
 - response_country:
 
-  Country code from response metadata (character).
+  Character. Country code from response metadata.
 
 - response_last_modified:
 
-  Feed-level modification timestamp in milliseconds (numeric).
+  Numeric. Feed-level modification timestamp in milliseconds.
 
 - response_last_modified_time:
 
-  Feed-level modification timestamp as `POSIXct` (Europe/Berlin), when
-  `response_last_modified` is non-`NA`.
+  POSIXct. Parsed feed-level timestamp (Europe/Berlin).
 
 - last_modified_time:
 
-  Entry-level modification timestamp as `POSIXct` (Europe/Berlin),
-  parsed from the entry `lastModified` field.
+  POSIXct. Entry-level modification timestamp (Europe/Berlin).
 
 - effective_time:
 
-  Entry effective timestamp as `POSIXct` (Europe/Berlin), parsed from
-  the entry `effective` field.
+  POSIXct. Entry effective timestamp (Europe/Berlin).
 
-- `<entry_field>`:
+- last_modified:
 
-  Additional columns (snake_case) from each entry payload. Scalar values
-  become character/numeric columns; nested structures remain
-  list-columns.
+  Numeric. Raw entry modification timestamp in ms.
+
+- effective:
+
+  Numeric. Raw entry effective timestamp in ms.
+
+- title:
+
+  Character. Country travel warning title.
+
+- country_code:
+
+  Character. Two-letter country code.
+
+- country_name:
+
+  Character. Country name (German).
+
+- warning:
+
+  Logical. Full travel warning issued.
+
+- partial_warning:
+
+  Logical. Partial travel warning issued.
+
+- situation_warning:
+
+  Logical. Situation-based travel warning.
+
+- situation_part_warning:
+
+  Logical. Situation-based partial warning.
 
 ## Details
 

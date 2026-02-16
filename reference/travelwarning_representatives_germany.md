@@ -22,35 +22,115 @@ travelwarning_representatives_germany(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with representative entries and the same metadata columns as
-[`travelwarning_warnings()`](https://buecker.ms/bunddev/reference/travelwarning_warnings.md):
-`content_id`, `parent_content_id`, `response_country`,
-`response_last_modified`, `response_last_modified_time`,
-`last_modified_time`, `effective_time`, plus snake_cased entry fields.
+A tibble with one row per foreign representative in Germany:
 
 - content_id:
 
-  Entry/content identifier (character).
+  Character. Entry/content identifier.
 
 - parent_content_id:
 
-  Parent identifier (character).
+  Character. Parent identifier for nested records.
 
 - response_country:
 
-  Country code from response metadata (character).
+  Character. Country code from response metadata.
 
 - response_last_modified:
 
-  Feed-level modification timestamp (numeric).
+  Numeric. Feed-level modification timestamp.
 
-- last_modified_time / effective_time:
+- response_last_modified_time:
 
-  Parsed `POSIXct` (Europe/Berlin).
+  POSIXct. Parsed feed-level timestamp.
 
-- `<entry_field>`:
+- last_modified_time:
 
-  Additional snake_cased columns from each entry.
+  POSIXct. Entry-level modification timestamp.
+
+- effective_time:
+
+  POSIXct. Entry effective timestamp.
+
+- last_modified:
+
+  Numeric. Raw entry modification timestamp in ms.
+
+- title:
+
+  Character. Representation title.
+
+- leader:
+
+  Character. Head of mission.
+
+- locales:
+
+  Character. Languages spoken.
+
+- country:
+
+  Character. Country.
+
+- zip:
+
+  Character. Postal code.
+
+- city:
+
+  Character. City.
+
+- region:
+
+  Character. Region.
+
+- street:
+
+  Character. Street.
+
+- number:
+
+  Character. House number.
+
+- departments:
+
+  Character. Department details.
+
+- fax:
+
+  Character. Fax number.
+
+- telefone:
+
+  Character. Phone number.
+
+- mail:
+
+  Character. Email address.
+
+- misc:
+
+  Character. Miscellaneous notes.
+
+- url:
+
+  Character. External link.
+
+- postal:
+
+  Character. Postal address.
+
+- type:
+
+  Character. Address type (e.g. Botschaft).
+
+- remark:
+
+  Character. Remark.
+
+- open:
+
+  Character. Opening hours.
 
 ## Details
 

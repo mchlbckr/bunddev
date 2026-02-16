@@ -22,35 +22,47 @@ travelwarning_healthcare(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with healthcare entries and the same metadata columns as
-[`travelwarning_warnings()`](https://buecker.ms/bunddev/reference/travelwarning_warnings.md):
-`content_id`, `parent_content_id`, `response_country`,
-`response_last_modified`, `response_last_modified_time`,
-`last_modified_time`, `effective_time`, plus snake_cased entry fields.
+A tibble with one row per healthcare document:
 
 - content_id:
 
-  Entry/content identifier (character).
+  Character. Entry/content identifier.
 
 - parent_content_id:
 
-  Parent identifier (character).
+  Character. Parent identifier for nested records.
 
 - response_country:
 
-  Country code from response metadata (character).
+  Character. Country code from response metadata.
 
 - response_last_modified:
 
-  Feed-level modification timestamp (numeric).
+  Numeric. Feed-level modification timestamp.
 
-- last_modified_time / effective_time:
+- response_last_modified_time:
 
-  Parsed `POSIXct` (Europe/Berlin).
+  POSIXct. Parsed feed-level timestamp.
 
-- `<entry_field>`:
+- last_modified_time:
 
-  Additional snake_cased columns from each entry.
+  POSIXct. Entry-level modification timestamp.
+
+- effective_time:
+
+  POSIXct. Entry effective timestamp.
+
+- last_modified:
+
+  Numeric. Raw entry modification timestamp in ms.
+
+- name:
+
+  Character. Document name.
+
+- url:
+
+  Character. Download URL.
 
 ## Details
 

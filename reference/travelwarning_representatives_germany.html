@@ -63,26 +63,86 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with representative entries and the same metadata columns as
-<code><a href="travelwarning_warnings.html">travelwarning_warnings()</a></code>: <code>content_id</code>, <code>parent_content_id</code>,
-<code>response_country</code>, <code>response_last_modified</code>, <code>response_last_modified_time</code>,
-<code>last_modified_time</code>, <code>effective_time</code>, plus snake_cased entry fields.</p><dl><dt>content_id</dt>
-<dd><p>Entry/content identifier (character).</p></dd>
+    <p>A tibble with one row per foreign representative in Germany:</p><dl><dt>content_id</dt>
+<dd><p>Character. Entry/content identifier.</p></dd>
 
 <dt>parent_content_id</dt>
-<dd><p>Parent identifier (character).</p></dd>
+<dd><p>Character. Parent identifier for nested records.</p></dd>
 
 <dt>response_country</dt>
-<dd><p>Country code from response metadata (character).</p></dd>
+<dd><p>Character. Country code from response metadata.</p></dd>
 
 <dt>response_last_modified</dt>
-<dd><p>Feed-level modification timestamp (numeric).</p></dd>
+<dd><p>Numeric. Feed-level modification timestamp.</p></dd>
 
-<dt>last_modified_time / effective_time</dt>
-<dd><p>Parsed <code>POSIXct</code> (Europe/Berlin).</p></dd>
+<dt>response_last_modified_time</dt>
+<dd><p>POSIXct. Parsed feed-level timestamp.</p></dd>
 
-<dt><code>&lt;entry_field&gt;</code></dt>
-<dd><p>Additional snake_cased columns from each entry.</p></dd>
+<dt>last_modified_time</dt>
+<dd><p>POSIXct. Entry-level modification timestamp.</p></dd>
+
+<dt>effective_time</dt>
+<dd><p>POSIXct. Entry effective timestamp.</p></dd>
+
+<dt>last_modified</dt>
+<dd><p>Numeric. Raw entry modification timestamp in ms.</p></dd>
+
+<dt>title</dt>
+<dd><p>Character. Representation title.</p></dd>
+
+<dt>leader</dt>
+<dd><p>Character. Head of mission.</p></dd>
+
+<dt>locales</dt>
+<dd><p>Character. Languages spoken.</p></dd>
+
+<dt>country</dt>
+<dd><p>Character. Country.</p></dd>
+
+<dt>zip</dt>
+<dd><p>Character. Postal code.</p></dd>
+
+<dt>city</dt>
+<dd><p>Character. City.</p></dd>
+
+<dt>region</dt>
+<dd><p>Character. Region.</p></dd>
+
+<dt>street</dt>
+<dd><p>Character. Street.</p></dd>
+
+<dt>number</dt>
+<dd><p>Character. House number.</p></dd>
+
+<dt>departments</dt>
+<dd><p>Character. Department details.</p></dd>
+
+<dt>fax</dt>
+<dd><p>Character. Fax number.</p></dd>
+
+<dt>telefone</dt>
+<dd><p>Character. Phone number.</p></dd>
+
+<dt>mail</dt>
+<dd><p>Character. Email address.</p></dd>
+
+<dt>misc</dt>
+<dd><p>Character. Miscellaneous notes.</p></dd>
+
+<dt>url</dt>
+<dd><p>Character. External link.</p></dd>
+
+<dt>postal</dt>
+<dd><p>Character. Postal address.</p></dd>
+
+<dt>type</dt>
+<dd><p>Character. Address type (e.g. Botschaft).</p></dd>
+
+<dt>remark</dt>
+<dd><p>Character. Remark.</p></dd>
+
+<dt>open</dt>
+<dd><p>Character. Opening hours.</p></dd>
 
 
 </dl></div>
