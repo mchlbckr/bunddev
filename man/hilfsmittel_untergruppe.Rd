@@ -38,6 +38,11 @@ the number of rows.}
 \value{
 A tibble with detail fields for one subgroup. Columns follow upstream
 schema; nested values may appear as list-columns.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Get Hilfsmittel subgroup details

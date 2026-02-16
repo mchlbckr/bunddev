@@ -28,6 +28,11 @@ A tibble with one row per item and columns:
 \code{update_check_url}, \code{region_id}, \code{ressort}, \code{type}, \code{breaking_news},
 \code{copyright}, \code{alttext}, and list-columns \code{teaser_image}, \code{tracking}, \code{tags},
 \code{images}, \code{streams}, \code{geotags}, \code{branding_image}, \code{first_frame}.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Fetch Tagesschau homepage items

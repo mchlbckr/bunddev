@@ -29,6 +29,11 @@ from the API (default \code{FALSE}).}
 A tibble with one row per returned \code{MV_STATION_MSMNT} record.
 Includes parsed \verb{*_time} columns (\code{POSIXct}, Europe/Berlin) when matching
 date/time fields are present.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 List MUDAB parameter values

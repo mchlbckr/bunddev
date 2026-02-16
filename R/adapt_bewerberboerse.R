@@ -107,6 +107,11 @@ bewerberboerse_search <- function(params = list(),
 #' @return A tibble with the same columns as [bewerberboerse_search()], filtered
 #' to the requested `referenznummer`.
 #'
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Fetches details for a single candidate. The `referenznummer` typically comes
 #' from [bewerberboerse_search()]. See https://bundesapi.github.io/bewerberboerse-api/.

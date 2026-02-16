@@ -108,6 +108,11 @@ dwd_station_overview <- function(station_ids,
 #' @return A tibble with one row per crowd report and columns including
 #' `meldung_id`, `timestamp`, `timestamp_time`, `lat`, `lon`, `place`,
 #' `category`, `auspraegung`, and `zusatz_attribute` (list-column).
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family DWD
 #' @export
 dwd_crowd_reports <- function(safe = TRUE,
@@ -172,6 +177,11 @@ dwd_crowd_reports <- function(safe = TRUE,
 #' `type`, `level`, `start`, `start_time`, `end`, `end_time`, `description`,
 #' `description_text`, `event`, `headline`, `regions` (list-column),
 #' `urls` (list-column), and `is_vorabinfo`.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family DWD
 #' @export
 dwd_warnings_nowcast <- function(language = c("de", "en"),
@@ -234,6 +244,11 @@ dwd_warnings_nowcast <- function(language = c("de", "en"),
 #' }
 #'
 #' @return A tibble with the same columns as [dwd_warnings_nowcast()].
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family DWD
 #' @export
 dwd_municipality_warnings <- function(language = c("de", "en"),
@@ -298,6 +313,11 @@ dwd_municipality_warnings <- function(language = c("de", "en"),
 #' @return A tibble with one row per coastal warning and columns:
 #' `region_id`, `type`, `level`, `description`, `description_text`, `event`,
 #' and `headline`.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family DWD
 #' @export
 dwd_coast_warnings <- function(language = c("de", "en"),

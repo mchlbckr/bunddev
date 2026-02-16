@@ -31,6 +31,11 @@ calls), \code{identifier}, \code{title}, \code{subtitle}, \code{display_type}, \
 \code{coordinate_lat}, \code{coordinate_long}, \code{description}, \code{footer},
 \code{route_recommendation} (list-column), and
 \code{lorry_parking_feature_icons} (list-column).
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Get Autobahn warning details

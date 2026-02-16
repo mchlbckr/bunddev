@@ -22,6 +22,11 @@
 #' @return A tibble with one row per warning entry and common metadata columns including `content_id`, `last_modified_time`, and `effective_time`.
 #'
 #' Includes `last_modified_time` and `effective_time` as POSIXct in Europe/Berlin.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family NINA
 #' @export
 nina_warnings <- function(safe = TRUE, refresh = FALSE) {
@@ -59,6 +64,11 @@ nina_warnings <- function(safe = TRUE, refresh = FALSE) {
 #' @return A tibble with detailed warning content rows (same common metadata columns as [nina_warnings()]).
 #'
 #' Includes `last_modified_time` and `effective_time` as POSIXct in Europe/Berlin.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family NINA
 #' @export
 nina_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
@@ -97,6 +107,11 @@ nina_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
 #' @return A tibble with detailed warning content rows (same common metadata columns as [nina_warnings()]).
 #'
 #' Includes `sent_time` as POSIXct in Europe/Berlin.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family NINA
 #' @export
 nina_warning_json <- function(identifier, safe = TRUE, refresh = FALSE) {
@@ -653,6 +668,11 @@ nina_mapdata_police <- function(safe = TRUE, refresh = FALSE) {
 #'   from the API (default `FALSE`).
 #'
 #' @return A one-row tibble with archive mapping payload in list-columns.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family NINA
 #' @export
 nina_archive_mowas_mapping <- function(identifier, safe = TRUE, refresh = FALSE) {
@@ -677,6 +697,11 @@ nina_archive_mowas_mapping <- function(identifier, safe = TRUE, refresh = FALSE)
 #'   from the API (default `FALSE`).
 #'
 #' @return A one-row tibble with archive entry payload in list-columns.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family NINA
 #' @export
 nina_archive_mowas <- function(identifier, safe = TRUE, refresh = FALSE) {

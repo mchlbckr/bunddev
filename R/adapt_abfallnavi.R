@@ -231,6 +231,11 @@ abfallnavi_fraktionen_strassen <- function(strassen_id, safe = TRUE, refresh = F
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
 #'
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Abfallnavi
 #' @export
 abfallnavi_termine_strassen <- function(strassen_id, fraktion, safe = TRUE, refresh = FALSE) {
@@ -260,6 +265,11 @@ abfallnavi_termine_strassen <- function(strassen_id, fraktion, safe = TRUE, refr
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
 #'
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Abfallnavi
 #' @export
 abfallnavi_termine_hausnummern <- function(hausnummern_id, fraktion, safe = TRUE, refresh = FALSE) {

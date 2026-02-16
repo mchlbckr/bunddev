@@ -17,6 +17,11 @@
 #'
 #' @return A tibble with one row per tree node at the requested level.
 #' Columns follow upstream schema; repeated nested values are list-columns.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
@@ -62,6 +67,11 @@ hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
 #'
 #' @return A tibble with detail fields for one product group. Columns follow
 #' upstream schema; nested values may appear as list-columns.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_produktgruppe <- function(id,
@@ -110,6 +120,11 @@ hilfsmittel_produktgruppe <- function(id,
 #'
 #' @return A tibble with detail fields for one subgroup. Columns follow upstream
 #' schema; nested values may appear as list-columns.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_untergruppe <- function(id,
@@ -158,6 +173,11 @@ hilfsmittel_untergruppe <- function(id,
 #'
 #' @return A tibble with detail fields for one product type. Columns follow
 #' upstream schema; nested values may appear as list-columns.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_produktart <- function(id,
@@ -204,6 +224,11 @@ hilfsmittel_produktart <- function(id,
 #'
 #' @return A tibble with one row per product entry in the product list. Columns
 #' follow upstream schema; nested values may appear as list-columns.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_produkte <- function(safe = TRUE,
@@ -251,6 +276,11 @@ hilfsmittel_produkte <- function(safe = TRUE,
 #'
 #' @return A tibble with detail fields for one product. Columns follow upstream
 #' schema; nested values may appear as list-columns.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_produkt <- function(id,
@@ -299,6 +329,11 @@ hilfsmittel_produkt <- function(id,
 #'
 #' @return A tibble with detail fields for one Nachweisschema resource. Columns
 #' follow upstream schema; nested values may appear as list-columns.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_nachweisschema <- function(id,

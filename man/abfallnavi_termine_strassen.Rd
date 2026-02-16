@@ -27,6 +27,11 @@ A tibble with one row per collection date and columns \code{date},
 \code{fraction}, and \code{date_time} (\code{POSIXct} in Europe/Berlin) when available.
 
 Includes \code{date_time} as POSIXct in Europe/Berlin.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 List collection dates for a street

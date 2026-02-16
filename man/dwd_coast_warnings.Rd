@@ -39,6 +39,11 @@ the number of rows.}
 A tibble with one row per coastal warning and columns:
 \code{region_id}, \code{type}, \code{level}, \code{description}, \code{description_text}, \code{event},
 and \code{headline}.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Fetch DWD coastal warnings

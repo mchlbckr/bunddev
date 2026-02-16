@@ -40,6 +40,11 @@ A tibble with one row per warning and columns:
 \code{type}, \code{level}, \code{start}, \code{start_time}, \code{end}, \code{end_time}, \code{description},
 \code{description_text}, \code{event}, \code{headline}, \code{regions} (list-column),
 \code{urls} (list-column), and \code{is_vorabinfo}.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Fetch DWD nowcast warnings

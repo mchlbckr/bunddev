@@ -19,6 +19,11 @@ A tibble with one row per warning entry. Common columns include
 \code{response_last_modified}, \code{response_last_modified_time},
 \code{last_modified_time}, and \code{effective_time}, plus additional warning fields
 mapped from the upstream payload.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 List travel warnings

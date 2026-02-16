@@ -17,6 +17,11 @@
 #'
 #' @return A one-row tibble with fields extracted from the XML document. Column
 #' names correspond to XML element names; repeated elements are list-columns.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Bundestag
 #' @export
 bundestag_article <- function(article_id, safe = TRUE, refresh = FALSE) {

@@ -116,6 +116,11 @@ pegel_online_stations <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with the same columns as [pegel_online_stations()].
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Pegel Online
 #' @export
 pegel_online_station <- function(station,

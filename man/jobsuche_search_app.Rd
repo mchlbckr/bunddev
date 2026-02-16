@@ -53,6 +53,11 @@ the number of rows.}
 }
 \value{
 A tibble with the same columns as \code{\link[=jobsuche_search]{jobsuche_search()}}.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Search Jobsuche listings (app endpoint)

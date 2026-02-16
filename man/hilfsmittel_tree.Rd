@@ -18,6 +18,11 @@ from the API (default \code{FALSE}).}
 \value{
 A tibble with one row per tree node at the requested level.
 Columns follow upstream schema; repeated nested values are list-columns.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 List Hilfsmittel tree nodes

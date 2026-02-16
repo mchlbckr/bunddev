@@ -17,6 +17,11 @@ from the API (default \code{FALSE}).}
 A tibble with one row per warning entry and common metadata columns including \code{content_id}, \code{last_modified_time}, and \code{effective_time}.
 
 Includes \code{last_modified_time} and \code{effective_time} as POSIXct in Europe/Berlin.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 List NINA travel warnings

@@ -18,6 +18,11 @@ from the API (default \code{FALSE}).}
 \value{
 A tibble with one row of gauge metadata for the selected
 \code{pegelnummer}. Columns follow the upstream service field names.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Get flood gauge information

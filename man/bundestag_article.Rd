@@ -18,6 +18,11 @@ from the API (default \code{FALSE}).}
 \value{
 A one-row tibble with fields extracted from the XML document. Column
 names correspond to XML element names; repeated elements are list-columns.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Get a Bundestag news article

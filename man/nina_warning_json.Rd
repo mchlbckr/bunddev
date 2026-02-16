@@ -19,6 +19,11 @@ from the API (default \code{FALSE}).}
 A tibble with detailed warning content rows (same common metadata columns as \code{\link[=nina_warnings]{nina_warnings()}}).
 
 Includes \code{sent_time} as POSIXct in Europe/Berlin.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Get a NINA warning (JSON)

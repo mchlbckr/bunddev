@@ -23,6 +23,11 @@
 #' `response_last_modified`, `response_last_modified_time`,
 #' `last_modified_time`, and `effective_time`, plus additional warning fields
 #' mapped from the upstream payload.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Travelwarning
 #' @export
 travelwarning_warnings <- function(safe = TRUE, refresh = FALSE) {
@@ -100,6 +105,11 @@ travelwarning_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
 #'
 #' @return A tibble with representative entries and common metadata columns as
 #' returned by [travelwarning_warnings()].
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Travelwarning
 #' @export
 travelwarning_representatives_germany <- function(safe = TRUE, refresh = FALSE) {
@@ -131,6 +141,11 @@ travelwarning_representatives_germany <- function(safe = TRUE, refresh = FALSE) 
 #'
 #' @return A tibble with representative entries and common metadata columns as
 #' returned by [travelwarning_warnings()].
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Travelwarning
 #' @export
 travelwarning_representatives_country <- function(safe = TRUE, refresh = FALSE) {
@@ -162,6 +177,11 @@ travelwarning_representatives_country <- function(safe = TRUE, refresh = FALSE) 
 #'
 #' @return A tibble with state-name entries and common metadata columns as
 #' returned by [travelwarning_warnings()].
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Travelwarning
 #' @export
 travelwarning_state_names <- function(safe = TRUE, refresh = FALSE) {
@@ -194,6 +214,11 @@ travelwarning_state_names <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @return A tibble with healthcare entries and common metadata columns as
 #' returned by [travelwarning_warnings()].
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Travelwarning
 #' @export
 travelwarning_healthcare <- function(safe = TRUE, refresh = FALSE) {

@@ -17,6 +17,11 @@
 #'
 #' @return A tibble with one row of gauge metadata for the selected
 #' `pegelnummer`. Columns follow the upstream service field names.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_pegel_info <- function(pegelnummer, safe = TRUE, refresh = FALSE) {

@@ -43,6 +43,11 @@ the number of rows.}
 A tibble with one row per FHIR resource in the returned bundle.
 Column structure depends on the resource profile and may include nested
 list-columns when \code{flatten = FALSE}.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 List DiGA device definitions

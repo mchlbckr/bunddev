@@ -45,6 +45,11 @@ the number of rows.}
 A tibble with one row per MaStR entry. Includes a \code{total} column with
 the total result count and additional \verb{_time} columns for date fields when
 available.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 List MaStR electricity generation data

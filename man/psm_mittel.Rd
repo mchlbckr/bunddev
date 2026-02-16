@@ -30,6 +30,11 @@ from the API (default \code{FALSE}).}
 \value{
 A tibble with one row per returned API item. Column names follow the
 upstream BVL field names; nested objects remain list-columns.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 List approved plant protection products

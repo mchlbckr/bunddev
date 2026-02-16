@@ -3,6 +3,11 @@
 #' @return A tibble with one row per Autobahn id and column `road_id`.
 #'
 #' Guaranteed column is `road_id` (character), one row per Autobahn identifier.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Lists Autobahn road ids from the Autobahn App API (Autobahn GmbH).
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -44,6 +49,11 @@ autobahn_roads <- function() {
 #' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
 #' list-columns are transformed according to `flatten_mode`.
 #'
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns current roadworks for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -94,6 +104,11 @@ autobahn_roadworks <- function(road_id, flatten = FALSE, flatten_mode = "json") 
 #' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
 #' list-columns are transformed according to `flatten_mode`.
 #'
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns current warnings for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -143,6 +158,11 @@ autobahn_warnings <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
 #' list-columns are transformed according to `flatten_mode`.
 #'
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns webcam entries for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -192,6 +212,11 @@ autobahn_webcams <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
 #' list-columns are transformed according to `flatten_mode`.
 #'
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns current closures for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -241,6 +266,11 @@ autobahn_closures <- function(road_id, flatten = FALSE, flatten_mode = "json") {
 #' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
 #' list-columns are transformed according to `flatten_mode`.
 #'
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns charging stations for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -290,6 +320,11 @@ autobahn_charging_stations <- function(road_id, flatten = FALSE, flatten_mode = 
 #' `lorry_parking_feature_icons` (list-column). With `flatten = TRUE`, the two
 #' list-columns are transformed according to `flatten_mode`.
 #'
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns lorry parking areas for a specific Autobahn road id.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -338,6 +373,11 @@ autobahn_parking_lorries <- function(road_id, flatten = FALSE, flatten_mode = "j
 #' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
 #' `route_recommendation` (list-column), and
 #' `lorry_parking_feature_icons` (list-column).
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns full details for a single roadwork entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -386,6 +426,11 @@ autobahn_roadwork_details <- function(roadwork_id, flatten = FALSE, flatten_mode
 #' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
 #' `route_recommendation` (list-column), and
 #' `lorry_parking_feature_icons` (list-column).
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns full details for a single warning entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -434,6 +479,11 @@ autobahn_warning_details <- function(warning_id, flatten = FALSE, flatten_mode =
 #' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
 #' `route_recommendation` (list-column), and
 #' `lorry_parking_feature_icons` (list-column).
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns full details for a single webcam entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -482,6 +532,11 @@ autobahn_webcam_details <- function(webcam_id, flatten = FALSE, flatten_mode = "
 #' `coordinate_lat`, `coordinate_long`, `description`, `footer`,
 #' `route_recommendation` (list-column), and
 #' `lorry_parking_feature_icons` (list-column).
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns full details for a single closure entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -530,6 +585,11 @@ autobahn_closure_details <- function(closure_id, flatten = FALSE, flatten_mode =
 #' `extent`, `coordinate_lat`, `coordinate_long`, `description`, `footer`,
 #' `route_recommendation` (list-column), and
 #' `lorry_parking_feature_icons` (list-column).
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns full details for a single charging station entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.
@@ -578,6 +638,11 @@ autobahn_charging_station_details <- function(station_id, flatten = FALSE, flatt
 #' `extent`, `coordinate_lat`, `coordinate_long`, `description`, `footer`,
 #' `route_recommendation` (list-column), and
 #' `lorry_parking_feature_icons` (list-column).
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @details
 #' Returns full details for a single lorry parking entry.
 #' API documentation: \url{https://autobahn.api.bund.dev}.

@@ -37,6 +37,11 @@ the number of rows.}
 }
 \value{
 A tibble with the same columns as \code{\link[=dwd_warnings_nowcast]{dwd_warnings_nowcast()}}.
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Fetch DWD municipality warnings

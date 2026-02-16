@@ -160,6 +160,11 @@ mudab_parameters <- function(filter = NULL,
 #' @return A tibble with one row per returned `MV_STATION_MSMNT` record.
 #' Includes parsed `*_time` columns (`POSIXct`, Europe/Berlin) when matching
 #' date/time fields are present.
+#'
+#' \describe{
+#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_parameter_values <- function(filter = NULL,

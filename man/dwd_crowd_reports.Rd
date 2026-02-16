@@ -36,6 +36,11 @@ the number of rows.}
 A tibble with one row per crowd report and columns including
 \code{meldung_id}, \code{timestamp}, \code{timestamp_time}, \code{lat}, \code{lon}, \code{place},
 \code{category}, \code{auspraegung}, and \code{zusatz_attribute} (list-column).
+
+\describe{
+\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
+\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+}
 }
 \description{
 Fetch DWD crowd reports
