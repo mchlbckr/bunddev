@@ -43,9 +43,9 @@ the number of rows.}
 A tibble with one row per charge item definition resource (same
 structure rules as \code{\link[=diga_device_definitions]{diga_device_definitions()}}).
 
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns are top-level FHIR resource fields from each bundle
+\code{entry} resource; if no entries exist, a single \code{bundle} list-column is
+returned.
 }
 \description{
 List DiGA prescription units

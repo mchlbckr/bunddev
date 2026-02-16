@@ -2,9 +2,7 @@
 #'
 #' @return A tibble with one row per Autobahn id and column `road_id`.
 #'
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed column is `road_id` (character), one row per Autobahn identifier.
 #' @details
 #' Lists Autobahn road ids from the Autobahn App API (Autobahn GmbH).
 #' API documentation: \url{https://autobahn.api.bund.dev}.

@@ -48,9 +48,9 @@ bundestag_article <- function(article_id, safe = TRUE, refresh = FALSE) {
 #'
 #' @return A one-row tibble with fields extracted from the XML document (same
 #' structure rules as [bundestag_article()]).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are scalar child tags from XML `<item>` entries (or
+#' root-level fields for single-document endpoints); repeated tags become
+#' list-columns.
 #' @family Bundestag
 #' @export
 bundestag_speaker <- function(safe = TRUE, refresh = FALSE) {
@@ -81,9 +81,9 @@ bundestag_speaker <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @return A tibble with one row per `<item>` entry from the conferences feed.
 #' Column names correspond to XML element names.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are scalar child tags from XML `<item>` entries (or
+#' root-level fields for single-document endpoints); repeated tags become
+#' list-columns.
 #' @family Bundestag
 #' @export
 bundestag_conferences <- function(safe = TRUE, refresh = FALSE) {
@@ -113,9 +113,9 @@ bundestag_conferences <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with one row per committee `<item>` from the index feed.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are scalar child tags from XML `<item>` entries (or
+#' root-level fields for single-document endpoints); repeated tags become
+#' list-columns.
 #' @family Bundestag
 #' @export
 bundestag_ausschuesse <- function(safe = TRUE, refresh = FALSE) {
@@ -146,9 +146,9 @@ bundestag_ausschuesse <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A one-row tibble with committee detail fields extracted from XML.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are scalar child tags from XML `<item>` entries (or
+#' root-level fields for single-document endpoints); repeated tags become
+#' list-columns.
 #' @family Bundestag
 #' @export
 bundestag_ausschuss <- function(ausschuss_id, safe = TRUE, refresh = FALSE) {
@@ -179,9 +179,9 @@ bundestag_ausschuss <- function(ausschuss_id, safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with one row per member `<item>` from the index feed.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are scalar child tags from XML `<item>` entries (or
+#' root-level fields for single-document endpoints); repeated tags become
+#' list-columns.
 #' @family Bundestag
 #' @export
 bundestag_mdb_index <- function(safe = TRUE, refresh = FALSE) {
@@ -212,9 +212,9 @@ bundestag_mdb_index <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A one-row tibble with biography fields extracted from XML.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are scalar child tags from XML `<item>` entries (or
+#' root-level fields for single-document endpoints); repeated tags become
+#' list-columns.
 #' @family Bundestag
 #' @export
 bundestag_mdb_bio <- function(mdb_id, safe = TRUE, refresh = FALSE) {
@@ -246,9 +246,9 @@ bundestag_mdb_bio <- function(mdb_id, safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A one-row tibble with video feed fields extracted from XML.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are scalar child tags from XML `<item>` entries (or
+#' root-level fields for single-document endpoints); repeated tags become
+#' list-columns.
 #' @family Bundestag
 #' @export
 bundestag_video_feed <- function(content_id, safe = TRUE, refresh = FALSE) {

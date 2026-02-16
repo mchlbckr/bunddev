@@ -15,9 +15,9 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A one-row tibble with version/release metadata.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns are top-level fields of each \code{items} element (with
+\verb{m_row$$} removed). Non-item payloads are returned in a \code{response}
+list-column.
 }
 \description{
 Get data version

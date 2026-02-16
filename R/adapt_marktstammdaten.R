@@ -28,9 +28,9 @@
 #'
 #' @return A tibble with filter definitions. Each row describes an available
 #' filter field and its selectable values/options.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
+#' always include `total` and add parsed `*Datum_time` columns when matching
+#' date fields exist.
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_stromerzeugung <- function(safe = TRUE,
@@ -75,9 +75,9 @@ marktstammdaten_filters_stromerzeugung <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with filter definitions for electricity consumption.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
+#' always include `total` and add parsed `*Datum_time` columns when matching
+#' date fields exist.
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_stromverbrauch <- function(safe = TRUE,
@@ -122,9 +122,9 @@ marktstammdaten_filters_stromverbrauch <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with filter definitions for gas generation.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
+#' always include `total` and add parsed `*Datum_time` columns when matching
+#' date fields exist.
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_gaserzeugung <- function(safe = TRUE,
@@ -169,9 +169,9 @@ marktstammdaten_filters_gaserzeugung <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with filter definitions for gas consumption.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
+#' always include `total` and add parsed `*Datum_time` columns when matching
+#' date fields exist.
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_gasverbrauch <- function(safe = TRUE,
@@ -277,9 +277,9 @@ marktstammdaten_stromerzeugung <- function(params = list(),
 #'
 #' @return A tibble with one row per electricity-consumption entry (same column
 #' conventions as [marktstammdaten_stromerzeugung()]).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
+#' always include `total` and add parsed `*Datum_time` columns when matching
+#' date fields exist.
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_stromverbrauch <- function(params = list(),
@@ -330,9 +330,9 @@ marktstammdaten_stromverbrauch <- function(params = list(),
 #'
 #' @return A tibble with one row per gas-generation entry (same column
 #' conventions as [marktstammdaten_stromerzeugung()]).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
+#' always include `total` and add parsed `*Datum_time` columns when matching
+#' date fields exist.
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_gaserzeugung <- function(params = list(),
@@ -383,9 +383,9 @@ marktstammdaten_gaserzeugung <- function(params = list(),
 #'
 #' @return A tibble with one row per gas-consumption entry (same column
 #' conventions as [marktstammdaten_stromerzeugung()]).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
+#' always include `total` and add parsed `*Datum_time` columns when matching
+#' date fields exist.
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_gasverbrauch <- function(params = list(),

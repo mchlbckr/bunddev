@@ -17,9 +17,9 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A one-row tibble with \code{ars} and a list-column \code{data} containing dashboard payload.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns are endpoint-specific: content endpoints include
+\code{content_id} plus response metadata/time columns; map and archive endpoints
+expose documented identifiers and keep nested blocks as list-columns.
 }
 \description{
 Get NINA dashboard data

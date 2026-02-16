@@ -70,9 +70,9 @@ diga_device_definitions <- function(params = list(), safe = TRUE, refresh = FALS
 #' @return A tibble with one row per catalog entry resource (same structure
 #' rules as [diga_device_definitions()]).
 #'
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level FHIR resource fields from each bundle
+#' `entry` resource; if no entries exist, a single `bundle` list-column is
+#' returned.
 #' @family DiGA
 #' @export
 
@@ -107,9 +107,9 @@ diga_catalog_entries <- function(params = list(), safe = TRUE, refresh = FALSE, 
 #' @return A tibble with one row per organization resource (same structure rules
 #' as [diga_device_definitions()]).
 #'
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level FHIR resource fields from each bundle
+#' `entry` resource; if no entries exist, a single `bundle` list-column is
+#' returned.
 #' @family DiGA
 #' @export
 
@@ -144,9 +144,9 @@ diga_organizations <- function(params = list(), safe = TRUE, refresh = FALSE, fl
 #' @return A tibble with one row per charge item definition resource (same
 #' structure rules as [diga_device_definitions()]).
 #'
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level FHIR resource fields from each bundle
+#' `entry` resource; if no entries exist, a single `bundle` list-column is
+#' returned.
 #' @family DiGA
 #' @export
 
@@ -181,9 +181,9 @@ diga_charge_item_definitions <- function(params = list(), safe = TRUE, refresh =
 #' @return A tibble with one row per questionnaire resource (same structure
 #' rules as [diga_device_definitions()]).
 #'
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level FHIR resource fields from each bundle
+#' `entry` resource; if no entries exist, a single `bundle` list-column is
+#' returned.
 #' @family DiGA
 #' @export
 
@@ -218,9 +218,9 @@ diga_questionnaires <- function(params = list(), safe = TRUE, refresh = FALSE, f
 #' @return A tibble with one row per questionnaire response resource (same
 #' structure rules as [diga_device_definitions()]).
 #'
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level FHIR resource fields from each bundle
+#' `entry` resource; if no entries exist, a single `bundle` list-column is
+#' returned.
 #' @family DiGA
 #' @export
 

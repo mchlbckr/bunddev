@@ -27,9 +27,8 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A tibble with one row per returned \code{STATION_SMALL} record.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns are scalar fields of the selected MUDAB record type.
+\code{datetime_time} is added when \code{DATE_STM} and \code{TIME_STM} are available.
 }
 \description{
 List MUDAB stations

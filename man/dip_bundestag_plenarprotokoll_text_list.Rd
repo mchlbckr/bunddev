@@ -45,9 +45,9 @@ the number of rows.}
 }
 \value{
 A one-row tibble with list-response metadata: \code{num_found}, \code{cursor}, and \code{documents} (list-column).
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns for list endpoints are \code{num_found}, \code{cursor}, and
+\code{documents} (list-column). Detail endpoints return top-level scalar fields
+with nested structures as list-columns.
 }
 \description{
 List DIP Plenarprotokoll texts

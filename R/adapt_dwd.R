@@ -347,9 +347,9 @@ dwd_coast_warnings <- function(language = c("de", "en"),
 #' }
 #'
 #' @return A one-row tibble with one column `text` containing the warning text.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are operation-specific and defined by
+#' `bunddev_tidy_dwd()`: station/crowd/warning endpoints return stable named
+#' columns, while avalanche output is in `raw` (list-column).
 #' @family DWD
 #' @export
 dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
@@ -384,9 +384,9 @@ dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A one-row tibble with one column `text` containing the forecast text.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are operation-specific and defined by
+#' `bunddev_tidy_dwd()`: station/crowd/warning endpoints return stable named
+#' columns, while avalanche output is in `raw` (list-column).
 #' @family DWD
 #' @export
 dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
@@ -422,9 +422,9 @@ dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @return A one-row tibble with one list-column `raw` containing the parsed
 #' avalanche warning payload.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are operation-specific and defined by
+#' `bunddev_tidy_dwd()`: station/crowd/warning endpoints return stable named
+#' columns, while avalanche output is in `raw` (list-column).
 #' @family DWD
 #' @export
 dwd_avalanche_warnings <- function(safe = TRUE, refresh = FALSE) {

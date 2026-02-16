@@ -9,9 +9,7 @@ autobahn_roads()
 \value{
 A tibble with one row per Autobahn id and column \code{road_id}.
 
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed column is \code{road_id} (character), one row per Autobahn identifier.
 }
 \description{
 List Autobahn road ids

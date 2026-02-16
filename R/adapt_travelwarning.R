@@ -60,9 +60,9 @@ travelwarning_warnings <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @return A tibble with one row per warning content block and the same column
 #' structure as [travelwarning_warnings()].
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns include `content_id`, `parent_content_id`,
+#' `response_country`, `response_last_modified`, `last_modified_time`, and
+#' `effective_time`, plus scalar fields from each entry payload.
 #' @family Travelwarning
 #' @export
 travelwarning_warning <- function(content_id, safe = TRUE, refresh = FALSE) {

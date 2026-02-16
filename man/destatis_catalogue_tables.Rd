@@ -42,9 +42,8 @@ from the API (default \code{FALSE}).}
 \value{
 A one-row tibble with one list-column \code{response} containing the
 parsed catalogue payload.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns are \code{response} (list-column) for catalogue endpoints and
+\code{name} plus \code{data} (list-column) for data retrieval endpoints.
 }
 \description{
 List Destatis tables

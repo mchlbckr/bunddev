@@ -16,9 +16,9 @@ from the API (default \code{FALSE}).}
 \value{
 A one-row tibble with fields extracted from the XML document (same
 structure rules as \code{\link[=bundestag_article]{bundestag_article()}}).
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns are scalar child tags from XML \verb{<item>} entries (or
+root-level fields for single-document endpoints); repeated tags become
+list-columns.
 }
 \description{
 Get the current Bundestag speaker

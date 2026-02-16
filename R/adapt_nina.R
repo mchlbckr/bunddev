@@ -124,9 +124,9 @@ nina_warning_json <- function(identifier, safe = TRUE, refresh = FALSE) {
 #' Returns a warning in GeoJSON format.
 #'
 #' @return A one-row tibble with `identifier` and `geojson` (list-column).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_warning_geojson <- function(identifier, safe = TRUE, refresh = FALSE) {
@@ -154,9 +154,9 @@ nina_warning_geojson <- function(identifier, safe = TRUE, refresh = FALSE) {
 #' Returns dashboard data for the given ARS code. API documentation: \url{https://nina.api.bund.dev}.
 #'
 #' @return A one-row tibble with `ars` and a list-column `data` containing dashboard payload.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_dashboard <- function(ars, safe = TRUE, refresh = FALSE) {
@@ -181,9 +181,9 @@ nina_dashboard <- function(ars, safe = TRUE, refresh = FALSE) {
 #'   from the API (default `FALSE`).
 #'
 #' @return A one-row tibble with `ars` and a list-column `data` containing COVID rules payload.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_covid_rules <- function(ars, safe = TRUE, refresh = FALSE) {
@@ -207,9 +207,9 @@ nina_covid_rules <- function(ars, safe = TRUE, refresh = FALSE) {
 #'   from the API (default `FALSE`).
 #'
 #' @return A one-row tibble with list-column `data` containing COVID info payload.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_covid_infos <- function(safe = TRUE, refresh = FALSE) {
@@ -232,9 +232,9 @@ nina_covid_infos <- function(safe = TRUE, refresh = FALSE) {
 #'   from the API (default `FALSE`).
 #'
 #' @return A one-row tibble with list-column `data` containing ticker payload.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_covid_ticker <- function(safe = TRUE, refresh = FALSE) {
@@ -258,9 +258,9 @@ nina_covid_ticker <- function(safe = TRUE, refresh = FALSE) {
 #'   from the API (default `FALSE`).
 #'
 #' @return A one-row tibble with `id` and list-column `data` containing message payload.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_covid_ticker_message <- function(id, safe = TRUE, refresh = FALSE) {
@@ -284,9 +284,9 @@ nina_covid_ticker_message <- function(id, safe = TRUE, refresh = FALSE) {
 #'   from the API (default `FALSE`).
 #'
 #' @return A one-row tibble with list-column `data` containing COVID map payload.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_covid_map <- function(safe = TRUE, refresh = FALSE) {
@@ -311,9 +311,9 @@ nina_covid_map <- function(safe = TRUE, refresh = FALSE) {
 #' @return A tibble with one row per logo metadata entry; includes `last_modification_time` (`POSIXct`).
 #'
 #' Includes `last_modification_time` as POSIXct in Europe/Berlin.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_logos <- function(safe = TRUE, refresh = FALSE) {
@@ -337,9 +337,9 @@ nina_logos <- function(safe = TRUE, refresh = FALSE) {
 #'   from the API (default `FALSE`).
 #'
 #' @return A one-row tibble with `filename` and raw `bytes` in a list-column.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_logo <- function(filename, safe = TRUE, refresh = FALSE) {
@@ -365,9 +365,9 @@ nina_logo <- function(filename, safe = TRUE, refresh = FALSE) {
 #' @return A tibble with one row per event code entry; includes `last_modification_time` (`POSIXct`).
 #'
 #' Includes `last_modification_time` as POSIXct in Europe/Berlin.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_event_codes <- function(safe = TRUE, refresh = FALSE) {
@@ -391,9 +391,9 @@ nina_event_codes <- function(safe = TRUE, refresh = FALSE) {
 #'   from the API (default `FALSE`).
 #'
 #' @return A one-row tibble with `filename` and raw `bytes` in a list-column.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_event_code <- function(filename, safe = TRUE, refresh = FALSE) {
@@ -419,9 +419,9 @@ nina_event_code <- function(filename, safe = TRUE, refresh = FALSE) {
 #' @return A tibble with one row per emergency-tip category, including `tips` (list-column).
 #'
 #' Includes `last_modification_time` as POSIXct in Europe/Berlin.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_notfalltipps <- function(safe = TRUE, refresh = FALSE) {
@@ -457,9 +457,9 @@ nina_notfalltipps <- function(safe = TRUE, refresh = FALSE) {
 #' @return A tibble with one row per FAQ category/entry as returned by the API.
 #'
 #' Includes `last_modification_time` as POSIXct in Europe/Berlin.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_faqs <- function(safe = TRUE, refresh = FALSE) {
@@ -495,9 +495,9 @@ nina_faqs <- function(safe = TRUE, refresh = FALSE) {
 #' @return A one-row tibble with version metadata fields.
 #'
 #' Includes `last_modification_time` as POSIXct in Europe/Berlin.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_version <- function(safe = TRUE, refresh = FALSE) {
@@ -528,9 +528,9 @@ nina_version <- function(safe = TRUE, refresh = FALSE) {
 #' @return A tibble with one row per map-data warning entry.
 #'
 #' Includes `start_date_time` as POSIXct in Europe/Berlin.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_mapdata <- function(source = c("katwarn", "biwapp", "mowas", "dwd", "lhp", "police"),
@@ -641,9 +641,9 @@ nina_archive_mowas <- function(identifier, safe = TRUE, refresh = FALSE) {
 #'   from the API (default `FALSE`).
 #'
 #' @return A one-row tibble with RSS XML text in column `xml`.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are endpoint-specific: content endpoints include
+#' `content_id` plus response metadata/time columns; map and archive endpoints
+#' expose documented identifiers and keep nested blocks as list-columns.
 #' @family NINA
 #' @export
 nina_mowas_rss <- function(ars, safe = TRUE, refresh = FALSE) {

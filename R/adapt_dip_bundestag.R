@@ -51,9 +51,9 @@
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgang_list <- function(params = list(),
@@ -85,9 +85,9 @@ dip_bundestag_vorgang_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Vorgang.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgang <- function(vorgang_id,
@@ -134,9 +134,9 @@ dip_bundestag_vorgang <- function(vorgang_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgangsposition_list <- function(params = list(),
@@ -165,9 +165,9 @@ dip_bundestag_vorgangsposition_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Vorgangsposition.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgangsposition <- function(vorgangsposition_id,
@@ -211,9 +211,9 @@ dip_bundestag_vorgangsposition <- function(vorgangsposition_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache_list <- function(params = list(),
@@ -242,9 +242,9 @@ dip_bundestag_drucksache_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Drucksache.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache <- function(drucksache_id,
@@ -288,9 +288,9 @@ dip_bundestag_drucksache <- function(drucksache_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache_text_list <- function(params = list(),
@@ -319,9 +319,9 @@ dip_bundestag_drucksache_text_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Drucksache text record.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache_text <- function(drucksache_id,
@@ -365,9 +365,9 @@ dip_bundestag_drucksache_text <- function(drucksache_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll_list <- function(params = list(),
@@ -396,9 +396,9 @@ dip_bundestag_plenarprotokoll_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Plenarprotokoll.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll <- function(plenarprotokoll_id,
@@ -442,9 +442,9 @@ dip_bundestag_plenarprotokoll <- function(plenarprotokoll_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll_text_list <- function(params = list(),
@@ -473,9 +473,9 @@ dip_bundestag_plenarprotokoll_text_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Plenarprotokoll text record.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll_text <- function(plenarprotokoll_id,
@@ -519,9 +519,9 @@ dip_bundestag_plenarprotokoll_text <- function(plenarprotokoll_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_aktivitaet_list <- function(params = list(),
@@ -550,9 +550,9 @@ dip_bundestag_aktivitaet_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Aktivitaet.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_aktivitaet <- function(aktivitaet_id,
@@ -596,9 +596,9 @@ dip_bundestag_aktivitaet <- function(aktivitaet_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_person_list <- function(params = list(),
@@ -627,9 +627,9 @@ dip_bundestag_person_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected person record.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
+#' `documents` (list-column). Detail endpoints return top-level scalar fields
+#' with nested structures as list-columns.
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_person <- function(person_id,

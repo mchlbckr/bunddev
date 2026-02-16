@@ -49,9 +49,8 @@ the number of rows.}
 \value{
 A tibble with one row per ArcGIS feature. Attribute names are
 normalized to lower snake_case. Includes a \code{geometry} list-column.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns are ArcGIS attribute fields, with \code{geometry} retained as
+a list-column when geometry is present.
 }
 \description{
 Query Deutschlandatlas indicators

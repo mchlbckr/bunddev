@@ -26,9 +26,8 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A tibble with one row per annual-balance record.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns follow the API \code{indices} metadata; rows contain indexed
+scalar values with names resolved from \code{indices} when provided.
 }
 \description{
 List annual balances

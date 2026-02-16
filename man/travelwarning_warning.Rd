@@ -18,9 +18,9 @@ from the API (default \code{FALSE}).}
 \value{
 A tibble with one row per warning content block and the same column
 structure as \code{\link[=travelwarning_warnings]{travelwarning_warnings()}}.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns include \code{content_id}, \code{parent_content_id},
+\code{response_country}, \code{response_last_modified}, \code{last_modified_time}, and
+\code{effective_time}, plus scalar fields from each entry payload.
 }
 \description{
 Get a travel warning by content id

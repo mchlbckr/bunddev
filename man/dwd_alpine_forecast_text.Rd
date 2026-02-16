@@ -15,9 +15,9 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A one-row tibble with one column \code{text} containing the forecast text.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns are operation-specific and defined by
+\code{bunddev_tidy_dwd()}: station/crowd/warning endpoints return stable named
+columns, while avalanche output is in \code{raw} (list-column).
 }
 \description{
 Fetch DWD alpine forecast text

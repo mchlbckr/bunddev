@@ -50,9 +50,9 @@ hochwasserzentralen_pegel_info <- function(pegelnummer, safe = TRUE, refresh = F
 #'
 #' @return A tibble with one row per Bundesland/region entry. Column names follow
 #' the upstream service field names.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level scalar fields from returned JSON objects
+#' or GeoJSON feature properties; `features` is used as a list-column for
+#' GeoJSON container endpoints.
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
@@ -84,9 +84,9 @@ hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with one row of metadata for the selected Bundesland id.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level scalar fields from returned JSON objects
+#' or GeoJSON feature properties; `features` is used as a list-column for
+#' GeoJSON container endpoints.
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refresh = FALSE) {
@@ -119,9 +119,9 @@ hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refr
 #' }
 #'
 #' @return A tibble with one row per gauge location and coordinate metadata.
-#' Top-level scalar API fields are returned as tibble columns; nested
-#' objects or arrays are kept in list-columns unless the function provides
-#' `flatten` / `flatten_mode` controls.
+#' Guaranteed columns are top-level scalar fields from returned JSON objects
+#' or GeoJSON feature properties; `features` is used as a list-column for
+#' GeoJSON container endpoints.
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_lagepegel <- function(safe = TRUE, refresh = FALSE) {

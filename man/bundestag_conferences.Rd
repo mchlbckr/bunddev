@@ -16,9 +16,9 @@ from the API (default \code{FALSE}).}
 \value{
 A tibble with one row per \verb{<item>} entry from the conferences feed.
 Column names correspond to XML element names.
-Top-level scalar API fields are returned as tibble columns; nested
-objects or arrays are kept in list-columns unless the function provides
-\code{flatten} / \code{flatten_mode} controls.
+Guaranteed columns are scalar child tags from XML \verb{<item>} entries (or
+root-level fields for single-document endpoints); repeated tags become
+list-columns.
 }
 \description{
 Get Bundestag conferences overview
