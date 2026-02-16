@@ -15,3 +15,5 @@
 ^\.github$
 ^inst/dormant$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
+^README\.html$
