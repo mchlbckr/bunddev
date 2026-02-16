@@ -7,14 +7,14 @@
 autobahn_roads()
 }
 \value{
-A tibble with available road ids.
+A tibble with one row per Autobahn id and column \code{road_id}.
 }
 \description{
 List Autobahn road ids
 }
 \details{
 Lists Autobahn road ids from the Autobahn App API (Autobahn GmbH).
-Official docs: https://autobahn.api.bund.dev.
+API documentation: \url{https://autobahn.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -23,4 +23,19 @@ autobahn_roads()
 }
 \seealso{
 \code{\link[=autobahn_roadworks]{autobahn_roadworks()}} and \code{\link[=autobahn_warnings]{autobahn_warnings()}} for road-specific data.
+
+Other Autobahn: 
+\code{\link{autobahn_charging_station_details}()},
+\code{\link{autobahn_charging_stations}()},
+\code{\link{autobahn_closure_details}()},
+\code{\link{autobahn_closures}()},
+\code{\link{autobahn_parking_lorries}()},
+\code{\link{autobahn_parking_lorry_details}()},
+\code{\link{autobahn_roadwork_details}()},
+\code{\link{autobahn_roadworks}()},
+\code{\link{autobahn_warning_details}()},
+\code{\link{autobahn_warnings}()},
+\code{\link{autobahn_webcam_details}()},
+\code{\link{autobahn_webcams}()}
 }
+\concept{Autobahn}

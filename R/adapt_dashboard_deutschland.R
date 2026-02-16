@@ -1,21 +1,53 @@
 #' List Dashboard Deutschland entries
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns the full list of dashboard entries and metadata for each item.
-#' Official docs: https://bundesapi.github.io/dashboard-deutschland-api/.
+#' API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
 #'
 #' @examples
 #' \dontrun{
 #' dashboard_deutschland_get()
 #' }
 #'
-#' @return A tibble with dashboard entries.
+#' @return A tibble with one row per dashboard tile:
+#' \describe{
+#'   \item{id}{Tile identifier (character).}
+#'   \item{name}{Title in German (character).}
+#'   \item{name_en}{Title in English (character).}
+#'   \item{description}{Description in German (character).}
+#'   \item{description_en}{Description in English (character).}
+#'   \item{teaser}{Teaser text in German (character).}
+#'   \item{teaser_en}{Teaser text in English (character).}
+#'   \item{conclusion}{Conclusion text in German (character).}
+#'   \item{conclusion_en}{Conclusion text in English (character).}
+#'   \item{category}{Category metadata (list-column).}
+#'   \item{tags}{Tag metadata (list-column).}
+#'   \item{image}{Image path/url (character).}
+#'   \item{clicks}{Click counter (integer).}
+#'   \item{order_id}{Ordering index (integer).}
+#'   \item{trending}{Whether tile is marked as trending (`TRUE`/`FALSE`).}
+#'   \item{top}{Whether tile is marked as top (`TRUE`/`FALSE`).}
+#'   \item{layout_tiles}{Layout tile metadata (list-column).}
+#'   \item{layout_mode}{Layout mode identifier (character).}
+#' }
+#' @family Dashboard Deutschland
 #' @export
 dashboard_deutschland_get <- function(safe = TRUE,
                                       refresh = FALSE,
@@ -44,21 +76,28 @@ dashboard_deutschland_get <- function(safe = TRUE,
 #' Query Dashboard Deutschland indicators
 #'
 #' @param ids Indicator ids, semicolon-separated or as a character vector.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns indicator data for the specified ids. Official docs:
-#' https://bundesapi.github.io/dashboard-deutschland-api/.
+#' Returns indicator data for the specified ids. API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
 #'
 #' @examples
 #' \dontrun{
 #' dashboard_deutschland_indicators("tile_1667811574092")
 #' }
 #'
-#' @return A tibble with indicator data.
-#'
-#' Includes `date_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per indicator entry:
+#' \describe{
+#'   \item{id}{Indicator id (character).}
+#'   \item{date}{Timestamp in milliseconds since epoch (numeric).}
+#'   \item{date_time}{Timestamp as `POSIXct` in Europe/Berlin.}
+#'   \item{json}{Indicator payload as JSON string (character).}
+#'   \item{title}{Indicator title (character).}
+#' }
+#' @family Dashboard Deutschland
 #' @export
 dashboard_deutschland_indicators <- function(ids = NULL,
                                              safe = TRUE,
@@ -85,22 +124,44 @@ dashboard_deutschland_indicators <- function(ids = NULL,
 
 #' Get Dashboard Deutschland GeoJSON
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns GeoJSON data for Germany and the federal states.
-#' Official docs: https://bundesapi.github.io/dashboard-deutschland-api/.
+#' API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
 #'
 #' @examples
 #' \dontrun{
 #' dashboard_deutschland_geo(flatten = TRUE)
 #' }
 #'
-#' @return A tibble with GeoJSON metadata.
+#' @return A one-row tibble with GeoJSON container metadata:
+#' \describe{
+#'   \item{type}{GeoJSON object type (character).}
+#'   \item{name}{Dataset name (character).}
+#'   \item{title}{Dataset title (character).}
+#'   \item{version}{Version identifier (character).}
+#'   \item{copyright_short}{Short copyright label (character).}
+#'   \item{copyright_url}{Copyright URL (character).}
+#'   \item{crs}{Coordinate reference system metadata (list-column).}
+#'   \item{features}{GeoJSON feature collection entries (list-column).}
+#' }
+#' @family Dashboard Deutschland
 #' @export
 dashboard_deutschland_geo <- function(safe = TRUE,
                                       refresh = FALSE,

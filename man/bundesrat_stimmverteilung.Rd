@@ -13,19 +13,21 @@ bundesrat_stimmverteilung(
 \arguments{
 \item{view}{Rendering mode for the XML output.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with voting distribution metadata.
+A tibble with one row per XML \verb{<item>} in the voting distribution
+feed.
 }
 \description{
 Get Bundesrat voting distribution
 }
 \details{
-Returns the Bundesrat voting distribution. Official docs:
-https://bundesrat.api.bund.dev.
+Returns the Bundesrat voting distribution. API documentation: \url{https://bundesrat.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -33,3 +35,16 @@ bundesrat_stimmverteilung()
 }
 
 }
+\seealso{
+Other Bundesrat: 
+\code{\link{bundesrat_aktuelles}()},
+\code{\link{bundesrat_mitglieder}()},
+\code{\link{bundesrat_plenum_aktuelle_sitzung}()},
+\code{\link{bundesrat_plenum_chronologisch}()},
+\code{\link{bundesrat_plenum_kompakt}()},
+\code{\link{bundesrat_plenum_naechste_sitzungen}()},
+\code{\link{bundesrat_praesidium}()},
+\code{\link{bundesrat_startlist}()},
+\code{\link{bundesrat_termine}()}
+}
+\concept{Bundesrat}

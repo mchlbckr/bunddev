@@ -13,21 +13,73 @@ ausbildungssuche_search(
 )
 }
 \arguments{
-\item{params}{Query parameters.}
+\item{params}{Named list of query parameters:
+\describe{
+\item{sty}{Training type filter (integer).}
+\item{ids}{Occupation id(s), comma-separated (integer/character).}
+\item{orte}{Location id(s), comma-separated (integer/character).}
+\item{page}{Page index, starting at \code{0} (integer).}
+\item{size}{Page size (integer, max defined by API).}
+\item{uk}{Radius filter, e.g. \code{"25"} or \code{"Bundesweit"} (character).}
+\item{re}{Region/Bundesland code (character).}
+\item{bart}{Training category filter (integer).}
+\item{ityp}{Integration type filter (integer).}
+\item{bt}{Start date/time window filter (integer code).}
+\item{ban}{Provider id(s), comma-separated (integer/character).}
+\item{bg}{Only entries with Bildungsgutschein support (\code{TRUE}/\code{FALSE}).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with training offers.
-
-Includes \code{aktualisierungsdatum_time} as POSIXct in Europe/Berlin.
+A tibble with one row per training offer:
+\describe{
+\item{id}{Offer id (integer).}
+\item{unterrichtsform}{Teaching format metadata (list-column).}
+\item{dauer}{Duration metadata (list-column).}
+\item{anbieterbewertung}{Provider rating text (character).}
+\item{angebot}{Offer metadata (list-column).}
+\item{adresse}{Address metadata (list-column).}
+\item{unterrichtszeiten}{Class schedule text (character).}
+\item{kosten_wert}{Cost value (character).}
+\item{kosten_waehrung}{Cost currency (character).}
+\item{kosten_bemerkung}{Cost note (character).}
+\item{foerderung}{Funding flag (\code{TRUE}/\code{FALSE}).}
+\item{link}{Offer link (character).}
+\item{bemerkung}{Additional note text (character).}
+\item{beginn}{Start date text (character).}
+\item{ende}{End date text (character).}
+\item{individueller_einstieg}{Flexible start flag (\code{TRUE}/\code{FALSE}).}
+\item{anmeldeschluss}{Registration deadline text (character).}
+\item{bemerkung_zeit}{Timing note (character).}
+\item{pruefende_stelle}{Examining body (character).}
+\item{eigene_angebotsnummer}{Provider's own offer id (character).}
+\item{teilnehmer_min}{Minimum participants (integer).}
+\item{teilnehmer_max}{Maximum participants (integer).}
+\item{aktualisierungsdatum}{Update timestamp in milliseconds (numeric).}
+\item{aktualisierungsdatum_time}{Update timestamp as \code{POSIXct} in Europe/Berlin.}
+\item{links}{Top-level links object (list-column).}
+\item{aggregations}{Aggregation metadata (list-column).}
+\item{page}{Paging metadata (list-column).}
+}
 }
 \description{
 Search training offers
@@ -36,8 +88,7 @@ Search training offers
 The Ausbildungssuche API provides training offer data from the
 Bundesagentur fuer Arbeit. Authentication is required via \code{X-API-Key}
 (clientId \code{infosysbub-absuche}, discoverable from
-https://web.arbeitsagentur.de/weiterbildungssuche/suche). Official docs:
-https://bundesapi.github.io/ausbildungssuche-api/.
+https://web.arbeitsagentur.de/weiterbildungssuche/suche). API documentation: \url{https://bundesapi.github.io/ausbildungssuche-api/}.
 
 This adapter uses the \code{X-API-Key} header. Set it via \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} and
 \code{AUSBILDUNGSSUCHE_API_KEY}.
@@ -51,6 +102,11 @@ ausbildungssuche_search(params = list(size = 5))
 
 }
 \seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
 \code{\link[=ausbildungssuche_details]{ausbildungssuche_details()}} for a single offer and \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} for
 authentication.
+
+Other Ausbildungssuche: 
+\code{\link{ausbildungssuche_details}()}
 }
+\concept{Ausbildungssuche}

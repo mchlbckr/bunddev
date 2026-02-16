@@ -1,15 +1,25 @@
 #' Fetch DWD station overview data
 #'
 #' @param station_ids Station identifiers.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
-#' Retrieves station overview data from the DWD App API. Official docs:
-#' https://dwd.api.bund.dev. Station IDs can be looked up via DWD opendata
+#' Retrieves station overview data from the DWD App API. API documentation: \url{https://dwd.api.bund.dev}.
 #' resources or the API documentation.
 #'
 #' @seealso
@@ -20,10 +30,20 @@
 #' dwd_station_overview(c("10865", "G005"), flatten = TRUE)
 #' }
 #'
-#' @return A tibble with station data.
-#'
-#' Includes forecast time columns (`forecast_start_time`, `forecast1_start_time`,
-#' `forecast2_start_time`) as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per station id:
+#' \describe{
+#'   \item{station_id}{Station id (character).}
+#'   \item{forecast1}{Forecast block 1 (list-column).}
+#'   \item{forecast2}{Forecast block 2 (list-column).}
+#'   \item{forecast_start}{Forecast start timestamp (character).}
+#'   \item{forecast_start_time}{Forecast start as `POSIXct` in Europe/Berlin.}
+#'   \item{days}{Daily forecast summaries (list-column).}
+#'   \item{warnings}{Warning entries (list-column).}
+#'   \item{three_hour_summaries}{Three-hour summaries (list-column).}
+#'   \item{forecast1_start_time}{`forecast1` start as `POSIXct`.}
+#'   \item{forecast2_start_time}{`forecast2` start as `POSIXct`.}
+#' }
+#' @family DWD
 #' @export
 dwd_station_overview <- function(station_ids,
                                        safe = TRUE,
@@ -56,15 +76,26 @@ dwd_station_overview <- function(station_ids,
 
 #' Fetch DWD crowd reports
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Retrieves crowd-sourced weather reports from the DWD App API.
-#' Official docs: https://dwd.api.bund.dev.
+#' API documentation: \url{https://dwd.api.bund.dev}.
 #'
 #' @seealso
 #' [dwd_station_overview()] and [dwd_warnings_nowcast()].
@@ -74,9 +105,10 @@ dwd_station_overview <- function(station_ids,
 #' dwd_crowd_reports(flatten = TRUE)
 #' }
 #'
-#' @return A tibble with crowd reports.
-#'
-#' Includes `timestamp_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per crowd report and columns including
+#' `meldung_id`, `timestamp`, `timestamp_time`, `lat`, `lon`, `place`,
+#' `category`, `auspraegung`, and `zusatz_attribute` (list-column).
+#' @family DWD
 #' @export
 dwd_crowd_reports <- function(safe = TRUE,
                                     refresh = FALSE,
@@ -107,15 +139,26 @@ dwd_crowd_reports <- function(safe = TRUE,
 #' Fetch DWD nowcast warnings
 #'
 #' @param language Language code ("de" or "en").
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Retrieves nowcast weather warnings from the DWD App API.
-#' Official docs: https://dwd.api.bund.dev.
+#' API documentation: \url{https://dwd.api.bund.dev}.
 #'
 #' @seealso
 #' [dwd_municipality_warnings()] and [dwd_coast_warnings()].
@@ -125,9 +168,11 @@ dwd_crowd_reports <- function(safe = TRUE,
 #' dwd_warnings_nowcast(language = "de", flatten = TRUE)
 #' }
 #'
-#' @return A tibble with nowcast warnings.
-#'
-#' Includes `start_time` and `end_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per warning and columns:
+#' `type`, `level`, `start`, `start_time`, `end`, `end_time`, `description`,
+#' `description_text`, `event`, `headline`, `regions` (list-column),
+#' `urls` (list-column), and `is_vorabinfo`.
+#' @family DWD
 #' @export
 dwd_warnings_nowcast <- function(language = c("de", "en"),
                                  safe = TRUE,
@@ -159,15 +204,26 @@ dwd_warnings_nowcast <- function(language = c("de", "en"),
 #' Fetch DWD municipality warnings
 #'
 #' @param language Language code ("de" or "en").
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Retrieves municipality warnings from the DWD App API.
-#' Official docs: https://dwd.api.bund.dev.
+#' API documentation: \url{https://dwd.api.bund.dev}.
 #'
 #' @seealso
 #' [dwd_warnings_nowcast()] and [dwd_coast_warnings()].
@@ -177,9 +233,8 @@ dwd_warnings_nowcast <- function(language = c("de", "en"),
 #' dwd_municipality_warnings(language = "de", flatten = TRUE)
 #' }
 #'
-#' @return A tibble with municipality warnings.
-#'
-#' Includes `start_time` and `end_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with the same columns as [dwd_warnings_nowcast()].
+#' @family DWD
 #' @export
 dwd_municipality_warnings <- function(language = c("de", "en"),
                                       safe = TRUE,
@@ -211,15 +266,26 @@ dwd_municipality_warnings <- function(language = c("de", "en"),
 #' Fetch DWD coastal warnings
 #'
 #' @param language Language code ("de" or "en").
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Retrieves coastal warnings from the DWD App API.
-#' Official docs: https://dwd.api.bund.dev.
+#' API documentation: \url{https://dwd.api.bund.dev}.
 #'
 #' @seealso
 #' [dwd_warnings_nowcast()] and [dwd_municipality_warnings()].
@@ -229,7 +295,10 @@ dwd_municipality_warnings <- function(language = c("de", "en"),
 #' dwd_coast_warnings(language = "de", flatten = TRUE)
 #' }
 #'
-#' @return A tibble with coastal warnings.
+#' @return A tibble with one row per coastal warning and columns:
+#' `region_id`, `type`, `level`, `description`, `description_text`, `event`,
+#' and `headline`.
+#' @family DWD
 #' @export
 dwd_coast_warnings <- function(language = c("de", "en"),
                                safe = TRUE,
@@ -260,12 +329,14 @@ dwd_coast_warnings <- function(language = c("de", "en"),
 
 #' Fetch DWD sea warning text
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Retrieves sea warning text from the DWD App API.
-#' Official docs: https://dwd.api.bund.dev.
+#' API documentation: \url{https://dwd.api.bund.dev}.
 #'
 #' @seealso
 #' [dwd_alpine_forecast_text()] and [dwd_avalanche_warnings()].
@@ -275,7 +346,8 @@ dwd_coast_warnings <- function(language = c("de", "en"),
 #' dwd_sea_warning_text()
 #' }
 #'
-#' @return A tibble with the warning text.
+#' @return A one-row tibble with one column `text` containing the warning text.
+#' @family DWD
 #' @export
 dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(
@@ -291,12 +363,14 @@ dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
 
 #' Fetch DWD alpine forecast text
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Retrieves alpine forecast text from the DWD App API.
-#' Official docs: https://dwd.api.bund.dev.
+#' API documentation: \url{https://dwd.api.bund.dev}.
 #'
 #' @seealso
 #' [dwd_sea_warning_text()] and [dwd_avalanche_warnings()].
@@ -306,7 +380,8 @@ dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
 #' dwd_alpine_forecast_text()
 #' }
 #'
-#' @return A tibble with the forecast text.
+#' @return A one-row tibble with one column `text` containing the forecast text.
+#' @family DWD
 #' @export
 dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(
@@ -322,12 +397,14 @@ dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
 
 #' Fetch DWD avalanche warnings
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Retrieves avalanche warnings from the DWD App API.
-#' Official docs: https://dwd.api.bund.dev.
+#' API documentation: \url{https://dwd.api.bund.dev}.
 #'
 #' @seealso
 #' [dwd_alpine_forecast_text()] and [dwd_sea_warning_text()].
@@ -337,7 +414,9 @@ dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
 #' dwd_avalanche_warnings()
 #' }
 #'
-#' @return A tibble with avalanche data.
+#' @return A one-row tibble with one list-column `raw` containing the parsed
+#' avalanche warning payload.
+#' @family DWD
 #' @export
 dwd_avalanche_warnings <- function(safe = TRUE, refresh = FALSE) {
   response <- dwd_request(

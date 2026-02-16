@@ -16,22 +16,30 @@ tagesschau_news(
 
 \item{ressort}{Optional ressort filter.}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with news items.
-
-Includes \code{date_time} as POSIXct in Europe/Berlin.
+A tibble with the same columns as \code{\link[=tagesschau_homepage]{tagesschau_homepage()}}, filtered
+by optional region/ressort parameters.
 }
 \description{
 Fetch Tagesschau news items
 }
 \details{
 Returns current news items with optional filters for region or ressort.
-Official docs: https://bundesapi.github.io/tagesschau-api/.
+API documentation: \url{https://bundesapi.github.io/tagesschau-api/}.
 }
 \examples{
 \dontrun{
@@ -41,4 +49,10 @@ tagesschau_news(ressort = "inland", flatten = TRUE)
 }
 \seealso{
 \code{\link[=tagesschau_homepage]{tagesschau_homepage()}} and \code{\link[=tagesschau_search]{tagesschau_search()}}.
+
+Other Tagesschau: 
+\code{\link{tagesschau_channels}()},
+\code{\link{tagesschau_homepage}()},
+\code{\link{tagesschau_search}()}
 }
+\concept{Tagesschau}

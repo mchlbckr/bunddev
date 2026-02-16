@@ -1,14 +1,60 @@
 #' Search the Bewerberboerse API
 #'
-#' @param params List of query parameters.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param params Named list of query parameters:
+#'   \describe{
+#'     \item{was}{Search terms (skills, professions, keywords) (character).}
+#'     \item{ausbildungsart}{Training type code, e.g. `au`, `ba`, `fo` (character).}
+#'     \item{wo}{Location query (place/PLZ/state/country) (character).}
+#'     \item{umkreis}{Radius in km around `wo` (integer).}
+#'     \item{angebotsart}{Offer type code, e.g. `ar`, `az` (character).}
+#'     \item{arbeitszeit}{Work time code, e.g. `vz`, `tz` (character).}
+#'     \item{berufserfahrung}{Experience level code, e.g. `be`, `bg` (character).}
+#'     \item{vertragsart}{Contract type code, e.g. `be`, `ub` (character).}
+#'     \item{behinderung}{Accessibility filter code (character).}
+#'     \item{page}{Page index (integer).}
+#'     \item{size}{Number of results per page (integer).}
+#'   }
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
-#' @return A tibble containing candidate listings with columns including
-#'   reference number, availability, location, skills, and contact flags. When
-#'   `flatten = FALSE`, includes nested list columns for education and
-#'   experience. Metadata columns include `page`, `size`, and `max_ergebnisse`.
+#' @return A tibble with one row per candidate profile:
+#' \describe{
+#'   \item{refnr}{Candidate reference number (character).}
+#'   \item{verfuegbarkeit_von}{Availability date text (character).}
+#'   \item{aktualisierungsdatum}{Last update date text (character).}
+#'   \item{veroeffentlichungsdatum}{Publication date text (character).}
+#'   \item{stellenart}{Position type (character).}
+#'   \item{arbeitszeit_modelle}{Work-time models, collapsed string (character).}
+#'   \item{berufe}{Occupations, collapsed string (character).}
+#'   \item{letzte_taetigkeit_jahr}{Year of most recent activity (character).}
+#'   \item{letzte_taetigkeit_bezeichnung}{Label of most recent activity (character).}
+#'   \item{letzte_taetigkeit_aktuell}{Whether latest activity is current (`TRUE`/`FALSE`).}
+#'   \item{hat_email}{Email contact available (`TRUE`/`FALSE`).}
+#'   \item{hat_telefon}{Phone contact available (`TRUE`/`FALSE`).}
+#'   \item{hat_adresse}{Postal address available (`TRUE`/`FALSE`).}
+#'   \item{ort}{City/locality (character).}
+#'   \item{plz}{Postal code (character).}
+#'   \item{umkreis}{Radius text returned by API (character).}
+#'   \item{region}{Region/state (character).}
+#'   \item{land}{Country (character).}
+#'   \item{mehrere_arbeitsorte}{Multiple work locations flag (`TRUE`/`FALSE`).}
+#'   \item{ausbildungen}{Education entries (list-column).}
+#'   \item{erfahrung}{Experience entries (list-column).}
+#'   \item{operation_id}{Operation identifier used by the tidier (character).}
+#'   \item{page}{Returned page index (integer).}
+#'   \item{size}{Returned page size (integer).}
+#'   \item{max_ergebnisse}{Total matching result count (integer).}
+#' }
 #'
 #' @details
 #' The Bewerberboerse API provides access to candidate listings. Authentication
@@ -28,6 +74,7 @@
 #' bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
 #' bewerberboerse_search(params = list(was = "data", size = 10), flatten = TRUE)
 #' }
+#' @family Bewerberboerse
 #' @export
 bewerberboerse_search <- function(params = list(),
                                   flatten = FALSE,
@@ -44,13 +91,21 @@ bewerberboerse_search <- function(params = list(),
 #' Retrieve Bewerberboerse candidate details
 #'
 #' @param referenznummer Bewerber referenznummer.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
-#' @return A tibble containing detailed information for a single candidate,
-#'   including personal details, skills, work history, education, and contact
-#'   preferences. Structure is similar to [bewerberboerse_search()] results.
+#' @return A tibble with the same columns as [bewerberboerse_search()], filtered
+#' to the requested `referenznummer`.
 #'
 #' @details
 #' Fetches details for a single candidate. The `referenznummer` typically comes
@@ -65,6 +120,7 @@ bewerberboerse_search <- function(params = list(),
 #' bunddev_auth_set("bewerberboerse", type = "api_key", env_var = "BEWERBERBOERSE_API_KEY")
 #' bewerberboerse_details("12345", flatten = TRUE)
 #' }
+#' @family Bewerberboerse
 #' @export
 bewerberboerse_details <- function(referenznummer,
                                    flatten = FALSE,

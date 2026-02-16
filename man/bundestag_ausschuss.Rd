@@ -9,19 +9,21 @@ bundestag_ausschuss(ausschuss_id, safe = TRUE, refresh = FALSE)
 \arguments{
 \item{ausschuss_id}{Committee id (e.g. "a11").}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with committee details.
+A one-row tibble with committee detail fields extracted from XML.
 }
 \description{
 Get Bundestag committee details
 }
 \details{
 Returns details for a single committee.
-Official docs: https://bundesapi.github.io/bundestag-api/.
+API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
 }
 \examples{
 \dontrun{
@@ -29,3 +31,14 @@ bundestag_ausschuss("a11")
 }
 
 }
+\seealso{
+Other Bundestag: 
+\code{\link{bundestag_article}()},
+\code{\link{bundestag_ausschuesse}()},
+\code{\link{bundestag_conferences}()},
+\code{\link{bundestag_mdb_bio}()},
+\code{\link{bundestag_mdb_index}()},
+\code{\link{bundestag_speaker}()},
+\code{\link{bundestag_video_feed}()}
+}
+\concept{Bundestag}

@@ -9,12 +9,22 @@ eco_visio_counters(id_organisme, safe = TRUE, refresh = FALSE)
 \arguments{
 \item{id_organisme}{Organization ID (e.g., 4586 for Bike Count Display).}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with counter metadata.
+A tibble with one row per counter. Common columns:
+\describe{
+\item{id}{Counter identifier (character).}
+\item{name}{Counter name/label (character).}
+\item{lat}{Latitude (numeric).}
+\item{lon}{Longitude (numeric).}
+\item{flow_ids}{Flow/practice identifiers (list-column).}
+\item{raw}{Original counter object (list-column).}
+}
 }
 \description{
 List Eco-Visio counters for an organization
@@ -22,7 +32,7 @@ List Eco-Visio counters for an organization
 \details{
 The Eco-Visio API provides access to bicycle and pedestrian counter data.
 This function returns all counters registered for a specific organization.
-Official docs: https://github.com/bundesAPI/eco-visio-api.
+API documentation: \url{https://github.com/bundesAPI/eco-visio-api}.
 }
 \examples{
 \dontrun{
@@ -32,4 +42,8 @@ eco_visio_counters(4586)
 }
 \seealso{
 \code{\link[=eco_visio_data]{eco_visio_data()}} to retrieve measurement data for a counter.
+
+Other Eco Visio: 
+\code{\link{eco_visio_data}()}
 }
+\concept{Eco Visio}

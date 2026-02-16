@@ -1,12 +1,30 @@
 #' Search Deutsche Digitale Bibliothek
 #'
 #' @param query Search query string.
-#' @param params Additional query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param params Named list of query parameters. Common keys:
+#'   \describe{
+#'     \item{query}{Search string (set automatically from `query`).}
+#'     \item{offset}{Start index for pagination (integer).}
+#'     \item{length}{Maximum number of returned items (integer).}
+#'     \item{facet}{Facet selection(s) supported by the DDB search API (character).}
+#'     \item{sort}{Sort key/order (character).}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns search results from the Deutsche Digitale Bibliothek API. You need an
@@ -17,6 +35,7 @@
 #' scheme, or set the `DDB_API_KEY` environment variable directly.
 #'
 #' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' [bunddev_auth_set()] to configure authentication.
 #'
 #' @examples
@@ -28,7 +47,11 @@
 #' ddb_search(query = "berlin", params = list(rows = 5))
 #' }
 #'
-#' @return A tibble with search metadata and result payload.
+#' @return A one-row tibble with one list-column:
+#' \describe{
+#'   \item{response}{Full parsed DDB search payload (list-column).}
+#' }
+#' @family DDB
 #' @export
 ddb_search <- function(query,
                        params = list(),
@@ -58,23 +81,45 @@ ddb_search <- function(query,
 
 #' List DDB institutions
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param params Named list of institution query parameters:
+#'   \describe{
+#'     \item{hasItems}{Only institutions with items (`TRUE`/`FALSE`).}
+#'     \item{sector}{Sector filter (character).}
+#'     \item{offset}{Start index for pagination (integer).}
+#'     \item{length}{Maximum number of returned items (integer).}
+#'     \item{zoomlevel}{Optional map zoom level parameter (character).}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns institutions registered in the DDB.
 #' Requires the DDB API key.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' ddb_institutions(params = list(hasItems = TRUE))
 #' }
 #'
-#' @return A tibble with institution entries.
+#' @return A tibble with institution entries when the API returns a homogeneous
+#' list; otherwise a one-row tibble with list-column `response`.
+#' @family DDB
 #' @export
 ddb_institutions <- function(params = list(),
                              safe = TRUE,
@@ -98,8 +143,10 @@ ddb_institutions <- function(params = list(),
 
 #' List DDB institution sectors
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns institution sector metadata.
@@ -110,7 +157,9 @@ ddb_institutions <- function(params = list(),
 #' ddb_institution_sectors()
 #' }
 #'
-#' @return A tibble with sector entries.
+#' @return A tibble with sector entries when the API returns a homogeneous list;
+#' otherwise a one-row tibble with list-column `response`.
+#' @family DDB
 #' @export
 ddb_institution_sectors <- function(safe = TRUE, refresh = FALSE) {
   response <- ddb_request(

@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# bunddev <img src="man/figures/bunddev_hexagon.png" align="right" width="120" />
+# bunddev <img src="man/figures/bunddev_hexagon.png" align="right" width="120" alt="bunddev hexagon logo" />
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/bunddev)](https://CRAN.R-project.org/package=bunddev)

@@ -24,14 +24,26 @@ population density). See Details for common tables.}
 
 \item{return_geometry}{Logical; include geometry in response.}
 
-\item{params}{Additional query parameters.}
+\item{params}{Additional ArcGIS query parameters merged with adapter defaults.
+Common keys:
+\describe{
+\item{layer}{JSON-encoded layer definition (set automatically from \code{table}).}
+\item{where}{SQL-like filter expression (set from \code{where}).}
+\item{outFields}{Fields to return (set from \code{out_fields}).}
+\item{returnGeometry}{Whether to include geometry (\code{"true"}/\code{"false"}).}
+\item{f}{Output format (\code{"json"} by default).}
+\item{spatialRel}{Spatial relation, e.g. \code{"esriSpatialRelIntersects"}.}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with regional indicator data.
+A tibble with one row per returned feature and one column per
+attribute provided by the selected Regionalatlas table.
 }
 \description{
 Query Regionalatlas data
@@ -40,7 +52,7 @@ Query Regionalatlas data
 The Regionalatlas API provides access to over 160 regional indicators from
 the German statistical offices. Data is available at various administrative
 levels (Bundeslaender, Regierungsbezirke, Kreise, Gemeinden).
-Official docs: https://github.com/bundesAPI/regionalatlas-api.
+API documentation: \url{https://github.com/bundesAPI/regionalatlas-api}.
 
 Common tables and their indicators:
 \itemize{
@@ -72,3 +84,4 @@ regionalatlas_query("ai002_4_5", where = "typ = 3")
 \seealso{
 \code{\link[=bunddev_parameters]{bunddev_parameters()}} for available query parameters.
 }
+\concept{Regionalatlas}

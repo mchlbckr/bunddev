@@ -18,7 +18,14 @@ NULL
 #' bunddev_endpoints("autobahn")
 #' }
 #'
-#' @return A tibble with endpoints.
+#' @return A tibble with one row per OpenAPI operation:
+#' \describe{
+#'   \item{method}{HTTP method in lower-case, e.g. `"get"` (character).}
+#'   \item{path}{OpenAPI path template, e.g. `"/v1/items/{id}"` (character).}
+#'   \item{operation_id}{OpenAPI `operationId` (character or `NA`).}
+#'   \item{summary}{Operation summary from the spec (character or `NA`).}
+#' }
+#' @family OpenAPI
 #' @export
 bunddev_endpoints <- function(id) {
   spec <- bunddev_spec(id)
@@ -80,7 +87,18 @@ bunddev_endpoints <- function(id) {
 #' bunddev_parameters("smard", name = "resolution")
 #' }
 #'
-#' @return A tibble with parameter metadata.
+#' @return A tibble with one row per parameter definition:
+#' \describe{
+#'   \item{method}{HTTP method in lower-case (character).}
+#'   \item{path}{OpenAPI path template where the parameter applies (character).}
+#'   \item{name}{Parameter name (character).}
+#'   \item{location}{Parameter location such as `"query"` or `"path"` (character).}
+#'   \item{required}{Whether the parameter is required (`TRUE`/`FALSE`).}
+#'   \item{description}{Parameter description from the spec (character or `NA`).}
+#'   \item{schema_type}{OpenAPI schema type, e.g. `"string"` (character or `NA`).}
+#'   \item{enum}{List-column of allowed values (list of character vectors).}
+#' }
+#' @family OpenAPI
 #' @export
 bunddev_parameters <- function(id, name = NULL, path = NULL, method = NULL) {
   spec <- bunddev_spec(id)
@@ -176,7 +194,9 @@ bunddev_resolve_parameter <- function(param, spec) {
 #' bunddev_parameter_values(smard_timeseries, "resolution")
 #' }
 #'
-#' @return A character vector of enum values.
+#' @return A character vector of unique enum values. Returns `character(0)` if
+#' no enum is declared for the selected parameter.
+#' @family OpenAPI
 #' @export
 bunddev_parameter_values <- function(endpoint, name) {
   endpoint_name <- bunddev_endpoint_name(endpoint)
@@ -207,7 +227,9 @@ bunddev_parameter_values <- function(endpoint, name) {
 #' bunddev_parameters_for(smard_timeseries)
 #' }
 #'
-#' @return A tibble with parameter metadata.
+#' @return A tibble with the same columns as [bunddev_parameters()], filtered to
+#' the OpenAPI path/method associated with `endpoint`.
+#' @family OpenAPI
 #' @export
 bunddev_parameters_for <- function(endpoint) {
   endpoint_name <- bunddev_endpoint_name(endpoint)

@@ -3,8 +3,10 @@
 #' @param jahr Year to query (defaults to current year on the API).
 #' @param nur_land Optional Bundesland code to filter.
 #' @param nur_daten Logical; return only date values (1) or include names (0).
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' The Feiertage API returns German public holidays from a Wikipedia-based
@@ -20,12 +22,15 @@
 #' feiertage_list(jahr = 2024, nur_land = "BY")
 #' }
 #'
-#' @return A tibble with holiday names and dates.
-#'
-#' Region-level results include a `region` column and a `note` column for
-#' holiday-specific hints.
-#'
-#' Includes `date_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per holiday:
+#' \describe{
+#'   \item{region}{Bundesland code (character, `NA` for nationwide results).}
+#'   \item{holiday}{Holiday name (character).}
+#'   \item{date}{Date in `YYYY-MM-DD` format (character).}
+#'   \item{note}{Optional holiday note from the API (character or `NA`).}
+#'   \item{date_time}{Date as `POSIXct` in Europe/Berlin.}
+#' }
+#' @family Feiertage
 #' @export
 feiertage_list <- function(jahr = NULL,
                            nur_land = NULL,

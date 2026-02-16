@@ -1,13 +1,15 @@
 #' List Eco-Visio counters for an organization
 #'
 #' @param id_organisme Organization ID (e.g., 4586 for Bike Count Display).
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' The Eco-Visio API provides access to bicycle and pedestrian counter data.
 #' This function returns all counters registered for a specific organization.
-#' Official docs: https://github.com/bundesAPI/eco-visio-api.
+#' API documentation: \url{https://github.com/bundesAPI/eco-visio-api}.
 #'
 #' @seealso
 #' [eco_visio_data()] to retrieve measurement data for a counter.
@@ -17,7 +19,16 @@
 #' eco_visio_counters(4586)
 #' }
 #'
-#' @return A tibble with counter metadata.
+#' @return A tibble with one row per counter. Common columns:
+#' \describe{
+#'   \item{id}{Counter identifier (character).}
+#'   \item{name}{Counter name/label (character).}
+#'   \item{lat}{Latitude (numeric).}
+#'   \item{lon}{Longitude (numeric).}
+#'   \item{flow_ids}{Flow/practice identifiers (list-column).}
+#'   \item{raw}{Original counter object (list-column).}
+#' }
+#' @family Eco Visio
 #' @export
 eco_visio_counters <- function(id_organisme,
                                safe = TRUE,
@@ -47,8 +58,10 @@ eco_visio_counters <- function(id_organisme,
 #' @param flow_ids Practice IDs (semicolon-separated string or character vector).
 #' @param begin Optional start date (Date or "YYYY-MM-DD" string).
 #' @param end Optional end date (Date or "YYYY-MM-DD" string).
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns measurement data for a specific counter. The `flow_ids` parameter
@@ -69,9 +82,13 @@ eco_visio_counters <- function(id_organisme,
 #' )
 #' }
 #'
-#' @return A tibble with measurement data.
-#'
-#' Includes `date_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per measurement interval:
+#' \describe{
+#'   \item{date}{Interval timestamp/date label from the API (character).}
+#'   \item{count}{Count value for the selected flow(s) (integer).}
+#'   \item{date_time}{`date` converted to `POSIXct` in Europe/Berlin.}
+#' }
+#' @family Eco Visio
 #' @export
 eco_visio_data <- function(id_organisme,
                            id_pdc,

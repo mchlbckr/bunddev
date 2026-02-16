@@ -1,12 +1,14 @@
 #' List travel warnings
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' The travelwarning API provides travel and safety information from the
 #' Auswaertiges Amt. This endpoint returns a list of all travel warnings with
-#' metadata. Official docs: https://travelwarning.api.bund.dev.
+#' metadata. API documentation: \url{https://travelwarning.api.bund.dev}.
 #'
 #' @seealso
 #' [travelwarning_warning()] for full details of a single warning.
@@ -16,9 +18,12 @@
 #' travelwarning_warnings()
 #' }
 #'
-#' @return A tibble with travel warnings.
-#'
-#' Includes `last_modified_time` and `effective_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per warning entry. Common columns include
+#' `content_id`, `parent_content_id`, `response_country`,
+#' `response_last_modified`, `response_last_modified_time`,
+#' `last_modified_time`, and `effective_time`, plus additional warning fields
+#' mapped from the upstream payload.
+#' @family Travelwarning
 #' @export
 travelwarning_warnings <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -35,12 +40,14 @@ travelwarning_warnings <- function(safe = TRUE, refresh = FALSE) {
 #' Get a travel warning by content id
 #'
 #' @param content_id Travel warning content id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns the full travel warning content, including HTML blocks.
-#' Official docs: https://travelwarning.api.bund.dev.
+#' API documentation: \url{https://travelwarning.api.bund.dev}.
 #'
 #' @seealso
 #' [travelwarning_warnings()] to list available ids.
@@ -51,9 +58,9 @@ travelwarning_warnings <- function(safe = TRUE, refresh = FALSE) {
 #' travelwarning_warning(warnings$content_id[[1]])
 #' }
 #'
-#' @return A tibble with travel warning details.
-#'
-#' Includes `last_modified_time` and `effective_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per warning content block and the same column
+#' structure as [travelwarning_warnings()].
+#' @family Travelwarning
 #' @export
 travelwarning_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -70,21 +77,22 @@ travelwarning_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
 
 #' List foreign representatives in Germany
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns a list of foreign representatives in Germany. Official docs:
-#' https://travelwarning.api.bund.dev.
+#' Returns a list of foreign representatives in Germany. API documentation: \url{https://travelwarning.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' travelwarning_representatives_germany()
 #' }
 #'
-#' @return A tibble with representatives.
-#'
-#' Includes `last_modified_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with representative entries and common metadata columns as
+#' returned by [travelwarning_warnings()].
+#' @family Travelwarning
 #' @export
 travelwarning_representatives_germany <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -100,21 +108,22 @@ travelwarning_representatives_germany <- function(safe = TRUE, refresh = FALSE) 
 
 #' List German representatives in foreign countries
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns a list of German representatives in foreign countries. Official docs:
-#' https://travelwarning.api.bund.dev.
+#' Returns a list of German representatives in foreign countries. API documentation: \url{https://travelwarning.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' travelwarning_representatives_country()
 #' }
 #'
-#' @return A tibble with representatives.
-#'
-#' Includes `last_modified_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with representative entries and common metadata columns as
+#' returned by [travelwarning_warnings()].
+#' @family Travelwarning
 #' @export
 travelwarning_representatives_country <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -130,21 +139,22 @@ travelwarning_representatives_country <- function(safe = TRUE, refresh = FALSE) 
 
 #' List state names documents
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns documents with state name information. Official docs:
-#' https://travelwarning.api.bund.dev.
+#' Returns documents with state name information. API documentation: \url{https://travelwarning.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' travelwarning_state_names()
 #' }
 #'
-#' @return A tibble with state name entries.
-#'
-#' Includes `last_modified_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with state-name entries and common metadata columns as
+#' returned by [travelwarning_warnings()].
+#' @family Travelwarning
 #' @export
 travelwarning_state_names <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -160,21 +170,23 @@ travelwarning_state_names <- function(safe = TRUE, refresh = FALSE) {
 
 #' List healthcare documents
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns healthcare documents provided by the Auswaertiges Amt.
-#' Official docs: https://travelwarning.api.bund.dev.
+#' API documentation: \url{https://travelwarning.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' travelwarning_healthcare()
 #' }
 #'
-#' @return A tibble with healthcare entries.
-#'
-#' Includes `last_modified_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with healthcare entries and common metadata columns as
+#' returned by [travelwarning_warnings()].
+#' @family Travelwarning
 #' @export
 travelwarning_healthcare <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(

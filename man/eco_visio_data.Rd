@@ -29,14 +29,19 @@ eco_visio_data(
 
 \item{end}{Optional end date (Date or "YYYY-MM-DD" string).}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with measurement data.
-
-Includes \code{date_time} as POSIXct in Europe/Berlin.
+A tibble with one row per measurement interval:
+\describe{
+\item{date}{Interval timestamp/date label from the API (character).}
+\item{count}{Count value for the selected flow(s) (integer).}
+\item{date_time}{\code{date} converted to \code{POSIXct} in Europe/Berlin.}
+}
 }
 \description{
 Get Eco-Visio counter measurement data
@@ -60,4 +65,8 @@ eco_visio_data(
 }
 \seealso{
 \code{\link[=eco_visio_counters]{eco_visio_counters()}} to list available counters.
+
+Other Eco Visio: 
+\code{\link{eco_visio_counters}()}
 }
+\concept{Eco Visio}

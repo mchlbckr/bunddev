@@ -31,12 +31,14 @@ abfallnavi_kalender_download(
 
 \item{fraktion}{Fraction ids.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with raw file bytes.
+A one-row tibble with raw downloaded file bytes in a list-column.
 }
 \description{
 Download calendar file
@@ -44,3 +46,16 @@ Download calendar file
 \details{
 Downloads a calendar file for the requested address and fraction.
 }
+\seealso{
+Other Abfallnavi: 
+\code{\link{abfallnavi_fraktionen}()},
+\code{\link{abfallnavi_fraktionen_hausnummern}()},
+\code{\link{abfallnavi_fraktionen_strassen}()},
+\code{\link{abfallnavi_hausnummern}()},
+\code{\link{abfallnavi_ort}()},
+\code{\link{abfallnavi_orte}()},
+\code{\link{abfallnavi_strassen}()},
+\code{\link{abfallnavi_termine_hausnummern}()},
+\code{\link{abfallnavi_termine_strassen}()}
+}
+\concept{Abfallnavi}

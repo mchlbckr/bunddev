@@ -13,25 +13,42 @@ destatis_catalogue_tables(
 )
 }
 \arguments{
-\item{params}{Query parameters.}
+\item{params}{Named list of Genesis API query parameters. Common keys:
+\describe{
+\item{username}{Genesis username (added automatically from \code{username} if missing).}
+\item{password}{Genesis password (added automatically from \code{password} if missing).}
+\item{name}{Table/cube name for data endpoints (also set by \code{name} argument).}
+\item{selection}{Selection filter expression (character).}
+\item{area}{Regional scope code (character).}
+\item{pagelength}{Maximum number of returned entries (integer).}
+\item{language}{Response language code (character).}
+\item{searchcriterion}{Catalogue search field (character).}
+\item{sortcriterion}{Catalogue sort field (character).}
+\item{type}{Resource type filter (character).}
+\item{startyear}{Start year filter (integer).}
+\item{endyear}{End year filter (integer).}
+}}
 
 \item{username}{Genesis username (default "GAST").}
 
 \item{password}{Genesis password (default "GAST").}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with the raw response payload.
+A one-row tibble with one list-column \code{response} containing the
+parsed catalogue payload.
 }
 \description{
 List Destatis tables
 }
 \details{
 Returns the table catalogue from the Destatis Genesis API.
-Official docs: https://github.com/bundesAPI/destatis-api.
+API documentation: \url{https://github.com/bundesAPI/destatis-api}.
 }
 \examples{
 \dontrun{
@@ -39,3 +56,12 @@ destatis_catalogue_tables()
 }
 
 }
+\seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
+
+Other Destatis: 
+\code{\link{destatis_catalogue_cubes}()},
+\code{\link{destatis_data_cube}()},
+\code{\link{destatis_data_table}()}
+}
+\concept{Destatis}

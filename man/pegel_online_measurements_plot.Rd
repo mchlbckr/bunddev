@@ -22,19 +22,25 @@ pegel_online_measurements_plot(
 
 \item{end}{End timestamp in ISO 8601.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with raw PNG bytes.
+A one-row tibble with:
+\describe{
+\item{station}{Requested station id (character).}
+\item{timeseries}{Requested timeseries shortname (character).}
+\item{png}{Raw PNG bytes (list-column with raw vector).}
+}
 }
 \description{
 Get Pegel-Online measurements plot
 }
 \details{
-Returns a PNG plot for the measurements endpoint. Official docs:
-https://pegel-online.api.bund.dev.
+Returns a PNG plot for the measurements endpoint. API documentation: \url{https://pegel-online.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -48,4 +54,12 @@ pegel_online_measurements_plot(stations$uuid[[1]], "W",
 }
 \seealso{
 \code{\link[=pegel_online_measurements]{pegel_online_measurements()}} for numeric values.
+
+Other Pegel Online: 
+\code{\link{pegel_online_measurements}()},
+\code{\link{pegel_online_station}()},
+\code{\link{pegel_online_stations}()},
+\code{\link{pegel_online_timeseries}()},
+\code{\link{pegel_online_waters}()}
 }
+\concept{Pegel Online}

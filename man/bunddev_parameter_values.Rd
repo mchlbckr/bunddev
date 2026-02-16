@@ -12,7 +12,8 @@ bunddev_parameter_values(endpoint, name)
 \item{name}{Parameter name.}
 }
 \value{
-A character vector of enum values.
+A character vector of unique enum values. Returns \code{character(0)} if
+no enum is declared for the selected parameter.
 }
 \description{
 Extract parameter enum values
@@ -28,4 +29,17 @@ bunddev_parameter_values(smard_timeseries, "resolution")
 }
 \seealso{
 \code{\link[=bunddev_parameters_for]{bunddev_parameters_for()}} to inspect all parameters for an adapter.
+
+Other OpenAPI: 
+\code{\link{bunddev_cache_dir}()},
+\code{\link{bunddev_call}()},
+\code{\link{bunddev_call_tidy}()},
+\code{\link{bunddev_endpoints}()},
+\code{\link{bunddev_ms_to_posix}()},
+\code{\link{bunddev_parameters}()},
+\code{\link{bunddev_parameters_for}()},
+\code{\link{bunddev_spec}()},
+\code{\link{bunddev_spec_path}()},
+\code{\link{bunddev_timestamp_to_ms}()}
 }
+\concept{OpenAPI}

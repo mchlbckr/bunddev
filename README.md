@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# bunddev <img src="man/figures/bunddev_hexagon.png" align="right" width="120" />
+# bunddev <img src="man/figures/bunddev_hexagon.png" align="right" width="120" alt="bunddev hexagon logo" />
 
 <!-- badges: start -->
 

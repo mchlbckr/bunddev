@@ -2,6 +2,7 @@
 #'
 #' @param id Registry id of the API (e.g., "abfallnavi")
 #' @return A tibble with columns method, path, operation_id, summary
+#' @family OpenAPI
 #' @export
 bunddev_endpoints <- function(id) {
   # Locate the yaml file that contains endpoint definitions

@@ -24,22 +24,26 @@ smard_timeseries(
 
 Timestamps are interpreted in the Europe/Berlin timezone.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble of time series values.
-
-Includes a \code{time} column with POSIXct timestamps in Europe/Berlin.
+A tibble with one row per time point:
+\describe{
+\item{timestamp}{Timestamp in milliseconds since epoch (numeric).}
+\item{time}{Timestamp as \code{POSIXct} in Europe/Berlin.}
+\item{value}{Series value for the selected filter/region (numeric).}
+}
 }
 \description{
 Fetch SMARD timeseries data
 }
 \details{
 Returns a tidy time series for a single filter/region. Use
-\code{\link[=smard_indices]{smard_indices()}} to obtain a valid timestamp. Official docs:
-https://smard.api.bund.dev.
+\code{\link[=smard_indices]{smard_indices()}} to obtain a valid timestamp. API documentation: \url{https://smard.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -50,4 +54,9 @@ smard_timeseries(410, region = "DE", resolution = "hour", timestamp = indices$ti
 }
 \seealso{
 \code{\link[=smard_indices]{smard_indices()}} for timestamps and \code{\link[=smard_table]{smard_table()}} for table output.
+
+Other SMARD: 
+\code{\link{smard_indices}()},
+\code{\link{smard_table}()}
 }
+\concept{SMARD}

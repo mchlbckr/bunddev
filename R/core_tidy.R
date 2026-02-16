@@ -2,7 +2,7 @@
 #'
 #' @param api Registry id.
 #' @param operation_id OpenAPI operationId.
-#' @param params List of parameters.
+#' @param params Named list of parameters forwarded to [bunddev_call()].
 #' @param ... Additional arguments passed to the tidier.
 #'
 #' @details
@@ -20,7 +20,10 @@
 #' bunddev_call_tidy("autobahn", "list-roadworks", params = list(roadId = "A1"))
 #' }
 #'
-#' @return A tibble with tidied results.
+#' @return A tibble with tidied endpoint data when a tidier is registered for
+#' `api`. Otherwise a one-row tibble with a single list-column `raw` containing
+#' the parsed response object.
+#' @family OpenAPI
 #' @export
 bunddev_call_tidy <- function(api, operation_id, params = list(), ...) {
   response <- bunddev_call(api, operation_id, params = params, parse = "json", safe = TRUE)

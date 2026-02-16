@@ -11,6 +11,7 @@
 #' bunddev_timestamp_to_ms(as.POSIXct("2024-01-01 00:00:00", tz = "Europe/Berlin"))
 #'
 #' @return Numeric timestamp in milliseconds.
+#' @family OpenAPI
 #' @export
 bunddev_timestamp_to_ms <- function(value, tz = "Europe/Berlin") {
   if (length(value) != 1) {
@@ -41,6 +42,7 @@ bunddev_timestamp_to_ms <- function(value, tz = "Europe/Berlin") {
 #' bunddev_ms_to_posix(1704067200000, tz = "Europe/Berlin")
 #'
 #' @return POSIXct timestamp.
+#' @family OpenAPI
 #' @export
 bunddev_ms_to_posix <- function(value, tz = "Europe/Berlin") {
   if (is.null(value)) {

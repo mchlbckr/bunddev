@@ -7,14 +7,18 @@
 travelwarning_warnings(safe = TRUE, refresh = FALSE)
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with travel warnings.
-
-Includes \code{last_modified_time} and \code{effective_time} as POSIXct in Europe/Berlin.
+A tibble with one row per warning entry. Common columns include
+\code{content_id}, \code{parent_content_id}, \code{response_country},
+\code{response_last_modified}, \code{response_last_modified_time},
+\code{last_modified_time}, and \code{effective_time}, plus additional warning fields
+mapped from the upstream payload.
 }
 \description{
 List travel warnings
@@ -22,7 +26,7 @@ List travel warnings
 \details{
 The travelwarning API provides travel and safety information from the
 Auswaertiges Amt. This endpoint returns a list of all travel warnings with
-metadata. Official docs: https://travelwarning.api.bund.dev.
+metadata. API documentation: \url{https://travelwarning.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -32,4 +36,12 @@ travelwarning_warnings()
 }
 \seealso{
 \code{\link[=travelwarning_warning]{travelwarning_warning()}} for full details of a single warning.
+
+Other Travelwarning: 
+\code{\link{travelwarning_healthcare}()},
+\code{\link{travelwarning_representatives_country}()},
+\code{\link{travelwarning_representatives_germany}()},
+\code{\link{travelwarning_state_names}()},
+\code{\link{travelwarning_warning}()}
 }
+\concept{Travelwarning}

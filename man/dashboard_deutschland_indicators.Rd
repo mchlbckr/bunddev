@@ -9,21 +9,27 @@ dashboard_deutschland_indicators(ids = NULL, safe = TRUE, refresh = FALSE)
 \arguments{
 \item{ids}{Indicator ids, semicolon-separated or as a character vector.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with indicator data.
-
-Includes \code{date_time} as POSIXct in Europe/Berlin.
+A tibble with one row per indicator entry:
+\describe{
+\item{id}{Indicator id (character).}
+\item{date}{Timestamp in milliseconds since epoch (numeric).}
+\item{date_time}{Timestamp as \code{POSIXct} in Europe/Berlin.}
+\item{json}{Indicator payload as JSON string (character).}
+\item{title}{Indicator title (character).}
+}
 }
 \description{
 Query Dashboard Deutschland indicators
 }
 \details{
-Returns indicator data for the specified ids. Official docs:
-https://bundesapi.github.io/dashboard-deutschland-api/.
+Returns indicator data for the specified ids. API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
 }
 \examples{
 \dontrun{
@@ -31,3 +37,9 @@ dashboard_deutschland_indicators("tile_1667811574092")
 }
 
 }
+\seealso{
+Other Dashboard Deutschland: 
+\code{\link{dashboard_deutschland_geo}()},
+\code{\link{dashboard_deutschland_get}()}
+}
+\concept{Dashboard Deutschland}

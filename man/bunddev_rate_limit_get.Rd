@@ -10,7 +10,11 @@ bunddev_rate_limit_get(api)
 \item{api}{Registry id.}
 }
 \value{
-The rate limit configuration.
+A named list with:
+\describe{
+\item{max_per_hour}{Configured/inferred calls-per-hour limit (integer or \code{NA}).}
+\item{timestamps}{Numeric Unix timestamps of tracked requests.}
+}
 }
 \description{
 Get API rate limit configuration
@@ -25,4 +29,8 @@ bunddev_rate_limit_get("smard")
 }
 \seealso{
 \code{\link[=bunddev_rate_limit_set]{bunddev_rate_limit_set()}} to override the default.
+
+Other Throttling: 
+\code{\link{bunddev_rate_limit_set}()}
 }
+\concept{Throttling}

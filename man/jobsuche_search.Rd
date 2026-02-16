@@ -13,21 +13,69 @@ jobsuche_search(
 )
 }
 \arguments{
-\item{params}{Query parameters.}
+\item{params}{Named list of query parameters:
+\describe{
+\item{was}{Free-text job/keyword query (character).}
+\item{wo}{Location query (character).}
+\item{berufsfeld}{Occupational field filter (character).}
+\item{page}{Page index (integer).}
+\item{size}{Number of results per page (integer).}
+\item{arbeitgeber}{Employer filter (character).}
+\item{veroeffentlichtseit}{Only offers published within N days (integer).}
+\item{zeitarbeit}{Filter temporary-agency postings (\code{TRUE}/\code{FALSE}).}
+\item{angebotsart}{Offer type code(s), semicolon-separated (integer/character).}
+\item{befristung}{Contract duration code(s), semicolon-separated (integer/character).}
+\item{arbeitszeit}{Work time model code(s), semicolon-separated (character).}
+\item{behinderung}{Accessibility/disability filter (\code{TRUE}/\code{FALSE}).}
+\item{corona}{Only postings with corona flag (\code{TRUE}/\code{FALSE}).}
+\item{umkreis}{Radius in kilometers around \code{wo} (integer).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with job listings.
-
-Includes parsed POSIXct columns (suffix \verb{_time}) in Europe/Berlin.
+A tibble with one row per job listing:
+\describe{
+\item{hash_id}{Posting hash id (character).}
+\item{beruf}{Job title/occupation (character).}
+\item{refnr}{Reference number (character).}
+\item{arbeitgeber}{Employer name (character).}
+\item{aktuelle_veroeffentlichungsdatum}{Published date/time text (character).}
+\item{aktuelle_veroeffentlichungsdatum_time}{Published timestamp as \code{POSIXct} in Europe/Berlin.}
+\item{eintrittsdatum}{Start date text (character).}
+\item{eintrittsdatum_time}{Start timestamp as \code{POSIXct} in Europe/Berlin.}
+\item{arbeitsort_plz}{Postal code (character).}
+\item{arbeitsort_ort}{City/locality (character).}
+\item{arbeitsort_strasse}{Street (character).}
+\item{arbeitsort_region}{Region/state (character).}
+\item{arbeitsort_land}{Country code/name (character).}
+\item{arbeitsort_lat}{Latitude (numeric).}
+\item{arbeitsort_lon}{Longitude (numeric).}
+\item{modifikations_timestamp}{Modification timestamp text (character).}
+\item{modifikations_timestamp_time}{Modification timestamp as \code{POSIXct} in Europe/Berlin.}
+\item{page}{Returned page number (character).}
+\item{size}{Returned page size (character).}
+\item{max_ergebnisse}{Total result count (character).}
+\item{facetten}{Facet metadata (list-column).}
+}
 }
 \description{
 Search Jobsuche listings
@@ -51,4 +99,9 @@ jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
 \seealso{
 \code{\link[=jobsuche_search_app]{jobsuche_search_app()}} for the app endpoint, \code{\link[=jobsuche_logo]{jobsuche_logo()}} to fetch
 employer logos, and \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} for authentication.
+
+Other Jobsuche: 
+\code{\link{jobsuche_logo}()},
+\code{\link{jobsuche_search_app}()}
 }
+\concept{Jobsuche}

@@ -7,20 +7,21 @@
 abfallnavi_orte(safe = TRUE, refresh = FALSE)
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with places.
+A tibble with one row per place entry returned by the API.
 }
 \description{
 List available places
 }
 \details{
 The Abfallnavi API provides waste collection data for supported regions.
-Start by listing places (Orte) to obtain an \code{ortId}. Official docs:
-https://bundesapi.github.io/abfallnavi-api/.
+Start by listing places (Orte) to obtain an \code{ortId}. API documentation: \url{https://bundesapi.github.io/abfallnavi-api/}.
 }
 \examples{
 \dontrun{
@@ -30,4 +31,16 @@ abfallnavi_orte()
 }
 \seealso{
 \code{\link[=abfallnavi_strassen]{abfallnavi_strassen()}} for streets in a place.
+
+Other Abfallnavi: 
+\code{\link{abfallnavi_fraktionen}()},
+\code{\link{abfallnavi_fraktionen_hausnummern}()},
+\code{\link{abfallnavi_fraktionen_strassen}()},
+\code{\link{abfallnavi_hausnummern}()},
+\code{\link{abfallnavi_kalender_download}()},
+\code{\link{abfallnavi_ort}()},
+\code{\link{abfallnavi_strassen}()},
+\code{\link{abfallnavi_termine_hausnummern}()},
+\code{\link{abfallnavi_termine_strassen}()}
 }
+\concept{Abfallnavi}

@@ -1,21 +1,41 @@
 #' List Destatis tables
 #'
-#' @param params Query parameters.
+#' @param params Named list of Genesis API query parameters. Common keys:
+#'   \describe{
+#'     \item{username}{Genesis username (added automatically from `username` if missing).}
+#'     \item{password}{Genesis password (added automatically from `password` if missing).}
+#'     \item{name}{Table/cube name for data endpoints (also set by `name` argument).}
+#'     \item{selection}{Selection filter expression (character).}
+#'     \item{area}{Regional scope code (character).}
+#'     \item{pagelength}{Maximum number of returned entries (integer).}
+#'     \item{language}{Response language code (character).}
+#'     \item{searchcriterion}{Catalogue search field (character).}
+#'     \item{sortcriterion}{Catalogue sort field (character).}
+#'     \item{type}{Resource type filter (character).}
+#'     \item{startyear}{Start year filter (integer).}
+#'     \item{endyear}{End year filter (integer).}
+#'   }
 #' @param username Genesis username (default "GAST").
 #' @param password Genesis password (default "GAST").
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns the table catalogue from the Destatis Genesis API.
-#' Official docs: https://github.com/bundesAPI/destatis-api.
+#' API documentation: \url{https://github.com/bundesAPI/destatis-api}.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' destatis_catalogue_tables()
 #' }
 #'
-#' @return A tibble with the raw response payload.
+#' @return A one-row tibble with one list-column `response` containing the
+#' parsed catalogue payload.
+#' @family Destatis
 #' @export
 destatis_catalogue_tables <- function(params = list(),
                                       username = "GAST",
@@ -36,22 +56,28 @@ destatis_catalogue_tables <- function(params = list(),
 
 #' List Destatis cubes
 #'
-#' @param params Query parameters.
+#' @inheritParams destatis_catalogue_tables
 #' @param username Genesis username (default "GAST").
 #' @param password Genesis password (default "GAST").
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns the cube catalogue from the Destatis Genesis API.
-#' Official docs: https://github.com/bundesAPI/destatis-api.
+#' API documentation: \url{https://github.com/bundesAPI/destatis-api}.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' destatis_catalogue_cubes()
 #' }
 #'
-#' @return A tibble with the raw response payload.
+#' @return A one-row tibble with one list-column `response` containing the
+#' parsed catalogue payload.
+#' @family Destatis
 #' @export
 destatis_catalogue_cubes <- function(params = list(),
                                      username = "GAST",
@@ -73,22 +99,31 @@ destatis_catalogue_cubes <- function(params = list(),
 #' Retrieve Destatis table data
 #'
 #' @param name Table id.
-#' @param params Query parameters.
+#' @inheritParams destatis_catalogue_tables
 #' @param username Genesis username (default "GAST").
 #' @param password Genesis password (default "GAST").
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns table data as text (csv by default).
-#' Official docs: https://github.com/bundesAPI/destatis-api.
+#' API documentation: \url{https://github.com/bundesAPI/destatis-api}.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' destatis_data_table("12411-0001")
 #' }
 #'
-#' @return A tibble with table data in a text column.
+#' @return A one-row tibble with:
+#' \describe{
+#'   \item{name}{Requested table id (character).}
+#'   \item{data}{Raw response body (typically CSV/text) (character).}
+#' }
+#' @family Destatis
 #' @export
 destatis_data_table <- function(name,
                                 params = list(),
@@ -112,22 +147,31 @@ destatis_data_table <- function(name,
 #' Retrieve Destatis cube data
 #'
 #' @param name Cube id.
-#' @param params Query parameters.
+#' @inheritParams destatis_catalogue_tables
 #' @param username Genesis username (default "GAST").
 #' @param password Genesis password (default "GAST").
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns cube data as text (csv by default).
-#' Official docs: https://github.com/bundesAPI/destatis-api.
+#' API documentation: \url{https://github.com/bundesAPI/destatis-api}.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' destatis_data_cube("21231BJ001")
 #' }
 #'
-#' @return A tibble with cube data in a text column.
+#' @return A one-row tibble with:
+#' \describe{
+#'   \item{name}{Requested cube id (character).}
+#'   \item{data}{Raw response body (typically CSV/text) (character).}
+#' }
+#' @family Destatis
 #' @export
 destatis_data_cube <- function(name,
                                params = list(),

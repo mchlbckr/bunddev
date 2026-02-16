@@ -13,29 +13,60 @@ bundeshaushalt_budget_data(
 )
 }
 \arguments{
-\item{params}{Query parameters.}
+\item{params}{Named list of query parameters:
+\describe{
+\item{year}{Budget year (integer, required).}
+\item{account}{Account type (\code{"income"} or \code{"expenses"}, required).}
+\item{quota}{Target value mode, e.g. planned/actual values (character).}
+\item{unit}{Budget unit/granularity level (character).}
+\item{id}{Optional budget node id to drill into a specific subtree (character).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with budget data and nested detail lists.
-
-Includes \code{timestamp_time} as POSIXct in Europe/Berlin.
+A one-row tibble with budget metadata and nested payloads:
+\describe{
+\item{account}{Requested account type (character).}
+\item{entity}{Entity label from the API response (character).}
+\item{level_cur}{Current hierarchy level (integer).}
+\item{level_max}{Maximum hierarchy level (integer).}
+\item{modify_date}{Upstream modification date (character).}
+\item{quota}{Quota/target mode (character).}
+\item{timestamp}{Response timestamp in milliseconds (numeric).}
+\item{timestamp_time}{Response timestamp as \code{POSIXct} in Europe/Berlin.}
+\item{unit}{Selected unit/granularity (character).}
+\item{year}{Budget year (integer).}
+\item{details}{Detailed budget rows (list-column).}
+\item{children}{Child nodes in the budget hierarchy (list-column).}
+\item{parents}{Parent nodes in the hierarchy (list-column).}
+\item{related}{Related nodes from the API response (list-column).}
+}
 }
 \description{
 Query Bundeshaushalt budget data
 }
 \details{
 The Bundeshaushalt API provides budget data for federal income and expenses.
-Required query parameters are \code{year} and \code{account}. Official docs:
-https://github.com/bundesAPI/bundeshaushalt-api.
+Required query parameters are \code{year} and \code{account}. API documentation: \url{https://github.com/bundesAPI/bundeshaushalt-api}.
 }
 \examples{
 \dontrun{
@@ -43,3 +74,7 @@ bundeshaushalt_budget_data(params = list(year = 2021, account = "expenses"))
 }
 
 }
+\seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect parameter metadata from the OpenAPI spec.
+}
+\concept{Bundeshaushalt}

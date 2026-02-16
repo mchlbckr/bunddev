@@ -12,24 +12,55 @@ dashboard_deutschland_get(
 )
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with dashboard entries.
+A tibble with one row per dashboard tile:
+\describe{
+\item{id}{Tile identifier (character).}
+\item{name}{Title in German (character).}
+\item{name_en}{Title in English (character).}
+\item{description}{Description in German (character).}
+\item{description_en}{Description in English (character).}
+\item{teaser}{Teaser text in German (character).}
+\item{teaser_en}{Teaser text in English (character).}
+\item{conclusion}{Conclusion text in German (character).}
+\item{conclusion_en}{Conclusion text in English (character).}
+\item{category}{Category metadata (list-column).}
+\item{tags}{Tag metadata (list-column).}
+\item{image}{Image path/url (character).}
+\item{clicks}{Click counter (integer).}
+\item{order_id}{Ordering index (integer).}
+\item{trending}{Whether tile is marked as trending (\code{TRUE}/\code{FALSE}).}
+\item{top}{Whether tile is marked as top (\code{TRUE}/\code{FALSE}).}
+\item{layout_tiles}{Layout tile metadata (list-column).}
+\item{layout_mode}{Layout mode identifier (character).}
+}
 }
 \description{
 List Dashboard Deutschland entries
 }
 \details{
 Returns the full list of dashboard entries and metadata for each item.
-Official docs: https://bundesapi.github.io/dashboard-deutschland-api/.
+API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
 }
 \examples{
 \dontrun{
@@ -37,3 +68,9 @@ dashboard_deutschland_get()
 }
 
 }
+\seealso{
+Other Dashboard Deutschland: 
+\code{\link{dashboard_deutschland_geo}()},
+\code{\link{dashboard_deutschland_indicators}()}
+}
+\concept{Dashboard Deutschland}

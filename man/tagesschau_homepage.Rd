@@ -7,22 +7,34 @@
 tagesschau_homepage(flatten = FALSE, flatten_mode = "json")
 }
 \arguments{
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with homepage items.
-
-Includes \code{date_time} as POSIXct in Europe/Berlin.
+A tibble with one row per item and columns:
+\code{section}, \code{sophora_id}, \code{external_id}, \code{title}, \code{date}, \code{date_time},
+\code{topline}, \code{first_sentence}, \code{details}, \code{detailsweb}, \code{share_url},
+\code{update_check_url}, \code{region_id}, \code{ressort}, \code{type}, \code{breaking_news},
+\code{copyright}, \code{alttext}, and list-columns \code{teaser_image}, \code{tracking}, \code{tags},
+\code{images}, \code{streams}, \code{geotags}, \code{branding_image}, \code{first_frame}.
 }
 \description{
 Fetch Tagesschau homepage items
 }
 \details{
 Fetches the Tagesschau homepage feed as provided by the ARD Tagesschau API.
-Official docs: https://bundesapi.github.io/tagesschau-api/.
+API documentation: \url{https://bundesapi.github.io/tagesschau-api/}.
 
 Note: The registry rate limit allows up to 60 requests per hour. Usage of
 content is restricted to private, non-commercial use unless otherwise stated
@@ -36,4 +48,10 @@ tagesschau_homepage(flatten = TRUE)
 }
 \seealso{
 \code{\link[=tagesschau_news]{tagesschau_news()}}, \code{\link[=tagesschau_search]{tagesschau_search()}}, and \code{\link[=tagesschau_channels]{tagesschau_channels()}}.
+
+Other Tagesschau: 
+\code{\link{tagesschau_channels}()},
+\code{\link{tagesschau_news}()},
+\code{\link{tagesschau_search}()}
 }
+\concept{Tagesschau}

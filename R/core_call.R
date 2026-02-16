@@ -2,7 +2,8 @@
 #'
 #' @param api Registry id.
 #' @param operation_id OpenAPI operationId (use this OR path+method).
-#' @param params List of query parameters.
+#' @param params Named list of query and path parameters passed to the selected
+#' operation.
 #' @param path API path (use with method instead of operation_id).
 #' @param method HTTP method (use with path instead of operation_id).
 #' @param parse Response parsing mode.
@@ -10,8 +11,12 @@
 #' @param body Optional request body (for POST/PUT requests).
 #' @param body_type Body encoding type ("json" or "form").
 #' @param headers Optional named list of custom HTTP headers.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached GET responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' the API (default `FALSE`).
 #'
 #' @details
 #' This is the low-level OpenAPI caller. It supports two modes:
@@ -34,7 +39,14 @@
 #' bunddev_call("autobahn", "list-autobahnen")
 #' }
 #'
-#' @return Parsed response.
+#' @return Parsed response according to `parse`:
+#' \describe{
+#'   \item{`parse = "json"`}{Parsed JSON as an R list.}
+#'   \item{`parse = "text"`}{Character scalar with response body text.}
+#'   \item{`parse = "raw"`}{Raw vector with response bytes.}
+#'   \item{`parse = "xml"`}{`xml2` document object.}
+#' }
+#' @family OpenAPI
 #' @export
 bunddev_call <- function(api, operation_id = NULL, params = list(),
                          path = NULL, method = NULL,

@@ -1,18 +1,40 @@
 #' Query charging stations
 #'
-#' @param params Query parameters for the ArcGIS service.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param params Named list of ArcGIS query parameters. Common keys:
+#'   \describe{
+#'     \item{geometry}{Geometry filter (required by this adapter). Can be a JSON
+#'       string or an R list that is converted to JSON.}
+#'     \item{geometryType}{Geometry type, e.g. `"esriGeometryEnvelope"`.}
+#'     \item{where}{SQL-like filter expression (default often `"1=1"`).}
+#'     \item{outFields}{Fields to return (default `"*"`).}
+#'     \item{returnGeometry}{Whether to include feature geometry (`"true"`/`"false"`).}
+#'     \item{outSR}{Output spatial reference id, e.g. `4326`.}
+#'     \item{f}{Output format (default `"json"`).}
+#'     \item{resultRecordCount}{Maximum number of returned rows (integer).}
+#'     \item{token}{Optional ArcGIS access token if required by upstream service.}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' The Ladesaeulenregister API is backed by an ArcGIS feature service. You must
 #' supply a `geometry` filter and `outFields`. The ArcGIS service may require a
 #' `token` query parameter even though the API docs describe the service as
-#' public. Official docs:
-#' https://ladestationen.api.bund.dev.
+#' public. API documentation: \url{https://ladestationen.api.bund.dev}.
 #'
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
@@ -38,7 +60,10 @@
 #' ))
 #' }
 #'
-#' @return A tibble with charging station records.
+#' @return A tibble with one row per ArcGIS feature. Attribute names are
+#' normalized to lower snake_case. Includes a `geometry` list-column with the
+#' feature geometry object.
+#' @family Ladestationen
 #' @export
 ladestationen_query <- function(params = list(),
                                 safe = TRUE,

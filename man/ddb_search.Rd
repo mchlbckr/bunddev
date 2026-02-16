@@ -16,19 +16,40 @@ ddb_search(
 \arguments{
 \item{query}{Search query string.}
 
-\item{params}{Additional query parameters.}
+\item{params}{Named list of query parameters. Common keys:
+\describe{
+\item{query}{Search string (set automatically from \code{query}).}
+\item{offset}{Start index for pagination (integer).}
+\item{length}{Maximum number of returned items (integer).}
+\item{facet}{Facet selection(s) supported by the DDB search API (character).}
+\item{sort}{Sort key/order (character).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with search metadata and result payload.
+A one-row tibble with one list-column:
+\describe{
+\item{response}{Full parsed DDB search payload (list-column).}
+}
 }
 \description{
 Search Deutsche Digitale Bibliothek
@@ -52,5 +73,11 @@ ddb_search(query = "berlin", params = list(rows = 5))
 
 }
 \seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
 \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} to configure authentication.
+
+Other DDB: 
+\code{\link{ddb_institution_sectors}()},
+\code{\link{ddb_institutions}()}
 }
+\concept{DDB}

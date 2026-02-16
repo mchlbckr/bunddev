@@ -13,7 +13,12 @@
 #' @examples
 #' bunddev_rate_limit_set("smard", max_per_hour = 60)
 #'
-#' @return The stored rate limit configuration.
+#' @return A named list with:
+#' \describe{
+#'   \item{max_per_hour}{Maximum allowed calls per hour (integer).}
+#'   \item{timestamps}{Numeric Unix timestamps of tracked requests.}
+#' }
+#' @family Throttling
 #' @export
 bunddev_rate_limit_set <- function(api, max_per_hour) {
   if (missing(max_per_hour) || is.null(max_per_hour) || max_per_hour <= 0) {
@@ -43,7 +48,12 @@ bunddev_rate_limit_set <- function(api, max_per_hour) {
 #' @examples
 #' bunddev_rate_limit_get("smard")
 #'
-#' @return The rate limit configuration.
+#' @return A named list with:
+#' \describe{
+#'   \item{max_per_hour}{Configured/inferred calls-per-hour limit (integer or `NA`).}
+#'   \item{timestamps}{Numeric Unix timestamps of tracked requests.}
+#' }
+#' @family Throttling
 #' @export
 bunddev_rate_limit_get <- function(api) {
   limits <- getOption("bunddev.rate_limit", list())

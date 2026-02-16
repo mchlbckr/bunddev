@@ -16,15 +16,31 @@ abfallnavi_termine_strassen(
 
 \item{fraktion}{Fraction ids.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with collection dates.
+A tibble with one row per collection date and columns \code{date},
+\code{fraction}, and \code{date_time} (\code{POSIXct} in Europe/Berlin) when available.
 
 Includes \code{date_time} as POSIXct in Europe/Berlin.
 }
 \description{
 List collection dates for a street
 }
+\seealso{
+Other Abfallnavi: 
+\code{\link{abfallnavi_fraktionen}()},
+\code{\link{abfallnavi_fraktionen_hausnummern}()},
+\code{\link{abfallnavi_fraktionen_strassen}()},
+\code{\link{abfallnavi_hausnummern}()},
+\code{\link{abfallnavi_kalender_download}()},
+\code{\link{abfallnavi_ort}()},
+\code{\link{abfallnavi_orte}()},
+\code{\link{abfallnavi_strassen}()},
+\code{\link{abfallnavi_termine_hausnummern}()}
+}
+\concept{Abfallnavi}

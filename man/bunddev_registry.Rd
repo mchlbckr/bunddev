@@ -7,7 +7,17 @@
 bunddev_registry()
 }
 \value{
-A tibble with registry entries.
+A tibble with one row per API registry entry:
+\describe{
+\item{id}{Stable API identifier used throughout \code{bunddev} (character).}
+\item{title}{Human-readable API title (character).}
+\item{provider}{API provider or owning institution (character).}
+\item{spec_url}{OpenAPI specification URL (character).}
+\item{docs_url}{Upstream API documentation URL (character).}
+\item{auth}{Authentication type (\code{"none"}, \code{"api_key"}, \code{"oauth2"}).}
+\item{rate_limit}{Declared upstream rate limit text (character or \code{NA}).}
+\item{tags}{List-column of taxonomy tags (list of character vectors).}
+}
 }
 \description{
 Read the bundled API registry
@@ -26,4 +36,10 @@ head(registry, 3)
 \seealso{
 \code{\link[=bunddev_list]{bunddev_list()}} for filtered listings, \code{\link[=bunddev_search]{bunddev_search()}} for keyword
 searches, and \code{\link[=bunddev_info]{bunddev_info()}} for a single entry.
+
+Other Registry: 
+\code{\link{bunddev_info}()},
+\code{\link{bunddev_list}()},
+\code{\link{bunddev_search}()}
 }
+\concept{Registry}

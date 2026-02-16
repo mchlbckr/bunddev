@@ -1,12 +1,14 @@
 #' List NINA travel warnings
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' The NINA API provides warnings and app data from the Bundesamt fuer
 #' Bevoelkerungsschutz. This endpoint returns a list of travel warnings with
-#' metadata. Official docs: https://nina.api.bund.dev.
+#' metadata. API documentation: \url{https://nina.api.bund.dev}.
 #'
 #' @seealso
 #' [nina_warning()] for a single warning and [nina_mapdata()] for
@@ -17,9 +19,10 @@
 #' nina_warnings()
 #' }
 #'
-#' @return A tibble with warning metadata.
+#' @return A tibble with one row per warning entry and common metadata columns including `content_id`, `last_modified_time`, and `effective_time`.
 #'
 #' Includes `last_modified_time` and `effective_time` as POSIXct in Europe/Berlin.
+#' @family NINA
 #' @export
 nina_warnings <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -36,8 +39,10 @@ nina_warnings <- function(safe = TRUE, refresh = FALSE) {
 #' Get a NINA travel warning by content id
 #'
 #' @param content_id Travel warning content id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns full travel warning content, including HTML blocks.
@@ -51,9 +56,10 @@ nina_warnings <- function(safe = TRUE, refresh = FALSE) {
 #' nina_warning(warnings$content_id[[1]])
 #' }
 #'
-#' @return A tibble with warning details.
+#' @return A tibble with detailed warning content rows (same common metadata columns as [nina_warnings()]).
 #'
 #' Includes `last_modified_time` and `effective_time` as POSIXct in Europe/Berlin.
+#' @family NINA
 #' @export
 nina_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -71,8 +77,10 @@ nina_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
 #' Get a NINA warning (JSON)
 #'
 #' @param identifier Warning identifier.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns a warning in JSON format.
@@ -86,9 +94,10 @@ nina_warning <- function(content_id, safe = TRUE, refresh = FALSE) {
 #' nina_warning_json(map$id[[1]])
 #' }
 #'
-#' @return A tibble with warning details.
+#' @return A tibble with detailed warning content rows (same common metadata columns as [nina_warnings()]).
 #'
 #' Includes `sent_time` as POSIXct in Europe/Berlin.
+#' @family NINA
 #' @export
 nina_warning_json <- function(identifier, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -106,13 +115,16 @@ nina_warning_json <- function(identifier, safe = TRUE, refresh = FALSE) {
 #' Get a NINA warning (GeoJSON)
 #'
 #' @param identifier Warning identifier.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns a warning in GeoJSON format.
 #'
-#' @return A tibble with geojson payload.
+#' @return A one-row tibble with `identifier` and `geojson` (list-column).
+#' @family NINA
 #' @export
 nina_warning_geojson <- function(identifier, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -130,14 +142,16 @@ nina_warning_geojson <- function(identifier, safe = TRUE, refresh = FALSE) {
 #' Get NINA dashboard data
 #'
 #' @param ars ARS code.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns dashboard data for the given ARS code. Official docs:
-#' https://nina.api.bund.dev.
+#' Returns dashboard data for the given ARS code. API documentation: \url{https://nina.api.bund.dev}.
 #'
-#' @return A tibble with dashboard payload.
+#' @return A one-row tibble with `ars` and a list-column `data` containing dashboard payload.
+#' @family NINA
 #' @export
 nina_dashboard <- function(ars, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -155,10 +169,13 @@ nina_dashboard <- function(ars, safe = TRUE, refresh = FALSE) {
 #' Get COVID rules for an ARS
 #'
 #' @param ars ARS code.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with COVID rules data.
+#' @return A one-row tibble with `ars` and a list-column `data` containing COVID rules payload.
+#' @family NINA
 #' @export
 nina_covid_rules <- function(ars, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -175,10 +192,13 @@ nina_covid_rules <- function(ars, safe = TRUE, refresh = FALSE) {
 
 #' Get COVID info data
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with COVID info data.
+#' @return A one-row tibble with list-column `data` containing COVID info payload.
+#' @family NINA
 #' @export
 nina_covid_infos <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -194,10 +214,13 @@ nina_covid_infos <- function(safe = TRUE, refresh = FALSE) {
 
 #' Get COVID ticker
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with COVID ticker data.
+#' @return A one-row tibble with list-column `data` containing ticker payload.
+#' @family NINA
 #' @export
 nina_covid_ticker <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -214,10 +237,13 @@ nina_covid_ticker <- function(safe = TRUE, refresh = FALSE) {
 #' Get COVID ticker message
 #'
 #' @param id Ticker message id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with ticker message data.
+#' @return A one-row tibble with `id` and list-column `data` containing message payload.
+#' @family NINA
 #' @export
 nina_covid_ticker_message <- function(id, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -234,10 +260,13 @@ nina_covid_ticker_message <- function(id, safe = TRUE, refresh = FALSE) {
 
 #' Get COVID map data
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with COVID map data.
+#' @return A one-row tibble with list-column `data` containing COVID map payload.
+#' @family NINA
 #' @export
 nina_covid_map <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -253,12 +282,15 @@ nina_covid_map <- function(safe = TRUE, refresh = FALSE) {
 
 #' List NINA logos
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with logo metadata.
+#' @return A tibble with one row per logo metadata entry; includes `last_modification_time` (`POSIXct`).
 #'
 #' Includes `last_modification_time` as POSIXct in Europe/Berlin.
+#' @family NINA
 #' @export
 nina_logos <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -275,10 +307,13 @@ nina_logos <- function(safe = TRUE, refresh = FALSE) {
 #' Get a logo file
 #'
 #' @param filename Logo file name.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with raw logo bytes.
+#' @return A one-row tibble with `filename` and raw `bytes` in a list-column.
+#' @family NINA
 #' @export
 nina_logo <- function(filename, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -295,12 +330,15 @@ nina_logo <- function(filename, safe = TRUE, refresh = FALSE) {
 
 #' List NINA event codes
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with event codes.
+#' @return A tibble with one row per event code entry; includes `last_modification_time` (`POSIXct`).
 #'
 #' Includes `last_modification_time` as POSIXct in Europe/Berlin.
+#' @family NINA
 #' @export
 nina_event_codes <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -317,10 +355,13 @@ nina_event_codes <- function(safe = TRUE, refresh = FALSE) {
 #' Get an event code file
 #'
 #' @param filename Event code filename.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with raw event code bytes.
+#' @return A one-row tibble with `filename` and raw `bytes` in a list-column.
+#' @family NINA
 #' @export
 nina_event_code <- function(filename, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -337,12 +378,15 @@ nina_event_code <- function(filename, safe = TRUE, refresh = FALSE) {
 
 #' List emergency tips
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with emergency tips.
+#' @return A tibble with one row per emergency-tip category, including `tips` (list-column).
 #'
 #' Includes `last_modification_time` as POSIXct in Europe/Berlin.
+#' @family NINA
 #' @export
 nina_notfalltipps <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -369,12 +413,15 @@ nina_notfalltipps <- function(safe = TRUE, refresh = FALSE) {
 
 #' List FAQs
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with FAQs.
+#' @return A tibble with one row per FAQ category/entry as returned by the API.
 #'
 #' Includes `last_modification_time` as POSIXct in Europe/Berlin.
+#' @family NINA
 #' @export
 nina_faqs <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -401,12 +448,15 @@ nina_faqs <- function(safe = TRUE, refresh = FALSE) {
 
 #' Get data version info
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with version data.
+#' @return A one-row tibble with version metadata fields.
 #'
 #' Includes `last_modification_time` as POSIXct in Europe/Berlin.
+#' @family NINA
 #' @export
 nina_version <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -425,15 +475,18 @@ nina_version <- function(safe = TRUE, refresh = FALSE) {
 #' List map data
 #'
 #' @param source Map data source.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Valid sources are: `katwarn`, `biwapp`, `mowas`, `dwd`, `lhp`, `police`.
 #'
-#' @return A tibble with map data entries.
+#' @return A tibble with one row per map-data warning entry.
 #'
 #' Includes `start_date_time` as POSIXct in Europe/Berlin.
+#' @family NINA
 #' @export
 nina_mapdata <- function(source = c("katwarn", "biwapp", "mowas", "dwd", "lhp", "police"),
                          safe = TRUE,
@@ -489,10 +542,13 @@ nina_mapdata_police <- function(safe = TRUE, refresh = FALSE) {
 #' Get MOWAS archive mapping
 #'
 #' @param identifier Warning identifier.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with archive mapping data.
+#' @return A one-row tibble with archive mapping payload in list-columns.
+#' @family NINA
 #' @export
 nina_archive_mowas_mapping <- function(identifier, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -510,10 +566,13 @@ nina_archive_mowas_mapping <- function(identifier, safe = TRUE, refresh = FALSE)
 #' Get MOWAS archive entry
 #'
 #' @param identifier Warning identifier.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with archive entry data.
+#' @return A one-row tibble with archive entry payload in list-columns.
+#' @family NINA
 #' @export
 nina_archive_mowas <- function(identifier, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -531,10 +590,13 @@ nina_archive_mowas <- function(identifier, safe = TRUE, refresh = FALSE) {
 #' Get MOWAS RSS feed
 #'
 #' @param ars ARS code.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with RSS XML text.
+#' @return A one-row tibble with RSS XML text in column `xml`.
+#' @family NINA
 #' @export
 nina_mowas_rss <- function(ars, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(

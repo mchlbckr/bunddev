@@ -13,26 +13,54 @@ pegel_online_waters(
 )
 }
 \arguments{
-\item{params}{Query parameters.}
+\item{params}{Named list of query parameters:
+\describe{
+\item{includeTimeseries}{Include timeseries metadata (\code{TRUE}/\code{FALSE}).}
+\item{includeCurrentMeasurement}{Include current measurement metadata (\code{TRUE}/\code{FALSE}).}
+\item{includeCharacteristicValues}{Include characteristic values (\code{TRUE}/\code{FALSE}).}
+\item{waters}{Filter by water shortnames (character vector).}
+\item{ids}{Filter by station ids (character vector).}
+\item{timeseries}{Timeseries shortname filter (character).}
+\item{fuzzyId}{Fuzzy station id/name search (character).}
+\item{latitude}{Latitude center for geo search (numeric).}
+\item{longitude}{Longitude center for geo search (numeric).}
+\item{radius}{Radius for geo search (numeric).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with water metadata.
+A tibble with one row per water:
+\describe{
+\item{shortname}{Water shortname (character).}
+\item{longname}{Water long name (character).}
+\item{stations}{Associated stations (list-column).}
+\item{timeseries}{Associated timeseries metadata (list-column).}
+}
 }
 \description{
 List Pegel-Online waters
 }
 \details{
-Lists waters available in Pegel-Online. Official docs:
-https://pegel-online.api.bund.dev.
+Lists waters available in Pegel-Online. API documentation: \url{https://pegel-online.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -41,5 +69,14 @@ pegel_online_waters(params = list(limit = 5))
 
 }
 \seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
 \code{\link[=pegel_online_stations]{pegel_online_stations()}} for station metadata.
+
+Other Pegel Online: 
+\code{\link{pegel_online_measurements}()},
+\code{\link{pegel_online_measurements_plot}()},
+\code{\link{pegel_online_station}()},
+\code{\link{pegel_online_stations}()},
+\code{\link{pegel_online_timeseries}()}
 }
+\concept{Pegel Online}

@@ -7,12 +7,14 @@
 psm_stand(safe = TRUE, refresh = FALSE)
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with version information.
+A one-row tibble with version/release metadata.
 }
 \description{
 Get data version
@@ -26,3 +28,12 @@ psm_stand()
 }
 
 }
+\seealso{
+Other Pflanzenschutzmittelzulassung: 
+\code{\link{psm_anwendungen}()},
+\code{\link{psm_kultur_gruppen}()},
+\code{\link{psm_mittel}()},
+\code{\link{psm_schadorg_gruppen}()},
+\code{\link{psm_wirkstoffe}()}
+}
+\concept{Pflanzenschutzmittelzulassung}

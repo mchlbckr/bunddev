@@ -19,17 +19,21 @@ feiertage_list(
 
 \item{nur_daten}{Logical; return only date values (1) or include names (0).}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with holiday names and dates.
-
-Region-level results include a \code{region} column and a \code{note} column for
-holiday-specific hints.
-
-Includes \code{date_time} as POSIXct in Europe/Berlin.
+A tibble with one row per holiday:
+\describe{
+\item{region}{Bundesland code (character, \code{NA} for nationwide results).}
+\item{holiday}{Holiday name (character).}
+\item{date}{Date in \code{YYYY-MM-DD} format (character).}
+\item{note}{Optional holiday note from the API (character or \code{NA}).}
+\item{date_time}{Date as \code{POSIXct} in Europe/Berlin.}
+}
 }
 \description{
 List German public holidays
@@ -49,3 +53,4 @@ feiertage_list(jahr = 2024, nur_land = "BY")
 \seealso{
 \code{\link[=bunddev_parameters]{bunddev_parameters()}} for available query parameters.
 }
+\concept{Feiertage}

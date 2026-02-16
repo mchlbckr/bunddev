@@ -10,7 +10,8 @@ bunddev_search(q)
 \item{q}{Search query.}
 }
 \value{
-A tibble of matching registry entries.
+A tibble with the same columns as \code{\link[=bunddev_registry]{bunddev_registry()}}, containing
+entries that match \code{q}.
 }
 \description{
 Search registry entries
@@ -26,4 +27,10 @@ bunddev_search("weather")
 \seealso{
 \code{\link[=bunddev_list]{bunddev_list()}} to filter by tag or auth, and \code{\link[=bunddev_info]{bunddev_info()}} for details
 on a single API.
+
+Other Registry: 
+\code{\link{bunddev_info}()},
+\code{\link{bunddev_list}()},
+\code{\link{bunddev_registry}()}
 }
+\concept{Registry}

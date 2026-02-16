@@ -13,21 +13,46 @@ jobsuche_search_app(
 )
 }
 \arguments{
-\item{params}{Query parameters.}
+\item{params}{Named list of query parameters:
+\describe{
+\item{was}{Free-text job/keyword query (character).}
+\item{wo}{Location query (character).}
+\item{berufsfeld}{Occupational field filter (character).}
+\item{page}{Page index (integer).}
+\item{size}{Number of results per page (integer).}
+\item{arbeitgeber}{Employer filter (character).}
+\item{veroeffentlichtseit}{Only offers published within N days (integer).}
+\item{zeitarbeit}{Filter temporary-agency postings (\code{TRUE}/\code{FALSE}).}
+\item{angebotsart}{Offer type code(s), semicolon-separated (integer/character).}
+\item{befristung}{Contract duration code(s), semicolon-separated (integer/character).}
+\item{arbeitszeit}{Work time model code(s), semicolon-separated (character).}
+\item{behinderung}{Accessibility/disability filter (\code{TRUE}/\code{FALSE}).}
+\item{corona}{Only postings with corona flag (\code{TRUE}/\code{FALSE}).}
+\item{umkreis}{Radius in kilometers around \code{wo} (integer).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with job listings.
-
-Includes parsed POSIXct columns (suffix \verb{_time}) in Europe/Berlin.
+A tibble with the same columns as \code{\link[=jobsuche_search]{jobsuche_search()}}.
 }
 \description{
 Search Jobsuche listings (app endpoint)
@@ -49,4 +74,9 @@ jobsuche_search_app(params = list(was = "data", size = 5), flatten = TRUE)
 \seealso{
 \code{\link[=jobsuche_search]{jobsuche_search()}} for the standard endpoint and \code{\link[=bunddev_parameters]{bunddev_parameters()}} for
 parameter discovery.
+
+Other Jobsuche: 
+\code{\link{jobsuche_logo}()},
+\code{\link{jobsuche_search}()}
 }
+\concept{Jobsuche}

@@ -14,7 +14,13 @@ bunddev_endpoints(id)
 \value{
 A tibble with columns method, path, operation_id, summary
 
-A tibble with endpoints.
+A tibble with one row per OpenAPI operation:
+\describe{
+\item{method}{HTTP method in lower-case, e.g. \code{"get"} (character).}
+\item{path}{OpenAPI path template, e.g. \code{"/v1/items/{id}"} (character).}
+\item{operation_id}{OpenAPI \code{operationId} (character or \code{NA}).}
+\item{summary}{Operation summary from the spec (character or \code{NA}).}
+}
 }
 \description{
 Retrieve endpoints for a given API
@@ -34,4 +40,29 @@ bunddev_endpoints("autobahn")
 \seealso{
 \code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect parameters and \code{\link[=bunddev_spec]{bunddev_spec()}} to access
 the full spec.
+
+Other OpenAPI: 
+\code{\link{bunddev_cache_dir}()},
+\code{\link{bunddev_call}()},
+\code{\link{bunddev_call_tidy}()},
+\code{\link{bunddev_ms_to_posix}()},
+\code{\link{bunddev_parameter_values}()},
+\code{\link{bunddev_parameters}()},
+\code{\link{bunddev_parameters_for}()},
+\code{\link{bunddev_spec}()},
+\code{\link{bunddev_spec_path}()},
+\code{\link{bunddev_timestamp_to_ms}()}
+
+Other OpenAPI: 
+\code{\link{bunddev_cache_dir}()},
+\code{\link{bunddev_call}()},
+\code{\link{bunddev_call_tidy}()},
+\code{\link{bunddev_ms_to_posix}()},
+\code{\link{bunddev_parameter_values}()},
+\code{\link{bunddev_parameters}()},
+\code{\link{bunddev_parameters_for}()},
+\code{\link{bunddev_spec}()},
+\code{\link{bunddev_spec_path}()},
+\code{\link{bunddev_timestamp_to_ms}()}
 }
+\concept{OpenAPI}

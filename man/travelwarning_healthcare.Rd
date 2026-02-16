@@ -7,21 +7,22 @@
 travelwarning_healthcare(safe = TRUE, refresh = FALSE)
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with healthcare entries.
-
-Includes \code{last_modified_time} as POSIXct in Europe/Berlin.
+A tibble with healthcare entries and common metadata columns as
+returned by \code{\link[=travelwarning_warnings]{travelwarning_warnings()}}.
 }
 \description{
 List healthcare documents
 }
 \details{
 Returns healthcare documents provided by the Auswaertiges Amt.
-Official docs: https://travelwarning.api.bund.dev.
+API documentation: \url{https://travelwarning.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -29,3 +30,12 @@ travelwarning_healthcare()
 }
 
 }
+\seealso{
+Other Travelwarning: 
+\code{\link{travelwarning_representatives_country}()},
+\code{\link{travelwarning_representatives_germany}()},
+\code{\link{travelwarning_state_names}()},
+\code{\link{travelwarning_warning}()},
+\code{\link{travelwarning_warnings}()}
+}
+\concept{Travelwarning}

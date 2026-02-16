@@ -3,13 +3,15 @@
 #' @param filter Filter id.
 #' @param region Region code.
 #' @param resolution Data resolution.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' The SMARD API provides power market data published by the Bundesnetzagentur.
 #' Use this helper to retrieve available timestamps for a given filter/region
-#' and resolution. Official docs: https://smard.api.bund.dev.
+#' and resolution. API documentation: \url{https://smard.api.bund.dev}.
 #'
 #' Note: The registry rate limit states that more than 60 requests per hour are
 #' not permitted. Use `safe = TRUE` to respect the limit.
@@ -23,7 +25,11 @@
 #' smard_indices(410, region = "DE", resolution = "hour")
 #' }
 #'
-#' @return A tibble of timestamps.
+#' @return A tibble with one column:
+#' \describe{
+#'   \item{timestamp}{Available SMARD timestamp in milliseconds since epoch (numeric).}
+#' }
+#' @family SMARD
 #' @export
 smard_indices <- function(filter, region = "DE", resolution = "hour", safe = TRUE, refresh = FALSE) {
   path <- sprintf("/chart_data/%s/%s/index_%s.json", filter, region, resolution)
@@ -43,13 +49,14 @@ smard_indices <- function(filter, region = "DE", resolution = "hour", safe = TRU
 #' @param timestamp Timestamp from indices (ms), POSIXct, or Date.
 #'
 #' Timestamps are interpreted in the Europe/Berlin timezone.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns a tidy time series for a single filter/region. Use
-#' [smard_indices()] to obtain a valid timestamp. Official docs:
-#' https://smard.api.bund.dev.
+#' [smard_indices()] to obtain a valid timestamp. API documentation: \url{https://smard.api.bund.dev}.
 #'
 #' @seealso
 #' [smard_indices()] for timestamps and [smard_table()] for table output.
@@ -60,9 +67,13 @@ smard_indices <- function(filter, region = "DE", resolution = "hour", safe = TRU
 #' smard_timeseries(410, region = "DE", resolution = "hour", timestamp = indices$timestamp[[1]])
 #' }
 #'
-#' @return A tibble of time series values.
-#'
-#' Includes a `time` column with POSIXct timestamps in Europe/Berlin.
+#' @return A tibble with one row per time point:
+#' \describe{
+#'   \item{timestamp}{Timestamp in milliseconds since epoch (numeric).}
+#'   \item{time}{Timestamp as `POSIXct` in Europe/Berlin.}
+#'   \item{value}{Series value for the selected filter/region (numeric).}
+#' }
+#' @family SMARD
 #' @export
 smard_timeseries <- function(filter, region = "DE", resolution = "hour", timestamp,
                              safe = TRUE, refresh = FALSE) {
@@ -94,13 +105,14 @@ smard_timeseries <- function(filter, region = "DE", resolution = "hour", timesta
 #' @param timestamp Timestamp from indices (ms), POSIXct, or Date.
 #'
 #' Timestamps are interpreted in the Europe/Berlin timezone.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns table-style SMARD data for a single timestamp. Use
-#' [smard_indices()] to obtain a valid timestamp. Official docs:
-#' https://smard.api.bund.dev.
+#' [smard_indices()] to obtain a valid timestamp. API documentation: \url{https://smard.api.bund.dev}.
 #'
 #' @seealso
 #' [smard_indices()] for timestamps and [smard_timeseries()] for time series.
@@ -111,9 +123,14 @@ smard_timeseries <- function(filter, region = "DE", resolution = "hour", timesta
 #' smard_table(410, region = "DE", timestamp = indices$timestamp[[1]])
 #' }
 #'
-#' @return A tibble of table values.
-#'
-#' Includes a `time` column with POSIXct timestamps in Europe/Berlin.
+#' @return A tibble with one row per returned value/version:
+#' \describe{
+#'   \item{timestamp}{Timestamp in milliseconds since epoch (numeric).}
+#'   \item{time}{Timestamp as `POSIXct` in Europe/Berlin.}
+#'   \item{value}{Reported value (numeric).}
+#'   \item{name}{Version/series label when provided by the API (character).}
+#' }
+#' @family SMARD
 #' @export
 smard_table <- function(filter, region = "DE", timestamp, safe = TRUE, refresh = FALSE) {
   timestamp_ms <- bunddev_timestamp_to_ms(timestamp)
@@ -210,4 +227,3 @@ smard_request <- function(operation_id, path, params, safe = TRUE, refresh = FAL
     refresh = refresh
   )
 }
-

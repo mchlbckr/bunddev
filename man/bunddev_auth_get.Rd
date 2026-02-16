@@ -10,7 +10,8 @@ bunddev_auth_get(api)
 \item{api}{Registry id.}
 }
 \value{
-A list with auth settings.
+A named list with auth settings for \code{api}. If no configuration was
+set, returns defaults with \code{type = "none"}.
 }
 \description{
 Get authentication configuration for an API
@@ -25,4 +26,8 @@ bunddev_auth_get("jobsuche")
 }
 \seealso{
 \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} to configure credentials.
+
+Other Authentication: 
+\code{\link{bunddev_auth_set}()}
 }
+\concept{Authentication}

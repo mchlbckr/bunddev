@@ -9,14 +9,27 @@ psm_mittel(kennr = NULL, params = list(), safe = TRUE, refresh = FALSE)
 \arguments{
 \item{kennr}{Optional product identification number (9 characters).}
 
-\item{params}{Additional query parameters.}
+\item{params}{Named list of query parameters. Frequently used keys:
+\describe{
+\item{kennr}{Product id (e.g. \code{"024780-00"}).}
+\item{wirkstoffId}{Active ingredient id.}
+\item{awg_id}{Application id.}
+\item{kultur}{Crop filter code.}
+\item{kultur_gruppe}{Crop group filter code.}
+\item{kode}{Code filter for catalog lookups.}
+\item{kodeliste}{Code list name.}
+\item{sprache}{Language code.}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with plant protection product data.
+A tibble with one row per returned API item. Column names follow the
+upstream BVL field names; nested objects remain list-columns.
 }
 \description{
 List approved plant protection products
@@ -25,7 +38,7 @@ List approved plant protection products
 The Pflanzenschutzmittelzulassung API provides access to Germany's plant
 protection product database from the Bundesamt fuer Verbraucherschutz und
 Lebensmittelsicherheit (BVL). This function returns approved pesticides.
-Official docs: https://github.com/bundesAPI/pflanzenschutzmittelzulassung-api.
+API documentation: \url{https://github.com/bundesAPI/pflanzenschutzmittelzulassung-api}.
 }
 \examples{
 \dontrun{
@@ -35,6 +48,15 @@ psm_mittel(kennr = "024780-00")
 
 }
 \seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
 \code{\link[=psm_wirkstoffe]{psm_wirkstoffe()}} to list active ingredients,
 \code{\link[=psm_stand]{psm_stand()}} for data version.
+
+Other Pflanzenschutzmittelzulassung: 
+\code{\link{psm_anwendungen}()},
+\code{\link{psm_kultur_gruppen}()},
+\code{\link{psm_schadorg_gruppen}()},
+\code{\link{psm_stand}()},
+\code{\link{psm_wirkstoffe}()}
 }
+\concept{Pflanzenschutzmittelzulassung}

@@ -12,3 +12,99 @@ navbar:
       icon: fa-github
       href: https://github.com/mchlbckr/bunddev
       aria-label: GitHub
+
+reference:
+  - title: Registry
+    desc: Discover available APIs in the bundled registry.
+    contents:
+      - bunddev_registry
+      - bunddev_list
+      - bunddev_search
+      - bunddev_info
+
+  - title: OpenAPI Core
+    desc: Explore specs and call endpoints.
+    contents:
+      - bunddev_endpoints
+      - bunddev_parameters
+      - bunddev_parameter_values
+      - bunddev_parameters_for
+      - bunddev_timestamp_to_ms
+      - bunddev_ms_to_posix
+      - bunddev_spec
+      - bunddev_spec_path
+      - bunddev_cache_dir
+      - bunddev_call
+      - bunddev_call_tidy
+
+  - title: Authentication and Throttling
+    contents:
+      - bunddev_auth_set
+      - bunddev_auth_get
+      - bunddev_rate_limit_set
+      - bunddev_rate_limit_get
+
+  - title: Abfallnavi
+    contents: starts_with("abfallnavi_")
+  - title: Ausbildungssuche
+    contents: starts_with("ausbildungssuche_")
+  - title: Autobahn
+    contents: starts_with("autobahn_")
+  - title: Bewerberboerse
+    contents: starts_with("bewerberboerse_")
+  - title: Bundeshaushalt
+    contents: starts_with("bundeshaushalt_")
+  - title: Bundesrat
+    contents: starts_with("bundesrat_")
+  - title: Bundestag
+    contents: starts_with("bundestag_")
+  - title: Dashboard Deutschland
+    contents: starts_with("dashboard_deutschland_")
+  - title: DDB
+    contents: starts_with("ddb_")
+  - title: Destatis
+    contents: starts_with("destatis_")
+  - title: Deutschlandatlas
+    contents: starts_with("deutschlandatlas_")
+  - title: DiGA
+    contents: starts_with("diga_")
+  - title: DIP Bundestag
+    contents: starts_with("dip_bundestag_")
+  - title: DWD
+    contents: starts_with("dwd_")
+  - title: Eco Visio
+    contents: starts_with("eco_visio_")
+  - title: Feiertage
+    contents: starts_with("feiertage_")
+  - title: Handelsregister
+    contents: starts_with("handelsregister_")
+  - title: Hilfsmittel
+    contents: starts_with("hilfsmittel_")
+  - title: Hochwasserzentralen
+    contents: starts_with("hochwasserzentralen_")
+  - title: Jobsuche
+    contents: starts_with("jobsuche_")
+  - title: Ladestationen
+    contents: starts_with("ladestationen_")
+  - title: Lebensmittelwarnung
+    contents: starts_with("lebensmittelwarnung_")
+  - title: Luftqualitaet
+    contents: starts_with("luftqualitaet_")
+  - title: Marktstammdaten
+    contents: starts_with("marktstammdaten_")
+  - title: MUDAB
+    contents: starts_with("mudab_")
+  - title: NINA
+    contents: starts_with("nina_")
+  - title: Pegel Online
+    contents: starts_with("pegel_online_")
+  - title: Pflanzenschutzmittelzulassung
+    contents: starts_with("psm_")
+  - title: Regionalatlas
+    contents: starts_with("regionalatlas_")
+  - title: SMARD
+    contents: starts_with("smard_")
+  - title: Tagesschau
+    contents: starts_with("tagesschau_")
+  - title: Travelwarning
+    contents: starts_with("travelwarning_")

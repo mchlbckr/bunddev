@@ -7,12 +7,14 @@
 nina_warnings(safe = TRUE, refresh = FALSE)
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with warning metadata.
+A tibble with one row per warning entry and common metadata columns including \code{content_id}, \code{last_modified_time}, and \code{effective_time}.
 
 Includes \code{last_modified_time} and \code{effective_time} as POSIXct in Europe/Berlin.
 }
@@ -22,7 +24,7 @@ List NINA travel warnings
 \details{
 The NINA API provides warnings and app data from the Bundesamt fuer
 Bevoelkerungsschutz. This endpoint returns a list of travel warnings with
-metadata. Official docs: https://nina.api.bund.dev.
+metadata. API documentation: \url{https://nina.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -33,4 +35,27 @@ nina_warnings()
 \seealso{
 \code{\link[=nina_warning]{nina_warning()}} for a single warning and \code{\link[=nina_mapdata]{nina_mapdata()}} for
 map-based alerts.
+
+Other NINA: 
+\code{\link{nina_archive_mowas}()},
+\code{\link{nina_archive_mowas_mapping}()},
+\code{\link{nina_covid_infos}()},
+\code{\link{nina_covid_map}()},
+\code{\link{nina_covid_rules}()},
+\code{\link{nina_covid_ticker}()},
+\code{\link{nina_covid_ticker_message}()},
+\code{\link{nina_dashboard}()},
+\code{\link{nina_event_code}()},
+\code{\link{nina_event_codes}()},
+\code{\link{nina_faqs}()},
+\code{\link{nina_logo}()},
+\code{\link{nina_logos}()},
+\code{\link{nina_mapdata}()},
+\code{\link{nina_mowas_rss}()},
+\code{\link{nina_notfalltipps}()},
+\code{\link{nina_version}()},
+\code{\link{nina_warning}()},
+\code{\link{nina_warning_geojson}()},
+\code{\link{nina_warning_json}()}
 }
+\concept{NINA}

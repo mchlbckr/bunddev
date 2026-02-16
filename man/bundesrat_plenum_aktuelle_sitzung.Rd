@@ -13,19 +13,20 @@ bundesrat_plenum_aktuelle_sitzung(
 \arguments{
 \item{view}{Rendering mode for the XML output.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with current plenum session entries.
+A tibble with one row per XML \verb{<item>} for the current session feed.
 }
 \description{
 List Bundesrat current plenum session entries
 }
 \details{
-Returns entries for the current plenum session. Official docs:
-https://bundesrat.api.bund.dev.
+Returns entries for the current plenum session. API documentation: \url{https://bundesrat.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -33,3 +34,16 @@ bundesrat_plenum_aktuelle_sitzung()
 }
 
 }
+\seealso{
+Other Bundesrat: 
+\code{\link{bundesrat_aktuelles}()},
+\code{\link{bundesrat_mitglieder}()},
+\code{\link{bundesrat_plenum_chronologisch}()},
+\code{\link{bundesrat_plenum_kompakt}()},
+\code{\link{bundesrat_plenum_naechste_sitzungen}()},
+\code{\link{bundesrat_praesidium}()},
+\code{\link{bundesrat_startlist}()},
+\code{\link{bundesrat_stimmverteilung}()},
+\code{\link{bundesrat_termine}()}
+}
+\concept{Bundesrat}

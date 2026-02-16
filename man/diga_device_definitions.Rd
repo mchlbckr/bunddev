@@ -13,21 +13,36 @@ diga_device_definitions(
 )
 }
 \arguments{
-\item{params}{Query parameters.}
+\item{params}{Named list of FHIR search parameters:
+\describe{
+\item{\verb{_count}}{Maximum bundle size per request (integer, default \code{1000}).}
+\item{\verb{_profile}}{FHIR profile URL used to restrict resource type (character).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble containing DiGA device definitions from the FHIR API. When
-\code{flatten = FALSE}, nested FHIR resource elements are preserved as list
-columns. When \code{flatten = TRUE}, list columns are expanded based on the
-specified \code{flatten_mode}.
+A tibble with one row per FHIR resource in the returned bundle.
+Column structure depends on the resource profile and may include nested
+list-columns when \code{flatten = FALSE}.
 }
 \description{
 List DiGA device definitions
@@ -35,3 +50,12 @@ List DiGA device definitions
 \examples{
 \dontrun{dig_device_definitions()}
 }
+\seealso{
+Other DiGA: 
+\code{\link{diga_catalog_entries}()},
+\code{\link{diga_charge_item_definitions}()},
+\code{\link{diga_organizations}()},
+\code{\link{diga_questionnaire_responses}()},
+\code{\link{diga_questionnaires}()}
+}
+\concept{DiGA}

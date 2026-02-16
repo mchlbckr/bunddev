@@ -13,19 +13,38 @@ ddb_institutions(
 )
 }
 \arguments{
-\item{params}{Query parameters.}
+\item{params}{Named list of institution query parameters:
+\describe{
+\item{hasItems}{Only institutions with items (\code{TRUE}/\code{FALSE}).}
+\item{sector}{Sector filter (character).}
+\item{offset}{Start index for pagination (integer).}
+\item{length}{Maximum number of returned items (integer).}
+\item{zoomlevel}{Optional map zoom level parameter (character).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with institution entries.
+A tibble with institution entries when the API returns a homogeneous
+list; otherwise a one-row tibble with list-column \code{response}.
 }
 \description{
 List DDB institutions
@@ -40,3 +59,11 @@ ddb_institutions(params = list(hasItems = TRUE))
 }
 
 }
+\seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
+
+Other DDB: 
+\code{\link{ddb_institution_sectors}()},
+\code{\link{ddb_search}()}
+}
+\concept{DDB}

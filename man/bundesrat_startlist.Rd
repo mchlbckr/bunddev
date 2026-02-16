@@ -9,20 +9,21 @@ bundesrat_startlist(view = "renderXml", safe = TRUE, refresh = FALSE)
 \arguments{
 \item{view}{Rendering mode for the XML output.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with endpoint metadata.
+A tibble with one row per XML \verb{<item>} in the start list feed.
 }
 \description{
 List Bundesrat API endpoints
 }
 \details{
 Returns the start list for the Bundesrat mobile API, including the URLs for
-other available resources. Official docs:
-https://bundesrat.api.bund.dev.
+other available resources. API documentation: \url{https://bundesrat.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -30,3 +31,16 @@ bundesrat_startlist()
 }
 
 }
+\seealso{
+Other Bundesrat: 
+\code{\link{bundesrat_aktuelles}()},
+\code{\link{bundesrat_mitglieder}()},
+\code{\link{bundesrat_plenum_aktuelle_sitzung}()},
+\code{\link{bundesrat_plenum_chronologisch}()},
+\code{\link{bundesrat_plenum_kompakt}()},
+\code{\link{bundesrat_plenum_naechste_sitzungen}()},
+\code{\link{bundesrat_praesidium}()},
+\code{\link{bundesrat_stimmverteilung}()},
+\code{\link{bundesrat_termine}()}
+}
+\concept{Bundesrat}

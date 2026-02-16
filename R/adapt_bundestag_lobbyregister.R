@@ -2,22 +2,43 @@
 #'
 #' @param q Optional search string.
 #' @param sort Optional sorting order.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns search results from the Bundestag lobbyregister.
-#' Official docs: https://bundesapi.github.io/bundestag-lobbyregister-api/.
+#' API documentation: \url{https://bundesapi.github.io/bundestag-lobbyregister-api/}.
 #'
 #' @examples
 #' \dontrun{
 #' bundestag_lobbyregister_search(q = "energie")
 #' }
 #'
-#' @return A tibble with search metadata and result entries.
+#' @return A one-row tibble with search metadata:
+#' \describe{
+#'   \item{source}{Source label from the API payload (character).}
+#'   \item{source_url}{Source URL (character).}
+#'   \item{search_url}{URL of the executed search (character).}
+#'   \item{search_date}{Search timestamp/date string (character).}
+#'   \item{search_parameters}{Effective search parameter object (list-column).}
+#'   \item{result_count}{Total result count (integer).}
+#'   \item{results}{Search result entries (list-column).}
+#' }
+#' @family Bundestag Lobbyregister
 #' @export
 bundestag_lobbyregister_search <- function(q = NULL,
                                            sort = NULL,

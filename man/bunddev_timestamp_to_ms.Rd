@@ -25,3 +25,17 @@ Dates are interpreted in the supplied timezone.
 bunddev_timestamp_to_ms(as.POSIXct("2024-01-01 00:00:00", tz = "Europe/Berlin"))
 
 }
+\seealso{
+Other OpenAPI: 
+\code{\link{bunddev_cache_dir}()},
+\code{\link{bunddev_call}()},
+\code{\link{bunddev_call_tidy}()},
+\code{\link{bunddev_endpoints}()},
+\code{\link{bunddev_ms_to_posix}()},
+\code{\link{bunddev_parameter_values}()},
+\code{\link{bunddev_parameters}()},
+\code{\link{bunddev_parameters_for}()},
+\code{\link{bunddev_spec}()},
+\code{\link{bunddev_spec_path}()}
+}
+\concept{OpenAPI}

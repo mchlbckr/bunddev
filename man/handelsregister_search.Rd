@@ -18,17 +18,40 @@ handelsregister_search(
 
 \item{schlagwort_optionen}{Keyword options.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with search results.
+A tibble with one row per register entry:
+\describe{
+\item{name}{Company/entity name (character).}
+\item{court}{Register court and register label (character).}
+\item{register_num}{Extracted register number (character).}
+\item{state}{Federal state (character).}
+\item{status}{Status text from the listing (character).}
+\item{status_current}{Uppercase status code derived from \code{status} (character).}
+\item{documents_text}{Document summary text (character).}
+\item{documents_count}{Number of linked documents (integer).}
+\item{documents_links}{Document URLs (list-column of character vectors).}
+\item{history}{Additional parsed history tokens (list-column).}
+}
 }
 \description{
 This adapter scrapes the public Handelsregister search form because no
@@ -37,7 +60,7 @@ official OpenAPI specification is available for this service.
 \details{
 The Handelsregister search is provided via a public web form. This helper
 automates the form flow and parses the result table into a tidy tibble.
-Official docs: https://github.com/bundesAPI/handelsregister.
+API documentation: \url{https://github.com/bundesAPI/handelsregister}.
 
 The registry notes that more than 60 requests per hour may violate the terms
 of use. Use \code{safe = TRUE} to respect the built-in rate limiting.
@@ -51,3 +74,4 @@ handelsregister_search("Deutsche Bahn", schlagwort_optionen = "all")
 \seealso{
 \code{\link[=bunddev_rate_limit_get]{bunddev_rate_limit_get()}} to inspect the configured limit.
 }
+\concept{Handelsregister}

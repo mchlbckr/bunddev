@@ -19,19 +19,21 @@ mudab_parameters_biologie(
 
 \item{orderby}{Optional ordering specification.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with parameters.
+A tibble with one row per returned \code{MV_PARAMETER_BIOLOGIE} record.
 }
 \description{
 List MUDAB parameters (Biologie)
 }
 \details{
 Returns parameter entries for the Biologie compartment.
-Official docs: https://mudab.api.bund.dev.
+API documentation: \url{https://mudab.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -39,3 +41,17 @@ mudab_parameters_biologie(range = list(from = 0, count = 5))
 }
 
 }
+\seealso{
+Other MUDAB: 
+\code{\link{mudab_parameter_values}()},
+\code{\link{mudab_parameters}()},
+\code{\link{mudab_parameters_biota}()},
+\code{\link{mudab_parameters_sediment}()},
+\code{\link{mudab_parameters_wasser}()},
+\code{\link{mudab_plc_measurements}()},
+\code{\link{mudab_plc_parameters}()},
+\code{\link{mudab_plc_stations}()},
+\code{\link{mudab_project_stations}()},
+\code{\link{mudab_stations}()}
+}
+\concept{MUDAB}

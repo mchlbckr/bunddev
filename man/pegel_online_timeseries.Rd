@@ -17,14 +17,39 @@ pegel_online_timeseries(
 
 \item{timeseries}{Timeseries shortname.}
 
-\item{params}{Query parameters.}
+\item{params}{Named list of query parameters:
+\describe{
+\item{includeTimeseries}{Include timeseries metadata (\code{TRUE}/\code{FALSE}).}
+\item{includeCurrentMeasurement}{Include current measurement metadata (\code{TRUE}/\code{FALSE}).}
+\item{includeCharacteristicValues}{Include characteristic values (\code{TRUE}/\code{FALSE}).}
+\item{waters}{Filter by water shortnames (character vector).}
+\item{ids}{Filter by station ids (character vector).}
+\item{timeseries}{Timeseries shortname filter (character).}
+\item{fuzzyId}{Fuzzy station id/name search (character).}
+\item{latitude}{Latitude center for geo search (numeric).}
+\item{longitude}{Longitude center for geo search (numeric).}
+\item{radius}{Radius for geo search (numeric).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with timeseries metadata.
+A one-row tibble with timeseries metadata:
+\describe{
+\item{shortname}{Timeseries shortname (character).}
+\item{longname}{Timeseries long name (character).}
+\item{unit}{Measurement unit (character).}
+\item{equidistance}{Sampling interval/equidistance (numeric).}
+\item{gauge_zero}{Gauge zero metadata (list-column).}
+\item{characteristic_values}{Characteristic values (list-column).}
+\item{current_value}{Current measured value (numeric).}
+\item{current_timestamp}{Current timestamp as string (character).}
+\item{current_timestamp_time}{Current timestamp as \code{POSIXct} in Europe/Berlin.}
+}
 }
 \description{
 Get Pegel-Online timeseries metadata
@@ -41,5 +66,14 @@ pegel_online_timeseries(stations$uuid[[1]], "W")
 
 }
 \seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
 \code{\link[=pegel_online_measurements]{pegel_online_measurements()}} for measurement values.
+
+Other Pegel Online: 
+\code{\link{pegel_online_measurements}()},
+\code{\link{pegel_online_measurements_plot}()},
+\code{\link{pegel_online_station}()},
+\code{\link{pegel_online_stations}()},
+\code{\link{pegel_online_waters}()}
 }
+\concept{Pegel Online}

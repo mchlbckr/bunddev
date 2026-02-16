@@ -7,19 +7,48 @@
 luftqualitaet_components(params = list(), safe = TRUE, refresh = FALSE)
 }
 \arguments{
-\item{params}{Query parameters.}
+\item{params}{Named list of query parameters. Common keys:
+\describe{
+\item{date_from}{Start date/time filter (character, ISO-8601/date).}
+\item{date_to}{End date/time filter (character, ISO-8601/date).}
+\item{component}{Pollutant component id/code (character).}
+\item{scope}{Scope id/code (character).}
+\item{station}{Station id/code (character).}
+\item{network}{Network id/code (character).}
+\item{lang}{Language code for labels/descriptions (character).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with component metadata.
+A tibble with one row per component metadata entry.
 }
 \description{
 List components
 }
 \details{
-Returns available pollutant components. Official docs:
-https://luftqualitaet.api.bund.dev.
+Returns available pollutant components. API documentation: \url{https://luftqualitaet.api.bund.dev}.
 }
+\seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
+
+Other Luftqualitaet: 
+\code{\link{luftqualitaet_airquality}()},
+\code{\link{luftqualitaet_airquality_limits}()},
+\code{\link{luftqualitaet_annualbalances}()},
+\code{\link{luftqualitaet_measures}()},
+\code{\link{luftqualitaet_measures_limits}()},
+\code{\link{luftqualitaet_meta}()},
+\code{\link{luftqualitaet_networks}()},
+\code{\link{luftqualitaet_scopes}()},
+\code{\link{luftqualitaet_stationsettings}()},
+\code{\link{luftqualitaet_stationtypes}()},
+\code{\link{luftqualitaet_thresholds}()},
+\code{\link{luftqualitaet_transgressions}()},
+\code{\link{luftqualitaet_transgressiontypes}()}
+}
+\concept{Luftqualitaet}

@@ -16,27 +16,46 @@ deutschlandatlas_query(
 \arguments{
 \item{table}{Table id (default "p_apo_f_ZA2022").}
 
-\item{params}{Query parameters for the ArcGIS service.}
+\item{params}{Named list of ArcGIS query parameters:
+\describe{
+\item{where}{SQL-like filter expression (required by this adapter).}
+\item{f}{Output format (\code{"json"} default).}
+\item{outFields}{Fields to return (\code{"*"} default).}
+\item{returnGeometry}{Whether to include geometry (\code{"true"}/\code{"false"}).}
+\item{spatialRel}{Spatial relation, e.g. \code{"esriSpatialRelIntersects"}.}
+\item{geometry}{Optional geometry filter (JSON string or R list).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with indicator records.
+A tibble with one row per ArcGIS feature. Attribute names are
+normalized to lower snake_case. Includes a \code{geometry} list-column.
 }
 \description{
 Query Deutschlandatlas indicators
 }
 \details{
 The Deutschlandatlas API is backed by an ArcGIS feature service. You must
-supply a \code{where} filter and output format \code{f} (usually "json"). Official docs:
-https://github.com/AndreasFischer1985/deutschlandatlas-api.
+supply a \code{where} filter and output format \code{f} (usually "json"). API documentation: \url{https://github.com/AndreasFischer1985/deutschlandatlas-api}.
 }
 \examples{
 \dontrun{
@@ -56,3 +75,4 @@ deutschlandatlas_query(
 \seealso{
 \code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
 }
+\concept{Deutschlandatlas}

@@ -1,12 +1,13 @@
 #' List available places
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' The Abfallnavi API provides waste collection data for supported regions.
-#' Start by listing places (Orte) to obtain an `ortId`. Official docs:
-#' https://bundesapi.github.io/abfallnavi-api/.
+#' Start by listing places (Orte) to obtain an `ortId`. API documentation: \url{https://bundesapi.github.io/abfallnavi-api/}.
 #'
 #' @seealso
 #' [abfallnavi_strassen()] for streets in a place.
@@ -16,7 +17,8 @@
 #' abfallnavi_orte()
 #' }
 #'
-#' @return A tibble with places.
+#' @return A tibble with one row per place entry returned by the API.
+#' @family Abfallnavi
 #' @export
 abfallnavi_orte <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -33,11 +35,14 @@ abfallnavi_orte <- function(safe = TRUE, refresh = FALSE) {
 #' Get a place by id
 #'
 #' @param ort_id Place id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with place metadata.
+#' @return A one-row tibble with metadata for the selected place.
 #'
+#' @family Abfallnavi
 #' @export
 abfallnavi_ort <- function(ort_id, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -55,11 +60,14 @@ abfallnavi_ort <- function(ort_id, safe = TRUE, refresh = FALSE) {
 #' List streets for a place
 #'
 #' @param ort_id Place id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with streets.
+#' @return A tibble with one row per street in the selected place.
 #'
+#' @family Abfallnavi
 #' @export
 abfallnavi_strassen <- function(ort_id, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -77,11 +85,14 @@ abfallnavi_strassen <- function(ort_id, safe = TRUE, refresh = FALSE) {
 #' List house numbers for a street
 #'
 #' @param strassen_id Street id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with house numbers.
+#' @return A tibble with one row per available house number entry.
 #'
+#' @family Abfallnavi
 #' @export
 abfallnavi_hausnummern <- function(strassen_id, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -98,11 +109,14 @@ abfallnavi_hausnummern <- function(strassen_id, safe = TRUE, refresh = FALSE) {
 
 #' List waste fractions
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with waste fractions.
+#' @return A tibble with one row per waste fraction entry.
 #'
+#' @family Abfallnavi
 #' @export
 abfallnavi_fraktionen <- function(safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -119,11 +133,15 @@ abfallnavi_fraktionen <- function(safe = TRUE, refresh = FALSE) {
 #' List waste fractions for a house number
 #'
 #' @param hausnummern_id House number id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with waste fractions.
+#' @return A tibble with one row per waste fraction entry for the selected
+#' house number.
 #'
+#' @family Abfallnavi
 #' @export
 abfallnavi_fraktionen_hausnummern <- function(hausnummern_id, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -141,11 +159,15 @@ abfallnavi_fraktionen_hausnummern <- function(hausnummern_id, safe = TRUE, refre
 #' List waste fractions for a street
 #'
 #' @param strassen_id Street id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with waste fractions.
+#' @return A tibble with one row per waste fraction entry for the selected
+#' street.
 #'
+#' @family Abfallnavi
 #' @export
 abfallnavi_fraktionen_strassen <- function(strassen_id, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -164,13 +186,17 @@ abfallnavi_fraktionen_strassen <- function(strassen_id, safe = TRUE, refresh = F
 #'
 #' @param strassen_id Street id.
 #' @param fraktion Fraction ids.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with collection dates.
+#' @return A tibble with one row per collection date and columns `date`,
+#' `fraction`, and `date_time` (`POSIXct` in Europe/Berlin) when available.
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
 #'
+#' @family Abfallnavi
 #' @export
 abfallnavi_termine_strassen <- function(strassen_id, fraktion, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -189,13 +215,17 @@ abfallnavi_termine_strassen <- function(strassen_id, fraktion, safe = TRUE, refr
 #'
 #' @param hausnummern_id House number id.
 #' @param fraktion Fraction ids.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
-#' @return A tibble with collection dates.
+#' @return A tibble with one row per collection date and columns `date`,
+#' `fraction`, and `date_time` (`POSIXct` in Europe/Berlin) when available.
 #'
 #' Includes `date_time` as POSIXct in Europe/Berlin.
 #'
+#' @family Abfallnavi
 #' @export
 abfallnavi_termine_hausnummern <- function(hausnummern_id, fraktion, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
@@ -219,13 +249,16 @@ abfallnavi_termine_hausnummern <- function(hausnummern_id, fraktion, safe = TRUE
 #' @param strasse Street id.
 #' @param hnr House number id.
 #' @param fraktion Fraction ids.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Downloads a calendar file for the requested address and fraction.
 #'
-#' @return A tibble with raw file bytes.
+#' @return A one-row tibble with raw downloaded file bytes in a list-column.
+#' @family Abfallnavi
 #' @export
 abfallnavi_kalender_download <- function(region,
                                          format,

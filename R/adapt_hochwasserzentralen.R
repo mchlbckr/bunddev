@@ -1,20 +1,23 @@
 #' Get flood gauge information
 #'
 #' @param pegelnummer Pegelnummer identifier (e.g., "HE_24820206").
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns metadata for a single flood gauge (pegel) from
-#' hochwasserzentralen.de. Official docs:
-#' https://bundesapi.github.io/hochwasserzentralen-api/.
+#' hochwasserzentralen.de. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
 #'
 #' @examples
 #' \dontrun{
 #' hochwasserzentralen_pegel_info("HE_24820206")
 #' }
 #'
-#' @return A tibble with pegel metadata.
+#' @return A tibble with one row of gauge metadata for the selected
+#' `pegelnummer`. Columns follow the upstream service field names.
+#' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_pegel_info <- function(pegelnummer, safe = TRUE, refresh = FALSE) {
   params <- list(pgnr = pegelnummer)
@@ -31,20 +34,23 @@ hochwasserzentralen_pegel_info <- function(pegelnummer, safe = TRUE, refresh = F
 
 #' List flood portal states and connected regions
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns metadata for all Bundeslaender and connected regions in the
-#' hochwasserzentralen.de portal. Official docs:
-#' https://bundesapi.github.io/hochwasserzentralen-api/.
+#' hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
 #'
 #' @examples
 #' \dontrun{
 #' hochwasserzentralen_bundeslaender()
 #' }
 #'
-#' @return A tibble with Bundesland metadata.
+#' @return A tibble with one row per Bundesland/region entry. Column names follow
+#' the upstream service field names.
+#' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
   response <- hochwasserzentralen_request(
@@ -60,20 +66,22 @@ hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
 #' Get flood portal metadata for a Bundesland
 #'
 #' @param bundesland_id Bundesland id (e.g., "HE").
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns metadata for a single Bundesland or region in the
-#' hochwasserzentralen.de portal. Official docs:
-#' https://bundesapi.github.io/hochwasserzentralen-api/.
+#' hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
 #'
 #' @examples
 #' \dontrun{
 #' hochwasserzentralen_bundesland_info("HE")
 #' }
 #'
-#' @return A tibble with Bundesland metadata.
+#' @return A tibble with one row of metadata for the selected Bundesland id.
+#' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refresh = FALSE) {
   params <- list(id = bundesland_id)
@@ -90,20 +98,22 @@ hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refr
 
 #' List flood gauge locations
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns latitude/longitude coordinates for all pegel identifiers available
-#' in the hochwasserzentralen.de portal. Official docs:
-#' https://bundesapi.github.io/hochwasserzentralen-api/.
+#' in the hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
 #'
 #' @examples
 #' \dontrun{
 #' hochwasserzentralen_lagepegel()
 #' }
 #'
-#' @return A tibble with pegel coordinates.
+#' @return A tibble with one row per gauge location and coordinate metadata.
+#' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_lagepegel <- function(safe = TRUE, refresh = FALSE) {
   response <- hochwasserzentralen_request(
@@ -119,23 +129,39 @@ hochwasserzentralen_lagepegel <- function(safe = TRUE, refresh = FALSE) {
 #' Get Bundesland GeoJSON boundaries
 #'
 #' @param version GeoJSON version identifier (e.g., "20211130").
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns GeoJSON boundaries for Bundeslaender and connected regions from the
-#' hochwasserzentralen.de portal. Official docs:
-#' https://bundesapi.github.io/hochwasserzentralen-api/.
+#' hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
 #'
 #' @examples
 #' \dontrun{
 #' hochwasserzentralen_bundesland_geojson("20211130", flatten = TRUE)
 #' }
 #'
-#' @return A tibble with GeoJSON metadata and feature list-columns.
+#' @return A one-row tibble with:
+#' \describe{
+#'   \item{type}{GeoJSON object type (character).}
+#'   \item{name}{GeoJSON dataset name (character).}
+#'   \item{features}{GeoJSON feature list (list-column).}
+#' }
+#' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_bundesland_geojson <- function(version,
                                                    safe = TRUE,

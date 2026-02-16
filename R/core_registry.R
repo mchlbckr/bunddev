@@ -14,7 +14,18 @@
 #' registry <- bunddev_registry()
 #' head(registry, 3)
 #' 
-#' @return A tibble with registry entries.
+#' @return A tibble with one row per API registry entry:
+#' \describe{
+#'   \item{id}{Stable API identifier used throughout `bunddev` (character).}
+#'   \item{title}{Human-readable API title (character).}
+#'   \item{provider}{API provider or owning institution (character).}
+#'   \item{spec_url}{OpenAPI specification URL (character).}
+#'   \item{docs_url}{Upstream API documentation URL (character).}
+#'   \item{auth}{Authentication type (`"none"`, `"api_key"`, `"oauth2"`).}
+#'   \item{rate_limit}{Declared upstream rate limit text (character or `NA`).}
+#'   \item{tags}{List-column of taxonomy tags (list of character vectors).}
+#' }
+#' @family Registry
 #' @export
 bunddev_registry <- function() {
   registry_path <- system.file("registry", "registry.yml", package = "bunddev")
@@ -78,7 +89,9 @@ bunddev_registry <- function() {
 #' bunddev_list(tag = "jobs")
 #' bunddev_list(auth = "api_key")
 #'
-#' @return A tibble of registry entries.
+#' @return A tibble with the same columns as [bunddev_registry()], filtered by
+#' tag and/or auth when provided.
+#' @family Registry
 #' @export
 bunddev_list <- function(tag = NULL, auth = NULL) {
   registry <- bunddev_registry()
@@ -109,7 +122,9 @@ bunddev_list <- function(tag = NULL, auth = NULL) {
 #' @examples
 #' bunddev_search("weather")
 #'
-#' @return A tibble of matching registry entries.
+#' @return A tibble with the same columns as [bunddev_registry()], containing
+#' entries that match `q`.
+#' @family Registry
 #' @export
 bunddev_search <- function(q) {
   registry <- bunddev_registry()
@@ -138,7 +153,8 @@ bunddev_search <- function(q) {
 #' @examples
 #' bunddev_info("smard")
 #'
-#' @return A tibble with a single registry entry.
+#' @return A one-row tibble with the same columns as [bunddev_registry()].
+#' @family Registry
 #' @export
 bunddev_info <- function(id) {
   registry <- bunddev_registry()

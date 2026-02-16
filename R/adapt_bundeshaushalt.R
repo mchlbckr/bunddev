@@ -1,25 +1,60 @@
 #' Query Bundeshaushalt budget data
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param params Named list of query parameters:
+#'   \describe{
+#'     \item{year}{Budget year (integer, required).}
+#'     \item{account}{Account type (`"income"` or `"expenses"`, required).}
+#'     \item{quota}{Target value mode, e.g. planned/actual values (character).}
+#'     \item{unit}{Budget unit/granularity level (character).}
+#'     \item{id}{Optional budget node id to drill into a specific subtree (character).}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' The Bundeshaushalt API provides budget data for federal income and expenses.
-#' Required query parameters are `year` and `account`. Official docs:
-#' https://github.com/bundesAPI/bundeshaushalt-api.
+#' Required query parameters are `year` and `account`. API documentation: \url{https://github.com/bundesAPI/bundeshaushalt-api}.
 #'
 #' @examples
 #' \dontrun{
 #' bundeshaushalt_budget_data(params = list(year = 2021, account = "expenses"))
 #' }
 #'
-#' @return A tibble with budget data and nested detail lists.
+#' @return A one-row tibble with budget metadata and nested payloads:
+#' \describe{
+#'   \item{account}{Requested account type (character).}
+#'   \item{entity}{Entity label from the API response (character).}
+#'   \item{level_cur}{Current hierarchy level (integer).}
+#'   \item{level_max}{Maximum hierarchy level (integer).}
+#'   \item{modify_date}{Upstream modification date (character).}
+#'   \item{quota}{Quota/target mode (character).}
+#'   \item{timestamp}{Response timestamp in milliseconds (numeric).}
+#'   \item{timestamp_time}{Response timestamp as `POSIXct` in Europe/Berlin.}
+#'   \item{unit}{Selected unit/granularity (character).}
+#'   \item{year}{Budget year (integer).}
+#'   \item{details}{Detailed budget rows (list-column).}
+#'   \item{children}{Child nodes in the budget hierarchy (list-column).}
+#'   \item{parents}{Parent nodes in the hierarchy (list-column).}
+#'   \item{related}{Related nodes from the API response (list-column).}
+#' }
 #'
-#' Includes `timestamp_time` as POSIXct in Europe/Berlin.
+#' @seealso
+#' [bunddev_parameters()] to inspect parameter metadata from the OpenAPI spec.
+#' @family Bundeshaushalt
 #' @export
 bundeshaushalt_budget_data <- function(params = list(),
                                        safe = TRUE,

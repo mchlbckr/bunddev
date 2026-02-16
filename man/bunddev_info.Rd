@@ -10,7 +10,7 @@ bunddev_info(id)
 \item{id}{Registry id.}
 }
 \value{
-A tibble with a single registry entry.
+A one-row tibble with the same columns as \code{\link[=bunddev_registry]{bunddev_registry()}}.
 }
 \description{
 Get a registry entry by id
@@ -25,4 +25,10 @@ bunddev_info("smard")
 }
 \seealso{
 \code{\link[=bunddev_list]{bunddev_list()}} for discovery and \code{\link[=bunddev_registry]{bunddev_registry()}} for the full table.
+
+Other Registry: 
+\code{\link{bunddev_list}()},
+\code{\link{bunddev_registry}()},
+\code{\link{bunddev_search}()}
 }
+\concept{Registry}

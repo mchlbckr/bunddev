@@ -7,21 +7,21 @@
 travelwarning_representatives_germany(safe = TRUE, refresh = FALSE)
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with representatives.
-
-Includes \code{last_modified_time} as POSIXct in Europe/Berlin.
+A tibble with representative entries and common metadata columns as
+returned by \code{\link[=travelwarning_warnings]{travelwarning_warnings()}}.
 }
 \description{
 List foreign representatives in Germany
 }
 \details{
-Returns a list of foreign representatives in Germany. Official docs:
-https://travelwarning.api.bund.dev.
+Returns a list of foreign representatives in Germany. API documentation: \url{https://travelwarning.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -29,3 +29,12 @@ travelwarning_representatives_germany()
 }
 
 }
+\seealso{
+Other Travelwarning: 
+\code{\link{travelwarning_healthcare}()},
+\code{\link{travelwarning_representatives_country}()},
+\code{\link{travelwarning_state_names}()},
+\code{\link{travelwarning_warning}()},
+\code{\link{travelwarning_warnings}()}
+}
+\concept{Travelwarning}

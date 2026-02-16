@@ -13,26 +13,44 @@ marktstammdaten_gasverbrauch(
 )
 }
 \arguments{
-\item{params}{Query parameters.}
+\item{params}{Named list of query parameters:
+\describe{
+\item{sort}{Sort definition string (character).}
+\item{page}{Page index (integer).}
+\item{pageSize}{Page size/number of returned entries (integer).}
+\item{filter}{Serialized filter expression from filter endpoints (character).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with MaStR entries.
+A tibble with one row per gas-consumption entry (same column
+conventions as \code{\link[=marktstammdaten_stromerzeugung]{marktstammdaten_stromerzeugung()}}).
 }
 \description{
 List MaStR gas consumption data
 }
 \details{
 Returns public gas consumption data from the MaStR.
-Official docs: https://github.com/bundesAPI/marktstammdaten-api.
+API documentation: \url{https://github.com/bundesAPI/marktstammdaten-api}.
 }
 \examples{
 \dontrun{
@@ -40,3 +58,16 @@ marktstammdaten_gasverbrauch(params = list(page = 1, pageSize = 5))
 }
 
 }
+\seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
+
+Other Marktstammdaten: 
+\code{\link{marktstammdaten_filters_gaserzeugung}()},
+\code{\link{marktstammdaten_filters_gasverbrauch}()},
+\code{\link{marktstammdaten_filters_stromerzeugung}()},
+\code{\link{marktstammdaten_filters_stromverbrauch}()},
+\code{\link{marktstammdaten_gaserzeugung}()},
+\code{\link{marktstammdaten_stromerzeugung}()},
+\code{\link{marktstammdaten_stromverbrauch}()}
+}
+\concept{Marktstammdaten}

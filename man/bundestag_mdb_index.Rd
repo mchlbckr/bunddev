@@ -7,19 +7,21 @@
 bundestag_mdb_index(safe = TRUE, refresh = FALSE)
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with member entries.
+A tibble with one row per member \verb{<item>} from the index feed.
 }
 \description{
 List Bundestag members of parliament
 }
 \details{
 Returns the index of members of parliament.
-Official docs: https://bundesapi.github.io/bundestag-api/.
+API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
 }
 \examples{
 \dontrun{
@@ -27,3 +29,14 @@ bundestag_mdb_index()
 }
 
 }
+\seealso{
+Other Bundestag: 
+\code{\link{bundestag_article}()},
+\code{\link{bundestag_ausschuesse}()},
+\code{\link{bundestag_ausschuss}()},
+\code{\link{bundestag_conferences}()},
+\code{\link{bundestag_mdb_bio}()},
+\code{\link{bundestag_speaker}()},
+\code{\link{bundestag_video_feed}()}
+}
+\concept{Bundestag}

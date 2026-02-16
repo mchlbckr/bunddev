@@ -1,11 +1,30 @@
 #' List DIP Vorgang entries
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param params Named list of query parameters. Common keys:
+#'   \describe{
+#'     \item{format}{Response format (`"json"` recommended; default set by adapter).}
+#'     \item{apikey}{Optional API key as query parameter (prefer auth header).}
+#'     \item{fuzzy}{Free-text search string (character).}
+#'     \item{sort}{Sort field/order definition (character).}
+#'     \item{cursor}{Cursor for pagination (character).}
+#'     \item{limit}{Page size/maximum number of documents (integer).}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns metadata for DIP Vorgang entries. Requires an API key. Obtain a key
@@ -15,6 +34,7 @@
 #' `DIP_BUNDESTAG_API_KEY` environment variable directly.
 #'
 #' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' [bunddev_auth_set()] to configure authentication.
 #'
 #' @examples
@@ -30,7 +50,8 @@
 #' dip_bundestag_vorgang_list()
 #' }
 #'
-#' @return A tibble with DIP response metadata.
+#' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgang_list <- function(params = list(),
                                        safe = TRUE,
@@ -44,19 +65,24 @@ dip_bundestag_vorgang_list <- function(params = list(),
 #' Get a DIP Vorgang
 #'
 #' @param vorgang_id Vorgang id.
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns metadata for a single Vorgang.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_vorgang(84343)
 #' }
 #'
-#' @return A tibble with Vorgang metadata.
+#' @return A one-row tibble with detailed fields for the selected Vorgang.
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgang <- function(vorgang_id,
                                   params = list(),
@@ -73,22 +99,36 @@ dip_bundestag_vorgang <- function(vorgang_id,
 
 #' List DIP Vorgangsposition entries
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns metadata for Vorgangsposition entries.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_vorgangsposition_list()
 #' }
 #'
-#' @return A tibble with DIP response metadata.
+#' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgangsposition_list <- function(params = list(),
                                                 safe = TRUE,
@@ -102,16 +142,21 @@ dip_bundestag_vorgangsposition_list <- function(params = list(),
 #' Get a DIP Vorgangsposition
 #'
 #' @param vorgangsposition_id Vorgangsposition id.
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_vorgangsposition(173376)
 #' }
 #'
-#' @return A tibble with Vorgangsposition metadata.
+#' @return A one-row tibble with detailed fields for the selected Vorgangsposition.
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgangsposition <- function(vorgangsposition_id,
                                            params = list(),
@@ -128,19 +173,33 @@ dip_bundestag_vorgangsposition <- function(vorgangsposition_id,
 
 #' List DIP Drucksachen
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_drucksache_list()
 #' }
 #'
-#' @return A tibble with DIP response metadata.
+#' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache_list <- function(params = list(),
                                           safe = TRUE,
@@ -154,16 +213,21 @@ dip_bundestag_drucksache_list <- function(params = list(),
 #' Get a DIP Drucksache
 #'
 #' @param drucksache_id Drucksache id.
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_drucksache(68852)
 #' }
 #'
-#' @return A tibble with Drucksache metadata.
+#' @return A one-row tibble with detailed fields for the selected Drucksache.
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache <- function(drucksache_id,
                                      params = list(),
@@ -180,19 +244,33 @@ dip_bundestag_drucksache <- function(drucksache_id,
 
 #' List DIP Drucksache texts
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_drucksache_text_list()
 #' }
 #'
-#' @return A tibble with DIP response metadata.
+#' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache_text_list <- function(params = list(),
                                                safe = TRUE,
@@ -206,16 +284,21 @@ dip_bundestag_drucksache_text_list <- function(params = list(),
 #' Get a DIP Drucksache text
 #'
 #' @param drucksache_id Drucksache id.
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_drucksache_text(68852)
 #' }
 #'
-#' @return A tibble with Drucksache text metadata.
+#' @return A one-row tibble with detailed fields for the selected Drucksache text record.
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache_text <- function(drucksache_id,
                                           params = list(),
@@ -232,19 +315,33 @@ dip_bundestag_drucksache_text <- function(drucksache_id,
 
 #' List DIP Plenarprotokolle
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_plenarprotokoll_list()
 #' }
 #'
-#' @return A tibble with DIP response metadata.
+#' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll_list <- function(params = list(),
                                                safe = TRUE,
@@ -258,16 +355,21 @@ dip_bundestag_plenarprotokoll_list <- function(params = list(),
 #' Get a DIP Plenarprotokoll
 #'
 #' @param plenarprotokoll_id Plenarprotokoll id.
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_plenarprotokoll(908)
 #' }
 #'
-#' @return A tibble with Plenarprotokoll metadata.
+#' @return A one-row tibble with detailed fields for the selected Plenarprotokoll.
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll <- function(plenarprotokoll_id,
                                           params = list(),
@@ -284,19 +386,33 @@ dip_bundestag_plenarprotokoll <- function(plenarprotokoll_id,
 
 #' List DIP Plenarprotokoll texts
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_plenarprotokoll_text_list()
 #' }
 #'
-#' @return A tibble with DIP response metadata.
+#' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll_text_list <- function(params = list(),
                                                     safe = TRUE,
@@ -310,16 +426,21 @@ dip_bundestag_plenarprotokoll_text_list <- function(params = list(),
 #' Get a DIP Plenarprotokoll text
 #'
 #' @param plenarprotokoll_id Plenarprotokoll id.
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_plenarprotokoll_text(908)
 #' }
 #'
-#' @return A tibble with Plenarprotokoll text metadata.
+#' @return A one-row tibble with detailed fields for the selected Plenarprotokoll text record.
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll_text <- function(plenarprotokoll_id,
                                                params = list(),
@@ -336,19 +457,33 @@ dip_bundestag_plenarprotokoll_text <- function(plenarprotokoll_id,
 
 #' List DIP Aktivitäten
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_aktivitaet_list()
 #' }
 #'
-#' @return A tibble with DIP response metadata.
+#' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_aktivitaet_list <- function(params = list(),
                                           safe = TRUE,
@@ -362,16 +497,21 @@ dip_bundestag_aktivitaet_list <- function(params = list(),
 #' Get a DIP Aktivität
 #'
 #' @param aktivitaet_id Aktivität id.
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_aktivitaet(1493545)
 #' }
 #'
-#' @return A tibble with Aktivität metadata.
+#' @return A one-row tibble with detailed fields for the selected Aktivitaet.
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_aktivitaet <- function(aktivitaet_id,
                                      params = list(),
@@ -388,19 +528,33 @@ dip_bundestag_aktivitaet <- function(aktivitaet_id,
 
 #' List DIP Personen
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_person_list()
 #' }
 #'
-#' @return A tibble with DIP response metadata.
+#' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_person_list <- function(params = list(),
                                       safe = TRUE,
@@ -414,16 +568,21 @@ dip_bundestag_person_list <- function(params = list(),
 #' Get a DIP Person
 #'
 #' @param person_id Person id.
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams dip_bundestag_vorgang_list
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' dip_bundestag_person(1728)
 #' }
 #'
-#' @return A tibble with person metadata.
+#' @return A one-row tibble with detailed fields for the selected person record.
+#' @family DIP Bundestag
 #' @export
 dip_bundestag_person <- function(person_id,
                                  params = list(),

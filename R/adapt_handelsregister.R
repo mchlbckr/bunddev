@@ -6,7 +6,7 @@
 #' @details
 #' The Handelsregister search is provided via a public web form. This helper
 #' automates the form flow and parses the result table into a tidy tibble.
-#' Official docs: https://github.com/bundesAPI/handelsregister.
+#' API documentation: \url{https://github.com/bundesAPI/handelsregister}.
 #'
 #' The registry notes that more than 60 requests per hour may violate the terms
 #' of use. Use `safe = TRUE` to respect the built-in rate limiting.
@@ -21,13 +21,37 @@
 #'
 #' @param schlagwoerter Search terms.
 #' @param schlagwort_optionen Keyword options.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
-#' @return A tibble with search results.
+#' @return A tibble with one row per register entry:
+#' \describe{
+#'   \item{name}{Company/entity name (character).}
+#'   \item{court}{Register court and register label (character).}
+#'   \item{register_num}{Extracted register number (character).}
+#'   \item{state}{Federal state (character).}
+#'   \item{status}{Status text from the listing (character).}
+#'   \item{status_current}{Uppercase status code derived from `status` (character).}
+#'   \item{documents_text}{Document summary text (character).}
+#'   \item{documents_count}{Number of linked documents (integer).}
+#'   \item{documents_links}{Document URLs (list-column of character vectors).}
+#'   \item{history}{Additional parsed history tokens (list-column).}
+#' }
+#' @family Handelsregister
 #' @export
 handelsregister_search <- function(schlagwoerter,
                                    schlagwort_optionen = c("all", "min", "exact"),

@@ -18,27 +18,50 @@ lebensmittelwarnung_warnings(
 
 \item{products}{Optional request options for product warnings (rows, start, sort, fq).}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with warning entries.
-
-Includes \code{published_date_time} as POSIXct in Europe/Berlin.
+A tibble with one row per warning:
+\describe{
+\item{type}{Warning type from the source index (character).}
+\item{archived}{Whether the warning is archived (\code{TRUE}/\code{FALSE}).}
+\item{id}{Warning identifier (integer).}
+\item{link}{Link to the warning details page (character).}
+\item{title}{Warning title (character).}
+\item{warning}{Warning text/summary (character).}
+\item{affected_states}{Affected German states (list-column).}
+\item{product}{Structured product details (list-column).}
+\item{rapex_information}{RAPEX metadata when present (list-column).}
+\item{safety_information}{Additional safety metadata (list-column).}
+\item{published_date}{Published timestamp in milliseconds since epoch (numeric).}
+\item{published_date_time}{Published timestamp as \code{POSIXct} in Europe/Berlin.}
+\item{num_found}{Total number of matching warnings in the response (integer).}
+}
 }
 \description{
 List food and product warnings
 }
 \details{
 The Lebensmittelwarnungen API returns German food and product safety warnings.
-Requests are sent as JSON to the \code{warnings/merged} endpoint. Official docs:
-https://lebensmittelwarnung.api.bund.dev and
+Requests are sent as JSON to the \code{warnings/merged} endpoint. API documentation: \url{https://lebensmittelwarnung.api.bund.dev}.
 https://github.com/bundesAPI/lebensmittelwarnung-api.
 
 The API expects an \code{Authorization} header. By default the adapter uses the
@@ -54,3 +77,4 @@ lebensmittelwarnung_warnings(food = list(rows = 10), products = list(rows = 0))
 \seealso{
 \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} to configure the authorization header.
 }
+\concept{Lebensmittelwarnung}

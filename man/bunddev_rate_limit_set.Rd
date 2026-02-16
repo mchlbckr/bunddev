@@ -12,7 +12,11 @@ bunddev_rate_limit_set(api, max_per_hour)
 \item{max_per_hour}{Maximum number of calls per hour.}
 }
 \value{
-The stored rate limit configuration.
+A named list with:
+\describe{
+\item{max_per_hour}{Maximum allowed calls per hour (integer).}
+\item{timestamps}{Numeric Unix timestamps of tracked requests.}
+}
 }
 \description{
 Set API rate limit configuration
@@ -27,4 +31,8 @@ bunddev_rate_limit_set("smard", max_per_hour = 60)
 }
 \seealso{
 \code{\link[=bunddev_rate_limit_get]{bunddev_rate_limit_get()}} to inspect the current setting.
+
+Other Throttling: 
+\code{\link{bunddev_rate_limit_get}()}
 }
+\concept{Throttling}

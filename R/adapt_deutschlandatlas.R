@@ -1,17 +1,35 @@
 #' Query Deutschlandatlas indicators
 #'
 #' @param table Table id (default "p_apo_f_ZA2022").
-#' @param params Query parameters for the ArcGIS service.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param params Named list of ArcGIS query parameters:
+#'   \describe{
+#'     \item{where}{SQL-like filter expression (required by this adapter).}
+#'     \item{f}{Output format (`"json"` default).}
+#'     \item{outFields}{Fields to return (`"*"` default).}
+#'     \item{returnGeometry}{Whether to include geometry (`"true"`/`"false"`).}
+#'     \item{spatialRel}{Spatial relation, e.g. `"esriSpatialRelIntersects"`.}
+#'     \item{geometry}{Optional geometry filter (JSON string or R list).}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' The Deutschlandatlas API is backed by an ArcGIS feature service. You must
-#' supply a `where` filter and output format `f` (usually "json"). Official docs:
-#' https://github.com/AndreasFischer1985/deutschlandatlas-api.
+#' supply a `where` filter and output format `f` (usually "json"). API documentation: \url{https://github.com/AndreasFischer1985/deutschlandatlas-api}.
 #'
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
@@ -30,7 +48,9 @@
 #' )
 #' }
 #'
-#' @return A tibble with indicator records.
+#' @return A tibble with one row per ArcGIS feature. Attribute names are
+#' normalized to lower snake_case. Includes a `geometry` list-column.
+#' @family Deutschlandatlas
 #' @export
 deutschlandatlas_query <- function(table = "p_apo_f_ZA2022",
                                    params = list(),

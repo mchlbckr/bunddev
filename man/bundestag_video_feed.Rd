@@ -9,19 +9,21 @@ bundestag_video_feed(content_id, safe = TRUE, refresh = FALSE)
 \arguments{
 \item{content_id}{Video content id.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with video feed fields.
+A one-row tibble with video feed fields extracted from XML.
 }
 \description{
 Get a Bundestag video feed entry
 }
 \details{
 Returns a video feed entry from the Bundestag webtv service.
-Official docs: https://bundesapi.github.io/bundestag-api/.
+API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
 }
 \examples{
 \dontrun{
@@ -29,3 +31,14 @@ bundestag_video_feed(7529016)
 }
 
 }
+\seealso{
+Other Bundestag: 
+\code{\link{bundestag_article}()},
+\code{\link{bundestag_ausschuesse}()},
+\code{\link{bundestag_ausschuss}()},
+\code{\link{bundestag_conferences}()},
+\code{\link{bundestag_mdb_bio}()},
+\code{\link{bundestag_mdb_index}()},
+\code{\link{bundestag_speaker}()}
+}
+\concept{Bundestag}

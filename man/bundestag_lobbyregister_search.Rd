@@ -18,24 +18,44 @@ bundestag_lobbyregister_search(
 
 \item{sort}{Optional sorting order.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with search metadata and result entries.
+A one-row tibble with search metadata:
+\describe{
+\item{source}{Source label from the API payload (character).}
+\item{source_url}{Source URL (character).}
+\item{search_url}{URL of the executed search (character).}
+\item{search_date}{Search timestamp/date string (character).}
+\item{search_parameters}{Effective search parameter object (list-column).}
+\item{result_count}{Total result count (integer).}
+\item{results}{Search result entries (list-column).}
+}
 }
 \description{
 Search the Bundestag lobbyregister
 }
 \details{
 Returns search results from the Bundestag lobbyregister.
-Official docs: https://bundesapi.github.io/bundestag-lobbyregister-api/.
+API documentation: \url{https://bundesapi.github.io/bundestag-lobbyregister-api/}.
 }
 \examples{
 \dontrun{
@@ -43,3 +63,4 @@ bundestag_lobbyregister_search(q = "energie")
 }
 
 }
+\concept{Bundestag Lobbyregister}

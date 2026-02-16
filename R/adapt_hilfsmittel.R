@@ -1,19 +1,23 @@
 #' List Hilfsmittel tree nodes
 #'
 #' @param level Tree level to retrieve (1-4).
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns nodes from the Hilfsmittel product tree up to the selected level.
-#' Official docs: https://github.com/bundesAPI/hilfsmittel-api.
+#' API documentation: \url{https://github.com/bundesAPI/hilfsmittel-api}.
 #'
 #' @examples
 #' \dontrun{
 #' hilfsmittel_tree(level = 1)
 #' }
 #'
-#' @return A tibble with tree nodes.
+#' @return A tibble with one row per tree node at the requested level.
+#' Columns follow upstream schema; repeated nested values are list-columns.
+#' @family Hilfsmittel
 #' @export
 hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
   response <- hilfsmittel_request(
@@ -29,15 +33,26 @@ hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
 #' Get Hilfsmittel product group details
 #'
 #' @param id Produktgruppe id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns details for a product group (Produktgruppe).
-#' Official docs: https://github.com/bundesAPI/hilfsmittel-api.
+#' API documentation: \url{https://github.com/bundesAPI/hilfsmittel-api}.
 #'
 #' @examples
 #' \dontrun{
@@ -45,7 +60,9 @@ hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
 #' hilfsmittel_produktgruppe(tree$id[[1]])
 #' }
 #'
-#' @return A tibble with product group details.
+#' @return A tibble with detail fields for one product group. Columns follow
+#' upstream schema; nested values may appear as list-columns.
+#' @family Hilfsmittel
 #' @export
 hilfsmittel_produktgruppe <- function(id,
                                       safe = TRUE,
@@ -65,22 +82,35 @@ hilfsmittel_produktgruppe <- function(id,
 #' Get Hilfsmittel subgroup details
 #'
 #' @param id Untergruppe id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns details for a subgroup (Untergruppe).
-#' Official docs: https://github.com/bundesAPI/hilfsmittel-api.
+#' API documentation: \url{https://github.com/bundesAPI/hilfsmittel-api}.
 #'
 #' @examples
 #' \dontrun{
 #' hilfsmittel_untergruppe("c92d1976-d3cb-4b9f-bcdf-805272a9ea86")
 #' }
 #'
-#' @return A tibble with subgroup details.
+#' @return A tibble with detail fields for one subgroup. Columns follow upstream
+#' schema; nested values may appear as list-columns.
+#' @family Hilfsmittel
 #' @export
 hilfsmittel_untergruppe <- function(id,
                                     safe = TRUE,
@@ -100,22 +130,35 @@ hilfsmittel_untergruppe <- function(id,
 #' Get Hilfsmittel product type details
 #'
 #' @param id Produktart id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns details for a product type (Produktart).
-#' Official docs: https://github.com/bundesAPI/hilfsmittel-api.
+#' API documentation: \url{https://github.com/bundesAPI/hilfsmittel-api}.
 #'
 #' @examples
 #' \dontrun{
 #' hilfsmittel_produktart("e6b913ef-cf21-4c5f-826d-f866516c3c65")
 #' }
 #'
-#' @return A tibble with product type details.
+#' @return A tibble with detail fields for one product type. Columns follow
+#' upstream schema; nested values may appear as list-columns.
+#' @family Hilfsmittel
 #' @export
 hilfsmittel_produktart <- function(id,
                                    safe = TRUE,
@@ -134,22 +177,34 @@ hilfsmittel_produktart <- function(id,
 
 #' List Hilfsmittel products
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
-#' Returns the full product list (large payload). Official docs:
-#' https://github.com/bundesAPI/hilfsmittel-api.
+#' Returns the full product list (large payload). API documentation: \url{https://github.com/bundesAPI/hilfsmittel-api}.
 #'
 #' @examples
 #' \dontrun{
 #' hilfsmittel_produkte()
 #' }
 #'
-#' @return A tibble with products.
+#' @return A tibble with one row per product entry in the product list. Columns
+#' follow upstream schema; nested values may appear as list-columns.
+#' @family Hilfsmittel
 #' @export
 hilfsmittel_produkte <- function(safe = TRUE,
                                  refresh = FALSE,
@@ -168,22 +223,35 @@ hilfsmittel_produkte <- function(safe = TRUE,
 #' Get Hilfsmittel product details
 #'
 #' @param id Produkt id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns detail information for a single product.
-#' Official docs: https://github.com/bundesAPI/hilfsmittel-api.
+#' API documentation: \url{https://github.com/bundesAPI/hilfsmittel-api}.
 #'
 #' @examples
 #' \dontrun{
 #' hilfsmittel_produkt("f41f52a6-5d2d-4dd3-9d0e-39675ceca7f3")
 #' }
 #'
-#' @return A tibble with product details.
+#' @return A tibble with detail fields for one product. Columns follow upstream
+#' schema; nested values may appear as list-columns.
+#' @family Hilfsmittel
 #' @export
 hilfsmittel_produkt <- function(id,
                                 safe = TRUE,
@@ -203,22 +271,35 @@ hilfsmittel_produkt <- function(id,
 #' Get Hilfsmittel verification schema details
 #'
 #' @param id Nachweisschema id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns detail information for a Nachweisschema.
-#' Official docs: https://github.com/bundesAPI/hilfsmittel-api.
+#' API documentation: \url{https://github.com/bundesAPI/hilfsmittel-api}.
 #'
 #' @examples
 #' \dontrun{
 #' hilfsmittel_nachweisschema("a3d37017-2c91-4d6d-bbbe-4002d2868044")
 #' }
 #'
-#' @return A tibble with Nachweisschema details.
+#' @return A tibble with detail fields for one Nachweisschema resource. Columns
+#' follow upstream schema; nested values may appear as list-columns.
+#' @family Hilfsmittel
 #' @export
 hilfsmittel_nachweisschema <- function(id,
                                        safe = TRUE,

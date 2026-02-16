@@ -1,17 +1,30 @@
 #' List approved plant protection products
 #'
 #' @param kennr Optional product identification number (9 characters).
-#' @param params Additional query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param params Named list of query parameters. Frequently used keys:
+#'   \describe{
+#'     \item{kennr}{Product id (e.g. `"024780-00"`).}
+#'     \item{wirkstoffId}{Active ingredient id.}
+#'     \item{awg_id}{Application id.}
+#'     \item{kultur}{Crop filter code.}
+#'     \item{kultur_gruppe}{Crop group filter code.}
+#'     \item{kode}{Code filter for catalog lookups.}
+#'     \item{kodeliste}{Code list name.}
+#'     \item{sprache}{Language code.}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' The Pflanzenschutzmittelzulassung API provides access to Germany's plant
 #' protection product database from the Bundesamt fuer Verbraucherschutz und
 #' Lebensmittelsicherheit (BVL). This function returns approved pesticides.
-#' Official docs: https://github.com/bundesAPI/pflanzenschutzmittelzulassung-api.
+#' API documentation: \url{https://github.com/bundesAPI/pflanzenschutzmittelzulassung-api}.
 #'
 #' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' [psm_wirkstoffe()] to list active ingredients,
 #' [psm_stand()] for data version.
 #'
@@ -21,7 +34,9 @@
 #' psm_mittel(kennr = "024780-00")
 #' }
 #'
-#' @return A tibble with plant protection product data.
+#' @return A tibble with one row per returned API item. Column names follow the
+#' upstream BVL field names; nested objects remain list-columns.
+#' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_mittel <- function(kennr = NULL,
                        params = list(),
@@ -44,15 +59,18 @@ psm_mittel <- function(kennr = NULL,
 #' List active ingredients
 #'
 #' @param wirkstoffId Optional active ingredient ID.
-#' @param params Additional query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams psm_mittel
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns active ingredients (Wirkstoffe) from the plant protection product
 #' database.
 #'
 #' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' [psm_mittel()] to list products.
 #'
 #' @examples
@@ -60,7 +78,8 @@ psm_mittel <- function(kennr = NULL,
 #' psm_wirkstoffe()
 #' }
 #'
-#' @return A tibble with active ingredient data.
+#' @return A tibble with one row per active ingredient item.
+#' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_wirkstoffe <- function(wirkstoffId = NULL,
                            params = list(),
@@ -84,15 +103,18 @@ psm_wirkstoffe <- function(wirkstoffId = NULL,
 #'
 #' @param kennr Optional product identification number.
 #' @param awg_id Optional application identifier (16 characters).
-#' @param params Additional query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams psm_mittel
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns approved applications (Anwendungsgebiete) which define the
 #' combinations of products, crops, and pests for which use is permitted.
 #'
 #' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' [psm_mittel()] to list products.
 #'
 #' @examples
@@ -100,7 +122,8 @@ psm_wirkstoffe <- function(wirkstoffId = NULL,
 #' psm_anwendungen(kennr = "024780-00")
 #' }
 #'
-#' @return A tibble with application data.
+#' @return A tibble with one row per approved application item.
+#' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_anwendungen <- function(kennr = NULL,
                             awg_id = NULL,
@@ -126,8 +149,10 @@ psm_anwendungen <- function(kennr = NULL,
 
 #' Get data version
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns the release date/version of the plant protection product database.
@@ -137,7 +162,8 @@ psm_anwendungen <- function(kennr = NULL,
 #' psm_stand()
 #' }
 #'
-#' @return A tibble with version information.
+#' @return A one-row tibble with version/release metadata.
+#' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_stand <- function(safe = TRUE, refresh = FALSE) {
   response <- psm_request(
@@ -152,19 +178,24 @@ psm_stand <- function(safe = TRUE, refresh = FALSE) {
 
 #' List crop groups
 #'
-#' @param params Additional query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams psm_mittel
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns hierarchical crop group classifications.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' psm_kultur_gruppen()
 #' }
 #'
-#' @return A tibble with crop group data.
+#' @return A tibble with crop group catalog entries.
+#' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_kultur_gruppen <- function(params = list(),
                                safe = TRUE,
@@ -181,19 +212,24 @@ psm_kultur_gruppen <- function(params = list(),
 
 #' List pest groups
 #'
-#' @param params Additional query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @inheritParams psm_mittel
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns hierarchical pest/pathogen group classifications.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' psm_schadorg_gruppen()
 #' }
 #'
-#' @return A tibble with pest group data.
+#' @return A tibble with pest/pathogen group catalog entries.
+#' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_schadorg_gruppen <- function(params = list(),
                                  safe = TRUE,

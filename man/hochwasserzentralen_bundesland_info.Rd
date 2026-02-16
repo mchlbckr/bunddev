@@ -13,20 +13,21 @@ hochwasserzentralen_bundesland_info(
 \arguments{
 \item{bundesland_id}{Bundesland id (e.g., "HE").}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with Bundesland metadata.
+A tibble with one row of metadata for the selected Bundesland id.
 }
 \description{
 Get flood portal metadata for a Bundesland
 }
 \details{
 Returns metadata for a single Bundesland or region in the
-hochwasserzentralen.de portal. Official docs:
-https://bundesapi.github.io/hochwasserzentralen-api/.
+hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
 }
 \examples{
 \dontrun{
@@ -34,3 +35,11 @@ hochwasserzentralen_bundesland_info("HE")
 }
 
 }
+\seealso{
+Other Hochwasserzentralen: 
+\code{\link{hochwasserzentralen_bundeslaender}()},
+\code{\link{hochwasserzentralen_bundesland_geojson}()},
+\code{\link{hochwasserzentralen_lagepegel}()},
+\code{\link{hochwasserzentralen_pegel_info}()}
+}
+\concept{Hochwasserzentralen}

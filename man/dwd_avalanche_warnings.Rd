@@ -7,19 +7,22 @@
 dwd_avalanche_warnings(safe = TRUE, refresh = FALSE)
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with avalanche data.
+A one-row tibble with one list-column \code{raw} containing the parsed
+avalanche warning payload.
 }
 \description{
 Fetch DWD avalanche warnings
 }
 \details{
 Retrieves avalanche warnings from the DWD App API.
-Official docs: https://dwd.api.bund.dev.
+API documentation: \url{https://dwd.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -29,4 +32,14 @@ dwd_avalanche_warnings()
 }
 \seealso{
 \code{\link[=dwd_alpine_forecast_text]{dwd_alpine_forecast_text()}} and \code{\link[=dwd_sea_warning_text]{dwd_sea_warning_text()}}.
+
+Other DWD: 
+\code{\link{dwd_alpine_forecast_text}()},
+\code{\link{dwd_coast_warnings}()},
+\code{\link{dwd_crowd_reports}()},
+\code{\link{dwd_municipality_warnings}()},
+\code{\link{dwd_sea_warning_text}()},
+\code{\link{dwd_station_overview}()},
+\code{\link{dwd_warnings_nowcast}()}
 }
+\concept{DWD}

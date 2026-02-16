@@ -13,7 +13,8 @@
 #' bunddev_cache_dir()
 #' }
 #'
-#' @return Cache directory path.
+#' @return Path to the `bunddev` cache directory (character scalar).
+#' @family OpenAPI
 #' @export
 bunddev_cache_dir <- function() {
   cache_dir <- tools::R_user_dir("bunddev", "cache")
@@ -38,7 +39,8 @@ bunddev_cache_dir <- function() {
 #' bunddev_spec_path("smard")
 #' }
 #'
-#' @return File path for the cached spec.
+#' @return File path where the API specification is cached (character scalar).
+#' @family OpenAPI
 #' @export
 bunddev_spec_path <- function(id) {
   info <- bunddev_info(id)
@@ -54,7 +56,9 @@ bunddev_spec_path <- function(id) {
 #' Retrieve a cached API spec
 #'
 #' @param id Registry id.
-#' @param refresh Logical; refresh cached spec.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' the API (default `FALSE`).
 #'
 #' @details
 #' Downloads the OpenAPI spec from the registry if it is missing or when
@@ -69,7 +73,8 @@ bunddev_spec_path <- function(id) {
 #' bunddev_spec("smard")
 #' }
 #'
-#' @return Parsed OpenAPI spec.
+#' @return Parsed OpenAPI specification as a nested list.
+#' @family OpenAPI
 #' @export
 bunddev_spec <- function(id, refresh = FALSE) {
   info <- bunddev_info(id)

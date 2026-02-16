@@ -3,22 +3,34 @@
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns project stations from the MUDAB database.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_project_stations(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with project stations.
+#' @return A tibble with one row per returned `V_MUDAB_PROJECTSTATION` record.
+#' @family MUDAB
 #' @export
 mudab_project_stations <- function(filter = NULL,
                                    range = NULL,
@@ -42,19 +54,22 @@ mudab_project_stations <- function(filter = NULL,
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns measurement stations from the MUDAB database.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_stations(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with stations.
+#' @return A tibble with one row per returned `STATION_SMALL` record.
+#' @family MUDAB
 #' @export
 mudab_stations <- function(filter = NULL,
                            range = NULL,
@@ -76,19 +91,22 @@ mudab_stations <- function(filter = NULL,
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns measurement parameters from the MUDAB database.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_parameters(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with parameters.
+#' @return A tibble with one row per returned `MV_PARAMETER` record.
+#' @family MUDAB
 #' @export
 mudab_parameters <- function(filter = NULL,
                              range = NULL,
@@ -110,22 +128,24 @@ mudab_parameters <- function(filter = NULL,
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns measurement values for parameters from the MUDAB database.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_parameter_values(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with parameter values.
-#'
-#' Includes `datetime_time` as POSIXct in Europe/Berlin when date/time fields are
-#' present.
+#' @return A tibble with one row per returned `MV_STATION_MSMNT` record.
+#' Includes parsed `*_time` columns (`POSIXct`, Europe/Berlin) when matching
+#' date/time fields are present.
+#' @family MUDAB
 #' @export
 mudab_parameter_values <- function(filter = NULL,
                                    range = NULL,
@@ -147,19 +167,22 @@ mudab_parameter_values <- function(filter = NULL,
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns parameter entries for the Biologie compartment.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_parameters_biologie(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with parameters.
+#' @return A tibble with one row per returned `MV_PARAMETER_BIOLOGIE` record.
+#' @family MUDAB
 #' @export
 mudab_parameters_biologie <- function(filter = NULL,
                                       range = NULL,
@@ -181,19 +204,22 @@ mudab_parameters_biologie <- function(filter = NULL,
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns parameter entries for the Biota compartment.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_parameters_biota(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with parameters.
+#' @return A tibble with one row per returned `MV_PARAMETER_BIOTA` record.
+#' @family MUDAB
 #' @export
 mudab_parameters_biota <- function(filter = NULL,
                                    range = NULL,
@@ -215,19 +241,22 @@ mudab_parameters_biota <- function(filter = NULL,
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns parameter entries for the Wasser compartment.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_parameters_wasser(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with parameters.
+#' @return A tibble with one row per returned `MV_PARAMETER_WASSER` record.
+#' @family MUDAB
 #' @export
 mudab_parameters_wasser <- function(filter = NULL,
                                     range = NULL,
@@ -249,19 +278,22 @@ mudab_parameters_wasser <- function(filter = NULL,
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns parameter entries for the Sediment compartment.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_parameters_sediment(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with parameters.
+#' @return A tibble with one row per returned `MV_PARAMETER_SEDIMENT` record.
+#' @family MUDAB
 #' @export
 mudab_parameters_sediment <- function(filter = NULL,
                                       range = NULL,
@@ -283,19 +315,22 @@ mudab_parameters_sediment <- function(filter = NULL,
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns HELCOM PLC stations.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_plc_stations(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with PLC stations.
+#' @return A tibble with one row per returned `V_PLC_STATION` record.
+#' @family MUDAB
 #' @export
 mudab_plc_stations <- function(filter = NULL,
                                range = NULL,
@@ -317,19 +352,22 @@ mudab_plc_stations <- function(filter = NULL,
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns parameters measured at PLC stations.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_plc_parameters(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with PLC parameters.
+#' @return A tibble with one row per returned `V_GEMESSENE_PARA_PLC` record.
+#' @family MUDAB
 #' @export
 mudab_plc_parameters <- function(filter = NULL,
                                  range = NULL,
@@ -351,19 +389,22 @@ mudab_plc_parameters <- function(filter = NULL,
 #' @param filter Optional filter definition.
 #' @param range Optional range specification.
 #' @param orderby Optional ordering specification.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns PLC station measurement values.
-#' Official docs: https://mudab.api.bund.dev.
+#' API documentation: \url{https://mudab.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' mudab_plc_measurements(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with PLC measurements.
+#' @return A tibble with one row per returned `V_PLC_STATION_MSMNT` record.
+#' @family MUDAB
 #' @export
 mudab_plc_measurements <- function(filter = NULL,
                                    range = NULL,

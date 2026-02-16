@@ -11,12 +11,14 @@ bunddev_call_tidy(api, operation_id, params = list(), ...)
 
 \item{operation_id}{OpenAPI operationId.}
 
-\item{params}{List of parameters.}
+\item{params}{Named list of parameters forwarded to \code{\link[=bunddev_call]{bunddev_call()}}.}
 
 \item{...}{Additional arguments passed to the tidier.}
 }
 \value{
-A tibble with tidied results.
+A tibble with tidied endpoint data when a tidier is registered for
+\code{api}. Otherwise a one-row tibble with a single list-column \code{raw} containing
+the parsed response object.
 }
 \description{
 Call an API operation and return tidy data
@@ -36,4 +38,17 @@ bunddev_call_tidy("autobahn", "list-roadworks", params = list(roadId = "A1"))
 \seealso{
 \code{\link[=bunddev_call]{bunddev_call()}} for raw responses, and \code{\link[=bunddev_parameters]{bunddev_parameters()}} to discover
 available parameters.
+
+Other OpenAPI: 
+\code{\link{bunddev_cache_dir}()},
+\code{\link{bunddev_call}()},
+\code{\link{bunddev_endpoints}()},
+\code{\link{bunddev_ms_to_posix}()},
+\code{\link{bunddev_parameter_values}()},
+\code{\link{bunddev_parameters}()},
+\code{\link{bunddev_parameters_for}()},
+\code{\link{bunddev_spec}()},
+\code{\link{bunddev_spec_path}()},
+\code{\link{bunddev_timestamp_to_ms}()}
 }
+\concept{OpenAPI}

@@ -21,24 +21,35 @@ mudab_project_stations(
 
 \item{orderby}{Optional ordering specification.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with project stations.
+A tibble with one row per returned \code{V_MUDAB_PROJECTSTATION} record.
 }
 \description{
 List MUDAB project stations
 }
 \details{
 Returns project stations from the MUDAB database.
-Official docs: https://mudab.api.bund.dev.
+API documentation: \url{https://mudab.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -46,3 +57,17 @@ mudab_project_stations(range = list(from = 0, count = 5))
 }
 
 }
+\seealso{
+Other MUDAB: 
+\code{\link{mudab_parameter_values}()},
+\code{\link{mudab_parameters}()},
+\code{\link{mudab_parameters_biologie}()},
+\code{\link{mudab_parameters_biota}()},
+\code{\link{mudab_parameters_sediment}()},
+\code{\link{mudab_parameters_wasser}()},
+\code{\link{mudab_plc_measurements}()},
+\code{\link{mudab_plc_parameters}()},
+\code{\link{mudab_plc_stations}()},
+\code{\link{mudab_stations}()}
+}
+\concept{MUDAB}

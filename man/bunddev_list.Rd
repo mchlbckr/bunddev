@@ -12,7 +12,8 @@ bunddev_list(tag = NULL, auth = NULL)
 \item{auth}{Optional auth type to filter on.}
 }
 \value{
-A tibble of registry entries.
+A tibble with the same columns as \code{\link[=bunddev_registry]{bunddev_registry()}}, filtered by
+tag and/or auth when provided.
 }
 \description{
 List registry entries
@@ -28,4 +29,10 @@ bunddev_list(auth = "api_key")
 }
 \seealso{
 \code{\link[=bunddev_registry]{bunddev_registry()}} for the full table and \code{\link[=bunddev_info]{bunddev_info()}} for one entry.
+
+Other Registry: 
+\code{\link{bunddev_info}()},
+\code{\link{bunddev_registry}()},
+\code{\link{bunddev_search}()}
 }
+\concept{Registry}

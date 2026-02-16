@@ -8,17 +8,33 @@ NULL
 
 #' List DiGA device definitions
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to expand list-columns into multiple rows.
+#' @param params Named list of FHIR search parameters:
+#'   \describe{
+#'     \item{`_count`}{Maximum bundle size per request (integer, default `1000`).}
+#'     \item{`_profile`}{FHIR profile URL used to restrict resource type (character).}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
-#' @return A tibble containing DiGA device definitions from the FHIR API. When
-#'   `flatten = FALSE`, nested FHIR resource elements are preserved as list
-#'   columns. When `flatten = TRUE`, list columns are expanded based on the
-#'   specified `flatten_mode`.
+#' @return A tibble with one row per FHIR resource in the returned bundle.
+#' Column structure depends on the resource profile and may include nested
+#' list-columns when `flatten = FALSE`.
 #'
+#' @family DiGA
 #' @export
 #' @examples
 #' \dontrun{dig_device_definitions()}
@@ -31,15 +47,30 @@ diga_device_definitions <- function(params = list(), safe = TRUE, refresh = FALS
 
 #' List DiGA catalog entries
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns.
+#' @inheritParams diga_device_definitions
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
-#' @return A tibble containing DiGA catalog entry resources from the FHIR API.
-#'   Structure depends on `flatten` setting (see [diga_device_definitions()]).
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
+#' @return A tibble with one row per catalog entry resource (same structure
+#' rules as [diga_device_definitions()]).
 #'
+#' @family DiGA
 #' @export
 
 diga_catalog_entries <- function(params = list(), safe = TRUE, refresh = FALSE, flatten = FALSE, flatten_mode = "json") {
@@ -50,15 +81,30 @@ diga_catalog_entries <- function(params = list(), safe = TRUE, refresh = FALSE, 
 
 #' List DiGA manufacturers
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns.
+#' @inheritParams diga_device_definitions
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
-#' @return A tibble containing DiGA manufacturer organization resources from
-#'   the FHIR API. Structure depends on `flatten` setting.
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
+#' @return A tibble with one row per organization resource (same structure rules
+#' as [diga_device_definitions()]).
 #'
+#' @family DiGA
 #' @export
 
 diga_organizations <- function(params = list(), safe = TRUE, refresh = FALSE, flatten = FALSE, flatten_mode = "json") {
@@ -69,15 +115,30 @@ diga_organizations <- function(params = list(), safe = TRUE, refresh = FALSE, fl
 
 #' List DiGA prescription units
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns.
+#' @inheritParams diga_device_definitions
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
-#' @return A tibble containing DiGA prescription unit (ChargeItemDefinition)
-#'   resources from the FHIR API. Structure depends on `flatten` setting.
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
+#' @return A tibble with one row per charge item definition resource (same
+#' structure rules as [diga_device_definitions()]).
 #'
+#' @family DiGA
 #' @export
 
 diga_charge_item_definitions <- function(params = list(), safe = TRUE, refresh = FALSE, flatten = FALSE, flatten_mode = "json") {
@@ -88,15 +149,30 @@ diga_charge_item_definitions <- function(params = list(), safe = TRUE, refresh =
 
 #' List DiGA questionnaires
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns.
+#' @inheritParams diga_device_definitions
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
-#' @return A tibble containing DiGA questionnaire resources from the FHIR API.
-#'   Structure depends on `flatten` setting.
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
+#' @return A tibble with one row per questionnaire resource (same structure
+#' rules as [diga_device_definitions()]).
 #'
+#' @family DiGA
 #' @export
 
 diga_questionnaires <- function(params = list(), safe = TRUE, refresh = FALSE, flatten = FALSE, flatten_mode = "json") {
@@ -107,15 +183,30 @@ diga_questionnaires <- function(params = list(), safe = TRUE, refresh = FALSE, f
 
 #' List DiGA questionnaire responses
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns.
+#' @inheritParams diga_device_definitions
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
-#' @return A tibble containing DiGA questionnaire response resources from the
-#'   FHIR API. Structure depends on `flatten` setting.
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
+#' @return A tibble with one row per questionnaire response resource (same
+#' structure rules as [diga_device_definitions()]).
 #'
+#' @family DiGA
 #' @export
 
 diga_questionnaire_responses <- function(params = list(), safe = TRUE, refresh = FALSE, flatten = FALSE, flatten_mode = "json") {

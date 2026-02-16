@@ -24,7 +24,8 @@ bunddev_call(
 
 \item{operation_id}{OpenAPI operationId (use this OR path+method).}
 
-\item{params}{List of query parameters.}
+\item{params}{Named list of query and path parameters passed to the selected
+operation.}
 
 \item{path}{API path (use with method instead of operation_id).}
 
@@ -40,12 +41,22 @@ bunddev_call(
 
 \item{headers}{Optional named list of custom HTTP headers.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.
+responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached GET responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).
+the API (default \code{FALSE}).}
 }
 \value{
-Parsed response.
+Parsed response according to \code{parse}:
+\describe{
+\item{\code{parse = "json"}}{Parsed JSON as an R list.}
+\item{\code{parse = "text"}}{Character scalar with response body text.}
+\item{\code{parse = "raw"}}{Raw vector with response bytes.}
+\item{\code{parse = "xml"}}{\code{xml2} document object.}
+}
 }
 \description{
 Call an API operation
@@ -73,4 +84,17 @@ bunddev_call("autobahn", "list-autobahnen")
 \seealso{
 \code{\link[=bunddev_call_tidy]{bunddev_call_tidy()}} for adapter-specific tidy outputs, and
 \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} to configure API keys.
+
+Other OpenAPI: 
+\code{\link{bunddev_cache_dir}()},
+\code{\link{bunddev_call_tidy}()},
+\code{\link{bunddev_endpoints}()},
+\code{\link{bunddev_ms_to_posix}()},
+\code{\link{bunddev_parameter_values}()},
+\code{\link{bunddev_parameters}()},
+\code{\link{bunddev_parameters_for}()},
+\code{\link{bunddev_spec}()},
+\code{\link{bunddev_spec_path}()},
+\code{\link{bunddev_timestamp_to_ms}()}
 }
+\concept{OpenAPI}

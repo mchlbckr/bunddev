@@ -1,11 +1,38 @@
 #' Search Jobsuche listings
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param params Named list of query parameters:
+#'   \describe{
+#'     \item{was}{Free-text job/keyword query (character).}
+#'     \item{wo}{Location query (character).}
+#'     \item{berufsfeld}{Occupational field filter (character).}
+#'     \item{page}{Page index (integer).}
+#'     \item{size}{Number of results per page (integer).}
+#'     \item{arbeitgeber}{Employer filter (character).}
+#'     \item{veroeffentlichtseit}{Only offers published within N days (integer).}
+#'     \item{zeitarbeit}{Filter temporary-agency postings (`TRUE`/`FALSE`).}
+#'     \item{angebotsart}{Offer type code(s), semicolon-separated (integer/character).}
+#'     \item{befristung}{Contract duration code(s), semicolon-separated (integer/character).}
+#'     \item{arbeitszeit}{Work time model code(s), semicolon-separated (character).}
+#'     \item{behinderung}{Accessibility/disability filter (`TRUE`/`FALSE`).}
+#'     \item{corona}{Only postings with corona flag (`TRUE`/`FALSE`).}
+#'     \item{umkreis}{Radius in kilometers around `wo` (integer).}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' The Jobsuche API provides access to job listings from the Bundesagentur fuer
@@ -26,9 +53,31 @@
 #' jobsuche_search(params = list(was = "data", size = 5), flatten = TRUE)
 #' }
 #'
-#' @return A tibble with job listings.
-#'
-#' Includes parsed POSIXct columns (suffix `_time`) in Europe/Berlin.
+#' @return A tibble with one row per job listing:
+#' \describe{
+#'   \item{hash_id}{Posting hash id (character).}
+#'   \item{beruf}{Job title/occupation (character).}
+#'   \item{refnr}{Reference number (character).}
+#'   \item{arbeitgeber}{Employer name (character).}
+#'   \item{aktuelle_veroeffentlichungsdatum}{Published date/time text (character).}
+#'   \item{aktuelle_veroeffentlichungsdatum_time}{Published timestamp as `POSIXct` in Europe/Berlin.}
+#'   \item{eintrittsdatum}{Start date text (character).}
+#'   \item{eintrittsdatum_time}{Start timestamp as `POSIXct` in Europe/Berlin.}
+#'   \item{arbeitsort_plz}{Postal code (character).}
+#'   \item{arbeitsort_ort}{City/locality (character).}
+#'   \item{arbeitsort_strasse}{Street (character).}
+#'   \item{arbeitsort_region}{Region/state (character).}
+#'   \item{arbeitsort_land}{Country code/name (character).}
+#'   \item{arbeitsort_lat}{Latitude (numeric).}
+#'   \item{arbeitsort_lon}{Longitude (numeric).}
+#'   \item{modifikations_timestamp}{Modification timestamp text (character).}
+#'   \item{modifikations_timestamp_time}{Modification timestamp as `POSIXct` in Europe/Berlin.}
+#'   \item{page}{Returned page number (character).}
+#'   \item{size}{Returned page size (character).}
+#'   \item{max_ergebnisse}{Total result count (character).}
+#'   \item{facetten}{Facet metadata (list-column).}
+#' }
+#' @family Jobsuche
 #' @export
 jobsuche_search <- function(params = list(),
                             safe = TRUE,
@@ -47,12 +96,23 @@ jobsuche_search <- function(params = list(),
 
 #' Search Jobsuche listings (app endpoint)
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams jobsuche_search
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' This uses the mobile app endpoint of the Jobsuche API. It shares the same
@@ -71,9 +131,8 @@ jobsuche_search <- function(params = list(),
 #' jobsuche_search_app(params = list(was = "data", size = 5), flatten = TRUE)
 #' }
 #'
-#' @return A tibble with job listings.
-#'
-#' Includes parsed POSIXct columns (suffix `_time`) in Europe/Berlin.
+#' @return A tibble with the same columns as [jobsuche_search()].
+#' @family Jobsuche
 #' @export
 jobsuche_search_app <- function(params = list(),
                                 safe = TRUE,
@@ -93,8 +152,10 @@ jobsuche_search_app <- function(params = list(),
 #' Fetch Jobsuche employer logo
 #'
 #' @param hash_id Logo hash id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns the raw logo bytes for a given employer hash id. Use this together
@@ -112,7 +173,12 @@ jobsuche_search_app <- function(params = list(),
 #' logo <- jobsuche_logo("abc123")
 #' }
 #'
-#' @return A tibble with raw logo bytes.
+#' @return A one-row tibble with:
+#' \describe{
+#'   \item{hash_id}{Requested logo hash id (character).}
+#'   \item{logo}{Raw logo bytes (list-column with raw vector).}
+#' }
+#' @family Jobsuche
 #' @export
 jobsuche_logo <- function(hash_id, safe = TRUE, refresh = FALSE) {
   response <- jobsuche_request(

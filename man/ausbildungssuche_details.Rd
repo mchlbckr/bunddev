@@ -9,12 +9,18 @@ ausbildungssuche_details(offer_id, safe = TRUE, refresh = FALSE)
 \arguments{
 \item{offer_id}{Offer id.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with offer details.
+A one-row tibble with:
+\describe{
+\item{offer_id}{Requested offer id.}
+\item{data}{Raw detail payload for the offer (list-column).}
+}
 }
 \description{
 Get training offer details
@@ -32,4 +38,8 @@ ausbildungssuche_details(12345)
 }
 \seealso{
 \code{\link[=ausbildungssuche_search]{ausbildungssuche_search()}} to find offer ids.
+
+Other Ausbildungssuche: 
+\code{\link{ausbildungssuche_search}()}
 }
+\concept{Ausbildungssuche}

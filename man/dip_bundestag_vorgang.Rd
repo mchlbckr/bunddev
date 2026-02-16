@@ -14,14 +14,24 @@ dip_bundestag_vorgang(
 \arguments{
 \item{vorgang_id}{Vorgang id.}
 
-\item{params}{Query parameters.}
+\item{params}{Named list of query parameters. Common keys:
+\describe{
+\item{format}{Response format (\code{"json"} recommended; default set by adapter).}
+\item{apikey}{Optional API key as query parameter (prefer auth header).}
+\item{fuzzy}{Free-text search string (character).}
+\item{sort}{Sort field/order definition (character).}
+\item{cursor}{Cursor for pagination (character).}
+\item{limit}{Page size/maximum number of documents (integer).}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with Vorgang metadata.
+A one-row tibble with detailed fields for the selected Vorgang.
 }
 \description{
 Get a DIP Vorgang
@@ -35,3 +45,24 @@ dip_bundestag_vorgang(84343)
 }
 
 }
+\seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
+
+Other DIP Bundestag: 
+\code{\link{dip_bundestag_aktivitaet}()},
+\code{\link{dip_bundestag_aktivitaet_list}()},
+\code{\link{dip_bundestag_drucksache}()},
+\code{\link{dip_bundestag_drucksache_list}()},
+\code{\link{dip_bundestag_drucksache_text}()},
+\code{\link{dip_bundestag_drucksache_text_list}()},
+\code{\link{dip_bundestag_person}()},
+\code{\link{dip_bundestag_person_list}()},
+\code{\link{dip_bundestag_plenarprotokoll}()},
+\code{\link{dip_bundestag_plenarprotokoll_list}()},
+\code{\link{dip_bundestag_plenarprotokoll_text}()},
+\code{\link{dip_bundestag_plenarprotokoll_text_list}()},
+\code{\link{dip_bundestag_vorgang_list}()},
+\code{\link{dip_bundestag_vorgangsposition}()},
+\code{\link{dip_bundestag_vorgangsposition_list}()}
+}
+\concept{DIP Bundestag}

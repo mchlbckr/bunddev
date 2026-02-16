@@ -9,10 +9,12 @@ bunddev_spec(id, refresh = FALSE)
 \arguments{
 \item{id}{Registry id.}
 
-\item{refresh}{Logical; refresh cached spec.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).
+the API (default \code{FALSE}).}
 }
 \value{
-Parsed OpenAPI spec.
+Parsed OpenAPI specification as a nested list.
 }
 \description{
 Retrieve a cached API spec
@@ -30,4 +32,17 @@ bunddev_spec("smard")
 \seealso{
 \code{\link[=bunddev_endpoints]{bunddev_endpoints()}} to list operations and \code{\link[=bunddev_parameters]{bunddev_parameters()}} to
 inspect parameters.
+
+Other OpenAPI: 
+\code{\link{bunddev_cache_dir}()},
+\code{\link{bunddev_call}()},
+\code{\link{bunddev_call_tidy}()},
+\code{\link{bunddev_endpoints}()},
+\code{\link{bunddev_ms_to_posix}()},
+\code{\link{bunddev_parameter_values}()},
+\code{\link{bunddev_parameters}()},
+\code{\link{bunddev_parameters_for}()},
+\code{\link{bunddev_spec_path}()},
+\code{\link{bunddev_timestamp_to_ms}()}
 }
+\concept{OpenAPI}

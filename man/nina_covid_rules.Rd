@@ -9,13 +9,39 @@ nina_covid_rules(ars, safe = TRUE, refresh = FALSE)
 \arguments{
 \item{ars}{ARS code.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with COVID rules data.
+A one-row tibble with \code{ars} and a list-column \code{data} containing COVID rules payload.
 }
 \description{
 Get COVID rules for an ARS
 }
+\seealso{
+Other NINA: 
+\code{\link{nina_archive_mowas}()},
+\code{\link{nina_archive_mowas_mapping}()},
+\code{\link{nina_covid_infos}()},
+\code{\link{nina_covid_map}()},
+\code{\link{nina_covid_ticker}()},
+\code{\link{nina_covid_ticker_message}()},
+\code{\link{nina_dashboard}()},
+\code{\link{nina_event_code}()},
+\code{\link{nina_event_codes}()},
+\code{\link{nina_faqs}()},
+\code{\link{nina_logo}()},
+\code{\link{nina_logos}()},
+\code{\link{nina_mapdata}()},
+\code{\link{nina_mowas_rss}()},
+\code{\link{nina_notfalltipps}()},
+\code{\link{nina_version}()},
+\code{\link{nina_warning}()},
+\code{\link{nina_warning_geojson}()},
+\code{\link{nina_warning_json}()},
+\code{\link{nina_warnings}()}
+}
+\concept{NINA}

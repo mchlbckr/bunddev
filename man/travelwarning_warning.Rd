@@ -9,21 +9,22 @@ travelwarning_warning(content_id, safe = TRUE, refresh = FALSE)
 \arguments{
 \item{content_id}{Travel warning content id.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with travel warning details.
-
-Includes \code{last_modified_time} and \code{effective_time} as POSIXct in Europe/Berlin.
+A tibble with one row per warning content block and the same column
+structure as \code{\link[=travelwarning_warnings]{travelwarning_warnings()}}.
 }
 \description{
 Get a travel warning by content id
 }
 \details{
 Returns the full travel warning content, including HTML blocks.
-Official docs: https://travelwarning.api.bund.dev.
+API documentation: \url{https://travelwarning.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -34,4 +35,12 @@ travelwarning_warning(warnings$content_id[[1]])
 }
 \seealso{
 \code{\link[=travelwarning_warnings]{travelwarning_warnings()}} to list available ids.
+
+Other Travelwarning: 
+\code{\link{travelwarning_healthcare}()},
+\code{\link{travelwarning_representatives_country}()},
+\code{\link{travelwarning_representatives_germany}()},
+\code{\link{travelwarning_state_names}()},
+\code{\link{travelwarning_warnings}()}
 }
+\concept{Travelwarning}

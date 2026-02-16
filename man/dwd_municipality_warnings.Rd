@@ -15,26 +15,35 @@ dwd_municipality_warnings(
 \arguments{
 \item{language}{Language code ("de" or "en").}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with municipality warnings.
-
-Includes \code{start_time} and \code{end_time} as POSIXct in Europe/Berlin.
+A tibble with the same columns as \code{\link[=dwd_warnings_nowcast]{dwd_warnings_nowcast()}}.
 }
 \description{
 Fetch DWD municipality warnings
 }
 \details{
 Retrieves municipality warnings from the DWD App API.
-Official docs: https://dwd.api.bund.dev.
+API documentation: \url{https://dwd.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -44,4 +53,14 @@ dwd_municipality_warnings(language = "de", flatten = TRUE)
 }
 \seealso{
 \code{\link[=dwd_warnings_nowcast]{dwd_warnings_nowcast()}} and \code{\link[=dwd_coast_warnings]{dwd_coast_warnings()}}.
+
+Other DWD: 
+\code{\link{dwd_alpine_forecast_text}()},
+\code{\link{dwd_avalanche_warnings}()},
+\code{\link{dwd_coast_warnings}()},
+\code{\link{dwd_crowd_reports}()},
+\code{\link{dwd_sea_warning_text}()},
+\code{\link{dwd_station_overview}()},
+\code{\link{dwd_warnings_nowcast}()}
 }
+\concept{DWD}

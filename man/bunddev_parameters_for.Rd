@@ -10,7 +10,8 @@ bunddev_parameters_for(endpoint)
 \item{endpoint}{Adapter function or its name.}
 }
 \value{
-A tibble with parameter metadata.
+A tibble with the same columns as \code{\link[=bunddev_parameters]{bunddev_parameters()}}, filtered to
+the OpenAPI path/method associated with \code{endpoint}.
 }
 \description{
 List OpenAPI parameters for a specific adapter
@@ -27,4 +28,17 @@ bunddev_parameters_for(smard_timeseries)
 }
 \seealso{
 \code{\link[=bunddev_parameters]{bunddev_parameters()}} for the full API parameter table.
+
+Other OpenAPI: 
+\code{\link{bunddev_cache_dir}()},
+\code{\link{bunddev_call}()},
+\code{\link{bunddev_call_tidy}()},
+\code{\link{bunddev_endpoints}()},
+\code{\link{bunddev_ms_to_posix}()},
+\code{\link{bunddev_parameter_values}()},
+\code{\link{bunddev_parameters}()},
+\code{\link{bunddev_spec}()},
+\code{\link{bunddev_spec_path}()},
+\code{\link{bunddev_timestamp_to_ms}()}
 }
+\concept{OpenAPI}

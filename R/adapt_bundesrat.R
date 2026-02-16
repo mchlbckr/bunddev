@@ -1,20 +1,22 @@
 #' List Bundesrat API endpoints
 #'
 #' @param view Rendering mode for the XML output.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns the start list for the Bundesrat mobile API, including the URLs for
-#' other available resources. Official docs:
-#' https://bundesrat.api.bund.dev.
+#' other available resources. API documentation: \url{https://bundesrat.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' bundesrat_startlist()
 #' }
 #'
-#' @return A tibble with endpoint metadata.
+#' @return A tibble with one row per XML `<item>` in the start list feed.
+#' @family Bundesrat
 #' @export
 bundesrat_startlist <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -30,19 +32,21 @@ bundesrat_startlist <- function(view = "renderXml", safe = TRUE, refresh = FALSE
 #' List current Bundesrat news
 #'
 #' @param view Rendering mode for the XML output.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns current news items from the Bundesrat app feed. Official docs:
-#' https://bundesrat.api.bund.dev.
+#' Returns current news items from the Bundesrat app feed. API documentation: \url{https://bundesrat.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' bundesrat_aktuelles()
 #' }
 #'
-#' @return A tibble with news items.
+#' @return A tibble with one row per XML `<item>` in the current news feed.
+#' @family Bundesrat
 #' @export
 bundesrat_aktuelles <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -58,19 +62,21 @@ bundesrat_aktuelles <- function(view = "renderXml", safe = TRUE, refresh = FALSE
 #' List Bundesrat dates and events
 #'
 #' @param view Rendering mode for the XML output.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns scheduled Bundesrat dates and events. Official docs:
-#' https://bundesrat.api.bund.dev.
+#' Returns scheduled Bundesrat dates and events. API documentation: \url{https://bundesrat.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' bundesrat_termine()
 #' }
 #'
-#' @return A tibble with dates and events.
+#' @return A tibble with one row per XML `<item>` in the dates/events feed.
+#' @family Bundesrat
 #' @export
 bundesrat_termine <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -86,19 +92,21 @@ bundesrat_termine <- function(view = "renderXml", safe = TRUE, refresh = FALSE) 
 #' List Bundesrat plenum compact entries
 #'
 #' @param view Rendering mode for the XML output.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns plenum compact entries for Bundesrat sessions. Official docs:
-#' https://bundesrat.api.bund.dev.
+#' Returns plenum compact entries for Bundesrat sessions. API documentation: \url{https://bundesrat.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' bundesrat_plenum_kompakt()
 #' }
 #'
-#' @return A tibble with plenum compact entries.
+#' @return A tibble with one row per XML `<item>` in the plenum compact feed.
+#' @family Bundesrat
 #' @export
 bundesrat_plenum_kompakt <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -114,19 +122,21 @@ bundesrat_plenum_kompakt <- function(view = "renderXml", safe = TRUE, refresh = 
 #' List Bundesrat current plenum session entries
 #'
 #' @param view Rendering mode for the XML output.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns entries for the current plenum session. Official docs:
-#' https://bundesrat.api.bund.dev.
+#' Returns entries for the current plenum session. API documentation: \url{https://bundesrat.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' bundesrat_plenum_aktuelle_sitzung()
 #' }
 #'
-#' @return A tibble with current plenum session entries.
+#' @return A tibble with one row per XML `<item>` for the current session feed.
+#' @family Bundesrat
 #' @export
 bundesrat_plenum_aktuelle_sitzung <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -142,19 +152,21 @@ bundesrat_plenum_aktuelle_sitzung <- function(view = "renderXml", safe = TRUE, r
 #' List Bundesrat plenum entries in chronological order
 #'
 #' @param view Rendering mode for the XML output.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns plenum entries ordered chronologically. Official docs:
-#' https://bundesrat.api.bund.dev.
+#' Returns plenum entries ordered chronologically. API documentation: \url{https://bundesrat.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' bundesrat_plenum_chronologisch()
 #' }
 #'
-#' @return A tibble with plenum entries.
+#' @return A tibble with one row per XML `<item>` in chronological order.
+#' @family Bundesrat
 #' @export
 bundesrat_plenum_chronologisch <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -170,19 +182,21 @@ bundesrat_plenum_chronologisch <- function(view = "renderXml", safe = TRUE, refr
 #' Get Bundesrat upcoming plenum sessions
 #'
 #' @param view Rendering mode for the XML output.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns upcoming Bundesrat sessions. Official docs:
-#' https://bundesrat.api.bund.dev.
+#' Returns upcoming Bundesrat sessions. API documentation: \url{https://bundesrat.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' bundesrat_plenum_naechste_sitzungen()
 #' }
 #'
-#' @return A tibble with upcoming session metadata.
+#' @return A tibble with one row per XML `<item>` in the upcoming sessions feed.
+#' @family Bundesrat
 #' @export
 bundesrat_plenum_naechste_sitzungen <- function(view = "render[iOSDetailsWithoutInnerDate]",
                                                 safe = TRUE,
@@ -200,19 +214,21 @@ bundesrat_plenum_naechste_sitzungen <- function(view = "render[iOSDetailsWithout
 #' List Bundesrat members
 #'
 #' @param view Rendering mode for the XML output.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns Bundesrat member entries from the mobile feed. Official docs:
-#' https://bundesrat.api.bund.dev.
+#' Returns Bundesrat member entries from the mobile feed. API documentation: \url{https://bundesrat.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' bundesrat_mitglieder()
 #' }
 #'
-#' @return A tibble with member entries.
+#' @return A tibble with one row per XML `<item>` in the member feed.
+#' @family Bundesrat
 #' @export
 bundesrat_mitglieder <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(
@@ -228,19 +244,22 @@ bundesrat_mitglieder <- function(view = "renderXml", safe = TRUE, refresh = FALS
 #' Get Bundesrat voting distribution
 #'
 #' @param view Rendering mode for the XML output.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns the Bundesrat voting distribution. Official docs:
-#' https://bundesrat.api.bund.dev.
+#' Returns the Bundesrat voting distribution. API documentation: \url{https://bundesrat.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' bundesrat_stimmverteilung()
 #' }
 #'
-#' @return A tibble with voting distribution metadata.
+#' @return A tibble with one row per XML `<item>` in the voting distribution
+#' feed.
+#' @family Bundesrat
 #' @export
 bundesrat_stimmverteilung <- function(view = "render[iOSDetailsWithoutInnerDate]",
                                       safe = TRUE,
@@ -258,19 +277,21 @@ bundesrat_stimmverteilung <- function(view = "render[iOSDetailsWithoutInnerDate]
 #' List Bundesrat presidium entries
 #'
 #' @param view Rendering mode for the XML output.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns Bundesrat presidium entries. Official docs:
-#' https://bundesrat.api.bund.dev.
+#' Returns Bundesrat presidium entries. API documentation: \url{https://bundesrat.api.bund.dev}.
 #'
 #' @examples
 #' \dontrun{
 #' bundesrat_praesidium()
 #' }
 #'
-#' @return A tibble with presidium entries.
+#' @return A tibble with one row per XML `<item>` in the presidium feed.
+#' @family Bundesrat
 #' @export
 bundesrat_praesidium <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
   response <- bundesrat_request(

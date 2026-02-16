@@ -9,13 +9,28 @@ abfallnavi_ort(ort_id, safe = TRUE, refresh = FALSE)
 \arguments{
 \item{ort_id}{Place id.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with place metadata.
+A one-row tibble with metadata for the selected place.
 }
 \description{
 Get a place by id
 }
+\seealso{
+Other Abfallnavi: 
+\code{\link{abfallnavi_fraktionen}()},
+\code{\link{abfallnavi_fraktionen_hausnummern}()},
+\code{\link{abfallnavi_fraktionen_strassen}()},
+\code{\link{abfallnavi_hausnummern}()},
+\code{\link{abfallnavi_kalender_download}()},
+\code{\link{abfallnavi_orte}()},
+\code{\link{abfallnavi_strassen}()},
+\code{\link{abfallnavi_termine_hausnummern}()},
+\code{\link{abfallnavi_termine_strassen}()}
+}
+\concept{Abfallnavi}

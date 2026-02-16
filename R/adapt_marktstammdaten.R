@@ -1,21 +1,34 @@
 #' List MaStR filter options for electricity generation
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns filter definitions for public electricity generation data.
-#' Official docs: https://github.com/bundesAPI/marktstammdaten-api.
+#' API documentation: \url{https://github.com/bundesAPI/marktstammdaten-api}.
 #'
 #' @examples
 #' \dontrun{
 #' marktstammdaten_filters_stromerzeugung()
 #' }
 #'
-#' @return A tibble with filter metadata.
+#' @return A tibble with filter definitions. Each row describes an available
+#' filter field and its selectable values/options.
+#' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_stromerzeugung <- function(safe = TRUE,
                                                    refresh = FALSE,
@@ -32,22 +45,34 @@ marktstammdaten_filters_stromerzeugung <- function(safe = TRUE,
 
 #' List MaStR filter options for electricity consumption
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns filter definitions for public electricity consumption data.
-#' Official docs: https://github.com/bundesAPI/marktstammdaten-api.
+#' API documentation: \url{https://github.com/bundesAPI/marktstammdaten-api}.
 #'
 #' @examples
 #' \dontrun{
 #' marktstammdaten_filters_stromverbrauch()
 #' }
 #'
-#' @return A tibble with filter metadata.
+#' @return A tibble with filter definitions for electricity consumption.
+#' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_stromverbrauch <- function(safe = TRUE,
                                                    refresh = FALSE,
@@ -64,22 +89,34 @@ marktstammdaten_filters_stromverbrauch <- function(safe = TRUE,
 
 #' List MaStR filter options for gas generation
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns filter definitions for public gas generation data.
-#' Official docs: https://github.com/bundesAPI/marktstammdaten-api.
+#' API documentation: \url{https://github.com/bundesAPI/marktstammdaten-api}.
 #'
 #' @examples
 #' \dontrun{
 #' marktstammdaten_filters_gaserzeugung()
 #' }
 #'
-#' @return A tibble with filter metadata.
+#' @return A tibble with filter definitions for gas generation.
+#' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_gaserzeugung <- function(safe = TRUE,
                                                  refresh = FALSE,
@@ -96,22 +133,34 @@ marktstammdaten_filters_gaserzeugung <- function(safe = TRUE,
 
 #' List MaStR filter options for gas consumption
 #'
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns filter definitions for public gas consumption data.
-#' Official docs: https://github.com/bundesAPI/marktstammdaten-api.
+#' API documentation: \url{https://github.com/bundesAPI/marktstammdaten-api}.
 #'
 #' @examples
 #' \dontrun{
 #' marktstammdaten_filters_gasverbrauch()
 #' }
 #'
-#' @return A tibble with filter metadata.
+#' @return A tibble with filter definitions for gas consumption.
+#' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_gasverbrauch <- function(safe = TRUE,
                                                  refresh = FALSE,
@@ -128,23 +177,45 @@ marktstammdaten_filters_gasverbrauch <- function(safe = TRUE,
 
 #' List MaStR electricity generation data
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param params Named list of query parameters:
+#'   \describe{
+#'     \item{sort}{Sort definition string (character).}
+#'     \item{page}{Page index (integer).}
+#'     \item{pageSize}{Page size/number of returned entries (integer).}
+#'     \item{filter}{Serialized filter expression from filter endpoints (character).}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns public electricity generation data from the MaStR.
-#' Official docs: https://github.com/bundesAPI/marktstammdaten-api.
+#' API documentation: \url{https://github.com/bundesAPI/marktstammdaten-api}.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' marktstammdaten_stromerzeugung(params = list(page = 1, pageSize = 5))
 #' }
 #'
-#' @return A tibble with MaStR entries.
+#' @return A tibble with one row per MaStR entry. Includes a `total` column with
+#' the total result count and additional `_time` columns for date fields when
+#' available.
+#' @family Marktstammdaten
 #' @export
 marktstammdaten_stromerzeugung <- function(params = list(),
                                            safe = TRUE,
@@ -163,23 +234,38 @@ marktstammdaten_stromerzeugung <- function(params = list(),
 
 #' List MaStR electricity consumption data
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams marktstammdaten_stromerzeugung
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns public electricity consumption data from the MaStR.
-#' Official docs: https://github.com/bundesAPI/marktstammdaten-api.
+#' API documentation: \url{https://github.com/bundesAPI/marktstammdaten-api}.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' marktstammdaten_stromverbrauch(params = list(page = 1, pageSize = 5))
 #' }
 #'
-#' @return A tibble with MaStR entries.
+#' @return A tibble with one row per electricity-consumption entry (same column
+#' conventions as [marktstammdaten_stromerzeugung()]).
+#' @family Marktstammdaten
 #' @export
 marktstammdaten_stromverbrauch <- function(params = list(),
                                            safe = TRUE,
@@ -198,23 +284,38 @@ marktstammdaten_stromverbrauch <- function(params = list(),
 
 #' List MaStR gas generation data
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams marktstammdaten_stromerzeugung
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns public gas generation data from the MaStR.
-#' Official docs: https://github.com/bundesAPI/marktstammdaten-api.
+#' API documentation: \url{https://github.com/bundesAPI/marktstammdaten-api}.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' marktstammdaten_gaserzeugung(params = list(page = 1, pageSize = 5))
 #' }
 #'
-#' @return A tibble with MaStR entries.
+#' @return A tibble with one row per gas-generation entry (same column
+#' conventions as [marktstammdaten_stromerzeugung()]).
+#' @family Marktstammdaten
 #' @export
 marktstammdaten_gaserzeugung <- function(params = list(),
                                          safe = TRUE,
@@ -233,23 +334,38 @@ marktstammdaten_gaserzeugung <- function(params = list(),
 
 #' List MaStR gas consumption data
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @inheritParams marktstammdaten_stromerzeugung
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' Returns public gas consumption data from the MaStR.
-#' Official docs: https://github.com/bundesAPI/marktstammdaten-api.
+#' API documentation: \url{https://github.com/bundesAPI/marktstammdaten-api}.
 #'
+#' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' @examples
 #' \dontrun{
 #' marktstammdaten_gasverbrauch(params = list(page = 1, pageSize = 5))
 #' }
 #'
-#' @return A tibble with MaStR entries.
+#' @return A tibble with one row per gas-consumption entry (same column
+#' conventions as [marktstammdaten_stromerzeugung()]).
+#' @family Marktstammdaten
 #' @export
 marktstammdaten_gasverbrauch <- function(params = list(),
                                          safe = TRUE,

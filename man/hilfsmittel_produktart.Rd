@@ -15,24 +15,36 @@ hilfsmittel_produktart(
 \arguments{
 \item{id}{Produktart id.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with product type details.
+A tibble with detail fields for one product type. Columns follow
+upstream schema; nested values may appear as list-columns.
 }
 \description{
 Get Hilfsmittel product type details
 }
 \details{
 Returns details for a product type (Produktart).
-Official docs: https://github.com/bundesAPI/hilfsmittel-api.
+API documentation: \url{https://github.com/bundesAPI/hilfsmittel-api}.
 }
 \examples{
 \dontrun{
@@ -40,3 +52,13 @@ hilfsmittel_produktart("e6b913ef-cf21-4c5f-826d-f866516c3c65")
 }
 
 }
+\seealso{
+Other Hilfsmittel: 
+\code{\link{hilfsmittel_nachweisschema}()},
+\code{\link{hilfsmittel_produkt}()},
+\code{\link{hilfsmittel_produkte}()},
+\code{\link{hilfsmittel_produktgruppe}()},
+\code{\link{hilfsmittel_tree}()},
+\code{\link{hilfsmittel_untergruppe}()}
+}
+\concept{Hilfsmittel}

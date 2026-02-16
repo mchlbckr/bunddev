@@ -36,7 +36,17 @@ bunddev_auth_set(
 \item{oauth_fallback_header}{Header name when no secret available (default "X-API-Key").}
 }
 \value{
-The updated auth configuration.
+A named list with stored authentication settings:
+\describe{
+\item{type}{Authentication type (\code{"none"}, \code{"api_key"}, \code{"oauth2"}).}
+\item{env_var}{Environment variable name for credential lookup.}
+\item{scheme}{Header scheme/template used for auth header construction.}
+\item{oauth_url}{OAuth token endpoint URL (oauth2 only).}
+\item{oauth_secret_env}{Environment variable name for OAuth client secret.}
+\item{oauth_default_id}{Fallback OAuth client ID when \code{env_var} is unset.}
+\item{oauth_token_header}{Header name used for OAuth access tokens.}
+\item{oauth_fallback_header}{Header name used for fallback API key mode.}
+}
 }
 \description{
 Set authentication configuration for an API
@@ -69,4 +79,8 @@ bunddev_auth_set("berufssprachkurssuche",
 \seealso{
 \code{\link[=bunddev_auth_get]{bunddev_auth_get()}} to inspect the stored configuration, and
 \code{\link[=bunddev_call]{bunddev_call()}} to make authenticated requests.
+
+Other Authentication: 
+\code{\link{bunddev_auth_get}()}
 }
+\concept{Authentication}

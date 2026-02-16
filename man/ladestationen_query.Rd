@@ -13,19 +13,44 @@ ladestationen_query(
 )
 }
 \arguments{
-\item{params}{Query parameters for the ArcGIS service.}
+\item{params}{Named list of ArcGIS query parameters. Common keys:
+\describe{
+\item{geometry}{Geometry filter (required by this adapter). Can be a JSON
+string or an R list that is converted to JSON.}
+\item{geometryType}{Geometry type, e.g. \code{"esriGeometryEnvelope"}.}
+\item{where}{SQL-like filter expression (default often \code{"1=1"}).}
+\item{outFields}{Fields to return (default \code{"*"}).}
+\item{returnGeometry}{Whether to include feature geometry (\code{"true"}/\code{"false"}).}
+\item{outSR}{Output spatial reference id, e.g. \code{4326}.}
+\item{f}{Output format (default \code{"json"}).}
+\item{resultRecordCount}{Maximum number of returned rows (integer).}
+\item{token}{Optional ArcGIS access token if required by upstream service.}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with charging station records.
+A tibble with one row per ArcGIS feature. Attribute names are
+normalized to lower snake_case. Includes a \code{geometry} list-column with the
+feature geometry object.
 }
 \description{
 Query charging stations
@@ -34,8 +59,7 @@ Query charging stations
 The Ladesaeulenregister API is backed by an ArcGIS feature service. You must
 supply a \code{geometry} filter and \code{outFields}. The ArcGIS service may require a
 \code{token} query parameter even though the API docs describe the service as
-public. Official docs:
-https://ladestationen.api.bund.dev.
+public. API documentation: \url{https://ladestationen.api.bund.dev}.
 }
 \examples{
 \dontrun{
@@ -62,3 +86,4 @@ ladestationen_query(params = list(
 \seealso{
 \code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
 }
+\concept{Ladestationen}

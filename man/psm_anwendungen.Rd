@@ -17,14 +17,26 @@ psm_anwendungen(
 
 \item{awg_id}{Optional application identifier (16 characters).}
 
-\item{params}{Additional query parameters.}
+\item{params}{Named list of query parameters. Frequently used keys:
+\describe{
+\item{kennr}{Product id (e.g. \code{"024780-00"}).}
+\item{wirkstoffId}{Active ingredient id.}
+\item{awg_id}{Application id.}
+\item{kultur}{Crop filter code.}
+\item{kultur_gruppe}{Crop group filter code.}
+\item{kode}{Code filter for catalog lookups.}
+\item{kodeliste}{Code list name.}
+\item{sprache}{Language code.}
+}}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with application data.
+A tibble with one row per approved application item.
 }
 \description{
 List approved applications
@@ -40,5 +52,14 @@ psm_anwendungen(kennr = "024780-00")
 
 }
 \seealso{
+\code{\link[=bunddev_parameters]{bunddev_parameters()}} to inspect available query parameters.
 \code{\link[=psm_mittel]{psm_mittel()}} to list products.
+
+Other Pflanzenschutzmittelzulassung: 
+\code{\link{psm_kultur_gruppen}()},
+\code{\link{psm_mittel}()},
+\code{\link{psm_schadorg_gruppen}()},
+\code{\link{psm_stand}()},
+\code{\link{psm_wirkstoffe}()}
 }
+\concept{Pflanzenschutzmittelzulassung}

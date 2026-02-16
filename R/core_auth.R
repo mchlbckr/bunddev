@@ -38,7 +38,18 @@
 #'   oauth_secret_env = "BERUFSSPRACHKURSSUCHE_CLIENT_SECRET",
 #'   oauth_default_id = "bd24f42e-ad0b-4005-b834-23bb6800dc6c")
 #'
-#' @return The updated auth configuration.
+#' @return A named list with stored authentication settings:
+#' \describe{
+#'   \item{type}{Authentication type (`"none"`, `"api_key"`, `"oauth2"`).}
+#'   \item{env_var}{Environment variable name for credential lookup.}
+#'   \item{scheme}{Header scheme/template used for auth header construction.}
+#'   \item{oauth_url}{OAuth token endpoint URL (oauth2 only).}
+#'   \item{oauth_secret_env}{Environment variable name for OAuth client secret.}
+#'   \item{oauth_default_id}{Fallback OAuth client ID when `env_var` is unset.}
+#'   \item{oauth_token_header}{Header name used for OAuth access tokens.}
+#'   \item{oauth_fallback_header}{Header name used for fallback API key mode.}
+#' }
+#' @family Authentication
 #' @export
 bunddev_auth_set <- function(api, type = "api_key", env_var, scheme = NULL,
                               oauth_url = NULL, oauth_secret_env = NULL,
@@ -85,7 +96,9 @@ bunddev_auth_set <- function(api, type = "api_key", env_var, scheme = NULL,
 #' @examples
 #' bunddev_auth_get("jobsuche")
 #'
-#' @return A list with auth settings.
+#' @return A named list with auth settings for `api`. If no configuration was
+#' set, returns defaults with `type = "none"`.
+#' @family Authentication
 #' @export
 bunddev_auth_get <- function(api) {
   auth <- getOption("bunddev.auth", list())

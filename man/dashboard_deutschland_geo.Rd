@@ -12,24 +12,45 @@ dashboard_deutschland_geo(
 )
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with GeoJSON metadata.
+A one-row tibble with GeoJSON container metadata:
+\describe{
+\item{type}{GeoJSON object type (character).}
+\item{name}{Dataset name (character).}
+\item{title}{Dataset title (character).}
+\item{version}{Version identifier (character).}
+\item{copyright_short}{Short copyright label (character).}
+\item{copyright_url}{Copyright URL (character).}
+\item{crs}{Coordinate reference system metadata (list-column).}
+\item{features}{GeoJSON feature collection entries (list-column).}
+}
 }
 \description{
 Get Dashboard Deutschland GeoJSON
 }
 \details{
 Returns GeoJSON data for Germany and the federal states.
-Official docs: https://bundesapi.github.io/dashboard-deutschland-api/.
+API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
 }
 \examples{
 \dontrun{
@@ -37,3 +58,9 @@ dashboard_deutschland_geo(flatten = TRUE)
 }
 
 }
+\seealso{
+Other Dashboard Deutschland: 
+\code{\link{dashboard_deutschland_get}()},
+\code{\link{dashboard_deutschland_indicators}()}
+}
+\concept{Dashboard Deutschland}

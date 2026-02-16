@@ -7,12 +7,15 @@
 ddb_institution_sectors(safe = TRUE, refresh = FALSE)
 }
 \arguments{
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with sector entries.
+A tibble with sector entries when the API returns a homogeneous list;
+otherwise a one-row tibble with list-column \code{response}.
 }
 \description{
 List DDB institution sectors
@@ -27,3 +30,9 @@ ddb_institution_sectors()
 }
 
 }
+\seealso{
+Other DDB: 
+\code{\link{ddb_institutions}()},
+\code{\link{ddb_search}()}
+}
+\concept{DDB}

@@ -9,12 +9,18 @@ jobsuche_logo(hash_id, safe = TRUE, refresh = FALSE)
 \arguments{
 \item{hash_id}{Logo hash id.}
 
-\item{safe}{Logical; apply throttling and caching.}
+\item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
-\item{refresh}{Logical; refresh cached responses.}
+\item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
+from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with raw logo bytes.
+A one-row tibble with:
+\describe{
+\item{hash_id}{Requested logo hash id (character).}
+\item{logo}{Raw logo bytes (list-column with raw vector).}
+}
 }
 \description{
 Fetch Jobsuche employer logo
@@ -35,4 +41,9 @@ logo <- jobsuche_logo("abc123")
 }
 \seealso{
 \code{\link[=jobsuche_search]{jobsuche_search()}} for listings and \code{\link[=bunddev_auth_set]{bunddev_auth_set()}} for auth setup.
+
+Other Jobsuche: 
+\code{\link{jobsuche_search}()},
+\code{\link{jobsuche_search_app}()}
 }
+\concept{Jobsuche}

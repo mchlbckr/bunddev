@@ -2,16 +2,26 @@
 #'
 #' @param food Optional request options for food warnings (rows, start, sort, fq).
 #' @param products Optional request options for product warnings (rows, start, sort, fq).
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' The Lebensmittelwarnungen API returns German food and product safety warnings.
-#' Requests are sent as JSON to the `warnings/merged` endpoint. Official docs:
-#' https://lebensmittelwarnung.api.bund.dev and
+#' Requests are sent as JSON to the `warnings/merged` endpoint. API documentation: \url{https://lebensmittelwarnung.api.bund.dev}.
 #' https://github.com/bundesAPI/lebensmittelwarnung-api.
 #'
 #' The API expects an `Authorization` header. By default the adapter uses the
@@ -26,9 +36,23 @@
 #' lebensmittelwarnung_warnings(food = list(rows = 10), products = list(rows = 0))
 #' }
 #'
-#' @return A tibble with warning entries.
-#'
-#' Includes `published_date_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per warning:
+#' \describe{
+#'   \item{type}{Warning type from the source index (character).}
+#'   \item{archived}{Whether the warning is archived (`TRUE`/`FALSE`).}
+#'   \item{id}{Warning identifier (integer).}
+#'   \item{link}{Link to the warning details page (character).}
+#'   \item{title}{Warning title (character).}
+#'   \item{warning}{Warning text/summary (character).}
+#'   \item{affected_states}{Affected German states (list-column).}
+#'   \item{product}{Structured product details (list-column).}
+#'   \item{rapex_information}{RAPEX metadata when present (list-column).}
+#'   \item{safety_information}{Additional safety metadata (list-column).}
+#'   \item{published_date}{Published timestamp in milliseconds since epoch (numeric).}
+#'   \item{published_date_time}{Published timestamp as `POSIXct` in Europe/Berlin.}
+#'   \item{num_found}{Total number of matching warnings in the response (integer).}
+#' }
+#' @family Lebensmittelwarnung
 #' @export
 lebensmittelwarnung_warnings <- function(food = list(),
                                          products = list(),

@@ -19,22 +19,29 @@ tagesschau_search(
 
 \item{result_page}{Result page index.}
 
-\item{flatten}{Logical; drop nested list columns.}
+\item{flatten}{Logical; if \code{TRUE}, simplify nested list columns according to
+\code{flatten_mode}. Default \code{FALSE} keeps list columns as-is.}
 
-\item{flatten_mode}{Flatten strategy for list columns. Use "unnest" to
-expand list-columns into multiple rows.}
+\item{flatten_mode}{How to handle list columns when \code{flatten = TRUE}:
+\describe{
+\item{\code{"drop"}}{Remove list columns entirely. Use when nested data is not
+needed.}
+\item{\code{"json"}}{Convert each list element to a JSON string. Preserves all
+data in a text-queryable format. This is the \strong{default}.}
+\item{\code{"unnest"}}{Expand list columns into multiple rows via
+\code{\link[tidyr:unnest_longer]{tidyr::unnest_longer()}}. \strong{Warning:} this can significantly increase
+the number of rows.}
+}}
 }
 \value{
-A tibble with search results.
-
-Includes \code{date_time} as POSIXct in Europe/Berlin.
+A tibble with the same columns as \code{\link[=tagesschau_homepage]{tagesschau_homepage()}}, restricted
+to search results.
 }
 \description{
 Search Tagesschau content
 }
 \details{
-Searches Tagesschau content by free-text query. Official docs:
-https://bundesapi.github.io/tagesschau-api/.
+Searches Tagesschau content by free-text query. API documentation: \url{https://bundesapi.github.io/tagesschau-api/}.
 }
 \examples{
 \dontrun{
@@ -44,4 +51,10 @@ tagesschau_search(search_text = "energie", page_size = 10, flatten = TRUE)
 }
 \seealso{
 \code{\link[=tagesschau_news]{tagesschau_news()}} and \code{\link[=tagesschau_homepage]{tagesschau_homepage()}}.
+
+Other Tagesschau: 
+\code{\link{tagesschau_channels}()},
+\code{\link{tagesschau_homepage}()},
+\code{\link{tagesschau_news}()}
 }
+\concept{Tagesschau}

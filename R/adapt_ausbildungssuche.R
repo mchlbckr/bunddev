@@ -1,23 +1,48 @@
 #' Search training offers
 #'
-#' @param params Query parameters.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
-#' @param flatten Logical; drop nested list columns.
-#' @param flatten_mode Flatten strategy for list columns. Use "unnest" to
-#'   expand list-columns into multiple rows.
+#' @param params Named list of query parameters:
+#'   \describe{
+#'     \item{sty}{Training type filter (integer).}
+#'     \item{ids}{Occupation id(s), comma-separated (integer/character).}
+#'     \item{orte}{Location id(s), comma-separated (integer/character).}
+#'     \item{page}{Page index, starting at `0` (integer).}
+#'     \item{size}{Page size (integer, max defined by API).}
+#'     \item{uk}{Radius filter, e.g. `"25"` or `"Bundesweit"` (character).}
+#'     \item{re}{Region/Bundesland code (character).}
+#'     \item{bart}{Training category filter (integer).}
+#'     \item{ityp}{Integration type filter (integer).}
+#'     \item{bt}{Start date/time window filter (integer code).}
+#'     \item{ban}{Provider id(s), comma-separated (integer/character).}
+#'     \item{bg}{Only entries with Bildungsgutschein support (`TRUE`/`FALSE`).}
+#'   }
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
+#' @param flatten Logical; if `TRUE`, simplify nested list columns according to
+#'   `flatten_mode`. Default `FALSE` keeps list columns as-is.
+#' @param flatten_mode How to handle list columns when `flatten = TRUE`:
+#'   \describe{
+#'     \item{`"drop"`}{Remove list columns entirely. Use when nested data is not
+#'       needed.}
+#'     \item{`"json"`}{Convert each list element to a JSON string. Preserves all
+#'       data in a text-queryable format. This is the **default**.}
+#'     \item{`"unnest"`}{Expand list columns into multiple rows via
+#'       [tidyr::unnest_longer()]. **Warning:** this can significantly increase
+#'       the number of rows.}
+#'   }
 #'
 #' @details
 #' The Ausbildungssuche API provides training offer data from the
 #' Bundesagentur fuer Arbeit. Authentication is required via `X-API-Key`
 #' (clientId `infosysbub-absuche`, discoverable from
-#' https://web.arbeitsagentur.de/weiterbildungssuche/suche). Official docs:
-#' https://bundesapi.github.io/ausbildungssuche-api/.
+#' https://web.arbeitsagentur.de/weiterbildungssuche/suche). API documentation: \url{https://bundesapi.github.io/ausbildungssuche-api/}.
 #'
 #' This adapter uses the `X-API-Key` header. Set it via [bunddev_auth_set()] and
 #' `AUSBILDUNGSSUCHE_API_KEY`.
 #'
 #' @seealso
+#' [bunddev_parameters()] to inspect available query parameters.
 #' [ausbildungssuche_details()] for a single offer and [bunddev_auth_set()] for
 #' authentication.
 #'
@@ -28,9 +53,37 @@
 #' ausbildungssuche_search(params = list(size = 5))
 #' }
 #'
-#' @return A tibble with training offers.
-#'
-#' Includes `aktualisierungsdatum_time` as POSIXct in Europe/Berlin.
+#' @return A tibble with one row per training offer:
+#' \describe{
+#'   \item{id}{Offer id (integer).}
+#'   \item{unterrichtsform}{Teaching format metadata (list-column).}
+#'   \item{dauer}{Duration metadata (list-column).}
+#'   \item{anbieterbewertung}{Provider rating text (character).}
+#'   \item{angebot}{Offer metadata (list-column).}
+#'   \item{adresse}{Address metadata (list-column).}
+#'   \item{unterrichtszeiten}{Class schedule text (character).}
+#'   \item{kosten_wert}{Cost value (character).}
+#'   \item{kosten_waehrung}{Cost currency (character).}
+#'   \item{kosten_bemerkung}{Cost note (character).}
+#'   \item{foerderung}{Funding flag (`TRUE`/`FALSE`).}
+#'   \item{link}{Offer link (character).}
+#'   \item{bemerkung}{Additional note text (character).}
+#'   \item{beginn}{Start date text (character).}
+#'   \item{ende}{End date text (character).}
+#'   \item{individueller_einstieg}{Flexible start flag (`TRUE`/`FALSE`).}
+#'   \item{anmeldeschluss}{Registration deadline text (character).}
+#'   \item{bemerkung_zeit}{Timing note (character).}
+#'   \item{pruefende_stelle}{Examining body (character).}
+#'   \item{eigene_angebotsnummer}{Provider's own offer id (character).}
+#'   \item{teilnehmer_min}{Minimum participants (integer).}
+#'   \item{teilnehmer_max}{Maximum participants (integer).}
+#'   \item{aktualisierungsdatum}{Update timestamp in milliseconds (numeric).}
+#'   \item{aktualisierungsdatum_time}{Update timestamp as `POSIXct` in Europe/Berlin.}
+#'   \item{links}{Top-level links object (list-column).}
+#'   \item{aggregations}{Aggregation metadata (list-column).}
+#'   \item{page}{Paging metadata (list-column).}
+#' }
+#' @family Ausbildungssuche
 #' @export
 ausbildungssuche_search <- function(params = list(),
                                     safe = TRUE,
@@ -61,8 +114,10 @@ ausbildungssuche_search <- function(params = list(),
 #' Get training offer details
 #'
 #' @param offer_id Offer id.
-#' @param safe Logical; apply throttling and caching.
-#' @param refresh Logical; refresh cached responses.
+#' @param safe Logical; if `TRUE` (default), apply rate-limiting and cache
+#'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
+#' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
+#'   from the API (default `FALSE`).
 #'
 #' @details
 #' Returns detailed information for a single offer.
@@ -77,7 +132,12 @@ ausbildungssuche_search <- function(params = list(),
 #' ausbildungssuche_details(12345)
 #' }
 #'
-#' @return A tibble with offer details.
+#' @return A one-row tibble with:
+#' \describe{
+#'   \item{offer_id}{Requested offer id.}
+#'   \item{data}{Raw detail payload for the offer (list-column).}
+#' }
+#' @family Ausbildungssuche
 #' @export
 ausbildungssuche_details <- function(offer_id, safe = TRUE, refresh = FALSE) {
   response <- bunddev_call(
