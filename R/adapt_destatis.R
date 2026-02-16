@@ -35,8 +35,11 @@
 #'
 #' @return A one-row tibble with one list-column `response` containing the
 #' parsed catalogue payload.
-#' Guaranteed columns are `response` (list-column) for catalogue endpoints and
-#' `name` plus `data` (list-column) for data retrieval endpoints.
+#' \describe{
+#'   \item{response}{Catalogue endpoints: full API payload as list-column.}
+#'   \item{name}{Data endpoints: requested table/cube name (character).}
+#'   \item{data}{Data endpoints: full payload as list-column.}
+#' }
 #' @family Destatis
 #' @export
 destatis_catalogue_tables <- function(params = list(),
@@ -79,8 +82,11 @@ destatis_catalogue_tables <- function(params = list(),
 #'
 #' @return A one-row tibble with one list-column `response` containing the
 #' parsed catalogue payload.
-#' Guaranteed columns are `response` (list-column) for catalogue endpoints and
-#' `name` plus `data` (list-column) for data retrieval endpoints.
+#' \describe{
+#'   \item{response}{Catalogue endpoints: full API payload as list-column.}
+#'   \item{name}{Data endpoints: requested table/cube name (character).}
+#'   \item{data}{Data endpoints: full payload as list-column.}
+#' }
 #' @family Destatis
 #' @export
 destatis_catalogue_cubes <- function(params = list(),

@@ -16,8 +16,11 @@
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the start list feed.
-#' Guaranteed columns are scalar child tags from each XML `<item>` node.
-#' Recognized date fields additionally get parsed `*_time` POSIXct columns.
+#' \describe{
+#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
+#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#' }
 #' @family Bundesrat
 #' @export
 bundesrat_startlist <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
@@ -48,8 +51,11 @@ bundesrat_startlist <- function(view = "renderXml", safe = TRUE, refresh = FALSE
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the current news feed.
-#' Guaranteed columns are scalar child tags from each XML `<item>` node.
-#' Recognized date fields additionally get parsed `*_time` POSIXct columns.
+#' \describe{
+#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
+#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#' }
 #' @family Bundesrat
 #' @export
 bundesrat_aktuelles <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
@@ -80,8 +86,11 @@ bundesrat_aktuelles <- function(view = "renderXml", safe = TRUE, refresh = FALSE
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the dates/events feed.
-#' Guaranteed columns are scalar child tags from each XML `<item>` node.
-#' Recognized date fields additionally get parsed `*_time` POSIXct columns.
+#' \describe{
+#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
+#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#' }
 #' @family Bundesrat
 #' @export
 bundesrat_termine <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
@@ -112,8 +121,11 @@ bundesrat_termine <- function(view = "renderXml", safe = TRUE, refresh = FALSE) 
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the plenum compact feed.
-#' Guaranteed columns are scalar child tags from each XML `<item>` node.
-#' Recognized date fields additionally get parsed `*_time` POSIXct columns.
+#' \describe{
+#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
+#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#' }
 #' @family Bundesrat
 #' @export
 bundesrat_plenum_kompakt <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
@@ -144,8 +156,11 @@ bundesrat_plenum_kompakt <- function(view = "renderXml", safe = TRUE, refresh = 
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` for the current session feed.
-#' Guaranteed columns are scalar child tags from each XML `<item>` node.
-#' Recognized date fields additionally get parsed `*_time` POSIXct columns.
+#' \describe{
+#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
+#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#' }
 #' @family Bundesrat
 #' @export
 bundesrat_plenum_aktuelle_sitzung <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
@@ -176,8 +191,11 @@ bundesrat_plenum_aktuelle_sitzung <- function(view = "renderXml", safe = TRUE, r
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in chronological order.
-#' Guaranteed columns are scalar child tags from each XML `<item>` node.
-#' Recognized date fields additionally get parsed `*_time` POSIXct columns.
+#' \describe{
+#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
+#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#' }
 #' @family Bundesrat
 #' @export
 bundesrat_plenum_chronologisch <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
@@ -208,8 +226,11 @@ bundesrat_plenum_chronologisch <- function(view = "renderXml", safe = TRUE, refr
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the upcoming sessions feed.
-#' Guaranteed columns are scalar child tags from each XML `<item>` node.
-#' Recognized date fields additionally get parsed `*_time` POSIXct columns.
+#' \describe{
+#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
+#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#' }
 #' @family Bundesrat
 #' @export
 bundesrat_plenum_naechste_sitzungen <- function(view = "render[iOSDetailsWithoutInnerDate]",
@@ -242,8 +263,11 @@ bundesrat_plenum_naechste_sitzungen <- function(view = "render[iOSDetailsWithout
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the member feed.
-#' Guaranteed columns are scalar child tags from each XML `<item>` node.
-#' Recognized date fields additionally get parsed `*_time` POSIXct columns.
+#' \describe{
+#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
+#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#' }
 #' @family Bundesrat
 #' @export
 bundesrat_mitglieder <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {
@@ -275,8 +299,11 @@ bundesrat_mitglieder <- function(view = "renderXml", safe = TRUE, refresh = FALS
 #'
 #' @return A tibble with one row per XML `<item>` in the voting distribution
 #' feed.
-#' Guaranteed columns are scalar child tags from each XML `<item>` node.
-#' Recognized date fields additionally get parsed `*_time` POSIXct columns.
+#' \describe{
+#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
+#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#' }
 #' @family Bundesrat
 #' @export
 bundesrat_stimmverteilung <- function(view = "render[iOSDetailsWithoutInnerDate]",
@@ -309,8 +336,11 @@ bundesrat_stimmverteilung <- function(view = "render[iOSDetailsWithoutInnerDate]
 #' }
 #'
 #' @return A tibble with one row per XML `<item>` in the presidium feed.
-#' Guaranteed columns are scalar child tags from each XML `<item>` node.
-#' Recognized date fields additionally get parsed `*_time` POSIXct columns.
+#' \describe{
+#'   \item{XML child-tag columns}{One column per scalar child element in each `<item>` node.}
+#'   \item{Repeated child tags}{Stored as list-columns.}
+#'   \item{`date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`, `startdate_time`, `stopdate_time`}{Parsed `POSIXct` values in Europe/Berlin when the corresponding source fields are present.}
+#' }
 #' @family Bundesrat
 #' @export
 bundesrat_praesidium <- function(view = "renderXml", safe = TRUE, refresh = FALSE) {

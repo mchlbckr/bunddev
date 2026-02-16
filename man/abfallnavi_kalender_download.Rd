@@ -39,9 +39,11 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A one-row tibble with raw downloaded file bytes in a list-column.
-Guaranteed columns are endpoint-specific top-level fields from the Abfallnavi
-API (via \code{abfallnavi_tidy_list()} / \code{abfallnavi_tidy_single()}). Nested
-values are kept as list-columns.
+\describe{
+\item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
+\item{Nested fields}{Kept as list-columns.}
+\item{date_time}{Added by \verb{abfallnavi_termine_*()} from \code{datum} as \code{POSIXct} in Europe/Berlin, when available.}
+}
 }
 \description{
 Download calendar file

@@ -17,8 +17,11 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A tibble with one row per XML \verb{<item>} in the start list feed.
-Guaranteed columns are scalar child tags from each XML \verb{<item>} node.
-Recognized date fields additionally get parsed \verb{*_time} POSIXct columns.
+\describe{
+\item{XML child-tag columns}{One column per scalar child element in each \verb{<item>} node.}
+\item{Repeated child tags}{Stored as list-columns.}
+\item{\code{date_time}, \code{dateOfIssue_time}, \code{imageDate_time}, \code{layoutDate_time}, \code{startdate_time}, \code{stopdate_time}}{Parsed \code{POSIXct} values in Europe/Berlin when the corresponding source fields are present.}
+}
 }
 \description{
 List Bundesrat API endpoints

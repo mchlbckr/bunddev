@@ -51,8 +51,10 @@ the number of rows.}
 A tibble with one row per ArcGIS feature. Attribute names are
 normalized to lower snake_case. Includes a \code{geometry} list-column with the
 feature geometry object.
-Guaranteed columns are ArcGIS attribute fields, with \code{geometry} retained as
-a list-column.
+\describe{
+\item{Attribute columns}{One column per ArcGIS \code{attributes} field (normalized to snake_case).}
+\item{geometry}{Feature geometry object as list-column.}
+}
 }
 \description{
 Query charging stations

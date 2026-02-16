@@ -50,8 +50,10 @@
 #'
 #' @return A tibble with one row per ArcGIS feature. Attribute names are
 #' normalized to lower snake_case. Includes a `geometry` list-column.
-#' Guaranteed columns are ArcGIS attribute fields, with `geometry` retained as
-#' a list-column when geometry is present.
+#' \describe{
+#'   \item{Attribute columns}{One column per ArcGIS `attributes` field (sanitized to snake_case).}
+#'   \item{geometry}{Geometry object as list-column when requested/available.}
+#' }
 #' @family Deutschlandatlas
 #' @export
 deutschlandatlas_query <- function(table = "p_apo_f_ZA2022",

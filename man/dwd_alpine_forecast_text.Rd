@@ -15,9 +15,11 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A one-row tibble with one column \code{text} containing the forecast text.
-Guaranteed columns are operation-specific and defined by
-\code{bunddev_tidy_dwd()}: station/crowd/warning endpoints return stable named
-columns, while avalanche output is in \code{raw} (list-column).
+\describe{
+\item{text}{Text endpoints: warning/forecast text (character).}
+\item{raw}{Avalanche endpoint: full parsed payload as list-column.}
+\item{Operation-specific fields}{For station/crowd/warning endpoints, columns follow the documented schemas of \code{bunddev_tidy_dwd()}, including parsed time columns where available.}
+}
 }
 \description{
 Fetch DWD alpine forecast text

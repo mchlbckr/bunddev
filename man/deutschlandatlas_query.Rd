@@ -49,8 +49,10 @@ the number of rows.}
 \value{
 A tibble with one row per ArcGIS feature. Attribute names are
 normalized to lower snake_case. Includes a \code{geometry} list-column.
-Guaranteed columns are ArcGIS attribute fields, with \code{geometry} retained as
-a list-column when geometry is present.
+\describe{
+\item{Attribute columns}{One column per ArcGIS \code{attributes} field (sanitized to snake_case).}
+\item{geometry}{Geometry object as list-column when requested/available.}
+}
 }
 \description{
 Query Deutschlandatlas indicators

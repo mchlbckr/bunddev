@@ -44,7 +44,9 @@ from the API (default \code{FALSE}).}
 \value{
 A tibble with one row per returned feature and one column per
 attribute provided by the selected Regionalatlas table.
-Guaranteed columns are ArcGIS feature \code{attributes} fields for each row.
+\describe{
+\item{Attribute columns}{One column per ArcGIS feature \code{attributes} field.}
+}
 }
 \description{
 Query Regionalatlas data

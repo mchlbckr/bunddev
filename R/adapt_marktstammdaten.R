@@ -28,9 +28,12 @@
 #'
 #' @return A tibble with filter definitions. Each row describes an available
 #' filter field and its selectable values/options.
-#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
-#' always include `total` and add parsed `*Datum_time` columns when matching
-#' date fields exist.
+#' \describe{
+#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
+#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
+#' }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_stromerzeugung <- function(safe = TRUE,
@@ -75,9 +78,12 @@ marktstammdaten_filters_stromerzeugung <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with filter definitions for electricity consumption.
-#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
-#' always include `total` and add parsed `*Datum_time` columns when matching
-#' date fields exist.
+#' \describe{
+#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
+#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
+#' }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_stromverbrauch <- function(safe = TRUE,
@@ -122,9 +128,12 @@ marktstammdaten_filters_stromverbrauch <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with filter definitions for gas generation.
-#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
-#' always include `total` and add parsed `*Datum_time` columns when matching
-#' date fields exist.
+#' \describe{
+#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
+#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
+#' }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_gaserzeugung <- function(safe = TRUE,
@@ -169,9 +178,12 @@ marktstammdaten_filters_gaserzeugung <- function(safe = TRUE,
 #' }
 #'
 #' @return A tibble with filter definitions for gas consumption.
-#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
-#' always include `total` and add parsed `*Datum_time` columns when matching
-#' date fields exist.
+#' \describe{
+#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
+#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
+#' }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_gasverbrauch <- function(safe = TRUE,
@@ -277,9 +289,12 @@ marktstammdaten_stromerzeugung <- function(params = list(),
 #'
 #' @return A tibble with one row per electricity-consumption entry (same column
 #' conventions as [marktstammdaten_stromerzeugung()]).
-#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
-#' always include `total` and add parsed `*Datum_time` columns when matching
-#' date fields exist.
+#' \describe{
+#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
+#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
+#' }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_stromverbrauch <- function(params = list(),
@@ -330,9 +345,12 @@ marktstammdaten_stromverbrauch <- function(params = list(),
 #'
 #' @return A tibble with one row per gas-generation entry (same column
 #' conventions as [marktstammdaten_stromerzeugung()]).
-#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
-#' always include `total` and add parsed `*Datum_time` columns when matching
-#' date fields exist.
+#' \describe{
+#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
+#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
+#' }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_gaserzeugung <- function(params = list(),
@@ -383,9 +401,12 @@ marktstammdaten_gaserzeugung <- function(params = list(),
 #'
 #' @return A tibble with one row per gas-consumption entry (same column
 #' conventions as [marktstammdaten_stromerzeugung()]).
-#' Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
-#' always include `total` and add parsed `*Datum_time` columns when matching
-#' date fields exist.
+#' \describe{
+#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
+#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
+#' }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_gasverbrauch <- function(params = list(),

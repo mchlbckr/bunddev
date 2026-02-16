@@ -34,8 +34,10 @@
 #' }
 #'
 #' @return A tibble with one row per air-quality measurement record.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_airquality <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -55,8 +57,10 @@ luftqualitaet_airquality <- function(params = list(), safe = TRUE, refresh = FAL
 #'
 #' @return A one-row tibble with available date limits for the endpoint.
 #'
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_airquality_limits <- function(safe = TRUE, refresh = FALSE) {
@@ -78,8 +82,10 @@ luftqualitaet_airquality_limits <- function(safe = TRUE, refresh = FALSE) {
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per annual-balance record.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_annualbalances <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -101,8 +107,10 @@ luftqualitaet_annualbalances <- function(params = list(), safe = TRUE, refresh =
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per component metadata entry.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_components <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -125,8 +133,10 @@ luftqualitaet_components <- function(params = list(), safe = TRUE, refresh = FAL
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per measurement metadata entry.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_measures <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -146,8 +156,10 @@ luftqualitaet_measures <- function(params = list(), safe = TRUE, refresh = FALSE
 #'
 #' @return A one-row tibble with available date limits for the endpoint.
 #'
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_measures_limits <- function(safe = TRUE, refresh = FALSE) {
@@ -169,8 +181,10 @@ luftqualitaet_measures_limits <- function(safe = TRUE, refresh = FALSE) {
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per network metadata entry.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_networks <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -192,8 +206,10 @@ luftqualitaet_networks <- function(params = list(), safe = TRUE, refresh = FALSE
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per scope metadata entry.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_scopes <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -215,8 +231,10 @@ luftqualitaet_scopes <- function(params = list(), safe = TRUE, refresh = FALSE) 
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per station-settings metadata entry.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_stationsettings <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -238,8 +256,10 @@ luftqualitaet_stationsettings <- function(params = list(), safe = TRUE, refresh 
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per station-type metadata entry.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_stationtypes <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -261,8 +281,10 @@ luftqualitaet_stationtypes <- function(params = list(), safe = TRUE, refresh = F
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per threshold metadata entry.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_thresholds <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -284,8 +306,10 @@ luftqualitaet_thresholds <- function(params = list(), safe = TRUE, refresh = FAL
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per transgression record.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_transgressions <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -307,8 +331,10 @@ luftqualitaet_transgressions <- function(params = list(), safe = TRUE, refresh =
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per transgression-type metadata entry.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_transgressiontypes <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -330,8 +356,10 @@ luftqualitaet_transgressiontypes <- function(params = list(), safe = TRUE, refre
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per combined metadata record.
-#' Guaranteed columns follow the API `indices` metadata; rows contain indexed
-#' scalar values with names resolved from `indices` when provided.
+#' \describe{
+#'   \item{Indexed value columns}{Columns are derived from API `indices` metadata and represent scalar values for each returned record.}
+#'   \item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+#' }
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_meta <- function(params = list(), safe = TRUE, refresh = FALSE) {

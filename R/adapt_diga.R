@@ -70,9 +70,11 @@ diga_device_definitions <- function(params = list(), safe = TRUE, refresh = FALS
 #' @return A tibble with one row per catalog entry resource (same structure
 #' rules as [diga_device_definitions()]).
 #'
-#' Guaranteed columns are top-level FHIR resource fields from each bundle
-#' `entry` resource; if no entries exist, a single `bundle` list-column is
-#' returned.
+#' \describe{
+#'   \item{Resource fields}{One column per top-level scalar field in each FHIR `entry$resource`.}
+#'   \item{Nested resource fields}{Stored as list-columns.}
+#'   \item{bundle}{Returned as list-column when the response has no `entry` records.}
+#' }
 #' @family DiGA
 #' @export
 
@@ -107,9 +109,11 @@ diga_catalog_entries <- function(params = list(), safe = TRUE, refresh = FALSE, 
 #' @return A tibble with one row per organization resource (same structure rules
 #' as [diga_device_definitions()]).
 #'
-#' Guaranteed columns are top-level FHIR resource fields from each bundle
-#' `entry` resource; if no entries exist, a single `bundle` list-column is
-#' returned.
+#' \describe{
+#'   \item{Resource fields}{One column per top-level scalar field in each FHIR `entry$resource`.}
+#'   \item{Nested resource fields}{Stored as list-columns.}
+#'   \item{bundle}{Returned as list-column when the response has no `entry` records.}
+#' }
 #' @family DiGA
 #' @export
 
@@ -144,9 +148,11 @@ diga_organizations <- function(params = list(), safe = TRUE, refresh = FALSE, fl
 #' @return A tibble with one row per charge item definition resource (same
 #' structure rules as [diga_device_definitions()]).
 #'
-#' Guaranteed columns are top-level FHIR resource fields from each bundle
-#' `entry` resource; if no entries exist, a single `bundle` list-column is
-#' returned.
+#' \describe{
+#'   \item{Resource fields}{One column per top-level scalar field in each FHIR `entry$resource`.}
+#'   \item{Nested resource fields}{Stored as list-columns.}
+#'   \item{bundle}{Returned as list-column when the response has no `entry` records.}
+#' }
 #' @family DiGA
 #' @export
 
@@ -181,9 +187,11 @@ diga_charge_item_definitions <- function(params = list(), safe = TRUE, refresh =
 #' @return A tibble with one row per questionnaire resource (same structure
 #' rules as [diga_device_definitions()]).
 #'
-#' Guaranteed columns are top-level FHIR resource fields from each bundle
-#' `entry` resource; if no entries exist, a single `bundle` list-column is
-#' returned.
+#' \describe{
+#'   \item{Resource fields}{One column per top-level scalar field in each FHIR `entry$resource`.}
+#'   \item{Nested resource fields}{Stored as list-columns.}
+#'   \item{bundle}{Returned as list-column when the response has no `entry` records.}
+#' }
 #' @family DiGA
 #' @export
 
@@ -218,9 +226,11 @@ diga_questionnaires <- function(params = list(), safe = TRUE, refresh = FALSE, f
 #' @return A tibble with one row per questionnaire response resource (same
 #' structure rules as [diga_device_definitions()]).
 #'
-#' Guaranteed columns are top-level FHIR resource fields from each bundle
-#' `entry` resource; if no entries exist, a single `bundle` list-column is
-#' returned.
+#' \describe{
+#'   \item{Resource fields}{One column per top-level scalar field in each FHIR `entry$resource`.}
+#'   \item{Nested resource fields}{Stored as list-columns.}
+#'   \item{bundle}{Returned as list-column when the response has no `entry` records.}
+#' }
 #' @family DiGA
 #' @export
 

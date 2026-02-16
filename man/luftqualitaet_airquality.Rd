@@ -26,8 +26,10 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A tibble with one row per air-quality measurement record.
-Guaranteed columns follow the API \code{indices} metadata; rows contain indexed
-scalar values with names resolved from \code{indices} when provided.
+\describe{
+\item{Indexed value columns}{Columns are derived from API \code{indices} metadata and represent scalar values for each returned record.}
+\item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+}
 }
 \description{
 List air quality measurements

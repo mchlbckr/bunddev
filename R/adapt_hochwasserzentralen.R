@@ -50,9 +50,11 @@ hochwasserzentralen_pegel_info <- function(pegelnummer, safe = TRUE, refresh = F
 #'
 #' @return A tibble with one row per Bundesland/region entry. Column names follow
 #' the upstream service field names.
-#' Guaranteed columns are top-level scalar fields from returned JSON objects
-#' or GeoJSON feature properties; `features` is used as a list-column for
-#' GeoJSON container endpoints.
+#' \describe{
+#'   \item{Top-level fields}{One column per scalar top-level field (or per GeoJSON feature `properties` field).}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{features}{GeoJSON container endpoint: feature collection as list-column.}
+#' }
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
@@ -84,9 +86,11 @@ hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with one row of metadata for the selected Bundesland id.
-#' Guaranteed columns are top-level scalar fields from returned JSON objects
-#' or GeoJSON feature properties; `features` is used as a list-column for
-#' GeoJSON container endpoints.
+#' \describe{
+#'   \item{Top-level fields}{One column per scalar top-level field (or per GeoJSON feature `properties` field).}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{features}{GeoJSON container endpoint: feature collection as list-column.}
+#' }
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refresh = FALSE) {
@@ -119,9 +123,11 @@ hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refr
 #' }
 #'
 #' @return A tibble with one row per gauge location and coordinate metadata.
-#' Guaranteed columns are top-level scalar fields from returned JSON objects
-#' or GeoJSON feature properties; `features` is used as a list-column for
-#' GeoJSON container endpoints.
+#' \describe{
+#'   \item{Top-level fields}{One column per scalar top-level field (or per GeoJSON feature `properties` field).}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{features}{GeoJSON container endpoint: feature collection as list-column.}
+#' }
 #' @family Hochwasserzentralen
 #' @export
 hochwasserzentralen_lagepegel <- function(safe = TRUE, refresh = FALSE) {

@@ -60,9 +60,14 @@ travelwarning_warnings <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @return A tibble with one row per warning content block and the same column
 #' structure as [travelwarning_warnings()].
-#' Guaranteed columns include `content_id`, `parent_content_id`,
-#' `response_country`, `response_last_modified`, `last_modified_time`, and
-#' `effective_time`, plus scalar fields from each entry payload.
+#' \describe{
+#'   \item{content_id}{Entry/content identifier (character).}
+#'   \item{parent_content_id}{Parent identifier for nested entry records, if applicable (character).}
+#'   \item{response_country}{Country code from response metadata (character).}
+#'   \item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
+#'   \item{last_modified_time / effective_time}{Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.}
+#'   \item{Entry fields}{Additional scalar fields from each entry payload; nested structures remain list-columns.}
+#' }
 #' @family Travelwarning
 #' @export
 travelwarning_warning <- function(content_id, safe = TRUE, refresh = FALSE) {

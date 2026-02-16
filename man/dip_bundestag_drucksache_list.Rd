@@ -45,9 +45,12 @@ the number of rows.}
 }
 \value{
 A one-row tibble with list-response metadata: \code{num_found}, \code{cursor}, and \code{documents} (list-column).
-Guaranteed columns for list endpoints are \code{num_found}, \code{cursor}, and
-\code{documents} (list-column). Detail endpoints return top-level scalar fields
-with nested structures as list-columns.
+\describe{
+\item{num_found}{List endpoints: total number of matches (integer).}
+\item{cursor}{List endpoints: cursor for pagination (character).}
+\item{documents}{List endpoints: returned records as list-column.}
+\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+}
 }
 \description{
 List DIP Drucksachen

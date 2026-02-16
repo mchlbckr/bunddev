@@ -63,8 +63,10 @@
 #' @return A tibble with one row per ArcGIS feature. Attribute names are
 #' normalized to lower snake_case. Includes a `geometry` list-column with the
 #' feature geometry object.
-#' Guaranteed columns are ArcGIS attribute fields, with `geometry` retained as
-#' a list-column.
+#' \describe{
+#'   \item{Attribute columns}{One column per ArcGIS `attributes` field (normalized to snake_case).}
+#'   \item{geometry}{Feature geometry object as list-column.}
+#' }
 #' @family Ladestationen
 #' @export
 ladestationen_query <- function(params = list(),

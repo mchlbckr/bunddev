@@ -30,8 +30,11 @@
 #' }
 #'
 #' @return A tibble with one row per returned `V_MUDAB_PROJECTSTATION` record.
-#' Guaranteed columns are scalar fields of the selected MUDAB record type.
-#' `datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+#' \describe{
+#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_project_stations <- function(filter = NULL,
@@ -71,8 +74,11 @@ mudab_project_stations <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `STATION_SMALL` record.
-#' Guaranteed columns are scalar fields of the selected MUDAB record type.
-#' `datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+#' \describe{
+#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_stations <- function(filter = NULL,
@@ -110,8 +116,11 @@ mudab_stations <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `MV_PARAMETER` record.
-#' Guaranteed columns are scalar fields of the selected MUDAB record type.
-#' `datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+#' \describe{
+#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_parameters <- function(filter = NULL,
@@ -188,8 +197,11 @@ mudab_parameter_values <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `MV_PARAMETER_BIOLOGIE` record.
-#' Guaranteed columns are scalar fields of the selected MUDAB record type.
-#' `datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+#' \describe{
+#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_parameters_biologie <- function(filter = NULL,
@@ -227,8 +239,11 @@ mudab_parameters_biologie <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `MV_PARAMETER_BIOTA` record.
-#' Guaranteed columns are scalar fields of the selected MUDAB record type.
-#' `datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+#' \describe{
+#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_parameters_biota <- function(filter = NULL,
@@ -266,8 +281,11 @@ mudab_parameters_biota <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `MV_PARAMETER_WASSER` record.
-#' Guaranteed columns are scalar fields of the selected MUDAB record type.
-#' `datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+#' \describe{
+#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_parameters_wasser <- function(filter = NULL,
@@ -305,8 +323,11 @@ mudab_parameters_wasser <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `MV_PARAMETER_SEDIMENT` record.
-#' Guaranteed columns are scalar fields of the selected MUDAB record type.
-#' `datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+#' \describe{
+#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_parameters_sediment <- function(filter = NULL,
@@ -344,8 +365,11 @@ mudab_parameters_sediment <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `V_PLC_STATION` record.
-#' Guaranteed columns are scalar fields of the selected MUDAB record type.
-#' `datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+#' \describe{
+#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_plc_stations <- function(filter = NULL,
@@ -383,8 +407,11 @@ mudab_plc_stations <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `V_GEMESSENE_PARA_PLC` record.
-#' Guaranteed columns are scalar fields of the selected MUDAB record type.
-#' `datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+#' \describe{
+#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_plc_parameters <- function(filter = NULL,
@@ -422,8 +449,11 @@ mudab_plc_parameters <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `V_PLC_STATION_MSMNT` record.
-#' Guaranteed columns are scalar fields of the selected MUDAB record type.
-#' `datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+#' \describe{
+#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
+#' }
 #' @family MUDAB
 #' @export
 mudab_plc_measurements <- function(filter = NULL,

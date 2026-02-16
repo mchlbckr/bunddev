@@ -27,8 +27,11 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A tibble with one row per returned \code{V_GEMESSENE_PARA_PLC} record.
-Guaranteed columns are scalar fields of the selected MUDAB record type.
-\code{datetime_time} is added when \code{DATE_STM} and \code{TIME_STM} are available.
+\describe{
+\item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
+\item{Nested fields}{Stored as list-columns.}
+\item{datetime_time}{Added as \code{POSIXct} (Europe/Berlin) when \code{DATE_STM} and \code{TIME_STM} exist.}
+}
 }
 \description{
 List MUDAB PLC parameters

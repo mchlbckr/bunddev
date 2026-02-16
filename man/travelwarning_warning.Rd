@@ -18,9 +18,14 @@ from the API (default \code{FALSE}).}
 \value{
 A tibble with one row per warning content block and the same column
 structure as \code{\link[=travelwarning_warnings]{travelwarning_warnings()}}.
-Guaranteed columns include \code{content_id}, \code{parent_content_id},
-\code{response_country}, \code{response_last_modified}, \code{last_modified_time}, and
-\code{effective_time}, plus scalar fields from each entry payload.
+\describe{
+\item{content_id}{Entry/content identifier (character).}
+\item{parent_content_id}{Parent identifier for nested entry records, if applicable (character).}
+\item{response_country}{Country code from response metadata (character).}
+\item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
+\item{last_modified_time / effective_time}{Parsed \code{POSIXct} timestamps in Europe/Berlin when source fields exist.}
+\item{Entry fields}{Additional scalar fields from each entry payload; nested structures remain list-columns.}
+}
 }
 \description{
 Get a travel warning by content id

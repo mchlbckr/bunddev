@@ -18,9 +18,11 @@
 #' }
 #'
 #' @return A tibble with one row per place entry returned by the API.
-#' Guaranteed columns are endpoint-specific top-level fields from the Abfallnavi
-#' API (via `abfallnavi_tidy_list()` / `abfallnavi_tidy_single()`). Nested
-#' values are kept as list-columns.
+#' \describe{
+#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
+#'   \item{Nested fields}{Kept as list-columns.}
+#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
+#' }
 #' @family Abfallnavi
 #' @export
 abfallnavi_orte <- function(safe = TRUE, refresh = FALSE) {
@@ -45,9 +47,11 @@ abfallnavi_orte <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @return A one-row tibble with metadata for the selected place.
 #'
-#' Guaranteed columns are endpoint-specific top-level fields from the Abfallnavi
-#' API (via `abfallnavi_tidy_list()` / `abfallnavi_tidy_single()`). Nested
-#' values are kept as list-columns.
+#' \describe{
+#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
+#'   \item{Nested fields}{Kept as list-columns.}
+#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
+#' }
 #' @family Abfallnavi
 #' @export
 abfallnavi_ort <- function(ort_id, safe = TRUE, refresh = FALSE) {
@@ -73,9 +77,11 @@ abfallnavi_ort <- function(ort_id, safe = TRUE, refresh = FALSE) {
 #'
 #' @return A tibble with one row per street in the selected place.
 #'
-#' Guaranteed columns are endpoint-specific top-level fields from the Abfallnavi
-#' API (via `abfallnavi_tidy_list()` / `abfallnavi_tidy_single()`). Nested
-#' values are kept as list-columns.
+#' \describe{
+#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
+#'   \item{Nested fields}{Kept as list-columns.}
+#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
+#' }
 #' @family Abfallnavi
 #' @export
 abfallnavi_strassen <- function(ort_id, safe = TRUE, refresh = FALSE) {
@@ -101,9 +107,11 @@ abfallnavi_strassen <- function(ort_id, safe = TRUE, refresh = FALSE) {
 #'
 #' @return A tibble with one row per available house number entry.
 #'
-#' Guaranteed columns are endpoint-specific top-level fields from the Abfallnavi
-#' API (via `abfallnavi_tidy_list()` / `abfallnavi_tidy_single()`). Nested
-#' values are kept as list-columns.
+#' \describe{
+#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
+#'   \item{Nested fields}{Kept as list-columns.}
+#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
+#' }
 #' @family Abfallnavi
 #' @export
 abfallnavi_hausnummern <- function(strassen_id, safe = TRUE, refresh = FALSE) {
@@ -128,9 +136,11 @@ abfallnavi_hausnummern <- function(strassen_id, safe = TRUE, refresh = FALSE) {
 #'
 #' @return A tibble with one row per waste fraction entry.
 #'
-#' Guaranteed columns are endpoint-specific top-level fields from the Abfallnavi
-#' API (via `abfallnavi_tidy_list()` / `abfallnavi_tidy_single()`). Nested
-#' values are kept as list-columns.
+#' \describe{
+#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
+#'   \item{Nested fields}{Kept as list-columns.}
+#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
+#' }
 #' @family Abfallnavi
 #' @export
 abfallnavi_fraktionen <- function(safe = TRUE, refresh = FALSE) {
@@ -156,9 +166,11 @@ abfallnavi_fraktionen <- function(safe = TRUE, refresh = FALSE) {
 #' @return A tibble with one row per waste fraction entry for the selected
 #' house number.
 #'
-#' Guaranteed columns are endpoint-specific top-level fields from the Abfallnavi
-#' API (via `abfallnavi_tidy_list()` / `abfallnavi_tidy_single()`). Nested
-#' values are kept as list-columns.
+#' \describe{
+#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
+#'   \item{Nested fields}{Kept as list-columns.}
+#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
+#' }
 #' @family Abfallnavi
 #' @export
 abfallnavi_fraktionen_hausnummern <- function(hausnummern_id, safe = TRUE, refresh = FALSE) {
@@ -185,9 +197,11 @@ abfallnavi_fraktionen_hausnummern <- function(hausnummern_id, safe = TRUE, refre
 #' @return A tibble with one row per waste fraction entry for the selected
 #' street.
 #'
-#' Guaranteed columns are endpoint-specific top-level fields from the Abfallnavi
-#' API (via `abfallnavi_tidy_list()` / `abfallnavi_tidy_single()`). Nested
-#' values are kept as list-columns.
+#' \describe{
+#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
+#'   \item{Nested fields}{Kept as list-columns.}
+#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
+#' }
 #' @family Abfallnavi
 #' @export
 abfallnavi_fraktionen_strassen <- function(strassen_id, safe = TRUE, refresh = FALSE) {
@@ -279,9 +293,11 @@ abfallnavi_termine_hausnummern <- function(hausnummern_id, fraktion, safe = TRUE
 #' Downloads a calendar file for the requested address and fraction.
 #'
 #' @return A one-row tibble with raw downloaded file bytes in a list-column.
-#' Guaranteed columns are endpoint-specific top-level fields from the Abfallnavi
-#' API (via `abfallnavi_tidy_list()` / `abfallnavi_tidy_single()`). Nested
-#' values are kept as list-columns.
+#' \describe{
+#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
+#'   \item{Nested fields}{Kept as list-columns.}
+#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
+#' }
 #' @family Abfallnavi
 #' @export
 abfallnavi_kalender_download <- function(region,

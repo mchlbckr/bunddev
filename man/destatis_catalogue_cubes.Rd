@@ -42,8 +42,11 @@ from the API (default \code{FALSE}).}
 \value{
 A one-row tibble with one list-column \code{response} containing the
 parsed catalogue payload.
-Guaranteed columns are \code{response} (list-column) for catalogue endpoints and
-\code{name} plus \code{data} (list-column) for data retrieval endpoints.
+\describe{
+\item{response}{Catalogue endpoints: full API payload as list-column.}
+\item{name}{Data endpoints: requested table/cube name (character).}
+\item{data}{Data endpoints: full payload as list-column.}
+}
 }
 \description{
 List Destatis cubes

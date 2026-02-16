@@ -43,9 +43,11 @@ the number of rows.}
 A tibble with one row per organization resource (same structure rules
 as \code{\link[=diga_device_definitions]{diga_device_definitions()}}).
 
-Guaranteed columns are top-level FHIR resource fields from each bundle
-\code{entry} resource; if no entries exist, a single \code{bundle} list-column is
-returned.
+\describe{
+\item{Resource fields}{One column per top-level scalar field in each FHIR \code{entry$resource}.}
+\item{Nested resource fields}{Stored as list-columns.}
+\item{bundle}{Returned as list-column when the response has no \code{entry} records.}
+}
 }
 \description{
 List DiGA manufacturers

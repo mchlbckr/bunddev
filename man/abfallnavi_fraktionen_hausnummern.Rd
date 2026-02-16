@@ -19,9 +19,11 @@ from the API (default \code{FALSE}).}
 A tibble with one row per waste fraction entry for the selected
 house number.
 
-Guaranteed columns are endpoint-specific top-level fields from the Abfallnavi
-API (via \code{abfallnavi_tidy_list()} / \code{abfallnavi_tidy_single()}). Nested
-values are kept as list-columns.
+\describe{
+\item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
+\item{Nested fields}{Kept as list-columns.}
+\item{date_time}{Added by \verb{abfallnavi_termine_*()} from \code{datum} as \code{POSIXct} in Europe/Berlin, when available.}
+}
 }
 \description{
 List waste fractions for a house number

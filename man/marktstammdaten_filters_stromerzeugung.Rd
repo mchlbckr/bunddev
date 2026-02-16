@@ -35,9 +35,12 @@ the number of rows.}
 \value{
 A tibble with filter definitions. Each row describes an available
 filter field and its selectable values/options.
-Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
-always include \code{total} and add parsed \verb{*Datum_time} columns when matching
-date fields exist.
+\describe{
+\item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
+\item{Nested fields}{Stored as list-columns.}
+\item{total}{Entry endpoints: total number of matching records (numeric).}
+\item{\verb{*Datum_time}}{Parsed \code{POSIXct} columns added for date fields matching \verb{*Datum}.}
+}
 }
 \description{
 List MaStR filter options for electricity generation

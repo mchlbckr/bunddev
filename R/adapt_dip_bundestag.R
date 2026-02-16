@@ -51,9 +51,12 @@
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgang_list <- function(params = list(),
@@ -85,9 +88,12 @@ dip_bundestag_vorgang_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Vorgang.
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgang <- function(vorgang_id,
@@ -134,9 +140,12 @@ dip_bundestag_vorgang <- function(vorgang_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgangsposition_list <- function(params = list(),
@@ -165,9 +174,12 @@ dip_bundestag_vorgangsposition_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Vorgangsposition.
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_vorgangsposition <- function(vorgangsposition_id,
@@ -211,9 +223,12 @@ dip_bundestag_vorgangsposition <- function(vorgangsposition_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache_list <- function(params = list(),
@@ -242,9 +257,12 @@ dip_bundestag_drucksache_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Drucksache.
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache <- function(drucksache_id,
@@ -288,9 +306,12 @@ dip_bundestag_drucksache <- function(drucksache_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache_text_list <- function(params = list(),
@@ -319,9 +340,12 @@ dip_bundestag_drucksache_text_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Drucksache text record.
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_drucksache_text <- function(drucksache_id,
@@ -365,9 +389,12 @@ dip_bundestag_drucksache_text <- function(drucksache_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll_list <- function(params = list(),
@@ -396,9 +423,12 @@ dip_bundestag_plenarprotokoll_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Plenarprotokoll.
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll <- function(plenarprotokoll_id,
@@ -442,9 +472,12 @@ dip_bundestag_plenarprotokoll <- function(plenarprotokoll_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll_text_list <- function(params = list(),
@@ -473,9 +506,12 @@ dip_bundestag_plenarprotokoll_text_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Plenarprotokoll text record.
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_plenarprotokoll_text <- function(plenarprotokoll_id,
@@ -519,9 +555,12 @@ dip_bundestag_plenarprotokoll_text <- function(plenarprotokoll_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_aktivitaet_list <- function(params = list(),
@@ -550,9 +589,12 @@ dip_bundestag_aktivitaet_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected Aktivitaet.
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_aktivitaet <- function(aktivitaet_id,
@@ -596,9 +638,12 @@ dip_bundestag_aktivitaet <- function(aktivitaet_id,
 #' }
 #'
 #' @return A one-row tibble with list-response metadata: `num_found`, `cursor`, and `documents` (list-column).
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_person_list <- function(params = list(),
@@ -627,9 +672,12 @@ dip_bundestag_person_list <- function(params = list(),
 #' }
 #'
 #' @return A one-row tibble with detailed fields for the selected person record.
-#' Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-#' `documents` (list-column). Detail endpoints return top-level scalar fields
-#' with nested structures as list-columns.
+#' \describe{
+#'   \item{num_found}{List endpoints: total number of matches (integer).}
+#'   \item{cursor}{List endpoints: cursor for pagination (character).}
+#'   \item{documents}{List endpoints: returned records as list-column.}
+#'   \item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+#' }
 #' @family DIP Bundestag
 #' @export
 dip_bundestag_person <- function(person_id,

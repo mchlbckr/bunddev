@@ -16,9 +16,11 @@ from the API (default \code{FALSE}).}
 \value{
 A tibble with sector entries when the API returns a homogeneous list;
 otherwise a one-row tibble with list-column \code{response}.
-Guaranteed columns depend on payload shape: homogeneous item lists are
-expanded to one row per item; otherwise a single \code{response} list-column is
-returned.
+\describe{
+\item{Item fields}{For homogeneous list responses, one column per top-level scalar item field.}
+\item{Nested item fields}{Stored as list-columns.}
+\item{response}{For non-homogeneous responses, a single list-column containing the full payload.}
+}
 }
 \description{
 List DDB institution sectors

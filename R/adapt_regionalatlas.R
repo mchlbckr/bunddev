@@ -55,7 +55,9 @@
 #'
 #' @return A tibble with one row per returned feature and one column per
 #' attribute provided by the selected Regionalatlas table.
-#' Guaranteed columns are ArcGIS feature `attributes` fields for each row.
+#' \describe{
+#'   \item{Attribute columns}{One column per ArcGIS feature `attributes` field.}
+#' }
 #' @family Regionalatlas
 #' @export
 regionalatlas_query <- function(table,

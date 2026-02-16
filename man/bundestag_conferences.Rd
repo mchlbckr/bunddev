@@ -16,9 +16,10 @@ from the API (default \code{FALSE}).}
 \value{
 A tibble with one row per \verb{<item>} entry from the conferences feed.
 Column names correspond to XML element names.
-Guaranteed columns are scalar child tags from XML \verb{<item>} entries (or
-root-level fields for single-document endpoints); repeated tags become
-list-columns.
+\describe{
+\item{XML child-tag columns}{One column per scalar child element in each \verb{<item>} entry (or root-level document field for single-document endpoints).}
+\item{Repeated child tags}{Stored as list-columns.}
+}
 }
 \description{
 Get Bundestag conferences overview

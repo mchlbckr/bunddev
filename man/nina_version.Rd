@@ -17,9 +17,13 @@ from the API (default \code{FALSE}).}
 A one-row tibble with version metadata fields.
 
 Includes \code{last_modification_time} as POSIXct in Europe/Berlin.
-Guaranteed columns are endpoint-specific: content endpoints include
-\code{content_id} plus response metadata/time columns; map and archive endpoints
-expose documented identifiers and keep nested blocks as list-columns.
+\describe{
+\item{content_id}{Content identifier from NINA feeds (character), where applicable.}
+\item{response_country}{Feed-level country code, when provided (character).}
+\item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
+\item{last_modified_time / effective_time}{Parsed \code{POSIXct} timestamps in Europe/Berlin when source fields exist.}
+\item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+}
 }
 \description{
 Get data version info

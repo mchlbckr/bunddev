@@ -79,9 +79,11 @@ psm_mittel <- function(kennr = NULL,
 #' }
 #'
 #' @return A tibble with one row per active ingredient item.
-#' Guaranteed columns are top-level fields of each `items` element (with
-#' `m_row$$` removed). Non-item payloads are returned in a `response`
-#' list-column.
+#' \describe{
+#'   \item{Item fields}{One column per top-level field of each `items` element (`m_row$$` removed).}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{response}{Fallback payload for non-item responses (list-column).}
+#' }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_wirkstoffe <- function(wirkstoffId = NULL,
@@ -126,9 +128,11 @@ psm_wirkstoffe <- function(wirkstoffId = NULL,
 #' }
 #'
 #' @return A tibble with one row per approved application item.
-#' Guaranteed columns are top-level fields of each `items` element (with
-#' `m_row$$` removed). Non-item payloads are returned in a `response`
-#' list-column.
+#' \describe{
+#'   \item{Item fields}{One column per top-level field of each `items` element (`m_row$$` removed).}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{response}{Fallback payload for non-item responses (list-column).}
+#' }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_anwendungen <- function(kennr = NULL,
@@ -169,9 +173,11 @@ psm_anwendungen <- function(kennr = NULL,
 #' }
 #'
 #' @return A one-row tibble with version/release metadata.
-#' Guaranteed columns are top-level fields of each `items` element (with
-#' `m_row$$` removed). Non-item payloads are returned in a `response`
-#' list-column.
+#' \describe{
+#'   \item{Item fields}{One column per top-level field of each `items` element (`m_row$$` removed).}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{response}{Fallback payload for non-item responses (list-column).}
+#' }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_stand <- function(safe = TRUE, refresh = FALSE) {
@@ -204,9 +210,11 @@ psm_stand <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A tibble with crop group catalog entries.
-#' Guaranteed columns are top-level fields of each `items` element (with
-#' `m_row$$` removed). Non-item payloads are returned in a `response`
-#' list-column.
+#' \describe{
+#'   \item{Item fields}{One column per top-level field of each `items` element (`m_row$$` removed).}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{response}{Fallback payload for non-item responses (list-column).}
+#' }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_kultur_gruppen <- function(params = list(),
@@ -241,9 +249,11 @@ psm_kultur_gruppen <- function(params = list(),
 #' }
 #'
 #' @return A tibble with pest/pathogen group catalog entries.
-#' Guaranteed columns are top-level fields of each `items` element (with
-#' `m_row$$` removed). Non-item payloads are returned in a `response`
-#' list-column.
+#' \describe{
+#'   \item{Item fields}{One column per top-level field of each `items` element (`m_row$$` removed).}
+#'   \item{Nested fields}{Stored as list-columns.}
+#'   \item{response}{Fallback payload for non-item responses (list-column).}
+#' }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_schadorg_gruppen <- function(params = list(),

@@ -16,8 +16,10 @@ from the API (default \code{FALSE}).}
 \value{
 A one-row tibble with available date limits for the endpoint.
 
-Guaranteed columns follow the API \code{indices} metadata; rows contain indexed
-scalar values with names resolved from \code{indices} when provided.
+\describe{
+\item{Indexed value columns}{Columns are derived from API \code{indices} metadata and represent scalar values for each returned record.}
+\item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
+}
 }
 \description{
 Get air quality date limits

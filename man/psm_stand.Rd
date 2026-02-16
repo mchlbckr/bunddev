@@ -15,9 +15,11 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A one-row tibble with version/release metadata.
-Guaranteed columns are top-level fields of each \code{items} element (with
-\verb{m_row$$} removed). Non-item payloads are returned in a \code{response}
-list-column.
+\describe{
+\item{Item fields}{One column per top-level field of each \code{items} element (\verb{m_row$$} removed).}
+\item{Nested fields}{Stored as list-columns.}
+\item{response}{Fallback payload for non-item responses (list-column).}
+}
 }
 \description{
 Get data version

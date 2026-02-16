@@ -16,9 +16,11 @@ from the API (default \code{FALSE}).}
 \value{
 A tibble with one row per Bundesland/region entry. Column names follow
 the upstream service field names.
-Guaranteed columns are top-level scalar fields from returned JSON objects
-or GeoJSON feature properties; \code{features} is used as a list-column for
-GeoJSON container endpoints.
+\describe{
+\item{Top-level fields}{One column per scalar top-level field (or per GeoJSON feature \code{properties} field).}
+\item{Nested fields}{Stored as list-columns.}
+\item{features}{GeoJSON container endpoint: feature collection as list-column.}
+}
 }
 \description{
 List flood portal states and connected regions
