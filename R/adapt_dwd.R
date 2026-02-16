@@ -347,6 +347,9 @@ dwd_coast_warnings <- function(language = c("de", "en"),
 #' }
 #'
 #' @return A one-row tibble with one column `text` containing the warning text.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family DWD
 #' @export
 dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
@@ -381,6 +384,9 @@ dwd_sea_warning_text <- function(safe = TRUE, refresh = FALSE) {
 #' }
 #'
 #' @return A one-row tibble with one column `text` containing the forecast text.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family DWD
 #' @export
 dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
@@ -416,6 +422,9 @@ dwd_alpine_forecast_text <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @return A one-row tibble with one list-column `raw` containing the parsed
 #' avalanche warning payload.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family DWD
 #' @export
 dwd_avalanche_warnings <- function(safe = TRUE, refresh = FALSE) {

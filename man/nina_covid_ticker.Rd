@@ -15,6 +15,9 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A one-row tibble with list-column \code{data} containing ticker payload.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 Get COVID ticker

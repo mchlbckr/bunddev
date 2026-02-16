@@ -44,6 +44,9 @@ the number of rows.}
 \value{
 A tibble with one row per gas-generation entry (same column
 conventions as \code{\link[=marktstammdaten_stromerzeugung]{marktstammdaten_stromerzeugung()}}).
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 List MaStR gas generation data

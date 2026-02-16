@@ -17,6 +17,9 @@ from the API (default \code{FALSE}).}
 A tibble with one row per event code entry; includes \code{last_modification_time} (\code{POSIXct}).
 
 Includes \code{last_modification_time} as POSIXct in Europe/Berlin.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 List NINA event codes

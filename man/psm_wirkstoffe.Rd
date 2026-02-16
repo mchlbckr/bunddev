@@ -34,6 +34,9 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A tibble with one row per active ingredient item.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 List active ingredients

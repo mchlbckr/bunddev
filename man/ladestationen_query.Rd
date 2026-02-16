@@ -51,6 +51,9 @@ the number of rows.}
 A tibble with one row per ArcGIS feature. Attribute names are
 normalized to lower snake_case. Includes a \code{geometry} list-column with the
 feature geometry object.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 Query charging stations

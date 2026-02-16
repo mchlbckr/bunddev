@@ -63,6 +63,9 @@
 #' @return A tibble with one row per ArcGIS feature. Attribute names are
 #' normalized to lower snake_case. Includes a `geometry` list-column with the
 #' feature geometry object.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Ladestationen
 #' @export
 ladestationen_query <- function(params = list(),

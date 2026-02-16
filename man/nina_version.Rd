@@ -17,6 +17,9 @@ from the API (default \code{FALSE}).}
 A one-row tibble with version metadata fields.
 
 Includes \code{last_modification_time} as POSIXct in Europe/Berlin.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 Get data version info

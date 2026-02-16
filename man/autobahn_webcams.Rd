@@ -24,8 +24,13 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per webcam entry and standard Autobahn item
-columns (including \code{identifier} and \code{road_id}).
+A tibble with one row per webcam entry. Guaranteed columns are:
+\code{road_id}, \code{identifier}, \code{title}, \code{subtitle}, \code{display_type}, \code{icon},
+\code{is_blocked}, \code{future}, \code{start_timestamp}, \code{start_time}, \code{point}, \code{extent},
+\code{coordinate_lat}, \code{coordinate_long}, \code{description}, \code{footer},
+\code{route_recommendation} (list-column), and
+\code{lorry_parking_feature_icons} (list-column). With \code{flatten = TRUE}, the two
+list-columns are transformed according to \code{flatten_mode}.
 }
 \description{
 List Autobahn webcams

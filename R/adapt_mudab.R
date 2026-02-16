@@ -30,6 +30,9 @@
 #' }
 #'
 #' @return A tibble with one row per returned `V_MUDAB_PROJECTSTATION` record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family MUDAB
 #' @export
 mudab_project_stations <- function(filter = NULL,
@@ -69,6 +72,9 @@ mudab_project_stations <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `STATION_SMALL` record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family MUDAB
 #' @export
 mudab_stations <- function(filter = NULL,
@@ -106,6 +112,9 @@ mudab_stations <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `MV_PARAMETER` record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family MUDAB
 #' @export
 mudab_parameters <- function(filter = NULL,
@@ -182,6 +191,9 @@ mudab_parameter_values <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `MV_PARAMETER_BIOLOGIE` record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family MUDAB
 #' @export
 mudab_parameters_biologie <- function(filter = NULL,
@@ -219,6 +231,9 @@ mudab_parameters_biologie <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `MV_PARAMETER_BIOTA` record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family MUDAB
 #' @export
 mudab_parameters_biota <- function(filter = NULL,
@@ -256,6 +271,9 @@ mudab_parameters_biota <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `MV_PARAMETER_WASSER` record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family MUDAB
 #' @export
 mudab_parameters_wasser <- function(filter = NULL,
@@ -293,6 +311,9 @@ mudab_parameters_wasser <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `MV_PARAMETER_SEDIMENT` record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family MUDAB
 #' @export
 mudab_parameters_sediment <- function(filter = NULL,
@@ -330,6 +351,9 @@ mudab_parameters_sediment <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `V_PLC_STATION` record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family MUDAB
 #' @export
 mudab_plc_stations <- function(filter = NULL,
@@ -367,6 +391,9 @@ mudab_plc_stations <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `V_GEMESSENE_PARA_PLC` record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family MUDAB
 #' @export
 mudab_plc_parameters <- function(filter = NULL,
@@ -404,6 +431,9 @@ mudab_plc_parameters <- function(filter = NULL,
 #' }
 #'
 #' @return A tibble with one row per returned `V_PLC_STATION_MSMNT` record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family MUDAB
 #' @export
 mudab_plc_measurements <- function(filter = NULL,

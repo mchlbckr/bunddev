@@ -45,6 +45,9 @@ the number of rows.}
 }
 \value{
 A one-row tibble with list-response metadata: \code{num_found}, \code{cursor}, and \code{documents} (list-column).
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 List DIP Vorgangsposition entries

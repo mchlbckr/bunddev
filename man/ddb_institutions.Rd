@@ -45,6 +45,9 @@ the number of rows.}
 \value{
 A tibble with institution entries when the API returns a homogeneous
 list; otherwise a one-row tibble with list-column \code{response}.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 List DDB institutions

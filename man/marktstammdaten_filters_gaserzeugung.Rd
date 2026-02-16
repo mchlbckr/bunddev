@@ -34,6 +34,9 @@ the number of rows.}
 }
 \value{
 A tibble with filter definitions for gas generation.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 List MaStR filter options for gas generation

@@ -15,6 +15,9 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A one-row tibble with one column \code{text} containing the forecast text.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 Fetch DWD alpine forecast text

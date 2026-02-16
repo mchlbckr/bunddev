@@ -42,6 +42,10 @@ the number of rows.}
 \value{
 A tibble with one row per questionnaire resource (same structure
 rules as \code{\link[=diga_device_definitions]{diga_device_definitions()}}).
+
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 List DiGA questionnaires

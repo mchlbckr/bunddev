@@ -35,6 +35,9 @@
 #'
 #' @return A one-row tibble with one list-column `response` containing the
 #' parsed catalogue payload.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Destatis
 #' @export
 destatis_catalogue_tables <- function(params = list(),
@@ -77,6 +80,9 @@ destatis_catalogue_tables <- function(params = list(),
 #'
 #' @return A one-row tibble with one list-column `response` containing the
 #' parsed catalogue payload.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Destatis
 #' @export
 destatis_catalogue_cubes <- function(params = list(),

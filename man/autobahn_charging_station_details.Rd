@@ -28,8 +28,13 @@ the number of rows.}
 }}
 }
 \value{
-A one-row tibble with detailed fields for the selected charging
-station.
+A one-row tibble for the selected charging station with the same
+guaranteed columns as \code{\link[=autobahn_charging_stations]{autobahn_charging_stations()}}: \code{road_id} (typically
+\code{NA} for detail calls), \code{identifier}, \code{title}, \code{subtitle}, \code{display_type},
+\code{icon}, \code{is_blocked}, \code{future}, \code{start_timestamp}, \code{start_time}, \code{point},
+\code{extent}, \code{coordinate_lat}, \code{coordinate_long}, \code{description}, \code{footer},
+\code{route_recommendation} (list-column), and
+\code{lorry_parking_feature_icons} (list-column).
 }
 \description{
 Get Autobahn charging station details

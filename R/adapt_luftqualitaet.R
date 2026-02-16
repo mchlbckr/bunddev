@@ -34,6 +34,9 @@
 #' }
 #'
 #' @return A tibble with one row per air-quality measurement record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_airquality <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -53,6 +56,9 @@ luftqualitaet_airquality <- function(params = list(), safe = TRUE, refresh = FAL
 #'
 #' @return A one-row tibble with available date limits for the endpoint.
 #'
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_airquality_limits <- function(safe = TRUE, refresh = FALSE) {
@@ -74,6 +80,9 @@ luftqualitaet_airquality_limits <- function(safe = TRUE, refresh = FALSE) {
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per annual-balance record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_annualbalances <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -95,6 +104,9 @@ luftqualitaet_annualbalances <- function(params = list(), safe = TRUE, refresh =
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per component metadata entry.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_components <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -117,6 +129,9 @@ luftqualitaet_components <- function(params = list(), safe = TRUE, refresh = FAL
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per measurement metadata entry.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_measures <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -136,6 +151,9 @@ luftqualitaet_measures <- function(params = list(), safe = TRUE, refresh = FALSE
 #'
 #' @return A one-row tibble with available date limits for the endpoint.
 #'
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_measures_limits <- function(safe = TRUE, refresh = FALSE) {
@@ -157,6 +175,9 @@ luftqualitaet_measures_limits <- function(safe = TRUE, refresh = FALSE) {
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per network metadata entry.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_networks <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -178,6 +199,9 @@ luftqualitaet_networks <- function(params = list(), safe = TRUE, refresh = FALSE
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per scope metadata entry.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_scopes <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -199,6 +223,9 @@ luftqualitaet_scopes <- function(params = list(), safe = TRUE, refresh = FALSE) 
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per station-settings metadata entry.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_stationsettings <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -220,6 +247,9 @@ luftqualitaet_stationsettings <- function(params = list(), safe = TRUE, refresh 
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per station-type metadata entry.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_stationtypes <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -241,6 +271,9 @@ luftqualitaet_stationtypes <- function(params = list(), safe = TRUE, refresh = F
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per threshold metadata entry.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_thresholds <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -262,6 +295,9 @@ luftqualitaet_thresholds <- function(params = list(), safe = TRUE, refresh = FAL
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per transgression record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_transgressions <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -283,6 +319,9 @@ luftqualitaet_transgressions <- function(params = list(), safe = TRUE, refresh =
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per transgression-type metadata entry.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_transgressiontypes <- function(params = list(), safe = TRUE, refresh = FALSE) {
@@ -304,6 +343,9 @@ luftqualitaet_transgressiontypes <- function(params = list(), safe = TRUE, refre
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
 #' @return A tibble with one row per combined metadata record.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family Luftqualitaet
 #' @export
 luftqualitaet_meta <- function(params = list(), safe = TRUE, refresh = FALSE) {

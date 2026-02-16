@@ -35,6 +35,9 @@ the number of rows.}
 \value{
 A tibble with filter definitions. Each row describes an available
 filter field and its selectable values/options.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 List MaStR filter options for electricity generation

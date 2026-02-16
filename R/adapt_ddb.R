@@ -119,6 +119,9 @@ ddb_search <- function(query,
 #'
 #' @return A tibble with institution entries when the API returns a homogeneous
 #' list; otherwise a one-row tibble with list-column `response`.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family DDB
 #' @export
 ddb_institutions <- function(params = list(),
@@ -159,6 +162,9 @@ ddb_institutions <- function(params = list(),
 #'
 #' @return A tibble with sector entries when the API returns a homogeneous list;
 #' otherwise a one-row tibble with list-column `response`.
+#' Top-level scalar API fields are returned as tibble columns; nested
+#' objects or arrays are kept in list-columns unless the function provides
+#' `flatten` / `flatten_mode` controls.
 #' @family DDB
 #' @export
 ddb_institution_sectors <- function(safe = TRUE, refresh = FALSE) {

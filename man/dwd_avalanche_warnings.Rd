@@ -16,6 +16,9 @@ from the API (default \code{FALSE}).}
 \value{
 A one-row tibble with one list-column \code{raw} containing the parsed
 avalanche warning payload.
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 Fetch DWD avalanche warnings

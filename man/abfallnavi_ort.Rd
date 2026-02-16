@@ -17,6 +17,10 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A one-row tibble with metadata for the selected place.
+
+Top-level scalar API fields are returned as tibble columns; nested
+objects or arrays are kept in list-columns unless the function provides
+\code{flatten} / \code{flatten_mode} controls.
 }
 \description{
 Get a place by id
