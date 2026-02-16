@@ -25,10 +25,27 @@ nina_faqs(safe = TRUE, refresh = FALSE)
 A tibble with one row per FAQ category/entry as returned by the API.
 
 Includes `last_modification_time` as POSIXct in Europe/Berlin.
-Guaranteed columns are endpoint-specific: content endpoints include
-`content_id` plus response metadata/time columns; map and archive
-endpoints expose documented identifiers and keep nested blocks as
-list-columns.
+
+- content_id:
+
+  Content identifier from NINA feeds (character), where applicable.
+
+- response_country:
+
+  Feed-level country code, when provided (character).
+
+- response_last_modified:
+
+  Feed-level modification timestamp in milliseconds (numeric).
+
+- last_modified_time / effective_time:
+
+  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
+
+- Endpoint-specific fields:
+
+  Additional scalar fields by endpoint; nested structures remain
+  list-columns.
 
 ## See also
 

@@ -23,9 +23,15 @@ bundestag_mdb_index(safe = TRUE, refresh = FALSE)
 ## Value
 
 A tibble with one row per member `<item>` from the index feed.
-Guaranteed columns are scalar child tags from XML `<item>` entries (or
-root-level fields for single-document endpoints); repeated tags become
-list-columns.
+
+- XML child-tag columns:
+
+  One column per scalar child element in each `<item>` entry (or
+  root-level document field for single-document endpoints).
+
+- Repeated child tags:
+
+  Stored as list-columns.
 
 ## Details
 

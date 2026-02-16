@@ -67,11 +67,14 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A one-row tibble with committee detail fields extracted from XML.
-Guaranteed columns are scalar child tags from XML <code>&lt;item&gt;</code> entries (or
-root-level fields for single-document endpoints); repeated tags become
-list-columns.</p>
-    </div>
+    <p>A one-row tibble with committee detail fields extracted from XML.</p><dl><dt>XML child-tag columns</dt>
+<dd><p>One column per scalar child element in each <code>&lt;item&gt;</code> entry (or root-level document field for single-document endpoints).</p></dd>
+
+<dt>Repeated child tags</dt>
+<dd><p>Stored as list-columns.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns details for a single committee.

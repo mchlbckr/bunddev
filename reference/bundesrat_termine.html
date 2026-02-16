@@ -67,10 +67,17 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per XML <code>&lt;item&gt;</code> in the dates/events feed.
-Guaranteed columns are scalar child tags from each XML <code>&lt;item&gt;</code> node.
-Recognized date fields additionally get parsed <code>*_time</code> POSIXct columns.</p>
-    </div>
+    <p>A tibble with one row per XML <code>&lt;item&gt;</code> in the dates/events feed.</p><dl><dt>XML child-tag columns</dt>
+<dd><p>One column per scalar child element in each <code>&lt;item&gt;</code> node.</p></dd>
+
+<dt>Repeated child tags</dt>
+<dd><p>Stored as list-columns.</p></dd>
+
+<dt><code>date_time</code>, <code>dateOfIssue_time</code>, <code>imageDate_time</code>, <code>layoutDate_time</code>, <code>startdate_time</code>, <code>stopdate_time</code></dt>
+<dd><p>Parsed <code>POSIXct</code> values in Europe/Berlin when the corresponding source fields are present.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns scheduled Bundesrat dates and events. API documentation: <a href="https://bundesrat.api.bund.dev" class="external-link">https://bundesrat.api.bund.dev</a>.</p>

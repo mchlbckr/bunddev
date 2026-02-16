@@ -105,10 +105,17 @@ the number of rows.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with one row per organization resource (same structure rules
 as <code><a href="diga_device_definitions.html">diga_device_definitions()</a></code>).</p>
-<p>Guaranteed columns are top-level FHIR resource fields from each bundle
-<code>entry</code> resource; if no entries exist, a single <code>bundle</code> list-column is
-returned.</p>
-    </div>
+<dl><dt>Resource fields</dt>
+<dd><p>One column per top-level scalar field in each FHIR <code>entry$resource</code>.</p></dd>
+
+<dt>Nested resource fields</dt>
+<dd><p>Stored as list-columns.</p></dd>
+
+<dt>bundle</dt>
+<dd><p>Returned as list-column when the response has no <code>entry</code> records.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="bunddev_parameters.html">bunddev_parameters()</a></code> to inspect available query parameters.</p>

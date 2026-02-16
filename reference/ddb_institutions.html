@@ -113,11 +113,17 @@ the number of rows.</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with institution entries when the API returns a homogeneous
-list; otherwise a one-row tibble with list-column <code>response</code>.
-Guaranteed columns depend on payload shape: homogeneous item lists are
-expanded to one row per item; otherwise a single <code>response</code> list-column is
-returned.</p>
-    </div>
+list; otherwise a one-row tibble with list-column <code>response</code>.</p><dl><dt>Item fields</dt>
+<dd><p>For homogeneous list responses, one column per top-level scalar item field.</p></dd>
+
+<dt>Nested item fields</dt>
+<dd><p>Stored as list-columns.</p></dd>
+
+<dt>response</dt>
+<dd><p>For non-homogeneous responses, a single list-column containing the full payload.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns institutions registered in the DDB.

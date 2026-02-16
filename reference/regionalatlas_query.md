@@ -77,8 +77,11 @@ regionalatlas_query(
 ## Value
 
 A tibble with one row per returned feature and one column per attribute
-provided by the selected Regionalatlas table. Guaranteed columns are
-ArcGIS feature `attributes` fields for each row.
+provided by the selected Regionalatlas table.
+
+- Attribute columns:
+
+  One column per ArcGIS feature `attributes` field.
 
 ## Details
 

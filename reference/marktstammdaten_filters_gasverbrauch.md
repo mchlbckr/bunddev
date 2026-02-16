@@ -51,10 +51,23 @@ marktstammdaten_filters_gasverbrauch(
 
 ## Value
 
-A tibble with filter definitions for gas consumption. Guaranteed columns
-are top-level MaStR filter/entry fields. Entry endpoints always include
-`total` and add parsed `*Datum_time` columns when matching date fields
-exist.
+A tibble with filter definitions for gas consumption.
+
+- Filter/entry fields:
+
+  One column per top-level scalar field returned by MaStR.
+
+- Nested fields:
+
+  Stored as list-columns.
+
+- total:
+
+  Entry endpoints: total number of matching records (numeric).
+
+- `*Datum_time`:
+
+  Parsed `POSIXct` columns added for date fields matching `*Datum`.
 
 ## Details
 

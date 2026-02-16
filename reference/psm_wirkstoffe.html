@@ -101,11 +101,17 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per active ingredient item.
-Guaranteed columns are top-level fields of each <code>items</code> element (with
-<code>m_row$$</code> removed). Non-item payloads are returned in a <code>response</code>
-list-column.</p>
-    </div>
+    <p>A tibble with one row per active ingredient item.</p><dl><dt>Item fields</dt>
+<dd><p>One column per top-level field of each <code>items</code> element (<code>m_row$$</code> removed).</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Stored as list-columns.</p></dd>
+
+<dt>response</dt>
+<dd><p>Fallback payload for non-item responses (list-column).</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns active ingredients (Wirkstoffe) from the plant protection product

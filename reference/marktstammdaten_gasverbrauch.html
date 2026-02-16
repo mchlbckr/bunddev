@@ -110,11 +110,20 @@ the number of rows.</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with one row per gas-consumption entry (same column
-conventions as <code><a href="marktstammdaten_stromerzeugung.html">marktstammdaten_stromerzeugung()</a></code>).
-Guaranteed columns are top-level MaStR filter/entry fields. Entry endpoints
-always include <code>total</code> and add parsed <code>*Datum_time</code> columns when matching
-date fields exist.</p>
-    </div>
+conventions as <code><a href="marktstammdaten_stromerzeugung.html">marktstammdaten_stromerzeugung()</a></code>).</p><dl><dt>Filter/entry fields</dt>
+<dd><p>One column per top-level scalar field returned by MaStR.</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Stored as list-columns.</p></dd>
+
+<dt>total</dt>
+<dd><p>Entry endpoints: total number of matching records (numeric).</p></dd>
+
+<dt><code>*Datum_time</code></dt>
+<dd><p>Parsed <code>POSIXct</code> columns added for date fields matching <code>*Datum</code>.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns public gas consumption data from the MaStR.

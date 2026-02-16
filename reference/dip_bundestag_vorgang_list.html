@@ -115,11 +115,20 @@ the number of rows.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A one-row tibble with list-response metadata: <code>num_found</code>, <code>cursor</code>, and <code>documents</code> (list-column).
-Guaranteed columns for list endpoints are <code>num_found</code>, <code>cursor</code>, and
-<code>documents</code> (list-column). Detail endpoints return top-level scalar fields
-with nested structures as list-columns.</p>
-    </div>
+    <p>A one-row tibble with list-response metadata: <code>num_found</code>, <code>cursor</code>, and <code>documents</code> (list-column).</p><dl><dt>num_found</dt>
+<dd><p>List endpoints: total number of matches (integer).</p></dd>
+
+<dt>cursor</dt>
+<dd><p>List endpoints: cursor for pagination (character).</p></dd>
+
+<dt>documents</dt>
+<dd><p>List endpoints: returned records as list-column.</p></dd>
+
+<dt>Detail fields</dt>
+<dd><p>Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns metadata for DIP Vorgang entries. Requires an API key. Obtain a key

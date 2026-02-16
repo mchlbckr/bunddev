@@ -67,8 +67,20 @@ mudab_project_stations(
 ## Value
 
 A tibble with one row per returned `V_MUDAB_PROJECTSTATION` record.
-Guaranteed columns are scalar fields of the selected MUDAB record type.
-`datetime_time` is added when `DATE_STM` and `TIME_STM` are available.
+
+- Record fields:
+
+  One column per top-level scalar field of the selected MUDAB record
+  type.
+
+- Nested fields:
+
+  Stored as list-columns.
+
+- datetime_time:
+
+  Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM`
+  exist.
 
 ## Details
 

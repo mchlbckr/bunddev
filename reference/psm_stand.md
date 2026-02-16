@@ -22,9 +22,20 @@ psm_stand(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with version/release metadata. Guaranteed columns are
-top-level fields of each `items` element (with `m_row$$` removed).
-Non-item payloads are returned in a `response` list-column.
+A one-row tibble with version/release metadata.
+
+- Item fields:
+
+  One column per top-level field of each `items` element (`m_row$$`
+  removed).
+
+- Nested fields:
+
+  Stored as list-columns.
+
+- response:
+
+  Fallback payload for non-item responses (list-column).
 
 ## Details
 

@@ -64,11 +64,17 @@ from the API (default <code>FALSE</code>).</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A one-row tibble with one list-column <code>raw</code> containing the parsed
-avalanche warning payload.
-Guaranteed columns are operation-specific and defined by
-<code>bunddev_tidy_dwd()</code>: station/crowd/warning endpoints return stable named
-columns, while avalanche output is in <code>raw</code> (list-column).</p>
-    </div>
+avalanche warning payload.</p><dl><dt>text</dt>
+<dd><p>Text endpoints: warning/forecast text (character).</p></dd>
+
+<dt>raw</dt>
+<dd><p>Avalanche endpoint: full parsed payload as list-column.</p></dd>
+
+<dt>Operation-specific fields</dt>
+<dd><p>For station/crowd/warning endpoints, columns follow the documented schemas of <code>bunddev_tidy_dwd()</code>, including parsed time columns where available.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Retrieves avalanche warnings from the DWD App API.

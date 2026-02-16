@@ -27,8 +27,20 @@ bundesrat_plenum_kompakt(view = "renderXml", safe = TRUE, refresh = FALSE)
 ## Value
 
 A tibble with one row per XML `<item>` in the plenum compact feed.
-Guaranteed columns are scalar child tags from each XML `<item>` node.
-Recognized date fields additionally get parsed `*_time` POSIXct columns.
+
+- XML child-tag columns:
+
+  One column per scalar child element in each `<item>` node.
+
+- Repeated child tags:
+
+  Stored as list-columns.
+
+- `date_time`, `dateOfIssue_time`, `imageDate_time`, `layoutDate_time`,
+  `startdate_time`, `stopdate_time`:
+
+  Parsed `POSIXct` values in Europe/Berlin when the corresponding source
+  fields are present.
 
 ## Details
 

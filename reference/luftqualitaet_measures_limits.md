@@ -24,8 +24,15 @@ luftqualitaet_measures_limits(safe = TRUE, refresh = FALSE)
 
 A one-row tibble with available date limits for the endpoint.
 
-Guaranteed columns follow the API `indices` metadata; rows contain
-indexed scalar values with names resolved from `indices` when provided.
+- Indexed value columns:
+
+  Columns are derived from API `indices` metadata and represent scalar
+  values for each returned record.
+
+- Index key column:
+
+  Included when the API provides a named index key (for example station
+  id/date key).
 
 ## Details
 

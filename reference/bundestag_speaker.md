@@ -25,9 +25,15 @@ bundestag_speaker(safe = TRUE, refresh = FALSE)
 A one-row tibble with fields extracted from the XML document (same
 structure rules as
 [`bundestag_article()`](https://buecker.ms/bunddev/reference/bundestag_article.md)).
-Guaranteed columns are scalar child tags from XML `<item>` entries (or
-root-level fields for single-document endpoints); repeated tags become
-list-columns.
+
+- XML child-tag columns:
+
+  One column per scalar child element in each `<item>` entry (or
+  root-level document field for single-document endpoints).
+
+- Repeated child tags:
+
+  Stored as list-columns.
 
 ## Details
 

@@ -58,9 +58,20 @@ psm_kultur_gruppen(params = list(), safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with crop group catalog entries. Guaranteed columns are
-top-level fields of each `items` element (with `m_row$$` removed).
-Non-item payloads are returned in a `response` list-column.
+A tibble with crop group catalog entries.
+
+- Item fields:
+
+  One column per top-level field of each `items` element (`m_row$$`
+  removed).
+
+- Nested fields:
+
+  Stored as list-columns.
+
+- response:
+
+  Fallback payload for non-item responses (list-column).
 
 ## Details
 

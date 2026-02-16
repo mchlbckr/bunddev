@@ -55,9 +55,23 @@ dip_bundestag_person(person_id, params = list(), safe = TRUE, refresh = FALSE)
 ## Value
 
 A one-row tibble with detailed fields for the selected person record.
-Guaranteed columns for list endpoints are `num_found`, `cursor`, and
-`documents` (list-column). Detail endpoints return top-level scalar
-fields with nested structures as list-columns.
+
+- num_found:
+
+  List endpoints: total number of matches (integer).
+
+- cursor:
+
+  List endpoints: cursor for pagination (character).
+
+- documents:
+
+  List endpoints: returned records as list-column.
+
+- Detail fields:
+
+  Detail endpoints: one column per top-level scalar field, with nested
+  structures in list-columns.
 
 ## See also
 

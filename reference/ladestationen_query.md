@@ -95,8 +95,15 @@ ladestationen_query(
 
 A tibble with one row per ArcGIS feature. Attribute names are normalized
 to lower snake_case. Includes a `geometry` list-column with the feature
-geometry object. Guaranteed columns are ArcGIS attribute fields, with
-`geometry` retained as a list-column.
+geometry object.
+
+- Attribute columns:
+
+  One column per ArcGIS `attributes` field (normalized to snake_case).
+
+- geometry:
+
+  Feature geometry object as list-column.
 
 ## Details
 

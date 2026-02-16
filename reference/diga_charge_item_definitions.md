@@ -68,9 +68,17 @@ A tibble with one row per charge item definition resource (same
 structure rules as
 [`diga_device_definitions()`](https://buecker.ms/bunddev/reference/diga_device_definitions.md)).
 
-Guaranteed columns are top-level FHIR resource fields from each bundle
-`entry` resource; if no entries exist, a single `bundle` list-column is
-returned.
+- Resource fields:
+
+  One column per top-level scalar field in each FHIR `entry$resource`.
+
+- Nested resource fields:
+
+  Stored as list-columns.
+
+- bundle:
+
+  Returned as list-column when the response has no `entry` records.
 
 ## See also
 

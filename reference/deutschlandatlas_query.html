@@ -121,10 +121,14 @@ the number of rows.</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with one row per ArcGIS feature. Attribute names are
-normalized to lower snake_case. Includes a <code>geometry</code> list-column.
-Guaranteed columns are ArcGIS attribute fields, with <code>geometry</code> retained as
-a list-column when geometry is present.</p>
-    </div>
+normalized to lower snake_case. Includes a <code>geometry</code> list-column.</p><dl><dt>Attribute columns</dt>
+<dd><p>One column per ArcGIS <code>attributes</code> field (sanitized to snake_case).</p></dd>
+
+<dt>geometry</dt>
+<dd><p>Geometry object as list-column when requested/available.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The Deutschlandatlas API is backed by an ArcGIS feature service. You must

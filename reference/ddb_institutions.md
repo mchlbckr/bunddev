@@ -77,9 +77,21 @@ ddb_institutions(
 ## Value
 
 A tibble with institution entries when the API returns a homogeneous
-list; otherwise a one-row tibble with list-column `response`. Guaranteed
-columns depend on payload shape: homogeneous item lists are expanded to
-one row per item; otherwise a single `response` list-column is returned.
+list; otherwise a one-row tibble with list-column `response`.
+
+- Item fields:
+
+  For homogeneous list responses, one column per top-level scalar item
+  field.
+
+- Nested item fields:
+
+  Stored as list-columns.
+
+- response:
+
+  For non-homogeneous responses, a single list-column containing the
+  full payload.
 
 ## Details
 

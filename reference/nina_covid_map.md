@@ -23,10 +23,27 @@ nina_covid_map(safe = TRUE, refresh = FALSE)
 ## Value
 
 A one-row tibble with list-column `data` containing COVID map payload.
-Guaranteed columns are endpoint-specific: content endpoints include
-`content_id` plus response metadata/time columns; map and archive
-endpoints expose documented identifiers and keep nested blocks as
-list-columns.
+
+- content_id:
+
+  Content identifier from NINA feeds (character), where applicable.
+
+- response_country:
+
+  Feed-level country code, when provided (character).
+
+- response_last_modified:
+
+  Feed-level modification timestamp in milliseconds (numeric).
+
+- last_modified_time / effective_time:
+
+  Parsed `POSIXct` timestamps in Europe/Berlin when source fields exist.
+
+- Endpoint-specific fields:
+
+  Additional scalar fields by endpoint; nested structures remain
+  list-columns.
 
 ## See also
 

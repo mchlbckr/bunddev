@@ -89,9 +89,19 @@ destatis_catalogue_tables(
 ## Value
 
 A one-row tibble with one list-column `response` containing the parsed
-catalogue payload. Guaranteed columns are `response` (list-column) for
-catalogue endpoints and `name` plus `data` (list-column) for data
-retrieval endpoints.
+catalogue payload.
+
+- response:
+
+  Catalogue endpoints: full API payload as list-column.
+
+- name:
+
+  Data endpoints: requested table/cube name (character).
+
+- data:
+
+  Data endpoints: full payload as list-column.
 
 ## Details
 

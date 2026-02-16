@@ -68,11 +68,26 @@ from the API (default <code>FALSE</code>).</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble with one row per warning content block and the same column
-structure as <code><a href="travelwarning_warnings.html">travelwarning_warnings()</a></code>.
-Guaranteed columns include <code>content_id</code>, <code>parent_content_id</code>,
-<code>response_country</code>, <code>response_last_modified</code>, <code>last_modified_time</code>, and
-<code>effective_time</code>, plus scalar fields from each entry payload.</p>
-    </div>
+structure as <code><a href="travelwarning_warnings.html">travelwarning_warnings()</a></code>.</p><dl><dt>content_id</dt>
+<dd><p>Entry/content identifier (character).</p></dd>
+
+<dt>parent_content_id</dt>
+<dd><p>Parent identifier for nested entry records, if applicable (character).</p></dd>
+
+<dt>response_country</dt>
+<dd><p>Country code from response metadata (character).</p></dd>
+
+<dt>response_last_modified</dt>
+<dd><p>Feed-level modification timestamp in milliseconds (numeric).</p></dd>
+
+<dt>last_modified_time / effective_time</dt>
+<dd><p>Parsed <code>POSIXct</code> timestamps in Europe/Berlin when source fields exist.</p></dd>
+
+<dt>Entry fields</dt>
+<dd><p>Additional scalar fields from each entry payload; nested structures remain list-columns.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns the full travel warning content, including HTML blocks.

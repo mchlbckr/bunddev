@@ -72,9 +72,20 @@ psm_anwendungen(
 
 ## Value
 
-A tibble with one row per approved application item. Guaranteed columns
-are top-level fields of each `items` element (with `m_row$$` removed).
-Non-item payloads are returned in a `response` list-column.
+A tibble with one row per approved application item.
+
+- Item fields:
+
+  One column per top-level field of each `items` element (`m_row$$`
+  removed).
+
+- Nested fields:
+
+  Stored as list-columns.
+
+- response:
+
+  Fallback payload for non-item responses (list-column).
 
 ## Details
 

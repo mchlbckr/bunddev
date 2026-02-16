@@ -31,9 +31,19 @@ hochwasserzentralen_bundesland_info(
 ## Value
 
 A tibble with one row of metadata for the selected Bundesland id.
-Guaranteed columns are top-level scalar fields from returned JSON
-objects or GeoJSON feature properties; `features` is used as a
-list-column for GeoJSON container endpoints.
+
+- Top-level fields:
+
+  One column per scalar top-level field (or per GeoJSON feature
+  `properties` field).
+
+- Nested fields:
+
+  Stored as list-columns.
+
+- features:
+
+  GeoJSON container endpoint: feature collection as list-column.
 
 ## Details
 

@@ -23,9 +23,21 @@ dwd_avalanche_warnings(safe = TRUE, refresh = FALSE)
 ## Value
 
 A one-row tibble with one list-column `raw` containing the parsed
-avalanche warning payload. Guaranteed columns are operation-specific and
-defined by `bunddev_tidy_dwd()`: station/crowd/warning endpoints return
-stable named columns, while avalanche output is in `raw` (list-column).
+avalanche warning payload.
+
+- text:
+
+  Text endpoints: warning/forecast text (character).
+
+- raw:
+
+  Avalanche endpoint: full parsed payload as list-column.
+
+- Operation-specific fields:
+
+  For station/crowd/warning endpoints, columns follow the documented
+  schemas of `bunddev_tidy_dwd()`, including parsed time columns where
+  available.
 
 ## Details
 

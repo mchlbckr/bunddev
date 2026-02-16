@@ -81,9 +81,24 @@ dip_bundestag_vorgang_list(
 ## Value
 
 A one-row tibble with list-response metadata: `num_found`, `cursor`, and
-`documents` (list-column). Guaranteed columns for list endpoints are
-`num_found`, `cursor`, and `documents` (list-column). Detail endpoints
-return top-level scalar fields with nested structures as list-columns.
+`documents` (list-column).
+
+- num_found:
+
+  List endpoints: total number of matches (integer).
+
+- cursor:
+
+  List endpoints: cursor for pagination (character).
+
+- documents:
+
+  List endpoints: returned records as list-column.
+
+- Detail fields:
+
+  Detail endpoints: one column per top-level scalar field, with nested
+  structures in list-columns.
 
 ## Details
 

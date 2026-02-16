@@ -63,11 +63,17 @@ from the API (default <code>FALSE</code>).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble with one row per gauge location and coordinate metadata.
-Guaranteed columns are top-level scalar fields from returned JSON objects
-or GeoJSON feature properties; <code>features</code> is used as a list-column for
-GeoJSON container endpoints.</p>
-    </div>
+    <p>A tibble with one row per gauge location and coordinate metadata.</p><dl><dt>Top-level fields</dt>
+<dd><p>One column per scalar top-level field (or per GeoJSON feature <code>properties</code> field).</p></dd>
+
+<dt>Nested fields</dt>
+<dd><p>Stored as list-columns.</p></dd>
+
+<dt>features</dt>
+<dd><p>GeoJSON container endpoint: feature collection as list-column.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Returns latitude/longitude coordinates for all pegel identifiers available

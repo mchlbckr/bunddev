@@ -22,10 +22,21 @@ abfallnavi_orte(safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A tibble with one row per place entry returned by the API. Guaranteed
-columns are endpoint-specific top-level fields from the Abfallnavi API
-(via `abfallnavi_tidy_list()` / `abfallnavi_tidy_single()`). Nested
-values are kept as list-columns.
+A tibble with one row per place entry returned by the API.
+
+- Top-level scalar fields:
+
+  One column per scalar field returned by the endpoint (for example ids,
+  names, labels, and codes).
+
+- Nested fields:
+
+  Kept as list-columns.
+
+- date_time:
+
+  Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in
+  Europe/Berlin, when available.
 
 ## Details
 

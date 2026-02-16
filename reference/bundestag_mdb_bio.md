@@ -26,10 +26,16 @@ bundestag_mdb_bio(mdb_id, safe = TRUE, refresh = FALSE)
 
 ## Value
 
-A one-row tibble with biography fields extracted from XML. Guaranteed
-columns are scalar child tags from XML `<item>` entries (or root-level
-fields for single-document endpoints); repeated tags become
-list-columns.
+A one-row tibble with biography fields extracted from XML.
+
+- XML child-tag columns:
+
+  One column per scalar child element in each `<item>` entry (or
+  root-level document field for single-document endpoints).
+
+- Repeated child tags:
+
+  Stored as list-columns.
 
 ## Details
 
