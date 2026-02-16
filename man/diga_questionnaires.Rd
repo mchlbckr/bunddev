@@ -40,13 +40,18 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per questionnaire resource (same structure
-rules as \code{\link[=diga_device_definitions]{diga_device_definitions()}}).
-
+A \link[tibble:tibble]{tibble} with one row per questionnaire and columns:
 \describe{
-\item{Resource fields}{One column per top-level scalar field in each FHIR \code{entry$resource}.}
-\item{Nested resource fields}{Stored as list-columns.}
-\item{bundle}{Returned as list-column when the response has no \code{entry} records.}
+\item{resourceType}{Character. FHIR resource type, always \code{"Questionnaire"}.}
+\item{id}{Character. FHIR resource identifier.}
+\item{url}{Character. Canonical URL of the resource.}
+\item{status}{Character. Publication status.}
+\item{name}{Character. Computer-friendly name.}
+\item{title}{Character. Human-readable title.}
+\item{meta}{List. Resource metadata (profile, timestamps).}
+\item{identifier}{List. Business identifiers.}
+\item{item}{List. Questionnaire items and groups.}
+\item{extension}{List. FHIR profile extensions.}
 }
 }
 \description{

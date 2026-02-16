@@ -31,12 +31,30 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with detailed fields for the selected Vorgang.
+A one-row tibble for the selected Vorgang:
 \describe{
-\item{num_found}{List endpoints: total number of matches (integer).}
-\item{cursor}{List endpoints: cursor for pagination (character).}
-\item{documents}{List endpoints: returned records as list-column.}
-\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+\item{id}{Vorgang identifier (character).}
+\item{typ}{Entity type, always \code{"Vorgang"} (character).}
+\item{beratungsstand}{Consultation status, e.g. \code{"Abgeschlossen"} (character).}
+\item{vorgangstyp}{Vorgang type, e.g. \code{"Geschäftsordnung"} (character).}
+\item{wahlperiode}{Legislative period (integer).}
+\item{initiative}{Initiating factions/bodies (list-column).}
+\item{datum}{Date of most recent associated document (character, ISO date).}
+\item{aktualisiert}{Last update timestamp (character, ISO datetime).}
+\item{titel}{Title (character).}
+\item{abstract}{Summary text (character or \code{NA}).}
+\item{sachgebiet}{Subject areas (list-column).}
+\item{deskriptor}{Thesaurus descriptors (list-column of named lists).}
+\item{gesta}{GESTA reference number (character or \code{NA}).}
+\item{zustimmungsbeduerftigkeit}{Consent requirements (list-column).}
+\item{kom}{EU COM reference number (character or \code{NA}).}
+\item{ratsdok}{EU Council document number (character or \code{NA}).}
+\item{verkuendung}{Promulgation details (list-column).}
+\item{inkrafttreten}{Entry-into-force details (list-column).}
+\item{archiv}{Archive reference (character or \code{NA}).}
+\item{mitteilung}{Supplementary note (character or \code{NA}).}
+\item{vorgang_verlinkung}{Linked Vorgänge (list-column).}
+\item{sek}{EU SEC reference number (character or \code{NA}).}
 }
 }
 \description{

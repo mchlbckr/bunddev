@@ -44,13 +44,25 @@ the number of rows.}
 }}
 }
 \value{
-A one-row tibble with list-response metadata: \code{num_found}, \code{cursor}, and \code{documents} (list-column).
+A \link[tibble:tibble]{tibble} with one row per Aktivitaet and columns:
 \describe{
-\item{num_found}{List endpoints: total number of matches (integer).}
-\item{cursor}{List endpoints: cursor for pagination (character).}
-\item{documents}{List endpoints: returned records as list-column.}
-\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+\item{id}{Character. Unique Aktivitaet identifier.}
+\item{aktivitaetsart}{Character. Activity type.}
+\item{typ}{Character. Entity type, always \code{"Aktivitaet"}.}
+\item{dokumentart}{Character. Document type.}
+\item{wahlperiode}{Integer. Legislative period.}
+\item{datum}{Character. Date of associated document.}
+\item{aktualisiert}{Character. Last update timestamp.}
+\item{titel}{Character. Title text.}
+\item{vorgangsbezug_anzahl}{Integer. Total related Vorgaenge.}
+\item{abstract}{Character. Summary text.}
+\item{fundstelle}{List. Document reference details.}
+\item{vorgangsbezug}{List. Related Vorgaenge.}
+\item{deskriptor}{List. Thesaurus descriptor entries.}
 }
+
+Wrapped in a one-row tibble with \code{num_found} (integer), \code{cursor}
+(character), and \code{documents} (list-column) when not yet unpacked.
 }
 \description{
 List DIP Aktivitäten

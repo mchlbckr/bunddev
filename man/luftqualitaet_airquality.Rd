@@ -25,11 +25,12 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per air-quality measurement record.
-\describe{
-\item{Indexed value columns}{Columns are derived from API \code{indices} metadata and represent scalar values for each returned record.}
-\item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
-}
+A \link[tibble:tibble]{tibble} with one row per station/time observation.
+Column names are derived from the \code{indices} metadata in the API
+response and typically include a station id key column followed by
+\code{date end (CET)}, an overall air-quality index, an incompleteness
+flag, and per-component sub-arrays (component id, value, index, percent).
+Exact column names and count vary by query parameters.
 }
 \description{
 List air quality measurements

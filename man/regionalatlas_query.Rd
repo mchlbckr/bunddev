@@ -42,10 +42,15 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per returned feature and one column per
-attribute provided by the selected Regionalatlas table.
+A \link[tibble:tibble]{tibble} with one row per geographic feature and columns:
 \describe{
-\item{Attribute columns}{One column per ArcGIS feature \code{attributes} field.}
+\item{ags}{Character. Official municipality key (Amtlicher Gemeindeschluessel).}
+\item{ags2}{Character. Join key for indicator tables.}
+\item{gen}{Character. Region name.}
+\item{typ}{Integer. Administrative level (1=Bundeslaender, 2=Regierungsbezirke, 3=Kreise, 5=Gemeinden).}
+\item{jahr}{Integer. Reference year.}
+\item{jahr2}{Integer. Indicator reference year.}
+\item{ai...}{Numeric. Indicator values whose names depend on the selected table (e.g. \code{ai0201} for population density).}
 }
 }
 \description{

@@ -14,12 +14,12 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with available date limits for the endpoint.
-
-\describe{
-\item{Indexed value columns}{Columns are derived from API \code{indices} metadata and represent scalar values for each returned record.}
-\item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
-}
+A \link[tibble:tibble]{tibble} with one row per scope/component/station
+combination. Column names are derived from the \code{indices} metadata in
+the API response and typically include \code{scope id},
+\code{component id}, \code{station id},
+\code{limit date start min (CET)}, and
+\code{limit date start max (CET)}.
 }
 \description{
 Get measurement date limits

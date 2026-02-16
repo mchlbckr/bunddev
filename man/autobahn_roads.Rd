@@ -7,13 +7,9 @@
 autobahn_roads()
 }
 \value{
-A tibble with one row per Autobahn id and column \code{road_id}.
-
-Guaranteed column is \code{road_id} (character), one row per Autobahn identifier.
-
+A tibble with one row per Autobahn id:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{road_id}{Autobahn identifier (character).}
 }
 }
 \description{

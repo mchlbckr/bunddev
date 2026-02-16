@@ -24,18 +24,29 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per closure entry. Guaranteed columns are:
-\code{road_id}, \code{identifier}, \code{title}, \code{subtitle}, \code{display_type}, \code{icon},
-\code{is_blocked}, \code{future}, \code{start_timestamp}, \code{start_time}, \code{point}, \code{extent},
-\code{coordinate_lat}, \code{coordinate_long}, \code{description}, \code{footer},
-\code{route_recommendation} (list-column), and
-\code{lorry_parking_feature_icons} (list-column). With \code{flatten = TRUE}, the two
-list-columns are transformed according to \code{flatten_mode}.
-
+A tibble with one row per closure entry:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{road_id}{Road identifier (character).}
+\item{identifier}{Entry identifier (character).}
+\item{title}{Title (character).}
+\item{subtitle}{Subtitle (character).}
+\item{display_type}{Display type (character).}
+\item{icon}{Icon identifier (character).}
+\item{is_blocked}{Whether the road is blocked (logical).}
+\item{future}{Whether the entry is future-dated (logical).}
+\item{start_timestamp}{Start timestamp string (character).}
+\item{start_time}{Parsed start time (POSIXct).}
+\item{point}{Point coordinate string (character).}
+\item{extent}{Extent coordinate string (character).}
+\item{coordinate_lat}{Latitude (character).}
+\item{coordinate_long}{Longitude (character).}
+\item{description}{Description text (character).}
+\item{footer}{Footer text (character).}
+\item{route_recommendation}{Route recommendations (list-column).}
+\item{lorry_parking_feature_icons}{Lorry parking feature icons (list-column).}
 }
+With \code{flatten = TRUE}, the two list-columns are transformed according to
+\code{flatten_mode}.
 }
 \description{
 List Autobahn closures

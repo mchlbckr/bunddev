@@ -26,11 +26,15 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per returned \code{MV_PARAMETER} record.
+A \link[tibble:tibble]{tibble} with one row per parameter and columns:
 \describe{
-\item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-\item{Nested fields}{Stored as list-columns.}
-\item{datetime_time}{Added as \code{POSIXct} (Europe/Berlin) when \code{DATE_STM} and \code{TIME_STM} exist.}
+\item{metadataid}{Integer. Metadata identifier.}
+\item{COMPT_DS}{Character. Compartment code (BL, CW, CS, or CF).}
+\item{PARAMETER}{Character. Parameter abbreviation.}
+\item{PARAMETERGRUPPE}{Character. Parameter group code.}
+\item{PARAM_NAME}{Character. Parameter name.}
+\item{PARGROUP}{Character. Parameter group code (alternate).}
+\item{PARAMGROUP_NAME}{Character. Parameter group name.}
 }
 }
 \description{

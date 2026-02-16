@@ -40,13 +40,19 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per FHIR resource in the returned bundle.
-Column structure depends on the resource profile and may include nested
-list-columns when \code{flatten = FALSE}.
-
+A \link[tibble:tibble]{tibble} with one row per device definition and columns:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{resourceType}{Character. FHIR resource type, always \code{"DeviceDefinition"}.}
+\item{id}{Character. FHIR resource identifier.}
+\item{url}{Character. Canonical URL of the resource.}
+\item{status}{Character. Publication status.}
+\item{description}{Character. Device description text.}
+\item{meta}{List. Resource metadata (profile, timestamps).}
+\item{identifier}{List. Business identifiers.}
+\item{type}{List. Device type coding.}
+\item{deviceName}{List. Device name entries.}
+\item{property}{List. Device properties.}
+\item{extension}{List. FHIR profile extensions.}
 }
 }
 \description{

@@ -43,13 +43,17 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with institution entries when the API returns a homogeneous
-list; otherwise a one-row tibble with list-column \code{response}.
+A \link[tibble:tibble]{tibble} with one row per institution and columns:
 \describe{
-\item{Item fields}{For homogeneous list responses, one column per top-level scalar item field.}
-\item{Nested item fields}{Stored as list-columns.}
-\item{response}{For non-homogeneous responses, a single list-column containing the full payload.}
+\item{id}{Character. Institution identifier.}
+\item{label}{Character. Display name.}
+\item{latitude}{Numeric. Geographic latitude.}
+\item{longitude}{Numeric. Geographic longitude.}
+\item{sector}{Character. Cultural sector code.}
+\item{children}{List. Nested child institutions.}
 }
+Falls back to a one-row tibble with list-column \code{response} when the
+API returns a non-homogeneous payload.
 }
 \description{
 List DDB institutions

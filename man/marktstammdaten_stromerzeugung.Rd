@@ -42,13 +42,18 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per MaStR entry. Includes a \code{total} column with
-the total result count and additional \verb{_time} columns for date fields when
-available.
-
+A \link[tibble:tibble]{tibble} with one row per electricity generation
+unit and columns determined by the MaStR API response. Common columns
+include \code{MaStRNummer}, \code{EinheitName}, \code{Bundesland},
+\code{Ort}, \code{Plz}, \code{Bruttoleistung}, \code{Nettonennleistung},
+\code{EnergietraegerName}, \code{BetriebsStatusName},
+\code{InbetriebnahmeDatum}, and \code{EinheitRegistrierungsdatum}
+(see \code{\link[=marktstammdaten_filters_stromerzeugung]{marktstammdaten_filters_stromerzeugung()}} for available filter
+fields). Additionally:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{total}{Numeric. Total number of matching records upstream.}
+\item{*Datum_time}{POSIXct. Parsed date column (Europe/Berlin) added
+for every source column whose name contains \code{Datum}.}
 }
 }
 \description{

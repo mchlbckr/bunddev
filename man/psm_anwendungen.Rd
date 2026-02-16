@@ -36,11 +36,35 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per approved application item.
+A \link[tibble:tibble]{tibble} with one row per approved application and
+columns:
 \describe{
-\item{Item fields}{One column per top-level field of each \code{items} element (\verb{m_row$$} removed).}
-\item{Nested fields}{Stored as list-columns.}
-\item{response}{Fallback payload for non-item responses (list-column).}
+\item{ANTRAGNR}{Character. Application request number.}
+\item{ANWENDUNGEN_ANZ_JE_BEFALL}{Numeric. Applications per infestation.}
+\item{ANWENDUNGEN_MAX_JE_KULTUR}{Numeric. Max applications per crop.}
+\item{ANWENDUNGEN_MAX_JE_VEGETATION}{Numeric. Max applications per vegetation period.}
+\item{ANWENDUNGSBEREICH}{Character. Area of use code.}
+\item{ANWENDUNGSTECHNIK}{Character. Application technique.}
+\item{AWGNR}{Character. Application group number.}
+\item{AWG_ID}{Character. Application identifier (16 chars).}
+\item{AW_ABSTAND_BIS}{Numeric. Application interval upper bound.}
+\item{AW_ABSTAND_EINHEIT}{Character. Interval unit.}
+\item{AW_ABSTAND_VON}{Numeric. Application interval lower bound.}
+\item{EINSATZGEBIET}{Character. Field of use code.}
+\item{GENEHMIGUNG}{Character. Approval flag.}
+\item{HUK}{Character. Home-and-garden flag.}
+\item{KENNR}{Character. Product identification number.}
+\item{KULTUR_ERL}{Character. Crop clarification text.}
+\item{SCHADORG_ERL}{Character. Pest clarification text.}
+\item{STADIUM_KULTUR_BEM}{Character. Crop growth-stage note.}
+\item{STADIUM_KULTUR_BIS}{Character. Crop growth-stage upper bound.}
+\item{STADIUM_KULTUR_KODELISTE}{Numeric. Crop growth-stage code list.}
+\item{STADIUM_KULTUR_VON}{Character. Crop growth-stage lower bound.}
+\item{STADIUM_SCHADORG_BEM}{Character. Pest growth-stage note.}
+\item{STADIUM_SCHADORG_BIS}{Character. Pest growth-stage upper bound.}
+\item{STADIUM_SCHADORG_KODELISTE}{Numeric. Pest growth-stage code list.}
+\item{STADIUM_SCHADORG_VON}{Character. Pest growth-stage lower bound.}
+\item{WIRKUNGSBEREICH}{Character. Efficacy area code.}
 }
 }
 \description{

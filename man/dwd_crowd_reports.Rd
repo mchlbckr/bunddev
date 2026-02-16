@@ -33,13 +33,17 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per crowd report and columns including
-\code{meldung_id}, \code{timestamp}, \code{timestamp_time}, \code{lat}, \code{lon}, \code{place},
-\code{category}, \code{auspraegung}, and \code{zusatz_attribute} (list-column).
-
+A tibble with one row per crowd report:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{meldung_id}{Report identifier (numeric).}
+\item{timestamp}{Report timestamp in milliseconds (numeric).}
+\item{timestamp_time}{Parsed report time (POSIXct).}
+\item{lat}{Latitude (character).}
+\item{lon}{Longitude (character).}
+\item{place}{Place name (character).}
+\item{category}{Weather category (character).}
+\item{auspraegung}{Severity/manifestation (character).}
+\item{zusatz_attribute}{Additional attributes (list-column).}
 }
 }
 \description{

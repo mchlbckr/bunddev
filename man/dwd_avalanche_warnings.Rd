@@ -14,12 +14,9 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with one list-column \code{raw} containing the parsed
-avalanche warning payload.
+A one-row tibble:
 \describe{
-\item{text}{Text endpoints: warning/forecast text (character).}
-\item{raw}{Avalanche endpoint: full parsed payload as list-column.}
-\item{Operation-specific fields}{For station/crowd/warning endpoints, columns follow the documented schemas of \code{bunddev_tidy_dwd()}, including parsed time columns where available.}
+\item{raw}{Full parsed avalanche warning payload (list-column).}
 }
 }
 \description{

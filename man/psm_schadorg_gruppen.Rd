@@ -26,11 +26,11 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with pest/pathogen group catalog entries.
+A \link[tibble:tibble]{tibble} with one row per pest-to-group mapping
+and columns:
 \describe{
-\item{Item fields}{One column per top-level field of each \code{items} element (\verb{m_row$$} removed).}
-\item{Nested fields}{Stored as list-columns.}
-\item{response}{Fallback payload for non-item responses (list-column).}
+\item{SCHADORG}{Character. Pest organism code (child).}
+\item{SCHADORG_GRUPPE}{Character. Pest group code (parent).}
 }
 }
 \description{

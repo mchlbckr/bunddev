@@ -30,15 +30,20 @@ NULL
 #'       the number of rows.}
 #'   }
 #'
-#' @return A tibble with one row per FHIR resource in the returned bundle.
-#' Column structure depends on the resource profile and may include nested
-#' list-columns when `flatten = FALSE`.
-#'
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per device definition and columns:
+#'   \describe{
+#'     \item{resourceType}{Character. FHIR resource type, always `"DeviceDefinition"`.}
+#'     \item{id}{Character. FHIR resource identifier.}
+#'     \item{url}{Character. Canonical URL of the resource.}
+#'     \item{status}{Character. Publication status.}
+#'     \item{description}{Character. Device description text.}
+#'     \item{meta}{List. Resource metadata (profile, timestamps).}
+#'     \item{identifier}{List. Business identifiers.}
+#'     \item{type}{List. Device type coding.}
+#'     \item{deviceName}{List. Device name entries.}
+#'     \item{property}{List. Device properties.}
+#'     \item{extension}{List. FHIR profile extensions.}
+#'   }
 #' @family DiGA
 #' @export
 #' @examples
@@ -72,14 +77,19 @@ diga_device_definitions <- function(params = list(), safe = TRUE, refresh = FALS
 #'
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
-#' @return A tibble with one row per catalog entry resource (same structure
-#' rules as [diga_device_definitions()]).
-#'
-#' \describe{
-#'   \item{Resource fields}{One column per top-level scalar field in each FHIR `entry$resource`.}
-#'   \item{Nested resource fields}{Stored as list-columns.}
-#'   \item{bundle}{Returned as list-column when the response has no `entry` records.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per catalog entry and columns:
+#'   \describe{
+#'     \item{resourceType}{Character. FHIR resource type, always `"CatalogEntry"`.}
+#'     \item{id}{Character. FHIR resource identifier.}
+#'     \item{status}{Character. Entry status.}
+#'     \item{orderable}{Logical. Whether the entry is orderable.}
+#'     \item{meta}{List. Resource metadata (profile, timestamps).}
+#'     \item{identifier}{List. Business identifiers.}
+#'     \item{type}{List. Catalog entry type coding.}
+#'     \item{referencedItem}{List. Referenced device definition.}
+#'     \item{extension}{List. FHIR profile extensions.}
+#'     \item{additionalCharacteristic}{List. Additional characteristics.}
+#'   }
 #' @family DiGA
 #' @export
 
@@ -111,14 +121,19 @@ diga_catalog_entries <- function(params = list(), safe = TRUE, refresh = FALSE, 
 #'
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
-#' @return A tibble with one row per organization resource (same structure rules
-#' as [diga_device_definitions()]).
-#'
-#' \describe{
-#'   \item{Resource fields}{One column per top-level scalar field in each FHIR `entry$resource`.}
-#'   \item{Nested resource fields}{Stored as list-columns.}
-#'   \item{bundle}{Returned as list-column when the response has no `entry` records.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per organization and columns:
+#'   \describe{
+#'     \item{resourceType}{Character. FHIR resource type, always `"Organization"`.}
+#'     \item{id}{Character. FHIR resource identifier.}
+#'     \item{name}{Character. Organization display name.}
+#'     \item{active}{Logical. Whether the organization is active.}
+#'     \item{meta}{List. Resource metadata (profile, timestamps).}
+#'     \item{identifier}{List. Business identifiers.}
+#'     \item{type}{List. Organization type coding.}
+#'     \item{telecom}{List. Contact details.}
+#'     \item{address}{List. Postal addresses.}
+#'     \item{extension}{List. FHIR profile extensions.}
+#'   }
 #' @family DiGA
 #' @export
 
@@ -150,14 +165,21 @@ diga_organizations <- function(params = list(), safe = TRUE, refresh = FALSE, fl
 #'
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
-#' @return A tibble with one row per charge item definition resource (same
-#' structure rules as [diga_device_definitions()]).
-#'
-#' \describe{
-#'   \item{Resource fields}{One column per top-level scalar field in each FHIR `entry$resource`.}
-#'   \item{Nested resource fields}{Stored as list-columns.}
-#'   \item{bundle}{Returned as list-column when the response has no `entry` records.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per charge item definition and columns:
+#'   \describe{
+#'     \item{resourceType}{Character. FHIR resource type, always `"ChargeItemDefinition"`.}
+#'     \item{id}{Character. FHIR resource identifier.}
+#'     \item{url}{Character. Canonical URL of the resource.}
+#'     \item{status}{Character. Publication status.}
+#'     \item{description}{Character. Description text.}
+#'     \item{meta}{List. Resource metadata (profile, timestamps).}
+#'     \item{identifier}{List. Business identifiers.}
+#'     \item{code}{List. Charge item code.}
+#'     \item{instance}{List. Referenced device definitions.}
+#'     \item{applicability}{List. Applicability conditions.}
+#'     \item{propertyGroup}{List. Pricing properties.}
+#'     \item{extension}{List. FHIR profile extensions.}
+#'   }
 #' @family DiGA
 #' @export
 
@@ -189,14 +211,19 @@ diga_charge_item_definitions <- function(params = list(), safe = TRUE, refresh =
 #'
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
-#' @return A tibble with one row per questionnaire resource (same structure
-#' rules as [diga_device_definitions()]).
-#'
-#' \describe{
-#'   \item{Resource fields}{One column per top-level scalar field in each FHIR `entry$resource`.}
-#'   \item{Nested resource fields}{Stored as list-columns.}
-#'   \item{bundle}{Returned as list-column when the response has no `entry` records.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per questionnaire and columns:
+#'   \describe{
+#'     \item{resourceType}{Character. FHIR resource type, always `"Questionnaire"`.}
+#'     \item{id}{Character. FHIR resource identifier.}
+#'     \item{url}{Character. Canonical URL of the resource.}
+#'     \item{status}{Character. Publication status.}
+#'     \item{name}{Character. Computer-friendly name.}
+#'     \item{title}{Character. Human-readable title.}
+#'     \item{meta}{List. Resource metadata (profile, timestamps).}
+#'     \item{identifier}{List. Business identifiers.}
+#'     \item{item}{List. Questionnaire items and groups.}
+#'     \item{extension}{List. FHIR profile extensions.}
+#'   }
 #' @family DiGA
 #' @export
 
@@ -228,14 +255,18 @@ diga_questionnaires <- function(params = list(), safe = TRUE, refresh = FALSE, f
 #'
 #' @seealso
 #' [bunddev_parameters()] to inspect available query parameters.
-#' @return A tibble with one row per questionnaire response resource (same
-#' structure rules as [diga_device_definitions()]).
-#'
-#' \describe{
-#'   \item{Resource fields}{One column per top-level scalar field in each FHIR `entry$resource`.}
-#'   \item{Nested resource fields}{Stored as list-columns.}
-#'   \item{bundle}{Returned as list-column when the response has no `entry` records.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per questionnaire response and columns:
+#'   \describe{
+#'     \item{resourceType}{Character. FHIR resource type, always `"QuestionnaireResponse"`.}
+#'     \item{id}{Character. FHIR resource identifier.}
+#'     \item{status}{Character. Response completion status.}
+#'     \item{authored}{Character. When the response was authored.}
+#'     \item{meta}{List. Resource metadata (profile, timestamps).}
+#'     \item{identifier}{List. Business identifiers.}
+#'     \item{questionnaire}{Character. Reference to source questionnaire.}
+#'     \item{item}{List. Response items and answers.}
+#'     \item{extension}{List. FHIR profile extensions.}
+#'   }
 #' @family DiGA
 #' @export
 

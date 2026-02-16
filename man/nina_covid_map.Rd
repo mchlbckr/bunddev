@@ -14,13 +14,9 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with list-column \code{data} containing COVID map payload.
+A one-row tibble.
 \describe{
-\item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-\item{response_country}{Feed-level country code, when provided (character).}
-\item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-\item{last_modified_time / effective_time}{Parsed \code{POSIXct} timestamps in Europe/Berlin when source fields exist.}
-\item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+\item{data}{COVID map response payload (list).}
 }
 }
 \description{

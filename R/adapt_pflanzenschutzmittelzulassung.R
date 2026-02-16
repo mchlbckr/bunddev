@@ -34,13 +34,15 @@
 #' psm_mittel(kennr = "024780-00")
 #' }
 #'
-#' @return A tibble with one row per returned API item. Column names follow the
-#' upstream BVL field names; nested objects remain list-columns.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per plant protection product
+#'   and columns:
+#'   \describe{
+#'     \item{FORMULIERUNG_ART}{Character. Formulation type code.}
+#'     \item{KENNR}{Character. Product identification number.}
+#'     \item{MITTELNAME}{Character. Product trade name.}
+#'     \item{ZUL_ENDE}{Character. Approval end date.}
+#'     \item{ZUL_ERSTMALIG_AM}{Character. Initial approval date.}
+#'   }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_mittel <- function(kennr = NULL,
@@ -83,12 +85,15 @@ psm_mittel <- function(kennr = NULL,
 #' psm_wirkstoffe()
 #' }
 #'
-#' @return A tibble with one row per active ingredient item.
-#' \describe{
-#'   \item{Item fields}{One column per top-level field of each `items` element (`m_row$$` removed).}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{response}{Fallback payload for non-item responses (list-column).}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per active ingredient and
+#'   columns:
+#'   \describe{
+#'     \item{GENEHMIGT}{Character. Approval flag.}
+#'     \item{KATEGORIE}{Character. Ingredient category.}
+#'     \item{WIRKNR}{Character. Active ingredient number.}
+#'     \item{WIRKSTOFFNAME}{Character. Active ingredient name (German).}
+#'     \item{WIRKSTOFFNAME_EN}{Character. Active ingredient name (English).}
+#'   }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_wirkstoffe <- function(wirkstoffId = NULL,
@@ -132,12 +137,36 @@ psm_wirkstoffe <- function(wirkstoffId = NULL,
 #' psm_anwendungen(kennr = "024780-00")
 #' }
 #'
-#' @return A tibble with one row per approved application item.
-#' \describe{
-#'   \item{Item fields}{One column per top-level field of each `items` element (`m_row$$` removed).}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{response}{Fallback payload for non-item responses (list-column).}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per approved application and
+#'   columns:
+#'   \describe{
+#'     \item{ANTRAGNR}{Character. Application request number.}
+#'     \item{ANWENDUNGEN_ANZ_JE_BEFALL}{Numeric. Applications per infestation.}
+#'     \item{ANWENDUNGEN_MAX_JE_KULTUR}{Numeric. Max applications per crop.}
+#'     \item{ANWENDUNGEN_MAX_JE_VEGETATION}{Numeric. Max applications per vegetation period.}
+#'     \item{ANWENDUNGSBEREICH}{Character. Area of use code.}
+#'     \item{ANWENDUNGSTECHNIK}{Character. Application technique.}
+#'     \item{AWGNR}{Character. Application group number.}
+#'     \item{AWG_ID}{Character. Application identifier (16 chars).}
+#'     \item{AW_ABSTAND_BIS}{Numeric. Application interval upper bound.}
+#'     \item{AW_ABSTAND_EINHEIT}{Character. Interval unit.}
+#'     \item{AW_ABSTAND_VON}{Numeric. Application interval lower bound.}
+#'     \item{EINSATZGEBIET}{Character. Field of use code.}
+#'     \item{GENEHMIGUNG}{Character. Approval flag.}
+#'     \item{HUK}{Character. Home-and-garden flag.}
+#'     \item{KENNR}{Character. Product identification number.}
+#'     \item{KULTUR_ERL}{Character. Crop clarification text.}
+#'     \item{SCHADORG_ERL}{Character. Pest clarification text.}
+#'     \item{STADIUM_KULTUR_BEM}{Character. Crop growth-stage note.}
+#'     \item{STADIUM_KULTUR_BIS}{Character. Crop growth-stage upper bound.}
+#'     \item{STADIUM_KULTUR_KODELISTE}{Numeric. Crop growth-stage code list.}
+#'     \item{STADIUM_KULTUR_VON}{Character. Crop growth-stage lower bound.}
+#'     \item{STADIUM_SCHADORG_BEM}{Character. Pest growth-stage note.}
+#'     \item{STADIUM_SCHADORG_BIS}{Character. Pest growth-stage upper bound.}
+#'     \item{STADIUM_SCHADORG_KODELISTE}{Numeric. Pest growth-stage code list.}
+#'     \item{STADIUM_SCHADORG_VON}{Character. Pest growth-stage lower bound.}
+#'     \item{WIRKUNGSBEREICH}{Character. Efficacy area code.}
+#'   }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_anwendungen <- function(kennr = NULL,
@@ -177,12 +206,10 @@ psm_anwendungen <- function(kennr = NULL,
 #' psm_stand()
 #' }
 #'
-#' @return A one-row tibble with version/release metadata.
-#' \describe{
-#'   \item{Item fields}{One column per top-level field of each `items` element (`m_row$$` removed).}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{response}{Fallback payload for non-item responses (list-column).}
-#' }
+#' @return A [tibble][tibble::tibble] with one row and columns:
+#'   \describe{
+#'     \item{DATUM}{Character. Release date of the current data set.}
+#'   }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_stand <- function(safe = TRUE, refresh = FALSE) {
@@ -214,12 +241,12 @@ psm_stand <- function(safe = TRUE, refresh = FALSE) {
 #' psm_kultur_gruppen()
 #' }
 #'
-#' @return A tibble with crop group catalog entries.
-#' \describe{
-#'   \item{Item fields}{One column per top-level field of each `items` element (`m_row$$` removed).}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{response}{Fallback payload for non-item responses (list-column).}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per crop-to-group mapping
+#'   and columns:
+#'   \describe{
+#'     \item{KULTUR}{Character. Crop code (child).}
+#'     \item{KULTUR_GRUPPE}{Character. Crop group code (parent).}
+#'   }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_kultur_gruppen <- function(params = list(),
@@ -253,12 +280,12 @@ psm_kultur_gruppen <- function(params = list(),
 #' psm_schadorg_gruppen()
 #' }
 #'
-#' @return A tibble with pest/pathogen group catalog entries.
-#' \describe{
-#'   \item{Item fields}{One column per top-level field of each `items` element (`m_row$$` removed).}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{response}{Fallback payload for non-item responses (list-column).}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per pest-to-group mapping
+#'   and columns:
+#'   \describe{
+#'     \item{SCHADORG}{Character. Pest organism code (child).}
+#'     \item{SCHADORG_GRUPPE}{Character. Pest group code (parent).}
+#'   }
 #' @family Pflanzenschutzmittelzulassung
 #' @export
 psm_schadorg_gruppen <- function(params = list(),

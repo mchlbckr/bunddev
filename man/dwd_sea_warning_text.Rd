@@ -14,11 +14,9 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with one column \code{text} containing the warning text.
+A one-row tibble:
 \describe{
-\item{text}{Text endpoints: warning/forecast text (character).}
-\item{raw}{Avalanche endpoint: full parsed payload as list-column.}
-\item{Operation-specific fields}{For station/crowd/warning endpoints, columns follow the documented schemas of \code{bunddev_tidy_dwd()}, including parsed time columns where available.}
+\item{text}{Sea warning text (character).}
 }
 }
 \description{

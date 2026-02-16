@@ -15,10 +15,12 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A tibble with one row per \verb{<item>} entry from the conferences feed.
-Column names correspond to XML element names.
+Column names correspond to XML child element names within each \verb{<item>}.
 \describe{
-\item{XML child-tag columns}{One column per scalar child element in each \verb{<item>} entry (or root-level document field for single-document endpoints).}
-\item{Repeated child tags}{Stored as list-columns.}
+\item{\verb{<tag>}}{One column per unique scalar child element in each
+\verb{<item>} (character). Exact names depend on the feed structure.}
+\item{\verb{<repeated_tag>}}{List-column when a child element name appears more
+than once in a single \verb{<item>}.}
 }
 }
 \description{

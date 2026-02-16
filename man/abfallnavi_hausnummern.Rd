@@ -16,12 +16,12 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per available house number entry.
-
+A \link[tibble:tibble]{tibble} with one row per house number and columns:
 \describe{
-\item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-\item{Nested fields}{Kept as list-columns.}
-\item{date_time}{Added by \verb{abfallnavi_termine_*()} from \code{datum} as \code{POSIXct} in Europe/Berlin, when available.}
+\item{id}{Integer. House number identifier.}
+\item{nr}{Character. House number label.}
+\item{plz}{Character. Postal code.}
+\item{staticId}{Character. Static identifier (base64-encoded).}
 }
 }
 \description{

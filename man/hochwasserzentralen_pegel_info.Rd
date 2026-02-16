@@ -16,13 +16,11 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row of gauge metadata for the selected
-\code{pegelnummer}. Columns follow the upstream service field names.
-
-\describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
-}
+A one-row tibble of gauge metadata for the selected \code{pegelnummer}.
+Columns are created dynamically from the upstream service response fields.
+If the response contains GeoJSON features, each feature's \code{properties} are
+used as columns; otherwise each top-level field becomes a column. Scalar
+values become atomic columns and nested structures become list-columns.
 }
 \description{
 Get flood gauge information

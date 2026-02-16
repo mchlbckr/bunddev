@@ -16,13 +16,17 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with detailed warning content rows (same common metadata columns as \code{\link[=nina_warnings]{nina_warnings()}}).
-
-Includes \code{sent_time} as POSIXct in Europe/Berlin.
-
+A one-row tibble with CAP warning fields.
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{identifier}{Warning identifier (character).}
+\item{sender}{Sender identifier (character).}
+\item{sent}{Sent timestamp string (character).}
+\item{status}{Alert status (character).}
+\item{msg_type}{Message type (character).}
+\item{scope}{Alert scope (character).}
+\item{code}{Alert code entries (list).}
+\item{info}{Alert info blocks (list).}
+\item{sent_time}{Parsed sent timestamp (\code{POSIXct}, Europe/Berlin).}
 }
 }
 \description{

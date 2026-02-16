@@ -16,11 +16,10 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with archive mapping payload in list-columns.
-
+A one-row tibble.
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{identifier}{Warning identifier (character).}
+\item{data}{Archive mapping response payload (list).}
 }
 }
 \description{

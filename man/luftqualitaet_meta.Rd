@@ -25,11 +25,11 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per combined metadata record.
-\describe{
-\item{Indexed value columns}{Columns are derived from API \code{indices} metadata and represent scalar values for each returned record.}
-\item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
-}
+A \link[tibble:tibble]{tibble} with combined metadata. The structure
+depends on the \code{use} parameter and may include sections for
+components, scopes, networks, stations, limits, and cross-references.
+Column names are derived from the \code{indices} metadata in the API
+response and vary by \code{use} value.
 }
 \description{
 List combined metadata

@@ -16,11 +16,16 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per XML \verb{<item>} in the start list feed.
+A tibble with one row per XML \verb{<item>} in the start list feed. Column
+names correspond to the XML child element names within each \verb{<item>}.
 \describe{
-\item{XML child-tag columns}{One column per scalar child element in each \verb{<item>} node.}
-\item{Repeated child tags}{Stored as list-columns.}
-\item{\code{date_time}, \code{dateOfIssue_time}, \code{imageDate_time}, \code{layoutDate_time}, \code{startdate_time}, \code{stopdate_time}}{Parsed \code{POSIXct} values in Europe/Berlin when the corresponding source fields are present.}
+\item{\verb{<tag>}}{One column per unique scalar child element (character).
+Exact names depend on the XML feed structure.}
+\item{\verb{<repeated_tag>}}{List-column when a child element name appears more
+than once in a single \verb{<item>}.}
+\item{date_time, dateOfIssue_time, imageDate_time, layoutDate_time, startdate_time, stopdate_time}{Parsed \code{POSIXct} (Europe/Berlin) added when the corresponding source
+field (\code{date}, \code{dateOfIssue}, \code{imageDate}, \code{layoutDate}, \code{startdate},
+\code{stopdate}) is present.}
 }
 }
 \description{

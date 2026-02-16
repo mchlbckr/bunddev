@@ -36,15 +36,24 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per warning and columns:
-\code{type}, \code{level}, \code{start}, \code{start_time}, \code{end}, \code{end_time}, \code{description},
-\code{description_text}, \code{event}, \code{headline}, \code{regions} (list-column),
-\code{urls} (list-column), and \code{is_vorabinfo}.
-
+A tibble with one row per warning:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{type}{Warning type code (numeric).}
+\item{level}{Warning severity level (numeric).}
+\item{start}{Start timestamp in milliseconds (numeric).}
+\item{start_time}{Parsed start time (POSIXct).}
+\item{end}{End timestamp in milliseconds (numeric).}
+\item{end_time}{Parsed end time (POSIXct).}
+\item{description}{Warning description HTML (character).}
+\item{description_text}{Warning description plain text (character).}
+\item{event}{Event name (character).}
+\item{headline}{Warning headline (character).}
+\item{regions}{Affected regions (list-column).}
+\item{urls}{Related URLs (list-column).}
+\item{is_vorabinfo}{Whether this is a preliminary warning (logical).}
 }
+With \code{flatten = TRUE}, the list-columns are transformed according to
+\code{flatten_mode}.
 }
 \description{
 Fetch DWD nowcast warnings

@@ -16,12 +16,14 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per tree node at the requested level.
-Columns follow upstream schema; repeated nested values are list-columns.
-
+A \link[tibble:tibble]{tibble} with one row per tree node and columns:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{id}{Character. Node identifier.}
+\item{parentId}{Character. Parent node identifier (\code{NA} for roots).}
+\item{displayValue}{Character. Node display label.}
+\item{xStellerDisplayValue}{Character. xSteller with label.}
+\item{xSteller}{Character. Position code of the node.}
+\item{level}{Integer. Tree depth level.}
 }
 }
 \description{

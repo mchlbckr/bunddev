@@ -53,10 +53,28 @@ the number of rows.}
 }
 \value{
 A tibble with the same columns as \code{\link[=jobsuche_search]{jobsuche_search()}}.
-
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{hash_id}{Posting hash id (character).}
+\item{beruf}{Job title/occupation (character).}
+\item{refnr}{Reference number (character).}
+\item{arbeitgeber}{Employer name (character).}
+\item{aktuelle_veroeffentlichungsdatum}{Published date/time text (character).}
+\item{aktuelle_veroeffentlichungsdatum_time}{Published timestamp as \code{POSIXct} (Europe/Berlin).}
+\item{eintrittsdatum}{Start date text (character).}
+\item{eintrittsdatum_time}{Start timestamp as \code{POSIXct} (Europe/Berlin).}
+\item{arbeitsort_plz}{Postal code (character).}
+\item{arbeitsort_ort}{City/locality (character).}
+\item{arbeitsort_strasse}{Street (character).}
+\item{arbeitsort_region}{Region/state (character).}
+\item{arbeitsort_land}{Country code/name (character).}
+\item{arbeitsort_lat}{Latitude (numeric).}
+\item{arbeitsort_lon}{Longitude (numeric).}
+\item{modifikations_timestamp}{Modification timestamp text (character).}
+\item{modifikations_timestamp_time}{Modification timestamp as \code{POSIXct} (Europe/Berlin).}
+\item{page}{Returned page number (character).}
+\item{size}{Returned page size (character).}
+\item{max_ergebnisse}{Total result count (character).}
+\item{facetten}{Facet metadata (list-column).}
 }
 }
 \description{

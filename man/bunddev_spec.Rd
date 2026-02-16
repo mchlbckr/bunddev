@@ -10,8 +10,7 @@ bunddev_spec(id, refresh = FALSE)
 \item{id}{Registry id.}
 
 \item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
-from the API (default \code{FALSE}).
-the API (default \code{FALSE}).}
+from the API (default \code{FALSE}).}
 }
 \value{
 Parsed OpenAPI specification as a nested list.

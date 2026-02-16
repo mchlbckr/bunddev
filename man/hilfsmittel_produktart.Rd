@@ -36,12 +36,24 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with detail fields for one product type. Columns follow
-upstream schema; nested values may appear as list-columns.
-
+A \link[tibble:tibble]{tibble} with one row for the requested product
+type and columns:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{id}{Character. Product-type identifier.}
+\item{versionId}{Character. Internal version identifier.}
+\item{nummer}{Integer. Product-type number.}
+\item{beschreibung}{Character. Description text.}
+\item{bezeichnung}{Character. Product-type name.}
+\item{untergruppeId}{Character. Parent subgroup identifier.}
+\item{indikation}{Character. Indication text.}
+\item{siebenSteller}{Character. Seven-digit code.}
+\item{isNnElement}{Logical. Internal flag (usage unclear).}
+\item{konstruktionsmerkmalschemaId}{Character. Construction-feature schema id.}
+\item{untergruppe}{Integer. Always \code{NA}.}
+\item{aufnahmeDatum}{Character. Admission date (ISO-8601).}
+\item{aenderungsDatum}{Character. Last-modified date (ISO-8601).}
+\item{aufnahmeDatum_time}{POSIXct. Parsed admission date (Europe/Berlin).}
+\item{aenderungsDatum_time}{POSIXct. Parsed last-modified date (Europe/Berlin).}
 }
 }
 \description{

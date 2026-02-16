@@ -21,14 +21,17 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A tibble with one row per map-data warning entry.
-
-Includes \code{start_date_time} as POSIXct in Europe/Berlin.
 \describe{
-\item{content_id}{Content identifier from NINA feeds (character), where applicable.}
-\item{response_country}{Feed-level country code, when provided (character).}
-\item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
-\item{last_modified_time / effective_time}{Parsed \code{POSIXct} timestamps in Europe/Berlin when source fields exist.}
-\item{Endpoint-specific fields}{Additional scalar fields by endpoint; nested structures remain list-columns.}
+\item{id}{Warning identifier (character).}
+\item{version}{Warning version (integer).}
+\item{start_date}{Start date string from the API (character).}
+\item{severity}{Warning severity level (character).}
+\item{urgency}{Warning urgency level (character).}
+\item{type}{Warning type (character).}
+\item{i18n_title}{Internationalised title entries (list).}
+\item{trans_keys}{Translation key entries (list).}
+\item{start_date_time}{Parsed start date (\code{POSIXct}, Europe/Berlin).}
+\item{source}{Map data source used in the request (character).}
 }
 }
 \description{

@@ -42,13 +42,17 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per gas-consumption entry (same column
-conventions as \code{\link[=marktstammdaten_stromerzeugung]{marktstammdaten_stromerzeugung()}}).
+A \link[tibble:tibble]{tibble} with one row per gas consumption unit
+and columns determined by the MaStR API response. Common columns include
+\code{MaStRNummer}, \code{EinheitName}, \code{Bundesland}, \code{Ort},
+\code{Plz}, \code{BetriebsStatusName}, and
+\code{EinheitRegistrierungsdatum} (see
+\code{\link[=marktstammdaten_filters_gasverbrauch]{marktstammdaten_filters_gasverbrauch()}} for available filter fields).
+Additionally:
 \describe{
-\item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
-\item{Nested fields}{Stored as list-columns.}
-\item{total}{Entry endpoints: total number of matching records (numeric).}
-\item{\verb{*Datum_time}}{Parsed \code{POSIXct} columns added for date fields matching \verb{*Datum}.}
+\item{total}{Numeric. Total number of matching records upstream.}
+\item{*Datum_time}{POSIXct. Parsed date column (Europe/Berlin) added
+for every source column whose name contains \code{Datum}.}
 }
 }
 \description{

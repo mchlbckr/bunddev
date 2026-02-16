@@ -14,13 +14,15 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per warning entry and common metadata columns including \code{content_id}, \code{last_modified_time}, and \code{effective_time}.
-
-Includes \code{last_modified_time} and \code{effective_time} as POSIXct in Europe/Berlin.
-
+A tibble with one row per warning entry. Columns include scalar fields
+from each entry (names converted to snake_case) plus the following added
+metadata:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{content_id}{Content identifier from the NINA feed (character).}
+\item{response_country}{Feed-level country code (character).}
+\item{response_last_modified}{Feed-level modification timestamp in milliseconds (numeric).}
+\item{last_modified_time}{Entry-level last-modified timestamp (\code{POSIXct}, Europe/Berlin).}
+\item{effective_time}{Entry-level effective timestamp (\code{POSIXct}, Europe/Berlin).}
 }
 }
 \description{

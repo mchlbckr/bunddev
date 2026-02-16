@@ -15,13 +15,15 @@
 #' hilfsmittel_tree(level = 1)
 #' }
 #'
-#' @return A tibble with one row per tree node at the requested level.
-#' Columns follow upstream schema; repeated nested values are list-columns.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per tree node and columns:
+#'   \describe{
+#'     \item{id}{Character. Node identifier.}
+#'     \item{parentId}{Character. Parent node identifier (`NA` for roots).}
+#'     \item{displayValue}{Character. Node display label.}
+#'     \item{xStellerDisplayValue}{Character. xSteller with label.}
+#'     \item{xSteller}{Character. Position code of the node.}
+#'     \item{level}{Integer. Tree depth level.}
+#'   }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
@@ -65,13 +67,29 @@ hilfsmittel_tree <- function(level, safe = TRUE, refresh = FALSE) {
 #' hilfsmittel_produktgruppe(tree$id[[1]])
 #' }
 #'
-#' @return A tibble with detail fields for one product group. Columns follow
-#' upstream schema; nested values may appear as list-columns.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row for the requested product
+#'   group and columns:
+#'   \describe{
+#'     \item{id}{Character. Product group identifier.}
+#'     \item{versionId}{Character. Internal version identifier.}
+#'     \item{bezeichnung}{Character. Product group name.}
+#'     \item{nummer}{Integer. Product group number.}
+#'     \item{definition}{Character. Description text.}
+#'     \item{indikation}{Character. Indication text.}
+#'     \item{querverweis}{Character. Cross-reference to other groups.}
+#'     \item{isNnElement}{Logical. Internal flag (usage unclear).}
+#'     \item{sachbearbeiterGkvId}{Character. GKV case-worker identifier.}
+#'     \item{sachbearbeiterGkv}{Character. Always `NA`.}
+#'     \item{sachbearbeiterMdsId}{Character. MDS case-worker identifier.}
+#'     \item{sachbearbeiterMds}{Character. Always `NA`.}
+#'     \item{aufnahmeDatum}{Character. Admission date (ISO-8601).}
+#'     \item{aenderungsDatum}{Character. Last-modified date (ISO-8601).}
+#'     \item{veroeffentlichungsDokumentFileStoreId}{Character. Publication document id.}
+#'     \item{merkblattFileStoreId}{Character. Always `NA`.}
+#'     \item{isCollectionReviewable}{Logical. Internal flag (usage unclear).}
+#'     \item{aufnahmeDatum_time}{POSIXct. Parsed admission date (Europe/Berlin).}
+#'     \item{aenderungsDatum_time}{POSIXct. Parsed last-modified date (Europe/Berlin).}
+#'   }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_produktgruppe <- function(id,
@@ -118,13 +136,25 @@ hilfsmittel_produktgruppe <- function(id,
 #' hilfsmittel_untergruppe("c92d1976-d3cb-4b9f-bcdf-805272a9ea86")
 #' }
 #'
-#' @return A tibble with detail fields for one subgroup. Columns follow upstream
-#' schema; nested values may appear as list-columns.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row for the requested subgroup
+#'   and columns:
+#'   \describe{
+#'     \item{id}{Character. Subgroup identifier.}
+#'     \item{versionId}{Character. Internal version identifier.}
+#'     \item{nummer}{Integer. Subgroup number.}
+#'     \item{anwendungsortId}{Character. Application-site identifier.}
+#'     \item{bezeichnung}{Character. Subgroup name.}
+#'     \item{produktgruppeId}{Character. Parent product-group identifier.}
+#'     \item{nachweisschemaId}{Character. Verification-schema identifier.}
+#'     \item{sechsSteller}{Character. Six-digit code.}
+#'     \item{isNnElement}{Logical. Internal flag (usage unclear).}
+#'     \item{produktgruppe}{Numeric. Always `NA`.}
+#'     \item{anwendungsort}{Numeric. Always `NA`.}
+#'     \item{aufnahmeDatum}{Character. Admission date (ISO-8601).}
+#'     \item{aenderungsDatum}{Character. Last-modified date (ISO-8601).}
+#'     \item{aufnahmeDatum_time}{POSIXct. Parsed admission date (Europe/Berlin).}
+#'     \item{aenderungsDatum_time}{POSIXct. Parsed last-modified date (Europe/Berlin).}
+#'   }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_untergruppe <- function(id,
@@ -171,13 +201,25 @@ hilfsmittel_untergruppe <- function(id,
 #' hilfsmittel_produktart("e6b913ef-cf21-4c5f-826d-f866516c3c65")
 #' }
 #'
-#' @return A tibble with detail fields for one product type. Columns follow
-#' upstream schema; nested values may appear as list-columns.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row for the requested product
+#'   type and columns:
+#'   \describe{
+#'     \item{id}{Character. Product-type identifier.}
+#'     \item{versionId}{Character. Internal version identifier.}
+#'     \item{nummer}{Integer. Product-type number.}
+#'     \item{beschreibung}{Character. Description text.}
+#'     \item{bezeichnung}{Character. Product-type name.}
+#'     \item{untergruppeId}{Character. Parent subgroup identifier.}
+#'     \item{indikation}{Character. Indication text.}
+#'     \item{siebenSteller}{Character. Seven-digit code.}
+#'     \item{isNnElement}{Logical. Internal flag (usage unclear).}
+#'     \item{konstruktionsmerkmalschemaId}{Character. Construction-feature schema id.}
+#'     \item{untergruppe}{Integer. Always `NA`.}
+#'     \item{aufnahmeDatum}{Character. Admission date (ISO-8601).}
+#'     \item{aenderungsDatum}{Character. Last-modified date (ISO-8601).}
+#'     \item{aufnahmeDatum_time}{POSIXct. Parsed admission date (Europe/Berlin).}
+#'     \item{aenderungsDatum_time}{POSIXct. Parsed last-modified date (Europe/Berlin).}
+#'   }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_produktart <- function(id,
@@ -222,13 +264,25 @@ hilfsmittel_produktart <- function(id,
 #' hilfsmittel_produkte()
 #' }
 #'
-#' @return A tibble with one row per product entry in the product list. Columns
-#' follow upstream schema; nested values may appear as list-columns.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per product and columns:
+#'   \describe{
+#'     \item{organisationId}{Character. Organisation identifier.}
+#'     \item{produktartId}{Character. Product-type identifier.}
+#'     \item{nummer}{Integer. Sequential product number.}
+#'     \item{name}{Character. Product name.}
+#'     \item{artikelnummern}{List. Article numbers (character vector).}
+#'     \item{typenAusfuehrungen}{List. Type/model variants (character vector).}
+#'     \item{aufnahmeDatum}{Character. Admission date (ISO-8601).}
+#'     \item{aenderungsDatum}{Character. Last-modified date (ISO-8601).}
+#'     \item{zehnSteller}{Character. Ten-digit product code.}
+#'     \item{herstellerName}{Character. Manufacturer name.}
+#'     \item{istHerausgenommen}{Logical. Whether product is withdrawn.}
+#'     \item{istAbrechnungsposition}{Logical. Whether product is a billing item.}
+#'     \item{id}{Character. Product identifier.}
+#'     \item{displayName}{Character. Combined display label.}
+#'     \item{aufnahmeDatum_time}{POSIXct. Parsed admission date (Europe/Berlin).}
+#'     \item{aenderungsDatum_time}{POSIXct. Parsed last-modified date (Europe/Berlin).}
+#'   }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_produkte <- function(safe = TRUE,
@@ -274,13 +328,32 @@ hilfsmittel_produkte <- function(safe = TRUE,
 #' hilfsmittel_produkt("f41f52a6-5d2d-4dd3-9d0e-39675ceca7f3")
 #' }
 #'
-#' @return A tibble with detail fields for one product. Columns follow upstream
-#' schema; nested values may appear as list-columns.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row for the requested product
+#'   and columns:
+#'   \describe{
+#'     \item{organisationId}{Character. Organisation identifier.}
+#'     \item{produktartId}{Character. Product-type identifier.}
+#'     \item{nummer}{Integer. Sequential product number.}
+#'     \item{name}{Character. Product name.}
+#'     \item{artikelnummern}{List. Article numbers (character vector).}
+#'     \item{typenAusfuehrungen}{List. Type/model variants (character vector).}
+#'     \item{aufnahmeDatum}{Character. Admission date (ISO-8601).}
+#'     \item{aenderungsDatum}{Character. Last-modified date (ISO-8601).}
+#'     \item{zehnSteller}{Character. Ten-digit product code.}
+#'     \item{herstellerName}{Character. Manufacturer name.}
+#'     \item{istHerausgenommen}{Logical. Whether product is withdrawn.}
+#'     \item{istAbrechnungsposition}{Logical. Whether product is a billing item.}
+#'     \item{id}{Character. Product identifier.}
+#'     \item{displayName}{Character. Combined display label.}
+#'     \item{produktgruppeNummer}{Integer. Product-group number.}
+#'     \item{anwendungsortNummer}{Integer. Application-site number.}
+#'     \item{untergruppeNummer}{Integer. Subgroup number.}
+#'     \item{produktartNummer}{Integer. Product-type number.}
+#'     \item{produktartBezeichnung}{Character. Product-type name.}
+#'     \item{kontruktionsmerkmale}{List. Construction features (nested objects).}
+#'     \item{aufnahmeDatum_time}{POSIXct. Parsed admission date (Europe/Berlin).}
+#'     \item{aenderungsDatum_time}{POSIXct. Parsed last-modified date (Europe/Berlin).}
+#'   }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_produkt <- function(id,
@@ -327,13 +400,15 @@ hilfsmittel_produkt <- function(id,
 #' hilfsmittel_nachweisschema("a3d37017-2c91-4d6d-bbbe-4002d2868044")
 #' }
 #'
-#' @return A tibble with detail fields for one Nachweisschema resource. Columns
-#' follow upstream schema; nested values may appear as list-columns.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row for the requested
+#'   verification schema and columns:
+#'   \describe{
+#'     \item{id}{Character. Schema identifier.}
+#'     \item{name}{Character. Schema name.}
+#'     \item{produktmusterErforderlich}{Logical. Whether a product sample is required.}
+#'     \item{nachweisschemaKategorieZuweisungen}{List. Category assignments (nested objects).}
+#'     \item{nachweisAbschnittAnforderungen}{List. Section requirements (nested objects).}
+#'   }
 #' @family Hilfsmittel
 #' @export
 hilfsmittel_nachweisschema <- function(id,

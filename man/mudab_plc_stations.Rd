@@ -26,11 +26,16 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per returned \code{V_PLC_STATION} record.
+A \link[tibble:tibble]{tibble} with one row per PLC station and columns:
 \describe{
-\item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-\item{Nested fields}{Stored as list-columns.}
-\item{datetime_time}{Added as \code{POSIXct} (Europe/Berlin) when \code{DATE_STM} and \code{TIME_STM} exist.}
+\item{STATION_NAME}{Character. Station name.}
+\item{STATION_CODE}{Character. Station code.}
+\item{LAND_CD}{Character. Federal state code.}
+\item{ST_LAT}{Numeric. Latitude.}
+\item{ST_LON}{Numeric. Longitude.}
+\item{SUBCM_CODE}{Character. Sub-compartment code.}
+\item{SUBCM_NAME}{Character. Sub-compartment name.}
+\item{MON_TYPE}{Character. Monitoring type.}
 }
 }
 \description{

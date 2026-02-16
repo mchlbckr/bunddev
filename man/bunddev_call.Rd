@@ -42,12 +42,10 @@ operation.}
 \item{headers}{Optional named list of custom HTTP headers.}
 
 \item{safe}{Logical; if \code{TRUE} (default), apply rate-limiting and cache
-GET responses to \code{tools::R_user_dir("bunddev", "cache")}.
-responses to \code{tools::R_user_dir("bunddev", "cache")}.}
+GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
 \item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
-from the API (default \code{FALSE}).
-the API (default \code{FALSE}).}
+from the API (default \code{FALSE}).}
 }
 \value{
 Parsed response according to \code{parse}:

@@ -22,17 +22,37 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per item and columns:
-\code{section}, \code{sophora_id}, \code{external_id}, \code{title}, \code{date}, \code{date_time},
-\code{topline}, \code{first_sentence}, \code{details}, \code{detailsweb}, \code{share_url},
-\code{update_check_url}, \code{region_id}, \code{ressort}, \code{type}, \code{breaking_news},
-\code{copyright}, \code{alttext}, and list-columns \code{teaser_image}, \code{tracking}, \code{tags},
-\code{images}, \code{streams}, \code{geotags}, \code{branding_image}, \code{first_frame}.
-
+A tibble with one row per item:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{section}{Feed section, e.g. "news" or "regional" (character).}
+\item{sophora_id}{Sophora CMS identifier (character).}
+\item{external_id}{External identifier (character).}
+\item{title}{Article title (character).}
+\item{date}{Publication date string (character).}
+\item{date_time}{Parsed publication date (POSIXct).}
+\item{topline}{Topline/kicker text (character).}
+\item{first_sentence}{First sentence of the article (character).}
+\item{details}{API details URL (character).}
+\item{detailsweb}{Web details URL (character).}
+\item{share_url}{Share URL (character).}
+\item{update_check_url}{Update-check URL (character).}
+\item{region_id}{Region identifier (character).}
+\item{ressort}{Editorial section/ressort (character).}
+\item{type}{Content type (character).}
+\item{breaking_news}{Whether the item is breaking news (logical).}
+\item{copyright}{Copyright notice (character).}
+\item{alttext}{Image alt text (character).}
+\item{teaser_image}{Teaser image metadata (list-column).}
+\item{tracking}{Tracking metadata (list-column).}
+\item{tags}{Associated tags (list-column).}
+\item{images}{Image collection (list-column).}
+\item{streams}{Media streams (list-column).}
+\item{geotags}{Geographic tags (list-column).}
+\item{branding_image}{Branding image metadata (list-column).}
+\item{first_frame}{First video frame metadata (list-column).}
 }
+With \code{flatten = TRUE}, the list-columns are transformed according to
+\code{flatten_mode}.
 }
 \description{
 Fetch Tagesschau homepage items

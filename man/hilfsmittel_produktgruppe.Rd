@@ -36,12 +36,28 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with detail fields for one product group. Columns follow
-upstream schema; nested values may appear as list-columns.
-
+A \link[tibble:tibble]{tibble} with one row for the requested product
+group and columns:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{id}{Character. Product group identifier.}
+\item{versionId}{Character. Internal version identifier.}
+\item{bezeichnung}{Character. Product group name.}
+\item{nummer}{Integer. Product group number.}
+\item{definition}{Character. Description text.}
+\item{indikation}{Character. Indication text.}
+\item{querverweis}{Character. Cross-reference to other groups.}
+\item{isNnElement}{Logical. Internal flag (usage unclear).}
+\item{sachbearbeiterGkvId}{Character. GKV case-worker identifier.}
+\item{sachbearbeiterGkv}{Character. Always \code{NA}.}
+\item{sachbearbeiterMdsId}{Character. MDS case-worker identifier.}
+\item{sachbearbeiterMds}{Character. Always \code{NA}.}
+\item{aufnahmeDatum}{Character. Admission date (ISO-8601).}
+\item{aenderungsDatum}{Character. Last-modified date (ISO-8601).}
+\item{veroeffentlichungsDokumentFileStoreId}{Character. Publication document id.}
+\item{merkblattFileStoreId}{Character. Always \code{NA}.}
+\item{isCollectionReviewable}{Logical. Internal flag (usage unclear).}
+\item{aufnahmeDatum_time}{POSIXct. Parsed admission date (Europe/Berlin).}
+\item{aenderungsDatum_time}{POSIXct. Parsed last-modified date (Europe/Berlin).}
 }
 }
 \description{

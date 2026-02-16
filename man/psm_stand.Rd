@@ -14,11 +14,9 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with version/release metadata.
+A \link[tibble:tibble]{tibble} with one row and columns:
 \describe{
-\item{Item fields}{One column per top-level field of each \code{items} element (\verb{m_row$$} removed).}
-\item{Nested fields}{Stored as list-columns.}
-\item{response}{Fallback payload for non-item responses (list-column).}
+\item{DATUM}{Character. Release date of the current data set.}
 }
 }
 \description{

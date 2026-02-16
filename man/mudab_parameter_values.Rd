@@ -26,13 +26,17 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per returned \code{MV_STATION_MSMNT} record.
-Includes parsed \verb{*_time} columns (\code{POSIXct}, Europe/Berlin) when matching
-date/time fields are present.
-
+A \link[tibble:tibble]{tibble} with one row per measurement value and columns:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{metadataid}{Integer. Metadata identifier.}
+\item{STATNAME_ST}{Character. Station name.}
+\item{STATNAME_DATE_TIME}{Character. Composite station-date-time string.}
+\item{PARAMETERID_PM}{Character. Parameter identifier.}
+\item{PARAMCODE_PM}{Character. Parameter code name.}
+\item{DATE_STM}{Character. Measurement date (YYYYMMDD).}
+\item{TIME_STM}{Character. Measurement time (HHMM).}
+\item{VALUE_MS}{Character. Measured value.}
+\item{datetime_time}{POSIXct. Parsed date-time (Europe/Berlin).}
 }
 }
 \description{

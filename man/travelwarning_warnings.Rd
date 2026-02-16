@@ -14,15 +14,23 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per warning entry. Common columns include
-\code{content_id}, \code{parent_content_id}, \code{response_country},
-\code{response_last_modified}, \code{response_last_modified_time},
-\code{last_modified_time}, and \code{effective_time}, plus additional warning fields
-mapped from the upstream payload.
-
+A tibble with one row per warning entry.
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{content_id}{Entry/content identifier (character).}
+\item{parent_content_id}{Parent identifier for nested entry records, if
+applicable (character).}
+\item{response_country}{Country code from response metadata (character).}
+\item{response_last_modified}{Feed-level modification timestamp in
+milliseconds (numeric).}
+\item{response_last_modified_time}{Feed-level modification timestamp as
+\code{POSIXct} (Europe/Berlin), when \code{response_last_modified} is non-\code{NA}.}
+\item{last_modified_time}{Entry-level modification timestamp as \code{POSIXct}
+(Europe/Berlin), parsed from the entry \code{lastModified} field.}
+\item{effective_time}{Entry effective timestamp as \code{POSIXct}
+(Europe/Berlin), parsed from the entry \code{effective} field.}
+\item{\verb{<entry_field>}}{Additional columns (snake_case) from each entry
+payload. Scalar values become character/numeric columns; nested
+structures remain list-columns.}
 }
 }
 \description{

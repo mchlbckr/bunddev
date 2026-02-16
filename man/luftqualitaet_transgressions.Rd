@@ -25,11 +25,11 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per transgression record.
-\describe{
-\item{Indexed value columns}{Columns are derived from API \code{indices} metadata and represent scalar values for each returned record.}
-\item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
-}
+A \link[tibble:tibble]{tibble} with one row per station transgression
+record. Column names are derived from the \code{indices} metadata in the
+API response and typically include \code{station id}, \code{day_first},
+\code{day_recent}, \code{value of year}, and monthly values for January
+through December.
 }
 \description{
 List transgressions

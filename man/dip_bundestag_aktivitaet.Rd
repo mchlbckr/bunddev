@@ -31,12 +31,21 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with detailed fields for the selected Aktivitaet.
+A one-row tibble for the selected Aktivitaet:
 \describe{
-\item{num_found}{List endpoints: total number of matches (integer).}
-\item{cursor}{List endpoints: cursor for pagination (character).}
-\item{documents}{List endpoints: returned records as list-column.}
-\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+\item{id}{Aktivitaet identifier (character).}
+\item{aktivitaetsart}{Activity type, e.g. \code{"Rede"} (character).}
+\item{typ}{Entity type, always \code{"Aktivität"} (character).}
+\item{dokumentart}{Document type: \code{"Drucksache"} or \code{"Plenarprotokoll"} (character).}
+\item{wahlperiode}{Legislative period (integer).}
+\item{datum}{Date of associated document (character, ISO date).}
+\item{aktualisiert}{Last update timestamp (character, ISO datetime).}
+\item{titel}{Title (character).}
+\item{fundstelle}{Document reference details (list-column).}
+\item{vorgangsbezug}{Up to 4 related Vorgänge (list-column).}
+\item{vorgangsbezug_anzahl}{Total number of related Vorgänge (integer).}
+\item{deskriptor}{Thesaurus descriptors (list-column).}
+\item{abstract}{Summary text (character or \code{NA}).}
 }
 }
 \description{

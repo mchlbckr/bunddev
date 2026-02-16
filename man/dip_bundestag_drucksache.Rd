@@ -31,12 +31,27 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with detailed fields for the selected Drucksache.
+A one-row tibble for the selected Drucksache:
 \describe{
-\item{num_found}{List endpoints: total number of matches (integer).}
-\item{cursor}{List endpoints: cursor for pagination (character).}
-\item{documents}{List endpoints: returned records as list-column.}
-\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+\item{id}{Drucksache identifier (character).}
+\item{typ}{Entity type, always \code{"Dokument"} (character).}
+\item{dokumentart}{Document type, always \code{"Drucksache"} (character).}
+\item{drucksachetyp}{Drucksache subtype, e.g. \code{"Antrag"} (character).}
+\item{dokumentnummer}{Document number, e.g. \code{"19/1"} (character).}
+\item{wahlperiode}{Legislative period (integer).}
+\item{herausgeber}{Publisher: \code{"BT"} or \code{"BR"} (character).}
+\item{datum}{Publication date (character, ISO date).}
+\item{aktualisiert}{Last update timestamp (character, ISO datetime).}
+\item{titel}{Title (character).}
+\item{autoren_anzeige}{Up to 4 authors for display (list-column).}
+\item{autoren_anzahl}{Total author count (integer).}
+\item{fundstelle}{Document reference details (list-column).}
+\item{pdf_hash}{MD5 checksum of the PDF file (character or \code{NA}).}
+\item{urheber}{Authoring bodies (list-column).}
+\item{vorgangsbezug}{Up to 4 related Vorgänge (list-column).}
+\item{vorgangsbezug_anzahl}{Total number of related Vorgänge (integer).}
+\item{ressort}{Government departments involved (list-column).}
+\item{anlagen}{Appendix description (character or \code{NA}).}
 }
 }
 \description{

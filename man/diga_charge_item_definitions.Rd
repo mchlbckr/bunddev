@@ -40,13 +40,20 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per charge item definition resource (same
-structure rules as \code{\link[=diga_device_definitions]{diga_device_definitions()}}).
-
+A \link[tibble:tibble]{tibble} with one row per charge item definition and columns:
 \describe{
-\item{Resource fields}{One column per top-level scalar field in each FHIR \code{entry$resource}.}
-\item{Nested resource fields}{Stored as list-columns.}
-\item{bundle}{Returned as list-column when the response has no \code{entry} records.}
+\item{resourceType}{Character. FHIR resource type, always \code{"ChargeItemDefinition"}.}
+\item{id}{Character. FHIR resource identifier.}
+\item{url}{Character. Canonical URL of the resource.}
+\item{status}{Character. Publication status.}
+\item{description}{Character. Description text.}
+\item{meta}{List. Resource metadata (profile, timestamps).}
+\item{identifier}{List. Business identifiers.}
+\item{code}{List. Charge item code.}
+\item{instance}{List. Referenced device definitions.}
+\item{applicability}{List. Applicability conditions.}
+\item{propertyGroup}{List. Pricing properties.}
+\item{extension}{List. FHIR profile extensions.}
 }
 }
 \description{

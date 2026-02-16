@@ -26,14 +26,14 @@
 #' marktstammdaten_filters_stromerzeugung()
 #' }
 #'
-#' @return A tibble with filter definitions. Each row describes an available
-#' filter field and its selectable values/options.
-#' \describe{
-#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
-#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per available filter and
+#'   columns:
+#'   \describe{
+#'     \item{FilterName}{Character. Machine-readable filter field name.}
+#'     \item{ListObject}{List. Selectable options (named with \code{Name}/\code{Value}).}
+#'     \item{Type}{Character. Filter data type (\code{"text"}, \code{"number"},
+#'       \code{"multidropdown"}, \code{"date"}, or \code{"boolean"}).}
+#'   }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_stromerzeugung <- function(safe = TRUE,
@@ -77,13 +77,14 @@ marktstammdaten_filters_stromerzeugung <- function(safe = TRUE,
 #' marktstammdaten_filters_stromverbrauch()
 #' }
 #'
-#' @return A tibble with filter definitions for electricity consumption.
-#' \describe{
-#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
-#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per available filter and
+#'   columns:
+#'   \describe{
+#'     \item{FilterName}{Character. Machine-readable filter field name.}
+#'     \item{ListObject}{List. Selectable options (named with \code{Name}/\code{Value}).}
+#'     \item{Type}{Character. Filter data type (\code{"text"}, \code{"number"},
+#'       \code{"multidropdown"}, \code{"date"}, or \code{"boolean"}).}
+#'   }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_stromverbrauch <- function(safe = TRUE,
@@ -127,13 +128,14 @@ marktstammdaten_filters_stromverbrauch <- function(safe = TRUE,
 #' marktstammdaten_filters_gaserzeugung()
 #' }
 #'
-#' @return A tibble with filter definitions for gas generation.
-#' \describe{
-#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
-#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per available filter and
+#'   columns:
+#'   \describe{
+#'     \item{FilterName}{Character. Machine-readable filter field name.}
+#'     \item{ListObject}{List. Selectable options (named with \code{Name}/\code{Value}).}
+#'     \item{Type}{Character. Filter data type (\code{"text"}, \code{"number"},
+#'       \code{"multidropdown"}, \code{"date"}, or \code{"boolean"}).}
+#'   }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_gaserzeugung <- function(safe = TRUE,
@@ -177,13 +179,14 @@ marktstammdaten_filters_gaserzeugung <- function(safe = TRUE,
 #' marktstammdaten_filters_gasverbrauch()
 #' }
 #'
-#' @return A tibble with filter definitions for gas consumption.
-#' \describe{
-#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
-#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per available filter and
+#'   columns:
+#'   \describe{
+#'     \item{FilterName}{Character. Machine-readable filter field name.}
+#'     \item{ListObject}{List. Selectable options (named with \code{Name}/\code{Value}).}
+#'     \item{Type}{Character. Filter data type (\code{"text"}, \code{"number"},
+#'       \code{"multidropdown"}, \code{"date"}, or \code{"boolean"}).}
+#'   }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_filters_gasverbrauch <- function(safe = TRUE,
@@ -236,14 +239,19 @@ marktstammdaten_filters_gasverbrauch <- function(safe = TRUE,
 #' marktstammdaten_stromerzeugung(params = list(page = 1, pageSize = 5))
 #' }
 #'
-#' @return A tibble with one row per MaStR entry. Includes a `total` column with
-#' the total result count and additional `_time` columns for date fields when
-#' available.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per electricity generation
+#'   unit and columns determined by the MaStR API response. Common columns
+#'   include \code{MaStRNummer}, \code{EinheitName}, \code{Bundesland},
+#'   \code{Ort}, \code{Plz}, \code{Bruttoleistung}, \code{Nettonennleistung},
+#'   \code{EnergietraegerName}, \code{BetriebsStatusName},
+#'   \code{InbetriebnahmeDatum}, and \code{EinheitRegistrierungsdatum}
+#'   (see [marktstammdaten_filters_stromerzeugung()] for available filter
+#'   fields). Additionally:
+#'   \describe{
+#'     \item{total}{Numeric. Total number of matching records upstream.}
+#'     \item{*Datum_time}{POSIXct. Parsed date column (Europe/Berlin) added
+#'       for every source column whose name contains \code{Datum}.}
+#'   }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_stromerzeugung <- function(params = list(),
@@ -292,14 +300,18 @@ marktstammdaten_stromerzeugung <- function(params = list(),
 #' marktstammdaten_stromverbrauch(params = list(page = 1, pageSize = 5))
 #' }
 #'
-#' @return A tibble with one row per electricity-consumption entry (same column
-#' conventions as [marktstammdaten_stromerzeugung()]).
-#' \describe{
-#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
-#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per electricity consumption
+#'   unit and columns determined by the MaStR API response. Common columns
+#'   include \code{MaStRNummer}, \code{EinheitName}, \code{Bundesland},
+#'   \code{Ort}, \code{Plz}, \code{BetriebsStatusName}, and
+#'   \code{EinheitRegistrierungsdatum} (see
+#'   [marktstammdaten_filters_stromverbrauch()] for available filter fields).
+#'   Additionally:
+#'   \describe{
+#'     \item{total}{Numeric. Total number of matching records upstream.}
+#'     \item{*Datum_time}{POSIXct. Parsed date column (Europe/Berlin) added
+#'       for every source column whose name contains \code{Datum}.}
+#'   }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_stromverbrauch <- function(params = list(),
@@ -348,14 +360,18 @@ marktstammdaten_stromverbrauch <- function(params = list(),
 #' marktstammdaten_gaserzeugung(params = list(page = 1, pageSize = 5))
 #' }
 #'
-#' @return A tibble with one row per gas-generation entry (same column
-#' conventions as [marktstammdaten_stromerzeugung()]).
-#' \describe{
-#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
-#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per gas generation unit
+#'   and columns determined by the MaStR API response. Common columns include
+#'   \code{MaStRNummer}, \code{EinheitName}, \code{Bundesland}, \code{Ort},
+#'   \code{Plz}, \code{BetriebsStatusName}, \code{InbetriebnahmeDatum}, and
+#'   \code{EinheitRegistrierungsdatum} (see
+#'   [marktstammdaten_filters_gaserzeugung()] for available filter fields).
+#'   Additionally:
+#'   \describe{
+#'     \item{total}{Numeric. Total number of matching records upstream.}
+#'     \item{*Datum_time}{POSIXct. Parsed date column (Europe/Berlin) added
+#'       for every source column whose name contains \code{Datum}.}
+#'   }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_gaserzeugung <- function(params = list(),
@@ -404,14 +420,18 @@ marktstammdaten_gaserzeugung <- function(params = list(),
 #' marktstammdaten_gasverbrauch(params = list(page = 1, pageSize = 5))
 #' }
 #'
-#' @return A tibble with one row per gas-consumption entry (same column
-#' conventions as [marktstammdaten_stromerzeugung()]).
-#' \describe{
-#'   \item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{total}{Entry endpoints: total number of matching records (numeric).}
-#'   \item{`*Datum_time`}{Parsed `POSIXct` columns added for date fields matching `*Datum`.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per gas consumption unit
+#'   and columns determined by the MaStR API response. Common columns include
+#'   \code{MaStRNummer}, \code{EinheitName}, \code{Bundesland}, \code{Ort},
+#'   \code{Plz}, \code{BetriebsStatusName}, and
+#'   \code{EinheitRegistrierungsdatum} (see
+#'   [marktstammdaten_filters_gasverbrauch()] for available filter fields).
+#'   Additionally:
+#'   \describe{
+#'     \item{total}{Numeric. Total number of matching records upstream.}
+#'     \item{*Datum_time}{POSIXct. Parsed date column (Europe/Berlin) added
+#'       for every source column whose name contains \code{Datum}.}
+#'   }
 #' @family Marktstammdaten
 #' @export
 marktstammdaten_gasverbrauch <- function(params = list(),

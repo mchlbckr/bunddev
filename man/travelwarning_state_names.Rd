@@ -14,12 +14,17 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with state-name entries and common metadata columns as
-returned by \code{\link[=travelwarning_warnings]{travelwarning_warnings()}}.
-
+A tibble with state-name entries and the same metadata columns as
+\code{\link[=travelwarning_warnings]{travelwarning_warnings()}}: \code{content_id}, \code{parent_content_id},
+\code{response_country}, \code{response_last_modified}, \code{response_last_modified_time},
+\code{last_modified_time}, \code{effective_time}, plus snake_cased entry fields.
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{content_id}{Entry/content identifier (character).}
+\item{parent_content_id}{Parent identifier (character).}
+\item{response_country}{Country code from response metadata (character).}
+\item{response_last_modified}{Feed-level modification timestamp (numeric).}
+\item{last_modified_time / effective_time}{Parsed \code{POSIXct} (Europe/Berlin).}
+\item{\verb{<entry_field>}}{Additional snake_cased columns from each entry.}
 }
 }
 \description{

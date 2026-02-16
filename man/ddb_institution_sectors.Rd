@@ -14,13 +14,13 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with sector entries when the API returns a homogeneous list;
-otherwise a one-row tibble with list-column \code{response}.
+A \link[tibble:tibble]{tibble} with one row per sector and columns:
 \describe{
-\item{Item fields}{For homogeneous list responses, one column per top-level scalar item field.}
-\item{Nested item fields}{Stored as list-columns.}
-\item{response}{For non-homogeneous responses, a single list-column containing the full payload.}
+\item{value}{Character. Sector name.}
+\item{count}{Integer. Number of institutions in sector.}
 }
+Falls back to a one-row tibble with list-column \code{response} when the
+API returns a non-homogeneous payload.
 }
 \description{
 List DDB institution sectors

@@ -36,13 +36,15 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per coastal warning and columns:
-\code{region_id}, \code{type}, \code{level}, \code{description}, \code{description_text}, \code{event},
-and \code{headline}.
-
+A tibble with one row per coastal warning:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{region_id}{Warning region identifier (character).}
+\item{type}{Warning type code (numeric).}
+\item{level}{Warning severity level (numeric).}
+\item{description}{Warning description HTML (character).}
+\item{description_text}{Warning description plain text (character).}
+\item{event}{Event name (character).}
+\item{headline}{Warning headline (character).}
 }
 }
 \description{

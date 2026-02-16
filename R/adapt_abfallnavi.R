@@ -17,12 +17,11 @@
 #' abfallnavi_orte()
 #' }
 #'
-#' @return A tibble with one row per place entry returned by the API.
-#' \describe{
-#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-#'   \item{Nested fields}{Kept as list-columns.}
-#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per place and columns:
+#'   \describe{
+#'     \item{id}{Integer. Place identifier.}
+#'     \item{name}{Character. Place name.}
+#'   }
 #' @family Abfallnavi
 #' @export
 abfallnavi_orte <- function(safe = TRUE, refresh = FALSE) {
@@ -45,13 +44,11 @@ abfallnavi_orte <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A one-row tibble with metadata for the selected place.
-#'
-#' \describe{
-#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-#'   \item{Nested fields}{Kept as list-columns.}
-#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
-#' }
+#' @return A one-row [tibble][tibble::tibble] with columns:
+#'   \describe{
+#'     \item{id}{Integer. Place identifier.}
+#'     \item{name}{Character. Place name.}
+#'   }
 #' @family Abfallnavi
 #' @export
 abfallnavi_ort <- function(ort_id, safe = TRUE, refresh = FALSE) {
@@ -75,13 +72,16 @@ abfallnavi_ort <- function(ort_id, safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per street in the selected place.
-#'
-#' \describe{
-#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-#'   \item{Nested fields}{Kept as list-columns.}
-#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per street and columns:
+#'   \describe{
+#'     \item{id}{Integer. Street identifier.}
+#'     \item{name}{Character. Street name.}
+#'     \item{staticId}{Character. Static identifier (base64-encoded).}
+#'     \item{hausNrList}{List. House numbers for this street.}
+#'     \item{plz}{Character. Postal code (may be `NA`).}
+#'     \item{ortsteilName}{Character. District name.}
+#'     \item{ort}{List. Nested place object.}
+#'   }
 #' @family Abfallnavi
 #' @export
 abfallnavi_strassen <- function(ort_id, safe = TRUE, refresh = FALSE) {
@@ -105,13 +105,13 @@ abfallnavi_strassen <- function(ort_id, safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per available house number entry.
-#'
-#' \describe{
-#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-#'   \item{Nested fields}{Kept as list-columns.}
-#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per house number and columns:
+#'   \describe{
+#'     \item{id}{Integer. House number identifier.}
+#'     \item{nr}{Character. House number label.}
+#'     \item{plz}{Character. Postal code.}
+#'     \item{staticId}{Character. Static identifier (base64-encoded).}
+#'   }
 #' @family Abfallnavi
 #' @export
 abfallnavi_hausnummern <- function(strassen_id, safe = TRUE, refresh = FALSE) {
@@ -134,13 +134,13 @@ abfallnavi_hausnummern <- function(strassen_id, safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per waste fraction entry.
-#'
-#' \describe{
-#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-#'   \item{Nested fields}{Kept as list-columns.}
-#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per waste fraction and columns:
+#'   \describe{
+#'     \item{id}{Integer. Fraction identifier.}
+#'     \item{name}{Character. Fraction name (e.g. "Restabfall").}
+#'     \item{iconNr}{Integer. Icon number for display.}
+#'     \item{farbeRgb}{Character. RGB colour hex code.}
+#'   }
 #' @family Abfallnavi
 #' @export
 abfallnavi_fraktionen <- function(safe = TRUE, refresh = FALSE) {
@@ -163,14 +163,13 @@ abfallnavi_fraktionen <- function(safe = TRUE, refresh = FALSE) {
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per waste fraction entry for the selected
-#' house number.
-#'
-#' \describe{
-#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-#'   \item{Nested fields}{Kept as list-columns.}
-#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per waste fraction and columns:
+#'   \describe{
+#'     \item{id}{Integer. Fraction identifier.}
+#'     \item{name}{Character. Fraction name (e.g. "Restabfall").}
+#'     \item{iconNr}{Integer. Icon number for display.}
+#'     \item{farbeRgb}{Character. RGB colour hex code.}
+#'   }
 #' @family Abfallnavi
 #' @export
 abfallnavi_fraktionen_hausnummern <- function(hausnummern_id, safe = TRUE, refresh = FALSE) {
@@ -194,14 +193,13 @@ abfallnavi_fraktionen_hausnummern <- function(hausnummern_id, safe = TRUE, refre
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per waste fraction entry for the selected
-#' street.
-#'
-#' \describe{
-#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-#'   \item{Nested fields}{Kept as list-columns.}
-#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per waste fraction and columns:
+#'   \describe{
+#'     \item{id}{Integer. Fraction identifier.}
+#'     \item{name}{Character. Fraction name (e.g. "Restabfall").}
+#'     \item{iconNr}{Integer. Icon number for display.}
+#'     \item{farbeRgb}{Character. RGB colour hex code.}
+#'   }
 #' @family Abfallnavi
 #' @export
 abfallnavi_fraktionen_strassen <- function(strassen_id, safe = TRUE, refresh = FALSE) {
@@ -226,16 +224,13 @@ abfallnavi_fraktionen_strassen <- function(strassen_id, safe = TRUE, refresh = F
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per collection date and columns `date`,
-#' `fraction`, and `date_time` (`POSIXct` in Europe/Berlin) when available.
-#'
-#' Includes `date_time` as POSIXct in Europe/Berlin.
-#'
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per collection date and columns:
+#'   \describe{
+#'     \item{id}{Integer. Collection event identifier.}
+#'     \item{bezirk}{List. District information for this collection.}
+#'     \item{datum}{Character. Collection date (YYYY-MM-DD).}
+#'     \item{date_time}{POSIXct. Parsed collection date (Europe/Berlin).}
+#'   }
 #' @family Abfallnavi
 #' @export
 abfallnavi_termine_strassen <- function(strassen_id, fraktion, safe = TRUE, refresh = FALSE) {
@@ -260,16 +255,13 @@ abfallnavi_termine_strassen <- function(strassen_id, fraktion, safe = TRUE, refr
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
 #'
-#' @return A tibble with one row per collection date and columns `date`,
-#' `fraction`, and `date_time` (`POSIXct` in Europe/Berlin) when available.
-#'
-#' Includes `date_time` as POSIXct in Europe/Berlin.
-#'
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per collection date and columns:
+#'   \describe{
+#'     \item{id}{Integer. Collection event identifier.}
+#'     \item{bezirk}{List. District information for this collection.}
+#'     \item{datum}{Character. Collection date (YYYY-MM-DD).}
+#'     \item{date_time}{POSIXct. Parsed collection date (Europe/Berlin).}
+#'   }
 #' @family Abfallnavi
 #' @export
 abfallnavi_termine_hausnummern <- function(hausnummern_id, fraktion, safe = TRUE, refresh = FALSE) {
@@ -302,12 +294,13 @@ abfallnavi_termine_hausnummern <- function(hausnummern_id, fraktion, safe = TRUE
 #' @details
 #' Downloads a calendar file for the requested address and fraction.
 #'
-#' @return A one-row tibble with raw downloaded file bytes in a list-column.
-#' \describe{
-#'   \item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-#'   \item{Nested fields}{Kept as list-columns.}
-#'   \item{date_time}{Added by `abfallnavi_termine_*()` from `datum` as `POSIXct` in Europe/Berlin, when available.}
-#' }
+#' @return A one-row [tibble][tibble::tibble] with columns:
+#'   \describe{
+#'     \item{region}{Character. Region code passed to the request.}
+#'     \item{format}{Character. File format ("pdf" or "ics").}
+#'     \item{jahr}{Integer. Year passed to the request.}
+#'     \item{bytes}{List. Raw file bytes (raw vector).}
+#'   }
 #' @family Abfallnavi
 #' @export
 abfallnavi_kalender_download <- function(region,

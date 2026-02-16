@@ -31,12 +31,10 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with detailed fields for the selected Plenarprotokoll text record.
+A one-row tibble for the selected Plenarprotokoll text record.
+Contains all columns from \code{\link[=dip_bundestag_plenarprotokoll]{dip_bundestag_plenarprotokoll()}} plus:
 \describe{
-\item{num_found}{List endpoints: total number of matches (integer).}
-\item{cursor}{List endpoints: cursor for pagination (character).}
-\item{documents}{List endpoints: returned records as list-column.}
-\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+\item{text}{Full document text (character).}
 }
 }
 \description{

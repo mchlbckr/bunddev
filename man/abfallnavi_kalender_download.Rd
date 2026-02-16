@@ -38,11 +38,12 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with raw downloaded file bytes in a list-column.
+A one-row \link[tibble:tibble]{tibble} with columns:
 \describe{
-\item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-\item{Nested fields}{Kept as list-columns.}
-\item{date_time}{Added by \verb{abfallnavi_termine_*()} from \code{datum} as \code{POSIXct} in Europe/Berlin, when available.}
+\item{region}{Character. Region code passed to the request.}
+\item{format}{Character. File format ("pdf" or "ics").}
+\item{jahr}{Integer. Year passed to the request.}
+\item{bytes}{List. Raw file bytes (raw vector).}
 }
 }
 \description{

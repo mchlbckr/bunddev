@@ -14,13 +14,11 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per Bundesland/region entry. Column names follow
-the upstream service field names.
-\describe{
-\item{Top-level fields}{One column per scalar top-level field (or per GeoJSON feature \code{properties} field).}
-\item{Nested fields}{Stored as list-columns.}
-\item{features}{GeoJSON container endpoint: feature collection as list-column.}
-}
+A tibble with one row per Bundesland/region entry. Columns are created
+dynamically from the upstream service response fields. If the response
+contains GeoJSON features, each feature's \code{properties} are used as columns;
+otherwise each top-level field becomes a column. Scalar values become atomic
+columns and nested structures become list-columns.
 }
 \description{
 List flood portal states and connected regions

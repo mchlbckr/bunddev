@@ -31,12 +31,33 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with detailed fields for the selected Vorgangsposition.
+A one-row tibble for the selected Vorgangsposition:
 \describe{
-\item{num_found}{List endpoints: total number of matches (integer).}
-\item{cursor}{List endpoints: cursor for pagination (character).}
-\item{documents}{List endpoints: returned records as list-column.}
-\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+\item{id}{Vorgangsposition identifier (character).}
+\item{vorgangsposition}{Step description (character).}
+\item{zuordnung}{Assignment: \code{"BT"}, \code{"BR"}, \code{"BV"}, or \code{"EK"} (character).}
+\item{gang}{Key step in the legislative process (logical).}
+\item{fortsetzung}{Continuation of a previous debate (logical).}
+\item{nachtrag}{Addendum entry (logical).}
+\item{vorgangstyp}{Parent Vorgang type (character).}
+\item{typ}{Entity type, always \code{"Vorgangsposition"} (character).}
+\item{titel}{Title of the parent Vorgang (character).}
+\item{dokumentart}{Document type: \code{"Drucksache"} or \code{"Plenarprotokoll"} (character).}
+\item{vorgang_id}{Parent Vorgang id (character).}
+\item{datum}{Date of associated document (character, ISO date).}
+\item{aktualisiert}{Last update timestamp (character, ISO datetime).}
+\item{fundstelle}{Document reference details (list-column).}
+\item{urheber}{Authoring bodies (list-column).}
+\item{ueberweisung}{Committee referrals (list-column).}
+\item{aktivitaet_anzeige}{Up to 4 associated activities for display (list-column).}
+\item{aktivitaet_anzahl}{Total number of associated activities (integer).}
+\item{ressort}{Government departments involved (list-column).}
+\item{beschlussfassung}{Voting decisions (list-column).}
+\item{ratsdok}{EU Council document number (character or \code{NA}).}
+\item{kom}{EU COM reference number (character or \code{NA}).}
+\item{sek}{EU SEC reference number (character or \code{NA}).}
+\item{mitberaten}{Co-deliberated Vorgangspositionen (list-column).}
+\item{abstract}{Summary text (character or \code{NA}).}
 }
 }
 \description{

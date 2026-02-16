@@ -17,9 +17,12 @@ from the API (default \code{FALSE}).}
 }
 \value{
 A one-row tibble with committee detail fields extracted from XML.
+Column names correspond to XML element names.
 \describe{
-\item{XML child-tag columns}{One column per scalar child element in each \verb{<item>} entry (or root-level document field for single-document endpoints).}
-\item{Repeated child tags}{Stored as list-columns.}
+\item{\verb{<tag>}}{One column per unique scalar child element of the XML root
+(character). Exact names depend on the XML document structure.}
+\item{\verb{<repeated_tag>}}{List-column when a child element name appears more
+than once.}
 }
 }
 \description{

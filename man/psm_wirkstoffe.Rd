@@ -33,11 +33,14 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per active ingredient item.
+A \link[tibble:tibble]{tibble} with one row per active ingredient and
+columns:
 \describe{
-\item{Item fields}{One column per top-level field of each \code{items} element (\verb{m_row$$} removed).}
-\item{Nested fields}{Stored as list-columns.}
-\item{response}{Fallback payload for non-item responses (list-column).}
+\item{GENEHMIGT}{Character. Approval flag.}
+\item{KATEGORIE}{Character. Ingredient category.}
+\item{WIRKNR}{Character. Active ingredient number.}
+\item{WIRKSTOFFNAME}{Character. Active ingredient name (German).}
+\item{WIRKSTOFFNAME_EN}{Character. Active ingredient name (English).}
 }
 }
 \description{

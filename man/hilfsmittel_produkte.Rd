@@ -33,12 +33,24 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per product entry in the product list. Columns
-follow upstream schema; nested values may appear as list-columns.
-
+A \link[tibble:tibble]{tibble} with one row per product and columns:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{organisationId}{Character. Organisation identifier.}
+\item{produktartId}{Character. Product-type identifier.}
+\item{nummer}{Integer. Sequential product number.}
+\item{name}{Character. Product name.}
+\item{artikelnummern}{List. Article numbers (character vector).}
+\item{typenAusfuehrungen}{List. Type/model variants (character vector).}
+\item{aufnahmeDatum}{Character. Admission date (ISO-8601).}
+\item{aenderungsDatum}{Character. Last-modified date (ISO-8601).}
+\item{zehnSteller}{Character. Ten-digit product code.}
+\item{herstellerName}{Character. Manufacturer name.}
+\item{istHerausgenommen}{Logical. Whether product is withdrawn.}
+\item{istAbrechnungsposition}{Logical. Whether product is a billing item.}
+\item{id}{Character. Product identifier.}
+\item{displayName}{Character. Combined display label.}
+\item{aufnahmeDatum_time}{POSIXct. Parsed admission date (Europe/Berlin).}
+\item{aenderungsDatum_time}{POSIXct. Parsed last-modified date (Europe/Berlin).}
 }
 }
 \description{

@@ -40,13 +40,18 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per catalog entry resource (same structure
-rules as \code{\link[=diga_device_definitions]{diga_device_definitions()}}).
-
+A \link[tibble:tibble]{tibble} with one row per catalog entry and columns:
 \describe{
-\item{Resource fields}{One column per top-level scalar field in each FHIR \code{entry$resource}.}
-\item{Nested resource fields}{Stored as list-columns.}
-\item{bundle}{Returned as list-column when the response has no \code{entry} records.}
+\item{resourceType}{Character. FHIR resource type, always \code{"CatalogEntry"}.}
+\item{id}{Character. FHIR resource identifier.}
+\item{status}{Character. Entry status.}
+\item{orderable}{Logical. Whether the entry is orderable.}
+\item{meta}{List. Resource metadata (profile, timestamps).}
+\item{identifier}{List. Business identifiers.}
+\item{type}{List. Catalog entry type coding.}
+\item{referencedItem}{List. Referenced device definition.}
+\item{extension}{List. FHIR profile extensions.}
+\item{additionalCharacteristic}{List. Additional characteristics.}
 }
 }
 \description{

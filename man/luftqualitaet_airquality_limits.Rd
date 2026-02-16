@@ -14,12 +14,10 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with available date limits for the endpoint.
-
-\describe{
-\item{Indexed value columns}{Columns are derived from API \code{indices} metadata and represent scalar values for each returned record.}
-\item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
-}
+A \link[tibble:tibble]{tibble} with one row per station. Column names
+are derived from the \code{indices} metadata in the API response and
+typically include a \code{station_id} key column followed by
+\code{limit date start min (CET)} and \code{limit date start max (CET)}.
 }
 \description{
 Get air quality date limits

@@ -29,12 +29,14 @@
 #' mudab_project_stations(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `V_MUDAB_PROJECTSTATION` record.
-#' \describe{
-#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per project station and columns:
+#'   \describe{
+#'     \item{metadataid}{Integer. Metadata identifier.}
+#'     \item{PROJECTSTATIONID}{Integer. Project station identifier.}
+#'     \item{NAME_PS}{Character. Project station name.}
+#'     \item{REGION}{Character. Region of the station.}
+#'     \item{INSTITUT}{Character. Responsible institute.}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_project_stations <- function(filter = NULL,
@@ -73,12 +75,14 @@ mudab_project_stations <- function(filter = NULL,
 #' mudab_stations(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `STATION_SMALL` record.
-#' \describe{
-#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per measurement station and columns:
+#'   \describe{
+#'     \item{metadataid}{Integer. Metadata identifier.}
+#'     \item{STATNAME_ST}{Character. Station name.}
+#'     \item{NAME_PS}{Character. Project station name.}
+#'     \item{STATIONTYPE_ST}{Character. Station type.}
+#'     \item{COMPT_DS}{Character. Compartment code (BL, CW, CS, or CF).}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_stations <- function(filter = NULL,
@@ -115,12 +119,16 @@ mudab_stations <- function(filter = NULL,
 #' mudab_parameters(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `MV_PARAMETER` record.
-#' \describe{
-#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per parameter and columns:
+#'   \describe{
+#'     \item{metadataid}{Integer. Metadata identifier.}
+#'     \item{COMPT_DS}{Character. Compartment code (BL, CW, CS, or CF).}
+#'     \item{PARAMETER}{Character. Parameter abbreviation.}
+#'     \item{PARAMETERGRUPPE}{Character. Parameter group code.}
+#'     \item{PARAM_NAME}{Character. Parameter name.}
+#'     \item{PARGROUP}{Character. Parameter group code (alternate).}
+#'     \item{PARAMGROUP_NAME}{Character. Parameter group name.}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_parameters <- function(filter = NULL,
@@ -157,14 +165,18 @@ mudab_parameters <- function(filter = NULL,
 #' mudab_parameter_values(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `MV_STATION_MSMNT` record.
-#' Includes parsed `*_time` columns (`POSIXct`, Europe/Berlin) when matching
-#' date/time fields are present.
-#'
-#' \describe{
-#'   \item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-#'   \item{Nested fields}{Kept as list-columns; for endpoints with `flatten` controls these can be transformed.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per measurement value and columns:
+#'   \describe{
+#'     \item{metadataid}{Integer. Metadata identifier.}
+#'     \item{STATNAME_ST}{Character. Station name.}
+#'     \item{STATNAME_DATE_TIME}{Character. Composite station-date-time string.}
+#'     \item{PARAMETERID_PM}{Character. Parameter identifier.}
+#'     \item{PARAMCODE_PM}{Character. Parameter code name.}
+#'     \item{DATE_STM}{Character. Measurement date (YYYYMMDD).}
+#'     \item{TIME_STM}{Character. Measurement time (HHMM).}
+#'     \item{VALUE_MS}{Character. Measured value.}
+#'     \item{datetime_time}{POSIXct. Parsed date-time (Europe/Berlin).}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_parameter_values <- function(filter = NULL,
@@ -201,12 +213,16 @@ mudab_parameter_values <- function(filter = NULL,
 #' mudab_parameters_biologie(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `MV_PARAMETER_BIOLOGIE` record.
-#' \describe{
-#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per parameter and columns:
+#'   \describe{
+#'     \item{metadataid}{Integer. Metadata identifier.}
+#'     \item{COMPT_DS}{Character. Compartment code (BL, CW, CS, or CF).}
+#'     \item{PARAMETER}{Character. Parameter abbreviation.}
+#'     \item{PARAMETERGRUPPE}{Character. Parameter group code.}
+#'     \item{PARAM_NAME}{Character. Parameter name.}
+#'     \item{PARGROUP}{Character. Parameter group code (alternate).}
+#'     \item{PARAMGROUP_NAME}{Character. Parameter group name.}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_parameters_biologie <- function(filter = NULL,
@@ -243,12 +259,16 @@ mudab_parameters_biologie <- function(filter = NULL,
 #' mudab_parameters_biota(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `MV_PARAMETER_BIOTA` record.
-#' \describe{
-#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per parameter and columns:
+#'   \describe{
+#'     \item{metadataid}{Integer. Metadata identifier.}
+#'     \item{COMPT_DS}{Character. Compartment code (BL, CW, CS, or CF).}
+#'     \item{PARAMETER}{Character. Parameter abbreviation.}
+#'     \item{PARAMETERGRUPPE}{Character. Parameter group code.}
+#'     \item{PARAM_NAME}{Character. Parameter name.}
+#'     \item{PARGROUP}{Character. Parameter group code (alternate).}
+#'     \item{PARAMGROUP_NAME}{Character. Parameter group name.}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_parameters_biota <- function(filter = NULL,
@@ -285,12 +305,16 @@ mudab_parameters_biota <- function(filter = NULL,
 #' mudab_parameters_wasser(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `MV_PARAMETER_WASSER` record.
-#' \describe{
-#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per parameter and columns:
+#'   \describe{
+#'     \item{metadataid}{Integer. Metadata identifier.}
+#'     \item{COMPT_DS}{Character. Compartment code (BL, CW, CS, or CF).}
+#'     \item{PARAMETER}{Character. Parameter abbreviation.}
+#'     \item{PARAMETERGRUPPE}{Character. Parameter group code.}
+#'     \item{PARAM_NAME}{Character. Parameter name.}
+#'     \item{PARGROUP}{Character. Parameter group code (alternate).}
+#'     \item{PARAMGROUP_NAME}{Character. Parameter group name.}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_parameters_wasser <- function(filter = NULL,
@@ -327,12 +351,16 @@ mudab_parameters_wasser <- function(filter = NULL,
 #' mudab_parameters_sediment(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `MV_PARAMETER_SEDIMENT` record.
-#' \describe{
-#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per parameter and columns:
+#'   \describe{
+#'     \item{metadataid}{Integer. Metadata identifier.}
+#'     \item{COMPT_DS}{Character. Compartment code (BL, CW, CS, or CF).}
+#'     \item{PARAMETER}{Character. Parameter abbreviation.}
+#'     \item{PARAMETERGRUPPE}{Character. Parameter group code.}
+#'     \item{PARAM_NAME}{Character. Parameter name.}
+#'     \item{PARGROUP}{Character. Parameter group code (alternate).}
+#'     \item{PARAMGROUP_NAME}{Character. Parameter group name.}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_parameters_sediment <- function(filter = NULL,
@@ -369,12 +397,17 @@ mudab_parameters_sediment <- function(filter = NULL,
 #' mudab_plc_stations(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `V_PLC_STATION` record.
-#' \describe{
-#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per PLC station and columns:
+#'   \describe{
+#'     \item{STATION_NAME}{Character. Station name.}
+#'     \item{STATION_CODE}{Character. Station code.}
+#'     \item{LAND_CD}{Character. Federal state code.}
+#'     \item{ST_LAT}{Numeric. Latitude.}
+#'     \item{ST_LON}{Numeric. Longitude.}
+#'     \item{SUBCM_CODE}{Character. Sub-compartment code.}
+#'     \item{SUBCM_NAME}{Character. Sub-compartment name.}
+#'     \item{MON_TYPE}{Character. Monitoring type.}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_plc_stations <- function(filter = NULL,
@@ -411,12 +444,19 @@ mudab_plc_stations <- function(filter = NULL,
 #' mudab_plc_parameters(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `V_GEMESSENE_PARA_PLC` record.
-#' \describe{
-#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per PLC parameter and columns:
+#'   \describe{
+#'     \item{metadataid}{Integer. Metadata identifier.}
+#'     \item{PARAMETER}{Character. Parameter abbreviation.}
+#'     \item{PARAMETERGRUPPE}{Character. Parameter group code.}
+#'     \item{STATION_CODE}{Character. Station code.}
+#'     \item{LETZTE_MESSUNG}{Character. Year of last measurement.}
+#'     \item{PRKEY}{Character. Unique key (station + parameter).}
+#'     \item{STATION_NAME}{Character. Station name.}
+#'     \item{ANZ_MESSWERTE}{Integer. Number of measured values.}
+#'     \item{SUBCM_CODE}{Character. Sub-compartment code.}
+#'     \item{SUBCM_NAME}{Character. Sub-compartment name.}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_plc_parameters <- function(filter = NULL,
@@ -453,12 +493,27 @@ mudab_plc_parameters <- function(filter = NULL,
 #' mudab_plc_measurements(range = list(from = 0, count = 5))
 #' }
 #'
-#' @return A tibble with one row per returned `V_PLC_STATION_MSMNT` record.
-#' \describe{
-#'   \item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-#'   \item{Nested fields}{Stored as list-columns.}
-#'   \item{datetime_time}{Added as `POSIXct` (Europe/Berlin) when `DATE_STM` and `TIME_STM` exist.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per PLC measurement and columns:
+#'   \describe{
+#'     \item{metadataid}{Integer. Metadata identifier.}
+#'     \item{NUMMER}{Integer. Running row number.}
+#'     \item{NAME}{Integer. Measurement name code.}
+#'     \item{STATION_CODE}{Character. Station code.}
+#'     \item{STATION_NAME}{Character. Station name.}
+#'     \item{VALUE}{Numeric. Measured value.}
+#'     \item{PARAM_TYPE}{Character. Aggregation type ("TOT" or "AVE").}
+#'     \item{PARAM_ID}{Character. Numeric code for NAME.}
+#'     \item{PERIOD_NAME}{Character. Measurement period (year).}
+#'     \item{PERIOD_TYPE}{Character. Aggregation duration ("A").}
+#'     \item{LAND_CD}{Character. Federal state code.}
+#'     \item{ST_LAT}{Numeric. Latitude.}
+#'     \item{ST_LON}{Numeric. Longitude.}
+#'     \item{SUBCM_CODE}{Character. Sub-compartment code.}
+#'     \item{SUBCM_NAME}{Character. Sub-compartment name.}
+#'     \item{MON_TYPE}{Character. Monitoring type.}
+#'     \item{VAL_UNIT}{Character. Measurement unit.}
+#'     \item{AREA}{Numeric. Area value.}
+#'   }
 #' @family MUDAB
 #' @export
 mudab_plc_measurements <- function(filter = NULL,

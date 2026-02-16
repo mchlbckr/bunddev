@@ -44,13 +44,37 @@ the number of rows.}
 }}
 }
 \value{
-A one-row tibble with list-response metadata: \code{num_found}, \code{cursor}, and \code{documents} (list-column).
+A \link[tibble:tibble]{tibble} with one row per Vorgangsposition and columns:
 \describe{
-\item{num_found}{List endpoints: total number of matches (integer).}
-\item{cursor}{List endpoints: cursor for pagination (character).}
-\item{documents}{List endpoints: returned records as list-column.}
-\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+\item{id}{Character. Unique Vorgangsposition identifier.}
+\item{vorgangsposition}{Character. Step description.}
+\item{gang}{Logical. Key step in legislative process.}
+\item{fortsetzung}{Logical. Continuation of prior debate.}
+\item{nachtrag}{Logical. Addendum entry.}
+\item{vorgangstyp}{Character. Parent Vorgang type.}
+\item{typ}{Character. Entity type, always \code{"Vorgangsposition"}.}
+\item{titel}{Character. Title of the parent Vorgang.}
+\item{dokumentart}{Character. Document type.}
+\item{vorgang_id}{Character. Parent Vorgang identifier.}
+\item{datum}{Character. Date of associated document.}
+\item{aktualisiert}{Character. Last update timestamp.}
+\item{aktivitaet_anzahl}{Integer. Total associated activities.}
+\item{ratsdok}{Character. EU Council document number.}
+\item{kom}{Character. EU COM reference number.}
+\item{sek}{Character. EU SEC reference number.}
+\item{abstract}{Character. Summary text.}
+\item{zuordnung}{List. Assignment to BT/BR/BV/EK.}
+\item{fundstelle}{List. Document reference details.}
+\item{urheber}{List. Authoring bodies.}
+\item{ueberweisung}{List. Committee referrals.}
+\item{aktivitaet_anzeige}{List. Up to 4 display activities.}
+\item{ressort}{List. Government departments involved.}
+\item{beschlussfassung}{List. Voting decisions.}
+\item{mitberaten}{List. Co-deliberated Vorgangspositionen.}
 }
+
+Wrapped in a one-row tibble with \code{num_found} (integer), \code{cursor}
+(character), and \code{documents} (list-column) when not yet unpacked.
 }
 \description{
 List DIP Vorgangsposition entries

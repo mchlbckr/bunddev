@@ -14,12 +14,12 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per waste fraction entry.
-
+A \link[tibble:tibble]{tibble} with one row per waste fraction and columns:
 \describe{
-\item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-\item{Nested fields}{Kept as list-columns.}
-\item{date_time}{Added by \verb{abfallnavi_termine_*()} from \code{datum} as \code{POSIXct} in Europe/Berlin, when available.}
+\item{id}{Integer. Fraction identifier.}
+\item{name}{Character. Fraction name (e.g. "Restabfall").}
+\item{iconNr}{Integer. Icon number for display.}
+\item{farbeRgb}{Character. RGB colour hex code.}
 }
 }
 \description{

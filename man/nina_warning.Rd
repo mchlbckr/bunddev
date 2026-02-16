@@ -16,14 +16,10 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with detailed warning content rows (same common metadata columns as \code{\link[=nina_warnings]{nina_warnings()}}).
-
-Includes \code{last_modified_time} and \code{effective_time} as POSIXct in Europe/Berlin.
-
-\describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
-}
+A tibble with detailed warning content rows. Same column structure as
+\code{\link[=nina_warnings]{nina_warnings()}}: entry scalar fields (snake_case), plus \code{content_id},
+\code{response_country}, \code{response_last_modified}, \code{last_modified_time}, and
+\code{effective_time} (\code{POSIXct}, Europe/Berlin).
 }
 \description{
 Get a NINA travel warning by content id

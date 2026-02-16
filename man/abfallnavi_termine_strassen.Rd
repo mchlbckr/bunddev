@@ -23,14 +23,12 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per collection date and columns \code{date},
-\code{fraction}, and \code{date_time} (\code{POSIXct} in Europe/Berlin) when available.
-
-Includes \code{date_time} as POSIXct in Europe/Berlin.
-
+A \link[tibble:tibble]{tibble} with one row per collection date and columns:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{id}{Integer. Collection event identifier.}
+\item{bezirk}{List. District information for this collection.}
+\item{datum}{Character. Collection date (YYYY-MM-DD).}
+\item{date_time}{POSIXct. Parsed collection date (Europe/Berlin).}
 }
 }
 \description{

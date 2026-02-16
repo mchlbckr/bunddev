@@ -26,10 +26,32 @@ the number of rows.}
 \value{
 A tibble with the same columns as \code{\link[=bewerberboerse_search]{bewerberboerse_search()}}, filtered
 to the requested \code{referenznummer}.
-
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{refnr}{Candidate reference number (character).}
+\item{verfuegbarkeit_von}{Availability date text (character).}
+\item{aktualisierungsdatum}{Last update date text (character).}
+\item{veroeffentlichungsdatum}{Publication date text (character).}
+\item{stellenart}{Position type (character).}
+\item{arbeitszeit_modelle}{Work-time models, collapsed string (character).}
+\item{berufe}{Occupations, collapsed string (character).}
+\item{letzte_taetigkeit_jahr}{Year of most recent activity (character).}
+\item{letzte_taetigkeit_bezeichnung}{Label of most recent activity (character).}
+\item{letzte_taetigkeit_aktuell}{Whether latest activity is current (logical).}
+\item{hat_email}{Email contact available (logical).}
+\item{hat_telefon}{Phone contact available (logical).}
+\item{hat_adresse}{Postal address available (logical).}
+\item{ort}{City/locality (character).}
+\item{plz}{Postal code (character).}
+\item{umkreis}{Radius text returned by API (character).}
+\item{region}{Region/state (character).}
+\item{land}{Country (character).}
+\item{mehrere_arbeitsorte}{Multiple work locations flag (logical).}
+\item{ausbildungen}{Education entries (list-column).}
+\item{erfahrung}{Experience entries (list-column).}
+\item{operation_id}{Operation identifier (character).}
+\item{page}{Returned page index (integer).}
+\item{size}{Returned page size (integer).}
+\item{max_ergebnisse}{Total matching result count (integer).}
 }
 }
 \description{

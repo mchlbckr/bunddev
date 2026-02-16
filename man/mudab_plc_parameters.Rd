@@ -26,11 +26,18 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per returned \code{V_GEMESSENE_PARA_PLC} record.
+A \link[tibble:tibble]{tibble} with one row per PLC parameter and columns:
 \describe{
-\item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-\item{Nested fields}{Stored as list-columns.}
-\item{datetime_time}{Added as \code{POSIXct} (Europe/Berlin) when \code{DATE_STM} and \code{TIME_STM} exist.}
+\item{metadataid}{Integer. Metadata identifier.}
+\item{PARAMETER}{Character. Parameter abbreviation.}
+\item{PARAMETERGRUPPE}{Character. Parameter group code.}
+\item{STATION_CODE}{Character. Station code.}
+\item{LETZTE_MESSUNG}{Character. Year of last measurement.}
+\item{PRKEY}{Character. Unique key (station + parameter).}
+\item{STATION_NAME}{Character. Station name.}
+\item{ANZ_MESSWERTE}{Integer. Number of measured values.}
+\item{SUBCM_CODE}{Character. Sub-compartment code.}
+\item{SUBCM_NAME}{Character. Sub-compartment name.}
 }
 }
 \description{

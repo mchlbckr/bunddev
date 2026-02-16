@@ -26,12 +26,19 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A one-row tibble with detailed fields for the selected person record.
+A one-row tibble for the selected person:
 \describe{
-\item{num_found}{List endpoints: total number of matches (integer).}
-\item{cursor}{List endpoints: cursor for pagination (character).}
-\item{documents}{List endpoints: returned records as list-column.}
-\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+\item{id}{Person identifier (character).}
+\item{nachname}{Last name (character).}
+\item{vorname}{First name (character).}
+\item{namenszusatz}{Name affix, e.g. \code{"von der"} (character or \code{NA}).}
+\item{typ}{Entity type, always \code{"Person"} (character).}
+\item{wahlperiode}{Legislative period of first associated document (integer or \code{NA}).}
+\item{basisdatum}{Date of first associated document (character or \code{NA}).}
+\item{datum}{Date of most recent associated document (character or \code{NA}).}
+\item{aktualisiert}{Last update timestamp (character, ISO datetime).}
+\item{titel}{Display title with role (character).}
+\item{person_roles}{Roles and alternative names (list-column).}
 }
 }
 \description{

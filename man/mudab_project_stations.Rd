@@ -42,11 +42,13 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per returned \code{V_MUDAB_PROJECTSTATION} record.
+A \link[tibble:tibble]{tibble} with one row per project station and columns:
 \describe{
-\item{Record fields}{One column per top-level scalar field of the selected MUDAB record type.}
-\item{Nested fields}{Stored as list-columns.}
-\item{datetime_time}{Added as \code{POSIXct} (Europe/Berlin) when \code{DATE_STM} and \code{TIME_STM} exist.}
+\item{metadataid}{Integer. Metadata identifier.}
+\item{PROJECTSTATIONID}{Integer. Project station identifier.}
+\item{NAME_PS}{Character. Project station name.}
+\item{REGION}{Character. Region of the station.}
+\item{INSTITUT}{Character. Responsible institute.}
 }
 }
 \description{

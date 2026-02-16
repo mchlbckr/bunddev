@@ -33,12 +33,13 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with filter definitions for electricity consumption.
+A \link[tibble:tibble]{tibble} with one row per available filter and
+columns:
 \describe{
-\item{Filter/entry fields}{One column per top-level scalar field returned by MaStR.}
-\item{Nested fields}{Stored as list-columns.}
-\item{total}{Entry endpoints: total number of matching records (numeric).}
-\item{\verb{*Datum_time}}{Parsed \code{POSIXct} columns added for date fields matching \verb{*Datum}.}
+\item{FilterName}{Character. Machine-readable filter field name.}
+\item{ListObject}{List. Selectable options (named with \code{Name}/\code{Value}).}
+\item{Type}{Character. Filter data type (\code{"text"}, \code{"number"},
+\code{"multidropdown"}, \code{"date"}, or \code{"boolean"}).}
 }
 }
 \description{

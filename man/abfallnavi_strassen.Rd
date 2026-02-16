@@ -16,12 +16,15 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per street in the selected place.
-
+A \link[tibble:tibble]{tibble} with one row per street and columns:
 \describe{
-\item{Top-level scalar fields}{One column per scalar field returned by the endpoint (for example ids, names, labels, and codes).}
-\item{Nested fields}{Kept as list-columns.}
-\item{date_time}{Added by \verb{abfallnavi_termine_*()} from \code{datum} as \code{POSIXct} in Europe/Berlin, when available.}
+\item{id}{Integer. Street identifier.}
+\item{name}{Character. Street name.}
+\item{staticId}{Character. Static identifier (base64-encoded).}
+\item{hausNrList}{List. House numbers for this street.}
+\item{plz}{Character. Postal code (may be \code{NA}).}
+\item{ortsteilName}{Character. District name.}
+\item{ort}{List. Nested place object.}
 }
 }
 \description{

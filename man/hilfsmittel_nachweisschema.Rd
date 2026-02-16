@@ -36,12 +36,14 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with detail fields for one Nachweisschema resource. Columns
-follow upstream schema; nested values may appear as list-columns.
-
+A \link[tibble:tibble]{tibble} with one row for the requested
+verification schema and columns:
 \describe{
-\item{Scalar fields}{One column per top-level scalar field returned by the endpoint.}
-\item{Nested fields}{Kept as list-columns; for endpoints with \code{flatten} controls these can be transformed.}
+\item{id}{Character. Schema identifier.}
+\item{name}{Character. Schema name.}
+\item{produktmusterErforderlich}{Logical. Whether a product sample is required.}
+\item{nachweisschemaKategorieZuweisungen}{List. Category assignments (nested objects).}
+\item{nachweisAbschnittAnforderungen}{List. Section requirements (nested objects).}
 }
 }
 \description{

@@ -25,11 +25,11 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 from the API (default \code{FALSE}).}
 }
 \value{
-A tibble with one row per threshold metadata entry.
-\describe{
-\item{Indexed value columns}{Columns are derived from API \code{indices} metadata and represent scalar values for each returned record.}
-\item{Index key column}{Included when the API provides a named index key (for example station id/date key).}
-}
+A \link[tibble:tibble]{tibble} with one row per threshold entry. Column
+names are derived from the \code{indices} metadata in the API response and
+typically include \code{threshold id}, \code{component id},
+\code{scope id}, \code{threshold min}, \code{threshold max}, and
+\code{threshold index}.
 }
 \description{
 List thresholds

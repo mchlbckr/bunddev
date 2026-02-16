@@ -40,13 +40,18 @@ the number of rows.}
 }}
 }
 \value{
-A tibble with one row per organization resource (same structure rules
-as \code{\link[=diga_device_definitions]{diga_device_definitions()}}).
-
+A \link[tibble:tibble]{tibble} with one row per organization and columns:
 \describe{
-\item{Resource fields}{One column per top-level scalar field in each FHIR \code{entry$resource}.}
-\item{Nested resource fields}{Stored as list-columns.}
-\item{bundle}{Returned as list-column when the response has no \code{entry} records.}
+\item{resourceType}{Character. FHIR resource type, always \code{"Organization"}.}
+\item{id}{Character. FHIR resource identifier.}
+\item{name}{Character. Organization display name.}
+\item{active}{Logical. Whether the organization is active.}
+\item{meta}{List. Resource metadata (profile, timestamps).}
+\item{identifier}{List. Business identifiers.}
+\item{type}{List. Organization type coding.}
+\item{telecom}{List. Contact details.}
+\item{address}{List. Postal addresses.}
+\item{extension}{List. FHIR profile extensions.}
 }
 }
 \description{

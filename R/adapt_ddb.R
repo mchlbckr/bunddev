@@ -117,13 +117,17 @@ ddb_search <- function(query,
 #' ddb_institutions(params = list(hasItems = TRUE))
 #' }
 #'
-#' @return A tibble with institution entries when the API returns a homogeneous
-#' list; otherwise a one-row tibble with list-column `response`.
-#' \describe{
-#'   \item{Item fields}{For homogeneous list responses, one column per top-level scalar item field.}
-#'   \item{Nested item fields}{Stored as list-columns.}
-#'   \item{response}{For non-homogeneous responses, a single list-column containing the full payload.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per institution and columns:
+#'   \describe{
+#'     \item{id}{Character. Institution identifier.}
+#'     \item{label}{Character. Display name.}
+#'     \item{latitude}{Numeric. Geographic latitude.}
+#'     \item{longitude}{Numeric. Geographic longitude.}
+#'     \item{sector}{Character. Cultural sector code.}
+#'     \item{children}{List. Nested child institutions.}
+#'   }
+#' Falls back to a one-row tibble with list-column `response` when the
+#' API returns a non-homogeneous payload.
 #' @family DDB
 #' @export
 ddb_institutions <- function(params = list(),
@@ -162,13 +166,13 @@ ddb_institutions <- function(params = list(),
 #' ddb_institution_sectors()
 #' }
 #'
-#' @return A tibble with sector entries when the API returns a homogeneous list;
-#' otherwise a one-row tibble with list-column `response`.
-#' \describe{
-#'   \item{Item fields}{For homogeneous list responses, one column per top-level scalar item field.}
-#'   \item{Nested item fields}{Stored as list-columns.}
-#'   \item{response}{For non-homogeneous responses, a single list-column containing the full payload.}
-#' }
+#' @return A [tibble][tibble::tibble] with one row per sector and columns:
+#'   \describe{
+#'     \item{value}{Character. Sector name.}
+#'     \item{count}{Integer. Number of institutions in sector.}
+#'   }
+#' Falls back to a one-row tibble with list-column `response` when the
+#' API returns a non-homogeneous payload.
 #' @family DDB
 #' @export
 ddb_institution_sectors <- function(safe = TRUE, refresh = FALSE) {

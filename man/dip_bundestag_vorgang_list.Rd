@@ -44,13 +44,34 @@ the number of rows.}
 }}
 }
 \value{
-A one-row tibble with list-response metadata: \code{num_found}, \code{cursor}, and \code{documents} (list-column).
+A \link[tibble:tibble]{tibble} with one row per Vorgang and columns:
 \describe{
-\item{num_found}{List endpoints: total number of matches (integer).}
-\item{cursor}{List endpoints: cursor for pagination (character).}
-\item{documents}{List endpoints: returned records as list-column.}
-\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+\item{id}{Character. Unique Vorgang identifier.}
+\item{typ}{Character. Entity type, always \code{"Vorgang"}.}
+\item{beratungsstand}{Character. Consultation status.}
+\item{vorgangstyp}{Character. Vorgang type.}
+\item{wahlperiode}{Integer. Legislative period.}
+\item{datum}{Character. Date of last associated document.}
+\item{aktualisiert}{Character. Last update timestamp.}
+\item{titel}{Character. Title text.}
+\item{abstract}{Character. Summary text.}
+\item{gesta}{Character. GESTA reference number.}
+\item{kom}{Character. EU COM reference number.}
+\item{ratsdok}{Character. EU Council document number.}
+\item{archiv}{Character. Archive reference.}
+\item{mitteilung}{Character. Supplementary note.}
+\item{sek}{Character. EU SEC reference number.}
+\item{initiative}{List. Initiating factions or bodies.}
+\item{sachgebiet}{List. Subject areas.}
+\item{deskriptor}{List. Thesaurus descriptor entries.}
+\item{zustimmungsbeduerftigkeit}{List. Consent requirements.}
+\item{verkuendung}{List. Promulgation details.}
+\item{inkrafttreten}{List. Entry-into-force details.}
+\item{vorgang_verlinkung}{List. Linked Vorgaenge.}
 }
+
+Wrapped in a one-row tibble with \code{num_found} (integer), \code{cursor}
+(character), and \code{documents} (list-column) when not yet unpacked.
 }
 \description{
 List DIP Vorgang entries

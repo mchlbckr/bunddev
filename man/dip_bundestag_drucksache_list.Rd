@@ -44,13 +44,31 @@ the number of rows.}
 }}
 }
 \value{
-A one-row tibble with list-response metadata: \code{num_found}, \code{cursor}, and \code{documents} (list-column).
+A \link[tibble:tibble]{tibble} with one row per Drucksache and columns:
 \describe{
-\item{num_found}{List endpoints: total number of matches (integer).}
-\item{cursor}{List endpoints: cursor for pagination (character).}
-\item{documents}{List endpoints: returned records as list-column.}
-\item{Detail fields}{Detail endpoints: one column per top-level scalar field, with nested structures in list-columns.}
+\item{id}{Character. Unique Drucksache identifier.}
+\item{typ}{Character. Entity type, always \code{"Dokument"}.}
+\item{dokumentart}{Character. Document type, always \code{"Drucksache"}.}
+\item{drucksachetyp}{Character. Drucksache subtype.}
+\item{dokumentnummer}{Character. Document number.}
+\item{wahlperiode}{Integer. Legislative period.}
+\item{herausgeber}{Character. Publisher: \code{"BT"} or \code{"BR"}.}
+\item{datum}{Character. Publication date.}
+\item{aktualisiert}{Character. Last update timestamp.}
+\item{titel}{Character. Title text.}
+\item{autoren_anzahl}{Integer. Total author count.}
+\item{pdf_hash}{Character. MD5 checksum of PDF file.}
+\item{vorgangsbezug_anzahl}{Integer. Total related Vorgaenge.}
+\item{anlagen}{Character. Appendix description.}
+\item{autoren_anzeige}{List. Up to 4 display authors.}
+\item{fundstelle}{List. Document reference details.}
+\item{urheber}{List. Authoring bodies.}
+\item{vorgangsbezug}{List. Related Vorgaenge.}
+\item{ressort}{List. Government departments involved.}
 }
+
+Wrapped in a one-row tibble with \code{num_found} (integer), \code{cursor}
+(character), and \code{documents} (list-column) when not yet unpacked.
 }
 \description{
 List DIP Drucksachen
