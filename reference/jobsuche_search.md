@@ -51,18 +51,18 @@ fuer Arbeit. Authentication is required via an API key passed as
 documentation.
 
 Use
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 to configure the key and
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 to discover supported query parameters.
 
 ## See also
 
-[`jobsuche_search_app()`](https://mchlbckr.github.io/bunddev/reference/jobsuche_search_app.md)
+[`jobsuche_search_app()`](https://buecker.ms/bunddev/reference/jobsuche_search_app.md)
 for the app endpoint,
-[`jobsuche_logo()`](https://mchlbckr.github.io/bunddev/reference/jobsuche_logo.md)
+[`jobsuche_logo()`](https://buecker.ms/bunddev/reference/jobsuche_logo.md)
 to fetch employer logos, and
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 for authentication.
 
 ## Examples

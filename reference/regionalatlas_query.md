@@ -82,7 +82,7 @@ Regional levels in data: typ 1=Bundeslaender, 2=Regierungsbezirke,
 
 ## See also
 
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 for available query parameters.
 
 ## Examples

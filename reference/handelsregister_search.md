@@ -58,7 +58,7 @@ terms of use. Use `safe = TRUE` to respect the built-in rate limiting.
 
 ## See also
 
-[`bunddev_rate_limit_get()`](https://mchlbckr.github.io/bunddev/reference/bunddev_rate_limit_get.md)
+[`bunddev_rate_limit_get()`](https://buecker.ms/bunddev/reference/bunddev_rate_limit_get.md)
 to inspect the configured limit.
 
 ## Examples

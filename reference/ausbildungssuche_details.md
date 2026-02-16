@@ -32,7 +32,7 @@ Returns detailed information for a single offer.
 
 ## See also
 
-[`ausbildungssuche_search()`](https://mchlbckr.github.io/bunddev/reference/ausbildungssuche_search.md)
+[`ausbildungssuche_search()`](https://buecker.ms/bunddev/reference/ausbildungssuche_search.md)
 to find offer ids.
 
 ## Examples

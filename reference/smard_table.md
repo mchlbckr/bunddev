@@ -41,14 +41,14 @@ Includes a `time` column with POSIXct timestamps in Europe/Berlin.
 ## Details
 
 Returns table-style SMARD data for a single timestamp. Use
-[`smard_indices()`](https://mchlbckr.github.io/bunddev/reference/smard_indices.md)
+[`smard_indices()`](https://buecker.ms/bunddev/reference/smard_indices.md)
 to obtain a valid timestamp. Official docs: https://smard.api.bund.dev.
 
 ## See also
 
-[`smard_indices()`](https://mchlbckr.github.io/bunddev/reference/smard_indices.md)
+[`smard_indices()`](https://buecker.ms/bunddev/reference/smard_indices.md)
 for timestamps and
-[`smard_timeseries()`](https://mchlbckr.github.io/bunddev/reference/smard_timeseries.md)
+[`smard_timeseries()`](https://buecker.ms/bunddev/reference/smard_timeseries.md)
 for time series.
 
 ## Examples

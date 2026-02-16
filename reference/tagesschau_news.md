@@ -45,9 +45,9 @@ Official docs: https://bundesapi.github.io/tagesschau-api/.
 
 ## See also
 
-[`tagesschau_homepage()`](https://mchlbckr.github.io/bunddev/reference/tagesschau_homepage.md)
+[`tagesschau_homepage()`](https://buecker.ms/bunddev/reference/tagesschau_homepage.md)
 and
-[`tagesschau_search()`](https://mchlbckr.github.io/bunddev/reference/tagesschau_search.md).
+[`tagesschau_search()`](https://buecker.ms/bunddev/reference/tagesschau_search.md).
 
 ## Examples
 

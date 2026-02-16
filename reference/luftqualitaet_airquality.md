@@ -34,9 +34,9 @@ station. Official docs: https://luftqualitaet.api.bund.dev.
 
 ## See also
 
-[`luftqualitaet_measures()`](https://mchlbckr.github.io/bunddev/reference/luftqualitaet_measures.md)
+[`luftqualitaet_measures()`](https://buecker.ms/bunddev/reference/luftqualitaet_measures.md)
 for measurement metadata and
-[`luftqualitaet_components()`](https://mchlbckr.github.io/bunddev/reference/luftqualitaet_components.md)
+[`luftqualitaet_components()`](https://buecker.ms/bunddev/reference/luftqualitaet_components.md)
 for pollutant components.
 
 ## Examples

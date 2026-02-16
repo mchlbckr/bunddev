@@ -55,7 +55,7 @@ https://github.com/AndreasFischer1985/deutschlandatlas-api.
 
 ## See also
 
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 to inspect available query parameters.
 
 ## Examples

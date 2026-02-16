@@ -6,11 +6,11 @@ tibbles for immediate use in dplyr/ggplot2 workflows.
 
 ## Three-layer architecture
 
-| Layer            | What it does                                | Entry point                                                                                                                                                                                 |
-|------------------|---------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Registry**     | Browse and search all APIs on bund.dev      | [`bunddev_list()`](https://mchlbckr.github.io/bunddev/reference/bunddev_list.md), [`bunddev_info()`](https://mchlbckr.github.io/bunddev/reference/bunddev_info.md)                          |
-| **OpenAPI core** | Explore specs and call any endpoint         | [`bunddev_spec()`](https://mchlbckr.github.io/bunddev/reference/bunddev_spec.md), [`bunddev_call()`](https://mchlbckr.github.io/bunddev/reference/bunddev_call.md)                          |
-| **Adapters**     | Ready-made functions returning tidy tibbles | e.g. [`smard_timeseries()`](https://mchlbckr.github.io/bunddev/reference/smard_timeseries.md), [`autobahn_roadworks()`](https://mchlbckr.github.io/bunddev/reference/autobahn_roadworks.md) |
+| Layer            | What it does                                | Entry point                                                                                                                                                                 |
+|------------------|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Registry**     | Browse and search all APIs on bund.dev      | [`bunddev_list()`](https://buecker.ms/bunddev/reference/bunddev_list.md), [`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md)                          |
+| **OpenAPI core** | Explore specs and call any endpoint         | [`bunddev_spec()`](https://buecker.ms/bunddev/reference/bunddev_spec.md), [`bunddev_call()`](https://buecker.ms/bunddev/reference/bunddev_call.md)                          |
+| **Adapters**     | Ready-made functions returning tidy tibbles | e.g. [`smard_timeseries()`](https://buecker.ms/bunddev/reference/smard_timeseries.md), [`autobahn_roadworks()`](https://buecker.ms/bunddev/reference/autobahn_roadworks.md) |
 
 Adapters include built-in response caching and rate limiting.
 

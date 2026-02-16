@@ -36,7 +36,7 @@ docs: https://travelwarning.api.bund.dev.
 
 ## See also
 
-[`travelwarning_warnings()`](https://mchlbckr.github.io/bunddev/reference/travelwarning_warnings.md)
+[`travelwarning_warnings()`](https://buecker.ms/bunddev/reference/travelwarning_warnings.md)
 to list available ids.
 
 ## Examples

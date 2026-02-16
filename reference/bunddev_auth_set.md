@@ -65,7 +65,7 @@ The updated auth configuration.
 ## Details
 
 Store auth configuration used by
-[`bunddev_call()`](https://mchlbckr.github.io/bunddev/reference/bunddev_call.md)
+[`bunddev_call()`](https://buecker.ms/bunddev/reference/bunddev_call.md)
 and adapter helpers.
 
 For API key auth: set `env_var` to the name of an environment variable
@@ -78,9 +78,9 @@ otherwise falls back to sending the client ID as an API key.
 
 ## See also
 
-[`bunddev_auth_get()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_get.md)
+[`bunddev_auth_get()`](https://buecker.ms/bunddev/reference/bunddev_auth_get.md)
 to inspect the stored configuration, and
-[`bunddev_call()`](https://mchlbckr.github.io/bunddev/reference/bunddev_call.md)
+[`bunddev_call()`](https://buecker.ms/bunddev/reference/bunddev_call.md)
 to make authenticated requests.
 
 ## Examples

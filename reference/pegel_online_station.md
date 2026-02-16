@@ -53,9 +53,9 @@ https://pegel-online.api.bund.dev.
 
 ## See also
 
-[`pegel_online_stations()`](https://mchlbckr.github.io/bunddev/reference/pegel_online_stations.md)
+[`pegel_online_stations()`](https://buecker.ms/bunddev/reference/pegel_online_stations.md)
 and
-[`pegel_online_timeseries()`](https://mchlbckr.github.io/bunddev/reference/pegel_online_timeseries.md).
+[`pegel_online_timeseries()`](https://buecker.ms/bunddev/reference/pegel_online_timeseries.md).
 
 ## Examples
 

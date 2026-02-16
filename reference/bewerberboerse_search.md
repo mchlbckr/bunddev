@@ -39,16 +39,16 @@ Authentication uses an API key passed as `X-API-Key` (clientId
 https://bundesapi.github.io/bewerberboerse-api/ for official docs.
 
 Use
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 to configure the key and
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 to inspect available query parameters.
 
 ## See also
 
-[`bewerberboerse_details()`](https://mchlbckr.github.io/bunddev/reference/bewerberboerse_details.md)
+[`bewerberboerse_details()`](https://buecker.ms/bunddev/reference/bewerberboerse_details.md)
 for detailed entries and
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 for authentication setup.
 
 ## Examples

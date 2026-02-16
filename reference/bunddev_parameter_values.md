@@ -29,7 +29,7 @@ endpoint.
 
 ## See also
 
-[`bunddev_parameters_for()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters_for.md)
+[`bunddev_parameters_for()`](https://buecker.ms/bunddev/reference/bunddev_parameters_for.md)
 to inspect all parameters for an adapter.
 
 ## Examples

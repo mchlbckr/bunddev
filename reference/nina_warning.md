@@ -35,7 +35,7 @@ Returns full travel warning content, including HTML blocks.
 
 ## See also
 
-[`nina_warnings()`](https://mchlbckr.github.io/bunddev/reference/nina_warnings.md)
+[`nina_warnings()`](https://buecker.ms/bunddev/reference/nina_warnings.md)
 for ids.
 
 ## Examples

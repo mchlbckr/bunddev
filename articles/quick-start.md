@@ -87,11 +87,11 @@ bunddev_rate_limit_set("smard", max_per_hour = 60)
 ## 8. Further help
 
 All functions come with detailed help pages (e.g.,
-[`?smard_timeseries`](https://mchlbckr.github.io/bunddev/reference/smard_timeseries.md)).
+[`?smard_timeseries`](https://buecker.ms/bunddev/reference/smard_timeseries.md)).
 Use
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 and
-[`bunddev_parameter_values()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameter_values.md)
+[`bunddev_parameter_values()`](https://buecker.ms/bunddev/reference/bunddev_parameter_values.md)
 to explore allowed enum values.
 
 ------------------------------------------------------------------------

@@ -34,7 +34,7 @@ https://autobahn.api.bund.dev.
 
 ## See also
 
-[`autobahn_closures()`](https://mchlbckr.github.io/bunddev/reference/autobahn_closures.md)
+[`autobahn_closures()`](https://buecker.ms/bunddev/reference/autobahn_closures.md)
 to list closures.
 
 ## Examples

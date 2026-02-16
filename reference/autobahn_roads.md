@@ -19,9 +19,9 @@ Official docs: https://autobahn.api.bund.dev.
 
 ## See also
 
-[`autobahn_roadworks()`](https://mchlbckr.github.io/bunddev/reference/autobahn_roadworks.md)
+[`autobahn_roadworks()`](https://buecker.ms/bunddev/reference/autobahn_roadworks.md)
 and
-[`autobahn_warnings()`](https://mchlbckr.github.io/bunddev/reference/autobahn_warnings.md)
+[`autobahn_warnings()`](https://buecker.ms/bunddev/reference/autobahn_warnings.md)
 for road-specific data.
 
 ## Examples

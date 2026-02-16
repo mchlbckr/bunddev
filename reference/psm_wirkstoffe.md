@@ -42,8 +42,8 @@ product database.
 
 ## See also
 
-[`psm_mittel()`](https://mchlbckr.github.io/bunddev/reference/psm_mittel.md)
-to list products.
+[`psm_mittel()`](https://buecker.ms/bunddev/reference/psm_mittel.md) to
+list products.
 
 ## Examples
 

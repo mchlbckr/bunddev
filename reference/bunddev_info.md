@@ -25,9 +25,9 @@ requirements for a single API.
 
 ## See also
 
-[`bunddev_list()`](https://mchlbckr.github.io/bunddev/reference/bunddev_list.md)
+[`bunddev_list()`](https://buecker.ms/bunddev/reference/bunddev_list.md)
 for discovery and
-[`bunddev_registry()`](https://mchlbckr.github.io/bunddev/reference/bunddev_registry.md)
+[`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md)
 for the full table.
 
 ## Examples

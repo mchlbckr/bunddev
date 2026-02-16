@@ -25,7 +25,7 @@ Determines the cache file name based on the spec URL extension
 
 ## See also
 
-[`bunddev_spec()`](https://mchlbckr.github.io/bunddev/reference/bunddev_spec.md)
+[`bunddev_spec()`](https://buecker.ms/bunddev/reference/bunddev_spec.md)
 to download and parse specs.
 
 ## Examples

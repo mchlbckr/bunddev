@@ -29,9 +29,9 @@ Tags correspond to the taxonomy in the bundled registry.
 
 ## See also
 
-[`bunddev_registry()`](https://mchlbckr.github.io/bunddev/reference/bunddev_registry.md)
+[`bunddev_registry()`](https://buecker.ms/bunddev/reference/bunddev_registry.md)
 for the full table and
-[`bunddev_info()`](https://mchlbckr.github.io/bunddev/reference/bunddev_info.md)
+[`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md)
 for one entry.
 
 ## Examples

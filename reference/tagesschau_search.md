@@ -50,9 +50,9 @@ https://bundesapi.github.io/tagesschau-api/.
 
 ## See also
 
-[`tagesschau_news()`](https://mchlbckr.github.io/bunddev/reference/tagesschau_news.md)
+[`tagesschau_news()`](https://buecker.ms/bunddev/reference/tagesschau_news.md)
 and
-[`tagesschau_homepage()`](https://mchlbckr.github.io/bunddev/reference/tagesschau_homepage.md).
+[`tagesschau_homepage()`](https://buecker.ms/bunddev/reference/tagesschau_homepage.md).
 
 ## Examples
 

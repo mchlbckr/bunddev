@@ -57,12 +57,12 @@ https://github.com/bundesAPI/lebensmittelwarnung-api.
 
 The API expects an `Authorization` header. By default the adapter uses
 the public key documented in the OpenAPI spec. Override it with
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 if needed.
 
 ## See also
 
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 to configure the authorization header.
 
 ## Examples

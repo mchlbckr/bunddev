@@ -33,7 +33,7 @@ with metadata. Official docs: https://travelwarning.api.bund.dev.
 
 ## See also
 
-[`travelwarning_warning()`](https://mchlbckr.github.io/bunddev/reference/travelwarning_warning.md)
+[`travelwarning_warning()`](https://buecker.ms/bunddev/reference/travelwarning_warning.md)
 for full details of a single warning.
 
 ## Examples

@@ -33,15 +33,15 @@ A tibble with tidied results.
 ## Details
 
 This helper calls
-[`bunddev_call()`](https://mchlbckr.github.io/bunddev/reference/bunddev_call.md)
+[`bunddev_call()`](https://buecker.ms/bunddev/reference/bunddev_call.md)
 and then applies the adapter-specific tidier for the API. If no tidier
 is registered, a tibble containing the raw response is returned.
 
 ## See also
 
-[`bunddev_call()`](https://mchlbckr.github.io/bunddev/reference/bunddev_call.md)
+[`bunddev_call()`](https://buecker.ms/bunddev/reference/bunddev_call.md)
 for raw responses, and
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 to discover available parameters.
 
 ## Examples

@@ -25,7 +25,7 @@ entry if no auth has been configured.
 
 ## See also
 
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 to configure credentials.
 
 ## Examples

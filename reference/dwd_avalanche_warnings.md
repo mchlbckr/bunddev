@@ -29,9 +29,9 @@ https://dwd.api.bund.dev.
 
 ## See also
 
-[`dwd_alpine_forecast_text()`](https://mchlbckr.github.io/bunddev/reference/dwd_alpine_forecast_text.md)
+[`dwd_alpine_forecast_text()`](https://buecker.ms/bunddev/reference/dwd_alpine_forecast_text.md)
 and
-[`dwd_sea_warning_text()`](https://mchlbckr.github.io/bunddev/reference/dwd_sea_warning_text.md).
+[`dwd_sea_warning_text()`](https://buecker.ms/bunddev/reference/dwd_sea_warning_text.md).
 
 ## Examples
 

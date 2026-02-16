@@ -45,9 +45,9 @@ docs: https://dwd.api.bund.dev.
 
 ## See also
 
-[`dwd_station_overview()`](https://mchlbckr.github.io/bunddev/reference/dwd_station_overview.md)
+[`dwd_station_overview()`](https://buecker.ms/bunddev/reference/dwd_station_overview.md)
 and
-[`dwd_warnings_nowcast()`](https://mchlbckr.github.io/bunddev/reference/dwd_warnings_nowcast.md).
+[`dwd_warnings_nowcast()`](https://buecker.ms/bunddev/reference/dwd_warnings_nowcast.md).
 
 ## Examples
 

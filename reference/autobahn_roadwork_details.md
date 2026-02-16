@@ -34,7 +34,7 @@ https://autobahn.api.bund.dev.
 
 ## See also
 
-[`autobahn_roadworks()`](https://mchlbckr.github.io/bunddev/reference/autobahn_roadworks.md)
+[`autobahn_roadworks()`](https://buecker.ms/bunddev/reference/autobahn_roadworks.md)
 to list roadworks.
 
 ## Examples

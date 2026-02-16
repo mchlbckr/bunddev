@@ -25,9 +25,9 @@ substring match.
 
 ## See also
 
-[`bunddev_list()`](https://mchlbckr.github.io/bunddev/reference/bunddev_list.md)
+[`bunddev_list()`](https://buecker.ms/bunddev/reference/bunddev_list.md)
 to filter by tag or auth, and
-[`bunddev_info()`](https://mchlbckr.github.io/bunddev/reference/bunddev_info.md)
+[`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md)
 for details on a single API.
 
 ## Examples

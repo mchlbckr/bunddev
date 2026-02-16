@@ -33,9 +33,9 @@ with metadata. Official docs: https://nina.api.bund.dev.
 
 ## See also
 
-[`nina_warning()`](https://mchlbckr.github.io/bunddev/reference/nina_warning.md)
+[`nina_warning()`](https://buecker.ms/bunddev/reference/nina_warning.md)
 for a single warning and
-[`nina_mapdata()`](https://mchlbckr.github.io/bunddev/reference/nina_mapdata.md)
+[`nina_mapdata()`](https://buecker.ms/bunddev/reference/nina_mapdata.md)
 for map-based alerts.
 
 ## Examples

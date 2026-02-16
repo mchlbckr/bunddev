@@ -50,9 +50,9 @@ https://dwd.api.bund.dev.
 
 ## See also
 
-[`dwd_municipality_warnings()`](https://mchlbckr.github.io/bunddev/reference/dwd_municipality_warnings.md)
+[`dwd_municipality_warnings()`](https://buecker.ms/bunddev/reference/dwd_municipality_warnings.md)
 and
-[`dwd_coast_warnings()`](https://mchlbckr.github.io/bunddev/reference/dwd_coast_warnings.md).
+[`dwd_coast_warnings()`](https://buecker.ms/bunddev/reference/dwd_coast_warnings.md).
 
 ## Examples
 

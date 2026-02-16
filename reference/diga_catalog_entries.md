@@ -40,4 +40,4 @@ diga_catalog_entries(
 
 A tibble containing DiGA catalog entry resources from the FHIR API.
 Structure depends on `flatten` setting (see
-[`diga_device_definitions()`](https://mchlbckr.github.io/bunddev/reference/diga_device_definitions.md)).
+[`diga_device_definitions()`](https://buecker.ms/bunddev/reference/diga_device_definitions.md)).

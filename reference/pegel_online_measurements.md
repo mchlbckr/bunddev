@@ -54,9 +54,9 @@ ISO 8601 strings. Official docs: https://pegel-online.api.bund.dev.
 
 ## See also
 
-[`pegel_online_timeseries()`](https://mchlbckr.github.io/bunddev/reference/pegel_online_timeseries.md)
+[`pegel_online_timeseries()`](https://buecker.ms/bunddev/reference/pegel_online_timeseries.md)
 for metadata and
-[`pegel_online_measurements_plot()`](https://mchlbckr.github.io/bunddev/reference/pegel_online_measurements_plot.md)
+[`pegel_online_measurements_plot()`](https://buecker.ms/bunddev/reference/pegel_online_measurements_plot.md)
 for PNG plots.
 
 ## Examples

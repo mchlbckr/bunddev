@@ -52,11 +52,11 @@ are not permitted. Use `safe = TRUE` to respect the limit.
 
 ## See also
 
-[`smard_timeseries()`](https://mchlbckr.github.io/bunddev/reference/smard_timeseries.md)
+[`smard_timeseries()`](https://buecker.ms/bunddev/reference/smard_timeseries.md)
 and
-[`smard_table()`](https://mchlbckr.github.io/bunddev/reference/smard_table.md)
+[`smard_table()`](https://buecker.ms/bunddev/reference/smard_table.md)
 for data retrieval, and
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 for parameter discovery.
 
 ## Examples

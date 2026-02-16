@@ -38,7 +38,7 @@ https://autobahn.api.bund.dev.
 
 ## See also
 
-[`autobahn_parking_lorries()`](https://mchlbckr.github.io/bunddev/reference/autobahn_parking_lorries.md)
+[`autobahn_parking_lorries()`](https://buecker.ms/bunddev/reference/autobahn_parking_lorries.md)
 to list parking areas.
 
 ## Examples

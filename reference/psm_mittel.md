@@ -40,10 +40,10 @@ https://github.com/bundesAPI/pflanzenschutzmittelzulassung-api.
 
 ## See also
 
-[`psm_wirkstoffe()`](https://mchlbckr.github.io/bunddev/reference/psm_wirkstoffe.md)
+[`psm_wirkstoffe()`](https://buecker.ms/bunddev/reference/psm_wirkstoffe.md)
 to list active ingredients,
-[`psm_stand()`](https://mchlbckr.github.io/bunddev/reference/psm_stand.md)
-for data version.
+[`psm_stand()`](https://buecker.ms/bunddev/reference/psm_stand.md) for
+data version.
 
 ## Examples
 

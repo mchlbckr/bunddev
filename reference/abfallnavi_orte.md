@@ -30,7 +30,7 @@ https://bundesapi.github.io/abfallnavi-api/.
 
 ## See also
 
-[`abfallnavi_strassen()`](https://mchlbckr.github.io/bunddev/reference/abfallnavi_strassen.md)
+[`abfallnavi_strassen()`](https://buecker.ms/bunddev/reference/abfallnavi_strassen.md)
 for streets in a place.
 
 ## Examples

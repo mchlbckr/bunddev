@@ -53,9 +53,9 @@ resources or the API documentation.
 
 ## See also
 
-[`dwd_crowd_reports()`](https://mchlbckr.github.io/bunddev/reference/dwd_crowd_reports.md)
+[`dwd_crowd_reports()`](https://buecker.ms/bunddev/reference/dwd_crowd_reports.md)
 and
-[`dwd_warnings_nowcast()`](https://mchlbckr.github.io/bunddev/reference/dwd_warnings_nowcast.md).
+[`dwd_warnings_nowcast()`](https://buecker.ms/bunddev/reference/dwd_warnings_nowcast.md).
 
 ## Examples
 

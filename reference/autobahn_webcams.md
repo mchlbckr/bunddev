@@ -34,9 +34,9 @@ https://autobahn.api.bund.dev.
 
 ## See also
 
-[`autobahn_roads()`](https://mchlbckr.github.io/bunddev/reference/autobahn_roads.md)
+[`autobahn_roads()`](https://buecker.ms/bunddev/reference/autobahn_roads.md)
 and
-[`autobahn_webcam_details()`](https://mchlbckr.github.io/bunddev/reference/autobahn_webcam_details.md).
+[`autobahn_webcam_details()`](https://buecker.ms/bunddev/reference/autobahn_webcam_details.md).
 
 ## Examples
 

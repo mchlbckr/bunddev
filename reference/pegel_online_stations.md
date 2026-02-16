@@ -49,9 +49,9 @@ https://pegel-online.api.bund.dev.
 
 ## See also
 
-[`pegel_online_station()`](https://mchlbckr.github.io/bunddev/reference/pegel_online_station.md)
+[`pegel_online_station()`](https://buecker.ms/bunddev/reference/pegel_online_station.md)
 for a single station and
-[`pegel_online_measurements()`](https://mchlbckr.github.io/bunddev/reference/pegel_online_measurements.md)
+[`pegel_online_measurements()`](https://buecker.ms/bunddev/reference/pegel_online_measurements.md)
 for time series values.
 
 ## Examples

@@ -63,12 +63,12 @@ Includes `date_time` as POSIXct in Europe/Berlin.
 Returns measurement data for a specific counter. The `flow_ids`
 parameter specifies which traffic types to include (e.g., pedestrians,
 cyclists). Use
-[`eco_visio_counters()`](https://mchlbckr.github.io/bunddev/reference/eco_visio_counters.md)
+[`eco_visio_counters()`](https://buecker.ms/bunddev/reference/eco_visio_counters.md)
 to discover available counters and their flow IDs.
 
 ## See also
 
-[`eco_visio_counters()`](https://mchlbckr.github.io/bunddev/reference/eco_visio_counters.md)
+[`eco_visio_counters()`](https://buecker.ms/bunddev/reference/eco_visio_counters.md)
 to list available counters.
 
 ## Examples

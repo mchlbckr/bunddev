@@ -34,7 +34,7 @@ https://autobahn.api.bund.dev.
 
 ## See also
 
-[`autobahn_webcams()`](https://mchlbckr.github.io/bunddev/reference/autobahn_webcams.md)
+[`autobahn_webcams()`](https://buecker.ms/bunddev/reference/autobahn_webcams.md)
 to list webcams.
 
 ## Examples

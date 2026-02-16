@@ -11,7 +11,7 @@ explore their OpenAPI specifications. Some APIs enforce rate limits;
 check the registry details for service-specific guidance.
 
 API-specific helpers return tidy tibbles by default. Use
-[`bunddev_call()`](https://mchlbckr.github.io/bunddev/reference/bunddev_call.md)
+[`bunddev_call()`](https://buecker.ms/bunddev/reference/bunddev_call.md)
 for raw responses.
 
 When `flatten = TRUE`, set `flatten_mode` to “json” (default), “drop”,

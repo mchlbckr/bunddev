@@ -47,7 +47,7 @@ Official docs: https://pegel-online.api.bund.dev.
 
 ## See also
 
-[`pegel_online_measurements()`](https://mchlbckr.github.io/bunddev/reference/pegel_online_measurements.md)
+[`pegel_online_measurements()`](https://buecker.ms/bunddev/reference/pegel_online_measurements.md)
 for measurement values.
 
 ## Examples

@@ -29,9 +29,9 @@ Downloads the OpenAPI spec from the registry if it is missing or when
 
 ## See also
 
-[`bunddev_endpoints()`](https://mchlbckr.github.io/bunddev/reference/bunddev_endpoints.md)
+[`bunddev_endpoints()`](https://buecker.ms/bunddev/reference/bunddev_endpoints.md)
 to list operations and
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 to inspect parameters.
 
 ## Examples

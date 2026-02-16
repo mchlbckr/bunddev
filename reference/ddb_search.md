@@ -54,13 +54,13 @@ https://www.deutsche-digitale-bibliothek.de/user/apikey. The key is sent
 in the `Authorization` header as `OAuth oauth_consumer_key="<key>"`.
 
 Configure authentication via
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 using a template-style scheme, or set the `DDB_API_KEY` environment
 variable directly.
 
 ## See also
 
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 to configure authentication.
 
 ## Examples

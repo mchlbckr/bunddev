@@ -52,14 +52,14 @@ https://web.arbeitsagentur.de/weiterbildungssuche/suche). Official docs:
 https://bundesapi.github.io/ausbildungssuche-api/.
 
 This adapter uses the `X-API-Key` header. Set it via
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 and `AUSBILDUNGSSUCHE_API_KEY`.
 
 ## See also
 
-[`ausbildungssuche_details()`](https://mchlbckr.github.io/bunddev/reference/ausbildungssuche_details.md)
+[`ausbildungssuche_details()`](https://buecker.ms/bunddev/reference/ausbildungssuche_details.md)
 for a single offer and
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 for authentication.
 
 ## Examples

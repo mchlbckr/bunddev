@@ -21,11 +21,11 @@ from bund.dev and the bundesAPI registry.
 
 ## See also
 
-[`bunddev_list()`](https://mchlbckr.github.io/bunddev/reference/bunddev_list.md)
+[`bunddev_list()`](https://buecker.ms/bunddev/reference/bunddev_list.md)
 for filtered listings,
-[`bunddev_search()`](https://mchlbckr.github.io/bunddev/reference/bunddev_search.md)
+[`bunddev_search()`](https://buecker.ms/bunddev/reference/bunddev_search.md)
 for keyword searches, and
-[`bunddev_info()`](https://mchlbckr.github.io/bunddev/reference/bunddev_info.md)
+[`bunddev_info()`](https://buecker.ms/bunddev/reference/bunddev_info.md)
 for a single entry.
 
 ## Examples

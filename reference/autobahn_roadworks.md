@@ -34,9 +34,9 @@ docs: https://autobahn.api.bund.dev.
 
 ## See also
 
-[`autobahn_roads()`](https://mchlbckr.github.io/bunddev/reference/autobahn_roads.md)
+[`autobahn_roads()`](https://buecker.ms/bunddev/reference/autobahn_roads.md)
 to list available roads, and
-[`autobahn_roadwork_details()`](https://mchlbckr.github.io/bunddev/reference/autobahn_roadwork_details.md)
+[`autobahn_roadwork_details()`](https://buecker.ms/bunddev/reference/autobahn_roadwork_details.md)
 for detail records.
 
 ## Examples

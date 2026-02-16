@@ -36,10 +36,10 @@ stated by the source (see Tagesschau CC license notes).
 
 ## See also
 
-[`tagesschau_news()`](https://mchlbckr.github.io/bunddev/reference/tagesschau_news.md),
-[`tagesschau_search()`](https://mchlbckr.github.io/bunddev/reference/tagesschau_search.md),
+[`tagesschau_news()`](https://buecker.ms/bunddev/reference/tagesschau_news.md),
+[`tagesschau_search()`](https://buecker.ms/bunddev/reference/tagesschau_search.md),
 and
-[`tagesschau_channels()`](https://mchlbckr.github.io/bunddev/reference/tagesschau_channels.md).
+[`tagesschau_channels()`](https://buecker.ms/bunddev/reference/tagesschau_channels.md).
 
 ## Examples
 

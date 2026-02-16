@@ -53,7 +53,7 @@ Official docs: https://github.com/bundesAPI/feiertage-api.
 
 ## See also
 
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 for available query parameters.
 
 ## Examples

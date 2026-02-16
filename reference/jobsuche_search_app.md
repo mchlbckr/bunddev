@@ -47,15 +47,15 @@ Includes parsed POSIXct columns (suffix `_time`) in Europe/Berlin.
 
 This uses the mobile app endpoint of the Jobsuche API. It shares the
 same authentication mechanism and parameters as
-[`jobsuche_search()`](https://mchlbckr.github.io/bunddev/reference/jobsuche_search.md).
+[`jobsuche_search()`](https://buecker.ms/bunddev/reference/jobsuche_search.md).
 
 See https://jobsuche.api.bund.dev for API documentation.
 
 ## See also
 
-[`jobsuche_search()`](https://mchlbckr.github.io/bunddev/reference/jobsuche_search.md)
+[`jobsuche_search()`](https://buecker.ms/bunddev/reference/jobsuche_search.md)
 for the standard endpoint and
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 for parameter discovery.
 
 ## Examples

@@ -47,12 +47,12 @@ Returns metadata for DIP Vorgang entries. Requires an API key. Obtain a
 key from https://dip.bundestag.de/über-dip/hilfe/api.
 
 Configure authentication via
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 or set the `DIP_BUNDESTAG_API_KEY` environment variable directly.
 
 ## See also
 
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 to configure authentication.
 
 ## Examples

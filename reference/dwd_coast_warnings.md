@@ -48,9 +48,9 @@ https://dwd.api.bund.dev.
 
 ## See also
 
-[`dwd_warnings_nowcast()`](https://mchlbckr.github.io/bunddev/reference/dwd_warnings_nowcast.md)
+[`dwd_warnings_nowcast()`](https://buecker.ms/bunddev/reference/dwd_warnings_nowcast.md)
 and
-[`dwd_municipality_warnings()`](https://mchlbckr.github.io/bunddev/reference/dwd_municipality_warnings.md).
+[`dwd_municipality_warnings()`](https://buecker.ms/bunddev/reference/dwd_municipality_warnings.md).
 
 ## Examples
 

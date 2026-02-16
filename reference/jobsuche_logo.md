@@ -30,17 +30,17 @@ A tibble with raw logo bytes.
 
 Returns the raw logo bytes for a given employer hash id. Use this
 together with listings returned by
-[`jobsuche_search()`](https://mchlbckr.github.io/bunddev/reference/jobsuche_search.md)
+[`jobsuche_search()`](https://buecker.ms/bunddev/reference/jobsuche_search.md)
 or
-[`jobsuche_search_app()`](https://mchlbckr.github.io/bunddev/reference/jobsuche_search_app.md).
+[`jobsuche_search_app()`](https://buecker.ms/bunddev/reference/jobsuche_search_app.md).
 
 See https://jobsuche.api.bund.dev for API documentation.
 
 ## See also
 
-[`jobsuche_search()`](https://mchlbckr.github.io/bunddev/reference/jobsuche_search.md)
+[`jobsuche_search()`](https://buecker.ms/bunddev/reference/jobsuche_search.md)
 for listings and
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 for auth setup.
 
 ## Examples

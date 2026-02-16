@@ -38,7 +38,7 @@ https://autobahn.api.bund.dev.
 
 ## See also
 
-[`autobahn_charging_stations()`](https://mchlbckr.github.io/bunddev/reference/autobahn_charging_stations.md)
+[`autobahn_charging_stations()`](https://buecker.ms/bunddev/reference/autobahn_charging_stations.md)
 to list stations.
 
 ## Examples

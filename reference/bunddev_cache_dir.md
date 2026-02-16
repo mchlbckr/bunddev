@@ -19,9 +19,9 @@ API responses. Use this to inspect or clean cached files.
 
 ## See also
 
-[`bunddev_spec()`](https://mchlbckr.github.io/bunddev/reference/bunddev_spec.md)
+[`bunddev_spec()`](https://buecker.ms/bunddev/reference/bunddev_spec.md)
 to download specs, and
-[`bunddev_spec_path()`](https://mchlbckr.github.io/bunddev/reference/bunddev_spec_path.md)
+[`bunddev_spec_path()`](https://buecker.ms/bunddev/reference/bunddev_spec_path.md)
 to locate a specific spec file.
 
 ## Examples

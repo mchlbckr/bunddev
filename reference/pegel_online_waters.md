@@ -48,7 +48,7 @@ https://pegel-online.api.bund.dev.
 
 ## See also
 
-[`pegel_online_stations()`](https://mchlbckr.github.io/bunddev/reference/pegel_online_stations.md)
+[`pegel_online_stations()`](https://buecker.ms/bunddev/reference/pegel_online_stations.md)
 for station metadata.
 
 ## Examples

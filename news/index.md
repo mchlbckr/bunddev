@@ -84,8 +84,8 @@ government and public sector APIs available through bund.dev.
 - Fixed R CMD check errors and warnings
 - Fixed DDB authentication to use correct OAuth format
 - Exported time conversion utilities
-  ([`bunddev_ms_to_posix()`](https://mchlbckr.github.io/bunddev/reference/bunddev_ms_to_posix.md),
-  [`bunddev_timestamp_to_ms()`](https://mchlbckr.github.io/bunddev/reference/bunddev_timestamp_to_ms.md))
+  ([`bunddev_ms_to_posix()`](https://buecker.ms/bunddev/reference/bunddev_ms_to_posix.md),
+  [`bunddev_timestamp_to_ms()`](https://buecker.ms/bunddev/reference/bunddev_timestamp_to_ms.md))
 - Corrected package build configuration
 
 ## bunddev 0.0.0.9000 (Development)

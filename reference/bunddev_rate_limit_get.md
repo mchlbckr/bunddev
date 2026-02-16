@@ -26,7 +26,7 @@ registry entry. The result is used by adapter helpers when
 
 ## See also
 
-[`bunddev_rate_limit_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_rate_limit_set.md)
+[`bunddev_rate_limit_set()`](https://buecker.ms/bunddev/reference/bunddev_rate_limit_set.md)
 to override the default.
 
 ## Examples

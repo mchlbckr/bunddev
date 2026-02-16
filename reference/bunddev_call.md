@@ -87,16 +87,16 @@ The function fills path parameters from `params`, applies auth (if
 configured), and optionally caches GET responses when `safe = TRUE`.
 
 Use
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 and
-[`bunddev_parameter_values()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameter_values.md)
+[`bunddev_parameter_values()`](https://buecker.ms/bunddev/reference/bunddev_parameter_values.md)
 to discover valid parameters before calling.
 
 ## See also
 
-[`bunddev_call_tidy()`](https://mchlbckr.github.io/bunddev/reference/bunddev_call_tidy.md)
+[`bunddev_call_tidy()`](https://buecker.ms/bunddev/reference/bunddev_call_tidy.md)
 for adapter-specific tidy outputs, and
-[`bunddev_auth_set()`](https://mchlbckr.github.io/bunddev/reference/bunddev_auth_set.md)
+[`bunddev_auth_set()`](https://buecker.ms/bunddev/reference/bunddev_auth_set.md)
 to configure API keys.
 
 ## Examples

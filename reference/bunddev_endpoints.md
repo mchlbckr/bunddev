@@ -31,9 +31,9 @@ with its operationId and summary, if provided.
 
 ## See also
 
-[`bunddev_parameters()`](https://mchlbckr.github.io/bunddev/reference/bunddev_parameters.md)
+[`bunddev_parameters()`](https://buecker.ms/bunddev/reference/bunddev_parameters.md)
 to inspect parameters and
-[`bunddev_spec()`](https://mchlbckr.github.io/bunddev/reference/bunddev_spec.md)
+[`bunddev_spec()`](https://buecker.ms/bunddev/reference/bunddev_spec.md)
 to access the full spec.
 
 ## Examples

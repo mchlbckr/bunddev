@@ -34,7 +34,7 @@ https://autobahn.api.bund.dev.
 
 ## See also
 
-[`autobahn_warnings()`](https://mchlbckr.github.io/bunddev/reference/autobahn_warnings.md)
+[`autobahn_warnings()`](https://buecker.ms/bunddev/reference/autobahn_warnings.md)
 to list warnings.
 
 ## Examples

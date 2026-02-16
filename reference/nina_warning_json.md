@@ -34,7 +34,7 @@ Returns a warning in JSON format.
 
 ## See also
 
-[`nina_mapdata()`](https://mchlbckr.github.io/bunddev/reference/nina_mapdata.md)
+[`nina_mapdata()`](https://buecker.ms/bunddev/reference/nina_mapdata.md)
 to discover identifiers.
 
 ## Examples

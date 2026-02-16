@@ -34,9 +34,9 @@ docs: https://autobahn.api.bund.dev.
 
 ## See also
 
-[`autobahn_roads()`](https://mchlbckr.github.io/bunddev/reference/autobahn_roads.md)
+[`autobahn_roads()`](https://buecker.ms/bunddev/reference/autobahn_roads.md)
 and
-[`autobahn_parking_lorry_details()`](https://mchlbckr.github.io/bunddev/reference/autobahn_parking_lorry_details.md).
+[`autobahn_parking_lorry_details()`](https://buecker.ms/bunddev/reference/autobahn_parking_lorry_details.md).
 
 ## Examples
 

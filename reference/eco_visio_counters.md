@@ -34,7 +34,7 @@ organization. Official docs: https://github.com/bundesAPI/eco-visio-api.
 
 ## See also
 
-[`eco_visio_data()`](https://mchlbckr.github.io/bunddev/reference/eco_visio_data.md)
+[`eco_visio_data()`](https://buecker.ms/bunddev/reference/eco_visio_data.md)
 to retrieve measurement data for a counter.
 
 ## Examples
