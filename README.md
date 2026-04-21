@@ -21,7 +21,7 @@ stars](https://img.shields.io/github/stars/mchlbckr/bunddev?style=social)](https
 <!-- badges: end -->
 
 An R interface to German government and public sector APIs listed on
-[bund.dev](https://bund.dev). **33 ready-to-use adapters** return tidy
+[bund.dev](https://bund.dev). **34 ready-to-use adapters** return tidy
 tibbles for immediate use in dplyr/ggplot2 workflows.
 
 ## Three-layer architecture
@@ -72,7 +72,7 @@ pegel_online_stations()
 dip_bundestag_drucksache_list()
 ```
 
-## Available adapters (33)
+## Available adapters (34)
 
 🏛️ **Government & Parliament** — bundestag, bundesrat,
 bundestag_lobbyregister, dip_bundestag, bundeshaushalt
@@ -90,7 +90,7 @@ dashboard_deutschland
 🚨 **Safety & Alerts** — nina, lebensmittelwarnung, travelwarning,
 pflanzenschutzmittelzulassung
 
-🏥 **Health** — diga, hilfsmittel
+🏥 **Health** — diga, hilfsmittel, klinikatlas
 
 📰 **Culture & Media** — tagesschau, ddb
 

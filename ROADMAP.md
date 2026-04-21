@@ -7,7 +7,7 @@
 
 ## Adapters
 
-### Active (33)
+### Active (34)
 
 - [x] abfallnavi
 - [x] ausbildungssuche
@@ -30,6 +30,7 @@
 - [x] hilfsmittel
 - [x] hochwasserzentralen
 - [x] jobsuche
+- [x] klinikatlas
 - [x] ladestationen
 - [x] lebensmittelwarnung
 - [x] luftqualitaet

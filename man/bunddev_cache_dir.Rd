@@ -14,7 +14,9 @@ Locate the bunddev cache directory
 }
 \details{
 The cache directory is used to store downloaded OpenAPI specs and cached
-API responses. Use this to inspect or clean cached files.
+API responses. During \verb{R CMD check}, \code{bunddev} uses a temporary cache
+directory to avoid leaving persistent files behind. Use this to inspect or
+clean cached files.
 }
 \examples{
 \dontrun{

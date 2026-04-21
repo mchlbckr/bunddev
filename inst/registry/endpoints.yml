@@ -44,6 +44,38 @@
   api: jobsuche
   path: /ed/v1/arbeitgeberlogo/{hashID}
   method: get
+- name: klinikatlas_locations
+  api: klinikatlas
+  path: /fileadmin/json/locations.json
+  method: get
+- name: klinikatlas_states
+  api: klinikatlas
+  path: /fileadmin/json/states.json
+  method: get
+- name: klinikatlas_german_states
+  api: klinikatlas
+  path: /fileadmin/json/german-states.json
+  method: get
+- name: klinikatlas_icd_codes
+  api: klinikatlas
+  path: /fileadmin/json/icd_codes.json
+  method: get
+- name: klinikatlas_ops_codes
+  api: klinikatlas
+  path: /fileadmin/json/ops_codes.json
+  method: get
+- name: klinikatlas_german_places
+  api: klinikatlas
+  path: /fileadmin/json/german-places.json
+  method: get
+- name: klinikatlas_search
+  api: klinikatlas
+  path: /searchresults/
+  method: get
+- name: klinikatlas_hospital_detail
+  api: klinikatlas
+  path: /krankenhaussuche/krankenhaus/{id}/
+  method: get
 - name: tagesschau_homepage
   api: tagesschau
   path: /homepage

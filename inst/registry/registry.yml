@@ -178,6 +178,15 @@
   tags:
     - jobs
     - search
+- id: klinikatlas
+  title: Bundes-Klinik-Atlas API
+  provider: Bundesministerium fuer Gesundheit
+  spec_url: https://raw.githubusercontent.com/bundesAPI/klinikatlas-api/main/openapi.yaml
+  docs_url: https://github.com/bundesAPI/klinikatlas-api
+  auth: none
+  tags:
+    - health
+    - hospitals
 - id: ladestationen
   title: Ladesaeulenregister API
   provider: Bundesnetzagentur

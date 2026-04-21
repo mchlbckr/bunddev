@@ -30,3 +30,12 @@ test_that("bunddev_info returns a single entry", {
   expect_equal(info$id, "abfallnavi")
   expect_error(bunddev_info("missing"))
 })
+
+test_that("bunddev_info resolves klinikatlas registry entry", {
+  info <- bunddev_info("klinikatlas")
+
+  expect_s3_class(info, "tbl_df")
+  expect_equal(nrow(info), 1)
+  expect_equal(info$id, "klinikatlas")
+  expect_equal(info$auth, "none")
+})
