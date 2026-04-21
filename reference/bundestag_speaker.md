@@ -38,7 +38,7 @@ structure rules as
 ## Details
 
 Returns the current speaker from the plenum feed. API documentation:
-<https://bundesapi.github.io/bundestag-api/>.
+<https://bundestag.api.bund.dev/>.
 
 ## See also
 

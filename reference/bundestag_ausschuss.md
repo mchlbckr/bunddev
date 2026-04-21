@@ -41,7 +41,7 @@ names correspond to XML element names.
 ## Details
 
 Returns details for a single committee. API documentation:
-<https://bundesapi.github.io/bundestag-api/>.
+<https://bundestag.api.bund.dev/>.
 
 ## See also
 

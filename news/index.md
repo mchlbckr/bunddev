@@ -1,5 +1,23 @@
 # Changelog
 
+## bunddev 0.2.3
+
+### CRAN resubmission
+
+- Replace outdated documentation URLs that redirected during CRAN
+  incoming checks with direct `https://*.api.bund.dev/` URLs.
+- Reword the package description to avoid a CRAN spell-check note on
+  “tibbles”.
+
+## bunddev 0.2.2
+
+### CRAN resubmission
+
+- Use a temporary cache directory during `R CMD check` to avoid
+  persistent cache writes in user space.
+- Harden network-dependent tests so upstream DNS / HTTP failures skip
+  cleanly instead of failing package checks.
+
 ## bunddev 0.2.1
 
 CRAN release: 2026-02-16

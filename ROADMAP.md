@@ -10,7 +10,7 @@ Add adapter-specific rate limit notes where sources are documented
 
 ## Adapters
 
-### Active (33)
+### Active (34)
 
 abfallnavi
 
@@ -53,6 +53,8 @@ hilfsmittel
 hochwasserzentralen
 
 jobsuche
+
+klinikatlas
 
 ladestationen
 

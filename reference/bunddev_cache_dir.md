@@ -15,7 +15,9 @@ Path to the `bunddev` cache directory (character scalar).
 ## Details
 
 The cache directory is used to store downloaded OpenAPI specs and cached
-API responses. Use this to inspect or clean cached files.
+API responses. During `R CMD check`, `bunddev` uses a temporary cache
+directory to avoid leaving persistent files behind. Use this to inspect
+or clean cached files.
 
 ## See also
 

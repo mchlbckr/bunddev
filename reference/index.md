@@ -325,6 +325,25 @@ Explore specs and call endpoints.
 - [`jobsuche_search_app()`](https://buecker.ms/bunddev/reference/jobsuche_search_app.md)
   : Search Jobsuche listings (app endpoint)
 
+## Klinikatlas
+
+- [`klinikatlas_german_places()`](https://buecker.ms/bunddev/reference/klinikatlas_german_places.md)
+  : List German places from Bundes-Klinik-Atlas
+- [`klinikatlas_german_states()`](https://buecker.ms/bunddev/reference/klinikatlas_german_states.md)
+  : List German states with coordinates from Bundes-Klinik-Atlas
+- [`klinikatlas_hospital_detail()`](https://buecker.ms/bunddev/reference/klinikatlas_hospital_detail.md)
+  : Fetch raw hospital detail HTML from Bundes-Klinik-Atlas
+- [`klinikatlas_icd_codes()`](https://buecker.ms/bunddev/reference/klinikatlas_icd_codes.md)
+  : List ICD codes from Bundes-Klinik-Atlas
+- [`klinikatlas_locations()`](https://buecker.ms/bunddev/reference/klinikatlas_locations.md)
+  : List Bundes-Klinik-Atlas hospital locations
+- [`klinikatlas_ops_codes()`](https://buecker.ms/bunddev/reference/klinikatlas_ops_codes.md)
+  : List OPS codes from Bundes-Klinik-Atlas
+- [`klinikatlas_search()`](https://buecker.ms/bunddev/reference/klinikatlas_search.md)
+  : Search Bundes-Klinik-Atlas hospitals
+- [`klinikatlas_states()`](https://buecker.ms/bunddev/reference/klinikatlas_states.md)
+  : List Bundes-Klinik-Atlas state summaries
+
 ## Ladestationen
 
 - [`ladestationen_query()`](https://buecker.ms/bunddev/reference/ladestationen_query.md)

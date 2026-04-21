@@ -37,7 +37,7 @@ become list-columns.
 
 Returns metadata for a single flood gauge (pegel) from
 hochwasserzentralen.de. API documentation:
-<https://bundesapi.github.io/hochwasserzentralen-api/>.
+<https://hochwasserzentralen.api.bund.dev/>.
 
 ## See also
 

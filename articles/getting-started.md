@@ -32,7 +32,7 @@ specific APIs.
 
 ``` r
 bunddev_list()
-#> # A tibble: 41 × 8
+#> # A tibble: 42 × 8
 #>    id                    title provider spec_url docs_url auth  rate_limit tags 
 #>    <chr>                 <chr> <chr>    <chr>    <chr>    <chr> <chr>      <lis>
 #>  1 abfallnavi            Abfa… regio iT https:/… https:/… none  NA         <chr>
@@ -45,7 +45,7 @@ bunddev_list()
 #>  8 bundestag_lobbyregis… Bund… Deutsch… https:/… https:/… none  NA         <chr>
 #>  9 dashboard_deutschland Dash… Statist… https:/… https:/… none  NA         <chr>
 #> 10 ddb                   Deut… Stiftun… https:/… https:/… none  NA         <chr>
-#> # ℹ 31 more rows
+#> # ℹ 32 more rows
 ```
 
 ### Acknowledgements

@@ -51,7 +51,7 @@ A tibble with one row per indicator entry:
 ## Details
 
 Returns indicator data for the specified ids. API documentation:
-<https://bundesapi.github.io/dashboard-deutschland-api/>.
+<https://dashboard.deutschland.api.bund.dev/>.
 
 ## See also
 

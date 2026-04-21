@@ -43,7 +43,7 @@ restricted to channel entries.
 ## Details
 
 Lists the Tagesschau channels endpoint. API documentation:
-<https://bundesapi.github.io/tagesschau-api/>.
+<https://tagesschau.api.bund.dev/>.
 
 ## See also
 

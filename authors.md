@@ -11,12 +11,12 @@ Source:
 [`DESCRIPTION`](https://github.com/mchlbckr/bunddev/blob/main/DESCRIPTION)
 
 Bücker M (2026). *bunddev: Discover and Call 'Bund.dev' APIs*. R package
-version 0.2.1, <https://buecker.ms/bunddev/>.
+version 0.2.3, <https://buecker.ms/bunddev/>.
 
     @Manual{,
       title = {bunddev: Discover and Call 'Bund.dev' APIs},
       author = {Michael Bücker},
       year = {2026},
-      note = {R package version 0.2.1},
+      note = {R package version 0.2.3},
       url = {https://buecker.ms/bunddev/},
     }

@@ -88,7 +88,7 @@ A one-row tibble with GeoJSON container metadata:
 ## Details
 
 Returns GeoJSON data for Germany and the federal states. API
-documentation: <https://bundesapi.github.io/dashboard-deutschland-api/>.
+documentation: <https://dashboard.deutschland.api.bund.dev/>.
 
 ## See also
 

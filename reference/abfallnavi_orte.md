@@ -37,7 +37,7 @@ row per place and columns:
 
 The Abfallnavi API provides waste collection data for supported regions.
 Start by listing places (Orte) to obtain an `ortId`. API documentation:
-<https://bundesapi.github.io/abfallnavi-api/>.
+<https://abfallnavi.api.bund.dev/>.
 
 ## See also
 

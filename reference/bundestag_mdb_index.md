@@ -38,7 +38,7 @@ names correspond to XML child element names within each `<item>`.
 ## Details
 
 Returns the index of members of parliament. API documentation:
-<https://bundesapi.github.io/bundestag-api/>.
+<https://bundestag.api.bund.dev/>.
 
 ## See also
 

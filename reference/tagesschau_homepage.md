@@ -148,7 +148,7 @@ With `flatten = TRUE`, the list-columns are transformed according to
 ## Details
 
 Fetches the Tagesschau homepage feed as provided by the ARD Tagesschau
-API. API documentation: <https://bundesapi.github.io/tagesschau-api/>.
+API. API documentation: <https://tagesschau.api.bund.dev/>.
 
 Note: The registry rate limit allows up to 60 requests per hour. Usage
 of content is restricted to private, non-commercial use unless otherwise

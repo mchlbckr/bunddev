@@ -32,7 +32,7 @@ become atomic columns and nested structures become list-columns.
 
 Returns latitude/longitude coordinates for all pegel identifiers
 available in the hochwasserzentralen.de portal. API documentation:
-<https://bundesapi.github.io/hochwasserzentralen-api/>.
+<https://hochwasserzentralen.api.bund.dev/>.
 
 ## See also
 

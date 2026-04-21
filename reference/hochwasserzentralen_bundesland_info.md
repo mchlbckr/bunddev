@@ -40,7 +40,7 @@ values become atomic columns and nested structures become list-columns.
 
 Returns metadata for a single Bundesland or region in the
 hochwasserzentralen.de portal. API documentation:
-<https://bundesapi.github.io/hochwasserzentralen-api/>.
+<https://hochwasserzentralen.api.bund.dev/>.
 
 ## See also
 

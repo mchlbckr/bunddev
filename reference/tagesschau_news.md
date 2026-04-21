@@ -56,7 +56,7 @@ filtered by optional region/ressort parameters.
 ## Details
 
 Returns current news items with optional filters for region or ressort.
-API documentation: <https://bundesapi.github.io/tagesschau-api/>.
+API documentation: <https://tagesschau.api.bund.dev/>.
 
 ## See also
 

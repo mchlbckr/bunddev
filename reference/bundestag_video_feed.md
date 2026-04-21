@@ -41,7 +41,7 @@ correspond to XML element names.
 ## Details
 
 Returns a video feed entry from the Bundestag webtv service. API
-documentation: <https://bundesapi.github.io/bundestag-api/>.
+documentation: <https://bundestag.api.bund.dev/>.
 
 ## See also
 

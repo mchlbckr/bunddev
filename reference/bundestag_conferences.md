@@ -38,7 +38,7 @@ Column names correspond to XML child element names within each `<item>`.
 ## Details
 
 Returns conference overview data from the plenum feed. API
-documentation: <https://bundesapi.github.io/bundestag-api/>.
+documentation: <https://bundestag.api.bund.dev/>.
 
 ## See also
 

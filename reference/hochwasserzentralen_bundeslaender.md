@@ -32,7 +32,7 @@ become atomic columns and nested structures become list-columns.
 
 Returns metadata for all Bundeslaender and connected regions in the
 hochwasserzentralen.de portal. API documentation:
-<https://bundesapi.github.io/hochwasserzentralen-api/>.
+<https://hochwasserzentralen.api.bund.dev/>.
 
 ## See also
 

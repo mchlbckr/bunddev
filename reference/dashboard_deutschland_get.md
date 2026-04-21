@@ -128,8 +128,7 @@ A tibble with one row per dashboard tile:
 ## Details
 
 Returns the full list of dashboard entries and metadata for each item.
-API documentation:
-<https://bundesapi.github.io/dashboard-deutschland-api/>.
+API documentation: <https://dashboard.deutschland.api.bund.dev/>.
 
 ## See also
 

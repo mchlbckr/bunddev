@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Discover and Call Bund.dev APIs">
-<meta name="description" content="Provides a registry of APIs listed on &lt;https://bund.dev&gt; and a core OpenAPI client layer to explore specs and perform requests. Adapter helpers return tidy tibbles for supported APIs, with optional response caching and rate limiting guidance.">
-<meta property="og:description" content="Provides a registry of APIs listed on &lt;https://bund.dev&gt; and a core OpenAPI client layer to explore specs and perform requests. Adapter helpers return tidy tibbles for supported APIs, with optional response caching and rate limiting guidance.">
+<meta name="description" content="Provides a registry of APIs listed on &lt;https://bund.dev&gt; and a core OpenAPI client layer to explore specs and perform requests. Adapter helpers return tidy data frames for supported APIs, with optional response caching and rate limiting guidance.">
+<meta property="og:description" content="Provides a registry of APIs listed on &lt;https://bund.dev&gt; and a core OpenAPI client layer to explore specs and perform requests. Adapter helpers return tidy data frames for supported APIs, with optional response caching and rate limiting guidance.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">bunddev</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +58,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>An R interface to German government and public sector APIs listed on <a href="https://bund.dev" class="external-link">bund.dev</a>. <strong>33 ready-to-use adapters</strong> return tidy tibbles for immediate use in dplyr/ggplot2 workflows.</p>
+<p>An R interface to German government and public sector APIs listed on <a href="https://bund.dev" class="external-link">bund.dev</a>. <strong>34 ready-to-use adapters</strong> return tidy tibbles for immediate use in dplyr/ggplot2 workflows.</p>
 <div class="section level2">
 <h2 id="three-layer-architecture">Three-layer architecture<a class="anchor" aria-label="anchor" href="#three-layer-architecture"></a>
 </h2>
@@ -133,7 +133,7 @@
 <span><span class="fu"><a href="reference/dip_bundestag_drucksache_list.html">dip_bundestag_drucksache_list</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="available-adapters-33">Available adapters (33)<a class="anchor" aria-label="anchor" href="#available-adapters-33"></a>
+<h2 id="available-adapters-34">Available adapters (34)<a class="anchor" aria-label="anchor" href="#available-adapters-34"></a>
 </h2>
 <p>🏛️ <strong>Government &amp; Parliament</strong> — bundestag, bundesrat, bundestag_lobbyregister, dip_bundestag, bundeshaushalt</p>
 <p>🌤️ <strong>Environment &amp; Weather</strong> — dwd, luftqualitaet, hochwasserzentralen, pegel_online, mudab, smard</p>
@@ -141,7 +141,7 @@
 <p>💼 <strong>Jobs &amp; Education</strong> — jobsuche, ausbildungssuche, bewerberboerse</p>
 <p>🚗 <strong>Transport &amp; Infrastructure</strong> — autobahn, ladestationen, eco_visio</p>
 <p>🚨 <strong>Safety &amp; Alerts</strong> — nina, lebensmittelwarnung, travelwarning, pflanzenschutzmittelzulassung</p>
-<p>🏥 <strong>Health</strong> — diga, hilfsmittel</p>
+<p>🏥 <strong>Health</strong> — diga, hilfsmittel, klinikatlas</p>
 <p>📰 <strong>Culture &amp; Media</strong> — tagesschau, ddb</p>
 <p>🏢 <strong>Business</strong> — handelsregister, marktstammdaten</p>
 <p>📅 <strong>Other</strong> — abfallnavi, feiertage</p>

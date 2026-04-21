@@ -41,7 +41,7 @@ names correspond to XML element names.
 ## Details
 
 Returns a single Bundestag news article in XML format. API
-documentation: <https://bundesapi.github.io/bundestag-api/>.
+documentation: <https://bundestag.api.bund.dev/>.
 
 ## See also
 

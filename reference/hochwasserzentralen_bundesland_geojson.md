@@ -74,7 +74,7 @@ A one-row tibble with:
 
 Returns GeoJSON boundaries for Bundeslaender and connected regions from
 the hochwasserzentralen.de portal. API documentation:
-<https://bundesapi.github.io/hochwasserzentralen-api/>.
+<https://hochwasserzentralen.api.bund.dev/>.
 
 ## See also
 
