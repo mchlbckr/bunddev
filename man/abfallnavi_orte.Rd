@@ -25,7 +25,7 @@ List available places
 }
 \details{
 The Abfallnavi API provides waste collection data for supported regions.
-Start by listing places (Orte) to obtain an \code{ortId}. API documentation: \url{https://bundesapi.github.io/abfallnavi-api/}.
+Start by listing places (Orte) to obtain an \code{ortId}. API documentation: \url{https://abfallnavi.api.bund.dev/}.
 }
 \examples{
 \dontrun{

@@ -25,7 +25,7 @@ List flood gauge locations
 }
 \details{
 Returns latitude/longitude coordinates for all pegel identifiers available
-in the hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
+in the hochwasserzentralen.de portal. API documentation: \url{https://hochwasserzentralen.api.bund.dev/}.
 }
 \examples{
 \dontrun{

@@ -29,7 +29,7 @@ A tibble with one row per indicator entry:
 Query Dashboard Deutschland indicators
 }
 \details{
-Returns indicator data for the specified ids. API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
+Returns indicator data for the specified ids. API documentation: \url{https://dashboard.deutschland.api.bund.dev/}.
 }
 \examples{
 \dontrun{

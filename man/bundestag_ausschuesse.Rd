@@ -28,7 +28,7 @@ List Bundestag committees
 }
 \details{
 Returns the committee index from Bundestag XML feeds.
-API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+API documentation: \url{https://bundestag.api.bund.dev/}.
 }
 \examples{
 \dontrun{

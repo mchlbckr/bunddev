@@ -30,7 +30,7 @@ Get a Bundestag video feed entry
 }
 \details{
 Returns a video feed entry from the Bundestag webtv service.
-API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+API documentation: \url{https://bundestag.api.bund.dev/}.
 }
 \examples{
 \dontrun{

@@ -30,7 +30,7 @@ Get Bundestag committee details
 }
 \details{
 Returns details for a single committee.
-API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+API documentation: \url{https://bundestag.api.bund.dev/}.
 }
 \examples{
 \dontrun{

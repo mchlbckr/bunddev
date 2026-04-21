@@ -30,7 +30,7 @@ Get a Bundestag news article
 }
 \details{
 Returns a single Bundestag news article in XML format.
-API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+API documentation: \url{https://bundestag.api.bund.dev/}.
 }
 \examples{
 \dontrun{

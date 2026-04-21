@@ -48,7 +48,7 @@ Get Bundesland GeoJSON boundaries
 }
 \details{
 Returns GeoJSON boundaries for Bundeslaender and connected regions from the
-hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
+hochwasserzentralen.de portal. API documentation: \url{https://hochwasserzentralen.api.bund.dev/}.
 }
 \examples{
 \dontrun{

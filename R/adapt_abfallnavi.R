@@ -7,7 +7,7 @@
 #'
 #' @details
 #' The Abfallnavi API provides waste collection data for supported regions.
-#' Start by listing places (Orte) to obtain an `ortId`. API documentation: \url{https://bundesapi.github.io/abfallnavi-api/}.
+#' Start by listing places (Orte) to obtain an `ortId`. API documentation: \url{https://abfallnavi.api.bund.dev/}.
 #'
 #' @seealso
 #' [abfallnavi_strassen()] for streets in a place.

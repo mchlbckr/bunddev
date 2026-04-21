@@ -28,7 +28,7 @@ Get Bundestag conferences overview
 }
 \details{
 Returns conference overview data from the plenum feed.
-API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+API documentation: \url{https://bundestag.api.bund.dev/}.
 }
 \examples{
 \dontrun{

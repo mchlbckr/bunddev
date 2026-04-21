@@ -60,7 +60,7 @@ List Dashboard Deutschland entries
 }
 \details{
 Returns the full list of dashboard entries and metadata for each item.
-API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
+API documentation: \url{https://dashboard.deutschland.api.bund.dev/}.
 }
 \examples{
 \dontrun{

@@ -50,7 +50,7 @@ Get Dashboard Deutschland GeoJSON
 }
 \details{
 Returns GeoJSON data for Germany and the federal states.
-API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
+API documentation: \url{https://dashboard.deutschland.api.bund.dev/}.
 }
 \examples{
 \dontrun{

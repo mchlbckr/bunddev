@@ -19,7 +19,7 @@
 #'
 #' @details
 #' Returns the full list of dashboard entries and metadata for each item.
-#' API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
+#' API documentation: \url{https://dashboard.deutschland.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -82,7 +82,7 @@ dashboard_deutschland_get <- function(safe = TRUE,
 #'   from the API (default `FALSE`).
 #'
 #' @details
-#' Returns indicator data for the specified ids. API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
+#' Returns indicator data for the specified ids. API documentation: \url{https://dashboard.deutschland.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -143,7 +143,7 @@ dashboard_deutschland_indicators <- function(ids = NULL,
 #'
 #' @details
 #' Returns GeoJSON data for Germany and the federal states.
-#' API documentation: \url{https://bundesapi.github.io/dashboard-deutschland-api/}.
+#' API documentation: \url{https://dashboard.deutschland.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{

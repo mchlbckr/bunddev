@@ -28,7 +28,7 @@ List Bundestag members of parliament
 }
 \details{
 Returns the index of members of parliament.
-API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+API documentation: \url{https://bundestag.api.bund.dev/}.
 }
 \examples{
 \dontrun{

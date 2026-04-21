@@ -15,7 +15,7 @@
 #'
 #' @details
 #' Fetches the Tagesschau homepage feed as provided by the ARD Tagesschau API.
-#' API documentation: \url{https://bundesapi.github.io/tagesschau-api/}.
+#' API documentation: \url{https://tagesschau.api.bund.dev/}.
 #'
 #' Note: The registry rate limit allows up to 60 requests per hour. Usage of
 #' content is restricted to private, non-commercial use unless otherwise stated
@@ -90,7 +90,7 @@ tagesschau_homepage <- function(flatten = FALSE, flatten_mode = "json") {
 #'
 #' @details
 #' Returns current news items with optional filters for region or ressort.
-#' API documentation: \url{https://bundesapi.github.io/tagesschau-api/}.
+#' API documentation: \url{https://tagesschau.api.bund.dev/}.
 #'
 #' @seealso
 #' [tagesschau_homepage()] and [tagesschau_search()].
@@ -141,7 +141,7 @@ tagesschau_news <- function(regions = NULL, ressort = NULL,
 #'   }
 #'
 #' @details
-#' Searches Tagesschau content by free-text query. API documentation: \url{https://bundesapi.github.io/tagesschau-api/}.
+#' Searches Tagesschau content by free-text query. API documentation: \url{https://tagesschau.api.bund.dev/}.
 #'
 #' @seealso
 #' [tagesschau_news()] and [tagesschau_homepage()].
@@ -195,7 +195,7 @@ tagesschau_search <- function(search_text = NULL,
 #'   }
 #'
 #' @details
-#' Lists the Tagesschau channels endpoint. API documentation: \url{https://bundesapi.github.io/tagesschau-api/}.
+#' Lists the Tagesschau channels endpoint. API documentation: \url{https://tagesschau.api.bund.dev/}.
 #'
 #' @seealso
 #' [tagesschau_news()] and [tagesschau_homepage()].

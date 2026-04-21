@@ -41,7 +41,7 @@ to search results.
 Search Tagesschau content
 }
 \details{
-Searches Tagesschau content by free-text query. API documentation: \url{https://bundesapi.github.io/tagesschau-api/}.
+Searches Tagesschau content by free-text query. API documentation: \url{https://tagesschau.api.bund.dev/}.
 }
 \examples{
 \dontrun{

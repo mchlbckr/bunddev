@@ -8,7 +8,7 @@
 #'
 #' @details
 #' Returns metadata for a single flood gauge (pegel) from
-#' hochwasserzentralen.de. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
+#' hochwasserzentralen.de. API documentation: \url{https://hochwasserzentralen.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -44,7 +44,7 @@ hochwasserzentralen_pegel_info <- function(pegelnummer, safe = TRUE, refresh = F
 #'
 #' @details
 #' Returns metadata for all Bundeslaender and connected regions in the
-#' hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
+#' hochwasserzentralen.de portal. API documentation: \url{https://hochwasserzentralen.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -79,7 +79,7 @@ hochwasserzentralen_bundeslaender <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @details
 #' Returns metadata for a single Bundesland or region in the
-#' hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
+#' hochwasserzentralen.de portal. API documentation: \url{https://hochwasserzentralen.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -115,7 +115,7 @@ hochwasserzentralen_bundesland_info <- function(bundesland_id, safe = TRUE, refr
 #'
 #' @details
 #' Returns latitude/longitude coordinates for all pegel identifiers available
-#' in the hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
+#' in the hochwasserzentralen.de portal. API documentation: \url{https://hochwasserzentralen.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -162,7 +162,7 @@ hochwasserzentralen_lagepegel <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @details
 #' Returns GeoJSON boundaries for Bundeslaender and connected regions from the
-#' hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
+#' hochwasserzentralen.de portal. API documentation: \url{https://hochwasserzentralen.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{

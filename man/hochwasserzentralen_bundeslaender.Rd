@@ -25,7 +25,7 @@ List flood portal states and connected regions
 }
 \details{
 Returns metadata for all Bundeslaender and connected regions in the
-hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
+hochwasserzentralen.de portal. API documentation: \url{https://hochwasserzentralen.api.bund.dev/}.
 }
 \examples{
 \dontrun{

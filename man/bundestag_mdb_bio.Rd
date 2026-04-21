@@ -30,7 +30,7 @@ Get a Bundestag biography
 }
 \details{
 Returns details for a single member of parliament.
-API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+API documentation: \url{https://bundestag.api.bund.dev/}.
 }
 \examples{
 \dontrun{

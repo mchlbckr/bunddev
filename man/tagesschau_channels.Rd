@@ -29,7 +29,7 @@ to channel entries.
 Fetch Tagesschau channels
 }
 \details{
-Lists the Tagesschau channels endpoint. API documentation: \url{https://bundesapi.github.io/tagesschau-api/}.
+Lists the Tagesschau channels endpoint. API documentation: \url{https://tagesschau.api.bund.dev/}.
 }
 \examples{
 \dontrun{

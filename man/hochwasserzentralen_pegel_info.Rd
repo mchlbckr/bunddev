@@ -27,7 +27,7 @@ Get flood gauge information
 }
 \details{
 Returns metadata for a single flood gauge (pegel) from
-hochwasserzentralen.de. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
+hochwasserzentralen.de. API documentation: \url{https://hochwasserzentralen.api.bund.dev/}.
 }
 \examples{
 \dontrun{

@@ -9,12 +9,18 @@
 ## Notes
 
 - Re-submission of the archived package.
-- This update addresses the archival issue caused by persistent cache writes
-  during checks. During `R CMD check`, `bunddev` now uses a temporary cache
-  directory instead of writing to the user cache under `tools::R_user_dir()`.
-- Network-dependent tests have been tightened so transient upstream failures
-  now skip cleanly instead of failing checks. Tests that require API keys or
-  external network access are skipped on CRAN.
+- This update fixes the CRAN incoming pretest notes from the previous
+  submission:
+  - outdated documentation URLs that redirected with HTTP 301 have been
+    replaced by direct `https://*.api.bund.dev/` URLs;
+  - the DESCRIPTION text has been reworded to avoid the spell-check note on
+    "tibbles".
+- The previous 0.2.2 changes remain in place:
+  - during `R CMD check`, `bunddev` now uses a temporary cache directory
+    instead of writing to the user cache under `tools::R_user_dir()`;
+  - network-dependent tests now skip cleanly when upstream services are
+    unavailable, and tests requiring API keys or external network access are
+    skipped on CRAN.
 - The package provides an interface to German government APIs listed on
   <https://bund.dev>. Some adapter functions require API keys which are
   documented in the respective function help pages.

@@ -8,7 +8,7 @@
 #'
 #' @details
 #' Returns a single Bundestag news article in XML format.
-#' API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+#' API documentation: \url{https://bundestag.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -45,7 +45,7 @@ bundestag_article <- function(article_id, safe = TRUE, refresh = FALSE) {
 #'
 #' @details
 #' Returns the current speaker from the plenum feed.
-#' API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+#' API documentation: \url{https://bundestag.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -81,7 +81,7 @@ bundestag_speaker <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @details
 #' Returns conference overview data from the plenum feed.
-#' API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+#' API documentation: \url{https://bundestag.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -117,7 +117,7 @@ bundestag_conferences <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @details
 #' Returns the committee index from Bundestag XML feeds.
-#' API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+#' API documentation: \url{https://bundestag.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -154,7 +154,7 @@ bundestag_ausschuesse <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @details
 #' Returns details for a single committee.
-#' API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+#' API documentation: \url{https://bundestag.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -191,7 +191,7 @@ bundestag_ausschuss <- function(ausschuss_id, safe = TRUE, refresh = FALSE) {
 #'
 #' @details
 #' Returns the index of members of parliament.
-#' API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+#' API documentation: \url{https://bundestag.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -228,7 +228,7 @@ bundestag_mdb_index <- function(safe = TRUE, refresh = FALSE) {
 #'
 #' @details
 #' Returns details for a single member of parliament.
-#' API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+#' API documentation: \url{https://bundestag.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{
@@ -266,7 +266,7 @@ bundestag_mdb_bio <- function(mdb_id, safe = TRUE, refresh = FALSE) {
 #'
 #' @details
 #' Returns a video feed entry from the Bundestag webtv service.
-#' API documentation: \url{https://bundesapi.github.io/bundestag-api/}.
+#' API documentation: \url{https://bundestag.api.bund.dev/}.
 #'
 #' @examples
 #' \dontrun{

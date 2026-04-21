@@ -31,7 +31,7 @@ Get flood portal metadata for a Bundesland
 }
 \details{
 Returns metadata for a single Bundesland or region in the
-hochwasserzentralen.de portal. API documentation: \url{https://bundesapi.github.io/hochwasserzentralen-api/}.
+hochwasserzentralen.de portal. API documentation: \url{https://hochwasserzentralen.api.bund.dev/}.
 }
 \examples{
 \dontrun{

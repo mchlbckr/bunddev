@@ -39,7 +39,7 @@ Fetch Tagesschau news items
 }
 \details{
 Returns current news items with optional filters for region or ressort.
-API documentation: \url{https://bundesapi.github.io/tagesschau-api/}.
+API documentation: \url{https://tagesschau.api.bund.dev/}.
 }
 \examples{
 \dontrun{
