@@ -84,6 +84,8 @@ reference:
     contents: starts_with("hochwasserzentralen_")
   - title: Jobsuche
     contents: starts_with("jobsuche_")
+  - title: Klinikatlas
+    contents: starts_with("klinikatlas_")
   - title: Ladestationen
     contents: starts_with("ladestationen_")
   - title: Lebensmittelwarnung
