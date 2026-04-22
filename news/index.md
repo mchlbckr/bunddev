@@ -2,6 +2,8 @@
 
 ## bunddev 0.2.3
 
+CRAN release: 2026-04-22
+
 ### CRAN resubmission
 
 - Replace outdated documentation URLs that redirected during CRAN
