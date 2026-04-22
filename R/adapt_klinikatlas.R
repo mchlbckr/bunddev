@@ -27,8 +27,7 @@ NULL
 #' @family Klinik Atlas
 #' @export
 klinikatlas_locations <- function(safe = TRUE, refresh = FALSE) {
-  response <- bunddev_call(
-    "klinikatlas",
+  response <- klinikatlas_request(
     "klinikatlas_locations",
     parse = "json",
     safe = safe,
@@ -58,8 +57,7 @@ klinikatlas_locations <- function(safe = TRUE, refresh = FALSE) {
 #' @family Klinik Atlas
 #' @export
 klinikatlas_states <- function(safe = TRUE, refresh = FALSE) {
-  response <- bunddev_call(
-    "klinikatlas",
+  response <- klinikatlas_request(
     "klinikatlas_states",
     parse = "json",
     safe = safe,
@@ -89,8 +87,7 @@ klinikatlas_states <- function(safe = TRUE, refresh = FALSE) {
 #' @family Klinik Atlas
 #' @export
 klinikatlas_german_states <- function(safe = TRUE, refresh = FALSE) {
-  response <- bunddev_call(
-    "klinikatlas",
+  response <- klinikatlas_request(
     "klinikatlas_german_states",
     parse = "json",
     safe = safe,
@@ -120,8 +117,7 @@ klinikatlas_german_states <- function(safe = TRUE, refresh = FALSE) {
 #' @family Klinik Atlas
 #' @export
 klinikatlas_icd_codes <- function(safe = TRUE, refresh = FALSE) {
-  response <- bunddev_call(
-    "klinikatlas",
+  response <- klinikatlas_request(
     "klinikatlas_icd_codes",
     parse = "json",
     safe = safe,
@@ -151,8 +147,7 @@ klinikatlas_icd_codes <- function(safe = TRUE, refresh = FALSE) {
 #' @family Klinik Atlas
 #' @export
 klinikatlas_ops_codes <- function(safe = TRUE, refresh = FALSE) {
-  response <- bunddev_call(
-    "klinikatlas",
+  response <- klinikatlas_request(
     "klinikatlas_ops_codes",
     parse = "json",
     safe = safe,
@@ -182,8 +177,7 @@ klinikatlas_ops_codes <- function(safe = TRUE, refresh = FALSE) {
 #' @family Klinik Atlas
 #' @export
 klinikatlas_german_places <- function(safe = TRUE, refresh = FALSE) {
-  response <- bunddev_call(
-    "klinikatlas",
+  response <- klinikatlas_request(
     "klinikatlas_german_places",
     parse = "json",
     safe = safe,
@@ -239,15 +233,14 @@ klinikatlas_search <- function(params = list(),
                                refresh = FALSE,
                                flatten = FALSE,
                                flatten_mode = "json") {
-  response <- bunddev_call(
-    "klinikatlas",
+  response <- klinikatlas_request(
     "klinikatlas_search",
     params = params,
     parse = "json",
     safe = safe,
     refresh = refresh
   )
-
+  
   data <- klinikatlas_tidy_search(response)
   if (flatten) {
     return(bunddev_flatten_list_cols(
@@ -269,35 +262,47 @@ klinikatlas_search <- function(params = list(),
 #'   GET responses to `tools::R_user_dir("bunddev", "cache")`.
 #' @param refresh Logical; if `TRUE`, ignore cached responses and re-fetch
 #'   from the API (default `FALSE`).
+#' @param raw Logical; if `TRUE`, return the upstream HTML detail page as a
+#'   character scalar. Default `FALSE` returns a one-row tibble with extracted
+#'   summary fields.
 #'
 #' @details
-#' Returns the upstream HTML detail page as text. This wrapper intentionally
-#' avoids HTML scraping so the package remains aligned with the documented API
-#' surface. API documentation: \url{https://github.com/bundesAPI/klinikatlas-api}.
+#' The public Klinik-Atlas detail endpoint currently serves HTML. By default
+#' this helper extracts a one-row summary tibble with contact details and a few
+#' headline metrics from the page. Set `raw = TRUE` to retrieve the original
+#' HTML response instead. API documentation:
+#' \url{https://github.com/bundesAPI/klinikatlas-api}.
 #'
 #' @examples
 #' \dontrun{
-#' html <- klinikatlas_hospital_detail(2610)
-#' substr(html, 1, 200)
+#' klinikatlas_hospital_detail(2610)
 #' }
 #'
-#' @return Character scalar containing the raw HTML response.
+#' @return A one-row [tibble][tibble::tibble] with extracted hospital detail
+#'   fields, or a character scalar containing the raw HTML response when
+#'   `raw = TRUE`.
 #' @family Klinik Atlas
 #' @export
 klinikatlas_hospital_detail <- function(id,
                                         params = list(),
                                         safe = TRUE,
-                                        refresh = FALSE) {
+                                        refresh = FALSE,
+                                        raw = FALSE) {
   params$id <- id
 
-  bunddev_call(
-    "klinikatlas",
+  html <- klinikatlas_request(
     "klinikatlas_hospital_detail",
     params = params,
     parse = "text",
     safe = safe,
     refresh = refresh
   )
+
+  if (isTRUE(raw)) {
+    return(html)
+  }
+
+  klinikatlas_tidy_detail(html, id = id)
 }
 
 klinikatlas_tidy_records <- function(response) {
@@ -350,6 +355,152 @@ klinikatlas_tidy_search <- function(response) {
     filters = purrr::map(results, ~ .x$filters %||% list()),
     sortings = purrr::map(results, ~ .x$sortings %||% list()),
     meta_infos = purrr::map(results, ~ .x$metaInfos %||% list())
+  )
+}
+
+klinikatlas_request <- function(operation_id,
+                                params = list(),
+                                parse = c("json", "text"),
+                                safe = TRUE,
+                                refresh = FALSE) {
+  parse <- rlang::arg_match(parse)
+
+  bunddev_call(
+    "klinikatlas",
+    operation_id,
+    params = params,
+    parse = parse,
+    base_url = "https://bundes-klinik-atlas.de",
+    safe = safe,
+    refresh = refresh
+  )
+}
+
+klinikatlas_tidy_detail <- function(html, id) {
+  doc <- xml2::read_html(html)
+
+  text_squish <- function(x) {
+    stringr::str_squish(gsub("\u00a0", " ", x, fixed = TRUE))
+  }
+
+  attr_text <- function(node, attr) {
+    value <- xml2::xml_attr(node, attr)
+    if (is.na(value) || identical(value, "")) NA_character_ else value
+  }
+
+  node_text <- function(node) {
+    if (inherits(node, "xml_missing") || length(node) == 0) {
+      return(NA_character_)
+    }
+
+    value <- text_squish(xml2::xml_text(node))
+    if (identical(value, "")) NA_character_ else value
+  }
+
+  parse_number <- function(x) {
+    if (is.na(x) || identical(x, "")) {
+      return(NA_real_)
+    }
+
+    normalized <- stringr::str_replace_all(x, "\\.", "")
+    normalized <- stringr::str_replace_all(normalized, ",", ".")
+    normalized <- stringr::str_extract(normalized, "-?[0-9]+(?:\\.[0-9]+)?")
+    suppressWarnings(as.numeric(normalized))
+  }
+
+  parse_integer <- function(x) {
+    value <- parse_number(x)
+    if (is.na(value)) NA_integer_ else as.integer(round(value))
+  }
+
+  list_text <- function(xpath) {
+    nodes <- xml2::xml_find_all(doc, xpath)
+    values <- text_squish(xml2::xml_text(nodes))
+    values[nzchar(values)]
+  }
+
+  top_info <- xml2::xml_find_first(doc, ".//div[contains(@class, 'c-hospital-map__info')]")
+  map_node <- xml2::xml_find_first(doc, ".//div[@id = 'js_hospital-map']")
+
+  latlng <- attr_text(map_node, "data-location-latlng")
+  lat <- NA_real_
+  lon <- NA_real_
+  if (!is.na(latlng)) {
+    parts <- stringr::str_split(latlng, ",\\s*", simplify = TRUE)
+    if (ncol(parts) >= 2) {
+      lat <- suppressWarnings(as.numeric(parts[1]))
+      lon <- suppressWarnings(as.numeric(parts[2]))
+    }
+  }
+
+  ownership_item <- xml2::xml_find_first(top_info, ".//li[.//strong[contains(normalize-space(.), 'Träger:')]]")
+  ownership <- list_text(".//div[contains(@class, 'c-hospital-map__info')]//li[.//strong[contains(normalize-space(.), 'Träger:')]]/text()")
+  ownership <- ownership[nzchar(ownership)]
+  ownership <- if (length(ownership) == 0) NA_character_ else ownership[[1]]
+
+  size_small <- node_text(xml2::xml_find_first(top_info, ".//li[contains(@class, 'location-size')]//small"))
+  beds <- parse_integer(size_small)
+  size_category <- stringr::str_match(size_small %||% "", "\\(([^)]+)\\)")[, 2]
+  if (identical(size_category, "")) {
+    size_category <- NA_character_
+  }
+
+  website_node <- xml2::xml_find_first(top_info, ".//a[starts-with(@href, 'http')]")
+  phone_node <- xml2::xml_find_first(top_info, ".//a[starts-with(@href, 'tel:')]")
+  email_node <- xml2::xml_find_first(top_info, ".//a[starts-with(@href, 'mailto:')]")
+
+  cases_header <- xml2::xml_find_first(doc, ".//div[@id = 'content-menu-cases']")
+  case_text_node <- xml2::xml_find_first(cases_header, ".//div[contains(@class, 'c-tacho-text__text')]")
+  case_text <- node_text(case_text_node)
+  case_count <- parse_integer(case_text)
+  case_count_category <- stringr::str_match(case_text %||% "", "\\(([^)]+)\\)")[, 2]
+  if (identical(case_count_category, "")) {
+    case_count_category <- NA_character_
+  }
+
+  nursing_header <- xml2::xml_find_first(doc, ".//div[@id = 'content-menu-stuff']")
+  nursing_text <- node_text(xml2::xml_find_first(nursing_header, ".//div[contains(@class, 'c-tacho-text__text')]"))
+  nursing_quotient <- parse_number(nursing_text)
+  nursing_quotient_category <- stringr::str_match(nursing_text %||% "", "\\(([^)]+)\\)")[, 2]
+  if (identical(nursing_quotient_category, "")) {
+    nursing_quotient_category <- NA_character_
+  }
+
+  nursing_staff_text <- node_text(xml2::xml_find_first(
+    nursing_header,
+    ".//p[contains(., 'Pflegekräfte in der unmittelbaren Patientenversorgung')]"
+  ))
+  nursing_staff_direct_care <- parse_integer(nursing_staff_text)
+
+  departments_header <- xml2::xml_find_first(doc, ".//div[@id = 'content-menu-departments']")
+  department_count_text <- node_text(xml2::xml_find_first(
+    departments_header,
+    ".//div[contains(@class, 'ce-accordion__header__hidden-components')]//strong"
+  ))
+  department_count <- parse_integer(department_count_text)
+  departments <- list_text(
+    ".//div[@id = 'accordion-2-panel-2']//ul[contains(@class, 'rte_ul')]/li"
+  )
+
+  tibble::tibble(
+    id = as.integer(id),
+    name = node_text(xml2::xml_find_first(doc, ".//h1")),
+    address = node_text(xml2::xml_find_first(top_info, ".//address")),
+    latitude = lat,
+    longitude = lon,
+    website = attr_text(website_node, "href"),
+    phone = node_text(phone_node),
+    email = node_text(email_node),
+    ownership = ownership,
+    beds = beds,
+    size_category = size_category,
+    case_count = case_count,
+    case_count_category = case_count_category,
+    nursing_quotient = nursing_quotient,
+    nursing_quotient_category = nursing_quotient_category,
+    nursing_staff_direct_care = nursing_staff_direct_care,
+    department_count = department_count,
+    departments = list(departments)
   )
 }
 

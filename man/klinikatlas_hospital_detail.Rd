@@ -4,7 +4,13 @@
 \alias{klinikatlas_hospital_detail}
 \title{Fetch raw hospital detail HTML from Bundes-Klinik-Atlas}
 \usage{
-klinikatlas_hospital_detail(id, params = list(), safe = TRUE, refresh = FALSE)
+klinikatlas_hospital_detail(
+  id,
+  params = list(),
+  safe = TRUE,
+  refresh = FALSE,
+  raw = FALSE
+)
 }
 \arguments{
 \item{id}{Integer hospital identifier from \code{\link[=klinikatlas_search]{klinikatlas_search()}}.}
@@ -17,22 +23,29 @@ GET responses to \code{tools::R_user_dir("bunddev", "cache")}.}
 
 \item{refresh}{Logical; if \code{TRUE}, ignore cached responses and re-fetch
 from the API (default \code{FALSE}).}
+
+\item{raw}{Logical; if \code{TRUE}, return the upstream HTML detail page as a
+character scalar. Default \code{FALSE} returns a one-row tibble with extracted
+summary fields.}
 }
 \value{
-Character scalar containing the raw HTML response.
+A one-row \link[tibble:tibble]{tibble} with extracted hospital detail
+fields, or a character scalar containing the raw HTML response when
+\code{raw = TRUE}.
 }
 \description{
 Fetch raw hospital detail HTML from Bundes-Klinik-Atlas
 }
 \details{
-Returns the upstream HTML detail page as text. This wrapper intentionally
-avoids HTML scraping so the package remains aligned with the documented API
-surface. API documentation: \url{https://github.com/bundesAPI/klinikatlas-api}.
+The public Klinik-Atlas detail endpoint currently serves HTML. By default
+this helper extracts a one-row summary tibble with contact details and a few
+headline metrics from the page. Set \code{raw = TRUE} to retrieve the original
+HTML response instead. API documentation:
+\url{https://github.com/bundesAPI/klinikatlas-api}.
 }
 \examples{
 \dontrun{
-html <- klinikatlas_hospital_detail(2610)
-substr(html, 1, 200)
+klinikatlas_hospital_detail(2610)
 }
 
 }
