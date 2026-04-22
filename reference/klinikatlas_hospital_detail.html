@@ -44,7 +44,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">klinikatlas_hospital_detail</span><span class="op">(</span><span class="va">id</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, safe <span class="op">=</span> <span class="cn">TRUE</span>, refresh <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">klinikatlas_hospital_detail</span><span class="op">(</span></span>
+<span>  <span class="va">id</span>,</span>
+<span>  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  safe <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  refresh <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  raw <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -69,16 +75,26 @@ GET responses to <code>tools::R_user_dir("bunddev", "cache")</code>.</p></dd>
 <dd><p>Logical; if <code>TRUE</code>, ignore cached responses and re-fetch
 from the API (default <code>FALSE</code>).</p></dd>
 
+
+<dt id="arg-raw">raw<a class="anchor" aria-label="anchor" href="#arg-raw"></a></dt>
+<dd><p>Logical; if <code>TRUE</code>, return the upstream HTML detail page as a
+character scalar. Default <code>FALSE</code> returns a one-row tibble with extracted
+summary fields.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Character scalar containing the raw HTML response.</p>
+    <p>A one-row <a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a> with extracted hospital detail
+fields, or a character scalar containing the raw HTML response when
+<code>raw = TRUE</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Returns the upstream HTML detail page as text. This wrapper intentionally
-avoids HTML scraping so the package remains aligned with the documented API
-surface. API documentation: <a href="https://github.com/bundesAPI/klinikatlas-api" class="external-link">https://github.com/bundesAPI/klinikatlas-api</a>.</p>
+    <p>The public Klinik-Atlas detail endpoint currently serves HTML. By default
+this helper extracts a one-row summary tibble with contact details and a few
+headline metrics from the page. Set <code>raw = TRUE</code> to retrieve the original
+HTML response instead. API documentation:
+<a href="https://github.com/bundesAPI/klinikatlas-api" class="external-link">https://github.com/bundesAPI/klinikatlas-api</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -95,8 +111,7 @@ surface. API documentation: <a href="https://github.com/bundesAPI/klinikatlas-ap
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu">klinikatlas_hospital_detail</span><span class="op">(</span><span class="fl">2610</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">html</span>, <span class="fl">1</span>, <span class="fl">200</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">klinikatlas_hospital_detail</span><span class="op">(</span><span class="fl">2610</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

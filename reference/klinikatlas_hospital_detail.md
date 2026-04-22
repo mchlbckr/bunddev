@@ -5,7 +5,13 @@ Fetch raw hospital detail HTML from Bundes-Klinik-Atlas
 ## Usage
 
 ``` r
-klinikatlas_hospital_detail(id, params = list(), safe = TRUE, refresh = FALSE)
+klinikatlas_hospital_detail(
+  id,
+  params = list(),
+  safe = TRUE,
+  refresh = FALSE,
+  raw = FALSE
+)
 ```
 
 ## Arguments
@@ -30,15 +36,24 @@ klinikatlas_hospital_detail(id, params = list(), safe = TRUE, refresh = FALSE)
   Logical; if `TRUE`, ignore cached responses and re-fetch from the API
   (default `FALSE`).
 
+- raw:
+
+  Logical; if `TRUE`, return the upstream HTML detail page as a
+  character scalar. Default `FALSE` returns a one-row tibble with
+  extracted summary fields.
+
 ## Value
 
-Character scalar containing the raw HTML response.
+A one-row [tibble](https://tibble.tidyverse.org/reference/tibble.html)
+with extracted hospital detail fields, or a character scalar containing
+the raw HTML response when `raw = TRUE`.
 
 ## Details
 
-Returns the upstream HTML detail page as text. This wrapper
-intentionally avoids HTML scraping so the package remains aligned with
-the documented API surface. API documentation:
+The public Klinik-Atlas detail endpoint currently serves HTML. By
+default this helper extracts a one-row summary tibble with contact
+details and a few headline metrics from the page. Set `raw = TRUE` to
+retrieve the original HTML response instead. API documentation:
 <https://github.com/bundesAPI/klinikatlas-api>.
 
 ## See also
@@ -56,7 +71,6 @@ Other Klinik Atlas:
 
 ``` r
 if (FALSE) { # \dontrun{
-html <- klinikatlas_hospital_detail(2610)
-substr(html, 1, 200)
+klinikatlas_hospital_detail(2610)
 } # }
 ```
